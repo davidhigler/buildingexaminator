@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "doctrine/annotations": "^1.13",
+        "symfony/asset": "^5.2",
         "symfony/config": "^5.2",
         "symfony/console": "^5.2",
         "symfony/debug-bundle": "^5.2",
