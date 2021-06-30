@@ -3,8 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Portefeuille\HousingStock;
-use Doctrine\DBAL\Connection;
-use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,15 +20,23 @@ class ApiController extends AbstractController
         'id',
         'blocks' => [
             'id',
-            'creationTime' => [
-                'timestamp',
-            ],
-            'lastChangeTime' => [
-                'timestamp',
-            ],
             'code',
             'name',
-            'description',
+        ],
+        'buildingTypes' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'buildingAddresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
+            'houseNumber',
+            'addition',
+        ],
+        'housingStockOptionSet' => [
+            'id',
         ],
         'creationTime' => [
             'timestamp',
@@ -41,6 +48,7 @@ class ApiController extends AbstractController
         'name',
         'description',
         'numberOfBlocks',
+        'numberOfBuildingAddresses',
     ];
 
     /**
@@ -52,7 +60,7 @@ class ApiController extends AbstractController
         name: 'documentation',
         methods: ['GET']
     )]
-    public function Documentation(): Response
+    public function getDocumentation(): Response
     {
         return $this->render('api/v1/documentation/index.twig');
     }
@@ -62,7 +70,7 @@ class ApiController extends AbstractController
         name: 'housingstocks',
         methods: ['GET']
     )]
-    public function getProjects(): Response
+    public function getHousingStocks(LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $housingStocks = $housingStockRepository->findAll();
@@ -75,8 +83,8 @@ class ApiController extends AbstractController
                 null,
                 [AbstractNormalizer::ATTRIBUTES => self::HOUSING_STOCK_FIELDS]
             );
-        } catch (ExceptionInterface $e) {
-
+        } catch (ExceptionInterface $exception) {
+            $logger->error('Something went wrong with normalizing a housingStocks array', ['exception' => $exception]);
         }
 
         return $this->json($data);
@@ -84,10 +92,10 @@ class ApiController extends AbstractController
 
     #[Route(
         '/housingstocks/{projectId}',
-        name: 'housingstocks',
+        name: 'housingstock',
         methods: ['GET']
     )]
-    public function getProject(string $projectId): Response
+    public function getHousingStock(string $projectId, LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $housingStock = $housingStockRepository->find((int) $projectId);
@@ -100,8 +108,8 @@ class ApiController extends AbstractController
                 null,
                 [AbstractNormalizer::ATTRIBUTES => self::HOUSING_STOCK_FIELDS]
             );
-        } catch (ExceptionInterface $e) {
-
+        } catch (ExceptionInterface $exception) {
+            $logger->error('Something went wrong with normalizing a housingStock object', ['exception' => $exception]);
         }
 
         return $this->json($data);
