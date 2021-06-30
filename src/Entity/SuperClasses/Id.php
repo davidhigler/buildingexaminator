@@ -5,45 +5,29 @@ namespace App\Entity\SuperClasses;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\MappedSuperclass
  */
 class Id
 {
     /**
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
-    /**
-     *
-     * @return integer
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     *
-     * @param integer $id
-     * @return void
-     */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     *
-     * @return array
-     */
-    public function objectValuesToArray()
+    public function objectValuesToArray(): array
     {
         $result = array();
         foreach ($this as $property => $value) {
@@ -55,13 +39,7 @@ class Id
         return $result;
     }
 
-    /**
-     *
-     * @param string $input
-     * @param string $separator
-     * @return string
-     */
-    public function camelize($input, $separator = '_')
+    public function camelize(string $input, string $separator = '_'): string
     {
         return str_replace($separator, '', ucwords($input, $separator));
     }

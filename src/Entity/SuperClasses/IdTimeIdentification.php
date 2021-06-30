@@ -6,15 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\MappedSuperclass
  */
 class IdTimeIdentification extends IdTime
 {
     /**
-     *
-     * @ORM\column(type="string", length=32)
+     * @ORM\Column(type="string", length=32)
      * @Assert\NotBlank(
      *      message="%property% may not be empty"
      * )
@@ -26,13 +24,11 @@ class IdTimeIdentification extends IdTime
      *      max=128,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
-     * @var string
      */
-    protected $code;
+    protected string $code;
 
     /**
-     *
-     * @ORM\column(type="string", length=128)
+     * @ORM\Column(type="string", length=128)
      * @Assert\NotBlank(
      *      message="%property% may not be empty"
      * )
@@ -44,76 +40,46 @@ class IdTimeIdentification extends IdTime
      *      max=128,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
-     * @var string
      */
-    protected $naam;
+    protected string $name;
 
     /**
-     *
-     * @ORM\column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\Type(
      *     type="string",
      *     message="%property% is not a valid %type%"
      * )
-     * @var string
      */
-    protected $omschrijving;
+    protected string $description;
 
-    /**
-     *
-     * @return string
-     */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    /**
-     *
-     * @return string
-     */
-    public function getNaam()
+    public function getName(): string
     {
-        return $this->naam;
+        return $this->name;
     }
 
-    /**
-     *
-     * @return string
-     */
-    public function getOmschrijving()
+    public function getDescription(): string
     {
-        return $this->omschrijving;
+        return $this->description;
     }
 
-    /**
-     *
-     * @param string $code
-     * @return void
-     */
-    public function setCode($code)
+    public function setCode(string $code): void
     {
         $this->code = $code;
     }
 
-    /**
-     *
-     * @param string $naam
-     * @return void
-     */
-    public function setNaam($naam)
+    public function setName(string $name): void
     {
-        $this->naam = $naam;
+        $this->name = $name;
     }
 
-    /**
-     *
-     * @param string $omschrijving
-     * @return void
-     */
-    public function setOmschrijving($omschrijving)
+    public function setDescription(string $description): void
     {
-        $this->omschrijving = $omschrijving;
+        $this->description = $description;
     }
 
 }

@@ -1,0 +1,8 @@
+Voorraad = HousingStock
+VoorraadOptieSet = HousingStockOptionSet
+Complex = Block
+GebouwAdres = BuildingAddress
+GebouwSelectie = BuildingSelection
+GebouwSelectieOptieSet = BuildingSelectionOptionSet
+GebouwType = BuildingType
+Woonwijk = ResidentialArea

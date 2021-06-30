@@ -4,9 +4,9 @@ namespace App\Entity\SuperClasses;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
 
 /**
- *
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\MappedSuperclass
  */
@@ -14,62 +14,41 @@ class IdTime extends Id
 {
 
     /**
-     *
-     * @ORM\column(type="datetimetz")
+     * @ORM\Column(type="datetimetz")
      * @Assert\Type(
      *     type="object",
      *     message="%property% is not a valid %type%"
      * )
-     * @var \DateTime
      */
-    protected $tijdstip_aanmaak;
+    protected DateTime $creationTime;
 
     /**
-     *
-     * @ORM\column(type="datetimetz")
+     * @ORM\Column(type="datetimetz")
      * @Assert\Type(
      *     type="object",
      *     message="%property% is not a valid %type%"
      * )
-     * @var \DateTime
      */
-    protected $tijdstip_laatste_wijziging;
+    protected DateTime $lastChangeTime;
 
-    /**
-     *
-     * @return \DateTime
-     */
-    public function getTijdstipAanmaak()
+    public function getCreationTime(): DateTime
     {
-        return $this->tijdstip_aanmaak;
+        return $this->creationTime;
     }
 
-    /**
-     *
-     * @return \DateTime
-     */
-    public function getTijdstipLaatsteWijziging()
+    public function getLastChangeTime(): DateTime
     {
-        return $this->tijdstip_laatste_wijziging;
+        return $this->lastChangeTime;
     }
 
-    /**
-     *
-     * @return void
-     */
-    public function setTijdstipAanmaak()
+    public function setCreationTime(): void
     {
-        $this->tijdstip_aanmaak = new \DateTime;
+        $this->creationTime = new DateTime;
     }
 
-    /**
-     *
-     * @ORM\PreUpdate
-     * @return void
-     */
-    public function setTijdstipLaatsteWijziging()
+    public function setLastChangeTime(): void
     {
-        $this->tijdstip_laatste_wijziging = new \DateTime;
+        $this->lastChangeTime = new DateTime;
     }
 
 }

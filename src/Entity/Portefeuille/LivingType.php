@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Entity\Portefeuille;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use App\Entity\SuperClasses\IdTimeIdentification;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+/**
+ * @author David C. Higler <davidhigler@gmail.com>
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="LivingTypes")
+ */
+class LivingType extends IdTimeIdentification
+{
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Portefeuille\BuildingAddress", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
+     * @Assert\Valid()
+     */
+    protected Collection $buildingAddresses;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Portefeuille\BuildingSelection", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
+     * @Assert\Valid()
+     */
+    protected Collection $buildingSelection;
+
+    public function __construct()
+    {
+        $this->buildingAddresses = new ArrayCollection();
+        $this->buildingSelection = new ArrayCollection();
+    }
+
+    public function getBuildingAddresses(): ArrayCollection
+    {
+        return $this->buildingAddresses;
+    }
+
+    public function getBuildingSelection(): ArrayCollection
+    {
+        return $this->buildingSelection;
+    }
+
+    public function addBuildingAddress(BuildingAddress $buildingAddress): void
+    {
+        $this->buildingAddresses->add($buildingAddress);
+    }
+
+    public function removeBuildingAddress(BuildingAddress $buildingAddress): void
+    {
+        $this->buildingAddresses->removeElement($buildingAddress);
+    }
+
+    public function addBuildingSelection(BuildingSelection $buildingSelection): void
+    {
+        $this->buildingSelection->add($buildingSelection);
+    }
+
+    public function removeBuildingSelection(BuildingSelection $buildingSelection): void
+    {
+        $this->buildingSelection->removeElement($buildingSelection);
+    }
+
+}
