@@ -28,7 +28,7 @@ class ResidentialArea extends IdTimeIdentification
         $this->buildingAddresses = new ArrayCollection();
     }
 
-    public function getBuildingAddresses(): ArrayCollection
+    public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
     }

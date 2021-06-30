@@ -47,12 +47,12 @@ class BuildingType extends IdTimeIdentification
         return $this->housingStock;
     }
 
-    public function getBuildingAddresses(): ArrayCollection
+    public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
     }
 
-    public function getBuildingSelections(): ArrayCollection
+    public function getBuildingSelections(): Collection
     {
         return $this->buildingSelections;
     }

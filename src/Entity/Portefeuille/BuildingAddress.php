@@ -206,7 +206,7 @@ class BuildingAddress extends IdTime
         return $this->livingType;
     }
 
-    public function getBlocks(): ArrayCollection
+    public function getBlocks(): Collection
     {
         return $this->blocks;
     }

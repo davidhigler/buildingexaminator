@@ -35,12 +35,12 @@ class LivingType extends IdTimeIdentification
         $this->buildingSelection = new ArrayCollection();
     }
 
-    public function getBuildingAddresses(): ArrayCollection
+    public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
     }
 
-    public function getBuildingSelection(): ArrayCollection
+    public function getBuildingSelection(): Collection
     {
         return $this->buildingSelection;
     }

@@ -78,7 +78,7 @@ class Block extends IdTimeIdentification
         return $this->housingStock;
     }
 
-    public function getBuildingAddresses(): ArrayCollection
+    public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
     }
@@ -88,7 +88,7 @@ class Block extends IdTimeIdentification
         return $this->numberOfBuildingAddresses;
     }
 
-    public function getBuildingSelection():ArrayCollection
+    public function getBuildingSelection(): Collection
     {
         return $this->buildingSelection;
     }
