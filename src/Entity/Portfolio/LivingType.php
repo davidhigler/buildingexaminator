@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Portefeuille;
+namespace App\Entity\Portfolio;
 
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 class LivingType extends IdTimeIdentification
 {
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Portefeuille\BuildingAddress", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Portfolio\BuildingAddress", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingAddresses;

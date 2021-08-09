@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api\V1;
 
-use App\Entity\Portefeuille\Block;
-use App\Entity\Portefeuille\HousingStock;
+use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\HousingStock;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Serializer;
  * @author David C. Higler <davidhigler@gmail.com>
  */
 #[Route(
-    '/api/v1',
+    '/api/buildingexaminator/v1',
     name: 'api-v1-'
 )]
 class ApiController extends AbstractController

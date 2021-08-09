@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Portefeuille;
+namespace App\Entity\Portfolio;
 
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;

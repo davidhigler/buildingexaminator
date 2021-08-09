@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Portefeuille;
+namespace App\Entity\Portfolio;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

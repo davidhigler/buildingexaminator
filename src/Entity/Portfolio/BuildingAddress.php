@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Portefeuille;
+namespace App\Entity\Portfolio;
 
 use App\Entity\Finance\TaxResponsibility;
 use App\Entity\Planning\FuturePlans;

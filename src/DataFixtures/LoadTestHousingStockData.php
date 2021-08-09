@@ -5,12 +5,12 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-use App\Entity\Portefeuille\ResidentialArea;
-use App\Entity\Portefeuille\BuildingAddress;
-use App\Entity\Portefeuille\Block;
-use App\Entity\Portefeuille\HousingStock;
-use App\Entity\Portefeuille\BuildingType;
-use App\Entity\Portefeuille\HousingStockOptionSet;
+use App\Entity\Portfolio\ResidentialArea;
+use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\HousingStock;
+use App\Entity\Portfolio\BuildingType;
+use App\Entity\Portfolio\HousingStockOptionSet;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
