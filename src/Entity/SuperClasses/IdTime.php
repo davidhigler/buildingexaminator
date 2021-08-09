@@ -12,7 +12,6 @@ use DateTime;
  */
 class IdTime extends Id
 {
-
     /**
      * @ORM\Column(type="datetimetz")
      * @Assert\Type(

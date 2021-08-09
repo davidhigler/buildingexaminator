@@ -1,0 +1,175 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Building Examinator
+servers:
+  - url: '/api/buildingexaminator/v1'
+paths:
+  /housingstocks:
+    get:
+      summary: 'Sample endpoint: Returns details about multiple housing stocks'
+      operationId: listHousingStocks
+      responses:
+        '200':
+          description: 'Sample response: Details about multiple housing stocks'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/HousingStock'
+        default:
+          description: Unexpected errors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Error'
+  /housingstocks/{housingStockId}:
+    get:
+      summary: 'Sample endpoint: Returns details about a housing stock'
+      operationId: detailsHousingStock
+      parameters:
+        - in: path
+          name: housingStockId
+          schema:
+            type: string
+            description: The housing stock id
+      responses:
+        '200':
+          description: 'Sample response: Details about a housing stock'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HousingStock'
+        default:
+          description: Unexpected errors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    HousingStock:
+      type: object
+      required:
+        - id
+        - creationTime
+        - lastChangeTime
+        - code
+        - name
+        - description
+        - numberOfBlocks
+        - numberOfBuildingAddresses
+      properties:
+        id:
+          type: integer
+          format: int64
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockMin'
+        buildingTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildingTypeMin'
+        buildingAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildingAddressMin'
+        housingStockOptionSet:
+          $ref: '#/components/schemas/HousingStockOptionSet'
+        creationTime:
+          type: string
+        lastChangeTime:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numberOfBlocks:
+          type: integer
+          format: int64
+        numberOfBuildingAddresses:
+          type: integer
+          format: int64
+    BlockMin:
+      type: object
+      required:
+        - id
+        - code
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+    BuildingTypeMin:
+      type: object
+      required:
+        - id
+        - code
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+    BuildingAddressMin:
+      type: object
+      required:
+        - id
+        - rentalUnitNumber
+        - zipcode
+        - houseNumber
+        - addition
+      properties:
+        id:
+          type: integer
+          format: int64
+        rentalUnitNumber:
+          type: string
+        zipcode:
+          type: string
+        houseNumber:
+          type: integer
+          format: int64
+        addition:
+          type: string
+    HousingStockOptionSet:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []

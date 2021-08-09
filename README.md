@@ -1,4 +1,6 @@
-# firsttimesymfony
+# Building Examinator
+
+# Techical information
 
 Drop database:
 ```shell
@@ -23,4 +25,9 @@ php bin/console doctrine:fixtures:load
 Migrate database to latest version:
 ```shell
 php bin/console doctrine:migrations:migrate
+```
+
+Clear Symfony cache:
+```shell
+php bin/console cache:clear
 ```

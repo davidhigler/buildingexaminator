@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class IdIdentification extends Id
 {
-
     /**
      * @ORM\Column(type="string", length=32)
      * @Assert\NotBlank(

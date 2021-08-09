@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Portfolio\LivingType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -207,6 +208,27 @@ class LoadTestHousingStockData extends Fixture
         $buildingType13->setCreationTime();
         $buildingType13->setLastChangeTime();
 
+        $livingType1 = new LivingType();
+        $livingType1->setId(1);
+        $livingType1->setCode('lt1');
+        $livingType1->setName('Living type 1');
+        $livingType1->setCreationTime();
+        $livingType1->setLastChangeTime();
+
+        $livingType2 = new LivingType();
+        $livingType2->setId(2);
+        $livingType2->setCode('lt2');
+        $livingType2->setName('Living type 2');
+        $livingType2->setCreationTime();
+        $livingType2->setLastChangeTime();
+
+        $livingType3 = new LivingType();
+        $livingType3->setId(3);
+        $livingType3->setCode('lt3');
+        $livingType3->setName('Living type 3');
+        $livingType3->setCreationTime();
+        $livingType3->setLastChangeTime();
+
         $buildingAddress0 = new BuildingAddress();
         $buildingAddress0->setId(0);
         $buildingAddress0->setConstructionYear(1986);
@@ -219,6 +241,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setRentalUnitNumber('VHE0000');
         $buildingAddress0->setResidentialArea($residentialArea10);
         $buildingAddress0->setBuildingType($buildingType10);
+        $buildingAddress0->setLivingType($livingType1);
         $buildingAddress0->setCreationTime();
         $buildingAddress0->setLastChangeTime();
 
@@ -234,6 +257,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress1->setRentalUnitNumber('VHE0000');
         $buildingAddress1->setResidentialArea($residentialArea1);
         $buildingAddress1->setBuildingType($buildingType1);
+        $buildingAddress1->setLivingType($livingType1);
         $buildingAddress1->setCreationTime();
         $buildingAddress1->setLastChangeTime();
 
@@ -249,6 +273,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress2->setRentalUnitNumber('VHE0000');
         $buildingAddress2->setResidentialArea($residentialArea2);
         $buildingAddress2->setBuildingType($buildingType2);
+        $buildingAddress2->setLivingType($livingType1);
         $buildingAddress2->setCreationTime();
         $buildingAddress2->setLastChangeTime();
 
@@ -264,6 +289,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress3->setRentalUnitNumber('VHE0000');
         $buildingAddress3->setResidentialArea($residentialArea3);
         $buildingAddress3->setBuildingType($buildingType3);
+        $buildingAddress3->setLivingType($livingType1);
         $buildingAddress3->setCreationTime();
         $buildingAddress3->setLastChangeTime();
 
@@ -279,6 +305,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress4->setRentalUnitNumber('VHE0000');
         $buildingAddress4->setResidentialArea($residentialArea4);
         $buildingAddress4->setBuildingType($buildingType4);
+        $buildingAddress4->setLivingType($livingType1);
         $buildingAddress4->setCreationTime();
         $buildingAddress4->setLastChangeTime();
 
@@ -294,6 +321,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setRentalUnitNumber('VHE0000');
         $buildingAddress5->setResidentialArea($residentialArea5);
         $buildingAddress5->setBuildingType($buildingType5);
+        $buildingAddress5->setLivingType($livingType1);
         $buildingAddress5->setCreationTime();
         $buildingAddress5->setLastChangeTime();
 
@@ -309,6 +337,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress6->setRentalUnitNumber('VHE0000');
         $buildingAddress6->setResidentialArea($residentialArea6);
         $buildingAddress6->setBuildingType($buildingType6);
+        $buildingAddress6->setLivingType($livingType1);
         $buildingAddress6->setCreationTime();
         $buildingAddress6->setLastChangeTime();
 
@@ -324,6 +353,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress7->setRentalUnitNumber('VHE0000');
         $buildingAddress7->setResidentialArea($residentialArea7);
         $buildingAddress7->setBuildingType($buildingType7);
+        $buildingAddress7->setLivingType($livingType1);
         $buildingAddress7->setCreationTime();
         $buildingAddress7->setLastChangeTime();
 
@@ -339,6 +369,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress8->setRentalUnitNumber('VHE0000');
         $buildingAddress8->setResidentialArea($residentialArea8);
         $buildingAddress8->setBuildingType($buildingType8);
+        $buildingAddress8->setLivingType($livingType1);
         $buildingAddress8->setCreationTime();
         $buildingAddress8->setLastChangeTime();
 
@@ -354,6 +385,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress9->setRentalUnitNumber('VHE0000');
         $buildingAddress9->setResidentialArea($residentialArea9);
         $buildingAddress9->setBuildingType($buildingType9);
+        $buildingAddress9->setLivingType($livingType1);
         $buildingAddress9->setCreationTime();
         $buildingAddress9->setLastChangeTime();
 
@@ -369,6 +401,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress10->setRentalUnitNumber('VHE0000');
         $buildingAddress10->setResidentialArea($residentialArea10);
         $buildingAddress10->setBuildingType($buildingType10);
+        $buildingAddress10->setLivingType($livingType1);
         $buildingAddress10->setCreationTime();
         $buildingAddress10->setLastChangeTime();
 
@@ -384,6 +417,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress11->setRentalUnitNumber('VHE0000');
         $buildingAddress11->setResidentialArea($residentialArea1);
         $buildingAddress11->setBuildingType($buildingType1);
+        $buildingAddress11->setLivingType($livingType1);
         $buildingAddress11->setCreationTime();
         $buildingAddress11->setLastChangeTime();
 
@@ -399,6 +433,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress12->setRentalUnitNumber('VHE0000');
         $buildingAddress12->setResidentialArea($residentialArea2);
         $buildingAddress12->setBuildingType($buildingType2);
+        $buildingAddress12->setLivingType($livingType1);
         $buildingAddress12->setCreationTime();
         $buildingAddress12->setLastChangeTime();
 
@@ -414,6 +449,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress13->setRentalUnitNumber('VHE0000');
         $buildingAddress13->setResidentialArea($residentialArea3);
         $buildingAddress13->setBuildingType($buildingType3);
+        $buildingAddress13->setLivingType($livingType1);
         $buildingAddress13->setCreationTime();
         $buildingAddress13->setLastChangeTime();
 
@@ -430,6 +466,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress14->setRentalUnitNumber('VHE0000');
         $buildingAddress14->setResidentialArea($residentialArea4);
         $buildingAddress14->setBuildingType($buildingType4);
+        $buildingAddress14->setLivingType($livingType1);
         $buildingAddress14->setCreationTime();
         $buildingAddress14->setLastChangeTime();
 
@@ -445,6 +482,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress15->setRentalUnitNumber('VHE0000');
         $buildingAddress15->setResidentialArea($residentialArea5);
         $buildingAddress15->setBuildingType($buildingType5);
+        $buildingAddress15->setLivingType($livingType2);
         $buildingAddress15->setCreationTime();
         $buildingAddress15->setLastChangeTime();
 
@@ -460,6 +498,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress16->setRentalUnitNumber('VHE0000');
         $buildingAddress16->setResidentialArea($residentialArea6);
         $buildingAddress16->setBuildingType($buildingType6);
+        $buildingAddress16->setLivingType($livingType2);
         $buildingAddress16->setCreationTime();
         $buildingAddress16->setLastChangeTime();
 
@@ -475,6 +514,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress17->setRentalUnitNumber('VHE0000');
         $buildingAddress17->setResidentialArea($residentialArea7);
         $buildingAddress17->setBuildingType($buildingType7);
+        $buildingAddress17->setLivingType($livingType2);
         $buildingAddress17->setCreationTime();
         $buildingAddress17->setLastChangeTime();
 
@@ -490,6 +530,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress18->setRentalUnitNumber('VHE0000');
         $buildingAddress18->setResidentialArea($residentialArea8);
         $buildingAddress18->setBuildingType($buildingType8);
+        $buildingAddress18->setLivingType($livingType2);
 		$buildingAddress18->setCreationTime();
         $buildingAddress18->setLastChangeTime();
 
@@ -505,6 +546,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress19->setRentalUnitNumber('VHE0000');
         $buildingAddress19->setResidentialArea($residentialArea9);
         $buildingAddress19->setBuildingType($buildingType9);
+        $buildingAddress19->setLivingType($livingType2);
         $buildingAddress19->setCreationTime();
         $buildingAddress19->setLastChangeTime();
 
@@ -520,6 +562,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress20->setRentalUnitNumber('VHE0000');
         $buildingAddress20->setResidentialArea($residentialArea10);
         $buildingAddress20->setBuildingType($buildingType10);
+        $buildingAddress20->setLivingType($livingType2);
         $buildingAddress20->setCreationTime();
         $buildingAddress20->setLastChangeTime();
 
@@ -535,6 +578,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress21->setRentalUnitNumber('VHE0000');
         $buildingAddress21->setResidentialArea($residentialArea1);
         $buildingAddress21->setBuildingType($buildingType1);
+        $buildingAddress21->setLivingType($livingType2);
         $buildingAddress21->setCreationTime();
         $buildingAddress21->setLastChangeTime();
 
@@ -550,6 +594,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress22->setRentalUnitNumber('VHE0000');
         $buildingAddress22->setResidentialArea($residentialArea2);
         $buildingAddress22->setBuildingType($buildingType2);
+        $buildingAddress22->setLivingType($livingType2);
         $buildingAddress22->setCreationTime();
         $buildingAddress22->setLastChangeTime();
 
@@ -565,6 +610,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setRentalUnitNumber('VHE0000');
         $buildingAddress23->setResidentialArea($residentialArea3);
         $buildingAddress23->setBuildingType($buildingType3);
+        $buildingAddress23->setLivingType($livingType2);
         $buildingAddress23->setCreationTime();
         $buildingAddress23->setLastChangeTime();
 
@@ -580,6 +626,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setRentalUnitNumber('VHE0000');
         $buildingAddress24->setResidentialArea($residentialArea4);
         $buildingAddress24->setBuildingType($buildingType4);
+        $buildingAddress24->setLivingType($livingType2);
         $buildingAddress24->setCreationTime();
         $buildingAddress24->setLastChangeTime();
 
@@ -595,6 +642,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setRentalUnitNumber('VHE0000');
         $buildingAddress25->setResidentialArea($residentialArea5);
         $buildingAddress25->setBuildingType($buildingType5);
+        $buildingAddress25->setLivingType($livingType2);
         $buildingAddress25->setCreationTime();
         $buildingAddress25->setLastChangeTime();
 
@@ -610,6 +658,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress26->setRentalUnitNumber('VHE0000');
         $buildingAddress26->setResidentialArea($residentialArea6);
         $buildingAddress26->setBuildingType($buildingType6);
+        $buildingAddress26->setLivingType($livingType2);
         $buildingAddress26->setCreationTime();
         $buildingAddress26->setLastChangeTime();
 
@@ -625,6 +674,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress27->setRentalUnitNumber('VHE0000');
         $buildingAddress27->setResidentialArea($residentialArea7);
         $buildingAddress27->setBuildingType($buildingType7);
+        $buildingAddress27->setLivingType($livingType2);
         $buildingAddress27->setCreationTime();
         $buildingAddress27->setLastChangeTime();
 
@@ -640,6 +690,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress28->setRentalUnitNumber('VHE0000');
         $buildingAddress28->setResidentialArea($residentialArea8);
         $buildingAddress28->setBuildingType($buildingType8);
+        $buildingAddress28->setLivingType($livingType2);
         $buildingAddress28->setCreationTime();
         $buildingAddress28->setLastChangeTime();
 
@@ -655,6 +706,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress29->setRentalUnitNumber('VHE0000');
         $buildingAddress29->setResidentialArea($residentialArea9);
         $buildingAddress29->setBuildingType($buildingType9);
+        $buildingAddress29->setLivingType($livingType2);
         $buildingAddress29->setCreationTime();
         $buildingAddress29->setLastChangeTime();
 
@@ -670,6 +722,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress30->setRentalUnitNumber('VHE0000');
         $buildingAddress30->setResidentialArea($residentialArea10);
         $buildingAddress30->setBuildingType($buildingType10);
+        $buildingAddress30->setLivingType($livingType2);
         $buildingAddress30->setCreationTime();
         $buildingAddress30->setLastChangeTime();
 
@@ -685,6 +738,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress31->setRentalUnitNumber('VHE0000');
         $buildingAddress31->setResidentialArea($residentialArea1);
         $buildingAddress31->setBuildingType($buildingType1);
+        $buildingAddress31->setLivingType($livingType2);
         $buildingAddress31->setCreationTime();
         $buildingAddress31->setLastChangeTime();
 
@@ -700,6 +754,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress41->setRentalUnitNumber('VHE0000');
         $buildingAddress41->setResidentialArea($residentialArea1);
         $buildingAddress41->setBuildingType($buildingType1);
+        $buildingAddress41->setLivingType($livingType2);
         $buildingAddress41->setCreationTime();
         $buildingAddress41->setLastChangeTime();
 
@@ -715,6 +770,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setRentalUnitNumber('VHE0000');
         $buildingAddress51->setResidentialArea($residentialArea1);
         $buildingAddress51->setBuildingType($buildingType1);
+        $buildingAddress51->setLivingType($livingType3);
         $buildingAddress51->setCreationTime();
         $buildingAddress51->setLastChangeTime();
 
@@ -730,6 +786,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress61->setRentalUnitNumber('VHE0000');
         $buildingAddress61->setResidentialArea($residentialArea1);
         $buildingAddress61->setBuildingType($buildingType1);
+        $buildingAddress61->setLivingType($livingType3);
         $buildingAddress61->setCreationTime();
         $buildingAddress61->setLastChangeTime();
 
@@ -745,6 +802,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress71->setRentalUnitNumber('VHE0000');
         $buildingAddress71->setResidentialArea($residentialArea1);
         $buildingAddress71->setBuildingType($buildingType1);
+        $buildingAddress71->setLivingType($livingType3);
         $buildingAddress71->setCreationTime();
         $buildingAddress71->setLastChangeTime();
 
@@ -760,6 +818,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress81->setRentalUnitNumber('VHE0000');
         $buildingAddress81->setResidentialArea($residentialArea1);
         $buildingAddress81->setBuildingType($buildingType1);
+        $buildingAddress81->setLivingType($livingType3);
         $buildingAddress81->setCreationTime();
         $buildingAddress81->setLastChangeTime();
 
@@ -775,6 +834,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress91->setRentalUnitNumber('VHE0000');
         $buildingAddress91->setResidentialArea($residentialArea1);
         $buildingAddress91->setBuildingType($buildingType1);
+        $buildingAddress91->setLivingType($livingType3);
         $buildingAddress91->setCreationTime();
         $buildingAddress91->setLastChangeTime();
 
@@ -790,6 +850,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress101->setRentalUnitNumber('VHE0000');
         $buildingAddress101->setResidentialArea($residentialArea1);
         $buildingAddress101->setBuildingType($buildingType1);
+        $buildingAddress101->setLivingType($livingType3);
         $buildingAddress101->setCreationTime();
         $buildingAddress101->setLastChangeTime();
 
@@ -805,6 +866,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress111->setRentalUnitNumber('VHE0000');
         $buildingAddress111->setResidentialArea($residentialArea1);
         $buildingAddress111->setBuildingType($buildingType1);
+        $buildingAddress111->setLivingType($livingType3);
         $buildingAddress111->setCreationTime();
         $buildingAddress111->setLastChangeTime();
 
@@ -820,6 +882,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress121->setRentalUnitNumber('VHE0000');
         $buildingAddress121->setResidentialArea($residentialArea1);
         $buildingAddress121->setBuildingType($buildingType1);
+        $buildingAddress121->setLivingType($livingType3);
         $buildingAddress121->setCreationTime();
         $buildingAddress121->setLastChangeTime();
 
@@ -835,6 +898,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress32->setRentalUnitNumber('VHE0000');
         $buildingAddress32->setResidentialArea($residentialArea2);
         $buildingAddress32->setBuildingType($buildingType2);
+        $buildingAddress32->setLivingType($livingType3);
         $buildingAddress32->setCreationTime();
         $buildingAddress32->setLastChangeTime();
 
@@ -850,6 +914,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress42->setRentalUnitNumber('VHE0000');
         $buildingAddress42->setResidentialArea($residentialArea2);
         $buildingAddress42->setBuildingType($buildingType2);
+        $buildingAddress42->setLivingType($livingType3);
         $buildingAddress42->setCreationTime();
         $buildingAddress42->setLastChangeTime();
 
@@ -865,6 +930,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress52->setRentalUnitNumber('VHE0000');
         $buildingAddress52->setResidentialArea($residentialArea2);
         $buildingAddress52->setBuildingType($buildingType2);
+        $buildingAddress52->setLivingType($livingType3);
         $buildingAddress52->setCreationTime();
         $buildingAddress52->setLastChangeTime();
 
@@ -880,6 +946,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress62->setRentalUnitNumber('VHE0000');
         $buildingAddress62->setResidentialArea($residentialArea2);
         $buildingAddress62->setBuildingType($buildingType2);
+        $buildingAddress62->setLivingType($livingType3);
         $buildingAddress62->setCreationTime();
         $buildingAddress62->setLastChangeTime();
 
@@ -895,6 +962,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress72->setRentalUnitNumber('VHE0000');
         $buildingAddress72->setResidentialArea($residentialArea2);
         $buildingAddress72->setBuildingType($buildingType2);
+        $buildingAddress72->setLivingType($livingType3);
         $buildingAddress72->setCreationTime();
         $buildingAddress72->setLastChangeTime();
 
@@ -910,6 +978,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress82->setRentalUnitNumber('VHE0000');
         $buildingAddress82->setResidentialArea($residentialArea2);
         $buildingAddress82->setBuildingType($buildingType2);
+        $buildingAddress82->setLivingType($livingType3);
         $buildingAddress82->setCreationTime();
         $buildingAddress82->setLastChangeTime();
 
@@ -925,6 +994,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress92->setRentalUnitNumber('VHE0000');
         $buildingAddress92->setResidentialArea($residentialArea2);
         $buildingAddress92->setBuildingType($buildingType2);
+        $buildingAddress92->setLivingType($livingType3);
         $buildingAddress92->setCreationTime();
         $buildingAddress92->setLastChangeTime();
 
@@ -940,6 +1010,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress102->setRentalUnitNumber('VHE0000');
         $buildingAddress102->setResidentialArea($residentialArea2);
         $buildingAddress102->setBuildingType($buildingType2);
+        $buildingAddress102->setLivingType($livingType3);
         $buildingAddress102->setCreationTime();
         $buildingAddress102->setLastChangeTime();
 
@@ -955,6 +1026,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress112->setRentalUnitNumber('VHE0000');
         $buildingAddress112->setResidentialArea($residentialArea2);
         $buildingAddress112->setBuildingType($buildingType2);
+        $buildingAddress112->setLivingType($livingType3);
         $buildingAddress112->setCreationTime();
         $buildingAddress112->setLastChangeTime();
 
@@ -970,6 +1042,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress122->setRentalUnitNumber('VHE0000');
         $buildingAddress122->setResidentialArea($residentialArea2);
         $buildingAddress122->setBuildingType($buildingType2);
+        $buildingAddress122->setLivingType($livingType3);
         $buildingAddress122->setCreationTime();
         $buildingAddress122->setLastChangeTime();
 
@@ -985,6 +1058,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress33->setRentalUnitNumber('VHE0000');
         $buildingAddress33->setResidentialArea($residentialArea3);
         $buildingAddress33->setBuildingType($buildingType3);
+        $buildingAddress33->setLivingType($livingType3);
         $buildingAddress33->setCreationTime();
         $buildingAddress33->setLastChangeTime();
 
@@ -1000,6 +1074,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress43->setRentalUnitNumber('VHE0000');
         $buildingAddress43->setResidentialArea($residentialArea3);
         $buildingAddress43->setBuildingType($buildingType3);
+        $buildingAddress43->setLivingType($livingType3);
         $buildingAddress43->setCreationTime();
         $buildingAddress43->setLastChangeTime();
 
@@ -1015,6 +1090,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress53->setRentalUnitNumber('VHE0000');
         $buildingAddress53->setResidentialArea($residentialArea3);
         $buildingAddress53->setBuildingType($buildingType3);
+        $buildingAddress53->setLivingType($livingType3);
         $buildingAddress53->setCreationTime();
         $buildingAddress53->setLastChangeTime();
 
@@ -1030,6 +1106,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress63->setRentalUnitNumber('VHE0000');
         $buildingAddress63->setResidentialArea($residentialArea3);
         $buildingAddress63->setBuildingType($buildingType3);
+        $buildingAddress63->setLivingType($livingType3);
         $buildingAddress63->setCreationTime();
         $buildingAddress63->setLastChangeTime();
 
@@ -1045,6 +1122,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress73->setRentalUnitNumber('VHE0000');
         $buildingAddress73->setResidentialArea($residentialArea3);
         $buildingAddress73->setBuildingType($buildingType3);
+        $buildingAddress73->setLivingType($livingType3);
         $buildingAddress73->setCreationTime();
         $buildingAddress73->setLastChangeTime();
 
@@ -1060,6 +1138,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress83->setRentalUnitNumber('VHE0000');
         $buildingAddress83->setResidentialArea($residentialArea3);
         $buildingAddress83->setBuildingType($buildingType3);
+        $buildingAddress83->setLivingType($livingType3);
         $buildingAddress83->setCreationTime();
         $buildingAddress83->setLastChangeTime();
 
@@ -1075,6 +1154,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress93->setRentalUnitNumber('VHE0000');
         $buildingAddress93->setResidentialArea($residentialArea3);
         $buildingAddress93->setBuildingType($buildingType3);
+        $buildingAddress93->setLivingType($livingType3);
         $buildingAddress93->setCreationTime();
         $buildingAddress93->setLastChangeTime();
 
@@ -1090,6 +1170,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress103->setRentalUnitNumber('VHE0000');
         $buildingAddress103->setResidentialArea($residentialArea3);
         $buildingAddress103->setBuildingType($buildingType3);
+        $buildingAddress103->setLivingType($livingType3);
         $buildingAddress103->setCreationTime();
         $buildingAddress103->setLastChangeTime();
 
@@ -1105,6 +1186,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress113->setRentalUnitNumber('VHE0000');
         $buildingAddress113->setResidentialArea($residentialArea3);
         $buildingAddress113->setBuildingType($buildingType3);
+        $buildingAddress113->setLivingType($livingType3);
         $buildingAddress113->setCreationTime();
         $buildingAddress113->setLastChangeTime();
 
@@ -1120,6 +1202,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress123->setRentalUnitNumber('VHE0000');
         $buildingAddress123->setResidentialArea($residentialArea3);
         $buildingAddress123->setBuildingType($buildingType3);
+        $buildingAddress123->setLivingType($livingType3);
         $buildingAddress123->setCreationTime();
         $buildingAddress123->setLastChangeTime();
 
@@ -1135,6 +1218,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress34->setRentalUnitNumber('VHE0000');
         $buildingAddress34->setResidentialArea($residentialArea4);
         $buildingAddress34->setBuildingType($buildingType4);
+        $buildingAddress34->setLivingType($livingType3);
         $buildingAddress34->setCreationTime();
         $buildingAddress34->setLastChangeTime();
 
@@ -1150,6 +1234,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress44->setRentalUnitNumber('VHE0000');
         $buildingAddress44->setResidentialArea($residentialArea4);
         $buildingAddress44->setBuildingType($buildingType4);
+        $buildingAddress44->setLivingType($livingType3);
         $buildingAddress44->setCreationTime();
         $buildingAddress44->setLastChangeTime();
 
@@ -1165,6 +1250,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress54->setRentalUnitNumber('VHE0000');
         $buildingAddress54->setResidentialArea($residentialArea4);
         $buildingAddress54->setBuildingType($buildingType4);
+        $buildingAddress54->setLivingType($livingType3);
         $buildingAddress54->setCreationTime();
         $buildingAddress54->setLastChangeTime();
 
@@ -1180,6 +1266,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress64->setRentalUnitNumber('VHE0000');
         $buildingAddress64->setResidentialArea($residentialArea4);
         $buildingAddress64->setBuildingType($buildingType4);
+        $buildingAddress64->setLivingType($livingType3);
         $buildingAddress64->setCreationTime();
         $buildingAddress64->setLastChangeTime();
 
@@ -1195,6 +1282,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress74->setRentalUnitNumber('VHE0000');
         $buildingAddress74->setResidentialArea($residentialArea4);
         $buildingAddress74->setBuildingType($buildingType4);
+        $buildingAddress74->setLivingType($livingType3);
         $buildingAddress74->setCreationTime();
         $buildingAddress74->setLastChangeTime();
 
@@ -1210,6 +1298,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress84->setRentalUnitNumber('VHE0000');
         $buildingAddress84->setResidentialArea($residentialArea4);
         $buildingAddress84->setBuildingType($buildingType4);
+        $buildingAddress84->setLivingType($livingType3);
         $buildingAddress84->setCreationTime();
         $buildingAddress84->setLastChangeTime();
 
@@ -1225,6 +1314,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress94->setRentalUnitNumber('VHE0000');
         $buildingAddress94->setResidentialArea($residentialArea4);
         $buildingAddress94->setBuildingType($buildingType4);
+        $buildingAddress94->setLivingType($livingType3);
         $buildingAddress94->setCreationTime();
         $buildingAddress94->setLastChangeTime();
 
@@ -1240,6 +1330,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress104->setRentalUnitNumber('VHE0000');
         $buildingAddress104->setResidentialArea($residentialArea4);
         $buildingAddress104->setBuildingType($buildingType4);
+        $buildingAddress104->setLivingType($livingType3);
         $buildingAddress104->setCreationTime();
         $buildingAddress104->setLastChangeTime();
 
@@ -1255,6 +1346,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress114->setRentalUnitNumber('VHE0000');
         $buildingAddress114->setResidentialArea($residentialArea4);
         $buildingAddress114->setBuildingType($buildingType4);
+        $buildingAddress114->setLivingType($livingType3);
         $buildingAddress114->setCreationTime();
         $buildingAddress114->setLastChangeTime();
 
@@ -1270,6 +1362,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress124->setRentalUnitNumber('VHE0000');
         $buildingAddress124->setResidentialArea($residentialArea4);
         $buildingAddress124->setBuildingType($buildingType4);
+        $buildingAddress124->setLivingType($livingType3);
         $buildingAddress124->setCreationTime();
         $buildingAddress124->setLastChangeTime();
 
@@ -1285,6 +1378,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress35->setRentalUnitNumber('VHE0000');
         $buildingAddress35->setResidentialArea($residentialArea5);
         $buildingAddress35->setBuildingType($buildingType5);
+        $buildingAddress35->setLivingType($livingType3);
         $buildingAddress35->setCreationTime();
         $buildingAddress35->setLastChangeTime();
 
@@ -1300,6 +1394,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress45->setRentalUnitNumber('VHE0000');
         $buildingAddress45->setResidentialArea($residentialArea5);
         $buildingAddress45->setBuildingType($buildingType5);
+        $buildingAddress45->setLivingType($livingType3);
         $buildingAddress45->setCreationTime();
         $buildingAddress45->setLastChangeTime();
 
@@ -1315,6 +1410,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress55->setRentalUnitNumber('VHE0000');
         $buildingAddress55->setResidentialArea($residentialArea5);
         $buildingAddress55->setBuildingType($buildingType5);
+        $buildingAddress55->setLivingType($livingType3);
         $buildingAddress55->setCreationTime();
         $buildingAddress55->setLastChangeTime();
 
@@ -1330,6 +1426,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress65->setRentalUnitNumber('VHE0000');
         $buildingAddress65->setResidentialArea($residentialArea5);
         $buildingAddress65->setBuildingType($buildingType5);
+        $buildingAddress65->setLivingType($livingType3);
         $buildingAddress65->setCreationTime();
         $buildingAddress65->setLastChangeTime();
 
@@ -1345,6 +1442,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress75->setRentalUnitNumber('VHE0000');
         $buildingAddress75->setResidentialArea($residentialArea5);
         $buildingAddress75->setBuildingType($buildingType5);
+        $buildingAddress75->setLivingType($livingType3);
         $buildingAddress75->setCreationTime();
         $buildingAddress75->setLastChangeTime();
 
@@ -1360,6 +1458,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress85->setRentalUnitNumber('VHE0000');
         $buildingAddress85->setResidentialArea($residentialArea5);
         $buildingAddress85->setBuildingType($buildingType5);
+        $buildingAddress85->setLivingType($livingType3);
         $buildingAddress85->setCreationTime();
         $buildingAddress85->setLastChangeTime();
 
@@ -1375,6 +1474,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress95->setRentalUnitNumber('VHE0000');
         $buildingAddress95->setResidentialArea($residentialArea5);
         $buildingAddress95->setBuildingType($buildingType5);
+        $buildingAddress95->setLivingType($livingType3);
         $buildingAddress95->setCreationTime();
         $buildingAddress95->setLastChangeTime();
 
@@ -1390,6 +1490,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress105->setRentalUnitNumber('VHE0000');
         $buildingAddress105->setResidentialArea($residentialArea5);
         $buildingAddress105->setBuildingType($buildingType5);
+        $buildingAddress105->setLivingType($livingType3);
         $buildingAddress105->setCreationTime();
         $buildingAddress105->setLastChangeTime();
 
@@ -1405,6 +1506,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress115->setRentalUnitNumber('VHE0000');
         $buildingAddress115->setResidentialArea($residentialArea5);
         $buildingAddress115->setBuildingType($buildingType5);
+        $buildingAddress115->setLivingType($livingType3);
         $buildingAddress115->setCreationTime();
         $buildingAddress115->setLastChangeTime();
 
@@ -1420,6 +1522,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress125->setRentalUnitNumber('VHE0000');
         $buildingAddress125->setResidentialArea($residentialArea5);
         $buildingAddress125->setBuildingType($buildingType5);
+        $buildingAddress125->setLivingType($livingType3);
         $buildingAddress125->setCreationTime();
         $buildingAddress125->setLastChangeTime();
 
@@ -1435,6 +1538,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress36->setRentalUnitNumber('VHE0000');
         $buildingAddress36->setResidentialArea($residentialArea6);
         $buildingAddress36->setBuildingType($buildingType6);
+        $buildingAddress36->setLivingType($livingType3);
         $buildingAddress36->setCreationTime();
         $buildingAddress36->setLastChangeTime();
 
@@ -1450,6 +1554,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress46->setRentalUnitNumber('VHE0000');
         $buildingAddress46->setResidentialArea($residentialArea6);
         $buildingAddress46->setBuildingType($buildingType6);
+        $buildingAddress46->setLivingType($livingType3);
         $buildingAddress46->setCreationTime();
         $buildingAddress46->setLastChangeTime();
 
@@ -1465,6 +1570,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress56->setRentalUnitNumber('VHE0000');
         $buildingAddress56->setResidentialArea($residentialArea6);
         $buildingAddress56->setBuildingType($buildingType6);
+        $buildingAddress56->setLivingType($livingType3);
         $buildingAddress56->setCreationTime();
         $buildingAddress56->setLastChangeTime();
 
@@ -1480,6 +1586,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress66->setRentalUnitNumber('VHE0000');
         $buildingAddress66->setResidentialArea($residentialArea6);
         $buildingAddress66->setBuildingType($buildingType6);
+        $buildingAddress66->setLivingType($livingType3);
         $buildingAddress66->setCreationTime();
         $buildingAddress66->setLastChangeTime();
 
@@ -1495,6 +1602,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress76->setRentalUnitNumber('VHE0000');
         $buildingAddress76->setResidentialArea($residentialArea6);
         $buildingAddress76->setBuildingType($buildingType6);
+        $buildingAddress76->setLivingType($livingType3);
         $buildingAddress76->setCreationTime();
         $buildingAddress76->setLastChangeTime();
 
@@ -1510,6 +1618,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress86->setRentalUnitNumber('VHE0000');
         $buildingAddress86->setResidentialArea($residentialArea6);
         $buildingAddress86->setBuildingType($buildingType6);
+        $buildingAddress86->setLivingType($livingType3);
         $buildingAddress86->setCreationTime();
         $buildingAddress86->setLastChangeTime();
 
@@ -1525,6 +1634,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress96->setRentalUnitNumber('VHE0000');
         $buildingAddress96->setResidentialArea($residentialArea6);
         $buildingAddress96->setBuildingType($buildingType6);
+        $buildingAddress96->setLivingType($livingType3);
         $buildingAddress96->setCreationTime();
         $buildingAddress96->setLastChangeTime();
 
@@ -1540,6 +1650,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress106->setRentalUnitNumber('VHE0000');
         $buildingAddress106->setResidentialArea($residentialArea6);
         $buildingAddress106->setBuildingType($buildingType6);
+        $buildingAddress106->setLivingType($livingType3);
         $buildingAddress106->setCreationTime();
         $buildingAddress106->setLastChangeTime();
 
@@ -1555,6 +1666,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress116->setRentalUnitNumber('VHE0000');
         $buildingAddress116->setResidentialArea($residentialArea6);
         $buildingAddress116->setBuildingType($buildingType6);
+        $buildingAddress116->setLivingType($livingType3);
         $buildingAddress116->setCreationTime();
         $buildingAddress116->setLastChangeTime();
 
@@ -1570,6 +1682,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress126->setRentalUnitNumber('VHE0000');
         $buildingAddress126->setResidentialArea($residentialArea6);
         $buildingAddress126->setBuildingType($buildingType6);
+        $buildingAddress126->setLivingType($livingType3);
         $buildingAddress126->setCreationTime();
         $buildingAddress126->setLastChangeTime();
 
@@ -1585,6 +1698,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress37->setRentalUnitNumber('VHE0000');
         $buildingAddress37->setResidentialArea($residentialArea7);
         $buildingAddress37->setBuildingType($buildingType7);
+        $buildingAddress37->setLivingType($livingType3);
         $buildingAddress37->setCreationTime();
         $buildingAddress37->setLastChangeTime();
 
@@ -1600,6 +1714,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress47->setRentalUnitNumber('VHE0000');
         $buildingAddress47->setResidentialArea($residentialArea7);
         $buildingAddress47->setBuildingType($buildingType7);
+        $buildingAddress47->setLivingType($livingType3);
         $buildingAddress47->setCreationTime();
         $buildingAddress47->setLastChangeTime();
 
@@ -1615,6 +1730,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress57->setRentalUnitNumber('VHE0000');
         $buildingAddress57->setResidentialArea($residentialArea7);
         $buildingAddress57->setBuildingType($buildingType7);
+        $buildingAddress57->setLivingType($livingType3);
         $buildingAddress57->setCreationTime();
         $buildingAddress57->setLastChangeTime();
 
@@ -1630,6 +1746,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress67->setRentalUnitNumber('VHE0000');
         $buildingAddress67->setResidentialArea($residentialArea7);
         $buildingAddress67->setBuildingType($buildingType7);
+        $buildingAddress67->setLivingType($livingType3);
         $buildingAddress67->setCreationTime();
         $buildingAddress67->setLastChangeTime();
 
@@ -1645,6 +1762,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress77->setRentalUnitNumber('VHE0000');
         $buildingAddress77->setResidentialArea($residentialArea7);
         $buildingAddress77->setBuildingType($buildingType7);
+        $buildingAddress77->setLivingType($livingType3);
         $buildingAddress77->setCreationTime();
         $buildingAddress77->setLastChangeTime();
 
@@ -1660,6 +1778,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setRentalUnitNumber('VHE0000');
         $buildingAddress87->setResidentialArea($residentialArea7);
         $buildingAddress87->setBuildingType($buildingType7);
+        $buildingAddress87->setLivingType($livingType3);
         $buildingAddress87->setCreationTime();
         $buildingAddress87->setLastChangeTime();
 
@@ -1675,6 +1794,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress97->setRentalUnitNumber('VHE0000');
         $buildingAddress97->setResidentialArea($residentialArea7);
         $buildingAddress97->setBuildingType($buildingType7);
+        $buildingAddress97->setLivingType($livingType3);
         $buildingAddress97->setCreationTime();
         $buildingAddress97->setLastChangeTime();
 
@@ -1690,6 +1810,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress107->setRentalUnitNumber('VHE0000');
         $buildingAddress107->setResidentialArea($residentialArea7);
         $buildingAddress107->setBuildingType($buildingType7);
+        $buildingAddress107->setLivingType($livingType3);
         $buildingAddress107->setCreationTime();
         $buildingAddress107->setLastChangeTime();
 
@@ -1705,6 +1826,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress117->setRentalUnitNumber('VHE0000');
         $buildingAddress117->setResidentialArea($residentialArea7);
         $buildingAddress117->setBuildingType($buildingType7);
+        $buildingAddress117->setLivingType($livingType3);
         $buildingAddress117->setCreationTime();
         $buildingAddress117->setLastChangeTime();
 
@@ -1720,6 +1842,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress127->setRentalUnitNumber('VHE0000');
         $buildingAddress127->setResidentialArea($residentialArea7);
         $buildingAddress127->setBuildingType($buildingType7);
+        $buildingAddress127->setLivingType($livingType3);
         $buildingAddress127->setCreationTime();
         $buildingAddress127->setLastChangeTime();
 
@@ -1735,6 +1858,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress38->setRentalUnitNumber('VHE0000');
         $buildingAddress38->setResidentialArea($residentialArea8);
         $buildingAddress38->setBuildingType($buildingType8);
+        $buildingAddress38->setLivingType($livingType3);
 		$buildingAddress38->setCreationTime();
         $buildingAddress38->setLastChangeTime();
 
@@ -1750,6 +1874,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress48->setRentalUnitNumber('VHE0000');
         $buildingAddress48->setResidentialArea($residentialArea8);
         $buildingAddress48->setBuildingType($buildingType8);
+        $buildingAddress48->setLivingType($livingType3);
 		$buildingAddress48->setCreationTime();
         $buildingAddress48->setLastChangeTime();
 
@@ -1765,6 +1890,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress58->setRentalUnitNumber('VHE0000');
         $buildingAddress58->setResidentialArea($residentialArea8);
         $buildingAddress58->setBuildingType($buildingType8);
+        $buildingAddress58->setLivingType($livingType3);
 		$buildingAddress58->setCreationTime();
         $buildingAddress58->setLastChangeTime();
 
@@ -1780,6 +1906,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress68->setRentalUnitNumber('VHE0000');
         $buildingAddress68->setResidentialArea($residentialArea8);
         $buildingAddress68->setBuildingType($buildingType8);
+        $buildingAddress68->setLivingType($livingType3);
 		$buildingAddress68->setCreationTime();
         $buildingAddress68->setLastChangeTime();
 
@@ -1795,6 +1922,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress78->setRentalUnitNumber('VHE0000');
         $buildingAddress78->setResidentialArea($residentialArea8);
         $buildingAddress78->setBuildingType($buildingType8);
+        $buildingAddress78->setLivingType($livingType3);
 		$buildingAddress78->setCreationTime();
         $buildingAddress78->setLastChangeTime();
 
@@ -1810,6 +1938,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress88->setRentalUnitNumber('VHE0000');
         $buildingAddress88->setResidentialArea($residentialArea8);
         $buildingAddress88->setBuildingType($buildingType8);
+        $buildingAddress88->setLivingType($livingType3);
 		$buildingAddress88->setCreationTime();
         $buildingAddress88->setLastChangeTime();
 
@@ -1825,6 +1954,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress98->setRentalUnitNumber('VHE0000');
         $buildingAddress98->setResidentialArea($residentialArea8);
         $buildingAddress98->setBuildingType($buildingType8);
+        $buildingAddress98->setLivingType($livingType3);
 		$buildingAddress98->setCreationTime();
         $buildingAddress98->setLastChangeTime();
 
@@ -1840,6 +1970,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress108->setRentalUnitNumber('VHE0000');
         $buildingAddress108->setResidentialArea($residentialArea8);
         $buildingAddress108->setBuildingType($buildingType8);
+        $buildingAddress108->setLivingType($livingType3);
         $buildingAddress108->setCreationTime();
         $buildingAddress108->setLastChangeTime();
 
@@ -1855,6 +1986,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress118->setRentalUnitNumber('VHE0000');
         $buildingAddress118->setResidentialArea($residentialArea8);
         $buildingAddress118->setBuildingType($buildingType8);
+        $buildingAddress118->setLivingType($livingType3);
         $buildingAddress118->setCreationTime();
         $buildingAddress118->setLastChangeTime();
 
@@ -1870,6 +2002,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setRentalUnitNumber('VHE0000');
         $buildingAddress128->setResidentialArea($residentialArea8);
         $buildingAddress128->setBuildingType($buildingType8);
+        $buildingAddress128->setLivingType($livingType3);
         $buildingAddress128->setCreationTime();
         $buildingAddress128->setLastChangeTime();
 
@@ -1885,6 +2018,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress39->setRentalUnitNumber('VHE0000');
         $buildingAddress39->setResidentialArea($residentialArea9);
         $buildingAddress39->setBuildingType($buildingType9);
+        $buildingAddress39->setLivingType($livingType3);
         $buildingAddress39->setCreationTime();
         $buildingAddress39->setLastChangeTime();
 
@@ -1900,6 +2034,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress49->setRentalUnitNumber('VHE0000');
         $buildingAddress49->setResidentialArea($residentialArea9);
         $buildingAddress49->setBuildingType($buildingType9);
+        $buildingAddress49->setLivingType($livingType3);
         $buildingAddress49->setCreationTime();
         $buildingAddress49->setLastChangeTime();
 
@@ -1915,6 +2050,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress59->setRentalUnitNumber('VHE0000');
         $buildingAddress59->setResidentialArea($residentialArea9);
         $buildingAddress59->setBuildingType($buildingType9);
+        $buildingAddress59->setLivingType($livingType3);
         $buildingAddress59->setCreationTime();
         $buildingAddress59->setLastChangeTime();
 
@@ -1930,6 +2066,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress69->setRentalUnitNumber('VHE0000');
         $buildingAddress69->setResidentialArea($residentialArea9);
         $buildingAddress69->setBuildingType($buildingType9);
+        $buildingAddress69->setLivingType($livingType3);
         $buildingAddress69->setCreationTime();
         $buildingAddress69->setLastChangeTime();
 
@@ -1945,6 +2082,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress79->setRentalUnitNumber('VHE0000');
         $buildingAddress79->setResidentialArea($residentialArea9);
         $buildingAddress79->setBuildingType($buildingType9);
+        $buildingAddress79->setLivingType($livingType3);
         $buildingAddress79->setCreationTime();
         $buildingAddress79->setLastChangeTime();
 
@@ -1960,6 +2098,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress89->setRentalUnitNumber('VHE0000');
         $buildingAddress89->setResidentialArea($residentialArea9);
         $buildingAddress89->setBuildingType($buildingType9);
+        $buildingAddress89->setLivingType($livingType3);
         $buildingAddress89->setCreationTime();
         $buildingAddress89->setLastChangeTime();
 
@@ -1975,6 +2114,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress99->setRentalUnitNumber('VHE0000');
         $buildingAddress99->setResidentialArea($residentialArea9);
         $buildingAddress99->setBuildingType($buildingType9);
+        $buildingAddress99->setLivingType($livingType3);
         $buildingAddress99->setCreationTime();
         $buildingAddress99->setLastChangeTime();
 
@@ -1990,6 +2130,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress109->setRentalUnitNumber('VHE0000');
         $buildingAddress109->setResidentialArea($residentialArea9);
         $buildingAddress109->setBuildingType($buildingType9);
+        $buildingAddress109->setLivingType($livingType3);
         $buildingAddress109->setCreationTime();
         $buildingAddress109->setLastChangeTime();
 
@@ -2005,6 +2146,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress119->setRentalUnitNumber('VHE0000');
         $buildingAddress119->setResidentialArea($residentialArea9);
         $buildingAddress119->setBuildingType($buildingType9);
+        $buildingAddress119->setLivingType($livingType3);
         $buildingAddress119->setCreationTime();
         $buildingAddress119->setLastChangeTime();
 
@@ -2020,6 +2162,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress129->setRentalUnitNumber('VHE0000');
         $buildingAddress129->setResidentialArea($residentialArea9);
         $buildingAddress129->setBuildingType($buildingType9);
+        $buildingAddress129->setLivingType($livingType3);
         $buildingAddress129->setCreationTime();
         $buildingAddress129->setLastChangeTime();
 
@@ -2035,6 +2178,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress40->setRentalUnitNumber('VHE0000');
         $buildingAddress40->setResidentialArea($residentialArea10);
         $buildingAddress40->setBuildingType($buildingType10);
+        $buildingAddress40->setLivingType($livingType3);
         $buildingAddress40->setCreationTime();
         $buildingAddress40->setLastChangeTime();
 
@@ -2050,6 +2194,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress50->setRentalUnitNumber('VHE0000');
         $buildingAddress50->setResidentialArea($residentialArea10);
         $buildingAddress50->setBuildingType($buildingType10);
+        $buildingAddress50->setLivingType($livingType3);
         $buildingAddress50->setCreationTime();
         $buildingAddress50->setLastChangeTime();
 
@@ -2065,6 +2210,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress60->setRentalUnitNumber('VHE0000');
         $buildingAddress60->setResidentialArea($residentialArea10);
         $buildingAddress60->setBuildingType($buildingType10);
+        $buildingAddress60->setLivingType($livingType3);
         $buildingAddress60->setCreationTime();
         $buildingAddress60->setLastChangeTime();
 
@@ -2080,6 +2226,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress70->setRentalUnitNumber('VHE0000');
         $buildingAddress70->setResidentialArea($residentialArea10);
         $buildingAddress70->setBuildingType($buildingType10);
+        $buildingAddress70->setLivingType($livingType3);
         $buildingAddress70->setCreationTime();
         $buildingAddress70->setLastChangeTime();
 
@@ -2095,6 +2242,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress80->setRentalUnitNumber('VHE0000');
         $buildingAddress80->setResidentialArea($residentialArea10);
         $buildingAddress80->setBuildingType($buildingType10);
+        $buildingAddress80->setLivingType($livingType3);
         $buildingAddress80->setCreationTime();
         $buildingAddress80->setLastChangeTime();
 
@@ -2110,6 +2258,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress90->setRentalUnitNumber('VHE0000');
         $buildingAddress90->setResidentialArea($residentialArea10);
         $buildingAddress90->setBuildingType($buildingType10);
+        $buildingAddress90->setLivingType($livingType3);
         $buildingAddress90->setCreationTime();
         $buildingAddress90->setLastChangeTime();
 
@@ -2125,6 +2274,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress100->setRentalUnitNumber('VHE0000');
         $buildingAddress100->setResidentialArea($residentialArea10);
         $buildingAddress100->setBuildingType($buildingType10);
+        $buildingAddress100->setLivingType($livingType3);
         $buildingAddress100->setCreationTime();
         $buildingAddress100->setLastChangeTime();
 
@@ -2140,6 +2290,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress110->setRentalUnitNumber('VHE0000');
         $buildingAddress110->setResidentialArea($residentialArea10);
         $buildingAddress110->setBuildingType($buildingType10);
+        $buildingAddress110->setLivingType($livingType3);
         $buildingAddress110->setCreationTime();
         $buildingAddress110->setLastChangeTime();
 
@@ -2155,6 +2306,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setRentalUnitNumber('VHE0000');
         $buildingAddress120->setResidentialArea($residentialArea10);
         $buildingAddress120->setBuildingType($buildingType10);
+        $buildingAddress120->setLivingType($livingType3);
         $buildingAddress120->setCreationTime();
         $buildingAddress120->setLastChangeTime();
 
@@ -2170,6 +2322,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress130->setRentalUnitNumber('VHE0000');
         $buildingAddress130->setResidentialArea($residentialArea10);
         $buildingAddress130->setBuildingType($buildingType10);
+        $buildingAddress130->setLivingType($livingType3);
         $buildingAddress130->setCreationTime();
         $buildingAddress130->setLastChangeTime();
 
@@ -2571,6 +2724,10 @@ class LoadTestHousingStockData extends Fixture
         $buildingType12->setHousingStock($housingStock);
         $buildingType13->setHousingStock($housingStock);
 
+        $livingType1->setHousingStock($housingStock);
+        $livingType2->setHousingStock($housingStock);
+        $livingType3->setHousingStock($housingStock);
+
         $block1->setHousingStock($housingStock);
         $block2->setHousingStock($housingStock);
         $block3->setHousingStock($housingStock);
@@ -2607,6 +2764,10 @@ class LoadTestHousingStockData extends Fixture
         $manager->persist($buildingType11);
         $manager->persist($buildingType12);
         $manager->persist($buildingType13);
+
+        $manager->persist($livingType1);
+        $manager->persist($livingType2);
+        $manager->persist($livingType3);
 
         for ($i = 1; $i <= 130; $i++) {
             $manager->persist(${'buildingAddress'.$i});

@@ -28,28 +28,28 @@ class BuildingAddress extends IdTime
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses")
+     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected ResidentialArea $residentialArea;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses")
+     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected BuildingType $buildingType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddress")
+     * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected LivingType $livingType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses", mappedBy="buildingaddress")
+     * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses", mappedBy="buildingAddress")
      * @Assert\Valid()
      */
     protected Collection $blocks;

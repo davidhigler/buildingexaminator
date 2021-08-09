@@ -19,32 +19,32 @@ use Doctrine\Common\Collections\Collection;
 class LivingType extends IdTimeIdentification
 {
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Portfolio\BuildingAddress", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="livingTypes")
+     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
+     * @Assert\Valid()
+     */
+    protected HousingStock $housingStock;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="livingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingAddresses;
-
-    /**
-     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
-     */
-    protected Collection $buildingSelection;
 
     #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingSelection = new ArrayCollection();
+    }
+
+    public function setHousingStock(HousingStock $housingStock): void
+    {
+        $this->housingStock = $housingStock;
     }
 
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
-    }
-
-    public function getBuildingSelection(): Collection
-    {
-        return $this->buildingSelection;
     }
 
     public function addBuildingAddress(BuildingAddress $buildingAddress): void
@@ -56,15 +56,4 @@ class LivingType extends IdTimeIdentification
     {
         $this->buildingAddresses->removeElement($buildingAddress);
     }
-
-    public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
-    {
-        $this->buildingSelection->add($buildingSelection);
-    }
-
-    public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
-    {
-        $this->buildingSelection->removeElement($buildingSelection);
-    }
-
 }

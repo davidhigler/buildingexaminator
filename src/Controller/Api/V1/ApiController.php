@@ -3,6 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\BuildingAddress;
 use App\Entity\Portfolio\HousingStock;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,12 +29,14 @@ class ApiController extends AbstractController
         'id',
         'blocks' => [
             'id',
-            'code',
             'name',
         ],
         'buildingTypes' => [
             'id',
-            'code',
+            'name',
+        ],
+        'livingTypes' => [
+            'id',
             'name',
         ],
         'buildingAddresses' => [
@@ -74,10 +77,32 @@ class ApiController extends AbstractController
         'numberOfBuildingAddresses',
         'buildingSelection' => [
             'id',
-            'code',
             'name',
         ],
         'financialNumber',
+    ];
+
+    private const ADDRESS_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'residentialArea' => [
+            'id',
+            'name',
+        ],
+        'buildingType' => [
+            'id',
+            'name',
+        ],
+        'livingType' => [
+            'id',
+            'name',
+        ],
+        'streetName',
+        'houseNumber',
+        'addition',
+        'zipcode',
+        'city',
     ];
 
     #[Route(
@@ -122,14 +147,14 @@ class ApiController extends AbstractController
     }
 
     #[Route(
-        '/housingstocks/{projectId}',
+        '/housingstocks/{housingStockId}',
         name: 'housingstock',
         methods: ['GET']
     )]
-    public function getHousingStock(string $projectId, LoggerInterface $logger): Response
+    public function getHousingStock(string $housingStockId, LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $projectId);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $data = [];
 
@@ -152,14 +177,18 @@ class ApiController extends AbstractController
     }
 
     #[Route(
-        '/housingstocks/{projectId}/blocks',
+        '/housingstocks/{housingStockId}/blocks',
         name: 'blocks',
         methods: ['GET']
     )]
-    public function getBlocks(LoggerInterface $logger): Response
+    public function getBlocks(string $housingStockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        $blocks = $blockRepository->findAll();
+        $blocks = $blockRepository->findBy(
+            [
+                'housingStock' => (int) $housingStockId
+            ]
+        );
 
         $data = [];
 
@@ -182,14 +211,19 @@ class ApiController extends AbstractController
     }
 
     #[Route(
-        '/housingstocks/{projectId}/blocks/{blockId}',
+        '/housingstocks/{housingStockId}/blocks/{blockId}',
         name: 'block',
         methods: ['GET']
     )]
-    public function getBlock(string $blockId, LoggerInterface $logger): Response
+    public function getBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        $block = $blockRepository->find((int) $blockId);
+        $block = $blockRepository->findBy(
+            [
+                'housingStock' => (int) $housingStockId,
+                'id' => (int) $blockId
+            ]
+        );
 
         $data = [];
 
@@ -201,6 +235,39 @@ class ApiController extends AbstractController
             );
         } catch (ExceptionInterface $exception) {
             $logger->error('Something went wrong with normalizing a block object',
+                [
+                    'exception' => $exception,
+                    'request' => Request::createFromGlobals(),
+                ]
+            );
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route(
+        '/housingstocks/{housingStockId}/addresses',
+        name: 'addresses',
+        methods: ['GET']
+    )]
+    public function getAddresses(string $housingStockId, LoggerInterface $logger): Response {
+        $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        $addresses = $addressRepository->findBy(
+            [
+                'housingStock' => (int) $housingStockId
+            ]
+        );
+
+        $data = [];
+
+        try {
+            $data = $this->getSerializer()->normalize(
+                $addresses,
+                null,
+                [AbstractNormalizer::ATTRIBUTES => self::ADDRESS_FIELDS]
+            );
+        } catch (ExceptionInterface $exception) {
+            $logger->error('Something went wrong with normalizing a blocks array',
                 [
                     'exception' => $exception,
                     'request' => Request::createFromGlobals(),
