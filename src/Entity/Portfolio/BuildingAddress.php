@@ -2,7 +2,10 @@
 
 namespace App\Entity\Portefeuille;
 
+use App\Entity\Finance\TaxResponsibility;
+use App\Entity\Planning\FuturePlans;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -55,10 +58,10 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="FuturePlans", )
      * @Assert\Valid()
      */
-    protected Intension $intension;
+    protected FuturePlans $futurePlans;
 
     /**
-     * @ORM\ManyToOne()
+     * @ORM\ManyToOne(targetEntity="TaxResponsibility",)
      * @Assert\Valid()
      */
     protected TaxResponsibility $taxResponsibility;
@@ -94,7 +97,7 @@ class BuildingAddress extends IdTime
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
      */
-    protected string $streetname;
+    protected string $streetName;
 
     /**
      * @ORM\Column(type="integer")
@@ -193,6 +196,7 @@ class BuildingAddress extends IdTime
      */
     protected int $renovationYear;
 
+    #[Pure]
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
@@ -228,9 +232,9 @@ class BuildingAddress extends IdTime
         return $this->rentalUnitNumber;
     }
 
-    public function getStreetname(): string
+    public function getStreetName(): string
     {
-        return $this->streetname;
+        return $this->streetName;
     }
 
     public function getHouseNumber(): int
@@ -303,9 +307,9 @@ class BuildingAddress extends IdTime
         $this->rentalUnitNumber = $rentalUnitNumber;
     }
 
-    public function setStreetname(string $streetname): void
+    public function setStreetName(string $streetName): void
     {
-        $this->streetname = $streetname;
+        $this->streetName = $streetName;
     }
 
     public function setHouseNumber(int $houseNumber): void

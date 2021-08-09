@@ -3,6 +3,7 @@
 namespace App\Entity\Portefeuille;
 
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\SuperClasses\IdTimeIdentification;
@@ -23,6 +24,7 @@ class ResidentialArea extends IdTimeIdentification
      */
     protected Collection $buildingAddresses;
 
+    #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();

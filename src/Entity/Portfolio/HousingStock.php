@@ -3,6 +3,7 @@
 namespace App\Entity\Portefeuille;
 
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\SuperClasses\IdTimeIdentification;
@@ -70,6 +71,7 @@ class HousingStock extends IdTimeIdentification
      */
     protected HousingStockOptionSet $housingStockOptionSet;
 
+    #[Pure]
     public function __construct()
     {
         $this->blocks = new ArrayCollection();

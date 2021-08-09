@@ -3,6 +3,7 @@
 namespace App\Entity\Portefeuille;
 
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\SuperClasses\IdTimeIdentification;
@@ -67,6 +68,7 @@ class Block extends IdTimeIdentification
      */
     protected string $financialNumber;
 
+    #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();

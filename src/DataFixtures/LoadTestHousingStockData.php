@@ -211,7 +211,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setId(0);
         $buildingAddress0->setConstructionYear(1986);
         $buildingAddress0->setRenovationYear(2002);
-        $buildingAddress0->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress0->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress0->setHouseNumber(10);
         $buildingAddress0->setAddition('X');
         $buildingAddress0->setZipcode('1234AA');
@@ -226,7 +226,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress1->setId(1);
         $buildingAddress1->setConstructionYear(1954);
         $buildingAddress1->setRenovationYear(1986);
-        $buildingAddress1->setStreetname('Straatnaam A');
+        $buildingAddress1->setStreetName('Straatnaam A');
         $buildingAddress1->setHouseNumber(10);
         $buildingAddress1->setAddition('A');
         $buildingAddress1->setZipcode('1234AA');
@@ -241,7 +241,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress2->setId(2);
         $buildingAddress2->setConstructionYear(1998);
         $buildingAddress2->setRenovationYear(2021);
-        $buildingAddress2->setStreetname('Straatnaam A');
+        $buildingAddress2->setStreetName('Straatnaam A');
         $buildingAddress2->setHouseNumber(10);
         $buildingAddress2->setAddition('A');
         $buildingAddress2->setZipcode('1234AA');
@@ -256,7 +256,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress3->setId(3);
         $buildingAddress3->setConstructionYear(1984);
         $buildingAddress3->setRenovationYear(2000);
-        $buildingAddress3->setStreetname('Straatnaam A');
+        $buildingAddress3->setStreetName('Straatnaam A');
         $buildingAddress3->setHouseNumber(10);
         $buildingAddress3->setAddition('A');
         $buildingAddress3->setZipcode('1234AA');
@@ -271,7 +271,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress4->setId(4);
         $buildingAddress4->setConstructionYear(2010);
         $buildingAddress4->setRenovationYear(2010);
-        $buildingAddress4->setStreetname('Straatnaam A');
+        $buildingAddress4->setStreetName('Straatnaam A');
         $buildingAddress4->setHouseNumber(102);
         $buildingAddress4->setAddition('');
         $buildingAddress4->setZipcode('1234AA');
@@ -286,7 +286,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setId(5);
         $buildingAddress5->setConstructionYear(1888);
         $buildingAddress5->setRenovationYear(2005);
-        $buildingAddress5->setStreetname('Straatnaam A');
+        $buildingAddress5->setStreetName('Straatnaam A');
         $buildingAddress5->setHouseNumber(10);
         $buildingAddress5->setAddition('A');
         $buildingAddress5->setZipcode('1234AA');
@@ -301,7 +301,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress6->setId(6);
         $buildingAddress6->setConstructionYear(1908);
         $buildingAddress6->setRenovationYear(200);
-        $buildingAddress6->setStreetname('Straatnaam A');
+        $buildingAddress6->setStreetName('Straatnaam A');
         $buildingAddress6->setHouseNumber(10);
         $buildingAddress6->setAddition('A');
         $buildingAddress6->setZipcode('1234AA');
@@ -316,7 +316,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress7->setId(7);
         $buildingAddress7->setConstructionYear(2006);
         $buildingAddress7->setRenovationYear(2006);
-        $buildingAddress7->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress7->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress7->setHouseNumber(10);
         $buildingAddress7->setAddition('A');
         $buildingAddress7->setZipcode('1234AA');
@@ -331,7 +331,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress8->setId(8);
         $buildingAddress8->setConstructionYear(2026);
         $buildingAddress8->setRenovationYear(2081);
-        $buildingAddress8->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress8->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress8->setHouseNumber(10);
         $buildingAddress8->setAddition('Bis');
         $buildingAddress8->setZipcode('1234AAB');
@@ -346,7 +346,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress9->setId(9);
         $buildingAddress9->setConstructionYear(1976);
         $buildingAddress9->setRenovationYear(2001);
-        $buildingAddress9->setStreetname('Straatnaam A');
+        $buildingAddress9->setStreetName('Straatnaam A');
         $buildingAddress9->setHouseNumber(10);
         $buildingAddress9->setAddition('I');
         $buildingAddress9->setZipcode('12334AA');
@@ -361,7 +361,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress10->setId(10);
         $buildingAddress10->setConstructionYear(1986);
         $buildingAddress10->setRenovationYear(2002);
-        $buildingAddress10->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress10->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress10->setHouseNumber(10);
         $buildingAddress10->setAddition('X');
         $buildingAddress10->setZipcode('1234AA');
@@ -376,7 +376,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress11->setId(11);
         $buildingAddress11->setConstructionYear(1954);
         $buildingAddress11->setRenovationYear(1986);
-        $buildingAddress11->setStreetname('Straatnaam A');
+        $buildingAddress11->setStreetName('Straatnaam A');
         $buildingAddress11->setHouseNumber(10);
         $buildingAddress11->setAddition('A');
         $buildingAddress11->setZipcode('1234AA');
@@ -391,7 +391,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress12->setId(12);
         $buildingAddress12->setConstructionYear(1998);
         $buildingAddress12->setRenovationYear(2021);
-        $buildingAddress12->setStreetname('Straatnaam A');
+        $buildingAddress12->setStreetName('Straatnaam A');
         $buildingAddress12->setHouseNumber(10);
         $buildingAddress12->setAddition('A');
         $buildingAddress12->setZipcode('1234AA');
@@ -406,7 +406,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress13->setId(13);
         $buildingAddress13->setConstructionYear(1984);
         $buildingAddress13->setRenovationYear(2000);
-        $buildingAddress13->setStreetname('Straatnaam A');
+        $buildingAddress13->setStreetName('Straatnaam A');
         $buildingAddress13->setHouseNumber(10);
         $buildingAddress13->setAddition('A');
         $buildingAddress13->setZipcode('1234AA');
@@ -422,7 +422,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress14->setId(14);
         $buildingAddress14->setConstructionYear(2010);
         $buildingAddress14->setRenovationYear(2010);
-        $buildingAddress14->setStreetname('Straatnaam A');
+        $buildingAddress14->setStreetName('Straatnaam A');
         $buildingAddress14->setHouseNumber(102);
         $buildingAddress14->setAddition('');
         $buildingAddress14->setZipcode('1234AA');
@@ -437,7 +437,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress15->setId(15);
         $buildingAddress15->setConstructionYear(1888);
         $buildingAddress15->setRenovationYear(2005);
-        $buildingAddress15->setStreetname('Straatnaam A');
+        $buildingAddress15->setStreetName('Straatnaam A');
         $buildingAddress15->setHouseNumber(10);
         $buildingAddress15->setAddition('A');
         $buildingAddress15->setZipcode('1234AA');
@@ -452,7 +452,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress16->setId(16);
         $buildingAddress16->setConstructionYear(1908);
         $buildingAddress16->setRenovationYear(200);
-        $buildingAddress16->setStreetname('Straatnaam A');
+        $buildingAddress16->setStreetName('Straatnaam A');
         $buildingAddress16->setHouseNumber(10);
         $buildingAddress16->setAddition('A');
         $buildingAddress16->setZipcode('1234AA');
@@ -467,7 +467,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress17->setId(17);
         $buildingAddress17->setConstructionYear(2006);
         $buildingAddress17->setRenovationYear(2006);
-        $buildingAddress17->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress17->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress17->setHouseNumber(10);
         $buildingAddress17->setAddition('A');
         $buildingAddress17->setZipcode('1234AA');
@@ -482,7 +482,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress18->setId(18);
         $buildingAddress18->setConstructionYear(2026);
         $buildingAddress18->setRenovationYear(2081);
-        $buildingAddress18->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress18->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress18->setHouseNumber(10);
         $buildingAddress18->setAddition('Bis');
         $buildingAddress18->setZipcode('1234AAB');
@@ -497,7 +497,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress19->setId(19);
         $buildingAddress19->setConstructionYear(1976);
         $buildingAddress19->setRenovationYear(2001);
-        $buildingAddress19->setStreetname('Straatnaam A');
+        $buildingAddress19->setStreetName('Straatnaam A');
         $buildingAddress19->setHouseNumber(10);
         $buildingAddress19->setAddition('I');
         $buildingAddress19->setZipcode('12334AA');
@@ -512,7 +512,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress20->setId(20);
         $buildingAddress20->setConstructionYear(1986);
         $buildingAddress20->setRenovationYear(2002);
-        $buildingAddress20->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress20->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress20->setHouseNumber(10);
         $buildingAddress20->setAddition('X');
         $buildingAddress20->setZipcode('1234AA');
@@ -527,7 +527,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress21->setId(21);
         $buildingAddress21->setConstructionYear(1954);
         $buildingAddress21->setRenovationYear(1986);
-        $buildingAddress21->setStreetname('Straatnaam A');
+        $buildingAddress21->setStreetName('Straatnaam A');
         $buildingAddress21->setHouseNumber(10);
         $buildingAddress21->setAddition('A');
         $buildingAddress21->setZipcode('1234AA');
@@ -542,7 +542,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress22->setId(22);
         $buildingAddress22->setConstructionYear(1998);
         $buildingAddress22->setRenovationYear(2021);
-        $buildingAddress22->setStreetname('Straatnaam A');
+        $buildingAddress22->setStreetName('Straatnaam A');
         $buildingAddress22->setHouseNumber(10);
         $buildingAddress22->setAddition('A');
         $buildingAddress22->setZipcode('1234AA');
@@ -557,7 +557,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setId(23);
         $buildingAddress23->setConstructionYear(1984);
         $buildingAddress23->setRenovationYear(2000);
-        $buildingAddress23->setStreetname('Straatnaam A');
+        $buildingAddress23->setStreetName('Straatnaam A');
         $buildingAddress23->setHouseNumber(10);
         $buildingAddress23->setAddition('A');
         $buildingAddress23->setZipcode('1234AA');
@@ -572,7 +572,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setId(24);
         $buildingAddress24->setConstructionYear(2010);
         $buildingAddress24->setRenovationYear(2010);
-        $buildingAddress24->setStreetname('Straatnaam A');
+        $buildingAddress24->setStreetName('Straatnaam A');
         $buildingAddress24->setHouseNumber(102);
         $buildingAddress24->setAddition('');
         $buildingAddress24->setZipcode('1234AA');
@@ -587,7 +587,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setId(25);
         $buildingAddress25->setConstructionYear(1888);
         $buildingAddress25->setRenovationYear(2005);
-        $buildingAddress25->setStreetname('Straatnaam A');
+        $buildingAddress25->setStreetName('Straatnaam A');
         $buildingAddress25->setHouseNumber(10);
         $buildingAddress25->setAddition('A');
         $buildingAddress25->setZipcode('1234AA');
@@ -602,7 +602,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress26->setId(26);
         $buildingAddress26->setConstructionYear(1908);
         $buildingAddress26->setRenovationYear(200);
-        $buildingAddress26->setStreetname('Straatnaam A');
+        $buildingAddress26->setStreetName('Straatnaam A');
         $buildingAddress26->setHouseNumber(10);
         $buildingAddress26->setAddition('A');
         $buildingAddress26->setZipcode('1234AA');
@@ -617,7 +617,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress27->setId(27);
         $buildingAddress27->setConstructionYear(2006);
         $buildingAddress27->setRenovationYear(2006);
-        $buildingAddress27->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress27->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress27->setHouseNumber(10);
         $buildingAddress27->setAddition('A');
         $buildingAddress27->setZipcode('1234AA');
@@ -632,7 +632,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress28->setId(28);
         $buildingAddress28->setConstructionYear(2026);
         $buildingAddress28->setRenovationYear(2081);
-        $buildingAddress28->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress28->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress28->setHouseNumber(10);
         $buildingAddress28->setAddition('Bis');
         $buildingAddress28->setZipcode('1234AAB');
@@ -647,7 +647,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress29->setId(29);
         $buildingAddress29->setConstructionYear(1976);
         $buildingAddress29->setRenovationYear(2001);
-        $buildingAddress29->setStreetname('Straatnaam A');
+        $buildingAddress29->setStreetName('Straatnaam A');
         $buildingAddress29->setHouseNumber(10);
         $buildingAddress29->setAddition('I');
         $buildingAddress29->setZipcode('12334AA');
@@ -662,7 +662,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress30->setId(1);
         $buildingAddress30->setConstructionYear(1986);
         $buildingAddress30->setRenovationYear(2002);
-        $buildingAddress30->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress30->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress30->setHouseNumber(10);
         $buildingAddress30->setAddition('X');
         $buildingAddress30->setZipcode('1234AA');
@@ -677,7 +677,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress31->setId(31);
         $buildingAddress31->setConstructionYear(1954);
         $buildingAddress31->setRenovationYear(1986);
-        $buildingAddress31->setStreetname('Straatnaam A');
+        $buildingAddress31->setStreetName('Straatnaam A');
         $buildingAddress31->setHouseNumber(10);
         $buildingAddress31->setAddition('A');
         $buildingAddress31->setZipcode('1234AA');
@@ -692,7 +692,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress41->setId(41);
         $buildingAddress41->setConstructionYear(1954);
         $buildingAddress41->setRenovationYear(1986);
-        $buildingAddress41->setStreetname('Straatnaam A');
+        $buildingAddress41->setStreetName('Straatnaam A');
         $buildingAddress41->setHouseNumber(10);
         $buildingAddress41->setAddition('A');
         $buildingAddress41->setZipcode('1234AA');
@@ -707,7 +707,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setId(51);
         $buildingAddress51->setConstructionYear(1954);
         $buildingAddress51->setRenovationYear(1986);
-        $buildingAddress51->setStreetname('Straatnaam A');
+        $buildingAddress51->setStreetName('Straatnaam A');
         $buildingAddress51->setHouseNumber(10);
         $buildingAddress51->setAddition('A');
         $buildingAddress51->setZipcode('1234AA');
@@ -722,7 +722,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress61->setId(61);
         $buildingAddress61->setConstructionYear(1954);
         $buildingAddress61->setRenovationYear(1986);
-        $buildingAddress61->setStreetname('Straatnaam A');
+        $buildingAddress61->setStreetName('Straatnaam A');
         $buildingAddress61->setHouseNumber(10);
         $buildingAddress61->setAddition('A');
         $buildingAddress61->setZipcode('1234AA');
@@ -737,7 +737,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress71->setId(71);
         $buildingAddress71->setConstructionYear(1954);
         $buildingAddress71->setRenovationYear(1986);
-        $buildingAddress71->setStreetname('Straatnaam A');
+        $buildingAddress71->setStreetName('Straatnaam A');
         $buildingAddress71->setHouseNumber(10);
         $buildingAddress71->setAddition('A');
         $buildingAddress71->setZipcode('1234AA');
@@ -752,7 +752,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress81->setId(81);
         $buildingAddress81->setConstructionYear(1954);
         $buildingAddress81->setRenovationYear(1986);
-        $buildingAddress81->setStreetname('Straatnaam A');
+        $buildingAddress81->setStreetName('Straatnaam A');
         $buildingAddress81->setHouseNumber(10);
         $buildingAddress81->setAddition('A');
         $buildingAddress81->setZipcode('1234AA');
@@ -767,7 +767,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress91->setId(91);
         $buildingAddress91->setConstructionYear(1954);
         $buildingAddress91->setRenovationYear(1986);
-        $buildingAddress91->setStreetname('Straatnaam A');
+        $buildingAddress91->setStreetName('Straatnaam A');
         $buildingAddress91->setHouseNumber(10);
         $buildingAddress91->setAddition('A');
         $buildingAddress91->setZipcode('1234AA');
@@ -782,7 +782,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress101->setId(101);
         $buildingAddress101->setConstructionYear(1954);
         $buildingAddress101->setRenovationYear(1986);
-        $buildingAddress101->setStreetname('Straatnaam A');
+        $buildingAddress101->setStreetName('Straatnaam A');
         $buildingAddress101->setHouseNumber(10);
         $buildingAddress101->setAddition('A');
         $buildingAddress101->setZipcode('1234AA');
@@ -797,7 +797,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress111->setId(111);
         $buildingAddress111->setConstructionYear(1954);
         $buildingAddress111->setRenovationYear(1986);
-        $buildingAddress111->setStreetname('Straatnaam A');
+        $buildingAddress111->setStreetName('Straatnaam A');
         $buildingAddress111->setHouseNumber(10);
         $buildingAddress111->setAddition('A');
         $buildingAddress111->setZipcode('1234AA');
@@ -812,7 +812,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress121->setId(121);
         $buildingAddress121->setConstructionYear(1954);
         $buildingAddress121->setRenovationYear(1986);
-        $buildingAddress121->setStreetname('Straatnaam A');
+        $buildingAddress121->setStreetName('Straatnaam A');
         $buildingAddress121->setHouseNumber(10);
         $buildingAddress121->setAddition('A');
         $buildingAddress121->setZipcode('1234AA');
@@ -827,7 +827,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress32->setId(32);
         $buildingAddress32->setConstructionYear(1998);
         $buildingAddress32->setRenovationYear(2021);
-        $buildingAddress32->setStreetname('Straatnaam A');
+        $buildingAddress32->setStreetName('Straatnaam A');
         $buildingAddress32->setHouseNumber(10);
         $buildingAddress32->setAddition('A');
         $buildingAddress32->setZipcode('1234AA');
@@ -842,7 +842,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress42->setId(42);
         $buildingAddress42->setConstructionYear(1998);
         $buildingAddress42->setRenovationYear(2021);
-        $buildingAddress42->setStreetname('Straatnaam A');
+        $buildingAddress42->setStreetName('Straatnaam A');
         $buildingAddress42->setHouseNumber(10);
         $buildingAddress42->setAddition('A');
         $buildingAddress42->setZipcode('1234AA');
@@ -857,7 +857,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress52->setId(52);
         $buildingAddress52->setConstructionYear(1998);
         $buildingAddress52->setRenovationYear(2021);
-        $buildingAddress52->setStreetname('Straatnaam A');
+        $buildingAddress52->setStreetName('Straatnaam A');
         $buildingAddress52->setHouseNumber(10);
         $buildingAddress52->setAddition('A');
         $buildingAddress52->setZipcode('1234AA');
@@ -872,7 +872,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress62->setId(62);
         $buildingAddress62->setConstructionYear(1998);
         $buildingAddress62->setRenovationYear(2021);
-        $buildingAddress62->setStreetname('Straatnaam A');
+        $buildingAddress62->setStreetName('Straatnaam A');
         $buildingAddress62->setHouseNumber(10);
         $buildingAddress62->setAddition('A');
         $buildingAddress62->setZipcode('1234AA');
@@ -887,7 +887,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress72->setId(72);
         $buildingAddress72->setConstructionYear(1998);
         $buildingAddress72->setRenovationYear(2021);
-        $buildingAddress72->setStreetname('Straatnaam A');
+        $buildingAddress72->setStreetName('Straatnaam A');
         $buildingAddress72->setHouseNumber(10);
         $buildingAddress72->setAddition('A');
         $buildingAddress72->setZipcode('1234AA');
@@ -902,7 +902,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress82->setId(82);
         $buildingAddress82->setConstructionYear(1998);
         $buildingAddress82->setRenovationYear(2021);
-        $buildingAddress82->setStreetname('Straatnaam A');
+        $buildingAddress82->setStreetName('Straatnaam A');
         $buildingAddress82->setHouseNumber(10);
         $buildingAddress82->setAddition('A');
         $buildingAddress82->setZipcode('1234AA');
@@ -917,7 +917,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress92->setId(92);
         $buildingAddress92->setConstructionYear(1998);
         $buildingAddress92->setRenovationYear(2021);
-        $buildingAddress92->setStreetname('Straatnaam A');
+        $buildingAddress92->setStreetName('Straatnaam A');
         $buildingAddress92->setHouseNumber(10);
         $buildingAddress92->setAddition('A');
         $buildingAddress92->setZipcode('1234AA');
@@ -932,7 +932,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress102->setId(102);
         $buildingAddress102->setConstructionYear(1998);
         $buildingAddress102->setRenovationYear(2021);
-        $buildingAddress102->setStreetname('Straatnaam A');
+        $buildingAddress102->setStreetName('Straatnaam A');
         $buildingAddress102->setHouseNumber(10);
         $buildingAddress102->setAddition('A');
         $buildingAddress102->setZipcode('1234AA');
@@ -947,7 +947,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress112->setId(112);
         $buildingAddress112->setConstructionYear(1998);
         $buildingAddress112->setRenovationYear(2021);
-        $buildingAddress112->setStreetname('Straatnaam A');
+        $buildingAddress112->setStreetName('Straatnaam A');
         $buildingAddress112->setHouseNumber(10);
         $buildingAddress112->setAddition('A');
         $buildingAddress112->setZipcode('1234AA');
@@ -962,7 +962,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress122->setId(122);
         $buildingAddress122->setConstructionYear(1998);
         $buildingAddress122->setRenovationYear(2021);
-        $buildingAddress122->setStreetname('Straatnaam A');
+        $buildingAddress122->setStreetName('Straatnaam A');
         $buildingAddress122->setHouseNumber(10);
         $buildingAddress122->setAddition('A');
         $buildingAddress122->setZipcode('1234AA');
@@ -977,7 +977,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress33->setId(33);
         $buildingAddress33->setConstructionYear(1984);
         $buildingAddress33->setRenovationYear(2000);
-        $buildingAddress33->setStreetname('Straatnaam A');
+        $buildingAddress33->setStreetName('Straatnaam A');
         $buildingAddress33->setHouseNumber(10);
         $buildingAddress33->setAddition('A');
         $buildingAddress33->setZipcode('1234AA');
@@ -992,7 +992,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress43->setId(43);
         $buildingAddress43->setConstructionYear(1984);
         $buildingAddress43->setRenovationYear(2000);
-        $buildingAddress43->setStreetname('Straatnaam A');
+        $buildingAddress43->setStreetName('Straatnaam A');
         $buildingAddress43->setHouseNumber(10);
         $buildingAddress43->setAddition('A');
         $buildingAddress43->setZipcode('1234AA');
@@ -1007,7 +1007,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress53->setId(53);
         $buildingAddress53->setConstructionYear(1984);
         $buildingAddress53->setRenovationYear(2000);
-        $buildingAddress53->setStreetname('Straatnaam A');
+        $buildingAddress53->setStreetName('Straatnaam A');
         $buildingAddress53->setHouseNumber(10);
         $buildingAddress53->setAddition('A');
         $buildingAddress53->setZipcode('1234AA');
@@ -1022,7 +1022,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress63->setId(63);
         $buildingAddress63->setConstructionYear(1984);
         $buildingAddress63->setRenovationYear(2000);
-        $buildingAddress63->setStreetname('Straatnaam A');
+        $buildingAddress63->setStreetName('Straatnaam A');
         $buildingAddress63->setHouseNumber(10);
         $buildingAddress63->setAddition('A');
         $buildingAddress63->setZipcode('1234AA');
@@ -1037,7 +1037,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress73->setId(73);
         $buildingAddress73->setConstructionYear(1984);
         $buildingAddress73->setRenovationYear(2000);
-        $buildingAddress73->setStreetname('Straatnaam A');
+        $buildingAddress73->setStreetName('Straatnaam A');
         $buildingAddress73->setHouseNumber(10);
         $buildingAddress73->setAddition('A');
         $buildingAddress73->setZipcode('1234AA');
@@ -1052,7 +1052,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress83->setId(83);
         $buildingAddress83->setConstructionYear(1984);
         $buildingAddress83->setRenovationYear(2000);
-        $buildingAddress83->setStreetname('Straatnaam A');
+        $buildingAddress83->setStreetName('Straatnaam A');
         $buildingAddress83->setHouseNumber(10);
         $buildingAddress83->setAddition('A');
         $buildingAddress83->setZipcode('1234AA');
@@ -1067,7 +1067,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress93->setId(93);
         $buildingAddress93->setConstructionYear(1984);
         $buildingAddress93->setRenovationYear(2000);
-        $buildingAddress93->setStreetname('Straatnaam A');
+        $buildingAddress93->setStreetName('Straatnaam A');
         $buildingAddress93->setHouseNumber(10);
         $buildingAddress93->setAddition('A');
         $buildingAddress93->setZipcode('1234AA');
@@ -1082,7 +1082,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress103->setId(103);
         $buildingAddress103->setConstructionYear(1984);
         $buildingAddress103->setRenovationYear(2000);
-        $buildingAddress103->setStreetname('Straatnaam A');
+        $buildingAddress103->setStreetName('Straatnaam A');
         $buildingAddress103->setHouseNumber(10);
         $buildingAddress103->setAddition('A');
         $buildingAddress103->setZipcode('1234AA');
@@ -1097,7 +1097,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress113->setId(113);
         $buildingAddress113->setConstructionYear(1984);
         $buildingAddress113->setRenovationYear(2000);
-        $buildingAddress113->setStreetname('Straatnaam A');
+        $buildingAddress113->setStreetName('Straatnaam A');
         $buildingAddress113->setHouseNumber(10);
         $buildingAddress113->setAddition('A');
         $buildingAddress113->setZipcode('1234AA');
@@ -1112,7 +1112,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress123->setId(123);
         $buildingAddress123->setConstructionYear(1984);
         $buildingAddress123->setRenovationYear(2000);
-        $buildingAddress123->setStreetname('Straatnaam A');
+        $buildingAddress123->setStreetName('Straatnaam A');
         $buildingAddress123->setHouseNumber(10);
         $buildingAddress123->setAddition('A');
         $buildingAddress123->setZipcode('1234AA');
@@ -1127,7 +1127,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress34->setId(34);
         $buildingAddress34->setConstructionYear(2010);
         $buildingAddress34->setRenovationYear(2010);
-        $buildingAddress34->setStreetname('Straatnaam A');
+        $buildingAddress34->setStreetName('Straatnaam A');
         $buildingAddress34->setHouseNumber(102);
         $buildingAddress34->setAddition('');
         $buildingAddress34->setZipcode('1234AA');
@@ -1142,7 +1142,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress44->setId(44);
         $buildingAddress44->setConstructionYear(2010);
         $buildingAddress44->setRenovationYear(2010);
-        $buildingAddress44->setStreetname('Straatnaam A');
+        $buildingAddress44->setStreetName('Straatnaam A');
         $buildingAddress44->setHouseNumber(102);
         $buildingAddress44->setAddition('');
         $buildingAddress44->setZipcode('1234AA');
@@ -1157,7 +1157,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress54->setId(54);
         $buildingAddress54->setConstructionYear(2010);
         $buildingAddress54->setRenovationYear(2010);
-        $buildingAddress54->setStreetname('Straatnaam A');
+        $buildingAddress54->setStreetName('Straatnaam A');
         $buildingAddress54->setHouseNumber(102);
         $buildingAddress54->setAddition('');
         $buildingAddress54->setZipcode('1234AA');
@@ -1172,7 +1172,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress64->setId(64);
         $buildingAddress64->setConstructionYear(2010);
         $buildingAddress64->setRenovationYear(2010);
-        $buildingAddress64->setStreetname('Straatnaam A');
+        $buildingAddress64->setStreetName('Straatnaam A');
         $buildingAddress64->setHouseNumber(102);
         $buildingAddress64->setAddition('');
         $buildingAddress64->setZipcode('1234AA');
@@ -1187,7 +1187,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress74->setId(74);
         $buildingAddress74->setConstructionYear(2010);
         $buildingAddress74->setRenovationYear(2010);
-        $buildingAddress74->setStreetname('Straatnaam A');
+        $buildingAddress74->setStreetName('Straatnaam A');
         $buildingAddress74->setHouseNumber(102);
         $buildingAddress74->setAddition('');
         $buildingAddress74->setZipcode('1234AA');
@@ -1202,7 +1202,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress84->setId(84);
         $buildingAddress84->setConstructionYear(2010);
         $buildingAddress84->setRenovationYear(2010);
-        $buildingAddress84->setStreetname('Straatnaam A');
+        $buildingAddress84->setStreetName('Straatnaam A');
         $buildingAddress84->setHouseNumber(102);
         $buildingAddress84->setAddition('');
         $buildingAddress84->setZipcode('1234AA');
@@ -1217,7 +1217,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress94->setId(94);
         $buildingAddress94->setConstructionYear(2010);
         $buildingAddress94->setRenovationYear(2010);
-        $buildingAddress94->setStreetname('Straatnaam A');
+        $buildingAddress94->setStreetName('Straatnaam A');
         $buildingAddress94->setHouseNumber(102);
         $buildingAddress94->setAddition('');
         $buildingAddress94->setZipcode('1234AA');
@@ -1232,7 +1232,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress104->setId(104);
         $buildingAddress104->setConstructionYear(2010);
         $buildingAddress104->setRenovationYear(2010);
-        $buildingAddress104->setStreetname('Straatnaam A');
+        $buildingAddress104->setStreetName('Straatnaam A');
         $buildingAddress104->setHouseNumber(102);
         $buildingAddress104->setAddition('');
         $buildingAddress104->setZipcode('1234AA');
@@ -1247,7 +1247,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress114->setId(114);
         $buildingAddress114->setConstructionYear(2010);
         $buildingAddress114->setRenovationYear(2010);
-        $buildingAddress114->setStreetname('Straatnaam A');
+        $buildingAddress114->setStreetName('Straatnaam A');
         $buildingAddress114->setHouseNumber(102);
         $buildingAddress114->setAddition('');
         $buildingAddress114->setZipcode('1234AA');
@@ -1262,7 +1262,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress124->setId(124);
         $buildingAddress124->setConstructionYear(2010);
         $buildingAddress124->setRenovationYear(2010);
-        $buildingAddress124->setStreetname('Straatnaam A');
+        $buildingAddress124->setStreetName('Straatnaam A');
         $buildingAddress124->setHouseNumber(102);
         $buildingAddress124->setAddition('');
         $buildingAddress124->setZipcode('1234AA');
@@ -1277,7 +1277,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress35->setId(35);
         $buildingAddress35->setConstructionYear(1888);
         $buildingAddress35->setRenovationYear(2005);
-        $buildingAddress35->setStreetname('Straatnaam A');
+        $buildingAddress35->setStreetName('Straatnaam A');
         $buildingAddress35->setHouseNumber(10);
         $buildingAddress35->setAddition('A');
         $buildingAddress35->setZipcode('1234AA');
@@ -1292,7 +1292,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress45->setId(45);
         $buildingAddress45->setConstructionYear(1888);
         $buildingAddress45->setRenovationYear(2005);
-        $buildingAddress45->setStreetname('Straatnaam A');
+        $buildingAddress45->setStreetName('Straatnaam A');
         $buildingAddress45->setHouseNumber(10);
         $buildingAddress45->setAddition('A');
         $buildingAddress45->setZipcode('1234AA');
@@ -1307,7 +1307,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress55->setId(55);
         $buildingAddress55->setConstructionYear(1888);
         $buildingAddress55->setRenovationYear(2005);
-        $buildingAddress55->setStreetname('Straatnaam A');
+        $buildingAddress55->setStreetName('Straatnaam A');
         $buildingAddress55->setHouseNumber(10);
         $buildingAddress55->setAddition('A');
         $buildingAddress55->setZipcode('1234AA');
@@ -1322,7 +1322,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress65->setId(65);
         $buildingAddress65->setConstructionYear(1888);
         $buildingAddress65->setRenovationYear(2005);
-        $buildingAddress65->setStreetname('Straatnaam A');
+        $buildingAddress65->setStreetName('Straatnaam A');
         $buildingAddress65->setHouseNumber(10);
         $buildingAddress65->setAddition('A');
         $buildingAddress65->setZipcode('1234AA');
@@ -1337,7 +1337,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress75->setId(75);
         $buildingAddress75->setConstructionYear(1888);
         $buildingAddress75->setRenovationYear(2005);
-        $buildingAddress75->setStreetname('Straatnaam A');
+        $buildingAddress75->setStreetName('Straatnaam A');
         $buildingAddress75->setHouseNumber(10);
         $buildingAddress75->setAddition('A');
         $buildingAddress75->setZipcode('1234AA');
@@ -1352,7 +1352,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress85->setId(85);
         $buildingAddress85->setConstructionYear(1888);
         $buildingAddress85->setRenovationYear(2005);
-        $buildingAddress85->setStreetname('Straatnaam A');
+        $buildingAddress85->setStreetName('Straatnaam A');
         $buildingAddress85->setHouseNumber(10);
         $buildingAddress85->setAddition('A');
         $buildingAddress85->setZipcode('1234AA');
@@ -1367,7 +1367,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress95->setId(95);
         $buildingAddress95->setConstructionYear(1888);
         $buildingAddress95->setRenovationYear(2005);
-        $buildingAddress95->setStreetname('Straatnaam A');
+        $buildingAddress95->setStreetName('Straatnaam A');
         $buildingAddress95->setHouseNumber(10);
         $buildingAddress95->setAddition('A');
         $buildingAddress95->setZipcode('1234AA');
@@ -1382,7 +1382,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress105->setId(105);
         $buildingAddress105->setConstructionYear(1888);
         $buildingAddress105->setRenovationYear(2005);
-        $buildingAddress105->setStreetname('Straatnaam A');
+        $buildingAddress105->setStreetName('Straatnaam A');
         $buildingAddress105->setHouseNumber(10);
         $buildingAddress105->setAddition('A');
         $buildingAddress105->setZipcode('1234AA');
@@ -1397,7 +1397,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress115->setId(115);
         $buildingAddress115->setConstructionYear(1888);
         $buildingAddress115->setRenovationYear(2005);
-        $buildingAddress115->setStreetname('Straatnaam A');
+        $buildingAddress115->setStreetName('Straatnaam A');
         $buildingAddress115->setHouseNumber(10);
         $buildingAddress115->setAddition('A');
         $buildingAddress115->setZipcode('1234AA');
@@ -1412,7 +1412,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress125->setId(125);
         $buildingAddress125->setConstructionYear(1888);
         $buildingAddress125->setRenovationYear(2005);
-        $buildingAddress125->setStreetname('Straatnaam A');
+        $buildingAddress125->setStreetName('Straatnaam A');
         $buildingAddress125->setHouseNumber(10);
         $buildingAddress125->setAddition('A');
         $buildingAddress125->setZipcode('1234AA');
@@ -1427,7 +1427,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress36->setId(36);
         $buildingAddress36->setConstructionYear(1908);
         $buildingAddress36->setRenovationYear(200);
-        $buildingAddress36->setStreetname('Straatnaam A');
+        $buildingAddress36->setStreetName('Straatnaam A');
         $buildingAddress36->setHouseNumber(10);
         $buildingAddress36->setAddition('A');
         $buildingAddress36->setZipcode('1234AA');
@@ -1442,7 +1442,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress46->setId(46);
         $buildingAddress46->setConstructionYear(1908);
         $buildingAddress46->setRenovationYear(200);
-        $buildingAddress46->setStreetname('Straatnaam A');
+        $buildingAddress46->setStreetName('Straatnaam A');
         $buildingAddress46->setHouseNumber(10);
         $buildingAddress46->setAddition('A');
         $buildingAddress46->setZipcode('1234AA');
@@ -1457,7 +1457,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress56->setId(56);
         $buildingAddress56->setConstructionYear(1908);
         $buildingAddress56->setRenovationYear(200);
-        $buildingAddress56->setStreetname('Straatnaam A');
+        $buildingAddress56->setStreetName('Straatnaam A');
         $buildingAddress56->setHouseNumber(10);
         $buildingAddress56->setAddition('A');
         $buildingAddress56->setZipcode('1234AA');
@@ -1472,7 +1472,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress66->setId(66);
         $buildingAddress66->setConstructionYear(1908);
         $buildingAddress66->setRenovationYear(200);
-        $buildingAddress66->setStreetname('Straatnaam A');
+        $buildingAddress66->setStreetName('Straatnaam A');
         $buildingAddress66->setHouseNumber(10);
         $buildingAddress66->setAddition('A');
         $buildingAddress66->setZipcode('1234AA');
@@ -1487,7 +1487,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress76->setId(76);
         $buildingAddress76->setConstructionYear(1908);
         $buildingAddress76->setRenovationYear(200);
-        $buildingAddress76->setStreetname('Straatnaam A');
+        $buildingAddress76->setStreetName('Straatnaam A');
         $buildingAddress76->setHouseNumber(10);
         $buildingAddress76->setAddition('A');
         $buildingAddress76->setZipcode('1234AA');
@@ -1502,7 +1502,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress86->setId(86);
         $buildingAddress86->setConstructionYear(1908);
         $buildingAddress86->setRenovationYear(200);
-        $buildingAddress86->setStreetname('Straatnaam A');
+        $buildingAddress86->setStreetName('Straatnaam A');
         $buildingAddress86->setHouseNumber(10);
         $buildingAddress86->setAddition('A');
         $buildingAddress86->setZipcode('1234AA');
@@ -1517,7 +1517,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress96->setId(96);
         $buildingAddress96->setConstructionYear(1908);
         $buildingAddress96->setRenovationYear(200);
-        $buildingAddress96->setStreetname('Straatnaam A');
+        $buildingAddress96->setStreetName('Straatnaam A');
         $buildingAddress96->setHouseNumber(10);
         $buildingAddress96->setAddition('A');
         $buildingAddress96->setZipcode('1234AA');
@@ -1532,7 +1532,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress106->setId(106);
         $buildingAddress106->setConstructionYear(1908);
         $buildingAddress106->setRenovationYear(200);
-        $buildingAddress106->setStreetname('Straatnaam A');
+        $buildingAddress106->setStreetName('Straatnaam A');
         $buildingAddress106->setHouseNumber(10);
         $buildingAddress106->setAddition('A');
         $buildingAddress106->setZipcode('1234AA');
@@ -1547,7 +1547,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress116->setId(116);
         $buildingAddress116->setConstructionYear(1908);
         $buildingAddress116->setRenovationYear(200);
-        $buildingAddress116->setStreetname('Straatnaam A');
+        $buildingAddress116->setStreetName('Straatnaam A');
         $buildingAddress116->setHouseNumber(10);
         $buildingAddress116->setAddition('A');
         $buildingAddress116->setZipcode('1234AA');
@@ -1562,7 +1562,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress126->setId(126);
         $buildingAddress126->setConstructionYear(1908);
         $buildingAddress126->setRenovationYear(200);
-        $buildingAddress126->setStreetname('Straatnaam A');
+        $buildingAddress126->setStreetName('Straatnaam A');
         $buildingAddress126->setHouseNumber(10);
         $buildingAddress126->setAddition('A');
         $buildingAddress126->setZipcode('1234AA');
@@ -1577,7 +1577,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress37->setId(37);
         $buildingAddress37->setConstructionYear(2006);
         $buildingAddress37->setRenovationYear(2006);
-        $buildingAddress37->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress37->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress37->setHouseNumber(10);
         $buildingAddress37->setAddition('A');
         $buildingAddress37->setZipcode('1234AA');
@@ -1592,7 +1592,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress47->setId(47);
         $buildingAddress47->setConstructionYear(2006);
         $buildingAddress47->setRenovationYear(2006);
-        $buildingAddress47->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress47->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress47->setHouseNumber(10);
         $buildingAddress47->setAddition('A');
         $buildingAddress47->setZipcode('1234AA');
@@ -1607,7 +1607,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress57->setId(57);
         $buildingAddress57->setConstructionYear(2006);
         $buildingAddress57->setRenovationYear(2006);
-        $buildingAddress57->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress57->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress57->setHouseNumber(10);
         $buildingAddress57->setAddition('A');
         $buildingAddress57->setZipcode('1234AA');
@@ -1622,7 +1622,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress67->setId(67);
         $buildingAddress67->setConstructionYear(2006);
         $buildingAddress67->setRenovationYear(2006);
-        $buildingAddress67->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress67->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress67->setHouseNumber(10);
         $buildingAddress67->setAddition('A');
         $buildingAddress67->setZipcode('1234AA');
@@ -1637,7 +1637,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress77->setId(77);
         $buildingAddress77->setConstructionYear(2006);
         $buildingAddress77->setRenovationYear(2006);
-        $buildingAddress77->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress77->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress77->setHouseNumber(10);
         $buildingAddress77->setAddition('A');
         $buildingAddress77->setZipcode('1234AA');
@@ -1652,7 +1652,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setId(87);
         $buildingAddress87->setConstructionYear(2006);
         $buildingAddress87->setRenovationYear(2006);
-        $buildingAddress87->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress87->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress87->setHouseNumber(10);
         $buildingAddress87->setAddition('A');
         $buildingAddress87->setZipcode('1234AA');
@@ -1667,7 +1667,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress97->setId(97);
         $buildingAddress97->setConstructionYear(2006);
         $buildingAddress97->setRenovationYear(2006);
-        $buildingAddress97->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress97->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress97->setHouseNumber(10);
         $buildingAddress97->setAddition('A');
         $buildingAddress97->setZipcode('1234AA');
@@ -1682,7 +1682,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress107->setId(107);
         $buildingAddress107->setConstructionYear(2006);
         $buildingAddress107->setRenovationYear(2006);
-        $buildingAddress107->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress107->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress107->setHouseNumber(10);
         $buildingAddress107->setAddition('A');
         $buildingAddress107->setZipcode('1234AA');
@@ -1697,7 +1697,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress117->setId(117);
         $buildingAddress117->setConstructionYear(2006);
         $buildingAddress117->setRenovationYear(2006);
-        $buildingAddress117->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress117->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress117->setHouseNumber(10);
         $buildingAddress117->setAddition('A');
         $buildingAddress117->setZipcode('1234AA');
@@ -1712,7 +1712,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress127->setId(127);
         $buildingAddress127->setConstructionYear(2006);
         $buildingAddress127->setRenovationYear(2006);
-        $buildingAddress127->setStreetname('Æ æ Œ œ Straatnaam A');
+        $buildingAddress127->setStreetName('Æ æ Œ œ Straatnaam A');
         $buildingAddress127->setHouseNumber(10);
         $buildingAddress127->setAddition('A');
         $buildingAddress127->setZipcode('1234AA');
@@ -1727,7 +1727,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress38->setId(38);
         $buildingAddress38->setConstructionYear(2026);
         $buildingAddress38->setRenovationYear(2081);
-        $buildingAddress38->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress38->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress38->setHouseNumber(10);
         $buildingAddress38->setAddition('Bis');
         $buildingAddress38->setZipcode('1234AAB');
@@ -1742,7 +1742,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress48->setId(48);
         $buildingAddress48->setConstructionYear(2026);
         $buildingAddress48->setRenovationYear(2081);
-        $buildingAddress48->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress48->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress48->setHouseNumber(10);
         $buildingAddress48->setAddition('Bis');
         $buildingAddress48->setZipcode('1234AAB');
@@ -1757,7 +1757,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress58->setId(58);
         $buildingAddress58->setConstructionYear(2026);
         $buildingAddress58->setRenovationYear(2081);
-        $buildingAddress58->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress58->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress58->setHouseNumber(10);
         $buildingAddress58->setAddition('Bis');
         $buildingAddress58->setZipcode('1234AAB');
@@ -1772,7 +1772,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress68->setId(68);
         $buildingAddress68->setConstructionYear(2026);
         $buildingAddress68->setRenovationYear(2081);
-        $buildingAddress68->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress68->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress68->setHouseNumber(10);
         $buildingAddress68->setAddition('Bis');
         $buildingAddress68->setZipcode('1234AAB');
@@ -1787,7 +1787,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress78->setId(78);
         $buildingAddress78->setConstructionYear(2026);
         $buildingAddress78->setRenovationYear(2081);
-        $buildingAddress78->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress78->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress78->setHouseNumber(10);
         $buildingAddress78->setAddition('Bis');
         $buildingAddress78->setZipcode('1234AAB');
@@ -1802,7 +1802,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress88->setId(88);
         $buildingAddress88->setConstructionYear(2026);
         $buildingAddress88->setRenovationYear(2081);
-        $buildingAddress88->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress88->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress88->setHouseNumber(10);
         $buildingAddress88->setAddition('Bis');
         $buildingAddress88->setZipcode('1234AAB');
@@ -1817,7 +1817,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress98->setId(98);
         $buildingAddress98->setConstructionYear(2026);
         $buildingAddress98->setRenovationYear(2081);
-        $buildingAddress98->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress98->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress98->setHouseNumber(10);
         $buildingAddress98->setAddition('Bis');
         $buildingAddress98->setZipcode('1234AAB');
@@ -1832,7 +1832,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress108->setId(108);
         $buildingAddress108->setConstructionYear(2026);
         $buildingAddress108->setRenovationYear(2081);
-        $buildingAddress108->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress108->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress108->setHouseNumber(10);
         $buildingAddress108->setAddition('Bis');
         $buildingAddress108->setZipcode('1234AAB');
@@ -1847,7 +1847,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress118->setId(118);
         $buildingAddress118->setConstructionYear(2026);
         $buildingAddress118->setRenovationYear(2081);
-        $buildingAddress118->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress118->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress118->setHouseNumber(10);
         $buildingAddress118->setAddition('Bis');
         $buildingAddress118->setZipcode('1234AAB');
@@ -1862,7 +1862,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setId(128);
         $buildingAddress128->setConstructionYear(2026);
         $buildingAddress128->setRenovationYear(2081);
-        $buildingAddress128->setStreetname('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
+        $buildingAddress128->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress128->setHouseNumber(10);
         $buildingAddress128->setAddition('Bis');
         $buildingAddress128->setZipcode('1234AAB');
@@ -1877,7 +1877,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress39->setId(39);
         $buildingAddress39->setConstructionYear(1976);
         $buildingAddress39->setRenovationYear(2001);
-        $buildingAddress39->setStreetname('Straatnaam A');
+        $buildingAddress39->setStreetName('Straatnaam A');
         $buildingAddress39->setHouseNumber(10);
         $buildingAddress39->setAddition('I');
         $buildingAddress39->setZipcode('12334AA');
@@ -1892,7 +1892,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress49->setId(49);
         $buildingAddress49->setConstructionYear(1976);
         $buildingAddress49->setRenovationYear(2001);
-        $buildingAddress49->setStreetname('Straatnaam A');
+        $buildingAddress49->setStreetName('Straatnaam A');
         $buildingAddress49->setHouseNumber(10);
         $buildingAddress49->setAddition('I');
         $buildingAddress49->setZipcode('12334AA');
@@ -1907,7 +1907,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress59->setId(59);
         $buildingAddress59->setConstructionYear(1976);
         $buildingAddress59->setRenovationYear(2001);
-        $buildingAddress59->setStreetname('Straatnaam A');
+        $buildingAddress59->setStreetName('Straatnaam A');
         $buildingAddress59->setHouseNumber(10);
         $buildingAddress59->setAddition('I');
         $buildingAddress59->setZipcode('12334AA');
@@ -1922,7 +1922,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress69->setId(69);
         $buildingAddress69->setConstructionYear(1976);
         $buildingAddress69->setRenovationYear(2001);
-        $buildingAddress69->setStreetname('Straatnaam A');
+        $buildingAddress69->setStreetName('Straatnaam A');
         $buildingAddress69->setHouseNumber(10);
         $buildingAddress69->setAddition('I');
         $buildingAddress69->setZipcode('12334AA');
@@ -1937,7 +1937,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress79->setId(79);
         $buildingAddress79->setConstructionYear(1976);
         $buildingAddress79->setRenovationYear(2001);
-        $buildingAddress79->setStreetname('Straatnaam A');
+        $buildingAddress79->setStreetName('Straatnaam A');
         $buildingAddress79->setHouseNumber(10);
         $buildingAddress79->setAddition('I');
         $buildingAddress79->setZipcode('12334AA');
@@ -1952,7 +1952,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress89->setId(89);
         $buildingAddress89->setConstructionYear(1976);
         $buildingAddress89->setRenovationYear(2001);
-        $buildingAddress89->setStreetname('Straatnaam A');
+        $buildingAddress89->setStreetName('Straatnaam A');
         $buildingAddress89->setHouseNumber(10);
         $buildingAddress89->setAddition('I');
         $buildingAddress89->setZipcode('12334AA');
@@ -1967,7 +1967,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress99->setId(99);
         $buildingAddress99->setConstructionYear(1976);
         $buildingAddress99->setRenovationYear(2001);
-        $buildingAddress99->setStreetname('Straatnaam A');
+        $buildingAddress99->setStreetName('Straatnaam A');
         $buildingAddress99->setHouseNumber(10);
         $buildingAddress99->setAddition('I');
         $buildingAddress99->setZipcode('12334AA');
@@ -1982,7 +1982,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress109->setId(109);
         $buildingAddress109->setConstructionYear(1976);
         $buildingAddress109->setRenovationYear(2001);
-        $buildingAddress109->setStreetname('Straatnaam A');
+        $buildingAddress109->setStreetName('Straatnaam A');
         $buildingAddress109->setHouseNumber(10);
         $buildingAddress109->setAddition('I');
         $buildingAddress109->setZipcode('12334AA');
@@ -1997,7 +1997,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress119->setId(119);
         $buildingAddress119->setConstructionYear(1976);
         $buildingAddress119->setRenovationYear(2001);
-        $buildingAddress119->setStreetname('Straatnaam A');
+        $buildingAddress119->setStreetName('Straatnaam A');
         $buildingAddress119->setHouseNumber(10);
         $buildingAddress119->setAddition('I');
         $buildingAddress119->setZipcode('12334AA');
@@ -2012,7 +2012,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress129->setId(129);
         $buildingAddress129->setConstructionYear(1976);
         $buildingAddress129->setRenovationYear(2001);
-        $buildingAddress129->setStreetname('Straatnaam A');
+        $buildingAddress129->setStreetName('Straatnaam A');
         $buildingAddress129->setHouseNumber(10);
         $buildingAddress129->setAddition('I');
         $buildingAddress129->setZipcode('12334AA');
@@ -2027,7 +2027,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress40->setId(40);
         $buildingAddress40->setConstructionYear(1986);
         $buildingAddress40->setRenovationYear(2002);
-        $buildingAddress40->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress40->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress40->setHouseNumber(10);
         $buildingAddress40->setAddition('X');
         $buildingAddress40->setZipcode('1234AA');
@@ -2042,7 +2042,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress50->setId(50);
         $buildingAddress50->setConstructionYear(1986);
         $buildingAddress50->setRenovationYear(2002);
-        $buildingAddress50->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress50->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress50->setHouseNumber(10);
         $buildingAddress50->setAddition('X');
         $buildingAddress50->setZipcode('1234AA');
@@ -2057,7 +2057,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress60->setId(60);
         $buildingAddress60->setConstructionYear(1986);
         $buildingAddress60->setRenovationYear(2002);
-        $buildingAddress60->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress60->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress60->setHouseNumber(10);
         $buildingAddress60->setAddition('X');
         $buildingAddress60->setZipcode('1234AA');
@@ -2072,7 +2072,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress70->setId(70);
         $buildingAddress70->setConstructionYear(1986);
         $buildingAddress70->setRenovationYear(2002);
-        $buildingAddress70->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress70->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress70->setHouseNumber(10);
         $buildingAddress70->setAddition('X');
         $buildingAddress70->setZipcode('1234AA');
@@ -2087,7 +2087,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress80->setId(80);
         $buildingAddress80->setConstructionYear(1986);
         $buildingAddress80->setRenovationYear(2002);
-        $buildingAddress80->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress80->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress80->setHouseNumber(10);
         $buildingAddress80->setAddition('X');
         $buildingAddress80->setZipcode('1234AA');
@@ -2102,7 +2102,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress90->setId(90);
         $buildingAddress90->setConstructionYear(1986);
         $buildingAddress90->setRenovationYear(2002);
-        $buildingAddress90->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress90->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress90->setHouseNumber(10);
         $buildingAddress90->setAddition('X');
         $buildingAddress90->setZipcode('1234AA');
@@ -2117,7 +2117,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress100->setId(100);
         $buildingAddress100->setConstructionYear(1986);
         $buildingAddress100->setRenovationYear(2002);
-        $buildingAddress100->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress100->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress100->setHouseNumber(10);
         $buildingAddress100->setAddition('X');
         $buildingAddress100->setZipcode('1234AA');
@@ -2132,7 +2132,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress110->setId(110);
         $buildingAddress110->setConstructionYear(1986);
         $buildingAddress110->setRenovationYear(2002);
-        $buildingAddress110->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress110->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress110->setHouseNumber(10);
         $buildingAddress110->setAddition('X');
         $buildingAddress110->setZipcode('1234AA');
@@ -2147,7 +2147,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setId(120);
         $buildingAddress120->setConstructionYear(1986);
         $buildingAddress120->setRenovationYear(2002);
-        $buildingAddress120->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress120->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress120->setHouseNumber(10);
         $buildingAddress120->setAddition('X');
         $buildingAddress120->setZipcode('1234AA');
@@ -2162,7 +2162,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress130->setId(130);
         $buildingAddress130->setConstructionYear(1986);
         $buildingAddress130->setRenovationYear(2002);
-        $buildingAddress130->setStreetname('Ą ą Ę ę Straatnaam A');
+        $buildingAddress130->setStreetName('Ą ą Ę ę Straatnaam A');
         $buildingAddress130->setHouseNumber(10);
         $buildingAddress130->setAddition('X');
         $buildingAddress130->setZipcode('1234AA');

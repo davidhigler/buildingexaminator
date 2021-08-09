@@ -3,6 +3,7 @@
 namespace App\Entity\Portefeuille;
 
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\SuperClasses\IdTimeIdentification;
@@ -13,38 +14,27 @@ use Doctrine\Common\Collections\Collection;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="buildingtypes")
+ * @ORM\Table(name="LivingTypes")
  */
-class BuildingType extends IdTimeIdentification
+class LivingType extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingTypes")
-     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
-     */
-    protected HousingStock $housingStock;
-
-    /**
-     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="buildingType", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Portefeuille\BuildingAddress", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
-    protected Collection $buildingSelections;
+    protected Collection $buildingSelection;
 
+    #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingSelections = new ArrayCollection();
-    }
-
-    public function getHousingStock(): HousingStock
-    {
-        return $this->housingStock;
+        $this->buildingSelection = new ArrayCollection();
     }
 
     public function getBuildingAddresses(): Collection
@@ -52,14 +42,9 @@ class BuildingType extends IdTimeIdentification
         return $this->buildingAddresses;
     }
 
-    public function getBuildingSelections(): Collection
+    public function getBuildingSelection(): Collection
     {
-        return $this->buildingSelections;
-    }
-
-    public function setHousingStock(HousingStock $housingStock): void
-    {
-        $this->housingStock = $housingStock;
+        return $this->buildingSelection;
     }
 
     public function addBuildingAddress(BuildingAddress $buildingAddress): void
@@ -74,12 +59,12 @@ class BuildingType extends IdTimeIdentification
 
     public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
-        $this->buildingSelections->add($buildingSelection);
+        $this->buildingSelection->add($buildingSelection);
     }
 
     public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
-        $this->buildingSelections->removeElement($buildingSelection);
+        $this->buildingSelection->removeElement($buildingSelection);
     }
 
 }
