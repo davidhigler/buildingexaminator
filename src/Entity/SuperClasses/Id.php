@@ -2,6 +2,7 @@
 
 namespace App\Entity\SuperClasses;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,6 +15,8 @@ class Id
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue
+     *
+     * @OA\Property()
      */
     protected int $id;
 

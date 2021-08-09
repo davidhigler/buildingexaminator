@@ -2,6 +2,7 @@
 
 namespace App\Entity\SuperClasses;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
@@ -18,6 +19,8 @@ class IdTime extends Id
      *     type="object",
      *     message="%property% is not a valid %type%"
      * )
+     *
+     * @OA\Property()
      */
     protected DateTime $creationTime;
 
@@ -27,6 +30,8 @@ class IdTime extends Id
      *     type="object",
      *     message="%property% is not a valid %type%"
      * )
+     *
+     * @OA\Property()
      */
     protected DateTime $lastChangeTime;
 

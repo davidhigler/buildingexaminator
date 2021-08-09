@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
 use App\Entity\Portfolio\BuildingType;
@@ -21,6 +22,15 @@ use Symfony\Component\Serializer\Serializer;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
+ *
+ * @OA\Info(title="Building Examinator", version="0.0.1")
+ * @OA\Schema(
+ *     schema="HousingStocks",
+ *     title="Housing stocks",
+ *     description="An array of housing stocks",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/HousingStock")
+ * )
  */
 #[Route(
     '/api/buildingexaminator/v1',
@@ -266,6 +276,17 @@ class ApiController extends AbstractController
         name: 'housingstocks',
         methods: ['GET']
     )]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks",
+     *     summary="Returns details about multiple housing stocks",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple housing stocks",
+     *         @OA\JsonContent(ref="#/components/schemas/HousingStocks")
+     *     )
+     * )
+     */
     public function getHousingStocks(LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -296,6 +317,27 @@ class ApiController extends AbstractController
         name: 'housingstock',
         methods: ['GET']
     )]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}",
+     *     summary="Returns details about a housing stock",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a housing stock",
+     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
+     *     )
+     * )
+     */
     public function getHousingStock(string $housingStockId, LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);

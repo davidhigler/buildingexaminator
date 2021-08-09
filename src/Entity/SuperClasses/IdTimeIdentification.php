@@ -2,6 +2,7 @@
 
 namespace App\Entity\SuperClasses;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,6 +25,8 @@ class IdTimeIdentification extends IdTime
      *      max=128,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $code;
 
@@ -40,6 +43,8 @@ class IdTimeIdentification extends IdTime
      *      max=128,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $name;
 
@@ -49,6 +54,8 @@ class IdTimeIdentification extends IdTime
      *     type="string",
      *     message="%property% is not a valid %type%"
      * )
+     *
+     * @OA\Property()
      */
     protected string $description;
 

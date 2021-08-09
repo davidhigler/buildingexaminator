@@ -2,6 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,6 +16,8 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="HousingStocks")
+ *
+ * @OA\Schema()
  */
 class HousingStock extends IdTimeIdentification
 {
@@ -37,6 +40,8 @@ class HousingStock extends IdTimeIdentification
      *      min = 0,
      *      max = 9999
      * )
+     *
+     * @OA\Property()
      */
     protected int $numberOfBlocks = 0;
 
@@ -53,6 +58,8 @@ class HousingStock extends IdTimeIdentification
      *      min = 0,
      *      max = 999999
      * )
+     *
+     * @OA\Property()
      */
     protected int $numberOfBuildingAddresses = 0;
 
