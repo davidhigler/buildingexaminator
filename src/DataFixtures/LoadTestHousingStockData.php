@@ -2738,6 +2738,17 @@ class LoadTestHousingStockData extends Fixture
         $block8->setHousingStock($housingStock);
         $block9->setHousingStock($housingStock);
 
+        $residentialArea1->setHousingStock($housingStock);
+        $residentialArea2->setHousingStock($housingStock);
+        $residentialArea3->setHousingStock($housingStock);
+        $residentialArea4->setHousingStock($housingStock);
+        $residentialArea5->setHousingStock($housingStock);
+        $residentialArea6->setHousingStock($housingStock);
+        $residentialArea7->setHousingStock($housingStock);
+        $residentialArea8->setHousingStock($housingStock);
+        $residentialArea9->setHousingStock($housingStock);
+        $residentialArea10->setHousingStock($housingStock);
+
         $housingStockOptionSet->setHousingStock($housingStock);
 
         $manager->persist($residentialArea1);

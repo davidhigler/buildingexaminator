@@ -19,6 +19,13 @@ use Doctrine\Common\Collections\Collection;
 class ResidentialArea extends IdTimeIdentification
 {
     /**
+     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses")
+     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
+     * @Assert\Valid()
+     */
+    protected HousingStock $housingStock;
+
+    /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="residentialArea", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
@@ -30,9 +37,19 @@ class ResidentialArea extends IdTimeIdentification
         $this->buildingAddresses = new ArrayCollection();
     }
 
+    public function getHousingStock(): HousingStock
+    {
+        return $this->housingStock;
+    }
+
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
+    }
+
+    public function setHousingStock(HousingStock $housingStock): void
+    {
+        $this->housingStock = $housingStock;
     }
 
     public function addBuildingAddress(BuildingAddress $buildingAddress): void
