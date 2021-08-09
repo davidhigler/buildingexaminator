@@ -1,3 +1,7 @@
+/**
+ * @author David C. Higler <davidhigler@gmail.com>
+ */
+
 Voorraad = HousingStock
 VoorraadOptieSet = HousingStockOptionSet
 Complex = Block

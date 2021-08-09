@@ -24,7 +24,7 @@ class LivingType extends IdTimeIdentification
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Portefeuille\BuildingSelection", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="gebouw_type", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingSelection;
@@ -55,12 +55,12 @@ class LivingType extends IdTimeIdentification
         $this->buildingAddresses->removeElement($buildingAddress);
     }
 
-    public function addBuildingSelection(BuildingSelection $buildingSelection): void
+    public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
         $this->buildingSelection->add($buildingSelection);
     }
 
-    public function removeBuildingSelection(BuildingSelection $buildingSelection): void
+    public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
         $this->buildingSelection->removeElement($buildingSelection);
     }

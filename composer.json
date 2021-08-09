@@ -24,6 +24,11 @@
         "symfony/property-access": "^5.2",
         "symfony/proxy-manager-bridge": "^5.2",
         "symfony/routing": "^5.2",
+        "symfony/runtime": "^5.2",
+        "symfony/security-core": "^5.2",
+        "symfony/security-csrf": "^5.2",
+        "symfony/security-guard": "^5.2",
+        "symfony/security-http": "^5.2",
         "symfony/serializer": "^5.2",
         "symfony/skeleton": "^5.2",
         "symfony/twig-bundle": "^5.2",
@@ -53,5 +58,10 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4"
+    },
+    "extra": {
+        "runtime": {
+            "class": "Symfony\\Component\\Runtime\\GenericRuntime"
+        }
     }
 }

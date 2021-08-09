@@ -11,13 +11,13 @@ use App\Entity\SuperClasses\IdTimeIdentification;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="BuildingSelections")
+ * @ORM\Table(name="BuildingTypeSelections")
  */
-class BuildingSelection extends IdTimeIdentification
+class BuildingTypeSelection extends IdTimeIdentification
 {
     /**
      * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingSelection")
-     * @ORM\JoinColumn(name="complex_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected Block $block;
@@ -30,10 +30,10 @@ class BuildingSelection extends IdTimeIdentification
     protected BuildingType $buildingType;
 
     /**
-     * @ORM\OneToOne(targetEntity="BuildingSelectionOptionSet", mappedBy="buildingSelection")
+     * @ORM\OneToOne(targetEntity="BuildingTypeSelectionOptionSet", mappedBy="buildingTypeSelection")
      * @Assert\Valid()
      */
-    protected BuildingSelectionOptionSet $buildingSelectionOptionSet;
+    protected BuildingTypeSelectionOptionSet $buildingTypeSelectionOptionSet;
 
     public function getBlock(): Block
     {
@@ -45,9 +45,9 @@ class BuildingSelection extends IdTimeIdentification
         return $this->buildingType;
     }
 
-    public function getBuildingSelectionOptionSet(): BuildingSelectionOptionSet
+    public function getBuildingTypeSelectionOptionSet(): BuildingTypeSelectionOptionSet
     {
-        return $this->buildingSelectionOptionSet;
+        return $this->buildingTypeSelectionOptionSet;
     }
 
     public function setBlock(Block $block): void
@@ -60,9 +60,9 @@ class BuildingSelection extends IdTimeIdentification
         $this->buildingType = $buildingType;
     }
 
-    public function setBuildingSelectionOptionSet(BuildingSelectionOptionSet $buildingSelectionOptionSet): void
+    public function setBuildingTypeSelectionOptionSet(BuildingTypeSelectionOptionSet $buildingTypeSelectionOptionSet): void
     {
-        $this->buildingSelectionOptionSet = $buildingSelectionOptionSet;
+        $this->buildingTypeSelectionOptionSet = $buildingTypeSelectionOptionSet;
     }
 
 }

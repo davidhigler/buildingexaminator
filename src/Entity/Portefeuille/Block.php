@@ -47,7 +47,7 @@ class Block extends IdTimeIdentification
     protected int $numberOfBuildingAddresses = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingSelection", mappedBy="block", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingSelection;
@@ -118,12 +118,12 @@ class Block extends IdTimeIdentification
         $this->numberOfBuildingAddresses = $numberOfBuildingAddresses;
     }
 
-    public function addBuildingSelection(BuildingSelection $buildingSelection): void
+    public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
         $this->buildingSelection->add($buildingSelection);
     }
 
-    public function removeBuildingSelection(BuildingSelection $buildingSelection): void
+    public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
         $this->buildingSelection->removeElement($buildingSelection);
     }
