@@ -54,16 +54,8 @@ class BuildingAddress extends IdTime
      */
     protected Collection $blocks;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="FuturePlans", )
-     * @Assert\Valid()
-     */
     protected FuturePlans $futurePlans;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="TaxResponsibility",)
-     * @Assert\Valid()
-     */
     protected TaxResponsibility $taxResponsibility;
 
     /**
