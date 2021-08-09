@@ -1,6 +1,6 @@
 # Building Examinator
 
-# Techical information
+# Technical information
 
 Drop database:
 ```shell
