@@ -130,6 +130,74 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BuildingAddress'
+  '/housingstocks/{housingStockId}/buildingtypes':
+    get:
+      summary: 'Returns details about multiple building types'
+      operationId: f9fd559eca753c13baf0a23e305ff7c0
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about multiple buildingtypes'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/buildingTypes'
+  '/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}':
+    get:
+      summary: 'Returns details about an address'
+      operationId: 7b66fe101abd94e73f0387af90cf7fb3
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: buildingtypeId
+          in: path
+          description: 'The id of a building type'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about a building type'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingType'
+  '/housingstocks/{housingStockId}/livingtypes':
+    get:
+      summary: 'Returns details about multiple living types'
+      operationId: ceac2df803f1be8a2817d11dbf2fe9d3
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about multiple living types'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/livingTypes'
 components:
   schemas:
     housingStocks:
@@ -150,6 +218,18 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/BuildingAddress'
+    buildingTypes:
+      title: 'Building types'
+      description: 'An array of building types'
+      type: array
+      items:
+        $ref: '#/components/schemas/BuildingType'
+    livingTypes:
+      title: 'Living types'
+      description: 'An array of living types'
+      type: array
+      items:
+        $ref: '#/components/schemas/LivingType'
     Block:
       properties:
         numberOfBuildingAddresses:

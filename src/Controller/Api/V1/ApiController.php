@@ -46,6 +46,20 @@ use Symfony\Component\Serializer\Serializer;
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/BuildingAddress")
  * )
+ * @OA\Schema(
+ *     schema="buildingTypes",
+ *     title="Building types",
+ *     description="An array of building types",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/BuildingType")
+ * )
+ * @OA\Schema(
+ *     schema="livingTypes",
+ *     title="Living types",
+ *     description="An array of living types",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/LivingType")
+ * )
  */
 #[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
 class ApiController extends AbstractController
@@ -458,6 +472,27 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'buildingtypes', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/buildingtypes",
+     *     summary="Returns details about multiple building types",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple buildingtypes",
+     *         @OA\JsonContent(ref="#/components/schemas/buildingTypes")
+     *     )
+     * )
+     */
     public function getBuildingTypes(string $housingStockId, LoggerInterface $logger): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
@@ -465,6 +500,37 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'buildingtype', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}",
+     *     summary="Returns details about an address",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="buildingtypeId",
+     *         description="The id of a building type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a building type",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
+     *     )
+     * )
+     */
     public function getBuildingType(string $housingStockId, string $buildingtypeId, LoggerInterface $logger): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
@@ -472,6 +538,27 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'livingtypes', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/livingtypes",
+     *     summary="Returns details about multiple living types",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple living types",
+     *         @OA\JsonContent(ref="#/components/schemas/livingTypes")
+     *     )
+     * )
+     */
     public function getLivingTypes(string $housingStockId, LoggerInterface $logger): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
