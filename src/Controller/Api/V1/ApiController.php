@@ -11,8 +11,14 @@ use App\Entity\Portfolio\LivingType;
 use App\Entity\Portfolio\ResidentialArea;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 #[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
 /**
@@ -41,8 +47,232 @@ use Symfony\Component\HttpFoundation\Response;
  *     @OA\Items(ref="#/components/schemas/BuildingAddress")
  * )
  */
+#[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
 class ApiController extends AbstractController
 {
+    private const HOUSING_STOCK_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'blocks' => [
+            'id',
+        ],
+        'buildingTypes' => [
+            'id',
+        ],
+        'livingTypes' => [
+            'id',
+        ],
+        'buildingAddresses' => [
+            'id',
+        ],
+        'housingStockOptionSet' => [
+            'id',
+        ],
+        'creationTime' => [
+            'timestamp',
+        ],
+        'lastChangeTime' => [
+            'timestamp',
+        ],
+        'numberOfBlocks',
+        'numberOfBuildingAddresses',
+    ];
+
+    private const HOUSING_STOCK_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'blocks' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'buildingTypes' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'livingTypes' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'buildingAddresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
+            'houseNumber',
+            'addition',
+        ],
+        'housingStockOptionSet' => [
+            'id',
+        ],
+        'creationTime' => [
+            'timestamp',
+        ],
+        'lastChangeTime' => [
+            'timestamp',
+        ],
+        'numberOfBlocks',
+        'numberOfBuildingAddresses',
+    ];
+
+    private const BLOCK_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+        ],
+        'numberOfBuildingAddresses',
+        'buildingSelection' => [
+            'id',
+        ],
+        'financialNumber',
+    ];
+
+    private const BLOCK_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
+            'houseNumber',
+            'addition',
+        ],
+        'numberOfBuildingAddresses',
+        'buildingSelection' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'financialNumber',
+    ];
+
+    private const ADDRESS_LIST_FIELDS = [
+        'id',
+        'residentialArea' => [
+            'id',
+        ],
+        'buildingType' => [
+            'id',
+        ],
+        'livingType' => [
+            'id',
+        ],
+        'streetName',
+        'houseNumber',
+        'addition',
+        'zipcode',
+        'city',
+    ];
+
+    private const ADDRESS_DETAIL_FIELDS = [
+        'id',
+        'residentialArea' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'buildingType' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'livingType' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'streetName',
+        'houseNumber',
+        'addition',
+        'zipcode',
+        'city',
+    ];
+
+    private const BUILDINGTYPE_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+        ],
+    ];
+
+    private const BUILDINGTYPE_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+            'streetName',
+            'houseNumber',
+            'addition',
+            'zipcode',
+            'city',
+        ],
+    ];
+
+    private const LIVINGTYPE_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+        ],
+    ];
+
+    private const LIVINGTYPE_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+            'streetName',
+            'houseNumber',
+            'addition',
+            'zipcode',
+            'city',
+        ],
+    ];
+
+    private const RESIDENTIALAREA_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+        ],
+    ];
+
+    private const RESIDENTIALAREA_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+            'streetName',
+            'houseNumber',
+            'addition',
+            'zipcode',
+            'city',
+        ],
+    ];
+
     #[Route('/documentation', name: 'documentation', methods: ['GET'])]
     public function getDocumentation(): Response
     {
@@ -64,7 +294,7 @@ class ApiController extends AbstractController
     public function getHousingStocks(LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        return $this->json($housingStockRepository->findAll());
+        return $this->renderData($housingStockRepository->findAll(), self::HOUSING_STOCK_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'housingstock', methods: ['GET'])]
@@ -92,7 +322,7 @@ class ApiController extends AbstractController
     public function getHousingStock(string $housingStockId, LoggerInterface $logger): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        return $this->json($housingStockRepository->find((int) $housingStockId));
+        return $this->renderData($housingStockRepository->find((int) $housingStockId), self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'blocks', methods: ['GET'])]
@@ -120,7 +350,7 @@ class ApiController extends AbstractController
     public function getBlocks(string $housingStockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        return $this->json($blockRepository->findBy(['housingStock' => (int) $housingStockId]));
+        return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId]), self::BLOCK_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'block', methods: ['GET'])]
@@ -158,7 +388,7 @@ class ApiController extends AbstractController
     public function getBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        return $this->json($blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]));
+        return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]), self::BLOCK_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses', name: 'addresses', methods: ['GET'])]
@@ -186,7 +416,7 @@ class ApiController extends AbstractController
     public function getAddresses(string $housingStockId, LoggerInterface $logger): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        return $this->json($addressRepository->findBy(['housingStock' => (int) $housingStockId]));
+        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId]), self::ADDRESS_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'address', methods: ['GET'])]
@@ -224,48 +454,73 @@ class ApiController extends AbstractController
     public function getAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        return $this->json($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]));
+        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'buildingtypes', methods: ['get'])]
     public function getBuildingTypes(string $housingStockId, LoggerInterface $logger): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        return $this->json($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId]));
+        return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::BUILDINGTYPE_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'buildingtype', methods: ['get'])]
     public function getBuildingType(string $housingStockId, string $buildingtypeId, LoggerInterface $logger): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        return $this->json($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]));
+        return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'livingtypes', methods: ['get'])]
     public function getLivingTypes(string $housingStockId, LoggerInterface $logger): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->json($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId]));
+        return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::LIVINGTYPE_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'livingtype', methods: ['get'])]
     public function getLivingType(string $housingStockId, string $livingTypeId, LoggerInterface $logger): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->json($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]));
+        return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'residentialareas', methods: ['get'])]
     public function getResidentialAreas(string $housingStockId, LoggerInterface $logger): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->json($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId]));
+        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId]), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'residentialArea', methods: ['get'])]
     public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->json($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]));
+        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+    }
+
+    private function renderData($results, array $fields, LoggerInterface $logger): Response
+    {
+        $data = [];
+
+        try {
+            $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+            $data = $serializer->normalize(
+                $results,
+                null,
+                [AbstractNormalizer::ATTRIBUTES => $fields]
+            );
+        } catch (ExceptionInterface $exception) {
+            $logger->error('Something went wrong with normalizing an array',
+                [
+                    'exception' => $exception,
+                    'request' => Request::createFromGlobals(),
+                ]
+            );
+
+            return $this->json(['error' => $exception->getMessage()], 500);
+        }
+
+        return $this->json($data, 200);
     }
 }
