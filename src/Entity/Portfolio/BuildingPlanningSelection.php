@@ -17,31 +17,15 @@ use App\Entity\SuperClasses\IdTimeIdentification;
 class BuildingPlanningSelection extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingSelection")
-     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
-     * @Assert\Valid()
-     */
-    protected Block $block;
-
-    /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="buildingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      */
     protected Collection $buildingAddresses;
 
-    public function getBlock(): Block
-    {
-        return $this->block;
-    }
 
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
-    }
-
-    public function setBlock(Block $block): void
-    {
-        $this->block = $block;
     }
 
     public function addBuildingAddress(BuildingAddress $buildingAddress): void

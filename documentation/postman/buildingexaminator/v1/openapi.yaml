@@ -13,7 +13,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HousingStocks'
+                $ref: '#/components/schemas/housingStocks'
   '/housingstocks/{housingStockId}':
     get:
       summary: 'Returns details about a housing stock'
@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Blocks'
+                $ref: '#/components/schemas/blocks'
   '/housingstocks/{housingStockId}/blocks/{blockId}':
     get:
       summary: 'Returns details about a block'
@@ -101,7 +101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Addresses'
+                $ref: '#/components/schemas/buildingAddresses'
   '/housingstocks/{housingStockId}/addresses/{addressId}':
     get:
       summary: 'Returns details about an address'
@@ -132,19 +132,19 @@ paths:
                 $ref: '#/components/schemas/BuildingAddress'
 components:
   schemas:
-    HousingStocks:
+    housingStocks:
       title: 'Housing stocks'
       description: 'An array of housing stocks'
       type: array
       items:
         $ref: '#/components/schemas/HousingStock'
-    Blocks:
+    blocks:
       title: Blocks
       description: 'An array of blocks'
       type: array
       items:
         $ref: '#/components/schemas/Block'
-    Addresses:
+    buildingAddresses:
       title: Addresses
       description: 'An array of addresses'
       type: array
@@ -152,12 +152,9 @@ components:
         $ref: '#/components/schemas/BuildingAddress'
     Block:
       properties:
-        housingStock:
-          $ref: '#/components/schemas/HousingStock'
-        buildingAddresses: {  }
         numberOfBuildingAddresses:
           type: integer
-        buildingSelection: {  }
+        buildingTypeSelection: {  }
         financialNumber:
           type: string
         code:
@@ -177,8 +174,6 @@ components:
       type: object
     BuildingAddress:
       properties:
-        housingStock:
-          $ref: '#/components/schemas/HousingStock'
         residentialArea:
           $ref: '#/components/schemas/ResidentialArea'
         buildingType:
@@ -215,10 +210,8 @@ components:
       type: object
     BuildingType:
       properties:
-        housingStock:
-          $ref: '#/components/schemas/HousingStock'
         buildingAddresses: {  }
-        buildingSelections: {  }
+        buildingTypeSelections: {  }
         code:
           type: string
         name:
@@ -234,6 +227,22 @@ components:
         id:
           type: integer
       type: object
+    BuildingTypeSelection:
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
+        id:
+          type: integer
     HousingStock:
       properties:
         blocks: {  }
@@ -241,10 +250,6 @@ components:
           type: integer
         numberOfBuildingAddresses:
           type: integer
-        buildingTypes: {  }
-        livingTypes: {  }
-        buildingAddresses: {  }
-        housingStockOptionSet: {  }
         code:
           type: string
         name:
@@ -262,8 +267,6 @@ components:
       type: object
     LivingType:
       properties:
-        housingStock:
-          $ref: '#/components/schemas/HousingStock'
         buildingAddresses: {  }
         code:
           type: string
@@ -282,8 +285,6 @@ components:
       type: object
     ResidentialArea:
       properties:
-        housingStock:
-          $ref: '#/components/schemas/HousingStock'
         buildingAddresses: {  }
         code:
           type: string

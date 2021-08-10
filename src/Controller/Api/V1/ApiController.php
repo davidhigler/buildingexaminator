@@ -26,21 +26,21 @@ use Symfony\Component\Serializer\Serializer;
  *
  * @OA\Info(title="Building Examinator", version="0.0.1")
  * @OA\Schema(
- *     schema="HousingStocks",
+ *     schema="housingStocks",
  *     title="Housing stocks",
  *     description="An array of housing stocks",
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/HousingStock")
  * )
  * @OA\Schema(
- *     schema="Blocks",
+ *     schema="blocks",
  *     title="Blocks",
  *     description="An array of blocks",
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/Block")
  * )
  * @OA\Schema(
- *     schema="Addresses",
+ *     schema="buildingAddresses",
  *     title="Addresses",
  *     description="An array of addresses",
  *     type="array",
@@ -287,7 +287,7 @@ class ApiController extends AbstractController
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple housing stocks",
-     *         @OA\JsonContent(ref="#/components/schemas/HousingStocks")
+     *         @OA\JsonContent(ref="#/components/schemas/housingStocks")
      *     )
      * )
      */
@@ -343,7 +343,7 @@ class ApiController extends AbstractController
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple blocks",
-     *         @OA\JsonContent(ref="#/components/schemas/Blocks")
+     *         @OA\JsonContent(ref="#/components/schemas/blocks")
      *     )
      * )
      */
@@ -409,7 +409,7 @@ class ApiController extends AbstractController
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple addresses",
-     *         @OA\JsonContent(ref="#/components/schemas/Addresses")
+     *         @OA\JsonContent(ref="#/components/schemas/buildingAddresses")
      *     )
      * )
      */

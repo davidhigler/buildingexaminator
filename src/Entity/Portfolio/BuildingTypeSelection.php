@@ -2,6 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,11 +13,13 @@ use App\Entity\SuperClasses\IdTimeIdentification;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="BuildingTypeSelections")
+ *
+ * @OA\Schema()
  */
 class BuildingTypeSelection extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingSelection")
+     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingTypeSelection")
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      * @Assert\Valid()
      */

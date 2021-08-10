@@ -42,13 +42,13 @@ class BuildingType extends IdTimeIdentification
      *
      * @OA\Property()
      */
-    protected Collection $buildingSelections;
+    protected Collection $buildingTypeSelections;
 
     #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingSelections = new ArrayCollection();
+        $this->buildingTypeSelections = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -61,9 +61,9 @@ class BuildingType extends IdTimeIdentification
         return $this->buildingAddresses;
     }
 
-    public function getBuildingSelections(): Collection
+    public function getBuildingTypeSelections(): Collection
     {
-        return $this->buildingSelections;
+        return $this->buildingTypeSelections;
     }
 
     public function setHousingStock(HousingStock $housingStock): void
@@ -81,14 +81,14 @@ class BuildingType extends IdTimeIdentification
         $this->buildingAddresses->removeElement($buildingAddress);
     }
 
-    public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
+    public function addBuildingTypeSelection(BuildingTypeSelection $buildingTypeSelection): void
     {
-        $this->buildingSelections->add($buildingSelection);
+        $this->buildingTypeSelections->add($buildingTypeSelection);
     }
 
-    public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
+    public function removeBuildingTypeSelection(BuildingTypeSelection $buildingTypeSelection): void
     {
-        $this->buildingSelections->removeElement($buildingSelection);
+        $this->buildingTypeSelections->removeElement($buildingTypeSelection);
     }
 
 }

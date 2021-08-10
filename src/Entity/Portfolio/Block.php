@@ -57,7 +57,7 @@ class Block extends IdTimeIdentification
      *
      * @OA\Property()
      */
-    protected Collection $buildingSelection;
+    protected Collection $buildingTypeSelection;
 
     /**
      * @ORM\Column(type="string", length=128)
@@ -80,7 +80,7 @@ class Block extends IdTimeIdentification
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingSelection = new ArrayCollection();
+        $this->buildingTypeSelection = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -98,9 +98,9 @@ class Block extends IdTimeIdentification
         return $this->numberOfBuildingAddresses;
     }
 
-    public function getBuildingSelection(): Collection
+    public function getBuildingTypeSelection(): Collection
     {
-        return $this->buildingSelection;
+        return $this->buildingTypeSelection;
     }
 
     public function getFinancialNumber(): string
@@ -130,12 +130,12 @@ class Block extends IdTimeIdentification
 
     public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
-        $this->buildingSelection->add($buildingSelection);
+        $this->buildingTypeSelection->add($buildingSelection);
     }
 
     public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
     {
-        $this->buildingSelection->removeElement($buildingSelection);
+        $this->buildingTypeSelection->removeElement($buildingSelection);
     }
 
     public function setFinancialNumber(string $financialNumber): void
