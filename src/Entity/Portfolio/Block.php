@@ -2,10 +2,10 @@
 
 namespace App\Entity\Portfolio;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,6 +15,8 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="Blocks")
+ *
+ * @OA\Schema()
  */
 class Block extends IdTimeIdentification
 {
@@ -44,12 +46,16 @@ class Block extends IdTimeIdentification
      *      min = 0,
      *      max = 9999
      * )
+     *
+     * @OA\Property()
      */
     protected int $numberOfBuildingAddresses = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected Collection $buildingSelection;
 
@@ -65,6 +71,8 @@ class Block extends IdTimeIdentification
      * @Assert\Length(
      *      max=128
      * )
+     *
+     * @OA\Property()
      */
     protected string $financialNumber;
 

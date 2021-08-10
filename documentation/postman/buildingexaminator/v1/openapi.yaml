@@ -1,91 +1,164 @@
 openapi: 3.0.0
 info:
+  title: 'Building Examinator'
   version: 0.0.1
-  title: Building Examinator
-servers:
-  - url: '/api/buildingexaminator/v1'
 paths:
   /housingstocks:
     get:
-      summary: 'Sample endpoint: Returns details about multiple housing stocks'
-      operationId: listHousingStocks
+      summary: 'Returns details about multiple housing stocks'
+      operationId: 19e582c4a577484d38858cd48abd01ae
       responses:
         '200':
-          description: 'Sample response: Details about multiple housing stocks'
+          description: 'Details about multiple housing stocks'
           content:
             application/json:
               schema:
-                type: array
-                items:
-                    $ref: '#/components/schemas/HousingStock'
-        default:
-          description: Unexpected errors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                    $ref: '#/components/schemas/Error'
-  /housingstocks/{housingStockId}:
+                $ref: '#/components/schemas/HousingStocks'
+  '/housingstocks/{housingStockId}':
     get:
-      summary: 'Sample endpoint: Returns details about a housing stock'
-      operationId: detailsHousingStock
+      summary: 'Returns details about a housing stock'
+      operationId: 690081229387f635c736db5dc1b4e69a
       parameters:
-        - in: path
+        -
           name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
           schema:
-            type: string
-            description: The housing stock id
+            type: integer
+            format: int64
       responses:
         '200':
-          description: 'Sample response: Details about a housing stock'
+          description: 'Details about a housing stock'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HousingStock'
-        default:
-          description: Unexpected errors
+  '/housingstocks/{housingStockId}/blocks':
+    get:
+      summary: 'Returns details about multiple blocks'
+      operationId: 640b4429ebb1462f1d1f14c965a9b2bb
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about multiple blocks'
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-
+                $ref: '#/components/schemas/Blocks'
+  '/housingstocks/{housingStockId}/blocks/{blockId}':
+    get:
+      summary: 'Returns details about a block'
+      operationId: 7048b6f03a7bb1deb3f4f1cc26c1d2e5
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: blockId
+          in: path
+          description: 'The id of a block'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about a block'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+  '/housingstocks/{housingStockId}/addresses':
+    get:
+      summary: 'Returns details about multiple addresses'
+      operationId: 7bdb42033e6379ec7cbd3d69c82246eb
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about multiple addresses'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Addresses'
+  '/housingstocks/{housingStockId}/addresses/{addressId}':
+    get:
+      summary: 'Returns details about an address'
+      operationId: 07133fa35032ffada708a0acd50e94f7
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: addressId
+          in: path
+          description: 'The id of an address'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about an address'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingAddress'
 components:
   schemas:
-    HousingStock:
-      type: object
-      required:
-        - id
-        - creationTime
-        - lastChangeTime
-        - code
-        - name
-        - description
-        - numberOfBlocks
-        - numberOfBuildingAddresses
+    HousingStocks:
+      title: 'Housing stocks'
+      description: 'An array of housing stocks'
+      type: array
+      items:
+        $ref: '#/components/schemas/HousingStock'
+    Blocks:
+      title: Blocks
+      description: 'An array of blocks'
+      type: array
+      items:
+        $ref: '#/components/schemas/Block'
+    Addresses:
+      title: Addresses
+      description: 'An array of addresses'
+      type: array
+      items:
+        $ref: '#/components/schemas/BuildingAddress'
+    Block:
       properties:
-        id:
+        housingStock:
+          $ref: '#/components/schemas/HousingStock'
+        buildingAddresses: {  }
+        numberOfBuildingAddresses:
           type: integer
-          format: int64
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockMin'
-        buildingTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/BuildingTypeMin'
-        buildingAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/BuildingAddressMin'
-        housingStockOptionSet:
-          $ref: '#/components/schemas/HousingStockOptionSet'
-        creationTime:
-          type: string
-        lastChangeTime:
+        buildingSelection: {  }
+        financialNumber:
           type: string
         code:
           type: string
@@ -93,83 +166,137 @@ components:
           type: string
         description:
           type: string
-        numberOfBlocks:
-          type: integer
-          format: int64
-        numberOfBuildingAddresses:
-          type: integer
-          format: int64
-    BlockMin:
-      type: object
-      required:
-        - id
-        - code
-        - name
-      properties:
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
         id:
           type: integer
-          format: int64
-        code:
-          type: string
-        name:
-          type: string
-    BuildingTypeMin:
       type: object
-      required:
-        - id
-        - code
-        - name
+    BuildingAddress:
       properties:
-        id:
-          type: integer
-          format: int64
-        code:
-          type: string
-        name:
-          type: string
-    BuildingAddressMin:
-      type: object
-      required:
-        - id
-        - rentalUnitNumber
-        - zipcode
-        - houseNumber
-        - addition
-      properties:
-        id:
-          type: integer
-          format: int64
+        housingStock:
+          $ref: '#/components/schemas/HousingStock'
+        residentialArea:
+          $ref: '#/components/schemas/ResidentialArea'
+        buildingType:
+          $ref: '#/components/schemas/BuildingType'
+        livingType:
+          $ref: '#/components/schemas/LivingType'
+        blocks: {  }
         rentalUnitNumber:
           type: string
-        zipcode:
+        streetName:
           type: string
         houseNumber:
           type: integer
-          format: int64
         addition:
           type: string
-    HousingStockOptionSet:
-      type: object
-      required:
-        - id
-      properties:
+        zipcode:
+          type: string
+        city:
+          type: string
+        bagId:
+          type: integer
+        constructionYear:
+          type: integer
+        renovationYear:
+          type: integer
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
         id:
           type: integer
-          format: int64
-    Error:
       type: object
-      required:
-        - code
-        - message
+    BuildingType:
       properties:
+        housingStock:
+          $ref: '#/components/schemas/HousingStock'
+        buildingAddresses: {  }
+        buildingSelections: {  }
         code:
-          type: integer
-          format: int32
-        message:
           type: string
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-security:
-  - BasicAuth: []
+        name:
+          type: string
+        description:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
+        id:
+          type: integer
+      type: object
+    HousingStock:
+      properties:
+        blocks: {  }
+        numberOfBlocks:
+          type: integer
+        numberOfBuildingAddresses:
+          type: integer
+        buildingTypes: {  }
+        livingTypes: {  }
+        buildingAddresses: {  }
+        housingStockOptionSet: {  }
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
+        id:
+          type: integer
+      type: object
+    LivingType:
+      properties:
+        housingStock:
+          $ref: '#/components/schemas/HousingStock'
+        buildingAddresses: {  }
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
+        id:
+          type: integer
+      type: object
+    ResidentialArea:
+      properties:
+        housingStock:
+          $ref: '#/components/schemas/HousingStock'
+        buildingAddresses: {  }
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastChangeTime:
+          type: string
+          format: date-time
+        id:
+          type: integer
+      type: object

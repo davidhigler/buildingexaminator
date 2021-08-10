@@ -2,13 +2,14 @@
 
 namespace App\Entity\Portfolio;
 
-use App\Entity\Finance\TaxResponsibility;
-use App\Entity\Planning\FuturePlans;
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Finance\TaxResponsibility;
+use App\Entity\Planning\FuturePlans;
 
 use App\Entity\SuperClasses\IdTime;
 
@@ -17,6 +18,8 @@ use App\Entity\SuperClasses\IdTime;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="BuildingAddresses")
+ *
+ * @OA\Schema()
  */
 class BuildingAddress extends IdTime
 {
@@ -31,6 +34,8 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected ResidentialArea $residentialArea;
 
@@ -38,6 +43,8 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected BuildingType $buildingType;
 
@@ -45,12 +52,16 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EAGER")
      * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected LivingType $livingType;
 
     /**
      * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses", mappedBy="buildingAddress")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected Collection $blocks;
 
@@ -70,6 +81,8 @@ class BuildingAddress extends IdTime
      *      minMessage="%property% must be at least %limit% characters long",
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $rentalUnitNumber;
 
@@ -88,6 +101,8 @@ class BuildingAddress extends IdTime
      *      minMessage="%property% must be at least %limit% characters long",
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $streetName;
 
@@ -104,6 +119,8 @@ class BuildingAddress extends IdTime
      *      min = 1,
      *      max = 9999
      * )
+     *
+     * @OA\Property()
      */
     protected int $houseNumber;
 
@@ -117,6 +134,8 @@ class BuildingAddress extends IdTime
      *      max=32,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $addition;
 
@@ -133,6 +152,8 @@ class BuildingAddress extends IdTime
      *      min = 1,
      *      max = 9999
      * )
+     *
+     * @OA\Property()
      */
     protected string $zipcode;
 
@@ -151,6 +172,8 @@ class BuildingAddress extends IdTime
      *      minMessage="%property% must be at least %limit% characters long",
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
+     *
+     * @OA\Property()
      */
     protected string $city;
 
@@ -160,6 +183,8 @@ class BuildingAddress extends IdTime
      *      type="integer",
      *      message="%property% is not a valid %type%"
      * )
+     *
+     * @OA\Property()
      */
     protected int $bagId;
 
@@ -176,6 +201,8 @@ class BuildingAddress extends IdTime
      *      min = 1800,
      *      max = 2100
      * )
+     *
+     * @OA\Property()
      */
     protected int $constructionYear;
 
@@ -185,6 +212,8 @@ class BuildingAddress extends IdTime
      *      pattern="/(|[\d]{4})/",
      *      message="%property% is not a valid %type%"
      * )
+     *
+     * @OA\Property()
      */
     protected int $renovationYear;
 

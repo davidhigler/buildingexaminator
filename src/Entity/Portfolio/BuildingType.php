@@ -2,6 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
+use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,6 +16,8 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="buildingtypes")
+ *
+ * @OA\Schema()
  */
 class BuildingType extends IdTimeIdentification
 {
@@ -28,12 +31,16 @@ class BuildingType extends IdTimeIdentification
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="buildingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected Collection $buildingAddresses;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
+     *
+     * @OA\Property()
      */
     protected Collection $buildingSelections;
 
