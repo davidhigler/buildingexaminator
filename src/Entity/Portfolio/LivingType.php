@@ -32,7 +32,7 @@ class LivingType extends IdTimeIdentification
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="livingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingAddresses;
 

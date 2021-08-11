@@ -2,6 +2,9 @@ openapi: 3.0.0
 info:
   title: 'Building Examinator'
   version: 0.0.1
+servers:
+  -
+    url: /api/buildingexaminator/v1
 paths:
   /housingstocks:
     get:
@@ -198,8 +201,91 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/livingTypes'
+  '/housingstocks/{housingStockId}/livingtypes/{livingTypeId}':
+    get:
+      summary: 'Returns details about a living type'
+      operationId: a174d2aa06c5d444fdf479478fa535c5
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: livingTypeId
+          in: path
+          description: 'The id of a living type'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about a living type'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivingType'
+  '/housingstocks/{housingStockId}/residentialareas':
+    get:
+      summary: 'Returns details about multiple residential areas'
+      operationId: 6d5066b019a4457d9a491b582229f6fd
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about multiple residential areas'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/residentialAreas'
+  '/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}':
+    get:
+      summary: 'Returns details about a residential area'
+      operationId: 4038c6d0df87652293222c5193ca0ee3
+      parameters:
+        -
+          name: housingStockId
+          in: path
+          description: 'The id of the housing stock'
+          required: true
+          schema:
+            type: integer
+            format: int64
+        -
+          name: residentialAreaId
+          in: path
+          description: 'The id of a residential area'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Details about a residential area'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResidentialArea'
 components:
   schemas:
+    ids:
+      type: array
+      items:
+        properties:
+          id:
+            type: integer
+        type: object
     housingStocks:
       title: 'Housing stocks'
       description: 'An array of housing stocks'
@@ -230,11 +316,20 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/LivingType'
+    residentialAreas:
+      title: 'Residential areas'
+      description: 'An array of residential areas'
+      type: array
+      items:
+        $ref: '#/components/schemas/ResidentialArea'
     Block:
       properties:
+        buildingAddresses:
+          $ref: '#/components/schemas/ids'
         numberOfBuildingAddresses:
           type: integer
-        buildingTypeSelection: {  }
+        buildingTypeSelection:
+          $ref: '#/components/schemas/ids'
         financialNumber:
           type: string
         code:
@@ -260,7 +355,8 @@ components:
           $ref: '#/components/schemas/BuildingType'
         livingType:
           $ref: '#/components/schemas/LivingType'
-        blocks: {  }
+        blocks:
+          $ref: '#/components/schemas/ids'
         rentalUnitNumber:
           type: string
         streetName:
@@ -290,8 +386,10 @@ components:
       type: object
     BuildingType:
       properties:
-        buildingAddresses: {  }
-        buildingTypeSelections: {  }
+        buildingAddresses:
+          $ref: '#/components/schemas/ids'
+        buildingTypeSelections:
+          $ref: '#/components/schemas/ids'
         code:
           type: string
         name:
@@ -325,7 +423,15 @@ components:
           type: integer
     HousingStock:
       properties:
-        blocks: {  }
+        blocks:
+          $ref: '#/components/schemas/ids'
+        buildingTypes:
+          $ref: '#/components/schemas/ids'
+        livingTypes:
+          $ref: '#/components/schemas/ids'
+        buildingAddresses:
+          $ref: '#/components/schemas/ids'
+        housingStockOptionSet: {  }
         numberOfBlocks:
           type: integer
         numberOfBuildingAddresses:
@@ -347,7 +453,8 @@ components:
       type: object
     LivingType:
       properties:
-        buildingAddresses: {  }
+        buildingAddresses:
+          $ref: '#/components/schemas/ids'
         code:
           type: string
         name:
@@ -365,7 +472,8 @@ components:
       type: object
     ResidentialArea:
       properties:
-        buildingAddresses: {  }
+        buildingAddresses:
+          $ref: '#/components/schemas/ids'
         code:
           type: string
         name:
@@ -381,3 +489,5 @@ components:
         id:
           type: integer
       type: object
+externalDocs:
+  url: /api/buildingexaminator/v1/documentation

@@ -58,10 +58,10 @@ class BuildingAddress extends IdTime
     protected LivingType $livingType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses", mappedBy="buildingAddress")
+     * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $blocks;
 

@@ -24,27 +24,35 @@ class HousingStock extends IdTimeIdentification
     /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $blocks;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingType", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingTypes;
 
     /**
      * @ORM\OneToMany(targetEntity="LivingType", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $livingTypes;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="housingStock", fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */    
     protected Collection $buildingAddresses;
 
     /**
      * @ORM\OneToOne(targetEntity="HousingStockOptionSet", cascade={"remove"}, mappedBy="housingStock")
+     *
+     * @OA\Property()
      */
     protected HousingStockOptionSet $housingStockOptionSet;
 

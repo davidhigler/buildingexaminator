@@ -24,7 +24,25 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  *
- * @OA\Info(title="Building Examinator", version="0.0.1")
+ * @OA\Info(
+ *     title="Building Examinator",
+ *     version="0.0.1"
+ * )
+ * @OA\ExternalDocumentation(
+ *     url="/api/buildingexaminator/v1/documentation"
+ * )
+ * @OA\Server(url="/api/buildingexaminator/v1")
+ * @OA\Schema(
+ *     schema="ids",
+ *     type="array",
+ *     @OA\Items(
+ *         type="object",
+ *         @OA\Property(
+ *             property="id",
+ *             type="integer"
+ *         )
+ *     )
+ * )
  * @OA\Schema(
  *     schema="housingStocks",
  *     title="Housing stocks",
@@ -59,6 +77,13 @@ use Symfony\Component\Serializer\Serializer;
  *     description="An array of living types",
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/LivingType")
+ * )
+ * @OA\Schema(
+ *     schema="residentialAreas",
+ *     title="Residential areas",
+ *     description="An array of residential areas",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/ResidentialArea")
  * )
  */
 #[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
@@ -201,6 +226,11 @@ class ApiController extends AbstractController
             'name',
         ],
         'livingType' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'blocks' => [
             'id',
             'code',
             'name',
@@ -566,6 +596,37 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'livingtype', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
+     *     summary="Returns details about a living type",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="livingTypeId",
+     *         description="The id of a living type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a living type",
+     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
+     *     )
+     * )
+     */
     public function getLivingType(string $housingStockId, string $livingTypeId, LoggerInterface $logger): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
@@ -573,6 +634,27 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'residentialareas', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/residentialareas",
+     *     summary="Returns details about multiple residential areas",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple residential areas",
+     *         @OA\JsonContent(ref="#/components/schemas/residentialAreas")
+     *     )
+     * )
+     */
     public function getResidentialAreas(string $housingStockId, LoggerInterface $logger): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
@@ -580,6 +662,37 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'residentialArea', methods: ['get'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
+     *     summary="Returns details about a residential area",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="residentialAreaId",
+     *         description="The id of a residential area",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a residential area",
+     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
+     *     )
+     * )
+     */
     public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);

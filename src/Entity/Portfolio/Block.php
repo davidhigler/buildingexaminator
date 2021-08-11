@@ -28,8 +28,10 @@ class Block extends IdTimeIdentification
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BuildingAddress", inversedBy="blocks")
+     * @ORM\ManyToMany(targetEntity="BuildingAddress", inversedBy="blocks", mappedBy="buildingAddress")
      * @ORM\JoinTable(name="linkbuildingaddressenandblocks")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingAddresses;
 
@@ -55,7 +57,7 @@ class Block extends IdTimeIdentification
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingTypeSelection;
 

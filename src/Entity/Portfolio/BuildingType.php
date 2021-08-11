@@ -32,7 +32,7 @@ class BuildingType extends IdTimeIdentification
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="buildingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingAddresses;
 
@@ -40,7 +40,7 @@ class BuildingType extends IdTimeIdentification
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingTypeSelections;
 

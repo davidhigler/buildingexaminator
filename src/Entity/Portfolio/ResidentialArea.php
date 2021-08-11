@@ -32,7 +32,7 @@ class ResidentialArea extends IdTimeIdentification
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="residentialArea", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
-     * @OA\Property()
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingAddresses;
 
