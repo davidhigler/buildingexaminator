@@ -29,7 +29,6 @@ class Block extends IdTimeIdentification
 
     /**
      * @ORM\ManyToMany(targetEntity="BuildingAddress", mappedBy="blocks")
-     * @ORM\JoinTable(name="linkbuildingaddressesandblocks")
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
