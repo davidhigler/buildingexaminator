@@ -75,7 +75,7 @@ class BuildingAddress extends IdTime
      *
      * @OA\Property()
      */
-    protected bool $daeb = true;
+    protected bool $daeb;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)

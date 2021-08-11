@@ -239,6 +239,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setZipcode('1234AA');
         $buildingAddress0->setCity('Woonplaats A');
         $buildingAddress0->setRentalUnitNumber('VHE0000');
+        $buildingAddress0->setDaeb(true);
         $buildingAddress0->setResidentialArea($residentialArea10);
         $buildingAddress0->setBuildingType($buildingType10);
         $buildingAddress0->setLivingType($livingType1);
@@ -255,13 +256,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress1->setZipcode('1234AA');
         $buildingAddress1->setCity('Woonplaats A');
         $buildingAddress1->setRentalUnitNumber('VHE0000');
+        $buildingAddress1->setDaeb(true);
         $buildingAddress1->setResidentialArea($residentialArea1);
         $buildingAddress1->setBuildingType($buildingType1);
         $buildingAddress1->setLivingType($livingType1);
         $buildingAddress1->setCreationTime();
         $buildingAddress1->setLastChangeTime();
 
-		$buildingAddress2 = new BuildingAddress();
+        $buildingAddress2 = new BuildingAddress();
         $buildingAddress2->setId(2);
         $buildingAddress2->setConstructionYear(1998);
         $buildingAddress2->setRenovationYear(2021);
@@ -271,13 +273,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress2->setZipcode('1234AA');
         $buildingAddress2->setCity('Woonplaats A');
         $buildingAddress2->setRentalUnitNumber('VHE0000');
+        $buildingAddress2->setDaeb(false);
         $buildingAddress2->setResidentialArea($residentialArea2);
         $buildingAddress2->setBuildingType($buildingType2);
         $buildingAddress2->setLivingType($livingType1);
         $buildingAddress2->setCreationTime();
         $buildingAddress2->setLastChangeTime();
 
-		$buildingAddress3 = new BuildingAddress();
+        $buildingAddress3 = new BuildingAddress();
         $buildingAddress3->setId(3);
         $buildingAddress3->setConstructionYear(1984);
         $buildingAddress3->setRenovationYear(2000);
@@ -287,13 +290,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress3->setZipcode('1234AA');
         $buildingAddress3->setCity('Woonplaats A');
         $buildingAddress3->setRentalUnitNumber('VHE0000');
+        $buildingAddress3->setDaeb(true);
         $buildingAddress3->setResidentialArea($residentialArea3);
         $buildingAddress3->setBuildingType($buildingType3);
         $buildingAddress3->setLivingType($livingType1);
         $buildingAddress3->setCreationTime();
         $buildingAddress3->setLastChangeTime();
 
-		$buildingAddress4 = new BuildingAddress();
+        $buildingAddress4 = new BuildingAddress();
         $buildingAddress4->setId(4);
         $buildingAddress4->setConstructionYear(2010);
         $buildingAddress4->setRenovationYear(2010);
@@ -303,13 +307,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress4->setZipcode('1234AA');
         $buildingAddress4->setCity('Woonplaats A');
         $buildingAddress4->setRentalUnitNumber('VHE0000');
+        $buildingAddress4->setDaeb(true);
         $buildingAddress4->setResidentialArea($residentialArea4);
         $buildingAddress4->setBuildingType($buildingType4);
         $buildingAddress4->setLivingType($livingType1);
         $buildingAddress4->setCreationTime();
         $buildingAddress4->setLastChangeTime();
 
-		$buildingAddress5 = new BuildingAddress();
+        $buildingAddress5 = new BuildingAddress();
         $buildingAddress5->setId(5);
         $buildingAddress5->setConstructionYear(1888);
         $buildingAddress5->setRenovationYear(2005);
@@ -319,13 +324,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setZipcode('1234AA');
         $buildingAddress5->setCity('Woonplaats A');
         $buildingAddress5->setRentalUnitNumber('VHE0000');
+        $buildingAddress5->setDaeb(true);
         $buildingAddress5->setResidentialArea($residentialArea5);
         $buildingAddress5->setBuildingType($buildingType5);
         $buildingAddress5->setLivingType($livingType1);
         $buildingAddress5->setCreationTime();
         $buildingAddress5->setLastChangeTime();
 
-		$buildingAddress6 = new BuildingAddress();
+        $buildingAddress6 = new BuildingAddress();
         $buildingAddress6->setId(6);
         $buildingAddress6->setConstructionYear(1908);
         $buildingAddress6->setRenovationYear(200);
@@ -335,13 +341,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress6->setZipcode('1234AA');
         $buildingAddress6->setCity('Woonplaats A');
         $buildingAddress6->setRentalUnitNumber('VHE0000');
+        $buildingAddress6->setDaeb(true);
         $buildingAddress6->setResidentialArea($residentialArea6);
         $buildingAddress6->setBuildingType($buildingType6);
         $buildingAddress6->setLivingType($livingType1);
         $buildingAddress6->setCreationTime();
         $buildingAddress6->setLastChangeTime();
 
-		$buildingAddress7 = new BuildingAddress();
+        $buildingAddress7 = new BuildingAddress();
         $buildingAddress7->setId(7);
         $buildingAddress7->setConstructionYear(2006);
         $buildingAddress7->setRenovationYear(2006);
@@ -351,13 +358,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress7->setZipcode('1234AA');
         $buildingAddress7->setCity('Woonplaats A');
         $buildingAddress7->setRentalUnitNumber('VHE0000');
+        $buildingAddress7->setDaeb(true);
         $buildingAddress7->setResidentialArea($residentialArea7);
         $buildingAddress7->setBuildingType($buildingType7);
         $buildingAddress7->setLivingType($livingType1);
         $buildingAddress7->setCreationTime();
         $buildingAddress7->setLastChangeTime();
 
-		$buildingAddress8 = new BuildingAddress();
+        $buildingAddress8 = new BuildingAddress();
         $buildingAddress8->setId(8);
         $buildingAddress8->setConstructionYear(2026);
         $buildingAddress8->setRenovationYear(2081);
@@ -367,13 +375,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress8->setZipcode('1234AAB');
         $buildingAddress8->setCity('Woonplaats A');
         $buildingAddress8->setRentalUnitNumber('VHE0000');
+        $buildingAddress8->setDaeb(true);
         $buildingAddress8->setResidentialArea($residentialArea8);
         $buildingAddress8->setBuildingType($buildingType8);
         $buildingAddress8->setLivingType($livingType1);
         $buildingAddress8->setCreationTime();
         $buildingAddress8->setLastChangeTime();
 
-		$buildingAddress9 = new BuildingAddress();
+        $buildingAddress9 = new BuildingAddress();
         $buildingAddress9->setId(9);
         $buildingAddress9->setConstructionYear(1976);
         $buildingAddress9->setRenovationYear(2001);
@@ -383,6 +392,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress9->setZipcode('12334AA');
         $buildingAddress9->setCity('Woonplaats A');
         $buildingAddress9->setRentalUnitNumber('VHE0000');
+        $buildingAddress9->setDaeb(true);
         $buildingAddress9->setResidentialArea($residentialArea9);
         $buildingAddress9->setBuildingType($buildingType9);
         $buildingAddress9->setLivingType($livingType1);
@@ -399,13 +409,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress10->setZipcode('1234AA');
         $buildingAddress10->setCity('Woonplaats A');
         $buildingAddress10->setRentalUnitNumber('VHE0000');
+        $buildingAddress10->setDaeb(true);
         $buildingAddress10->setResidentialArea($residentialArea10);
         $buildingAddress10->setBuildingType($buildingType10);
         $buildingAddress10->setLivingType($livingType1);
         $buildingAddress10->setCreationTime();
         $buildingAddress10->setLastChangeTime();
 
-		$buildingAddress11 = new BuildingAddress();
+        $buildingAddress11 = new BuildingAddress();
         $buildingAddress11->setId(11);
         $buildingAddress11->setConstructionYear(1954);
         $buildingAddress11->setRenovationYear(1986);
@@ -415,13 +426,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress11->setZipcode('1234AA');
         $buildingAddress11->setCity('Woonplaats A');
         $buildingAddress11->setRentalUnitNumber('VHE0000');
+        $buildingAddress11->setDaeb(true);
         $buildingAddress11->setResidentialArea($residentialArea1);
         $buildingAddress11->setBuildingType($buildingType1);
         $buildingAddress11->setLivingType($livingType1);
         $buildingAddress11->setCreationTime();
         $buildingAddress11->setLastChangeTime();
 
-		$buildingAddress12 = new BuildingAddress();
+        $buildingAddress12 = new BuildingAddress();
         $buildingAddress12->setId(12);
         $buildingAddress12->setConstructionYear(1998);
         $buildingAddress12->setRenovationYear(2021);
@@ -431,13 +443,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress12->setZipcode('1234AA');
         $buildingAddress12->setCity('Woonplaats A');
         $buildingAddress12->setRentalUnitNumber('VHE0000');
+        $buildingAddress12->setDaeb(true);
         $buildingAddress12->setResidentialArea($residentialArea2);
         $buildingAddress12->setBuildingType($buildingType2);
         $buildingAddress12->setLivingType($livingType1);
         $buildingAddress12->setCreationTime();
         $buildingAddress12->setLastChangeTime();
 
-		$buildingAddress13 = new BuildingAddress();
+        $buildingAddress13 = new BuildingAddress();
         $buildingAddress13->setId(13);
         $buildingAddress13->setConstructionYear(1984);
         $buildingAddress13->setRenovationYear(2000);
@@ -447,6 +460,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress13->setZipcode('1234AA');
         $buildingAddress13->setCity('Woonplaats A');
         $buildingAddress13->setRentalUnitNumber('VHE0000');
+        $buildingAddress13->setDaeb(false);
         $buildingAddress13->setResidentialArea($residentialArea3);
         $buildingAddress13->setBuildingType($buildingType3);
         $buildingAddress13->setLivingType($livingType1);
@@ -454,7 +468,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress13->setLastChangeTime();
 
 
-		$buildingAddress14 = new BuildingAddress();
+        $buildingAddress14 = new BuildingAddress();
         $buildingAddress14->setId(14);
         $buildingAddress14->setConstructionYear(2010);
         $buildingAddress14->setRenovationYear(2010);
@@ -464,6 +478,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress14->setZipcode('1234AA');
         $buildingAddress14->setCity('Woonplaats A');
         $buildingAddress14->setRentalUnitNumber('VHE0000');
+        $buildingAddress14->setDaeb(true);
         $buildingAddress14->setResidentialArea($residentialArea4);
         $buildingAddress14->setBuildingType($buildingType4);
         $buildingAddress14->setLivingType($livingType1);
@@ -480,13 +495,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress15->setZipcode('1234AA');
         $buildingAddress15->setCity('Woonplaats A');
         $buildingAddress15->setRentalUnitNumber('VHE0000');
+        $buildingAddress15->setDaeb(true);
         $buildingAddress15->setResidentialArea($residentialArea5);
         $buildingAddress15->setBuildingType($buildingType5);
         $buildingAddress15->setLivingType($livingType2);
         $buildingAddress15->setCreationTime();
         $buildingAddress15->setLastChangeTime();
 
-		$buildingAddress16 = new BuildingAddress();
+        $buildingAddress16 = new BuildingAddress();
         $buildingAddress16->setId(16);
         $buildingAddress16->setConstructionYear(1908);
         $buildingAddress16->setRenovationYear(200);
@@ -496,6 +512,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress16->setZipcode('1234AA');
         $buildingAddress16->setCity('Woonplaats A');
         $buildingAddress16->setRentalUnitNumber('VHE0000');
+        $buildingAddress16->setDaeb(true);
         $buildingAddress16->setResidentialArea($residentialArea6);
         $buildingAddress16->setBuildingType($buildingType6);
         $buildingAddress16->setLivingType($livingType2);
@@ -512,6 +529,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress17->setZipcode('1234AA');
         $buildingAddress17->setCity('Woonplaats A');
         $buildingAddress17->setRentalUnitNumber('VHE0000');
+        $buildingAddress17->setDaeb(true);
         $buildingAddress17->setResidentialArea($residentialArea7);
         $buildingAddress17->setBuildingType($buildingType7);
         $buildingAddress17->setLivingType($livingType2);
@@ -528,10 +546,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress18->setZipcode('1234AAB');
         $buildingAddress18->setCity('Woonplaats A');
         $buildingAddress18->setRentalUnitNumber('VHE0000');
+        $buildingAddress18->setDaeb(false);
         $buildingAddress18->setResidentialArea($residentialArea8);
         $buildingAddress18->setBuildingType($buildingType8);
         $buildingAddress18->setLivingType($livingType2);
-		$buildingAddress18->setCreationTime();
+        $buildingAddress18->setCreationTime();
         $buildingAddress18->setLastChangeTime();
 
         $buildingAddress19 = new BuildingAddress();
@@ -544,6 +563,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress19->setZipcode('12334AA');
         $buildingAddress19->setCity('Woonplaats A');
         $buildingAddress19->setRentalUnitNumber('VHE0000');
+        $buildingAddress19->setDaeb(true);
         $buildingAddress19->setResidentialArea($residentialArea9);
         $buildingAddress19->setBuildingType($buildingType9);
         $buildingAddress19->setLivingType($livingType2);
@@ -560,6 +580,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress20->setZipcode('1234AA');
         $buildingAddress20->setCity('Woonplaats A');
         $buildingAddress20->setRentalUnitNumber('VHE0000');
+        $buildingAddress20->setDaeb(true);
         $buildingAddress20->setResidentialArea($residentialArea10);
         $buildingAddress20->setBuildingType($buildingType10);
         $buildingAddress20->setLivingType($livingType2);
@@ -576,13 +597,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress21->setZipcode('1234AA');
         $buildingAddress21->setCity('Woonplaats A');
         $buildingAddress21->setRentalUnitNumber('VHE0000');
+        $buildingAddress21->setDaeb(true);
         $buildingAddress21->setResidentialArea($residentialArea1);
         $buildingAddress21->setBuildingType($buildingType1);
         $buildingAddress21->setLivingType($livingType2);
         $buildingAddress21->setCreationTime();
         $buildingAddress21->setLastChangeTime();
 
-		$buildingAddress22 = new BuildingAddress();
+        $buildingAddress22 = new BuildingAddress();
         $buildingAddress22->setId(22);
         $buildingAddress22->setConstructionYear(1998);
         $buildingAddress22->setRenovationYear(2021);
@@ -592,13 +614,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress22->setZipcode('1234AA');
         $buildingAddress22->setCity('Woonplaats A');
         $buildingAddress22->setRentalUnitNumber('VHE0000');
+        $buildingAddress22->setDaeb(true);
         $buildingAddress22->setResidentialArea($residentialArea2);
         $buildingAddress22->setBuildingType($buildingType2);
         $buildingAddress22->setLivingType($livingType2);
         $buildingAddress22->setCreationTime();
         $buildingAddress22->setLastChangeTime();
 
-		$buildingAddress23 = new BuildingAddress();
+        $buildingAddress23 = new BuildingAddress();
         $buildingAddress23->setId(23);
         $buildingAddress23->setConstructionYear(1984);
         $buildingAddress23->setRenovationYear(2000);
@@ -608,6 +631,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setZipcode('1234AA');
         $buildingAddress23->setCity('Woonplaats A');
         $buildingAddress23->setRentalUnitNumber('VHE0000');
+        $buildingAddress23->setDaeb(true);
         $buildingAddress23->setResidentialArea($residentialArea3);
         $buildingAddress23->setBuildingType($buildingType3);
         $buildingAddress23->setLivingType($livingType2);
@@ -624,6 +648,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setZipcode('1234AA');
         $buildingAddress24->setCity('Woonplaats A');
         $buildingAddress24->setRentalUnitNumber('VHE0000');
+        $buildingAddress24->setDaeb(true);
         $buildingAddress24->setResidentialArea($residentialArea4);
         $buildingAddress24->setBuildingType($buildingType4);
         $buildingAddress24->setLivingType($livingType2);
@@ -640,13 +665,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setZipcode('1234AA');
         $buildingAddress25->setCity('Woonplaats A');
         $buildingAddress25->setRentalUnitNumber('VHE0000');
+        $buildingAddress25->setDaeb(true);
         $buildingAddress25->setResidentialArea($residentialArea5);
         $buildingAddress25->setBuildingType($buildingType5);
         $buildingAddress25->setLivingType($livingType2);
         $buildingAddress25->setCreationTime();
         $buildingAddress25->setLastChangeTime();
 
-		$buildingAddress26 = new BuildingAddress();
+        $buildingAddress26 = new BuildingAddress();
         $buildingAddress26->setId(26);
         $buildingAddress26->setConstructionYear(1908);
         $buildingAddress26->setRenovationYear(200);
@@ -656,6 +682,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress26->setZipcode('1234AA');
         $buildingAddress26->setCity('Woonplaats A');
         $buildingAddress26->setRentalUnitNumber('VHE0000');
+        $buildingAddress26->setDaeb(true);
         $buildingAddress26->setResidentialArea($residentialArea6);
         $buildingAddress26->setBuildingType($buildingType6);
         $buildingAddress26->setLivingType($livingType2);
@@ -672,13 +699,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress27->setZipcode('1234AA');
         $buildingAddress27->setCity('Woonplaats A');
         $buildingAddress27->setRentalUnitNumber('VHE0000');
+        $buildingAddress27->setDaeb(true);
         $buildingAddress27->setResidentialArea($residentialArea7);
         $buildingAddress27->setBuildingType($buildingType7);
         $buildingAddress27->setLivingType($livingType2);
         $buildingAddress27->setCreationTime();
         $buildingAddress27->setLastChangeTime();
 
-		$buildingAddress28 = new BuildingAddress();
+        $buildingAddress28 = new BuildingAddress();
         $buildingAddress28->setId(28);
         $buildingAddress28->setConstructionYear(2026);
         $buildingAddress28->setRenovationYear(2081);
@@ -688,13 +716,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress28->setZipcode('1234AAB');
         $buildingAddress28->setCity('Woonplaats A');
         $buildingAddress28->setRentalUnitNumber('VHE0000');
+        $buildingAddress28->setDaeb(true);
         $buildingAddress28->setResidentialArea($residentialArea8);
         $buildingAddress28->setBuildingType($buildingType8);
         $buildingAddress28->setLivingType($livingType2);
         $buildingAddress28->setCreationTime();
         $buildingAddress28->setLastChangeTime();
 
-		$buildingAddress29 = new BuildingAddress();
+        $buildingAddress29 = new BuildingAddress();
         $buildingAddress29->setId(29);
         $buildingAddress29->setConstructionYear(1976);
         $buildingAddress29->setRenovationYear(2001);
@@ -704,6 +733,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress29->setZipcode('12334AA');
         $buildingAddress29->setCity('Woonplaats A');
         $buildingAddress29->setRentalUnitNumber('VHE0000');
+        $buildingAddress29->setDaeb(true);
         $buildingAddress29->setResidentialArea($residentialArea9);
         $buildingAddress29->setBuildingType($buildingType9);
         $buildingAddress29->setLivingType($livingType2);
@@ -720,6 +750,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress30->setZipcode('1234AA');
         $buildingAddress30->setCity('Woonplaats A');
         $buildingAddress30->setRentalUnitNumber('VHE0000');
+        $buildingAddress30->setDaeb(true);
         $buildingAddress30->setResidentialArea($residentialArea10);
         $buildingAddress30->setBuildingType($buildingType10);
         $buildingAddress30->setLivingType($livingType2);
@@ -736,6 +767,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress31->setZipcode('1234AA');
         $buildingAddress31->setCity('Woonplaats A');
         $buildingAddress31->setRentalUnitNumber('VHE0000');
+        $buildingAddress31->setDaeb(true);
         $buildingAddress31->setResidentialArea($residentialArea1);
         $buildingAddress31->setBuildingType($buildingType1);
         $buildingAddress31->setLivingType($livingType2);
@@ -752,6 +784,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress41->setZipcode('1234AA');
         $buildingAddress41->setCity('Woonplaats A');
         $buildingAddress41->setRentalUnitNumber('VHE0000');
+        $buildingAddress41->setDaeb(true);
         $buildingAddress41->setResidentialArea($residentialArea1);
         $buildingAddress41->setBuildingType($buildingType1);
         $buildingAddress41->setLivingType($livingType2);
@@ -768,6 +801,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setZipcode('1234AA');
         $buildingAddress51->setCity('Woonplaats A');
         $buildingAddress51->setRentalUnitNumber('VHE0000');
+        $buildingAddress51->setDaeb(true);
         $buildingAddress51->setResidentialArea($residentialArea1);
         $buildingAddress51->setBuildingType($buildingType1);
         $buildingAddress51->setLivingType($livingType3);
@@ -784,6 +818,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress61->setZipcode('1234AA');
         $buildingAddress61->setCity('Woonplaats A');
         $buildingAddress61->setRentalUnitNumber('VHE0000');
+        $buildingAddress61->setDaeb(true);
         $buildingAddress61->setResidentialArea($residentialArea1);
         $buildingAddress61->setBuildingType($buildingType1);
         $buildingAddress61->setLivingType($livingType3);
@@ -800,6 +835,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress71->setZipcode('1234AA');
         $buildingAddress71->setCity('Woonplaats A');
         $buildingAddress71->setRentalUnitNumber('VHE0000');
+        $buildingAddress71->setDaeb(true);
         $buildingAddress71->setResidentialArea($residentialArea1);
         $buildingAddress71->setBuildingType($buildingType1);
         $buildingAddress71->setLivingType($livingType3);
@@ -816,6 +852,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress81->setZipcode('1234AA');
         $buildingAddress81->setCity('Woonplaats A');
         $buildingAddress81->setRentalUnitNumber('VHE0000');
+        $buildingAddress81->setDaeb(true);
         $buildingAddress81->setResidentialArea($residentialArea1);
         $buildingAddress81->setBuildingType($buildingType1);
         $buildingAddress81->setLivingType($livingType3);
@@ -832,6 +869,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress91->setZipcode('1234AA');
         $buildingAddress91->setCity('Woonplaats A');
         $buildingAddress91->setRentalUnitNumber('VHE0000');
+        $buildingAddress91->setDaeb(true);
         $buildingAddress91->setResidentialArea($residentialArea1);
         $buildingAddress91->setBuildingType($buildingType1);
         $buildingAddress91->setLivingType($livingType3);
@@ -848,6 +886,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress101->setZipcode('1234AA');
         $buildingAddress101->setCity('Woonplaats A');
         $buildingAddress101->setRentalUnitNumber('VHE0000');
+        $buildingAddress101->setDaeb(true);
         $buildingAddress101->setResidentialArea($residentialArea1);
         $buildingAddress101->setBuildingType($buildingType1);
         $buildingAddress101->setLivingType($livingType3);
@@ -864,6 +903,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress111->setZipcode('1234AA');
         $buildingAddress111->setCity('Woonplaats A');
         $buildingAddress111->setRentalUnitNumber('VHE0000');
+        $buildingAddress111->setDaeb(true);
         $buildingAddress111->setResidentialArea($residentialArea1);
         $buildingAddress111->setBuildingType($buildingType1);
         $buildingAddress111->setLivingType($livingType3);
@@ -880,6 +920,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress121->setZipcode('1234AA');
         $buildingAddress121->setCity('Woonplaats A');
         $buildingAddress121->setRentalUnitNumber('VHE0000');
+        $buildingAddress121->setDaeb(true);
         $buildingAddress121->setResidentialArea($residentialArea1);
         $buildingAddress121->setBuildingType($buildingType1);
         $buildingAddress121->setLivingType($livingType3);
@@ -896,6 +937,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress32->setZipcode('1234AA');
         $buildingAddress32->setCity('Woonplaats A');
         $buildingAddress32->setRentalUnitNumber('VHE0000');
+        $buildingAddress32->setDaeb(true);
         $buildingAddress32->setResidentialArea($residentialArea2);
         $buildingAddress32->setBuildingType($buildingType2);
         $buildingAddress32->setLivingType($livingType3);
@@ -912,6 +954,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress42->setZipcode('1234AA');
         $buildingAddress42->setCity('Woonplaats A');
         $buildingAddress42->setRentalUnitNumber('VHE0000');
+        $buildingAddress42->setDaeb(true);
         $buildingAddress42->setResidentialArea($residentialArea2);
         $buildingAddress42->setBuildingType($buildingType2);
         $buildingAddress42->setLivingType($livingType3);
@@ -928,6 +971,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress52->setZipcode('1234AA');
         $buildingAddress52->setCity('Woonplaats A');
         $buildingAddress52->setRentalUnitNumber('VHE0000');
+        $buildingAddress52->setDaeb(true);
         $buildingAddress52->setResidentialArea($residentialArea2);
         $buildingAddress52->setBuildingType($buildingType2);
         $buildingAddress52->setLivingType($livingType3);
@@ -944,6 +988,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress62->setZipcode('1234AA');
         $buildingAddress62->setCity('Woonplaats A');
         $buildingAddress62->setRentalUnitNumber('VHE0000');
+        $buildingAddress62->setDaeb(true);
         $buildingAddress62->setResidentialArea($residentialArea2);
         $buildingAddress62->setBuildingType($buildingType2);
         $buildingAddress62->setLivingType($livingType3);
@@ -960,6 +1005,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress72->setZipcode('1234AA');
         $buildingAddress72->setCity('Woonplaats A');
         $buildingAddress72->setRentalUnitNumber('VHE0000');
+        $buildingAddress72->setDaeb(true);
         $buildingAddress72->setResidentialArea($residentialArea2);
         $buildingAddress72->setBuildingType($buildingType2);
         $buildingAddress72->setLivingType($livingType3);
@@ -976,6 +1022,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress82->setZipcode('1234AA');
         $buildingAddress82->setCity('Woonplaats A');
         $buildingAddress82->setRentalUnitNumber('VHE0000');
+        $buildingAddress82->setDaeb(true);
         $buildingAddress82->setResidentialArea($residentialArea2);
         $buildingAddress82->setBuildingType($buildingType2);
         $buildingAddress82->setLivingType($livingType3);
@@ -992,6 +1039,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress92->setZipcode('1234AA');
         $buildingAddress92->setCity('Woonplaats A');
         $buildingAddress92->setRentalUnitNumber('VHE0000');
+        $buildingAddress92->setDaeb(true);
         $buildingAddress92->setResidentialArea($residentialArea2);
         $buildingAddress92->setBuildingType($buildingType2);
         $buildingAddress92->setLivingType($livingType3);
@@ -1008,6 +1056,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress102->setZipcode('1234AA');
         $buildingAddress102->setCity('Woonplaats A');
         $buildingAddress102->setRentalUnitNumber('VHE0000');
+        $buildingAddress102->setDaeb(true);
         $buildingAddress102->setResidentialArea($residentialArea2);
         $buildingAddress102->setBuildingType($buildingType2);
         $buildingAddress102->setLivingType($livingType3);
@@ -1024,6 +1073,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress112->setZipcode('1234AA');
         $buildingAddress112->setCity('Woonplaats A');
         $buildingAddress112->setRentalUnitNumber('VHE0000');
+        $buildingAddress112->setDaeb(true);
         $buildingAddress112->setResidentialArea($residentialArea2);
         $buildingAddress112->setBuildingType($buildingType2);
         $buildingAddress112->setLivingType($livingType3);
@@ -1040,6 +1090,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress122->setZipcode('1234AA');
         $buildingAddress122->setCity('Woonplaats A');
         $buildingAddress122->setRentalUnitNumber('VHE0000');
+        $buildingAddress122->setDaeb(true);
         $buildingAddress122->setResidentialArea($residentialArea2);
         $buildingAddress122->setBuildingType($buildingType2);
         $buildingAddress122->setLivingType($livingType3);
@@ -1056,6 +1107,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress33->setZipcode('1234AA');
         $buildingAddress33->setCity('Woonplaats A');
         $buildingAddress33->setRentalUnitNumber('VHE0000');
+        $buildingAddress33->setDaeb(true);
         $buildingAddress33->setResidentialArea($residentialArea3);
         $buildingAddress33->setBuildingType($buildingType3);
         $buildingAddress33->setLivingType($livingType3);
@@ -1072,6 +1124,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress43->setZipcode('1234AA');
         $buildingAddress43->setCity('Woonplaats A');
         $buildingAddress43->setRentalUnitNumber('VHE0000');
+        $buildingAddress43->setDaeb(true);
         $buildingAddress43->setResidentialArea($residentialArea3);
         $buildingAddress43->setBuildingType($buildingType3);
         $buildingAddress43->setLivingType($livingType3);
@@ -1088,6 +1141,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress53->setZipcode('1234AA');
         $buildingAddress53->setCity('Woonplaats A');
         $buildingAddress53->setRentalUnitNumber('VHE0000');
+        $buildingAddress53->setDaeb(true);
         $buildingAddress53->setResidentialArea($residentialArea3);
         $buildingAddress53->setBuildingType($buildingType3);
         $buildingAddress53->setLivingType($livingType3);
@@ -1104,6 +1158,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress63->setZipcode('1234AA');
         $buildingAddress63->setCity('Woonplaats A');
         $buildingAddress63->setRentalUnitNumber('VHE0000');
+        $buildingAddress63->setDaeb(true);
         $buildingAddress63->setResidentialArea($residentialArea3);
         $buildingAddress63->setBuildingType($buildingType3);
         $buildingAddress63->setLivingType($livingType3);
@@ -1120,6 +1175,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress73->setZipcode('1234AA');
         $buildingAddress73->setCity('Woonplaats A');
         $buildingAddress73->setRentalUnitNumber('VHE0000');
+        $buildingAddress73->setDaeb(true);
         $buildingAddress73->setResidentialArea($residentialArea3);
         $buildingAddress73->setBuildingType($buildingType3);
         $buildingAddress73->setLivingType($livingType3);
@@ -1136,6 +1192,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress83->setZipcode('1234AA');
         $buildingAddress83->setCity('Woonplaats A');
         $buildingAddress83->setRentalUnitNumber('VHE0000');
+        $buildingAddress83->setDaeb(true);
         $buildingAddress83->setResidentialArea($residentialArea3);
         $buildingAddress83->setBuildingType($buildingType3);
         $buildingAddress83->setLivingType($livingType3);
@@ -1152,6 +1209,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress93->setZipcode('1234AA');
         $buildingAddress93->setCity('Woonplaats A');
         $buildingAddress93->setRentalUnitNumber('VHE0000');
+        $buildingAddress93->setDaeb(true);
         $buildingAddress93->setResidentialArea($residentialArea3);
         $buildingAddress93->setBuildingType($buildingType3);
         $buildingAddress93->setLivingType($livingType3);
@@ -1168,6 +1226,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress103->setZipcode('1234AA');
         $buildingAddress103->setCity('Woonplaats A');
         $buildingAddress103->setRentalUnitNumber('VHE0000');
+        $buildingAddress103->setDaeb(true);
         $buildingAddress103->setResidentialArea($residentialArea3);
         $buildingAddress103->setBuildingType($buildingType3);
         $buildingAddress103->setLivingType($livingType3);
@@ -1184,6 +1243,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress113->setZipcode('1234AA');
         $buildingAddress113->setCity('Woonplaats A');
         $buildingAddress113->setRentalUnitNumber('VHE0000');
+        $buildingAddress113->setDaeb(true);
         $buildingAddress113->setResidentialArea($residentialArea3);
         $buildingAddress113->setBuildingType($buildingType3);
         $buildingAddress113->setLivingType($livingType3);
@@ -1200,6 +1260,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress123->setZipcode('1234AA');
         $buildingAddress123->setCity('Woonplaats A');
         $buildingAddress123->setRentalUnitNumber('VHE0000');
+        $buildingAddress123->setDaeb(true);
         $buildingAddress123->setResidentialArea($residentialArea3);
         $buildingAddress123->setBuildingType($buildingType3);
         $buildingAddress123->setLivingType($livingType3);
@@ -1216,6 +1277,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress34->setZipcode('1234AA');
         $buildingAddress34->setCity('Woonplaats A');
         $buildingAddress34->setRentalUnitNumber('VHE0000');
+        $buildingAddress34->setDaeb(true);
         $buildingAddress34->setResidentialArea($residentialArea4);
         $buildingAddress34->setBuildingType($buildingType4);
         $buildingAddress34->setLivingType($livingType3);
@@ -1232,6 +1294,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress44->setZipcode('1234AA');
         $buildingAddress44->setCity('Woonplaats A');
         $buildingAddress44->setRentalUnitNumber('VHE0000');
+        $buildingAddress44->setDaeb(true);
         $buildingAddress44->setResidentialArea($residentialArea4);
         $buildingAddress44->setBuildingType($buildingType4);
         $buildingAddress44->setLivingType($livingType3);
@@ -1248,6 +1311,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress54->setZipcode('1234AA');
         $buildingAddress54->setCity('Woonplaats A');
         $buildingAddress54->setRentalUnitNumber('VHE0000');
+        $buildingAddress54->setDaeb(true);
         $buildingAddress54->setResidentialArea($residentialArea4);
         $buildingAddress54->setBuildingType($buildingType4);
         $buildingAddress54->setLivingType($livingType3);
@@ -1264,6 +1328,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress64->setZipcode('1234AA');
         $buildingAddress64->setCity('Woonplaats A');
         $buildingAddress64->setRentalUnitNumber('VHE0000');
+        $buildingAddress64->setDaeb(true);
         $buildingAddress64->setResidentialArea($residentialArea4);
         $buildingAddress64->setBuildingType($buildingType4);
         $buildingAddress64->setLivingType($livingType3);
@@ -1280,6 +1345,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress74->setZipcode('1234AA');
         $buildingAddress74->setCity('Woonplaats A');
         $buildingAddress74->setRentalUnitNumber('VHE0000');
+        $buildingAddress74->setDaeb(false);
         $buildingAddress74->setResidentialArea($residentialArea4);
         $buildingAddress74->setBuildingType($buildingType4);
         $buildingAddress74->setLivingType($livingType3);
@@ -1296,6 +1362,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress84->setZipcode('1234AA');
         $buildingAddress84->setCity('Woonplaats A');
         $buildingAddress84->setRentalUnitNumber('VHE0000');
+        $buildingAddress84->setDaeb(false);
         $buildingAddress84->setResidentialArea($residentialArea4);
         $buildingAddress84->setBuildingType($buildingType4);
         $buildingAddress84->setLivingType($livingType3);
@@ -1312,6 +1379,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress94->setZipcode('1234AA');
         $buildingAddress94->setCity('Woonplaats A');
         $buildingAddress94->setRentalUnitNumber('VHE0000');
+        $buildingAddress94->setDaeb(true);
         $buildingAddress94->setResidentialArea($residentialArea4);
         $buildingAddress94->setBuildingType($buildingType4);
         $buildingAddress94->setLivingType($livingType3);
@@ -1328,6 +1396,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress104->setZipcode('1234AA');
         $buildingAddress104->setCity('Woonplaats A');
         $buildingAddress104->setRentalUnitNumber('VHE0000');
+        $buildingAddress104->setDaeb(true);
         $buildingAddress104->setResidentialArea($residentialArea4);
         $buildingAddress104->setBuildingType($buildingType4);
         $buildingAddress104->setLivingType($livingType3);
@@ -1344,6 +1413,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress114->setZipcode('1234AA');
         $buildingAddress114->setCity('Woonplaats A');
         $buildingAddress114->setRentalUnitNumber('VHE0000');
+        $buildingAddress114->setDaeb(true);
         $buildingAddress114->setResidentialArea($residentialArea4);
         $buildingAddress114->setBuildingType($buildingType4);
         $buildingAddress114->setLivingType($livingType3);
@@ -1360,6 +1430,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress124->setZipcode('1234AA');
         $buildingAddress124->setCity('Woonplaats A');
         $buildingAddress124->setRentalUnitNumber('VHE0000');
+        $buildingAddress124->setDaeb(true);
         $buildingAddress124->setResidentialArea($residentialArea4);
         $buildingAddress124->setBuildingType($buildingType4);
         $buildingAddress124->setLivingType($livingType3);
@@ -1376,6 +1447,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress35->setZipcode('1234AA');
         $buildingAddress35->setCity('Woonplaats A');
         $buildingAddress35->setRentalUnitNumber('VHE0000');
+        $buildingAddress35->setDaeb(true);
         $buildingAddress35->setResidentialArea($residentialArea5);
         $buildingAddress35->setBuildingType($buildingType5);
         $buildingAddress35->setLivingType($livingType3);
@@ -1392,6 +1464,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress45->setZipcode('1234AA');
         $buildingAddress45->setCity('Woonplaats A');
         $buildingAddress45->setRentalUnitNumber('VHE0000');
+        $buildingAddress45->setDaeb(true);
         $buildingAddress45->setResidentialArea($residentialArea5);
         $buildingAddress45->setBuildingType($buildingType5);
         $buildingAddress45->setLivingType($livingType3);
@@ -1408,6 +1481,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress55->setZipcode('1234AA');
         $buildingAddress55->setCity('Woonplaats A');
         $buildingAddress55->setRentalUnitNumber('VHE0000');
+        $buildingAddress55->setDaeb(true);
         $buildingAddress55->setResidentialArea($residentialArea5);
         $buildingAddress55->setBuildingType($buildingType5);
         $buildingAddress55->setLivingType($livingType3);
@@ -1424,6 +1498,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress65->setZipcode('1234AA');
         $buildingAddress65->setCity('Woonplaats A');
         $buildingAddress65->setRentalUnitNumber('VHE0000');
+        $buildingAddress65->setDaeb(true);
         $buildingAddress65->setResidentialArea($residentialArea5);
         $buildingAddress65->setBuildingType($buildingType5);
         $buildingAddress65->setLivingType($livingType3);
@@ -1440,6 +1515,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress75->setZipcode('1234AA');
         $buildingAddress75->setCity('Woonplaats A');
         $buildingAddress75->setRentalUnitNumber('VHE0000');
+        $buildingAddress75->setDaeb(true);
         $buildingAddress75->setResidentialArea($residentialArea5);
         $buildingAddress75->setBuildingType($buildingType5);
         $buildingAddress75->setLivingType($livingType3);
@@ -1456,6 +1532,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress85->setZipcode('1234AA');
         $buildingAddress85->setCity('Woonplaats A');
         $buildingAddress85->setRentalUnitNumber('VHE0000');
+        $buildingAddress85->setDaeb(true);
         $buildingAddress85->setResidentialArea($residentialArea5);
         $buildingAddress85->setBuildingType($buildingType5);
         $buildingAddress85->setLivingType($livingType3);
@@ -1472,6 +1549,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress95->setZipcode('1234AA');
         $buildingAddress95->setCity('Woonplaats A');
         $buildingAddress95->setRentalUnitNumber('VHE0000');
+        $buildingAddress95->setDaeb(true);
         $buildingAddress95->setResidentialArea($residentialArea5);
         $buildingAddress95->setBuildingType($buildingType5);
         $buildingAddress95->setLivingType($livingType3);
@@ -1488,6 +1566,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress105->setZipcode('1234AA');
         $buildingAddress105->setCity('Woonplaats A');
         $buildingAddress105->setRentalUnitNumber('VHE0000');
+        $buildingAddress105->setDaeb(false);
         $buildingAddress105->setResidentialArea($residentialArea5);
         $buildingAddress105->setBuildingType($buildingType5);
         $buildingAddress105->setLivingType($livingType3);
@@ -1504,6 +1583,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress115->setZipcode('1234AA');
         $buildingAddress115->setCity('Woonplaats A');
         $buildingAddress115->setRentalUnitNumber('VHE0000');
+        $buildingAddress115->setDaeb(true);
         $buildingAddress115->setResidentialArea($residentialArea5);
         $buildingAddress115->setBuildingType($buildingType5);
         $buildingAddress115->setLivingType($livingType3);
@@ -1520,6 +1600,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress125->setZipcode('1234AA');
         $buildingAddress125->setCity('Woonplaats A');
         $buildingAddress125->setRentalUnitNumber('VHE0000');
+        $buildingAddress125->setDaeb(true);
         $buildingAddress125->setResidentialArea($residentialArea5);
         $buildingAddress125->setBuildingType($buildingType5);
         $buildingAddress125->setLivingType($livingType3);
@@ -1536,6 +1617,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress36->setZipcode('1234AA');
         $buildingAddress36->setCity('Woonplaats A');
         $buildingAddress36->setRentalUnitNumber('VHE0000');
+        $buildingAddress36->setDaeb(true);
         $buildingAddress36->setResidentialArea($residentialArea6);
         $buildingAddress36->setBuildingType($buildingType6);
         $buildingAddress36->setLivingType($livingType3);
@@ -1552,6 +1634,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress46->setZipcode('1234AA');
         $buildingAddress46->setCity('Woonplaats A');
         $buildingAddress46->setRentalUnitNumber('VHE0000');
+        $buildingAddress46->setDaeb(true);
         $buildingAddress46->setResidentialArea($residentialArea6);
         $buildingAddress46->setBuildingType($buildingType6);
         $buildingAddress46->setLivingType($livingType3);
@@ -1568,6 +1651,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress56->setZipcode('1234AA');
         $buildingAddress56->setCity('Woonplaats A');
         $buildingAddress56->setRentalUnitNumber('VHE0000');
+        $buildingAddress56->setDaeb(true);
         $buildingAddress56->setResidentialArea($residentialArea6);
         $buildingAddress56->setBuildingType($buildingType6);
         $buildingAddress56->setLivingType($livingType3);
@@ -1584,6 +1668,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress66->setZipcode('1234AA');
         $buildingAddress66->setCity('Woonplaats A');
         $buildingAddress66->setRentalUnitNumber('VHE0000');
+        $buildingAddress66->setDaeb(true);
         $buildingAddress66->setResidentialArea($residentialArea6);
         $buildingAddress66->setBuildingType($buildingType6);
         $buildingAddress66->setLivingType($livingType3);
@@ -1600,6 +1685,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress76->setZipcode('1234AA');
         $buildingAddress76->setCity('Woonplaats A');
         $buildingAddress76->setRentalUnitNumber('VHE0000');
+        $buildingAddress76->setDaeb(true);
         $buildingAddress76->setResidentialArea($residentialArea6);
         $buildingAddress76->setBuildingType($buildingType6);
         $buildingAddress76->setLivingType($livingType3);
@@ -1616,6 +1702,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress86->setZipcode('1234AA');
         $buildingAddress86->setCity('Woonplaats A');
         $buildingAddress86->setRentalUnitNumber('VHE0000');
+        $buildingAddress86->setDaeb(true);
         $buildingAddress86->setResidentialArea($residentialArea6);
         $buildingAddress86->setBuildingType($buildingType6);
         $buildingAddress86->setLivingType($livingType3);
@@ -1632,6 +1719,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress96->setZipcode('1234AA');
         $buildingAddress96->setCity('Woonplaats A');
         $buildingAddress96->setRentalUnitNumber('VHE0000');
+        $buildingAddress96->setDaeb(true);
         $buildingAddress96->setResidentialArea($residentialArea6);
         $buildingAddress96->setBuildingType($buildingType6);
         $buildingAddress96->setLivingType($livingType3);
@@ -1648,6 +1736,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress106->setZipcode('1234AA');
         $buildingAddress106->setCity('Woonplaats A');
         $buildingAddress106->setRentalUnitNumber('VHE0000');
+        $buildingAddress106->setDaeb(true);
         $buildingAddress106->setResidentialArea($residentialArea6);
         $buildingAddress106->setBuildingType($buildingType6);
         $buildingAddress106->setLivingType($livingType3);
@@ -1664,6 +1753,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress116->setZipcode('1234AA');
         $buildingAddress116->setCity('Woonplaats A');
         $buildingAddress116->setRentalUnitNumber('VHE0000');
+        $buildingAddress116->setDaeb(true);
         $buildingAddress116->setResidentialArea($residentialArea6);
         $buildingAddress116->setBuildingType($buildingType6);
         $buildingAddress116->setLivingType($livingType3);
@@ -1680,6 +1770,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress126->setZipcode('1234AA');
         $buildingAddress126->setCity('Woonplaats A');
         $buildingAddress126->setRentalUnitNumber('VHE0000');
+        $buildingAddress126->setDaeb(true);
         $buildingAddress126->setResidentialArea($residentialArea6);
         $buildingAddress126->setBuildingType($buildingType6);
         $buildingAddress126->setLivingType($livingType3);
@@ -1696,6 +1787,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress37->setZipcode('1234AA');
         $buildingAddress37->setCity('Woonplaats A');
         $buildingAddress37->setRentalUnitNumber('VHE0000');
+        $buildingAddress37->setDaeb(true);
         $buildingAddress37->setResidentialArea($residentialArea7);
         $buildingAddress37->setBuildingType($buildingType7);
         $buildingAddress37->setLivingType($livingType3);
@@ -1712,6 +1804,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress47->setZipcode('1234AA');
         $buildingAddress47->setCity('Woonplaats A');
         $buildingAddress47->setRentalUnitNumber('VHE0000');
+        $buildingAddress47->setDaeb(true);
         $buildingAddress47->setResidentialArea($residentialArea7);
         $buildingAddress47->setBuildingType($buildingType7);
         $buildingAddress47->setLivingType($livingType3);
@@ -1728,6 +1821,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress57->setZipcode('1234AA');
         $buildingAddress57->setCity('Woonplaats A');
         $buildingAddress57->setRentalUnitNumber('VHE0000');
+        $buildingAddress57->setDaeb(true);
         $buildingAddress57->setResidentialArea($residentialArea7);
         $buildingAddress57->setBuildingType($buildingType7);
         $buildingAddress57->setLivingType($livingType3);
@@ -1744,6 +1838,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress67->setZipcode('1234AA');
         $buildingAddress67->setCity('Woonplaats A');
         $buildingAddress67->setRentalUnitNumber('VHE0000');
+        $buildingAddress67->setDaeb(true);
         $buildingAddress67->setResidentialArea($residentialArea7);
         $buildingAddress67->setBuildingType($buildingType7);
         $buildingAddress67->setLivingType($livingType3);
@@ -1760,6 +1855,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress77->setZipcode('1234AA');
         $buildingAddress77->setCity('Woonplaats A');
         $buildingAddress77->setRentalUnitNumber('VHE0000');
+        $buildingAddress77->setDaeb(true);
         $buildingAddress77->setResidentialArea($residentialArea7);
         $buildingAddress77->setBuildingType($buildingType7);
         $buildingAddress77->setLivingType($livingType3);
@@ -1776,6 +1872,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setZipcode('1234AA');
         $buildingAddress87->setCity('Woonplaats A');
         $buildingAddress87->setRentalUnitNumber('VHE0000');
+        $buildingAddress87->setDaeb(true);
         $buildingAddress87->setResidentialArea($residentialArea7);
         $buildingAddress87->setBuildingType($buildingType7);
         $buildingAddress87->setLivingType($livingType3);
@@ -1792,6 +1889,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress97->setZipcode('1234AA');
         $buildingAddress97->setCity('Woonplaats A');
         $buildingAddress97->setRentalUnitNumber('VHE0000');
+        $buildingAddress97->setDaeb(false);
         $buildingAddress97->setResidentialArea($residentialArea7);
         $buildingAddress97->setBuildingType($buildingType7);
         $buildingAddress97->setLivingType($livingType3);
@@ -1808,6 +1906,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress107->setZipcode('1234AA');
         $buildingAddress107->setCity('Woonplaats A');
         $buildingAddress107->setRentalUnitNumber('VHE0000');
+        $buildingAddress107->setDaeb(true);
         $buildingAddress107->setResidentialArea($residentialArea7);
         $buildingAddress107->setBuildingType($buildingType7);
         $buildingAddress107->setLivingType($livingType3);
@@ -1824,6 +1923,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress117->setZipcode('1234AA');
         $buildingAddress117->setCity('Woonplaats A');
         $buildingAddress117->setRentalUnitNumber('VHE0000');
+        $buildingAddress117->setDaeb(true);
         $buildingAddress117->setResidentialArea($residentialArea7);
         $buildingAddress117->setBuildingType($buildingType7);
         $buildingAddress117->setLivingType($livingType3);
@@ -1840,6 +1940,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress127->setZipcode('1234AA');
         $buildingAddress127->setCity('Woonplaats A');
         $buildingAddress127->setRentalUnitNumber('VHE0000');
+        $buildingAddress127->setDaeb(true);
         $buildingAddress127->setResidentialArea($residentialArea7);
         $buildingAddress127->setBuildingType($buildingType7);
         $buildingAddress127->setLivingType($livingType3);
@@ -1856,10 +1957,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress38->setZipcode('1234AAB');
         $buildingAddress38->setCity('Woonplaats A');
         $buildingAddress38->setRentalUnitNumber('VHE0000');
+        $buildingAddress38->setDaeb(true);
         $buildingAddress38->setResidentialArea($residentialArea8);
         $buildingAddress38->setBuildingType($buildingType8);
         $buildingAddress38->setLivingType($livingType3);
-		$buildingAddress38->setCreationTime();
+        $buildingAddress38->setCreationTime();
         $buildingAddress38->setLastChangeTime();
 
         $buildingAddress48 = new BuildingAddress();
@@ -1872,10 +1974,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress48->setZipcode('1234AAB');
         $buildingAddress48->setCity('Woonplaats A');
         $buildingAddress48->setRentalUnitNumber('VHE0000');
+        $buildingAddress48->setDaeb(true);
         $buildingAddress48->setResidentialArea($residentialArea8);
         $buildingAddress48->setBuildingType($buildingType8);
         $buildingAddress48->setLivingType($livingType3);
-		$buildingAddress48->setCreationTime();
+        $buildingAddress48->setCreationTime();
         $buildingAddress48->setLastChangeTime();
 
         $buildingAddress58 = new BuildingAddress();
@@ -1888,10 +1991,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress58->setZipcode('1234AAB');
         $buildingAddress58->setCity('Woonplaats A');
         $buildingAddress58->setRentalUnitNumber('VHE0000');
+        $buildingAddress58->setDaeb(false);
         $buildingAddress58->setResidentialArea($residentialArea8);
         $buildingAddress58->setBuildingType($buildingType8);
         $buildingAddress58->setLivingType($livingType3);
-		$buildingAddress58->setCreationTime();
+        $buildingAddress58->setCreationTime();
         $buildingAddress58->setLastChangeTime();
 
         $buildingAddress68 = new BuildingAddress();
@@ -1904,10 +2008,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress68->setZipcode('1234AAB');
         $buildingAddress68->setCity('Woonplaats A');
         $buildingAddress68->setRentalUnitNumber('VHE0000');
+        $buildingAddress68->setDaeb(false);
         $buildingAddress68->setResidentialArea($residentialArea8);
         $buildingAddress68->setBuildingType($buildingType8);
         $buildingAddress68->setLivingType($livingType3);
-		$buildingAddress68->setCreationTime();
+        $buildingAddress68->setCreationTime();
         $buildingAddress68->setLastChangeTime();
 
         $buildingAddress78 = new BuildingAddress();
@@ -1920,10 +2025,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress78->setZipcode('1234AAB');
         $buildingAddress78->setCity('Woonplaats A');
         $buildingAddress78->setRentalUnitNumber('VHE0000');
+        $buildingAddress78->setDaeb(true);
         $buildingAddress78->setResidentialArea($residentialArea8);
         $buildingAddress78->setBuildingType($buildingType8);
         $buildingAddress78->setLivingType($livingType3);
-		$buildingAddress78->setCreationTime();
+        $buildingAddress78->setCreationTime();
         $buildingAddress78->setLastChangeTime();
 
         $buildingAddress88 = new BuildingAddress();
@@ -1936,10 +2042,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress88->setZipcode('1234AAB');
         $buildingAddress88->setCity('Woonplaats A');
         $buildingAddress88->setRentalUnitNumber('VHE0000');
+        $buildingAddress88->setDaeb(false);
         $buildingAddress88->setResidentialArea($residentialArea8);
         $buildingAddress88->setBuildingType($buildingType8);
         $buildingAddress88->setLivingType($livingType3);
-		$buildingAddress88->setCreationTime();
+        $buildingAddress88->setCreationTime();
         $buildingAddress88->setLastChangeTime();
 
         $buildingAddress98 = new BuildingAddress();
@@ -1952,10 +2059,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress98->setZipcode('1234AAB');
         $buildingAddress98->setCity('Woonplaats A');
         $buildingAddress98->setRentalUnitNumber('VHE0000');
+        $buildingAddress98->setDaeb(true);
         $buildingAddress98->setResidentialArea($residentialArea8);
         $buildingAddress98->setBuildingType($buildingType8);
         $buildingAddress98->setLivingType($livingType3);
-		$buildingAddress98->setCreationTime();
+        $buildingAddress98->setCreationTime();
         $buildingAddress98->setLastChangeTime();
 
         $buildingAddress108 = new BuildingAddress();
@@ -1968,6 +2076,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress108->setZipcode('1234AAB');
         $buildingAddress108->setCity('Woonplaats A');
         $buildingAddress108->setRentalUnitNumber('VHE0000');
+        $buildingAddress108->setDaeb(true);
         $buildingAddress108->setResidentialArea($residentialArea8);
         $buildingAddress108->setBuildingType($buildingType8);
         $buildingAddress108->setLivingType($livingType3);
@@ -1984,6 +2093,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress118->setZipcode('1234AAB');
         $buildingAddress118->setCity('Woonplaats A');
         $buildingAddress118->setRentalUnitNumber('VHE0000');
+        $buildingAddress118->setDaeb(true);
         $buildingAddress118->setResidentialArea($residentialArea8);
         $buildingAddress118->setBuildingType($buildingType8);
         $buildingAddress118->setLivingType($livingType3);
@@ -2000,6 +2110,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setZipcode('1234AAB');
         $buildingAddress128->setCity('Woonplaats A');
         $buildingAddress128->setRentalUnitNumber('VHE0000');
+        $buildingAddress128->setDaeb(true);
         $buildingAddress128->setResidentialArea($residentialArea8);
         $buildingAddress128->setBuildingType($buildingType8);
         $buildingAddress128->setLivingType($livingType3);
@@ -2016,6 +2127,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress39->setZipcode('12334AA');
         $buildingAddress39->setCity('Woonplaats A');
         $buildingAddress39->setRentalUnitNumber('VHE0000');
+        $buildingAddress39->setDaeb(true);
         $buildingAddress39->setResidentialArea($residentialArea9);
         $buildingAddress39->setBuildingType($buildingType9);
         $buildingAddress39->setLivingType($livingType3);
@@ -2032,6 +2144,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress49->setZipcode('12334AA');
         $buildingAddress49->setCity('Woonplaats A');
         $buildingAddress49->setRentalUnitNumber('VHE0000');
+        $buildingAddress49->setDaeb(true);
         $buildingAddress49->setResidentialArea($residentialArea9);
         $buildingAddress49->setBuildingType($buildingType9);
         $buildingAddress49->setLivingType($livingType3);
@@ -2048,6 +2161,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress59->setZipcode('12334AA');
         $buildingAddress59->setCity('Woonplaats A');
         $buildingAddress59->setRentalUnitNumber('VHE0000');
+        $buildingAddress59->setDaeb(true);
         $buildingAddress59->setResidentialArea($residentialArea9);
         $buildingAddress59->setBuildingType($buildingType9);
         $buildingAddress59->setLivingType($livingType3);
@@ -2064,6 +2178,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress69->setZipcode('12334AA');
         $buildingAddress69->setCity('Woonplaats A');
         $buildingAddress69->setRentalUnitNumber('VHE0000');
+        $buildingAddress69->setDaeb(true);
         $buildingAddress69->setResidentialArea($residentialArea9);
         $buildingAddress69->setBuildingType($buildingType9);
         $buildingAddress69->setLivingType($livingType3);
@@ -2080,6 +2195,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress79->setZipcode('12334AA');
         $buildingAddress79->setCity('Woonplaats A');
         $buildingAddress79->setRentalUnitNumber('VHE0000');
+        $buildingAddress79->setDaeb(true);
         $buildingAddress79->setResidentialArea($residentialArea9);
         $buildingAddress79->setBuildingType($buildingType9);
         $buildingAddress79->setLivingType($livingType3);
@@ -2096,6 +2212,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress89->setZipcode('12334AA');
         $buildingAddress89->setCity('Woonplaats A');
         $buildingAddress89->setRentalUnitNumber('VHE0000');
+        $buildingAddress89->setDaeb(true);
         $buildingAddress89->setResidentialArea($residentialArea9);
         $buildingAddress89->setBuildingType($buildingType9);
         $buildingAddress89->setLivingType($livingType3);
@@ -2112,6 +2229,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress99->setZipcode('12334AA');
         $buildingAddress99->setCity('Woonplaats A');
         $buildingAddress99->setRentalUnitNumber('VHE0000');
+        $buildingAddress99->setDaeb(true);
         $buildingAddress99->setResidentialArea($residentialArea9);
         $buildingAddress99->setBuildingType($buildingType9);
         $buildingAddress99->setLivingType($livingType3);
@@ -2128,6 +2246,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress109->setZipcode('12334AA');
         $buildingAddress109->setCity('Woonplaats A');
         $buildingAddress109->setRentalUnitNumber('VHE0000');
+        $buildingAddress109->setDaeb(true);
         $buildingAddress109->setResidentialArea($residentialArea9);
         $buildingAddress109->setBuildingType($buildingType9);
         $buildingAddress109->setLivingType($livingType3);
@@ -2144,6 +2263,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress119->setZipcode('12334AA');
         $buildingAddress119->setCity('Woonplaats A');
         $buildingAddress119->setRentalUnitNumber('VHE0000');
+        $buildingAddress119->setDaeb(true);
         $buildingAddress119->setResidentialArea($residentialArea9);
         $buildingAddress119->setBuildingType($buildingType9);
         $buildingAddress119->setLivingType($livingType3);
@@ -2160,6 +2280,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress129->setZipcode('12334AA');
         $buildingAddress129->setCity('Woonplaats A');
         $buildingAddress129->setRentalUnitNumber('VHE0000');
+        $buildingAddress129->setDaeb(true);
         $buildingAddress129->setResidentialArea($residentialArea9);
         $buildingAddress129->setBuildingType($buildingType9);
         $buildingAddress129->setLivingType($livingType3);
@@ -2176,6 +2297,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress40->setZipcode('1234AA');
         $buildingAddress40->setCity('Woonplaats A');
         $buildingAddress40->setRentalUnitNumber('VHE0000');
+        $buildingAddress40->setDaeb(true);
         $buildingAddress40->setResidentialArea($residentialArea10);
         $buildingAddress40->setBuildingType($buildingType10);
         $buildingAddress40->setLivingType($livingType3);
@@ -2192,6 +2314,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress50->setZipcode('1234AA');
         $buildingAddress50->setCity('Woonplaats A');
         $buildingAddress50->setRentalUnitNumber('VHE0000');
+        $buildingAddress50->setDaeb(true);
         $buildingAddress50->setResidentialArea($residentialArea10);
         $buildingAddress50->setBuildingType($buildingType10);
         $buildingAddress50->setLivingType($livingType3);
@@ -2208,6 +2331,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress60->setZipcode('1234AA');
         $buildingAddress60->setCity('Woonplaats A');
         $buildingAddress60->setRentalUnitNumber('VHE0000');
+        $buildingAddress60->setDaeb(true);
         $buildingAddress60->setResidentialArea($residentialArea10);
         $buildingAddress60->setBuildingType($buildingType10);
         $buildingAddress60->setLivingType($livingType3);
@@ -2224,6 +2348,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress70->setZipcode('1234AA');
         $buildingAddress70->setCity('Woonplaats A');
         $buildingAddress70->setRentalUnitNumber('VHE0000');
+        $buildingAddress70->setDaeb(true);
         $buildingAddress70->setResidentialArea($residentialArea10);
         $buildingAddress70->setBuildingType($buildingType10);
         $buildingAddress70->setLivingType($livingType3);
@@ -2240,6 +2365,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress80->setZipcode('1234AA');
         $buildingAddress80->setCity('Woonplaats A');
         $buildingAddress80->setRentalUnitNumber('VHE0000');
+        $buildingAddress80->setDaeb(true);
         $buildingAddress80->setResidentialArea($residentialArea10);
         $buildingAddress80->setBuildingType($buildingType10);
         $buildingAddress80->setLivingType($livingType3);
@@ -2256,6 +2382,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress90->setZipcode('1234AA');
         $buildingAddress90->setCity('Woonplaats A');
         $buildingAddress90->setRentalUnitNumber('VHE0000');
+        $buildingAddress90->setDaeb(true);
         $buildingAddress90->setResidentialArea($residentialArea10);
         $buildingAddress90->setBuildingType($buildingType10);
         $buildingAddress90->setLivingType($livingType3);
@@ -2272,6 +2399,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress100->setZipcode('1234AA');
         $buildingAddress100->setCity('Woonplaats A');
         $buildingAddress100->setRentalUnitNumber('VHE0000');
+        $buildingAddress100->setDaeb(true);
         $buildingAddress100->setResidentialArea($residentialArea10);
         $buildingAddress100->setBuildingType($buildingType10);
         $buildingAddress100->setLivingType($livingType3);
@@ -2288,6 +2416,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress110->setZipcode('1234AA');
         $buildingAddress110->setCity('Woonplaats A');
         $buildingAddress110->setRentalUnitNumber('VHE0000');
+        $buildingAddress110->setDaeb(true);
         $buildingAddress110->setResidentialArea($residentialArea10);
         $buildingAddress110->setBuildingType($buildingType10);
         $buildingAddress110->setLivingType($livingType3);
@@ -2304,6 +2433,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setZipcode('1234AA');
         $buildingAddress120->setCity('Woonplaats A');
         $buildingAddress120->setRentalUnitNumber('VHE0000');
+        $buildingAddress120->setDaeb(true);
         $buildingAddress120->setResidentialArea($residentialArea10);
         $buildingAddress120->setBuildingType($buildingType10);
         $buildingAddress120->setLivingType($livingType3);
@@ -2320,6 +2450,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress130->setZipcode('1234AA');
         $buildingAddress130->setCity('Woonplaats A');
         $buildingAddress130->setRentalUnitNumber('VHE0000');
+        $buildingAddress130->setDaeb(true);
         $buildingAddress130->setResidentialArea($residentialArea10);
         $buildingAddress130->setBuildingType($buildingType10);
         $buildingAddress130->setLivingType($livingType3);
