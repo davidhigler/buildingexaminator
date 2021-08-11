@@ -67,6 +67,17 @@ class BuildingAddress extends IdTime
     protected FuturePlans $futurePlans;
 
     /**
+     * @ORM\Column(type="bool", nullable=false)
+     * @Assert\Type(
+     *     type="bool",
+     *     message="%property% is not a valid %type%"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected bool $daeb;
+
+    /**
      * @ORM\Column(type="string", length=128, nullable=true)
      * @Assert\Type(
      *     type="string",
@@ -245,6 +256,11 @@ class BuildingAddress extends IdTime
         return $this->blocks;
     }
 
+    public function getDaeb(): bool
+    {
+        return $this->daeb;
+    }
+
     public function getRentalUnitNumber(): string
     {
         return $this->rentalUnitNumber;
@@ -318,6 +334,11 @@ class BuildingAddress extends IdTime
     public function removeBlock(Block $block): void
     {
         $this->blocks->removeElement($block);
+    }
+
+    public function setDaeb(bool $daeb): void
+    {
+        $this->daeb = $daeb;
     }
 
     public function setRentalUnitNumber(string $rentalUnitNumber): void
