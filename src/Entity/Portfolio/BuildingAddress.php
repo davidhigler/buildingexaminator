@@ -8,7 +8,6 @@ use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Entity\Finance\TaxResponsibility;
 use App\Entity\Planning\FuturePlans;
 
 use App\Entity\SuperClasses\IdTime;
@@ -66,8 +65,6 @@ class BuildingAddress extends IdTime
     protected Collection $blocks;
 
     protected FuturePlans $futurePlans;
-
-    protected TaxResponsibility $taxResponsibility;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
