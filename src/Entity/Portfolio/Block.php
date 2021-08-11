@@ -28,8 +28,8 @@ class Block extends IdTimeIdentification
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BuildingAddress", inversedBy="blocks", mappedBy="buildingAddress")
-     * @ORM\JoinTable(name="linkbuildingaddressenandblocks")
+     * @ORM\ManyToMany(targetEntity="BuildingAddress", mappedBy="blocks")
+     * @ORM\JoinTable(name="linkbuildingaddressesandblocks")
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
