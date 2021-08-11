@@ -34,6 +34,8 @@ class Block extends IdTimeIdentification
      */
     protected Collection $buildingAddresses;
 
+    // @Todo Add option set for block level
+
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(

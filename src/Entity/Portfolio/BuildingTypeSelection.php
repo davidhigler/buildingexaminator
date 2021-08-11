@@ -32,12 +32,6 @@ class BuildingTypeSelection extends IdTimeIdentification
      */
     protected BuildingType $buildingType;
 
-    /**
-     * @ORM\OneToOne(targetEntity="BuildingTypeSelectionOptionSet", mappedBy="buildingTypeSelection")
-     * @Assert\Valid()
-     */
-    protected BuildingTypeSelectionOptionSet $buildingTypeSelectionOptionSet;
-
     public function getBlock(): Block
     {
         return $this->block;
@@ -46,11 +40,6 @@ class BuildingTypeSelection extends IdTimeIdentification
     public function getBuildingType(): BuildingType
     {
         return $this->buildingType;
-    }
-
-    public function getBuildingTypeSelectionOptionSet(): BuildingTypeSelectionOptionSet
-    {
-        return $this->buildingTypeSelectionOptionSet;
     }
 
     public function setBlock(Block $block): void
@@ -62,10 +51,4 @@ class BuildingTypeSelection extends IdTimeIdentification
     {
         $this->buildingType = $buildingType;
     }
-
-    public function setBuildingTypeSelectionOptionSet(BuildingTypeSelectionOptionSet $buildingTypeSelectionOptionSet): void
-    {
-        $this->buildingTypeSelectionOptionSet = $buildingTypeSelectionOptionSet;
-    }
-
 }
