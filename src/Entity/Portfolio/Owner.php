@@ -11,14 +11,14 @@ use App\Entity\SuperClasses\Id;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="HousingStockOptionSets")
+ * @ORM\Table(name="Owners")
  *
  * @OA\Schema()
  */
-class HousingStockOptionSet extends Id
+class Owner extends Id
 {
     /**
-     * @ORM\OneToOne(targetEntity="HousingStock", inversedBy="housingStockOptionSet")
+     * @ORM\OneToOne(targetEntity="HousingStock", inversedBy="owner")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      * @Assert\Valid()
      */

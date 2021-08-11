@@ -67,7 +67,7 @@ class BuildingAddress extends IdTime
     protected FuturePlans $futurePlans;
 
     /**
-     * @ORM\Column(type="bool", nullable=false)
+     * @ORM\Column(type="boolean", nullable=false)
      * @Assert\Type(
      *     type="bool",
      *     message="%property% is not a valid %type%"
@@ -75,7 +75,7 @@ class BuildingAddress extends IdTime
      *
      * @OA\Property()
      */
-    protected bool $daeb;
+    protected bool $daeb = true;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)

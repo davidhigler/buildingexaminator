@@ -57,6 +57,13 @@ class HousingStock extends IdTimeIdentification
     protected HousingStockOptionSet $housingStockOptionSet;
 
     /**
+     * @ORM\OneToOne(targetEntity="Owner", cascade={"remove"}, mappedBy="housingStock")
+     *
+     * @OA\Property()
+     */
+    protected Owner $owner;
+
+    /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(
      *      message="%property% may not be empty"
