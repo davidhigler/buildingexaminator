@@ -3,4 +3,4 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 $openapi = \OpenApi\Generator::scan([__DIR__ . '/../src']);
-file_put_contents(__DIR__ . '/../documentation/postman/buildingexaminator/v1/openapi.yaml', $openapi->toYaml());
+file_put_contents(__DIR__ . '/../documentation/postman/buildingexaminator/v1/openapi.json', $openapi->toJson());

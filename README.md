@@ -1,38 +1,48 @@
 # Building Examinator
 
-# Technical information
+This is an API that serves as backend for possible multiple frontends.
 
-Drop database:
+It provides management of a complete housing portfolio and recording / administrating of building surveys. 
+
+## Technical information
+
+### Database:
+
+#### Drop database:
 ```shell
 php bin/console doctrine:database:drop --force
 ```
 
-Create database:
+#### Create database:
 ```shell
 php bin/console doctrine:database:create
 ```
 
-Create schema:
+#### Create schema:
 ```shell
 php bin/console doctrine:schema:create
 ```
 
-Load fixtures:
+#### Load fixtures:
 ```shell
 php bin/console doctrine:fixtures:load
 ```
 
-Migrate database to latest version:
+#### Migrate database to latest version:
 ```shell
 php bin/console doctrine:migrations:migrate
 ```
 
-Clear Symfony cache:
+### Cache
+
+#### Clear Symfony cache:
 ```shell
 php bin/console cache:clear
 ```
 
-Rebuild database (BEWARE, DANGEROUS, TOTAL DATA LOSS):
+### Complete rebuild
+
+#### Rebuild database (BEWARE, DANGEROUS, TOTAL DATA LOSS):
 ```shell
 php bin/console doctrine:database:drop --force \
   && php bin/console doctrine:database:create \
@@ -40,4 +50,15 @@ php bin/console doctrine:database:drop --force \
   && php bin/console doctrine:fixtures:load \
   && php bin/console doctrine:migrations:migrate \
   && php bin/console cache:clear
+```
+
+### Open Api
+
+#### Generate OpenApi Yaml file
+documentation/postman/buildingexaminator/v1/openapi.yaml
+
+Library "zircote/swagger-php" is used for this.
+[Swagger-PHP v3.x](https://zircote.github.io/swagger-php/Getting-started.html)
+```shell
+php bin/openapi
 ```

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use Doctrine\Persistence\ObjectManager;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -19,6 +20,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
 /**
@@ -323,7 +325,7 @@ class ApiController extends AbstractController
         return $this->render('api/v1/documentation/index.twig');
     }
 
-    #[Route('/housingstocks', name: 'housingstocks', methods: ['GET'])]
+    #[Route('/housingstocks', name: 'listhousingstocks', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks",
@@ -339,6 +341,32 @@ class ApiController extends AbstractController
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         return $this->renderData($housingStockRepository->findAll(), self::HOUSING_STOCK_LIST_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks', name: 'addhousingstocks', methods: ['POST'])]
+    public function addHousingStock(Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $newHousingStock = json_decode($request->getContent(), true);
+
+        $housingStock = new HousingStock();
+        $housingStock->setName($newHousingStock['name']);
+        $housingStock->setCode($newHousingStock['code']);
+        $housingStock->setDescription($newHousingStock['description']);
+        $housingStock->setCreationTime();
+        $housingStock->setLastChangeTime();
+
+        $errors = $validator->validate($housingStock);
+
+        if (count($errors) > 0) {
+            $errorsString = (string) $errors;
+
+            return new Response($errorsString, 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($housingStock);
+
+        return new Response('', 200);
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'housingstock', methods: ['GET'])]

@@ -1,0 +1,725 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Building Examinator",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "/api/buildingexaminator/v1"
+        }
+    ],
+    "paths": {
+        "/housingstocks": {
+            "get": {
+                "summary": "Returns details about multiple housing stocks",
+                "operationId": "19e582c4a577484d38858cd48abd01ae",
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple housing stocks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/housingStocks"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}": {
+            "get": {
+                "summary": "Returns details about a housing stock",
+                "operationId": "690081229387f635c736db5dc1b4e69a",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a housing stock",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousingStock"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/blocks": {
+            "get": {
+                "summary": "Returns details about multiple blocks",
+                "operationId": "640b4429ebb1462f1d1f14c965a9b2bb",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple blocks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/blocks"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/blocks/{blockId}": {
+            "get": {
+                "summary": "Returns details about a block",
+                "operationId": "7048b6f03a7bb1deb3f4f1cc26c1d2e5",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "blockId",
+                        "in": "path",
+                        "description": "The id of a block",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a block",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Block"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/addresses": {
+            "get": {
+                "summary": "Returns details about multiple addresses",
+                "operationId": "7bdb42033e6379ec7cbd3d69c82246eb",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple addresses",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/buildingAddresses"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/addresses/{addressId}": {
+            "get": {
+                "summary": "Returns details about an address",
+                "operationId": "07133fa35032ffada708a0acd50e94f7",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "addressId",
+                        "in": "path",
+                        "description": "The id of an address",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about an address",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BuildingAddress"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/buildingtypes": {
+            "get": {
+                "summary": "Returns details about multiple building types",
+                "operationId": "f9fd559eca753c13baf0a23e305ff7c0",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple buildingtypes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/buildingTypes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}": {
+            "get": {
+                "summary": "Returns details about an address",
+                "operationId": "7b66fe101abd94e73f0387af90cf7fb3",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "buildingtypeId",
+                        "in": "path",
+                        "description": "The id of a building type",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a building type",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BuildingType"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/livingtypes": {
+            "get": {
+                "summary": "Returns details about multiple living types",
+                "operationId": "ceac2df803f1be8a2817d11dbf2fe9d3",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple living types",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/livingTypes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/livingtypes/{livingTypeId}": {
+            "get": {
+                "summary": "Returns details about a living type",
+                "operationId": "a174d2aa06c5d444fdf479478fa535c5",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "livingTypeId",
+                        "in": "path",
+                        "description": "The id of a living type",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a living type",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LivingType"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/residentialareas": {
+            "get": {
+                "summary": "Returns details about multiple residential areas",
+                "operationId": "6d5066b019a4457d9a491b582229f6fd",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple residential areas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/residentialAreas"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}": {
+            "get": {
+                "summary": "Returns details about a residential area",
+                "operationId": "4038c6d0df87652293222c5193ca0ee3",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "residentialAreaId",
+                        "in": "path",
+                        "description": "The id of a residential area",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a residential area",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResidentialArea"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ids": {
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "housingStocks": {
+                "title": "Housing stocks",
+                "description": "An array of housing stocks",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/HousingStock"
+                }
+            },
+            "blocks": {
+                "title": "Blocks",
+                "description": "An array of blocks",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Block"
+                }
+            },
+            "buildingAddresses": {
+                "title": "Addresses",
+                "description": "An array of addresses",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/BuildingAddress"
+                }
+            },
+            "buildingTypes": {
+                "title": "Building types",
+                "description": "An array of building types",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/BuildingType"
+                }
+            },
+            "livingTypes": {
+                "title": "Living types",
+                "description": "An array of living types",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/LivingType"
+                }
+            },
+            "residentialAreas": {
+                "title": "Residential areas",
+                "description": "An array of residential areas",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ResidentialArea"
+                }
+            },
+            "Block": {
+                "properties": {
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "numberOfBuildingAddresses": {
+                        "type": "integer"
+                    },
+                    "buildingTypeSelection": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "financialNumber": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "BuildingAddress": {
+                "properties": {
+                    "residentialArea": {
+                        "$ref": "#/components/schemas/ResidentialArea"
+                    },
+                    "buildingType": {
+                        "$ref": "#/components/schemas/BuildingType"
+                    },
+                    "livingType": {
+                        "$ref": "#/components/schemas/LivingType"
+                    },
+                    "blocks": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "rentalUnitNumber": {
+                        "type": "string"
+                    },
+                    "streetName": {
+                        "type": "string"
+                    },
+                    "houseNumber": {
+                        "type": "integer"
+                    },
+                    "addition": {
+                        "type": "string"
+                    },
+                    "zipcode": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "bagId": {
+                        "type": "integer"
+                    },
+                    "constructionYear": {
+                        "type": "integer"
+                    },
+                    "renovationYear": {
+                        "type": "integer"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "BuildingType": {
+                "properties": {
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "buildingTypeSelections": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "BuildingTypeSelection": {
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "HousingStock": {
+                "properties": {
+                    "blocks": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "buildingTypes": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "livingTypes": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "housingStockOptionSet": {},
+                    "numberOfBlocks": {
+                        "type": "integer"
+                    },
+                    "numberOfBuildingAddresses": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "LivingType": {
+                "properties": {
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ResidentialArea": {
+                "properties": {
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastChangeTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "externalDocs": {
+        "url": "/api/buildingexaminator/v1/documentation"
+    }
+}
