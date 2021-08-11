@@ -242,6 +242,7 @@ class ApiController extends AbstractController
         'addition',
         'zipcode',
         'city',
+        'daeb',
     ];
 
     private const BUILDINGTYPE_LIST_FIELDS = [
