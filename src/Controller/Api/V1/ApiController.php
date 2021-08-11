@@ -343,7 +343,36 @@ class ApiController extends AbstractController
         return $this->renderData($housingStockRepository->findAll(), self::HOUSING_STOCK_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks', name: 'addhousingstocks', methods: ['POST'])]
+    #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks",
+     *     summary="Add new housing stock",
+     *     @OA\RequestBody(
+     *         description="Details about new housing stock",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created housing stock",
+     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
+     *     )
+     * )
+     */
     public function addHousingStock(Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
     {
         $newHousingStock = json_decode($request->getContent(), true);
@@ -365,11 +394,113 @@ class ApiController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($housingStock);
+        $entityManager->flush();
+
+        return $this->renderData($housingStock, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}', name: 'changehousingstock', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}",
+     *     summary="Change housing stock",
+     *     @OA\RequestBody(
+     *         description="Details for changing housing stock",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed housing stock",
+     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
+     *     )
+     * )
+     */
+    public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeHousingStock = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $housingStock->setName($changeHousingStock['name']);
+        $housingStock->setCode($changeHousingStock['code']);
+        $housingStock->setDescription($changeHousingStock['description']);
+        $housingStock->setLastChangeTime();
+
+        $errors = $validator->validate($housingStock);
+
+        if (count($errors) > 0) {
+            $errorsString = (string) $errors;
+
+            return new Response($errorsString, 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($housingStock);
+        $entityManager->flush();
+
+        return $this->renderData($housingStock, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}', name: 'deletehousingstock', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}",
+     *     summary="Delete housing stock",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a housing stock"
+     *     )
+     * )
+     */
+    public function deleteHousingStock(string $housingStockId, LoggerInterface $logger): Response
+    {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($housingStock);
+        $entityManager->flush();
 
         return new Response('', 200);
     }
 
-    #[Route('/housingstocks/{housingStockId}', name: 'housingstock', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}', name: 'gethousingstock', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}",

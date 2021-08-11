@@ -26,6 +26,43 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "Add new housing stock",
+                "operationId": "261be0def17efecdb3acf0f51bfe7f3c",
+                "requestBody": {
+                    "description": "Details about new housing stock",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created housing stock",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousingStock"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/housingstocks/{housingStockId}": {
@@ -54,6 +91,76 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change housing stock",
+                "operationId": "714a70f2055f60fc8cbc22d542225397",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details for changing housing stock",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about changed housing stock",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousingStock"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete housing stock",
+                "operationId": "9f931773b03cf2e818325bbe017bd7a0",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted a housing stock"
                     }
                 }
             }
