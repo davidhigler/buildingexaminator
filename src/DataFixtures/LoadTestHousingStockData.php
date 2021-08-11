@@ -14,7 +14,7 @@ use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStockOptionSet;
 
 /**
- * @author David C. Higler <davidhigler@gmail.com>
+ * @author Reiny Griemink <rgriemink@gmail.com>
  */
 class LoadTestHousingStockData extends Fixture
 {

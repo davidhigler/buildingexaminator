@@ -628,6 +628,9 @@
                     "blocks": {
                         "$ref": "#/components/schemas/ids"
                     },
+                    "daeb": {
+                        "type": "boolean"
+                    },
                     "rentalUnitNumber": {
                         "type": "string"
                     },
@@ -738,7 +741,12 @@
                     "buildingAddresses": {
                         "$ref": "#/components/schemas/ids"
                     },
-                    "housingStockOptionSet": {},
+                    "housingStockOptionSet": {
+                        "$ref": "#/components/schemas/HousingStockOptionSet"
+                    },
+                    "owner": {
+                        "$ref": "#/components/schemas/Owner"
+                    },
                     "numberOfBlocks": {
                         "type": "integer"
                     },
@@ -768,6 +776,13 @@
                 },
                 "type": "object"
             },
+            "HousingStockOptionSet": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    }
+                }
+            },
             "LivingType": {
                 "properties": {
                     "buildingAddresses": {
@@ -789,6 +804,26 @@
                     "lastChangeTime": {
                         "type": "string",
                         "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Owner": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "kvk": {
+                        "type": "integer"
+                    },
+                    "btw": {
+                        "type": "string"
+                    },
+                    "lNumber": {
+                        "type": "string"
                     },
                     "id": {
                         "type": "integer"

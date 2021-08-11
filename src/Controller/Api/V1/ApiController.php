@@ -2,7 +2,6 @@
 
 namespace App\Controller\Api\V1;
 
-use Doctrine\Persistence\ObjectManager;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -326,6 +325,22 @@ class ApiController extends AbstractController
         return $this->render('api/v1/documentation/index.twig');
     }
 
+    /**
+     * OWNERS
+     *
+     * @ToDo Define the needed functions and routes
+     */
+
+    #[Route('/owners', name: 'listowners', methods: ['GET'])]
+    #[Route('/owners', name: 'addowner', methods: ['POST'])]
+    #[Route('/owners', name: 'changeowner', methods: ['PUT'])]
+    #[Route('/owners', name: 'deleteowner', methods: ['DELETE'])]
+    #[Route('/owners', name: 'getowner', methods: ['GET'])]
+
+    /**
+     * HOUSINGSTOCKS
+     */
+
     #[Route('/housingstocks', name: 'listhousingstocks', methods: ['GET'])]
     /**
      * @OA\Get(
@@ -529,6 +544,12 @@ class ApiController extends AbstractController
         return $this->renderData($housingStockRepository->find((int) $housingStockId), self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
     }
 
+    /**
+     * BLOCKS
+     *
+     * @Todo Define the POST, PUT and DELETE methods
+     */
+
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'blocks', methods: ['GET'])]
     /**
      * @OA\Get(
@@ -594,6 +615,12 @@ class ApiController extends AbstractController
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]), self::BLOCK_DETAIL_FIELDS, $logger);
     }
+
+    /**
+     * ADDRESSES
+     *
+     * @Todo Define the POST, PUT and DELETE methods
+     */
 
     #[Route('/housingstocks/{housingStockId}/addresses', name: 'addresses', methods: ['GET'])]
     /**
@@ -661,6 +688,12 @@ class ApiController extends AbstractController
         return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
 
+    /**
+     * BUILDINGTYPES
+     *
+     * @Todo Define the POST, PUT and DELETE methods
+     */
+
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'buildingtypes', methods: ['get'])]
     /**
      * @OA\Get(
@@ -726,6 +759,12 @@ class ApiController extends AbstractController
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
         return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
+
+    /**
+     * LIVINGTYPES
+     *
+     * @Todo Define the POST, PUT and DELETE methods
+     */
 
     #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'livingtypes', methods: ['get'])]
     /**
@@ -793,6 +832,12 @@ class ApiController extends AbstractController
         return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
 
+    /**
+     * RESIDENTIALAREAS
+     *
+     * @Todo Define the POST, PUT and DELETE methods
+     */
+
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'residentialareas', methods: ['get'])]
     /**
      * @OA\Get(
@@ -858,6 +903,10 @@ class ApiController extends AbstractController
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
     }
+
+    /**
+     * EXTRA
+     */
 
     private function renderData($results, array $fields, LoggerInterface $logger): Response
     {

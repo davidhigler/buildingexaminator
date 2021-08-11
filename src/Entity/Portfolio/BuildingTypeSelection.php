@@ -26,7 +26,7 @@ class BuildingTypeSelection extends IdTimeIdentification
     protected Block $block;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingSelection")
+     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingTypeSelection")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      * @Assert\Valid()
      */
