@@ -19,6 +19,8 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
@@ -400,12 +402,9 @@ class ApiController extends AbstractController
         $housingStock->setCreationTime();
         $housingStock->setLastChangeTime();
 
-        $errors = $validator->validate($housingStock);
-
-        if (count($errors) > 0) {
-            $errorsString = (string) $errors;
-
-            return new Response($errorsString, 500);
+        $violations = $validator->validate($housingStock);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -550,7 +549,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/blocks', name: 'blocks', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/blocks', name: 'listblocks', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/blocks",
@@ -576,6 +575,78 @@ class ApiController extends AbstractController
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId]), self::BLOCK_LIST_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/blocks', name: 'addblock', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/blocks",
+     *     summary="Add new block",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new block",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="financialnumber",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created block",
+     *         @OA\JsonContent(ref="#/components/schemas/Block")
+     *     )
+     * )
+     */
+    public function addBlock(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    {
+        $newBlock = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $block = new Block();
+        $block->setHousingStock($housingStock);
+        $block->setName($newBlock['name']);
+        $block->setCode($newBlock['code']);
+        $block->setDescription($newBlock['description']);
+        $block->setFinancialNumber($newBlock['financialnumber']);
+        $block->setCreationTime();
+        $block->setLastChangeTime();
+
+        $violations = $validator->validate($block);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($block);
+        $entityManager->flush();
+
+        return $this->renderData($block, self::BLOCK_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'block', methods: ['GET'])]
@@ -931,5 +1002,18 @@ class ApiController extends AbstractController
         }
 
         return $this->json($data, 200);
+    }
+
+    private function extractErrorsFromViolations(ConstraintViolationListInterface $violations): array
+    {
+        $errors = [];
+        /** @var ConstraintViolationInterface $violation */
+        foreach ($violations as $violation) {
+            $error = new \stdClass();
+            $error->code = $violation->getCode();
+            $error->message = $violation->getMessage();
+            $errors[] = $error;
+        }
+        return $errors;
     }
 }

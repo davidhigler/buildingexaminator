@@ -62,3 +62,17 @@ Library "zircote/swagger-php" is used for this.
 ```shell
 php bin/openapi
 ```
+
+### Development information
+
+#### Running things under Xampp
+
+```shell
+/c/xampp/php/php.exe bin/composer install
+/c/xampp/php/php.exe bin/console doctrine:database:create
+/c/xampp/php/php.exe bin/console doctrine:schema:create
+/c/xampp/php/php.exe bin/console doctrine:fixtures:load
+/c/xampp/php/php.exe bin/console cache:clear
+
+/c/xampp/php/php.exe bin/composer require symfony/rate-limiter
+```
