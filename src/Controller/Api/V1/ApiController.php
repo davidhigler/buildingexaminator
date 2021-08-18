@@ -467,12 +467,9 @@ class ApiController extends AbstractController
         $housingStock->setDescription($changeHousingStock['description']);
         $housingStock->setLastChangeTime();
 
-        $errors = $validator->validate($housingStock);
-
-        if (count($errors) > 0) {
-            $errorsString = (string) $errors;
-
-            return new Response($errorsString, 500);
+        $violations = $validator->validate($housingStock);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
