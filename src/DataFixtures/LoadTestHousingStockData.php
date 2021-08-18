@@ -11,6 +11,7 @@ use App\Entity\Portfolio\BuildingAddress;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\BuildingType;
+use App\Entity\Portfolio\BuildingTypeSelection;
 use App\Entity\Portfolio\HousingStockOptionSet;
 
 /**
@@ -207,7 +208,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingType13->setDescription('vhosihg hvuh dho ä ueabvuiabio haeehvoiaejb iodhvujabiobhaeiohviaeh ihasdkjhgioedhbv');
         $buildingType13->setCreationTime();
         $buildingType13->setLastChangeTime();
-
+        
         $livingType1 = new LivingType();
         $livingType1->setId(1);
         $livingType1->setCode('lt1');
@@ -2696,10 +2697,88 @@ class LoadTestHousingStockData extends Fixture
         $block9->setNumberOfBuildingAddresses(9);
         $block9->setCreationTime();
         $block9->setLastChangeTime();
-
-        $housingStockOptionSet = new HousingStockOptionSet();
-        $housingStockOptionSet->setId(1);
-
+                       
+        $buildingTypeSelection1 = new BuildingTypeSelection();
+        $buildingTypeSelection1->setId(1);
+        $buildingTypeSelection1->setCode('lat1');
+        $buildingTypeSelection1->setName('building type 1');
+        $buildingTypeSelection1->setblock($block1);
+        $buildingTypeSelection1->setbuildingType($buildingType1);
+        $buildingTypeSelection1->setCreationTime();
+        $buildingTypeSelection1->setLastChangeTime();
+        
+        $buildingTypeSelection2 = new BuildingTypeSelection();
+        $buildingTypeSelection2->setId(1);
+        $buildingTypeSelection2->setCode('lat1');
+        $buildingTypeSelection2->setName('building type 1');
+        $buildingTypeSelection2->setblock($block2);
+        $buildingTypeSelection2->setbuildingType($buildingType2);
+        $buildingTypeSelection2->setCreationTime();
+        $buildingTypeSelection2->setLastChangeTime();
+        
+        $buildingTypeSelection3 = new BuildingTypeSelection();
+        $buildingTypeSelection3->setId(1);
+        $buildingTypeSelection3->setCode('lat1');
+        $buildingTypeSelection3->setName('building type 1');
+        $buildingTypeSelection3->setblock($block3);
+        $buildingTypeSelection3->setbuildingType($buildingType3);
+        $buildingTypeSelection3->setCreationTime();
+        $buildingTypeSelection3->setLastChangeTime();
+        
+        $buildingTypeSelection4 = new BuildingTypeSelection();
+        $buildingTypeSelection4->setId(1);
+        $buildingTypeSelection4->setCode('lat1');
+        $buildingTypeSelection4->setName('building type 1');
+        $buildingTypeSelection4->setblock($block4);
+        $buildingTypeSelection4->setbuildingType($buildingType2);
+        $buildingTypeSelection4->setCreationTime();
+        $buildingTypeSelection4->setLastChangeTime();
+        
+        $buildingTypeSelection5 = new BuildingTypeSelection();
+        $buildingTypeSelection5->setId(1);
+        $buildingTypeSelection5->setCode('lat1');
+        $buildingTypeSelection5->setName('building type 1');
+        $buildingTypeSelection5->setblock($block5);
+        $buildingTypeSelection5->setbuildingType($buildingType4);
+        $buildingTypeSelection5->setCreationTime();
+        $buildingTypeSelection5->setLastChangeTime();
+        
+        $buildingTypeSelection6 = new BuildingTypeSelection();
+        $buildingTypeSelection6->setId(1);
+        $buildingTypeSelection6->setCode('lat1');
+        $buildingTypeSelection6->setName('building type 1');
+        $buildingTypeSelection6->setblock($block6);
+        $buildingTypeSelection6->setbuildingType($buildingType6);
+        $buildingTypeSelection6->setCreationTime();
+        $buildingTypeSelection6->setLastChangeTime();
+        
+        $buildingTypeSelection7 = new BuildingTypeSelection();
+        $buildingTypeSelection7->setId(1);
+        $buildingTypeSelection7->setCode('lat1');
+        $buildingTypeSelection7->setName('building type 1');
+        $buildingTypeSelection7->setblock($block7);
+        $buildingTypeSelection7->setbuildingType($buildingType7);
+        $buildingTypeSelection7->setCreationTime();
+        $buildingTypeSelection7->setLastChangeTime();
+        
+        $buildingTypeSelection8 = new BuildingTypeSelection();
+        $buildingTypeSelection8->setId(1);
+        $buildingTypeSelection8->setCode('lat1');
+        $buildingTypeSelection8->setName('building type 1');
+        $buildingTypeSelection8->setblock($block8);
+        $buildingTypeSelection8->setbuildingType($buildingType5);
+        $buildingTypeSelection8->setCreationTime();
+        $buildingTypeSelection8->setLastChangeTime();
+                
+        $buildingTypeSelection9 = new BuildingTypeSelection();
+        $buildingTypeSelection9->setId(1);
+        $buildingTypeSelection9->setCode('lat1');
+        $buildingTypeSelection9->setName('building type 1');
+        $buildingTypeSelection9->setblock($block9);
+        $buildingTypeSelection9->setbuildingType($buildingType1);
+        $buildingTypeSelection9->setCreationTime();
+        $buildingTypeSelection9->setLastChangeTime();
+        
         $housingStock = new HousingStock();
         $housingStock->setId(1);
         $housingStock->setCode('DobrCmTest');
