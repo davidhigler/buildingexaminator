@@ -274,9 +274,9 @@ class LoadTestHousingStockData extends Fixture
         $vtw6 = new vtw();
         $vtw6->setId(6);
         $vtw6->setCode('WT 4');
-        $vtw6->setType('eengezinswoning')
+        $vtw6->setType('eengezinswoning/senioren-woning')
         $vtw6->setBuildingType('4')
-        $vtw6->setBouwjaar('tussen 1970 en 2000')
+        $vtw6->setBouwjaar('tussen 1990 en 2000')
         $vtw6->setRooftype('hellend dak')
             
         $vtw7 = new vtw();
@@ -284,7 +284,7 @@ class LoadTestHousingStockData extends Fixture
         $vtw7->setCode('WT 5');
         $vtw7->setType('eengezinswoning')
         $vtw7->setBuildingType('5')
-        $vtw7->setBouwjaar('tussen 1970 en 2000')
+        $vtw7->setBouwjaar('tussen 1990 en 2000')
         $vtw7->setRooftype('hellend dak')
 
         $vtw8 = new vtw();
@@ -296,7 +296,7 @@ class LoadTestHousingStockData extends Fixture
         $vtw8->setRooftype('hellend dak')
         
         $vtw9 = new vtw();
-        $vtw9->setId(3);
+        $vtw9->setId(9);
         $vtw9->setCode('WT 7R');
         $vtw9->setType('renovatie eengezinswoning')
         $vtw9->setBuildingType('7R')
@@ -304,12 +304,1180 @@ class LoadTestHousingStockData extends Fixture
         $vtw9->setRooftype('hellend dak')
             
         $vtw10 = new vtw();
-        $vtw10->setId(1);
+        $vtw10->setId(10);
         $vtw10->setCode('WT 8');
         $vtw10->setType('eengezinswoning')
         $vtw10->setBuildingType('8')
         $vtw10->setBouwjaar('tussen 1970 en 1990')
         $vtw10->setRooftype('hellend dak')
+        
+        $vtw11 = new vtw();
+        $vtw11->setId(11);
+        $vtw11->setCode('WT 9');
+        $vtw11->setType('eengezinswoning')
+        $vtw11->setBuildingType('9')
+        $vtw11->setBouwjaar('tussen 1990 en 2000')
+        $vtw11->setRooftype('hellend dak')
+
+        $vtw12 = new vtw();
+        $vtw12->setId(12);
+        $vtw12->setCode('WT 10');
+        $vtw12->setType('eengezinswoning')
+        $vtw12->setBuildingType('10')
+        $vtw12->setBouwjaar('na 2000')
+        $vtw12->setRooftype('hellend dak')
+            
+        $vtw13 = new vtw();
+        $vtw13->setId(13);
+        $vtw13->setCode('WT 11');
+        $vtw13->setType('eengezinswoning')
+        $vtw13->setBuildingType('11')
+        $vtw13->setBouwjaar('tussen 1950 en 1970')
+        $vtw13->setRooftype('vlak dak')
+
+        $vtw14 = new vtw();
+        $vtw14->setId(14);
+        $vtw14->setCode('WT 11R');
+        $vtw14->setType('renovatie eengezinswoning')
+        $vtw14->setBuildingType('11R')
+        $vtw14->setBouwjaar('tussen 1950 en 1970')
+        $vtw14->setRooftype('vlak dak')
+            
+        $vtw15 = new vtw();
+        $vtw15->setId(15);
+        $vtw15->setCode('WT 12');
+        $vtw15->setType('eengezinswoning')
+        $vtw15->setBuildingType('12')
+        $vtw15->setBouwjaar('tussen 1970 en 1990')
+        $vtw15->setRooftype('vlak dak')
+
+        $vtw16 = new vtw();
+        $vtw16->setId(16);
+        $vtw16->setCode('WT 13');
+        $vtw16->setType('eengezinswoning')
+        $vtw16->setBuildingType('13')
+        $vtw16->setBouwjaar('na 1990')
+        $vtw16->setRooftype('vlak dak')
+            
+        $vtw17 = new vtw();
+        $vtw17->setId(17);
+        $vtw17->setCode('WT 14');
+        $vtw17->setType('open portiekwoning')
+        $vtw17->setBuildingType('14')
+        $vtw17->setBouwjaar('voor 1950')
+        $vtw17->setRooftype('hellend dak')
+
+        $vtw18 = new vtw();
+        $vtw18->setId(18);
+        $vtw18->setCode('WT 14R');
+        $vtw18->setType('eengezinswoning')
+        $vtw18->setBuildingType('14R')
+        $vtw18->setBouwjaar('voor 1950')
+        $vtw18->setRooftype('hellend dak')
+        
+        $vtw19 = new vtw();
+        $vtw19->setId(19);
+        $vtw19->setCode('WT 15');
+        $vtw19->setType('open portiekwoning')
+        $vtw19->setBuildingType('15')
+        $vtw19->setBouwjaar('voor 1950')
+        $vtw19->setRooftype('vlak dak')
+            
+        $vtw20 = new vtw();
+        $vtw20->setId(20);
+        $vtw20->setCode('WT 15R');
+        $vtw20->setType('renovatie open portiekwoning')
+        $vtw20->setBuildingType('15R')
+        $vtw20->setBouwjaar('voor 1950')
+        $vtw20->setRooftype('vlak dak')
+            
+        $vtw21 = new vtw();
+        $vtw21->setId(21);
+        $vtw21->setCode('WT 16');
+        $vtw21->setType('etagewoning')
+        $vtw21->setBuildingType('16')
+        $vtw21->setBouwjaar('voor 1950')
+        $vtw21->setRooftype('hellend dak')
+
+        $vtw22 = new vtw();
+        $vtw22->setId(22);
+        $vtw22->setCode('WT 16R');
+        $vtw22->setType('renovatie etagewoning')
+        $vtw22->setBuildingType('16R')
+        $vtw22->setBouwjaar('voor 1950')
+        $vtw22->setRooftype('hellend dak')
+            
+        $vtw23 = new vtw();
+        $vtw23->setId(23);
+        $vtw23->setCode('WT 17');
+        $vtw23->setType('etagewoning')
+        $vtw23->setBuildingType('17')
+        $vtw23->setBouwjaar('voor 1950')
+        $vtw23->setRooftype('vlak dak')
+
+        $vtw24 = new vtw();
+        $vtw24->setId(24);
+        $vtw24->setCode('WT 17R');
+        $vtw24->setType('renovatie etagewoning')
+        $vtw24->setBuildingType('17R')
+        $vtw24->setBouwjaar('voor 1950')
+        $vtw24->setRooftype('vlak dak')
+            
+        $vtw25 = new vtw();
+        $vtw25->setId(25);
+        $vtw25->setCode('WT 18');
+        $vtw25->setType('trappenhuisflat Amsterdamse school')
+        $vtw25->setBuildingType('18')
+        $vtw25->setBouwjaar('voor 1950')
+        $vtw25->setRooftype('hellend dak')
+
+        $vtw26 = new vtw();
+        $vtw26->setId(26);
+        $vtw26->setCode('WT 18R');
+        $vtw26->setType('renovatie trappenhuisflat Amsterdamse school')
+        $vtw26->setBuildingType('18R')
+        $vtw26->setBouwjaar('voor 1950')
+        $vtw26->setRooftype('hellend dak')
+            
+        $vtw27 = new vtw();
+        $vtw27->setId(27);
+        $vtw27->setCode('WT 19');
+        $vtw27->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw27->setBuildingType('19')
+        $vtw27->setBouwjaar('voor 1950')
+        $vtw27->setRooftype('hellend dak')
+
+        $vtw28 = new vtw();
+        $vtw28->setId(28);
+        $vtw28->setCode('WT 19R');
+        $vtw28->setType('renovatie trappenhuisflat tot en met 4 lagen')
+        $vtw28->setBuildingType('19R')
+        $vtw28->setBouwjaar('voor 1950')
+        $vtw28->setRooftype('hellend dak')
+        
+        $vtw29 = new vtw();
+        $vtw29->setId(29);
+        $vtw29->setCode('WT 20');
+        $vtw29->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw29->setBuildingType('20')
+        $vtw29->setBouwjaar('tussen 1950 en 1970')
+        $vtw29->setRooftype('hellend dak')
+            
+        $vtw30 = new vtw();
+        $vtw30->setId(30);
+        $vtw30->setCode('WT 20R');
+        $vtw30->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw30->setBuildingType('20R')
+        $vtw30->setBouwjaar('tussen 1950 en 1970')
+        $vtw30->setRooftype('hellend dak')
+        
+        $vtw31 = new vtw();
+        $vtw31->setId(31);
+        $vtw31->setCode('WT 21');
+        $vtw31->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw31->setBuildingType('21')
+        $vtw31->setBouwjaar('voor 1950')
+        $vtw31->setRooftype('vlak dak')
+
+        $vtw32 = new vtw();
+        $vtw32->setId(32);
+        $vtw32->setCode('WT 21R');
+        $vtw32->setType('renovatie trappenhuisflat tot en met 4 lagen')
+        $vtw32->setBuildingType('21R')
+        $vtw32->setBouwjaar('voor 1950')
+        $vtw32->setRooftype('vlak dak')
+            
+        $vtw33 = new vtw();
+        $vtw33->setId(33);
+        $vtw33->setCode('WT 22');
+        $vtw33->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw33->setBuildingType('22')
+        $vtw33->setBouwjaar('tussen 1950 en 1970')
+        $vtw33->setRooftype('vlak dak')
+
+        $vtw34 = new vtw();
+        $vtw34->setId(34);
+        $vtw34->setCode('WT 22R');
+        $vtw34->setType('renovatie trappenhuisflat tot en met 4 lagen')
+        $vtw34->setBuildingType('22R')
+        $vtw34->setBouwjaar('tussen 1950 en 1970')
+        $vtw34->setRooftype('vlak dak')
+            
+        $vtw35 = new vtw();
+        $vtw35->setId(35);
+        $vtw35->setCode('WT 23');
+        $vtw35->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw35->setBuildingType('23')
+        $vtw35->setBouwjaar('tussen 1970 en 1990')
+        $vtw35->setRooftype('vlak dak')
+
+        $vtw36 = new vtw();
+        $vtw36->setId(36);
+        $vtw36->setCode('WT 24');
+        $vtw36->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw36->setBuildingType('24')
+        $vtw36->setBouwjaar('na 1990')
+        $vtw36->setRooftype('vlak dak')
+            
+        $vtw37 = new vtw();
+        $vtw37->setId(37);
+        $vtw37->setCode('WT 25');
+        $vtw37->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw37->setBuildingType('25')
+        $vtw37->setBouwjaar('na 1990')
+        $vtw37->setRooftype('vlak dak')
+
+        $vtw38 = new vtw();
+        $vtw38->setId(38);
+        $vtw38->setCode('WT 26');
+        $vtw38->setType('trappenhuisflat tot en met 4 lagen')
+        $vtw38->setBuildingType('26')
+        $vtw38->setBouwjaar('na 1990')
+        $vtw38->setRooftype('vlak dak')
+        
+        $vtw39 = new vtw();
+        $vtw39->setId(39);
+        $vtw39->setCode('WT 27');
+        $vtw39->setType('trappenhuis-/corridorflat zgn. Urban villa tot en met 4 lagen')
+        $vtw39->setBuildingType('27')
+        $vtw39->setBouwjaar('na 1990')
+        $vtw39->setRooftype('vlak en hellend dak')
+            
+        $vtw40 = new vtw();
+        $vtw40->setId(40);
+        $vtw40->setCode('WT 28');
+        $vtw40->setType('trappenhuis-/corridorflat meer dan 4 lagen')
+        $vtw40->setBuildingType('28')
+        $vtw40->setBouwjaar('1950 en 1970')
+        $vtw40->setRooftype('vlak dak') 
+            
+        $vtw41 = new vtw();
+        $vtw41->setId(41);
+        $vtw41->setCode('WT 28R');
+        $vtw41->setType('renovatie-trappenhuis-/corridorflat meer dan 4 lagen')
+        $vtw41->setBuildingType('28R')
+        $vtw41->setBouwjaar('tussen 1950 en 1970')
+        $vtw41->setRooftype('vlak dak')
+
+        $vtw42 = new vtw();
+        $vtw42->setId(42);
+        $vtw42->setCode('WT 29');
+        $vtw42->setType('trappenhuis-/corridorflat meer dan 4 lagen')
+        $vtw42->setBuildingType('29')
+        $vtw42->setBouwjaar('tussen 1970 en 1990')
+        $vtw42->setRooftype('vlak dak')
+            
+        $vtw43 = new vtw();
+        $vtw43->setId(43);
+        $vtw43->setCode('WT 30');
+        $vtw43->setType('trappenhuis-/corridorflat meer dan 4 lagen')
+        $vtw43->setBuildingType('30')
+        $vtw43->setBouwjaar('na 1990')
+        $vtw43->setRooftype('vlak dak')
+
+        $vtw44 = new vtw();
+        $vtw44->setId(44);
+        $vtw44->setCode('WT 31');
+        $vtw44->setType('galerijflat tot en met 2 lagen')
+        $vtw44->setBuildingType('31')
+        $vtw44->setBouwjaar('tussen 1950 en 1970')
+        $vtw44->setRooftype('vlak dak')
+            
+        $vtw45 = new vtw();
+        $vtw45->setId(45);
+        $vtw45->setCode('WT 32');
+        $vtw45->setType('galerijflat tot en met 4 lagen')
+        $vtw45->setBuildingType('32')
+        $vtw45->setBouwjaar('tussen 1950 en 1970')
+        $vtw45->setRooftype('vlak dak')
+
+        $vtw46 = new vtw();
+        $vtw46->setId(46);
+        $vtw46->setCode('WT 32R');
+        $vtw46->setType('renovatie galerijflat tot en met 4 lagen')
+        $vtw46->setBuildingType('32R')
+        $vtw46->setBouwjaar('tussen 1950 en 1970')
+        $vtw46->setRooftype('vlak dak')
+            
+        $vtw47 = new vtw();
+        $vtw47->setId(47);
+        $vtw47->setCode('WT 33');
+        $vtw47->setType('galerijflat tot en met 4 lagen')
+        $vtw47->setBuildingType('33')
+        $vtw47->setBouwjaar('tussen 1970 en 1990')
+        $vtw47->setRooftype('vlak dak')
+
+        $vtw48 = new vtw();
+        $vtw48->setId(48);
+        $vtw48->setCode('WT 34');
+        $vtw48->setType('galerijflat tot en met 4 lagen')
+        $vtw48->setBuildingType('34')
+        $vtw48->setBouwjaar('na 1970')
+        $vtw48->setRooftype('vlak dak')
+        
+        $vtw49 = new vtw();
+        $vtw49->setId(49);
+        $vtw49->setCode('WT 35');
+        $vtw49->setType('galerijflat meer dan 4 lagen')
+        $vtw49->setBuildingType('35')
+        $vtw49->setBouwjaar('tussen 1950 en 1970')
+        $vtw49->setRooftype('vlak dak')
+            
+        $vtw50 = new vtw();
+        $vtw50->setId(50);
+        $vtw50->setCode('WT 35R');
+        $vtw50->setType('renovatie galerijflat meer dan 4 lagen')
+        $vtw50->setBuildingType('35R')
+        $vtw50->setBouwjaar('tussen 1950 en 1970')
+        $vtw50->setRooftype('vlak dak') 
+       
+        $vtw51 = new vtw();
+        $vtw51->setId(51);
+        $vtw51->setCode('WT 36');
+        $vtw51->setType('galerijflat meer dan 4 lagen')
+        $vtw51->setBuildingType('36')
+        $vtw51->setBouwjaar('tussen 1970 en 1990')
+        $vtw51->setRooftype('vlak dak')
+
+        $vtw52 = new vtw();
+        $vtw52->setId(52);
+        $vtw52->setCode('WT 37');
+        $vtw52->setType('galerijflat meer dan 4 lagen')
+        $vtw52->setBuildingType('37')
+        $vtw52->setBouwjaar('na 1990')
+        $vtw52->setRooftype('vlak dak')
+            
+        $vtw53 = new vtw();
+        $vtw53->setId(53);
+        $vtw53->setCode('WT 38R');
+        $vtw53->setType('renovatie galerijmaisonnette meer dan 4 lagen')
+        $vtw53->setBuildingType('38R')
+        $vtw53->setBouwjaar('tussen 1950 en 1970')
+        $vtw53->setRooftype('vlak dak')
+
+        $vtw54 = new vtw();
+        $vtw54->setId(54);
+        $vtw54->setCode('WT 39R');
+        $vtw54->setType('renovatie eengezinswoning')
+        $vtw54->setBuildingType('39R')
+        $vtw54->setBouwjaar('voor 1950')
+        $vtw54->setRooftype('hellend dak')
+            
+        $vtw55 = new vtw();
+        $vtw55->setId(55);
+        $vtw55->setCode('WT 40');
+        $vtw55->setType('luxe appartementencomplex meer dan 4 lagen')
+        $vtw55->setBuildingType('40')
+        $vtw55->setBouwjaar('na 2000')
+        $vtw55->setRooftype('vlak dak')
+
+        $vtw56 = new vtw();
+        $vtw56->setId(56);
+        $vtw56->setCode('WT 41');
+        $vtw56->setType('bovenwoning')
+        $vtw56->setBuildingType('41')
+        $vtw56->setBouwjaar('tussen 1950 en 1970')
+        $vtw56->setRooftype('vlak dak')
+            
+        $vtw57 = new vtw();
+        $vtw57->setId(57);
+        $vtw57->setCode('WT 42');
+        $vtw57->setType('vinexwoning')
+        $vtw57->setBuildingType('42')
+        $vtw57->setBouwjaar('na 1990')
+        $vtw57->setRooftype('vlak dak')
+
+        $vtw58 = new vtw();
+        $vtw58->setId(58);
+        $vtw58->setCode('WT 43');
+        $vtw58->setType('galerijflat 2 lagen')
+        $vtw58->setBuildingType('43')
+        $vtw58->setBouwjaar('na 1990')
+        $vtw58->setRooftype('hellend dak')
+        
+        $vtw59 = new vtw();
+        $vtw59->setId(59);
+        $vtw59->setCode('WT 44');
+        $vtw59->setType('appartementen in grachtenpand')
+        $vtw59->setBuildingType('44')
+        $vtw59->setBouwjaar('voor 1900')
+        $vtw59->setRooftype('vlak en hellend dak')
+            
+        $vtw60 = new vtw();
+        $vtw60->setId(60);
+        $vtw60->setCode('WT 45');
+        $vtw60->setType('eengezinswoning')
+        $vtw60->setBuildingType('45')
+        $vtw60->setBouwjaar('na 2000')
+        $vtw60->setRooftype('vlak dak') 
+        
+        $vtw1 = new vtw();
+        $vtw61->setId(61);
+        $vtw61->setCode('WT 46');
+        $vtw61->setType('eengezinswoning')
+        $vtw61->setBuildingType('46')
+        $vtw61->setBouwjaar('na 2000')
+        $vtw61->setRooftype('vlak dak')
+
+        $vtw62 = new vtw();
+        $vtw62->setId(62);
+        $vtw62->setCode('WT 47');
+        $vtw62->setType('eengezinswoning')
+        $vtw62->setBuildingType('47')
+        $vtw62->setBouwjaar('na 2000')
+        $vtw62->setRooftype('hellend dak')
+            
+        $vtw63 = new vtw();
+        $vtw63->setId(63);
+        $vtw63->setCode('WT 48R');
+        $vtw63->setType('Renovatie eengezinswoning')
+        $vtw63->setBuildingType('48R')
+        $vtw63->setBouwjaar('tussen 1950 en 1970')
+        $vtw63->setRooftype('hellend dak')
+
+        $vtw64 = new vtw();
+        $vtw64->setId(64);
+        $vtw64->setCode('WT 49');
+        $vtw64->setType('duurzame eengezinswoning')
+        $vtw64->setBuildingType('49')
+        $vtw64->setBouwjaar('na 2015')
+        $vtw64->setRooftype('hellend dak')
+            
+        $vtw65 = new vtw();
+        $vtw65->setId(65);
+        $vtw65->setCode('WT 50');
+        $vtw65->setType('duurzame galerij appartementen')
+        $vtw65->setBuildingType('50')
+        $vtw65->setBouwjaar('na 2015')
+        $vtw65->setRooftype('vlak dak')
+
+        $vtw66 = new vtw();
+        $vtw66->setId(66);
+        $vtw66->setCode('WT 51R');
+        $vtw66->setType('renovatie eengezinswoning nul op de meter')
+        $vtw66->setBuildingType('51R')
+        $vtw66->setBouwjaar('tussen 1970 en 1990')
+        $vtw66->setRooftype('hellend dak')
+            
+        $vtw67 = new vtw();
+        $vtw67->setId(67);
+        $vtw67->setCode('WT 52');
+        $vtw67->setType('energieneutrale eengezinswoning nul op de meter')
+        $vtw67->setBuildingType('52')
+        $vtw67->setBouwjaar('na 2016')
+        $vtw67->setRooftype('hellend dak')
+
+        $vtw68 = new vtw();
+        $vtw68->setId(68);
+        $vtw68->setCode('WT 135');
+        $vtw68->setType('energieneutrale appartementencomplex nul op de meter')
+        $vtw68->setBuildingType('135')
+        $vtw68->setBouwjaar('na 2019')
+        $vtw68->setRooftype('vlak dak')
+            
+        $vtw80 = new vtw();
+        $vtw80->setId(80);
+        $vtw80->setCode('GT 1');
+        $vtw80->setType('aangebouwde garagebox')
+        $vtw80->setBuildingType('1')
+        $vtw80->setBouwjaar('nvt')
+        $vtw80->setRooftype('hellend dak')
+            
+        $vtw81 = new vtw();
+        $vtw81->setId(81);
+        $vtw81->setCode('GT 2');
+        $vtw81->setType('aangebouwde garagebox')
+        $vtw81->setBuildingType('2')
+        $vtw81->setBouwjaar('nvt')
+        $vtw81->setRooftype('vlak dak')
+            
+        $vtw82 = new vtw();
+        $vtw82->setId(82);
+        $vtw82->setCode('GT 3');
+        $vtw82->setType('vrijstaande garagebox')
+        $vtw82->setBuildingType('3')
+        $vtw82->setBouwjaar('nvt')
+        $vtw82->setRooftype('vlak dak')
+            
+        $vtw83 = new vtw();
+        $vtw83->setId(83);
+        $vtw83->setCode('GT 4');
+        $vtw83->setType('garagebox in rij')
+        $vtw83->setBuildingType('4')
+        $vtw83->setBouwjaar('nvt')
+        $vtw83->setRooftype('vlak dak')
+            
+        $vtw84 = new vtw();
+        $vtw84->setId(84);
+        $vtw84->setCode('GT 5');
+        $vtw84->setType('garagebox onder gebouw')
+        $vtw84->setBuildingType('5')
+        $vtw84->setBouwjaar('nvt')
+        $vtw84->setRooftype('nvt')
+         
+        $vtw85 = new vtw();
+        $vtw85->setId(85);
+        $vtw85->setCode('GT 6');
+        $vtw85->setType('garagebox ondergronds')
+        $vtw85->setBuildingType('6')
+        $vtw85->setBouwjaar('nvt')
+        $vtw85->setRooftype('nvt')
+            
+        $vtw86 = new vtw();
+        $vtw86->setId(86);
+        $vtw86->setCode('GT 7');
+        $vtw86->setType('garagebox bovengronds')
+        $vtw86->setBuildingType('7')
+        $vtw86->setBouwjaar('nvt')
+        $vtw86->setRooftype('nvt')
+            
+        $vtw90 = new vtw();
+        $vtw90->setId(90);
+        $vtw90->setCode('KT 1');
+        $vtw90->setType('grachtenpand gevel(s) in metselwerk')
+        $vtw90->setBuildingType('1')
+        $vtw90->setBouwjaar('nvt')
+        $vtw90->setRooftype('nvt')
+            
+        $vtw91 = new vtw();
+        $vtw91->setId(91);
+        $vtw91->setCode('KT 2');
+        $vtw91->setType('grachtenpand gevel(s) gestukadoord en geschilderd')
+        $vtw91->setBuildingType('2')
+        $vtw91->setBouwjaar('nvt')
+        $vtw91->setRooftype('nvt')
+            
+        $vtw92 = new vtw();
+        $vtw92->setId(92);
+        $vtw92->setCode('KT 3');
+        $vtw92->setType('klassieke (monumentale) kantoorvilla gevel(s) in metselwerk')
+        $vtw92->setBuildingType('3')
+        $vtw92->setBouwjaar('nvt')
+        $vtw92->setRooftype('nvt')
+            
+        $vtw93 = new vtw();
+        $vtw93->setId(93);
+        $vtw93->setCode('KT 4');
+        $vtw93->setType('klassieke (monumentale) kantoorvilla gevel(s) gestukadoord en geschilderd')
+        $vtw93->setBuildingType('4')
+        $vtw93->setBouwjaar('nvt')
+        $vtw93->setRooftype('nvt')
+            
+        $vtw94 = new vtw();
+        $vtw94->setId(94);
+        $vtw94->setCode('KT 5');
+        $vtw94->setType('middelhoog jaren zestig-zeventig bouw gevel(s) in metselwerk')
+        $vtw94->setBuildingType('5')
+        $vtw94->setBouwjaar('nvt')
+        $vtw94->setRooftype('nvt')
+            
+        $vtw95 = new vtw();
+        $vtw95->setId(95);
+        $vtw95->setCode('KT 6');
+        $vtw95->setType('middelhoog jaren zestig-zeventig bouw gevel(s) in beton')
+        $vtw95->setBuildingType('6')
+        $vtw95->setBouwjaar('nvt')
+        $vtw95->setRooftype('nvt')
+           
+        $vtw96 = new vtw();
+        $vtw96->setId(96);
+        $vtw96->setCode('KT 7');
+        $vtw96->setType('laag gevel(s) in metselwerk')
+        $vtw96->setBuildingType('7')
+        $vtw96->setBouwjaar('nvt')
+        $vtw96->setRooftype('nvt')
+         
+        $vtw97 = new vtw();
+        $vtw97->setId(97);
+        $vtw97->setCode('KT 8');
+        $vtw97->setType('laag vliesgevel(s)')
+        $vtw97->setBuildingType('8')
+        $vtw97->setBouwjaar('nvt')
+        $vtw97->setRooftype('nvt')
+            
+        $vtw98 = new vtw();
+        $vtw98->setId(98);
+        $vtw98->setCode('KT 9');
+        $vtw98->setType('laag gevel(s) in natuursteen')
+        $vtw98->setBuildingType('9')
+        $vtw98->setBouwjaar('nvt')
+        $vtw98->setRooftype('nvt')
+        
+        $vtw99 = new vtw();
+        $vtw99->setId(99);
+        $vtw99->setCode('KT 10');
+        $vtw99->setType('laag gevel(s) in beton')
+        $vtw99->setBuildingType('10')
+        $vtw99->setBouwjaar('nvt')
+        $vtw99->setRooftype('nvt')
+            
+        $vtw100 = new vtw();
+        $vtw100->setId(100);
+        $vtw100->setCode('KT 11');
+        $vtw100->setType('laag gevel(s) in metaal')
+        $vtw100->setBuildingType('11')
+        $vtw100->setBouwjaar('nvt')
+        $vtw100->setRooftype('nvt')
+            
+        $vtw101 = new vtw();
+        $vtw101->setId(101);
+        $vtw101->setCode('KT 12');
+        $vtw101->setType('middelhoog gevel(s) metselwerk')
+        $vtw101->setBuildingType('12')
+        $vtw101->setBouwjaar('nvt')
+        $vtw101->setRooftype('nvt')
+            
+        $vtw102 = new vtw();
+        $vtw102->setId(102);
+        $vtw102->setCode('KT 13');
+        $vtw102->setType('middelhoog vliesgevel(s)')
+        $vtw102->setBuildingType('13')
+        $vtw102->setBouwjaar('nvt')
+        $vtw102->setRooftype('nvt')
+            
+        $vtw103 = new vtw();
+        $vtw103->setId(103);
+        $vtw103->setCode('KT 14');
+        $vtw103->setType('middelhoog gevel(s) in natuursteen')
+        $vtw103->setBuildingType('14')
+        $vtw103->setBouwjaar('nvt')
+        $vtw103->setRooftype('nvt')
+            
+        $vtw104 = new vtw();
+        $vtw104->setId(104);
+        $vtw104->setCode('KT 15');
+        $vtw104->setType('middelhoog gevel(s) in beton')
+        $vtw104->setBuildingType('15')
+        $vtw104->setBouwjaar('nvt')
+        $vtw104->setRooftype('nvt')
+            
+        $vtw105 = new vtw();
+        $vtw105->setId(105);
+        $vtw105->setCode('KT 16');
+        $vtw105->setType('middelhoog gevel(s) in metaal')
+        $vtw105->setBuildingType('16')
+        $vtw105->setBouwjaar('nvt')
+        $vtw105->setRooftype('nvt')
+            
+        $vtw106 = new vtw();
+        $vtw106->setId(106);
+        $vtw106->setCode('KT 17');
+        $vtw106->setType('hoog vliesgevel(s)')
+        $vtw106->setBuildingType('17')
+        $vtw106->setBouwjaar('nvt')
+        $vtw106->setRooftype('nvt')
+           
+        $vtw107 = new vtw();
+        $vtw107->setId(107);
+        $vtw107->setCode('KT 18');
+        $vtw107->setType('hoog gevel(s) in natuursteen')
+        $vtw107->setBuildingType('18')
+        $vtw107->setBouwjaar('nvt')
+        $vtw107->setRooftype('nvt')
+         
+        $vtw108 = new vtw();
+        $vtw108->setId(108);
+        $vtw108->setCode('KT 19');
+        $vtw108->setType('hoog gevel(s) in beton')
+        $vtw108->setBuildingType('19')
+        $vtw108->setBouwjaar('nvt')
+        $vtw108->setRooftype('nvt')
+            
+        $vtw109 = new vtw();
+        $vtw109->setId(109);
+        $vtw109->setCode('KT 20');
+        $vtw109->setType('hoog gevel(s) in metaal')
+        $vtw109->setBuildingType('20')
+        $vtw109->setBouwjaar('nvt')
+        $vtw109->setRooftype('nvt')
+        
+        $vtw110 = new vtw();
+        $vtw110->setId(110);
+        $vtw110->setCode('KT 21');
+        $vtw110->setType('kleinschalige kantoorvilla eigentijds moderne architectuur gevel(s) in metselwerk')
+        $vtw110->setBuildingType('21')
+        $vtw110->setBouwjaar('nvt')
+        $vtw110->setRooftype('nvt')
+            
+        $vtw111 = new vtw();
+        $vtw111->setId(111);
+        $vtw111->setCode('KT 22');
+        $vtw111->setType('kleinschalige kantoorvilla eigentijds moderne architectuur gevel(s) in isolatiestukwerk')
+        $vtw111->setBuildingType('22')
+        $vtw111->setBouwjaar('nvt')
+        $vtw111->setRooftype('nvt')
+           
+        $vtw112 = new vtw();
+        $vtw112->setId(112);
+        $vtw112->setCode('KT 23');
+        $vtw112->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in natuursteen')
+        $vtw112->setBuildingType('23')
+        $vtw112->setBouwjaar('nvt')
+        $vtw112->setRooftype('nvt')
+            
+        $vtw113 = new vtw();
+        $vtw113->setId(113);
+        $vtw113->setCode('KT 24');
+        $vtw113->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in metaal ')
+        $vtw113->setBuildingType('24')
+        $vtw113->setBouwjaar('nvt')
+        $vtw113->setRooftype('nvt')
+            
+        $vtw114 = new vtw();
+        $vtw114->setId(114);
+        $vtw114->setCode('KT 25');
+        $vtw114->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in beton')
+        $vtw114->setBuildingType('25')
+        $vtw114->setBouwjaar('nvt')
+        $vtw114->setRooftype('nvt')
+            
+        $vtw115 = new vtw();
+        $vtw115->setId(115);
+        $vtw115->setCode('KT 26');
+        $vtw115->setType('middelhoog eigetijds klassieke architectuur gevel(s) in metselwerk')
+        $vtw115->setBuildingType('26')
+        $vtw115->setBouwjaar('nvt')
+        $vtw115->setRooftype('nvt')
+            
+        $vtw116 = new vtw();
+        $vtw116->setId(116);
+        $vtw116->setCode('KT 27');
+        $vtw116->setType('laag gevel(s) in metselwerk inclusief parkeergarage')
+        $vtw116->setBuildingType('27')
+        $vtw116->setBouwjaar('nvt')
+        $vtw116->setRooftype('nvt')
+           
+        $vtw117 = new vtw();
+        $vtw117->setId(117);
+        $vtw117->setCode('KT 28R');
+        $vtw117->setType('Revitalisatie kantoorgebouw middelhoog gevels in sierbeton elementen')
+        $vtw117->setBuildingType('28R')
+        $vtw117->setBouwjaar('nvt')
+        $vtw117->setRooftype('nvt')
+         
+        $vtw118 = new vtw();
+        $vtw118->setId(118);
+        $vtw118->setCode('KT 40');
+        $vtw118->setType('energieneutraal kantoorgebouw nul op de meter duurzaam gebouw onder moderne architectuur')
+        $vtw118->setBuildingType('40')
+        $vtw118->setBouwjaar('nvt')
+        $vtw118->setRooftype('nvt')
+                     
+        $vtw120 = new vtw();
+        $vtw120->setId(120);
+        $vtw120->setCode('BT 1');
+        $vtw120->setType('kleinschalig gevel(s) in metselwerk')
+        $vtw120->setBuildingType('1')
+        $vtw120->setBouwjaar('nvt')
+        $vtw120->setRooftype('nvt')
+            
+        $vtw121 = new vtw();
+        $vtw121->setId(121);
+        $vtw121->setCode('BT 2');
+        $vtw121->setType('kleinschalig gevel(s) in metaal')
+        $vtw121->setBuildingType('2')
+        $vtw121->setBouwjaar('nvt')
+        $vtw121->setRooftype('nvt')
+            
+        $vtw122 = new vtw();
+        $vtw122->setId(122);
+        $vtw122->setCode('BT 3');
+        $vtw122->setType('kleinschalig gevel(s) in metselwerk/metaal')
+        $vtw122->setBuildingType('3')
+        $vtw122->setBouwjaar('nvt')
+        $vtw122->setRooftype('nvt')
+            
+        $vtw123 = new vtw();
+        $vtw123->setId(123);
+        $vtw123->setCode('BT 4');
+        $vtw123->setType('middelschalig gevel(s) in metselwerk')
+        $vtw123->setBuildingType('4')
+        $vtw123->setBouwjaar('nvt')
+        $vtw123->setRooftype('nvt')
+            
+        $vtw124 = new vtw();
+        $vtw124->setId(124);
+        $vtw124->setCode('BT 5');
+        $vtw124->setType('middelschalig gevel(s) in metaal')
+        $vtw124->setBuildingType('5')
+        $vtw124->setBouwjaar('nvt')
+        $vtw124->setRooftype('nvt')
+            
+        $vtw125 = new vtw();
+        $vtw125->setId(125);
+        $vtw125->setCode('BT 6');
+        $vtw125->setType('middelschalig gevel(s) in metselwerk/metaal')
+        $vtw125->setBuildingType('6')
+        $vtw125->setBouwjaar('nvt')
+        $vtw125->setRooftype('nvt')
+            
+        $vtw126 = new vtw();
+        $vtw126->setId(126);
+        $vtw126->setCode('BT 7');
+        $vtw126->setType('grootschalig gevel(s) in metselwerk')
+        $vtw126->setBuildingType('7')
+        $vtw126->setBouwjaar('nvt')
+        $vtw126->setRooftype('nvt')
+           
+        $vtw127 = new vtw();
+        $vtw127->setId(127);
+        $vtw127->setCode('BT 8');
+        $vtw127->setType('grootschalig gevel(s) in metaal')
+        $vtw127->setBuildingType('8')
+        $vtw127->setBouwjaar('nvt')
+        $vtw127->setRooftype('nvt')
+        
+        $vtw128 = new vtw();
+        $vtw128->setId(128);
+        $vtw128->setCode('BT 9');
+        $vtw128->setType('grootschalig gevel(s) in metselwerk/metaal')
+        $vtw128->setBuildingType('9')
+        $vtw128->setBouwjaar('nvt')
+        $vtw128->setRooftype('nvt')
+            
+        $vtw129 = new vtw();
+        $vtw129->setId(129);
+        $vtw129->setCode('BT 10');
+        $vtw129->setType('klein- tot grootschailg gevel(s) en dak in metaal')
+        $vtw129->setBuildingType('10')
+        $vtw129->setBouwjaar('nvt')
+        $vtw129->setRooftype('nvt')
+       
+        $vtw130 = new vtw();
+        $vtw130->setId(130);
+        $vtw130->setCode('BT 11');
+        $vtw130->setType('combinatiegebouw met showroom/serviceruimte kantoor en bedrijfsruimte')
+        $vtw130->setBuildingType('11')
+        $vtw130->setBouwjaar('nvt')
+        $vtw130->setRooftype('nvt')
+            
+        $vtw131 = new vtw();
+        $vtw131->setId(131);
+        $vtw131->setCode('BT 12');
+        $vtw131->setType('bedrijfsverzamelgebouw')
+        $vtw131->setBuildingType('12')
+        $vtw131->setBouwjaar('nvt')
+        $vtw131->setRooftype('nvt')
+            
+        $vtw132 = new vtw();
+        $vtw132->setId(132);
+        $vtw132->setCode('BT 13');
+        $vtw132->setType('kleinschalig distrubutiecentrum')
+        $vtw132->setBuildingType('13')
+        $vtw132->setBouwjaar('nvt')
+        $vtw132->setRooftype('nvt')
+           
+        $vtw133 = new vtw();
+        $vtw133->setId(133);
+        $vtw133->setCode('BT 14');
+        $vtw133->setType('grootschalig distrubutiecentrum')
+        $vtw133->setBuildingType('14')
+        $vtw133->setBouwjaar('nvt')
+        $vtw133->setRooftype('nvt')
+            
+        $vtw134 = new vtw();
+        $vtw134->setId(134);
+        $vtw134->setCode('BT 15');
+        $vtw134->setType('garagebedrijf met showroom en kantoren')
+        $vtw134->setBuildingType('15')
+        $vtw134->setBouwjaar('nvt')
+        $vtw134->setRooftype('nvt')
+            
+        $vtw135 = new vtw();
+        $vtw135->setId(135);
+        $vtw135->setCode('BT 16');
+        $vtw135->setType('bedrijfsverzamelgebouw prefab betonbouw')
+        $vtw135->setBuildingType('16')
+        $vtw135->setBouwjaar('nvt')
+        $vtw135->setRooftype('nvt')
+            
+        $vtw140 = new vtw();
+        $vtw140->setId(140);
+        $vtw140->setCode('WINT 1');
+        $vtw140->setType('individuele winkel / winkel in winkelstraat ouder type')
+        $vtw140->setBuildingType('1')
+        $vtw140->setBouwjaar('nvt')
+        $vtw140->setRooftype('nvt')
+            
+        $vtw141 = new vtw();
+        $vtw141->setId(141);
+        $vtw141->setCode('WINT 2');
+        $vtw141->setType('individuele winkel / winkel in winkelstraat recenter type')
+        $vtw141->setBuildingType('2')
+        $vtw141->setBouwjaar('nvt')
+        $vtw141->setRooftype('nvt')
+            
+        $vtw142 = new vtw();
+        $vtw142->setId(142);
+        $vtw142->setCode('WINT 3');
+        $vtw142->setType('winkel in het centrum niet dekt ouder type')
+        $vtw142->setBuildingType('3')
+        $vtw142->setBouwjaar('nvt')
+        $vtw142->setRooftype('nvt')
+            
+        $vtw143 = new vtw();
+        $vtw143->setId(143);
+        $vtw143->setCode('WINT 4');
+        $vtw143->setType('winkel in het centrum niet dekt recenter type')
+        $vtw143->setBuildingType('4')
+        $vtw143->setBouwjaar('nvt')
+        $vtw143->setRooftype('nvt')
+            
+        $vtw144 = new vtw();
+        $vtw144->setId(144);
+        $vtw144->setCode('WINT 5');
+        $vtw144->setType('winkel in het centrum overdekt ouder type')
+        $vtw144->setBuildingType('5')
+        $vtw144->setBouwjaar('nvt')
+        $vtw144->setRooftype('nvt')
+            
+        $vtw145 = new vtw();
+        $vtw145->setId(145);
+        $vtw145->setCode('WINT 6');
+        $vtw145->setType('winkel in het centrum overdekt recenter type')
+        $vtw145->setBuildingType('6')
+        $vtw145->setBouwjaar('nvt')
+        $vtw145->setRooftype('nvt')
+            
+        $vtw146 = new vtw();
+        $vtw146->setId(146);
+        $vtw146->setCode('WINT 7');
+        $vtw146->setType('kiosk')
+        $vtw146->setBuildingType('7')
+        $vtw146->setBouwjaar('nvt')
+        $vtw146->setRooftype('nvt')
+           
+        $vtw147 = new vtw();
+        $vtw147->setId(147);
+        $vtw147->setCode('WINT 8');
+        $vtw147->setType('solitaire supermakrt')
+        $vtw147->setBuildingType('8')
+        $vtw147->setBouwjaar('nvt')
+        $vtw147->setRooftype('nvt')
+       
+        $vtw148 = new vtw();
+        $vtw148->setId(148);
+        $vtw148->setCode('WINT 9');
+        $vtw148->setType('grootschalige detailhandelsunit')
+        $vtw148->setBuildingType('9')
+        $vtw148->setBouwjaar('nvt')
+        $vtw148->setRooftype('nvt')
+            
+        $vtw149 = new vtw();
+        $vtw149->setId(149);
+        $vtw149->setCode('WINT 10');
+        $vtw149->setType('perifere grootschalige detailhandelsunit')
+        $vtw149->setBuildingType('10')
+        $vtw149->setBouwjaar('nvt')
+        $vtw149->setRooftype('nvt')
+       
+        $vtw150 = new vtw();
+        $vtw150->setId(150);
+        $vtw150->setCode('WINT 11');
+        $vtw150->setType('bouwmarkt')
+        $vtw150->setBuildingType('11')
+        $vtw150->setBouwjaar('nvt')
+        $vtw150->setRooftype('nvt')
+            
+        $vtw151 = new vtw();
+        $vtw151->setId(151);
+        $vtw151->setCode('WINT 23');
+        $vtw151->setType('energieneutraal solitaire supermarkt nul op de meter')
+        $vtw151->setBuildingType('23')
+        $vtw151->setBouwjaar('nvt')
+        $vtw151->setRooftype('nvt')
+          
+        $vtw160 = new vtw();
+        $vtw160->setId(160);
+        $vtw160->setCode('HT 1R');
+        $vtw160->setType('voormalig schoolgebouw')
+        $vtw160->setBuildingType('1R')
+        $vtw160->setBouwjaar('tussen 1900 en 1930')
+        $vtw160->setRooftype('nvt')
+            
+        $vtw161 = new vtw();
+        $vtw161->setId(161);
+        $vtw161->setCode('HT 2R');
+        $vtw161->setType('voormalig kantoorgebouw')
+        $vtw161->setBuildingType('2R')
+        $vtw161->setBouwjaar('tussen 1970 en 1990')
+        $vtw161->setRooftype('nvt')
+            
+        $vtw162 = new vtw();
+        $vtw162->setId(162);
+        $vtw162->setCode('HT 3R');
+        $vtw162->setType('voormalig fabrieksgebouw')
+        $vtw162->setBuildingType('3R')
+        $vtw162->setBouwjaar('tussen 1900 en 1930')
+        $vtw162->setRooftype('nvt')
+           
+        $vtw163 = new vtw();
+        $vtw163->setId(163);
+        $vtw163->setCode('HT 4R');
+        $vtw163->setType('voormalig jongerencentrum')
+        $vtw163->setBuildingType('4R')
+        $vtw163->setBouwjaar('tussen 1950 en 1970')
+        $vtw163->setRooftype('nvt')
+            
+        $vtw164 = new vtw();
+        $vtw164->setId(164);
+        $vtw164->setCode('HT 5R');
+        $vtw164->setType('voormalig kantoorgebouw')
+        $vtw164->setBuildingType('5R')
+        $vtw164->setBouwjaar('nvt')
+        $vtw164->setRooftype('nvt')   
+            
+        $vtw170 = new vtw();
+        $vtw170->setId(170);
+        $vtw170->setCode('OT 1');
+        $vtw170->setType('café / restaurant')
+        $vtw170->setBuildingType('1')
+        $vtw170->setBouwjaar('nvt')
+        $vtw170->setRooftype('nvt')
+            
+        $vtw171 = new vtw();
+        $vtw171->setId(171);
+        $vtw171->setCode('OT 2');
+        $vtw171->setType('hotel kleinschalig')
+        $vtw171->setBuildingType('2')
+        $vtw171->setBouwjaar('nvt')
+        $vtw171->setRooftype('nvt')
+            
+        $vtw172 = new vtw();
+        $vtw172->setId(172);
+        $vtw172->setCode('OT 3');
+        $vtw172->setType('hotel grootschalig')
+        $vtw172->setBuildingType('3')
+        $vtw172->setBouwjaar('nvt')
+        $vtw172->setRooftype('nvt')
+            
+        $vtw173 = new vtw();
+        $vtw173->setId(173);
+        $vtw173->setCode('OT 4');
+        $vtw173->setType('bioscoop')
+        $vtw173->setBuildingType('4')
+        $vtw173->setBouwjaar('nvt')
+        $vtw173->setRooftype('nvt')
+            
+        $vtw174 = new vtw();
+        $vtw174->setId(174);
+        $vtw174->setCode('OT 5');
+        $vtw174->setType('discotheek')
+        $vtw174->setBuildingType('5')
+        $vtw174->setBouwjaar('nvt')
+        $vtw174->setRooftype('nvt')
+           
+        $vtw175 = new vtw();
+        $vtw175->setId(175);
+        $vtw175->setCode('OT 6');
+        $vtw175->setType('woon-/zorgcomplex')
+        $vtw175->setBuildingType('6')
+        $vtw175->setBouwjaar('nvt')
+        $vtw175->setRooftype('nvt')
+            
+        $vtw176 = new vtw();
+        $vtw176->setId(176);
+        $vtw176->setCode('OT 7');
+        $vtw176->setType('gemeentehuis')
+        $vtw176->setBuildingType('7')
+        $vtw176->setBouwjaar('nvt')
+        $vtw176->setRooftype('nvt')
+           
+        $vtw177 = new vtw();
+        $vtw177->setId(177);
+        $vtw177->setCode('OT 8');
+        $vtw177->setType('brandweerkazerne')
+        $vtw177->setBuildingType('8')
+        $vtw177->setBouwjaar('nvt')
+        $vtw177->setRooftype('nvt')
+       
+        $vtw178 = new vtw();
+        $vtw178->setId(178);
+        $vtw178->setCode('OT 9');
+        $vtw178->setType('theater middelgroot modern')
+        $vtw178->setBuildingType('9')
+        $vtw178->setBouwjaar('nvt')
+        $vtw178->setRooftype('nvt')
+            
+        $vtw179 = new vtw();
+        $vtw179->setId(179);
+        $vtw179->setCode('OT 10');
+        $vtw179->setType('theater kleinscahig')
+        $vtw179->setBuildingType('10')
+        $vtw179->setBouwjaar('nvt')
+        $vtw179->setRooftype('nvt')
+       
+        $vtw180 = new vtw();
+        $vtw180->setId(180);
+        $vtw180->setCode('OT 11');
+        $vtw180->setType('kleinschalig woon-/zorgcomplex')
+        $vtw180->setBuildingType('11')
+        $vtw180->setBouwjaar('nvt')
+        $vtw180->setRooftype('nvt')
+            
+        $vtw181 = new vtw();
+        $vtw181->setId(181);
+        $vtw181->setCode('OT 12');
+        $vtw181->setType('grootschalig woon-/zorgcomplex')
+        $vtw181->setBuildingType('12')
+        $vtw181->setBouwjaar('nvt')
+        $vtw181->setRooftype('nvt')
+            
+        $vtw190 = new vtw();
+        $vtw190->setId(190);
+        $vtw190->setCode('AT 1');
+        $vtw190->setType('woonboederij')
+        $vtw190->setBuildingType('1')
+        $vtw190->setBouwjaar('nvt')
+        $vtw190->setRooftype('nvt')
+            
+        $vtw191 = new vtw();
+        $vtw191->setId(191);
+        $vtw191->setCode('AT 2');
+        $vtw191->setType('woonboederij')
+        $vtw191->setBuildingType('2')
+        $vtw191->setBouwjaar('nvt')
+        $vtw191->setRooftype('nvt')
+            
+        $vtw192 = new vtw();
+        $vtw192->setId(192);
+        $vtw192->setCode('AT 3');
+        $vtw192->setType('vleesvarkensstal')
+        $vtw192->setBuildingType('3')
+        $vtw192->setBouwjaar('nvt')
+        $vtw192->setRooftype('nvt')
+            
+        $vtw193 = new vtw();
+        $vtw193->setId(193);
+        $vtw193->setCode('AT 4');
+        $vtw193->setType('loodsgebouw')
+        $vtw193->setBuildingType('4')
+        $vtw193->setBouwjaar('nvt')
+        $vtw193->setRooftype('nvt')
+            
+        $vtw194 = new vtw();
+        $vtw194->setId(194);
+        $vtw194->setCode('AT 5');
+        $vtw194->setType('pluimveestal')
+        $vtw194->setBuildingType('5')
+        $vtw194->setBouwjaar('nvt')
+        $vtw194->setRooftype('nvt')
+           
+        $vtw195 = new vtw();
+        $vtw195->setId(195);
+        $vtw195->setCode('AT 6');
+        $vtw195->setType('paardenhouderij')
+        $vtw195->setBuildingType('6')
+        $vtw195->setBouwjaar('nvt')
+        $vtw195->setRooftype('nvt')
+            
+        $vtw196 = new vtw();
+        $vtw196->setId(196);
+        $vtw196->setCode('AT 7');
+        $vtw196->setType('melkveestal')
+        $vtw196->setBuildingType('7')
+        $vtw196->setBouwjaar('nvt')
+        $vtw196->setRooftype('nvt')
             
         $buildingAddress0 = new BuildingAddress();
         $buildingAddress0->setId(0);
