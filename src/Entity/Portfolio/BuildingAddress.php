@@ -225,6 +225,8 @@ class BuildingAddress extends IdTime
      */
     protected int $renovationYear;
 
+    protected Vtw $vtw;
+
     #[Pure]
     public function __construct()
     {
@@ -374,6 +376,10 @@ class BuildingAddress extends IdTime
     public function setBagId(int $bagId): void
     {
         $this->bagId = $bagId;
+    }
+
+    public function setVtw(Vtw $vtw): void {
+        $this->vtw = $vtw;
     }
 
     public function setConstructionYear(int $constructionYear): void
