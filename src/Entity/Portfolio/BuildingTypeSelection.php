@@ -13,8 +13,6 @@ use App\Entity\SuperClasses\IdTimeIdentification;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="BuildingTypeSelections")
- *
- * @OA\Schema()
  */
 class BuildingTypeSelection extends IdTimeIdentification
 {

@@ -34,7 +34,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @OA\ExternalDocumentation(
  *     url="/api/buildingexaminator/v1/documentation"
  * )
- * @OA\Server(url="/api/buildingexaminator/v1")
+ * @OA\Server(
+ *     url="http://localhost/api/buildingexaminator/v1",
+ *     description="Development"
+ * )
  * @OA\Schema(
  *     schema="ids",
  *     type="array",

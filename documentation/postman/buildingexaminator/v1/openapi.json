@@ -6,7 +6,8 @@
     },
     "servers": [
         {
-            "url": "/api/buildingexaminator/v1"
+            "url": "http://localhost/api/buildingexaminator/v1",
+            "description": "Development"
         }
     ],
     "paths": {
@@ -188,6 +189,58 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/blocks"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new block",
+                "operationId": "95d09544d0e49813a0e8b3b1f9dc5a0e",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details about new block",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "financialnumber": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created block",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Block"
                                 }
                             }
                         }
@@ -702,30 +755,6 @@
                     }
                 },
                 "type": "object"
-            },
-            "BuildingTypeSelection": {
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "creationTime": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "lastChangeTime": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "id": {
-                        "type": "integer"
-                    }
-                }
             },
             "HousingStock": {
                 "properties": {
