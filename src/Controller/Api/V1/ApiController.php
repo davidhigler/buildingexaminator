@@ -92,7 +92,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     @OA\Items(ref="#/components/schemas/ResidentialArea")
  * )
  */
-#[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
 class ApiController extends AbstractController
 {
     private const HOUSING_STOCK_LIST_FIELDS = [
@@ -758,7 +757,7 @@ class ApiController extends AbstractController
     public function deleteBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        $block = $blockRepository->find((int) $blockId);
+        $block = (object)$blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId], null, 1);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($block);
