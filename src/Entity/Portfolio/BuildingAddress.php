@@ -156,10 +156,6 @@ class BuildingAddress extends IdTime
      *      type="string",
      *      message="%property% is not a valid %type%"
      * )
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 9999
-     * )
      *
      * @OA\Property()
      */

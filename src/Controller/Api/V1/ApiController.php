@@ -766,7 +766,7 @@ class ApiController extends AbstractController
         return new Response('', 200);
     }
 
-    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'block', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'getblock', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
@@ -810,7 +810,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addresses', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddress', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/addresses",
@@ -838,7 +838,84 @@ class ApiController extends AbstractController
         return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId]), self::ADDRESS_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'address', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/addresses",
+     *     summary="Add new address",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new address",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="streetname",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="housenumber",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="addition",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="zipcode",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="city",
+     *                 type="string"
+     *             ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created address",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *     )
+     * )
+     */
+    public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    {
+        $newAddress = json_decode($request->getContent(), true);
+
+        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $blockRepository->find((int) $housingStockId);
+
+        $address = new BuildingAddress();
+        $address->setHousingStock($housingStock);
+        $address->setStreetName($newAddress['streetname']);
+        $address->setHouseNumber($newAddress['housenumber']);
+        $address->setAddition($newAddress['addition']);
+        $address->setZipcode($newAddress['zipcode']);
+        $address->setCity($newAddress['city']);
+        $address->setCreationTime();
+        $address->setLastChangeTime();
+
+        $violations = $validator->validate($address);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($address);
+        $entityManager->flush();
+
+        return $this->renderData($address, self::ADDRESS_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
@@ -882,7 +959,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'buildingtypes', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/buildingtypes",
@@ -910,7 +987,7 @@ class ApiController extends AbstractController
         return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::BUILDINGTYPE_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'buildingtype', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}",
@@ -954,7 +1031,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'livingtypes', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'listlivingtypes', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/livingtypes",
@@ -982,7 +1059,7 @@ class ApiController extends AbstractController
         return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::LIVINGTYPE_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'livingtype', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
@@ -1026,7 +1103,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'residentialareas', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'listresidentialareas', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/residentialareas",
@@ -1054,7 +1131,7 @@ class ApiController extends AbstractController
         return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId]), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'residentialArea', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'getresidentialArea', methods: ['get'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
