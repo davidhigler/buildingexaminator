@@ -546,7 +546,7 @@ class ApiController extends AbstractController
     /**
      * BLOCKS
      *
-     * @Todo Define the POST, PUT and DELETE methods
+     * @Todo Define the DELETE
      */
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'listblocks', methods: ['GET'])]
@@ -647,6 +647,81 @@ class ApiController extends AbstractController
         $entityManager->flush();
 
         return $this->renderData($block, self::BLOCK_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'changeblock', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
+     *     summary="Change block",
+     *     @OA\RequestBody(
+     *         description="Details for changing block",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of a housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="blockId",
+     *         description="The id of a block",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed block",
+     *         @OA\JsonContent(ref="#/components/schemas/Block")
+     *     )
+     * )
+     */
+    public function changeBlock(string $blockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeBlock = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(Block::class);
+        /** @var Block $block */
+        $block = $housingStockRepository->find((int) $blockId);
+
+        $block->setName($changeBlock['name']);
+        $block->setCode($changeBlock['code']);
+        $block->setDescription($changeBlock['description']);
+        $block->setLastChangeTime();
+
+        $violations = $validator->validate($block);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($block);
+        $entityManager->flush();
+
+        return $this->renderData($block, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'block', methods: ['GET'])]
