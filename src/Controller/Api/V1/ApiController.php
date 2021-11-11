@@ -625,8 +625,8 @@ class ApiController extends AbstractController
     {
         $newBlock = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $blockRepository->find((int) $housingStockId);
 
         $block = new Block();
         $block->setHousingStock($housingStock);
@@ -703,9 +703,9 @@ class ApiController extends AbstractController
     {
         $changeBlock = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->getDoctrine()->getRepository(Block::class);
+        $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         /** @var Block $block */
-        $block = $housingStockRepository->find((int) $blockId);
+        $block = $blockRepository->find((int) $blockId);
 
         $block->setName($changeBlock['name']);
         $block->setCode($changeBlock['code']);
@@ -722,6 +722,49 @@ class ApiController extends AbstractController
         $entityManager->flush();
 
         return $this->renderData($block, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'deleteblock', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
+     *     summary="Delete block",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="blockId",
+     *         description="The id of a block",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a block"
+     *     )
+     * )
+     */
+    public function deleteBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
+    {
+        $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+        $block = $blockRepository->find((int) $blockId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($block);
+        $entityManager->flush();
+
+        return new Response('', 200);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'block', methods: ['GET'])]

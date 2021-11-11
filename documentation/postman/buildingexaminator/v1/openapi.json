@@ -286,6 +286,96 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "summary": "Change block",
+                "operationId": "b911d3b91fd6ff55ad7065370a539b8c",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of a housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "blockId",
+                        "in": "path",
+                        "description": "The id of a block",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details for changing block",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about changed block",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Block"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete block",
+                "operationId": "ef65eb74d273a6a1cab45aaa71f9f6ee",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "blockId",
+                        "in": "path",
+                        "description": "The id of a block",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted a block"
+                    }
+                }
             }
         },
         "/housingstocks/{housingStockId}/addresses": {
