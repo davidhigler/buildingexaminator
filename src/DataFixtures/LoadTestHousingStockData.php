@@ -5120,7 +5120,6 @@ class LoadTestHousingStockData extends Fixture
         $block1->addBuildingAddress($buildingAddress91);
         $block1->addBuildingAddress($buildingAddress92);
         $block1->addBuildingAddress($buildingAddress93);
-        $block1->setNumberOfBuildingAddresses(34);
         $block1->setCreationTime();
         $block1->setLastChangeTime();
 
@@ -5135,7 +5134,6 @@ class LoadTestHousingStockData extends Fixture
         $block2->addBuildingAddress($buildingAddress10);
         $block2->addBuildingAddress($buildingAddress12);
         $block2->addBuildingAddress($buildingAddress22);
-        $block2->setNumberOfBuildingAddresses(5);
         $block2->setCreationTime();
         $block2->setLastChangeTime();
 
@@ -5146,7 +5144,6 @@ class LoadTestHousingStockData extends Fixture
         $block3->setFinancialNumber('3333');
         $block3->setDescription('mobilisatiecomplex');
         $block3->addBuildingAddress($buildingAddress11);
-        $block3->setNumberOfBuildingAddresses(1);
         $block3->setCreationTime();
         $block3->setLastChangeTime();
 
@@ -5172,7 +5169,6 @@ class LoadTestHousingStockData extends Fixture
         $block4->addBuildingAddress($buildingAddress107);
         $block4->addBuildingAddress($buildingAddress108);
         $block4->addBuildingAddress($buildingAddress109);
-        $block4->setNumberOfBuildingAddresses(16);
         $block4->setCreationTime();
         $block4->setLastChangeTime();
 
@@ -5193,7 +5189,6 @@ class LoadTestHousingStockData extends Fixture
         $block5->addBuildingAddress($buildingAddress79);
         $block5->addBuildingAddress($buildingAddress70);
         $block5->addBuildingAddress($buildingAddress92);
-        $block5->setNumberOfBuildingAddresses(11);
         $block5->setCreationTime();
         $block5->setLastChangeTime();
 
@@ -5205,7 +5200,6 @@ class LoadTestHousingStockData extends Fixture
         $block6->setDescription('Zuiderbroek');
         $block6->addBuildingAddress($buildingAddress101);
         $block6->addBuildingAddress($buildingAddress103);
-        $block6->setNumberOfBuildingAddresses(2);
         $block6->setCreationTime();
         $block6->setLastChangeTime();
 
@@ -5219,7 +5213,6 @@ class LoadTestHousingStockData extends Fixture
         $block7->addBuildingAddress($buildingAddress28);
         $block7->addBuildingAddress($buildingAddress39);
         $block7->addBuildingAddress($buildingAddress50);
-        $block7->setNumberOfBuildingAddresses(4);
         $block7->setCreationTime();
         $block7->setLastChangeTime();
 
@@ -5297,7 +5290,6 @@ class LoadTestHousingStockData extends Fixture
         $block8->addBuildingAddress($buildingAddress128);
         $block8->addBuildingAddress($buildingAddress129);
         $block8->addBuildingAddress($buildingAddress120);
-        $block8->setNumberOfBuildingAddresses(68);
         $block8->setCreationTime();
         $block8->setLastChangeTime();
 
@@ -5316,7 +5308,6 @@ class LoadTestHousingStockData extends Fixture
         $block9->addBuildingAddress($buildingAddress8);
         $block9->addBuildingAddress($buildingAddress9);
         $block9->addBuildingAddress($buildingAddress130);
-        $block9->setNumberOfBuildingAddresses(9);
         $block9->setCreationTime();
         $block9->setLastChangeTime();
                        
