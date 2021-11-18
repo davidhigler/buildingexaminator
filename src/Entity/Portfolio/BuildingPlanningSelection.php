@@ -22,7 +22,6 @@ class BuildingPlanningSelection extends IdTimeIdentification
      */
     protected Collection $buildingAddresses;
 
-
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
