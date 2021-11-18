@@ -5406,8 +5406,6 @@ class LoadTestHousingStockData extends Fixture
         $housingStock1->setCode('DobrCmTest');
         $housingStock1->setName('DobrCm - Test');
         $housingStock1->setDescription('Dit is de standaard test omgeving voor DobroCm');
-        $housingStock1->setNumberOfBuildingAddresses(130);
-        $housingStock1->setNumberOfBlocks(9);
         $housingStock1->setCreationTime();
         $housingStock1->setLastChangeTime();
         
@@ -5416,8 +5414,6 @@ class LoadTestHousingStockData extends Fixture
         $housingStock2->setCode('DobrCmTest1');
         $housingStock2->setName('DobrCm - Test1');
         $housingStock2->setDescription('Dit is de standaard test omgeving voor DobroCm1');
-        $housingStock2->setNumberOfBuildingAddresses(50);
-        $housingStock2->setNumberOfBlocks(9);
         $housingStock2->setCreationTime();
         $housingStock2->setLastChangeTime();
         
@@ -5426,8 +5422,6 @@ class LoadTestHousingStockData extends Fixture
         $housingStock3->setCode('DobrCmTest2');
         $housingStock3->setName('DobrCm - Test2');
         $housingStock3->setDescription('Dit is de standaard test omgeving voor DobroCm2');
-        $housingStock3->setNumberOfBuildingAddresses(90);
-        $housingStock3->setNumberOfBlocks(9);
         $housingStock3->setCreationTime();
         $housingStock3->setLastChangeTime();
         
