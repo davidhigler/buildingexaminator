@@ -6113,6 +6113,13 @@ class LoadTestHousingStockData extends Fixture
         $manager->persist($livingType1);
         $manager->persist($livingType2);
         $manager->persist($livingType3);
+        $manager->persist($livingType4);
+        $manager->persist($livingType5);
+        $manager->persist($livingType6);
+        $manager->persist($livingType7);
+        $manager->persist($livingType8);
+        $manager->persist($livingType9);
+        $manager->persist($livingType10);
 
         for ($i = 1; $i <= 130; $i++) {
             $manager->persist(${'buildingAddress'.$i});
