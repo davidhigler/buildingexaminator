@@ -37,24 +37,6 @@ class Block extends IdTimeIdentification
     // @Todo Add option set for block level
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(
-     *      message="%property% may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="%property% is not a valid %type%"
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      max = 9999
-     * )
-     *
-     * @OA\Property()
-     */
-    protected int $numberOfBuildingAddresses = 0;
-
-    /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      * @Assert\Valid()
      *
@@ -98,7 +80,7 @@ class Block extends IdTimeIdentification
 
     public function getNumberOfBuildingAddresses(): int
     {
-        return $this->numberOfBuildingAddresses;
+        return count($this->buildingAddresses);
     }
 
     public function getBuildingTypeSelection(): Collection
@@ -124,11 +106,6 @@ class Block extends IdTimeIdentification
     public function removeBuildingAddress(BuildingAddress $buildingAddress): void
     {
         $this->buildingAddresses->removeElement($buildingAddress);
-    }
-
-    public function setNumberOfBuildingAddresses($numberOfBuildingAddresses): void
-    {
-        $this->numberOfBuildingAddresses = $numberOfBuildingAddresses;
     }
 
     public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void

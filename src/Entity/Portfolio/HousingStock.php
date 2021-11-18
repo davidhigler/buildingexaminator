@@ -63,42 +63,6 @@ class HousingStock extends IdTimeIdentification
      */
     protected Owner $owner;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(
-     *      message="%property% may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="%property% is not a valid %type%"
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      max = 9999
-     * )
-     *
-     * @OA\Property()
-     */
-    protected int $numberOfBlocks = 0;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(
-     *      message="%property% may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="%property% is not a valid %type%"
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      max = 999999
-     * )
-     *
-     * @OA\Property()
-     */
-    protected int $numberOfBuildingAddresses = 0;
-
     #[Pure]
     public function __construct()
     {
@@ -114,12 +78,12 @@ class HousingStock extends IdTimeIdentification
 
     public function getNumberOfBlocks(): int
     {
-        return $this->numberOfBlocks;
+        return count($this->blocks);
     }
 
     public function getNumberOfBuildingAddresses(): int
     {
-        return $this->numberOfBuildingAddresses;
+        return count($this->buildingAddresses);
     }
 
     public function getBuildingTypes(): Collection
@@ -150,16 +114,6 @@ class HousingStock extends IdTimeIdentification
     public function removeBlock(Block $block): void
     {
         $this->blocks->removeElement($block);
-    }
-
-    public function setNumberOfBlocks($numberOfBlocks): void
-    {
-        $this->numberOfBlocks = $numberOfBlocks;
-    }
-
-    public function setNumberOfBuildingAddresses($numberOfBuildingAddresses): void
-    {
-        $this->numberOfBuildingAddresses = $numberOfBuildingAddresses;
     }
 
     public function addBuildingType(BuildingType $buildingType): void
