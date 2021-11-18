@@ -5400,7 +5400,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock1->setCreationTime();
         $housingStock1->setLastChangeTime();
         
-        $housingStock2 = new HousingStock2();
+        $housingStock2 = new HousingStock();
         $housingStock2->setId(2);
         $housingStock2->setCode('DobrCmTest1');
         $housingStock2->setName('DobrCm - Test1');
@@ -5408,7 +5408,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock2->setCreationTime();
         $housingStock2->setLastChangeTime();
         
-        $housingStock3 = new HousingStock3();
+        $housingStock3 = new HousingStock();
         $housingStock3->setId(3);
         $housingStock3->setCode('DobrCmTest2');
         $housingStock3->setName('DobrCm - Test2');
