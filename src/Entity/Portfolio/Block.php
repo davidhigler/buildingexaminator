@@ -34,8 +34,6 @@ class Block extends IdTimeIdentification
      */
     protected Collection $buildingAddresses;
 
-    // @Todo Add option set for block level
-
     /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      * @Assert\Valid()

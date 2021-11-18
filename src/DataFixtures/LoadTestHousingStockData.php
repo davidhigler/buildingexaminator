@@ -211,7 +211,19 @@ class LoadTestHousingStockData extends Fixture
         $buildingType13->setDescription('vhosihg hvuh dho ä ueabvuiabio haeehvoiaejb iodhvujabiobhaeiohviaeh ihasdkjhgioedhbv');
         $buildingType13->setCreationTime();
         $buildingType13->setLastChangeTime();
-        
+
+        /**
+         * Niet van toepassing
+         * Vrijstaande woning
+         * Rijwoning twee onder éénkap
+         * Rijwoning eengezins
+         * Rijwoning senioren
+         * Rijwoning duplex kleine gezinnen
+         * Etagewoning galerijflat
+         * Etagewoning portiekflat
+         * Etagewoning maisonette
+         * Etagewoning penthouse
+         */
         $livingType1 = new LivingType();
         $livingType1->setId(1);
         $livingType1->setCode('lt1');
