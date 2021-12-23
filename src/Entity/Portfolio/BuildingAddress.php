@@ -57,12 +57,13 @@ class BuildingAddress extends IdTime
     protected LivingType $livingType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Block", inversedBy="buildingAddresses")
+     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EAGER")
+     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      * @Assert\Valid()
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property()
      */
-    protected Collection $blocks;
+    protected Block $block;
 
     protected FuturePlans $futurePlans;
 
@@ -226,7 +227,6 @@ class BuildingAddress extends IdTime
     #[Pure]
     public function __construct()
     {
-        $this->blocks = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -249,9 +249,9 @@ class BuildingAddress extends IdTime
         return $this->livingType;
     }
 
-    public function getBlocks(): Collection
+    public function getBlock(): Block
     {
-        return $this->blocks;
+        return $this->block;
     }
 
     public function getDaeb(): bool
@@ -324,14 +324,9 @@ class BuildingAddress extends IdTime
         $this->livingType = $livingType;
     }
 
-    public function addBlock(Block $block): void
+    public function setBlock(Block $block): void
     {
-        $this->blocks->add($block);
-    }
-
-    public function removeBlock(Block $block): void
-    {
-        $this->blocks->removeElement($block);
+        $this->block = $block;
     }
 
     public function setDaeb(bool $daeb): void

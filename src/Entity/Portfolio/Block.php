@@ -28,7 +28,8 @@ class Block extends IdTimeIdentification
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BuildingAddress", mappedBy="blocks")
+     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="block", fetch="EXTRA_LAZY")
+     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
