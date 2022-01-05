@@ -6,6 +6,17 @@ It provides management of a complete housing portfolio and recording / administr
 
 ## Technical information
 
+### Git clone
+```shell
+git ...
+```
+
+### Composer
+```shell
+php bin/composer self-update
+php bin/composer update
+```
+
 ### Database:
 
 #### Drop database:
