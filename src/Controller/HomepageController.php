@@ -5,13 +5,28 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 class HomepageController extends AbstractController
 {
     #[Route('/', name: 'homepage', methods: ['GET'])]
-    public function Homepage(): Response
+    public function Homepage(RouterInterface $router): Response
     {
-        return new Response('Hello world!');
+        $routes = [];
+        foreach ($router->getRouteCollection()->all() as $routeObject) {
+            if (str_starts_with($routeObject->getPath(), '/_') === false) {
+                $routes[] = [
+                    'methods' => join(', ', $routeObject->getMethods()),
+                    'path' => $routeObject->getPath()
+                ];
+            }
+        }
+        return $this->render(
+            'index.twig',
+            [
+                'routes' => $routes
+            ]
+        );
     }
 
 }
