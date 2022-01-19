@@ -6,6 +6,5 @@ Voorraad = HousingStock
 Complex = Block
 GebouwAdres = BuildingAddress
 GebouwSelectie = BuildingSelection
-GebouwSelectieOptieSet = BuildingSelectionOptionSet
 GebouwType = BuildingType
 Woonwijk = ResidentialArea
