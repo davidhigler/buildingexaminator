@@ -5,11 +5,27 @@ This is an API that serves as backend for possible multiple frontends.
 It provides management of a complete housing portfolio and recording / administrating of building surveys.
 
 # Requirements
-- PHP 8 of hoger
+- PHP 8.0 of hoger
   - pdo_mysql
   - redis
-- MySql server
-- Redis server
+- MySql server 8.0 of hoger
+- Redis server 6.2 of hoger
+
+# Usage
+
+## Configuration
+
+### MySql
+For the config of the MySql server look in the .env file in the root of the project
+```shell
+DATABASE_URL="mysql://<username>:<password>@<host>:<port>/<database>?serverVersion=8.0"
+```
+
+### Redis
+For config of caching in redis look in the file config/packages/cache.yaml
+```shell
+default_redis_provider: redis://<host>:<port>
+```
 
 ## Technical information
 
@@ -21,6 +37,7 @@ git ...
 ### Composer
 ```shell
 php bin/composer self-update
+php bin/composer install
 php bin/composer update
 ```
 
@@ -57,13 +74,6 @@ php bin/console doctrine:migrations:migrate
 ```shell
 php bin/console cache:clear
 ```
-
-#### Redis
-For config of cache in redis look in:
-```shell
-config/packages/cache.yaml
-```
-default_redis_provider needs to be correctly configured
 
 ### Complete rebuild
 
