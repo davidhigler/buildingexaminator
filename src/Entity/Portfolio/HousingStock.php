@@ -5,8 +5,6 @@ namespace App\Entity\Portfolio;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use Symfony\Component\Validator\Constraints as Assert;
-
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -48,13 +46,6 @@ class HousingStock extends IdTimeIdentification
      * @OA\Property(ref="#/components/schemas/ids")
      */    
     protected Collection $buildingAddresses;
-
-    /**
-     * @ORM\OneToOne(targetEntity="HousingStockOptionSet", cascade={"remove"}, mappedBy="housingStock")
-     *
-     * @OA\Property()
-     */
-    protected HousingStockOptionSet $housingStockOptionSet;
 
     /**
      * @ORM\OneToOne(targetEntity="Owner", cascade={"remove"}, mappedBy="housingStock")
@@ -101,11 +92,6 @@ class HousingStock extends IdTimeIdentification
         return $this->buildingAddresses;
     }
 
-    public function getHousingStockOptionSet(): HousingStockOptionSet
-    {
-        return $this->housingStockOptionSet;
-    }
-
     public function addBlock(Block $block): void
     {
         $this->blocks->add($block);
@@ -144,11 +130,6 @@ class HousingStock extends IdTimeIdentification
     public function removeBuildingAddress(BuildingAddress $buildingAddress): void
     {
         $this->buildingAddresses->removeElement($buildingAddress);
-    }
-
-    public function setHousingStockOptionSet(HousingStockOptionSet $housingStockOptionSet): void
-    {
-        $this->housingStockOptionSet = $housingStockOptionSet;
     }
 
 }
