@@ -2,7 +2,14 @@
 
 This is an API that serves as backend for possible multiple frontends.
 
-It provides management of a complete housing portfolio and recording / administrating of building surveys. 
+It provides management of a complete housing portfolio and recording / administrating of building surveys.
+
+# Requirements
+- PHP 8 of hoger
+  - pdo_mysql
+  - redis
+- MySql server
+- Redis server
 
 ## Technical information
 
@@ -51,6 +58,13 @@ php bin/console doctrine:migrations:migrate
 php bin/console cache:clear
 ```
 
+#### Redis
+For config of cache in redis look in:
+```shell
+config/packages/cache.yaml
+```
+default_redis_provider needs to be correctly configured
+
 ### Complete rebuild
 
 #### Rebuild database (BEWARE, DANGEROUS, TOTAL DATA LOSS):
@@ -76,14 +90,12 @@ php bin/openapi
 
 ### Development information
 
-#### Running things under Xampp
-
+#### Rate limiter
+The configuration of the rate-limiter in done in:
 ```shell
-/c/xampp/php/php.exe bin/composer install
-/c/xampp/php/php.exe bin/console doctrine:database:create
-/c/xampp/php/php.exe bin/console doctrine:schema:create
-/c/xampp/php/php.exe bin/console doctrine:fixtures:load
-/c/xampp/php/php.exe bin/console cache:clear
-
-/c/xampp/php/php.exe bin/composer require symfony/rate-limiter
+config/packages/rate_limiter.yaml
+```
+And for specific routes adhering to specific rate limits look at:
+```shell
+src/EventSubscriber/RateLimiterEventSubscriber.php
 ```
