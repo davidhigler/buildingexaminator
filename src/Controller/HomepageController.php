@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Portfolio\HousingStock;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,4 +30,34 @@ class HomepageController extends AbstractController
         );
     }
 
+    #[Route('/housingstock', name: 'housingstock_overview', methods: ['GET'])]
+    public function HousingStockOverview(RouterInterface $router): Response
+    {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingstocks = $housingStockRepository->findAll();
+        return $this->render(
+            'api/v1/portfolio/housingstock/overview.twig',
+            [
+                'housingstocks' => $housingstocks
+            ]
+        );
+    }
+
+    #[Route('/housingstock/new', name: 'housingstock_new', methods: ['GET'])]
+    public function HousingStockNew(RouterInterface $router): Response
+    {
+        return $this->render(
+            'api/v1/portfolio/housingstock/new_edit.twig',
+            []
+        );
+    }
+
+    #[Route('/buildingaddress/new', name: 'buildingaddress_new', methods: ['GET'])]
+    public function BuildingAddressNew(RouterInterface $router): Response
+    {
+        return $this->render(
+            'api/v1/portfolio/buildingaddress/new_edit.twig',
+            []
+        );
+    }
 }

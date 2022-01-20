@@ -1,28 +1,28 @@
 {% extends "main.twig" %}
 
 {% block content %}
-        <div class="row">
-            <div class="col s2">
-                <div class="center-align app-logo"><i class="large material-icons">library_books</i></div>
-                <h2 class="center-align">Menu</h2>
-            </div>
-            <div class="col s10">
-                <h2 class="center-align">Home</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Methods</th>
-                            <th>Path</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-{% for route in routes %}                        <tr>
-                            <td>{{ route.methods }}</td>
-                            <td>{{ route.path }}</td>
-                        </tr>
-{% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    <div class="row">
+        <div class="col s2">
+            <div class="center-align app-logo"><i class="large material-icons">library_books</i></div>
+            <h2 class="center-align">Menu</h2>
         </div>
+        <div class="col s10">
+            <h2 class="center-align">Housingstocks</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Methods</th>
+                    <th>Path</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for route in routes %}                        <tr>
+                    <td>{{ route.methods }}</td>
+                    <td><a href="{{ route.path }}">{{ route.path }}</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
