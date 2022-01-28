@@ -1,64 +1,72 @@
 {% extends "main.twig" %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s2">
-            <div class="center-align app-logo"><i class="large material-icons">library_books</i></div>
-            <h2 class="center-align">Menu</h2>
-        </div>
-        <div class="col s10">
-            <h2 class="center-align">Building Address</h2>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Rental unit number" id="rental_unit_number" type="text" class="validate">
-                            <label for="rental_unit_number">Rental unit number</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Street name" id="street_name" type="text" class="validate">
-                            <label for="street_name">Street name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="House number" id="house_number" type="number" class="validate">
-                            <label for="house_number">House number</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Addition" id="addition" type="text" class="validate">
-                            <label for="addition">Addition</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Zipcode" id="zipcode" type="text" class="validate">
-                            <label for="zipcode">Zipcode</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="City" id="city" type="text" class="validate">
-                            <label for="city">City</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="" id="" type="text" class="validate">
-                            <label for=""></label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s6">
-                            <button class="btn" name="save">Save</button>
-                        </div>
-                    </div>
-                </form>
+    <h3 class="header">Buildingaddress</h3>
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <select id="residential_area">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label for="residential_area">Residential area</label>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="0123456789123456" id="rental_unit_number" type="text" class="validate">
+                <label for="rental_unit_number">Rental unit number</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Stationstraat" id="street_name" type="text" class="validate">
+                <label for="street_name">Street name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="44" id="house_number" type="number" class="validate">
+                <label for="house_number">House number</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="B" id="addition" type="text" class="validate">
+                <label for="addition">Addition</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="1122 AA" id="zipcode" type="text" class="validate">
+                <label for="zipcode">Zipcode</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Zwolle" id="city" type="text" class="validate">
+                <label for="city">City</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <div class="switch">
+                    <label for="city">Deab</label><br />
+                    <label>
+                        No
+                        <input name="deab" type="checkbox">
+                        <span class="lever"></span>
+                        Yes
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn" name="save">Save</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

@@ -1,0 +1,42 @@
+li#menu-logo {
+    height: 120px;
+}
+
+li#menu-logo > div#logo-dia {
+    background-image: url('/images/logo_dia.png');
+    margin: auto;
+    width: 121px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.header {
+    color: #ee6e73;
+    font-weight: 300;
+}
+
+nav.top-nav {
+    height: 110px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    background-color: transparent;
+}
+
+nav.top-nav h1.header {
+    margin: 0;
+    padding-top: 22px;
+}
+
+a.sidenav-trigger.top-nav {
+    position: absolute;
+    text-align: center;
+    height: 48px;
+    width: 48px;
+    top: 28px;
+    float: none;
+    margin-left: 1.5rem;
+    color: #f3989b;
+    font-size: 36px;
+    z-index: 2;
+}

@@ -1,40 +1,30 @@
 {% extends "main.twig" %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s2">
-            <div class="center-align app-logo"><i class="large material-icons">library_books</i></div>
-            <h2 class="center-align">Menu</h2>
-        </div>
-        <div class="col s10">
-            <h2 class="center-align">Housingstock</h2>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Code" id="code" type="text" class="validate">
-                            <label for="code">Code</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Name" id="name" type="text" class="validate">
-                            <label for="name">Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <textarea id="description" class="materialize-textarea"></textarea>
-                            <label for="description">Description</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s6">
-                            <button class="btn" name="save">Save</button>
-                        </div>
-                    </div>
-                </form>
+    <h3 class="header">Housingstock</h3>
+    {{ form_start(form, {'action': '', 'attr': {'class': 'col s12'}}) }}
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(form.code) }}
+                {{ form_label(form.code) }}
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(form.name) }}
+                {{ form_label(form.name) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(form.description, {'attr': {'class': 'materialize-textarea'}}) }}
+                {{ form_label(form.description) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                {{ form_widget(form.save, {'attr': {'class': 'btn'}}) }}
+            </div>
+        </div>
+    {{ form_end(form, {render_rest: false}) }}
 {% endblock %}
