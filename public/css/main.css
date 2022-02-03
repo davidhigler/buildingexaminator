@@ -10,9 +10,8 @@ li#menu-logo > div#logo-dia {
     overflow: hidden;
 }
 
-.header {
+.header, .footer {
     color: #ee6e73;
-    font-weight: 300;
 }
 
 nav.top-nav {
@@ -23,9 +22,16 @@ nav.top-nav {
     background-color: transparent;
 }
 
-nav.top-nav h1.header {
-    margin: 0;
-    padding-top: 22px;
+nav.bottom-nav{
+    margin-top: 100px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-top: 1px solid rgba(0,0,0,0.14);
+    background-color: transparent;
+}
+
+nav.top-nav div.header h1 {
+    margin: 20px 0 0 0;
 }
 
 a.sidenav-trigger.top-nav {
@@ -39,4 +45,37 @@ a.sidenav-trigger.top-nav {
     color: #f3989b;
     font-size: 36px;
     z-index: 2;
+}
+
+div.card.error div.card-content i {
+    margin-right: 20px;
+}
+
+div.overlay {
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(200,200,200,0.5);
+}
+
+div.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+div.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-overlay {
+    background-color: rgb(200, 200, 200);
 }
