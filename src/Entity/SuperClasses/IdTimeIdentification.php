@@ -22,7 +22,7 @@ class IdTimeIdentification extends IdTime
      *     message="%property% is not a valid %type%"
      * )
      * @Assert\Length(
-     *      max=128,
+     *      max=32,
      *      maxMessage="%property% can contain a maximum of %limit% characters"
      * )
      *

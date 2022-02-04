@@ -1,5 +1,6 @@
 li#menu-logo {
     height: 120px;
+    margin-bottom: 75px;
 }
 
 li#menu-logo > div#logo-dia {
@@ -78,4 +79,49 @@ div.overlay__content {
 
 .modal-overlay {
     background-color: rgb(200, 200, 200);
+}
+
+li.active-stock {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 130px;
+    margin-top: 1px;
+    padding: 1px 0 0 0;
+    z-index: 2;
+}
+
+li.active-stock .active-stock-wrapper {
+    color: #777;
+    margin-top: -1px;
+    border-top: 1px solid rgba(0,0,0,0.14);
+    -webkit-transition: margin .25s ease;
+    transition: margin .25s ease;
+}
+
+li.active-stock .active-stock-wrapper input#active-stock-input {
+    color: #777;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 62px;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 45px 0 30px;
+    border: 0;
+}
+
+li.active-stock .active-stock-wrapper i.material-icons {
+    position: absolute;
+    top: 21px;
+    right: 10px;
+    cursor: pointer;
+}
+
+li.active-stock .active-stock-results {
+    margin: 0;
+    border-top: 1px solid rgba(0,0,0,0.14);
+    background-color: #fff;
 }

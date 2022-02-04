@@ -26,6 +26,10 @@ class HomepageController extends AbstractController
                         'title' => 'Housingstocks',
                         'onclick' => 'loadHousingstocksPage();',
                     ],
+                    'buildingaddresses' => [
+                        'title' => 'Buildingaddresses',
+                        'onclick' => 'loadBuildingaddressesPage();',
+                    ],
                 ],
             ],
         );

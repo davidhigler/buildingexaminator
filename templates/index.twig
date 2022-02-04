@@ -15,6 +15,12 @@
             <li id="menu-logo">
                 <div id="logo-dia"></div>
             </li>
+            <li class="active-stock">
+                <div class="active-stock-wrapper input-field">
+                    <input id="active-stock-input" placeholder="Active housingstock"><i class="material-icons">search</i>
+                    <div class="active-stock-results"></div>
+                </div>
+            </li>
 {% for menuItem in menuItems %}
             <li><a href="javascript:void(0)" onclick="{{ menuItem.onclick }}">{{ menuItem.title }}</a></li>
 {% endfor %}
