@@ -211,6 +211,7 @@ class ApiController extends AbstractController
         'livingType' => [
             'id',
         ],
+        'rentalUnitNumber',
         'streetName',
         'houseNumber',
         'addition',

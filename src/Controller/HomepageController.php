@@ -11,27 +11,6 @@ class HomepageController extends AbstractController
     #[Route('/', name: 'homepage', methods: ['GET'])]
     public function Homepage(): Response
     {
-        return $this->render(
-            'index.twig',
-            [
-                'page' => [
-                    'title' => 'Dobro',
-                ],
-                'menuItems' => [
-                    'home' => [
-                        'title' => 'Home',
-                        'onclick' => 'loadHomePage();',
-                    ],
-                    'housingstocks' => [
-                        'title' => 'Housingstocks',
-                        'onclick' => 'loadHousingstocksPage();',
-                    ],
-                    'buildingaddresses' => [
-                        'title' => 'Buildingaddresses',
-                        'onclick' => 'loadBuildingaddressesPage();',
-                    ],
-                ],
-            ],
-        );
+        return $this->render('index.twig');
     }
 }

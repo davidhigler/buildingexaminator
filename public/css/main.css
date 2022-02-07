@@ -1,3 +1,29 @@
+@font-face {
+    font-family: 'Material Icons Custom';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/MaterialIcons-Regular.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons Custom';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    -moz-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+}
+
 li#menu-logo {
     height: 120px;
     margin-bottom: 75px;
@@ -124,4 +150,39 @@ li.active-stock .active-stock-results {
     margin: 0;
     border-top: 1px solid rgba(0,0,0,0.14);
     background-color: #fff;
+}
+
+i.material-icons.disabled {
+    color: rgba(0, 0, 0, 0.42);
+}
+
+div#content > h3 {
+    padding-bottom: 20px;
+}
+
+div#content table th.actions {
+    width: 230px;
+    white-space: nowrap;
+}
+
+.material-tooltip {
+text-align: left;
+}
+
+ul.pagination {
+    margin-top: 40px;
+}
+
+div.possibleByLogos {
+    text-align: center;
+}
+
+a.possibleByLogo {
+    margin: 10px;
+    display: inline-block;
+}
+
+a.possibleByLogo object {
+    pointer-events: none;
+    height: 57px;
 }
