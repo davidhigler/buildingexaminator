@@ -2,6 +2,8 @@
 
 namespace App\Entity\Portfolio;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -43,7 +45,7 @@ class Owner extends Id
     protected string $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Type(
      *     type="integer",
      *     message="%property% is not a valid %type%"
@@ -60,7 +62,7 @@ class Owner extends Id
     protected int $kvk;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Type(
      *     type="string",
      *     message="%property% is not a valid %type%"
@@ -95,6 +97,12 @@ class Owner extends Id
      * @OA\Property()
      */
     protected string $lNumber;
+
+    #[Pure]
+    public function __construct()
+    {
+        $this->housingStocks = new ArrayCollection();
+    }
 
     public function getHousingStocks(): Collection
     {
