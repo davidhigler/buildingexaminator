@@ -5443,7 +5443,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock1->setId(1);
         $housingStock1->setCode('DobrCmTest');
         $housingStock1->setName('DobrCm - Test');
-        $housingStock1->setDescription('Dit is de standaard test omgeving voor DobroCm');
+        $housingStock1->setDescription('Dit is de standaard test omgeving voor DobroCm1');
         $housingStock1->setCreationTime();
         $housingStock1->setLastChangeTime();
         
@@ -5451,7 +5451,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock2->setId(2);
         $housingStock2->setCode('DobrCmTest1');
         $housingStock2->setName('DobrCm - Test1');
-        $housingStock2->setDescription('Dit is de standaard test omgeving voor DobroCm1');
+        $housingStock2->setDescription('Dit is de standaard test omgeving voor DobroCm2');
         $housingStock2->setCreationTime();
         $housingStock2->setLastChangeTime();
         
@@ -5459,33 +5459,43 @@ class LoadTestHousingStockData extends Fixture
         $housingStock3->setId(3);
         $housingStock3->setCode('DobrCmTest2');
         $housingStock3->setName('DobrCm - Test2');
-        $housingStock3->setDescription('Dit is de standaard test omgeving voor DobroCm2');
+        $housingStock3->setDescription('Dit is de standaard test omgeving voor DobroCm3');
         $housingStock3->setCreationTime();
         $housingStock3->setLastChangeTime();
-        
-        $owner1 = new Owner();
-        $owner1->setId(1);
-        $owner1->setHousingStock($housingStock1);
-        $owner1->setName('');
-        $owner1->setKvk(01234567);
-        $owner1->setBtw('NL123456780B01');
-        $owner1->setLNumber('');
-        
+
+        /**
+         * Below a list of owners, used as test set in the initial database.
+         *
+         * To be clear:
+         * - A housingstock can only be linked to one owner
+         * - But an owner can be linked to multiple housingstocks
+         * - Is is OK to make an owner but not link it to any housingstocks
+         */
+
+        // This owner is linked to one housingstock
+        $owner1 = new Owner(); // Always start a new owner object with this line. Every owner gets it's own name like $owner1, $owner2, ..., $ownerN, etc.
+        $owner1->setId(1); // This is the ID the owner will get in the database. Following owner must get an unique auto increment ID number. 1, 2, 3, 4, ..., N, etc.
+        $owner1->setName('xxx'); // This is the name of the owner. In most cases this will be the name of the housing corporation.
+        $owner1->setKvk(01234567); // The KVK number of the housing corporation.
+        $owner1->setBtw('NL123456780B01'); // The BTW number of the housing corporation.
+        $owner1->setLNumber(''); // The L number of the housing corporation.
+        $owner1->addHousingStock($housingStock1); // This line adds housingstock1 to the owner1. Multiple lines adds multiple housingstock to the owner.
+
+        // This housingstock is linked to 2 housingstocks
         $owner2 = new Owner();
-        $owner2->setId(1);
-        $owner2->setHousingStock($housingStock2);
-        $owner2->setName('');
+        $owner2->setId(2);
+        $owner2->setName('yyy');
         $owner2->setKvk('01234568');
         $owner2->setBtw('NL123456799B01');
         $owner2->setLNumber('');
-        
+        $owner2->addHousingStock($housingStock2);
+        $owner2->addHousingStock($housingStock3);
+
+        // This owner is not linked to any housingstocks
         $owner3 = new Owner();
-        $owner3->setId(1);
-        $owner3->setHousingStock($housingStock3);
-        $owner3->setName('');
+        $owner3->setId(3);
+        $owner3->setName('zzz');
         $owner3->setKvk('01234569');
-        $owner3->setBtw('NL123456789B01');
-        $owner3->setLNumber('');
 
         $buildingAddress1->setHousingStock($housingStock1);
         $buildingAddress2->setHousingStock($housingStock1);
@@ -5908,6 +5918,14 @@ class LoadTestHousingStockData extends Fixture
         $manager->persist($block7);
         $manager->persist($block8);
         $manager->persist($block9);
+
+        /**
+         * Every owner needs a line here to save that specific owner to the database.
+         */
+
+        $manager->persist($owner1);
+        $manager->persist($owner2);
+        $manager->persist($owner3);
 
         $manager->persist($housingStock1);
 
