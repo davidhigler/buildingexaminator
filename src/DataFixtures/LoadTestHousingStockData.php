@@ -5463,21 +5463,7 @@ class LoadTestHousingStockData extends Fixture
         $owner2->setBtw('NL123456799B01');
         $owner2->setLNumber('L2114');
 
-        // This owner is not linked to any housingstock      
-        $owner1 = new Owner();
-        $owner1->setId(1);
-        $owner1->setName('');
-        $owner1->setKvk('01234569');
-        $owner1->setBtw('NL123456799B01');
-        $owner1->setLNumber('L00');
-        
-        $owner2 = new Owner();
-        $owner2->setId(2);
-        $owner2->setName('');
-        $owner2->setKvk('01234569');
-        $owner2->etBtw('NL123456799B01');
-        $owner2->setLNumber('L00');
-                       
+        // This owner is not linked to any housingstock                             
         $owner3 = new Owner();
         $owner3->setId(3);
         $owner3->setName('zzz');
@@ -6234,12 +6220,12 @@ class LoadTestHousingStockData extends Fixture
         $owner110->setBtw('NL123456799B01');
         $owner110->setLNumber('L00');
         
-        $owner11 = new Owner();
-        $owner11->setId(111);
-        $owner11->setName('');
-        $owner11->setKvk('01234569');
-        $owner11->setBtw('NL123456799B01');
-        $owner11->setLNumber('L00');
+        $owner111 = new Owner();
+        $owner111->setId(111);
+        $owner111->setName('');
+        $owner111->setKvk('01234569');
+        $owner111->setBtw('NL123456799B01');
+        $owner111->setLNumber('L00');
         
         $owner112 = new Owner();
         $owner112->setId(112);
