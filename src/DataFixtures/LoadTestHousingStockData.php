@@ -5676,8 +5676,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress177->setHousingStock($housingStock2);
         $buildingAddress178->setHousingStock($housingStock2);
         $buildingAddress179->setHousingStock($housingStock2);
-        
         $buildingAddress180->setHousingStock($housingStock3);
+
         $buildingAddress181->setHousingStock($housingStock3);
         $buildingAddress182->setHousingStock($housingStock3);
         $buildingAddress183->setHousingStock($housingStock3);
@@ -5904,7 +5904,7 @@ class LoadTestHousingStockData extends Fixture
         $manager->persist($livingType9);
         $manager->persist($livingType10);
 
-        for ($i = 1; $i <= 130; $i++) {
+        for ($i = 1; $i <= 199; $i++) {
             $manager->persist(${'buildingAddress'.$i});
         }
 

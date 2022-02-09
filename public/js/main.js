@@ -444,17 +444,22 @@ function loadBuildingaddressesPage() {
                 $(data).each(function (index, element) {
                     rows +=
                         '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
-                        '                <td><i class="material-icons prefix">home</i></td>\n' +
-                        '                <td>' + element.rentalUnitNumber + '</td>\n' +
-                        '                <td>' + element.streetName + '</td>\n' +
-                        '                <td>' + element.houseNumber + '</td>\n' +
-                        '                <td>' + element.addition + '</td>\n' +
-                        '                <td>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">home</i></td>\n' +
+                        '                <td class="hide-on-small-only">' + element.rentalUnitNumber + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + element.streetName + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + element.houseNumber + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + element.addition + '</td>\n' +
+                        '                <td class="hide-on-med-and-up">' +
+                        '                    ' + element.rentalUnitNumber + '<br />\n' +
+                        '                    ' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />\n' +
+                        '                    ' + element.zipcode + ' ' + element.city + '\n' +
+                        '                </td>\n' +
+                        '                <td class="actions">\n' +
                         '                    <button class="btn" name="edit" onclick="loadBuildingaddressEditPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons left">edit</i>Edit\n' +
+                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                         '                    </button>\n' +
                         '                    <button class="btn" name="delete" onclick="showDeleteBuildingaddressModal(' + element.id + ' , \'' + element.name + '\');">\n' +
-                        '                        <i class="material-icons left">delete</i>Delete\n' +
+                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                         '                    </button>\n' +
                         '                </td>\n' +
                         '            </tr>\n';
@@ -465,18 +470,19 @@ function loadBuildingaddressesPage() {
                     '    <div class="row">\n' +
                     '        <div class="input-field col s12">\n' +
                     '            <button class="btn" name="new" onclick="loadBuildingaddressNewPage();">\n' +
-                    '                <i class="material-icons left">house_add</i>New\n' +
+                    '                <i class="material-icons">house_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
                     '    </div>\n' +
                     '    <table>\n' +
                     '        <thead>\n' +
                     '            <tr>\n' +
-                    '                <th></th>\n' +
-                    '                <th>Rental unit number</th>\n' +
-                    '                <th>Street name</th>\n' +
-                    '                <th>House number</th>\n' +
-                    '                <th>Addition</th>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th class="hide-on-small-only">Rental unit number</th>\n' +
+                    '                <th class="hide-on-small-only">Street name</th>\n' +
+                    '                <th class="hide-on-small-only">House number</th>\n' +
+                    '                <th class="hide-on-small-only">Addition</th>\n' +
+                    '                <th class="hide-on-med-and-up">Address</th>\n' +
                     '                <th class="actions">Actions</th>\n' +
                     '            </tr>\n' +
                     '        </thead>\n' +
@@ -631,7 +637,9 @@ function loadBuildingaddressNewPage() {
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="col s12">\n' +
-        '                <button type="submit" class="btn" name="create">Create</button>\n' +
+        '                <button type="submit" class="btn" name="create">\n' +
+        '                    <i class="material-icons left">house_add</i>Create\n' +
+        '                </button>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '    </form>\n'

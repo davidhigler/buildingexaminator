@@ -162,12 +162,11 @@ div#content > h3 {
 
 div#content table th.actions,
 div#content table td.actions {
-    width: 230px;
     white-space: nowrap;
 }
 
 .material-tooltip {
-text-align: left;
+    text-align: left;
 }
 
 ul.pagination {
