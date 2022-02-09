@@ -5450,24 +5450,2119 @@ class LoadTestHousingStockData extends Fixture
         // This owner is linked to one housingstock
         $owner1 = new Owner(); // Always start a new owner object with this line. Every owner gets it's own name like $owner1, $owner2, ..., $ownerN, etc.
         $owner1->setId(1); // This is the ID the owner will get in the database. Following owner must get an unique auto increment ID number. 1, 2, 3, 4, ..., N, etc.
-        $owner1->setName('xxx'); // This is the name of the owner. In most cases this will be the name of the housing corporation.
+        $owner1->setName('WoonCompas'); // This is the name of the owner. In most cases this will be the name of the housing corporation.
         $owner1->setKvk(01234567); // The KVK number of the housing corporation.
         $owner1->setBtw('NL123456780B01'); // The BTW number of the housing corporation.
-        $owner1->setLNumber(''); // The L number of the housing corporation.
+        $owner1->setLNumber('L2110'); // The L number of the housing corporation.
 
         // This housingstock is linked to 2 housingstocks
         $owner2 = new Owner();
         $owner2->setId(2);
-        $owner2->setName('yyy');
+        $owner2->setName('Woonpartners Midden-Holland');
         $owner2->setKvk('01234568');
         $owner2->setBtw('NL123456799B01');
-        $owner2->setLNumber('');
+        $owner2->setLNumber('L2114');
 
-        // This owner is not linked to any housingstocks
+        // This owner is not linked to any housingstock      
+        $owner1 = new Owner();
+        $owner1->setId(1);
+        $owner1->setName('');
+        $owner1->setKvk('01234569');
+        $owner1->setBtw('NL123456799B01');
+        $owner1->setLNumber('L00');
+        
+        $owner2 = new Owner();
+        $owner2->setId(2);
+        $owner2->setName('');
+        $owner2->setKvk('01234569');
+        $owner2->etBtw('NL123456799B01');
+        $owner2->setLNumber('L00');
+                       
         $owner3 = new Owner();
         $owner3->setId(3);
         $owner3->setName('zzz');
         $owner3->setKvk('01234569');
+        $owner3->setBtw('NL123456799B01');
+        $owner3->setLNumber('L00');
+        
+        $owner4 = new Owner();
+        $owner4->setId(4);
+        $owner4->setName('');
+        $owner4->setKvk('01234569');
+        $owner4->setBtw('NL123456799B01');
+        $owner4->setLNumber('L00');
+       
+        $owner5 = new Owner();
+        $owner5->setId(5);
+        $owner5->setName('');
+        $owner5->setKvk('01234569');
+        $owner5->setBtw('NL123456799B01');
+        $owner5->setLNumber('L00');
+        
+        $owner6 = new Owner();
+        $owner6->setId(6);
+        $owner6->setName('');
+        $owner6->setKvk('01234569');
+        $owner6->setBtw('NL123456799B01');
+        $owner6->setLNumber('L00');
+        
+        $owner7 = new Owner();
+        $owner7->setId(7);
+        $owner7->setName('');
+        $owner7->setKvk('01234569');
+        $owner7->setBtw('NL123456799B01');
+        $owner7->setLNumber('L00');
+        
+        $owner8 = new Owner();
+        $owner8->setId(8);
+        $owner8->setName('');
+        $owner8->setKvk('01234569');
+        $owner8->setBtw('NL123456799B01');
+        $owner8->setLNumber('L00');
+        
+        $owner9 = new Owner();
+        $owner9->setId(9);
+        $owner9->setName('');
+        $owner9->setKvk('01234569');
+        $owner9->setBtw('NL123456799B01');
+        $owner9->setLNumber('L00');
+        
+        $owner10 = new Owner();
+        $owner10->setId(10);
+        $owner10->setName('');
+        $owner10->setKvk('01234569');
+        $owner10->setBtw('NL123456799B01');
+        $owner10->setLNumber('L00');
+        
+        $owner11 = new Owner();
+        $owner11->setId(11);
+        $owner11->setName('');
+        $owner11->setKvk('01234569');
+        $owner11->setBtw('NL123456799B01');
+        $owner11->setLNumber('L00');
+        
+        $owner12 = new Owner();
+        $owner12->setId(12);
+        $owner12->setName('');
+        $owner12->setKvk('01234569');
+        $owner12->etBtw('NL123456799B01');
+        $owner12->setLNumber('L00');
+        
+        $owner13 = new Owner();
+        $owner13->setId(13);
+        $owner13->setName('');
+        $owner13->setKvk('01234569');
+        $owner13->setBtw('NL123456799B01');
+        $owner13->setLNumber('L00');
+        
+        $owner14 = new Owner();
+        $owner14->setId(14);
+        $owner14->setName('');
+        $owner14->setKvk('01234569');
+        $owner14->setBtw('NL123456799B01');
+        $owner14->setLNumber('L00');
+       
+        $owner15 = new Owner();
+        $owner15->setId(15);
+        $owner15->setName('');
+        $owner15->setKvk('01234569');
+        $owner15->setBtw('NL123456799B01');
+        $owner15->setLNumber('L00');
+        
+        $owner16 = new Owner();
+        $owner16->setId(16);
+        $owner16->setName('');
+        $owner16->setKvk('01234569');
+        $owner16->setBtw('NL123456799B01');
+        $owner16->setLNumber('L00');
+        
+        $owner17 = new Owner();
+        $owner17->setId(17);
+        $owner17->setName('');
+        $owner17->setKvk('01234569');
+        $owner17->setBtw('NL123456799B01');
+        $owner17->setLNumber('L00');
+        
+        $owner18 = new Owner();
+        $owner18->setId(18);
+        $owner18->setName('');
+        $owner18->setKvk('01234569');
+        $owner18->setBtw('NL123456799B01');
+        $owner18->setLNumber('L00');
+        
+        $owner19 = new Owner();
+        $owner19->setId(19);
+        $owner19->setName('');
+        $owner19->setKvk('01234569');
+        $owner19->setBtw('NL123456799B01');
+        $owner19->setLNumber('L00');
+        
+        $owner20 = new Owner();
+        $owner20->setId(20);
+        $owner20->setName('');
+        $owner20->setKvk('01234569');
+        $owner20->setBtw('NL123456799B01');
+        $owner20->setLNumber('L00');
+        
+        $owner21 = new Owner();
+        $owner21->setId(21);
+        $owner21->setName('');
+        $owner21->setKvk('01234569');
+        $owner21->setBtw('NL123456799B01');
+        $owner21->setLNumber('L00');
+        
+        $owner22 = new Owner();
+        $owner22->setId(22);
+        $owner22->setName('');
+        $owner22->setKvk('01234569');
+        $owner22->etBtw('NL123456799B01');
+        $owner22->setLNumber('L00');
+        
+        $owner23 = new Owner();
+        $owner23->setId(23);
+        $owner23->setName('');
+        $owner23->setKvk('01234569');
+        $owner23->setBtw('NL123456799B01');
+        $owner23->setLNumber('L00');
+        
+        $owner24 = new Owner();
+        $owner24->setId(24);
+        $owner24->setName('');
+        $owner24->setKvk('01234569');
+        $owner24->setBtw('NL123456799B01');
+        $owner24->setLNumber('L00');
+       
+        $owner25 = new Owner();
+        $owner25->setId(25);
+        $owner25->setName('');
+        $owner25->setKvk('01234569');
+        $owner25->setBtw('NL123456799B01');
+        $owner25->setLNumber('L00');
+        
+        $owner26 = new Owner();
+        $owner26->setId(26);
+        $owner26->setName('');
+        $owner26->setKvk('01234569');
+        $owner26->setBtw('NL123456799B01');
+        $owner26->setLNumber('L00');
+        
+        $owner27 = new Owner();
+        $owner27->setId(27);
+        $owner27->setName('');
+        $owner27->setKvk('01234569');
+        $owner27->setBtw('NL123456799B01');
+        $owner27->setLNumber('L00');
+        
+        $owner28 = new Owner();
+        $owner28->setId(28);
+        $owner28->setName('');
+        $owner28->setKvk('01234569');
+        $owner28->setBtw('NL123456799B01');
+        $owner28->setLNumber('L00');
+        
+        $owner29 = new Owner();
+        $owner29->setId(29);
+        $owner29->setName('');
+        $owner29->setKvk('01234569');
+        $owner29->setBtw('NL123456799B01');
+        $owner29->setLNumber('L00');
+        
+        $owner30 = new Owner();
+        $owner30->setId(30);
+        $owner30->setName('');
+        $owner30->setKvk('01234569');
+        $owner30->setBtw('NL123456799B01');
+        $owner30->setLNumber('L00');
+        
+        $owner31 = new Owner();
+        $owner31->setId(31);
+        $owner31->setName('');
+        $owner31->setKvk('01234569');
+        $owner31->setBtw('NL123456799B01');
+        $owner31->setLNumber('L00');
+        
+        $owner32 = new Owner();
+        $owner32->setId(32);
+        $owner32->setName('');
+        $owner32->setKvk('01234569');
+        $owner32->etBtw('NL123456799B01');
+        $owner32->setLNumber('L00');
+        
+        $owner33 = new Owner();
+        $owner33->setId(33);
+        $owner33->setName('');
+        $owner33->setKvk('01234569');
+        $owner33->setBtw('NL123456799B01');
+        $owner33->setLNumber('L00');
+        
+        $owner34 = new Owner();
+        $owner34->setId(34);
+        $owner34->setName('');
+        $owner34->setKvk('01234569');
+        $owner34->setBtw('NL123456799B01');
+        $owner34->setLNumber('L00');
+       
+        $owner35 = new Owner();
+        $owner35->setId(35);
+        $owner35->setName('');
+        $owner35->setKvk('01234569');
+        $owner35->setBtw('NL123456799B01');
+        $owner35->setLNumber('L00');
+        
+        $owner36 = new Owner();
+        $owner36->setId(36);
+        $owner36->setName('');
+        $owner36->setKvk('01234569');
+        $owner36->setBtw('NL123456799B01');
+        $owner36->setLNumber('L00');
+        
+        $owner37 = new Owner();
+        $owner37->setId(37);
+        $owner37->setName('');
+        $owner37->setKvk('01234569');
+        $owner37->setBtw('NL123456799B01');
+        $owner37->setLNumber('L00');
+        
+        $owner38 = new Owner();
+        $owner38->setId(38);
+        $owner38->setName('');
+        $owner38->setKvk('01234569');
+        $owner38->setBtw('NL123456799B01');
+        $owner38->setLNumber('L00');
+        
+        $owner39 = new Owner();
+        $owner39->setId(39);
+        $owner39->setName('');
+        $owner39->setKvk('01234569');
+        $owner39->setBtw('NL123456799B01');
+        $owner39->setLNumber('L00');
+        
+        $owner40 = new Owner();
+        $owner40->setId(40);
+        $owner40->setName('');
+        $owner40->setKvk('01234569');
+        $owner40->setBtw('NL123456799B01');
+        $owner40->setLNumber('L00');
+        
+        $owner41 = new Owner();
+        $owner41->setId(41);
+        $owner41->setName('');
+        $owner41->setKvk('01234569');
+        $owner41->setBtw('NL123456799B01');
+        $owner41->setLNumber('L00');
+        
+        $owner42 = new Owner();
+        $owner42->setId(42);
+        $owner42->setName('');
+        $owner42->setKvk('01234569');
+        $owner42->etBtw('NL123456799B01');
+        $owner42->setLNumber('L00');
+        
+        $owner43 = new Owner();
+        $owner43->setId(43);
+        $owner43->setName('');
+        $owner43->setKvk('01234569');
+        $owner43->setBtw('NL123456799B01');
+        $owner43->setLNumber('L00');
+        
+        $owner44 = new Owner();
+        $owner44->setId(44);
+        $owner44->setName('');
+        $owner44->setKvk('01234569');
+        $owner44->setBtw('NL123456799B01');
+        $owner44->setLNumber('L00');
+       
+        $owner45 = new Owner();
+        $owner45->setId(45);
+        $owner45->setName('');
+        $owner45->setKvk('01234569');
+        $owner45->setBtw('NL123456799B01');
+        $owner45->setLNumber('L00');
+        
+        $owner46 = new Owner();
+        $owner46->setId(46);
+        $owner46->setName('');
+        $owner46->setKvk('01234569');
+        $owner46->setBtw('NL123456799B01');
+        $owner46->setLNumber('L00');
+        
+        $owner47 = new Owner();
+        $owner47->setId(47);
+        $owner47->setName('');
+        $owner47->setKvk('01234569');
+        $owner47->setBtw('NL123456799B01');
+        $owner47->setLNumber('L00');
+        
+        $owner48 = new Owner();
+        $owner48->setId(48);
+        $owner48->setName('');
+        $owner48->setKvk('01234569');
+        $owner48->setBtw('NL123456799B01');
+        $owner48->setLNumber('L00');
+        
+        $owner49 = new Owner();
+        $owner49->setId(49);
+        $owner49->setName('');
+        $owner49->setKvk('01234569');
+        $owner49->setBtw('NL123456799B01');
+        $owner49->setLNumber('L00');
+        
+        $owner50 = new Owner();
+        $owner50->setId(50);
+        $owner50->setName('');
+        $owner50->setKvk('01234569');
+        $owner50->setBtw('NL123456799B01');
+        $owner50->setLNumber('L00');
+        
+        $owner51 = new Owner();
+        $owner51->setId(51);
+        $owner51->setName('');
+        $owner51->setKvk('01234569');
+        $owner51->setBtw('NL123456799B01');
+        $owner51->setLNumber('L00');
+        
+        $owner52 = new Owner();
+        $owner52->setId(52);
+        $owner52->setName('');
+        $owner52->setKvk('01234569');
+        $owner52->etBtw('NL123456799B01');
+        $owner52->setLNumber('L00');
+        
+        $owner53 = new Owner();
+        $owner53->setId(53);
+        $owner53->setName('');
+        $owner53->setKvk('01234569');
+        $owner53->setBtw('NL123456799B01');
+        $owner53->setLNumber('L00');
+        
+        $owner54 = new Owner();
+        $owner54->setId(54);
+        $owner54->setName('');
+        $owner54->setKvk('01234569');
+        $owner54->setBtw('NL123456799B01');
+        $owner54->setLNumber('L00');
+       
+        $owner55 = new Owner();
+        $owner55->setId(55);
+        $owner55->setName('');
+        $owner55->setKvk('01234569');
+        $owner55->setBtw('NL123456799B01');
+        $owner55->setLNumber('L00');
+        
+        $owner56 = new Owner();
+        $owner56->setId(56);
+        $owner56->setName('');
+        $owner56->setKvk('01234569');
+        $owner56->setBtw('NL123456799B01');
+        $owner56->setLNumber('L00');
+        
+        $owner57 = new Owner();
+        $owner57->setId(57);
+        $owner57->setName('');
+        $owner57->setKvk('01234569');
+        $owner57->setBtw('NL123456799B01');
+        $owner57->setLNumber('L00');
+        
+        $owner58 = new Owner();
+        $owner58->setId(58);
+        $owner58->setName('');
+        $owner58->setKvk('01234569');
+        $owner58->setBtw('NL123456799B01');
+        $owner58->setLNumber('L00');
+        
+        $owner59 = new Owner();
+        $owner59->setId(59);
+        $owner59->setName('');
+        $owner59->setKvk('01234569');
+        $owner59->setBtw('NL123456799B01');
+        $owner59->setLNumber('L00');
+        
+        $owner60 = new Owner();
+        $owner60->setId(60);
+        $owner60->setName('');
+        $owner60->setKvk('01234569');
+        $owner60->setBtw('NL123456799B01');
+        $owner60->setLNumber('L00');
+        
+        $owner61 = new Owner();
+        $owner61->setId(61);
+        $owner61->setName('');
+        $owner61->setKvk('01234569');
+        $owner61->setBtw('NL123456799B01');
+        $owner61->setLNumber('L00');
+        
+        $owner62 = new Owner();
+        $owner62->setId(62);
+        $owner62->setName('');
+        $owner62->setKvk('01234569');
+        $owner62->etBtw('NL123456799B01');
+        $owner62->setLNumber('L00');
+        
+        $owner63 = new Owner();
+        $owner63->setId(63);
+        $owner63->setName('');
+        $owner63->setKvk('01234569');
+        $owner63->setBtw('NL123456799B01');
+        $owner63->setLNumber('L00');
+        
+        $owner64 = new Owner();
+        $owner64->setId(64);
+        $owner64->setName('');
+        $owner64->setKvk('01234569');
+        $owner64->setBtw('NL123456799B01');
+        $owner64->setLNumber('L00');
+       
+        $owner65 = new Owner();
+        $owner65->setId(65);
+        $owner65->setName('');
+        $owner65->setKvk('01234569');
+        $owner65->setBtw('NL123456799B01');
+        $owner65->setLNumber('L00');
+        
+        $owner66 = new Owner();
+        $owner66->setId(66);
+        $owner66->setName('');
+        $owner66->setKvk('01234569');
+        $owner66->setBtw('NL123456799B01');
+        $owner66->setLNumber('L00');
+        
+        $owner67 = new Owner();
+        $owner67->setId(67);
+        $owner67->setName('');
+        $owner67->setKvk('01234569');
+        $owner67->setBtw('NL123456799B01');
+        $owner67->setLNumber('L00');
+        
+        $owner68 = new Owner();
+        $owner68->setId(68);
+        $owner68->setName('');
+        $owner68->setKvk('01234569');
+        $owner68->setBtw('NL123456799B01');
+        $owner68->setLNumber('L00');
+        
+        $owner69 = new Owner();
+        $owner69->setId(69);
+        $owner69->setName('');
+        $owner69->setKvk('01234569');
+        $owner69->setBtw('NL123456799B01');
+        $owner69->setLNumber('L00');
+        
+        $owner70 = new Owner();
+        $owner70->setId(70);
+        $owner70->setName('');
+        $owner70->setKvk('01234569');
+        $owner70->setBtw('NL123456799B01');
+        $owner70->setLNumber('L00');
+        
+        $owner71 = new Owner();
+        $owner71->setId(71);
+        $owner71->setName('');
+        $owner71->setKvk('01234569');
+        $owner71->setBtw('NL123456799B01');
+        $owner71->setLNumber('L00');
+        
+        $owner72 = new Owner();
+        $owner72->setId(72);
+        $owner72->setName('');
+        $owner72->setKvk('01234569');
+        $owner72->etBtw('NL123456799B01');
+        $owner72->setLNumber('L00');
+        
+        $owner73 = new Owner();
+        $owner73->setId(73);
+        $owner73->setName('');
+        $owner73->setKvk('01234569');
+        $owner73->setBtw('NL123456799B01');
+        $owner73->setLNumber('L00');
+        
+        $owner74 = new Owner();
+        $owner74->setId(74);
+        $owner74->setName('');
+        $owner74->setKvk('01234569');
+        $owner74->setBtw('NL123456799B01');
+        $owner74->setLNumber('L00');
+       
+        $owner75 = new Owner();
+        $owner75->setId(75);
+        $owner75->setName('');
+        $owner75->setKvk('01234569');
+        $owner75->setBtw('NL123456799B01');
+        $owner75->setLNumber('L00');
+        
+        $owner76 = new Owner();
+        $owner76->setId(76);
+        $owner76->setName('');
+        $owner76->setKvk('01234569');
+        $owner76->setBtw('NL123456799B01');
+        $owner76->setLNumber('L00');
+        
+        $owner77 = new Owner();
+        $owner77->setId(77);
+        $owner77->setName('');
+        $owner77->setKvk('01234569');
+        $owner77->setBtw('NL123456799B01');
+        $owner77->setLNumber('L00');
+        
+        $owner78 = new Owner();
+        $owner78->setId(78);
+        $owner78->setName('');
+        $owner78->setKvk('01234569');
+        $owner78->setBtw('NL123456799B01');
+        $owner78->setLNumber('L00');
+        
+        $owner79 = new Owner();
+        $owner79->setId(79);
+        $owner79->setName('');
+        $owner79->setKvk('01234569');
+        $owner79->setBtw('NL123456799B01');
+        $owner79->setLNumber('L00');
+        
+        $owner80 = new Owner();
+        $owner80->setId(80);
+        $owner80->setName('');
+        $owner80->setKvk('01234569');
+        $owner80->setBtw('NL123456799B01');
+        $owner80->setLNumber('L00');
+        
+        $owner81 = new Owner();
+        $owner81->setId(81);
+        $owner81->setName('');
+        $owner81->setKvk('01234569');
+        $owner81->setBtw('NL123456799B01');
+        $owner81->setLNumber('L00');
+        
+        $owner82 = new Owner();
+        $owner82->setId(82);
+        $owner82->setName('');
+        $owner82->setKvk('01234569');
+        $owner82->etBtw('NL123456799B01');
+        $owner82->setLNumber('L00');
+        
+        $owner83 = new Owner();
+        $owner83->setId(83);
+        $owner83->setName('');
+        $owner83->setKvk('01234569');
+        $owner83->setBtw('NL123456799B01');
+        $owner83->setLNumber('L00');
+        
+        $owner84 = new Owner();
+        $owner84->setId(84);
+        $owner84->setName('');
+        $owner84->setKvk('01234569');
+        $owner84->setBtw('NL123456799B01');
+        $owner84->setLNumber('L00');
+       
+        $owner85 = new Owner();
+        $owner85->setId(85);
+        $owner85->setName('');
+        $owner85->setKvk('01234569');
+        $owner85->setBtw('NL123456799B01');
+        $owner85->setLNumber('L00');
+        
+        $owner86 = new Owner();
+        $owner86->setId(86);
+        $owner86->setName('');
+        $owner86->setKvk('01234569');
+        $owner86->setBtw('NL123456799B01');
+        $owner86->setLNumber('L00');
+        
+        $owner87 = new Owner();
+        $owner87->setId(87);
+        $owner87->setName('');
+        $owner87->setKvk('01234569');
+        $owner87->setBtw('NL123456799B01');
+        $owner87->setLNumber('L00');
+        
+        $owner88 = new Owner();
+        $owner88->setId(88);
+        $owner88->setName('');
+        $owner88->setKvk('01234569');
+        $owner88->setBtw('NL123456799B01');
+        $owner88->setLNumber('L00');
+        
+        $owner89 = new Owner();
+        $owner89->setId(89);
+        $owner89->setName('');
+        $owner89->setKvk('01234569');
+        $owner89->setBtw('NL123456799B01');
+        $owner89->setLNumber('L00');
+        
+        $owner90 = new Owner();
+        $owner90->setId(90);
+        $owner90->setName('');
+        $owner90->setKvk('01234569');
+        $owner90->setBtw('NL123456799B01');
+        $owner90->setLNumber('L00');
+        
+        $owner91 = new Owner();
+        $owner91->setId(91);
+        $owner91->setName('');
+        $owner91->setKvk('01234569');
+        $owner91->setBtw('NL123456799B01');
+        $owner91->setLNumber('L00');
+        
+        $owner92 = new Owner();
+        $owner92->setId(92);
+        $owner92->setName('');
+        $owner92->setKvk('01234569');
+        $owner92->etBtw('NL123456799B01');
+        $owner92->setLNumber('L00');
+        
+        $owner93 = new Owner();
+        $owner93->setId(93);
+        $owner93->setName('');
+        $owner93->setKvk('01234569');
+        $owner93->setBtw('NL123456799B01');
+        $owner93->setLNumber('L00');
+        
+        $owner94 = new Owner();
+        $owner94->setId(94);
+        $owner94->setName('');
+        $owner94->setKvk('01234569');
+        $owner94->setBtw('NL123456799B01');
+        $owner94->setLNumber('L00');
+       
+        $owner95 = new Owner();
+        $owner95->setId(95);
+        $owner95->setName('');
+        $owner95->setKvk('01234569');
+        $owner95->setBtw('NL123456799B01');
+        $owner95->setLNumber('L00');
+        
+        $owner96 = new Owner();
+        $owner96->setId(96);
+        $owner96->setName('');
+        $owner96->setKvk('01234569');
+        $owner96->setBtw('NL123456799B01');
+        $owner96->setLNumber('L00');
+        
+        $owner97 = new Owner();
+        $owner97->setId(97);
+        $owner97->setName('');
+        $owner97->setKvk('01234569');
+        $owner97->setBtw('NL123456799B01');
+        $owner97->setLNumber('L00');
+        
+        $owner98 = new Owner();
+        $owner98->setId(98);
+        $owner98->setName('');
+        $owner98->setKvk('01234569');
+        $owner98->setBtw('NL123456799B01');
+        $owner98->setLNumber('L00');
+        
+        $owner99 = new Owner();
+        $owner99->setId(99);
+        $owner99->setName('');
+        $owner99->setKvk('01234569');
+        $owner99->setBtw('NL123456799B01');
+        $owner99->setLNumber('L00');
+        
+        $owner100 = new Owner();
+        $owner100->setId(100);
+        $owner100->setName('');
+        $owner100->setKvk('01234569');
+        $owner100->setBtw('NL123456799B01');
+        $owner100->setLNumber('L00')
+        
+        $owner101 = new Owner();
+        $owner101->setId(101);
+        $owner101->setName('');
+        $owner101->setKvk('01234569');
+        $owner101->setBtw('NL123456799B01');
+        $owner101->setLNumber('L00');
+        
+        $owner102 = new Owner();
+        $owner102->setId(102);
+        $owner102->setName('');
+        $owner102->setKvk('01234569');
+        $owner102->etBtw('NL123456799B01');
+        $owner102->setLNumber('L00');
+                       
+        $owner103 = new Owner();
+        $owner103->setId(103);
+        $owner103->setName('zzz');
+        $owner103->setKvk('01234569');
+        $owner103->setBtw('NL123456799B01');
+        $owner103->setLNumber('L00');
+        
+        $owner104 = new Owner();
+        $owner104->setId(104);
+        $owner104->setName('');
+        $owner104->setKvk('01234569');
+        $owner104->setBtw('NL123456799B01');
+        $owner104->setLNumber('L00');
+       
+        $owner105 = new Owner();
+        $owner105->setId(105);
+        $owner105->setName('');
+        $owner105->setKvk('01234569');
+        $owner105->setBtw('NL123456799B01');
+        $owner105->setLNumber('L00');
+        
+        $owner106 = new Owner();
+        $owner106->setId(106);
+        $owner106->setName('');
+        $owner106->setKvk('01234569');
+        $owner106->setBtw('NL123456799B01');
+        $owner106->setLNumber('L00');
+        
+        $owner107 = new Owner();
+        $owner107->setId(107);
+        $owner107->setName('');
+        $owner107->setKvk('01234569');
+        $owner107->setBtw('NL123456799B01');
+        $owner107->setLNumber('L00');
+        
+        $owner108 = new Owner();
+        $owner108->setId(108);
+        $owner108->setName('');
+        $owner108->setKvk('01234569');
+        $owner108->setBtw('NL123456799B01');
+        $owner108->setLNumber('L00');
+        
+        $owner109 = new Owner();
+        $owner109->setId(109);
+        $owner109->setName('');
+        $owner109->setKvk('01234569');
+        $owner109->setBtw('NL123456799B01');
+        $owner109->setLNumber('L00');
+        
+        $owner110 = new Owner();
+        $owner110->setId(110);
+        $owner110->setName('');
+        $owner110->setKvk('01234569');
+        $owner110->setBtw('NL123456799B01');
+        $owner110->setLNumber('L00');
+        
+        $owner11 = new Owner();
+        $owner11->setId(111);
+        $owner11->setName('');
+        $owner11->setKvk('01234569');
+        $owner11->setBtw('NL123456799B01');
+        $owner11->setLNumber('L00');
+        
+        $owner112 = new Owner();
+        $owner112->setId(112);
+        $owner112->setName('');
+        $owner112->setKvk('01234569');
+        $owner112->etBtw('NL123456799B01');
+        $owner112->setLNumber('L00');
+        
+        $owner113 = new Owner();
+        $owner113->setId(113);
+        $owner113->setName('');
+        $owner113->setKvk('01234569');
+        $owner113->setBtw('NL123456799B01');
+        $owner113->setLNumber('L00');
+        
+        $owner114 = new Owner();
+        $owner114->setId(114);
+        $owner114->setName('');
+        $owner114->setKvk('01234569');
+        $owner114->setBtw('NL123456799B01');
+        $owner114->setLNumber('L00');
+       
+        $owner115 = new Owner();
+        $owner115->setId(115);
+        $owner115->setName('');
+        $owner115->setKvk('01234569');
+        $owner115->setBtw('NL123456799B01');
+        $owner115->setLNumber('L00');
+        
+        $owner116 = new Owner();
+        $owner116->setId(116);
+        $owner116->setName('');
+        $owner116->setKvk('01234569');
+        $owner116->setBtw('NL123456799B01');
+        $owner116->setLNumber('L00');
+        
+        $owner117 = new Owner();
+        $owner117->setId(117);
+        $owner117->setName('');
+        $owner117->setKvk('01234569');
+        $owner117->setBtw('NL123456799B01');
+        $owner117->setLNumber('L00');
+        
+        $owner118 = new Owner();
+        $owner118->setId(118);
+        $owner118->setName('');
+        $owner118->setKvk('01234569');
+        $owner118->setBtw('NL123456799B01');
+        $owner118->setLNumber('L00');
+        
+        $owner119 = new Owner();
+        $owner119->setId(119);
+        $owner119->setName('');
+        $owner119->setKvk('01234569');
+        $owner119->setBtw('NL123456799B01');
+        $owner119->setLNumber('L00');
+        
+        $owner120 = new Owner();
+        $owner120->setId(120);
+        $owner120->setName('');
+        $owner120->setKvk('01234569');
+        $owner120->setBtw('NL123456799B01');
+        $owner120->setLNumber('L00');
+        
+        $owner121 = new Owner();
+        $owner121->setId(121);
+        $owner121->setName('');
+        $owner121->setKvk('01234569');
+        $owner121->setBtw('NL123456799B01');
+        $owner121->setLNumber('L00');
+        
+        $owner122 = new Owner();
+        $owner122->setId(122);
+        $owner122->setName('');
+        $owner122->setKvk('01234569');
+        $owner122->etBtw('NL123456799B01');
+        $owner122->setLNumber('L00');
+        
+        $owner123 = new Owner();
+        $owner123->setId(123);
+        $owner123->setName('');
+        $owner123->setKvk('01234569');
+        $owner123->setBtw('NL123456799B01');
+        $owner123->setLNumber('L00');
+        
+        $owner124 = new Owner();
+        $owner124->setId(124);
+        $owner124->setName('');
+        $owner124->setKvk('01234569');
+        $owner124->setBtw('NL123456799B01');
+        $owner124->setLNumber('L00');
+       
+        $owner125 = new Owner();
+        $owner125->setId(125);
+        $owner125->setName('');
+        $owner125->setKvk('01234569');
+        $owner125->setBtw('NL123456799B01');
+        $owner125->setLNumber('L00');
+        
+        $owner126 = new Owner();
+        $owner126->setId(126);
+        $owner126->setName('');
+        $owner126->setKvk('01234569');
+        $owner126->setBtw('NL123456799B01');
+        $owner126->setLNumber('L00');
+        
+        $owner127 = new Owner();
+        $owner127->setId(127);
+        $owner127->setName('');
+        $owner127->setKvk('01234569');
+        $owner127->setBtw('NL123456799B01');
+        $owner127->setLNumber('L00');
+        
+        $owner128 = new Owner();
+        $owner128->setId(128);
+        $owner128->setName('');
+        $owner128->setKvk('01234569');
+        $owner128->setBtw('NL123456799B01');
+        $owner128->setLNumber('L00');
+        
+        $owner129 = new Owner();
+        $owner129->setId(129);
+        $owner129->setName('');
+        $owner129->setKvk('01234569');
+        $owner129->setBtw('NL123456799B01');
+        $owner129->setLNumber('L00');
+        
+        $owner130 = new Owner();
+        $owner130->setId(130);
+        $owner130->setName('');
+        $owner130->setKvk('01234569');
+        $owner130->setBtw('NL123456799B01');
+        $owner130->setLNumber('L00');
+        
+        $owner131 = new Owner();
+        $owner131->setId(131);
+        $owner131->setName('');
+        $owner131->setKvk('01234569');
+        $owner131->setBtw('NL123456799B01');
+        $owner131->setLNumber('L00');
+        
+        $owner132 = new Owner();
+        $owner132->setId(132);
+        $owner132->setName('');
+        $owner132->setKvk('01234569');
+        $owner132->etBtw('NL123456799B01');
+        $owner132->setLNumber('L00');
+        
+        $owner133 = new Owner();
+        $owner133->setId(133);
+        $owner133->setName('');
+        $owner133->setKvk('01234569');
+        $owner133->setBtw('NL123456799B01');
+        $owner133->setLNumber('L00');
+        
+        $owner134 = new Owner();
+        $owner134->setId(134);
+        $owner134->setName('');
+        $owner134->setKvk('01234569');
+        $owner134->setBtw('NL123456799B01');
+        $owner134->setLNumber('L00');
+       
+        $owner135 = new Owner();
+        $owner135->setId(135);
+        $owner135->setName('');
+        $owner135->setKvk('01234569');
+        $owner135->setBtw('NL123456799B01');
+        $owner135->setLNumber('L00');
+        
+        $owner136 = new Owner();
+        $owner136->setId(136);
+        $owner136->setName('');
+        $owner136->setKvk('01234569');
+        $owner136->setBtw('NL123456799B01');
+        $owner136->setLNumber('L00');
+        
+        $owner137 = new Owner();
+        $owner137->setId(137);
+        $owner137->setName('');
+        $owner137->setKvk('01234569');
+        $owner137->setBtw('NL123456799B01');
+        $owner137->setLNumber('L00');
+        
+        $owner138 = new Owner();
+        $owner138->setId(138);
+        $owner138->setName('');
+        $owner138->setKvk('01234569');
+        $owner138->setBtw('NL123456799B01');
+        $owner138->setLNumber('L00');
+        
+        $owner139 = new Owner();
+        $owner139->setId(139);
+        $owner139->setName('');
+        $owner139->setKvk('01234569');
+        $owner139->setBtw('NL123456799B01');
+        $owner139->setLNumber('L00');
+        
+        $owner140 = new Owner();
+        $owner140->setId(140);
+        $owner140->setName('');
+        $owner140->setKvk('01234569');
+        $owner140->setBtw('NL123456799B01');
+        $owner140->setLNumber('L00');
+        
+        $owner141 = new Owner();
+        $owner141->setId(141);
+        $owner141->setName('');
+        $owner141->setKvk('01234569');
+        $owner141->setBtw('NL123456799B01');
+        $owner141->setLNumber('L00');
+        
+        $owner142 = new Owner();
+        $owner142->setId(142);
+        $owner142->setName('');
+        $owner142->setKvk('01234569');
+        $owner142->etBtw('NL123456799B01');
+        $owner142->setLNumber('L00');
+        
+        $owner143 = new Owner();
+        $owner143->setId(143);
+        $owner143->setName('');
+        $owner143->setKvk('01234569');
+        $owner143->setBtw('NL123456799B01');
+        $owner143->setLNumber('L00');
+        
+        $owner144 = new Owner();
+        $owner144->setId(144);
+        $owner144->setName('');
+        $owner144->setKvk('01234569');
+        $owner144->setBtw('NL123456799B01');
+        $owner144->setLNumber('L00');
+       
+        $owner145 = new Owner();
+        $owner145->setId(145);
+        $owner145->setName('');
+        $owner145->setKvk('01234569');
+        $owner145->setBtw('NL123456799B01');
+        $owner145->setLNumber('L00');
+        
+        $owner146 = new Owner();
+        $owner146->setId(146);
+        $owner146->setName('');
+        $owner146->setKvk('01234569');
+        $owner146->setBtw('NL123456799B01');
+        $owner146->setLNumber('L00');
+        
+        $owner147 = new Owner();
+        $owner147->setId(147);
+        $owner147->setName('');
+        $owner147->setKvk('01234569');
+        $owner147->setBtw('NL123456799B01');
+        $owner147->setLNumber('L00');
+        
+        $owner148 = new Owner();
+        $owner148->setId(148);
+        $owner148->setName('');
+        $owner148->setKvk('01234569');
+        $owner148->setBtw('NL123456799B01');
+        $owner148->setLNumber('L00');
+        
+        $owner149 = new Owner();
+        $owner149->setId(149);
+        $owner149->setName('');
+        $owner149->setKvk('01234569');
+        $owner149->setBtw('NL123456799B01');
+        $owner149->setLNumber('L00');
+        
+        $owner150 = new Owner();
+        $owner150->setId(150);
+        $owner150->setName('');
+        $owner150->setKvk('01234569');
+        $owner150->setBtw('NL123456799B01');
+        $owner150->setLNumber('L00');
+        
+        $owner151 = new Owner();
+        $owner151->setId(151);
+        $owner151->setName('');
+        $owner151->setKvk('01234569');
+        $owner151->setBtw('NL123456799B01');
+        $owner151->setLNumber('L00');
+        
+        $owner152 = new Owner();
+        $owner152->setId(152);
+        $owner152->setName('');
+        $owner152->setKvk('01234569');
+        $owner152->etBtw('NL123456799B01');
+        $owner152->setLNumber('L00');
+        
+        $owner153 = new Owner();
+        $owner153->setId(153);
+        $owner153->setName('');
+        $owner153->setKvk('01234569');
+        $owner153->setBtw('NL123456799B01');
+        $owner153->setLNumber('L00');
+        
+        $owner154 = new Owner();
+        $owner154->setId(154);
+        $owner154->setName('');
+        $owner154->setKvk('01234569');
+        $owner154->setBtw('NL123456799B01');
+        $owner154->setLNumber('L00');
+       
+        $owner155 = new Owner();
+        $owner155->setId(155);
+        $owner155->setName('');
+        $owner155->setKvk('01234569');
+        $owner155->setBtw('NL123456799B01');
+        $owner155->setLNumber('L00');
+        
+        $owner156 = new Owner();
+        $owner156->setId(156);
+        $owner156->setName('');
+        $owner156->setKvk('01234569');
+        $owner156->setBtw('NL123456799B01');
+        $owner156->setLNumber('L00');
+        
+        $owner157 = new Owner();
+        $owner157->setId(157);
+        $owner157->setName('');
+        $owner157->setKvk('01234569');
+        $owner157->setBtw('NL123456799B01');
+        $owner157->setLNumber('L00');
+        
+        $owner158 = new Owner();
+        $owner158->setId(158);
+        $owner158->setName('');
+        $owner158->setKvk('01234569');
+        $owner158->setBtw('NL123456799B01');
+        $owner158->setLNumber('L00');
+        
+        $owner159 = new Owner();
+        $owner159->setId(159);
+        $owner159->setName('');
+        $owner159->setKvk('01234569');
+        $owner159->setBtw('NL123456799B01');
+        $owner159->setLNumber('L00');
+        
+        $owner160 = new Owner();
+        $owner160->setId(160);
+        $owner160->setName('');
+        $owner160->setKvk('01234569');
+        $owner160->setBtw('NL123456799B01');
+        $owner160->setLNumber('L00');
+        
+        $owner161 = new Owner();
+        $owner161->setId(161);
+        $owner161->setName('');
+        $owner161->setKvk('01234569');
+        $owner161->setBtw('NL123456799B01');
+        $owner161->setLNumber('L00');
+        
+        $owner162 = new Owner();
+        $owner162->setId(162);
+        $owner162->setName('');
+        $owner162->setKvk('01234569');
+        $owner162->etBtw('NL123456799B01');
+        $owner162->setLNumber('L00');
+        
+        $owner163 = new Owner();
+        $owner163->setId(163);
+        $owner163->setName('');
+        $owner163->setKvk('01234569');
+        $owner163->setBtw('NL123456799B01');
+        $owner163->setLNumber('L00');
+        
+        $owner164 = new Owner();
+        $owner164->setId(164);
+        $owner164->setName('');
+        $owner164->setKvk('01234569');
+        $owner164->setBtw('NL123456799B01');
+        $owner164->setLNumber('L00');
+       
+        $owner165 = new Owner();
+        $owner165->setId(165);
+        $owner165->setName('');
+        $owner165->setKvk('01234569');
+        $owner165->setBtw('NL123456799B01');
+        $owner165->setLNumber('L00');
+        
+        $owner166 = new Owner();
+        $owner166->setId(166);
+        $owner166->setName('');
+        $owner166->setKvk('01234569');
+        $owner166->setBtw('NL123456799B01');
+        $owner166->setLNumber('L00');
+        
+        $owner167 = new Owner();
+        $owner167->setId(167);
+        $owner167->setName('');
+        $owner167->setKvk('01234569');
+        $owner167->setBtw('NL123456799B01');
+        $owner167->setLNumber('L00');
+        
+        $owner168 = new Owner();
+        $owner168->setId(168);
+        $owner168->setName('');
+        $owner168->setKvk('01234569');
+        $owner168->setBtw('NL123456799B01');
+        $owner168->setLNumber('L00');
+        
+        $owner169 = new Owner();
+        $owner169->setId(169);
+        $owner169->setName('');
+        $owner169->setKvk('01234569');
+        $owner169->setBtw('NL123456799B01');
+        $owner169->setLNumber('L00');
+        
+        $owner170 = new Owner();
+        $owner170->setId(170);
+        $owner170->setName('');
+        $owner170->setKvk('01234569');
+        $owner170->setBtw('NL123456799B01');
+        $owner170->setLNumber('L00');
+        
+        $owner171 = new Owner();
+        $owner171->setId(171);
+        $owner171->setName('');
+        $owner171->setKvk('01234569');
+        $owner171->setBtw('NL123456799B01');
+        $owner171->setLNumber('L00');
+        
+        $owner172 = new Owner();
+        $owner172->setId(172);
+        $owner172->setName('');
+        $owner172->setKvk('01234569');
+        $owner172->etBtw('NL123456799B01');
+        $owner172->setLNumber('L00');
+        
+        $owner173 = new Owner();
+        $owner173->setId(173);
+        $owner173->setName('');
+        $owner173->setKvk('01234569');
+        $owner173->setBtw('NL123456799B01');
+        $owner173->setLNumber('L00');
+        
+        $owner174 = new Owner();
+        $owner174->setId(174);
+        $owner174->setName('');
+        $owner174->setKvk('01234569');
+        $owner174->setBtw('NL123456799B01');
+        $owner174->setLNumber('L00');
+       
+        $owner175 = new Owner();
+        $owner175->setId(175);
+        $owner175->setName('');
+        $owner175->setKvk('01234569');
+        $owner175->setBtw('NL123456799B01');
+        $owner175->setLNumber('L00');
+        
+        $owner176 = new Owner();
+        $owner176->setId(176);
+        $owner176->setName('');
+        $owner176->setKvk('01234569');
+        $owner176->setBtw('NL123456799B01');
+        $owner176->setLNumber('L00');
+        
+        $owner177 = new Owner();
+        $owner177->setId(177);
+        $owner177->setName('');
+        $owner177->setKvk('01234569');
+        $owner177->setBtw('NL123456799B01');
+        $owner177->setLNumber('L00');
+        
+        $owner178 = new Owner();
+        $owner178->setId(178);
+        $owner178->setName('');
+        $owner178->setKvk('01234569');
+        $owner178->setBtw('NL123456799B01');
+        $owner178->setLNumber('L00');
+        
+        $owner179 = new Owner();
+        $owner179->setId(179);
+        $owner179->setName('');
+        $owner179->setKvk('01234569');
+        $owner179->setBtw('NL123456799B01');
+        $owner179->setLNumber('L00');
+        
+        $owner180 = new Owner();
+        $owner180->setId(180);
+        $owner180->setName('');
+        $owner180->setKvk('01234569');
+        $owner180->setBtw('NL123456799B01');
+        $owner180->setLNumber('L00');
+        
+        $owner181 = new Owner();
+        $owner181->setId(181);
+        $owner181->setName('');
+        $owner181->setKvk('01234569');
+        $owner181->setBtw('NL123456799B01');
+        $owner181->setLNumber('L00');
+        
+        $owner182 = new Owner();
+        $owner182->setId(182);
+        $owner182->setName('');
+        $owner182->setKvk('01234569');
+        $owner182->etBtw('NL123456799B01');
+        $owner182->setLNumber('L00');
+        
+        $owner183 = new Owner();
+        $owner183->setId(183);
+        $owner183->setName('');
+        $owner183->setKvk('01234569');
+        $owner183->setBtw('NL123456799B01');
+        $owner183->setLNumber('L00');
+        
+        $owner184 = new Owner();
+        $owner184->setId(184);
+        $owner184->setName('');
+        $owner184->setKvk('01234569');
+        $owner184->setBtw('NL123456799B01');
+        $owner184->setLNumber('L00');
+       
+        $owner185 = new Owner();
+        $owner185->setId(185);
+        $owner185->setName('');
+        $owner185->setKvk('01234569');
+        $owner185->setBtw('NL123456799B01');
+        $owner185->setLNumber('L00');
+        
+        $owner186 = new Owner();
+        $owner186->setId(186);
+        $owner186->setName('');
+        $owner186->setKvk('01234569');
+        $owner186->setBtw('NL123456799B01');
+        $owner186->setLNumber('L00');
+        
+        $owner187 = new Owner();
+        $owner187->setId(187);
+        $owner187->setName('');
+        $owner187->setKvk('01234569');
+        $owner187->setBtw('NL123456799B01');
+        $owner187->setLNumber('L00');
+        
+        $owner188 = new Owner();
+        $owner188->setId(188);
+        $owner188->setName('');
+        $owner188->setKvk('01234569');
+        $owner188->setBtw('NL123456799B01');
+        $owner188->setLNumber('L00');
+        
+        $owner189 = new Owner();
+        $owner189->setId(189);
+        $owner189->setName('');
+        $owner189->setKvk('01234569');
+        $owner189->setBtw('NL123456799B01');
+        $owner189->setLNumber('L00');
+        
+        $owner190 = new Owner();
+        $owner190->setId(190);
+        $owner190->setName('');
+        $owner190->setKvk('01234569');
+        $owner190->setBtw('NL123456799B01');
+        $owner190->setLNumber('L00');
+        
+        $owner191 = new Owner();
+        $owner191->setId(191);
+        $owner191->setName('');
+        $owner191->setKvk('01234569');
+        $owner191->setBtw('NL123456799B01');
+        $owner191->setLNumber('L00');
+        
+        $owner192 = new Owner();
+        $owner192->setId(192);
+        $owner192->setName('');
+        $owner192->setKvk('01234569');
+        $owner192->etBtw('NL123456799B01');
+        $owner192->setLNumber('L00');
+        
+        $owner193 = new Owner();
+        $owner193->setId(193);
+        $owner193->setName('');
+        $owner193->setKvk('01234569');
+        $owner193->setBtw('NL123456799B01');
+        $owner193->setLNumber('L00');
+        
+        $owner194 = new Owner();
+        $owner194->setId(194);
+        $owner194->setName('');
+        $owner194->setKvk('01234569');
+        $owner194->setBtw('NL123456799B01');
+        $owner194->setLNumber('L00');
+       
+        $owner195 = new Owner();
+        $owner195->setId(195);
+        $owner195->setName('');
+        $owner195->setKvk('01234569');
+        $owner195->setBtw('NL123456799B01');
+        $owner195->setLNumber('L00');
+        
+        $owner196 = new Owner();
+        $owner196->setId(196);
+        $owner196->setName('');
+        $owner196->setKvk('01234569');
+        $owner196->setBtw('NL123456799B01');
+        $owner196->setLNumber('L00');
+        
+        $owner197 = new Owner();
+        $owner197->setId(197);
+        $owner197->setName('');
+        $owner197->setKvk('01234569');
+        $owner197->setBtw('NL123456799B01');
+        $owner197->setLNumber('L00');
+        
+        $owner198 = new Owner();
+        $owner198->setId(198);
+        $owner198->setName('');
+        $owner198->setKvk('01234569');
+        $owner198->setBtw('NL123456799B01');
+        $owner198->setLNumber('L00');
+        
+        $owner199 = new Owner();
+        $owner199->setId(199);
+        $owner199->setName('');
+        $owner199->setKvk('01234569');
+        $owner199->setBtw('NL123456799B01');
+        $owner199->setLNumber('L00');
+        
+        $owner200 = new Owner();
+        $owner200->setId(200);
+        $owner200->setName('');
+        $owner200->setKvk('01234569');
+        $owner200->setBtw('NL123456799B01');
+        $owner200->setLNumber('L00')        
+
+        $owner201 = new Owner();
+        $owner201->setId(201);
+        $owner201->setName('');
+        $owner201->setKvk('01234569');
+        $owner201->setBtw('NL123456799B01');
+        $owner201->setLNumber('L00');
+        
+        $owner202 = new Owner();
+        $owner202->setId(202);
+        $owner202->setName('');
+        $owner202->setKvk('01234569');
+        $owner202->etBtw('NL123456799B01');
+        $owner202->setLNumber('L00');
+                       
+        $owner203 = new Owner();
+        $owner203->setId(203);
+        $owner203->setName('zzz');
+        $owner203->setKvk('01234569');
+        $owner203->setBtw('NL123456799B01');
+        $owner203->setLNumber('L00');
+        
+        $owner204 = new Owner();
+        $owner204->setId(204);
+        $owner204->setName('');
+        $owner204->setKvk('01234569');
+        $owner204->setBtw('NL123456799B01');
+        $owner204->setLNumber('L00');
+       
+        $owner205 = new Owner();
+        $owner205->setId(205);
+        $owner205->setName('');
+        $owner205->setKvk('01234569');
+        $owner205->setBtw('NL123456799B01');
+        $owner205->setLNumber('L00');
+        
+        $owner206 = new Owner();
+        $owner206->setId(206);
+        $owner206->setName('');
+        $owner206->setKvk('01234569');
+        $owner206->setBtw('NL123456799B01');
+        $owner206->setLNumber('L00');
+        
+        $owner207 = new Owner();
+        $owner207->setId(207);
+        $owner207->setName('');
+        $owner207->setKvk('01234569');
+        $owner207->setBtw('NL123456799B01');
+        $owner207->setLNumber('L00');
+        
+        $owner208 = new Owner();
+        $owner208->setId(208);
+        $owner208->setName('');
+        $owner208->setKvk('01234569');
+        $owner208->setBtw('NL123456799B01');
+        $owner208->setLNumber('L00');
+        
+        $owner209 = new Owner();
+        $owner209->setId(209);
+        $owner209->setName('');
+        $owner209->setKvk('01234569');
+        $owner209->setBtw('NL123456799B01');
+        $owner209->setLNumber('L00');
+        
+        $owner210 = new Owner();
+        $owner210->setId(210);
+        $owner210->setName('');
+        $owner210->setKvk('01234569');
+        $owner210->setBtw('NL123456799B01');
+        $owner210->setLNumber('L00');
+        
+        $owner211 = new Owner();
+        $owner211->setId(211);
+        $owner211->setName('');
+        $owner211->setKvk('01234569');
+        $owner211->setBtw('NL123456799B01');
+        $owner211->setLNumber('L00');
+        
+        $owner212 = new Owner();
+        $owner212->setId(212);
+        $owner212->setName('');
+        $owner212->setKvk('01234569');
+        $owner212->etBtw('NL123456799B01');
+        $owner212->setLNumber('L00');
+        
+        $owner213 = new Owner();
+        $owner213->setId(213);
+        $owner213->setName('');
+        $owner213->setKvk('01234569');
+        $owner213->setBtw('NL123456799B01');
+        $owner213->setLNumber('L00');
+        
+        $owner214 = new Owner();
+        $owner214->setId(214);
+        $owner214->setName('');
+        $owner214->setKvk('01234569');
+        $owner214->setBtw('NL123456799B01');
+        $owner214->setLNumber('L00');
+       
+        $owner215 = new Owner();
+        $owner215->setId(215);
+        $owner215->setName('');
+        $owner215->setKvk('01234569');
+        $owner215->setBtw('NL123456799B01');
+        $owner215->setLNumber('L00');
+        
+        $owner216 = new Owner();
+        $owner216->setId(216);
+        $owner216->setName('');
+        $owner216->setKvk('01234569');
+        $owner216->setBtw('NL123456799B01');
+        $owner216->setLNumber('L00');
+        
+        $owner217 = new Owner();
+        $owner217->setId(217);
+        $owner217->setName('');
+        $owner217->setKvk('01234569');
+        $owner217->setBtw('NL123456799B01');
+        $owner217->setLNumber('L00');
+        
+        $owner218 = new Owner();
+        $owner218->setId(218);
+        $owner218->setName('');
+        $owner218->setKvk('01234569');
+        $owner218->setBtw('NL123456799B01');
+        $owner218->setLNumber('L00');
+        
+        $owner219 = new Owner();
+        $owner219->setId(219);
+        $owner219->setName('');
+        $owner219->setKvk('01234569');
+        $owner219->setBtw('NL123456799B01');
+        $owner219->setLNumber('L00');
+        
+        $owner220 = new Owner();
+        $owner220->setId(220);
+        $owner220->setName('');
+        $owner220->setKvk('01234569');
+        $owner220->setBtw('NL123456799B01');
+        $owner220->setLNumber('L00');
+        
+        $owner221 = new Owner();
+        $owner221->setId(221);
+        $owner221->setName('');
+        $owner221->setKvk('01234569');
+        $owner221->setBtw('NL123456799B01');
+        $owner221->setLNumber('L00');
+        
+        $owner222 = new Owner();
+        $owner222->setId(222);
+        $owner222->setName('');
+        $owner222->setKvk('01234569');
+        $owner222->etBtw('NL123456799B01');
+        $owner222->setLNumber('L00');
+        
+        $owner223 = new Owner();
+        $owner223->setId(223);
+        $owner223->setName('');
+        $owner223->setKvk('01234569');
+        $owner223->setBtw('NL123456799B01');
+        $owner223->setLNumber('L00');
+        
+        $owner224 = new Owner();
+        $owner224->setId(224);
+        $owner224->setName('');
+        $owner224->setKvk('01234569');
+        $owner224->setBtw('NL123456799B01');
+        $owner224->setLNumber('L00');
+       
+        $owner225 = new Owner();
+        $owner225->setId(225);
+        $owner225->setName('');
+        $owner225->setKvk('01234569');
+        $owner225->setBtw('NL123456799B01');
+        $owner225->setLNumber('L00');
+        
+        $owner226 = new Owner();
+        $owner226->setId(226);
+        $owner226->setName('');
+        $owner226->setKvk('01234569');
+        $owner226->setBtw('NL123456799B01');
+        $owner226->setLNumber('L00');
+        
+        $owner227 = new Owner();
+        $owner227->setId(227);
+        $owner227->setName('');
+        $owner227->setKvk('01234569');
+        $owner227->setBtw('NL123456799B01');
+        $owner227->setLNumber('L00');
+        
+        $owner228 = new Owner();
+        $owner228->setId(228);
+        $owner228->setName('');
+        $owner228->setKvk('01234569');
+        $owner228->setBtw('NL123456799B01');
+        $owner228->setLNumber('L00');
+        
+        $owner229 = new Owner();
+        $owner229->setId(229);
+        $owner229->setName('');
+        $owner229->setKvk('01234569');
+        $owner229->setBtw('NL123456799B01');
+        $owner229->setLNumber('L00');
+        
+        $owner230 = new Owner();
+        $owner230->setId(230);
+        $owner230->setName('');
+        $owner230->setKvk('01234569');
+        $owner230->setBtw('NL123456799B01');
+        $owner230->setLNumber('L00');
+        
+        $owner231 = new Owner();
+        $owner231->setId(231);
+        $owner231->setName('');
+        $owner231->setKvk('01234569');
+        $owner231->setBtw('NL123456799B01');
+        $owner231->setLNumber('L00');
+        
+        $owner232 = new Owner();
+        $owner232->setId(232);
+        $owner232->setName('');
+        $owner232->setKvk('01234569');
+        $owner232->etBtw('NL123456799B01');
+        $owner232->setLNumber('L00');
+        
+        $owner233 = new Owner();
+        $owner233->setId(233);
+        $owner233->setName('');
+        $owner233->setKvk('01234569');
+        $owner233->setBtw('NL123456799B01');
+        $owner233->setLNumber('L00');
+        
+        $owner234 = new Owner();
+        $owner234->setId(234);
+        $owner234->setName('');
+        $owner324->setKvk('01234569');
+        $owner234->setBtw('NL123456799B01');
+        $owner234->setLNumber('L00');
+       
+        $owner235 = new Owner();
+        $owner235->setId(235);
+        $owner235->setName('');
+        $owner235->setKvk('01234569');
+        $owner235->setBtw('NL123456799B01');
+        $owner235->setLNumber('L00');
+        
+        $owner236 = new Owner();
+        $owner236->setId(236);
+        $owner236->setName('');
+        $owner236->setKvk('01234569');
+        $owner236->setBtw('NL123456799B01');
+        $owner236->setLNumber('L00');
+        
+        $owner237 = new Owner();
+        $owner237->setId(237);
+        $owner237->setName('');
+        $owner237->setKvk('01234569');
+        $owner237->setBtw('NL123456799B01');
+        $owner237->setLNumber('L00');
+        
+        $owner238 = new Owner();
+        $owner238->setId(238);
+        $owner238->setName('');
+        $owner238->setKvk('01234569');
+        $owner238->setBtw('NL123456799B01');
+        $owner238->setLNumber('L00');
+        
+        $owner239 = new Owner();
+        $owner239->setId(239);
+        $owner239->setName('');
+        $owner239->setKvk('01234569');
+        $owner239->setBtw('NL123456799B01');
+        $owner239->setLNumber('L00');
+        
+        $owner240 = new Owner();
+        $owner240->setId(240);
+        $owner240->setName('');
+        $owner240->setKvk('01234569');
+        $owner240->setBtw('NL123456799B01');
+        $owner240->setLNumber('L00');
+        
+        $owner241 = new Owner();
+        $owner241->setId(241);
+        $owner241->setName('');
+        $owner241->setKvk('01234569');
+        $owner241->setBtw('NL123456799B01');
+        $owner241->setLNumber('L00');
+        
+        $owner242 = new Owner();
+        $owner242->setId(242);
+        $owner242->setName('');
+        $owner242->setKvk('01234569');
+        $owner242->etBtw('NL123456799B01');
+        $owner242->setLNumber('L00');
+        
+        $owner243 = new Owner();
+        $owner243->setId(243);
+        $owner243->setName('');
+        $owner243->setKvk('01234569');
+        $owner243->setBtw('NL123456799B01');
+        $owner243->setLNumber('L00');
+        
+        $owner244 = new Owner();
+        $owner244->setId(244);
+        $owner244->setName('');
+        $owner244->setKvk('01234569');
+        $owner244->setBtw('NL123456799B01');
+        $owner244->setLNumber('L00');
+       
+        $owner245 = new Owner();
+        $owner245->setId(245);
+        $owner245->setName('');
+        $owner245->setKvk('01234569');
+        $owner245->setBtw('NL123456799B01');
+        $owner245->setLNumber('L00');
+        
+        $owner246 = new Owner();
+        $owner246->setId(246);
+        $owner246->setName('');
+        $owner246->setKvk('01234569');
+        $owner246->setBtw('NL123456799B01');
+        $owner246->setLNumber('L00');
+        
+        $owner247 = new Owner();
+        $owner247->setId(247);
+        $owner247->setName('');
+        $owner247->setKvk('01234569');
+        $owner247->setBtw('NL123456799B01');
+        $owner247->setLNumber('L00');
+        
+        $owner248 = new Owner();
+        $owner248->setId(248);
+        $owner248->setName('');
+        $owner248->setKvk('01234569');
+        $owner248->setBtw('NL123456799B01');
+        $owner248->setLNumber('L00');
+        
+        $owner249 = new Owner();
+        $owner249->setId(249);
+        $owner249->setName('');
+        $owner249->setKvk('01234569');
+        $owner249->setBtw('NL123456799B01');
+        $owner249->setLNumber('L00');
+        
+        $owner250 = new Owner();
+        $owner250->setId(250);
+        $owner250->setName('');
+        $owner250->setKvk('01234569');
+        $owner250->setBtw('NL123456799B01');
+        $owner250->setLNumber('L00');
+        
+        $owner251 = new Owner();
+        $owner251->setId(251);
+        $owner251->setName('');
+        $owner251->setKvk('01234569');
+        $owner251->setBtw('NL123456799B01');
+        $owner251->setLNumber('L00');
+        
+        $owner252 = new Owner();
+        $owner252->setId(252);
+        $owner252->setName('');
+        $owner252->setKvk('01234569');
+        $owner252->etBtw('NL123456799B01');
+        $owner252->setLNumber('L00');
+        
+        $owner253 = new Owner();
+        $owner253->setId(253);
+        $owner253->setName('');
+        $owner253->setKvk('01234569');
+        $owner253->setBtw('NL123456799B01');
+        $owner253->setLNumber('L00');
+        
+        $owner254 = new Owner();
+        $owner254->setId(254);
+        $owner254->setName('');
+        $owner254->setKvk('01234569');
+        $owner254->setBtw('NL123456799B01');
+        $owner254->setLNumber('L00');
+       
+        $owner255 = new Owner();
+        $owner255->setId(255);
+        $owner255->setName('');
+        $owner255->setKvk('01234569');
+        $owner255->setBtw('NL123456799B01');
+        $owner255->setLNumber('L00');
+        
+        $owner256 = new Owner();
+        $owner256->setId(256);
+        $owner256->setName('');
+        $owner256->setKvk('01234569');
+        $owner256->setBtw('NL123456799B01');
+        $owner256->setLNumber('L00');
+        
+        $owner257 = new Owner();
+        $owner257->setId(257);
+        $owner257->setName('');
+        $owner257->setKvk('01234569');
+        $owner257->setBtw('NL123456799B01');
+        $owner257->setLNumber('L00');
+        
+        $owner258 = new Owner();
+        $owner258->setId(258);
+        $owner258->setName('');
+        $owner258->setKvk('01234569');
+        $owner258->setBtw('NL123456799B01');
+        $owner258->setLNumber('L00');
+        
+        $owner259 = new Owner();
+        $owner259->setId(259);
+        $owner259->setName('');
+        $owner259->setKvk('01234569');
+        $owner259->setBtw('NL123456799B01');
+        $owner259->setLNumber('L00');
+        
+        $owner260 = new Owner();
+        $owner260->setId(260);
+        $owner260->setName('');
+        $owner260->setKvk('01234569');
+        $owner260->setBtw('NL123456799B01');
+        $owner260->setLNumber('L00');
+        
+        $owner261 = new Owner();
+        $owner261->setId(261);
+        $owner261->setName('');
+        $owner261->setKvk('01234569');
+        $owner261->setBtw('NL123456799B01');
+        $owner261->setLNumber('L00');
+        
+        $owner262 = new Owner();
+        $owner262->setId(262);
+        $owner262->setName('');
+        $owner262->setKvk('01234569');
+        $owner262->etBtw('NL123456799B01');
+        $owner262->setLNumber('L00');
+        
+        $owner263 = new Owner();
+        $owner263->setId(263);
+        $owner263->setName('');
+        $owner263->setKvk('01234569');
+        $owner263->setBtw('NL123456799B01');
+        $owner263->setLNumber('L00');
+        
+        $owner264 = new Owner();
+        $owner264->setId(264);
+        $owner264->setName('');
+        $owner264->setKvk('01234569');
+        $owner264->setBtw('NL123456799B01');
+        $owner264->setLNumber('L00');
+       
+        $owner265 = new Owner();
+        $owner265->setId(265);
+        $owner265->setName('');
+        $owner265->setKvk('01234569');
+        $owner265->setBtw('NL123456799B01');
+        $owner265->setLNumber('L00');
+        
+        $owner266 = new Owner();
+        $owner266->setId(266);
+        $owner266->setName('');
+        $owner266->setKvk('01234569');
+        $owner266->setBtw('NL123456799B01');
+        $owner266->setLNumber('L00');
+        
+        $owner267 = new Owner();
+        $owner267->setId(267);
+        $owner267->setName('');
+        $owner267->setKvk('01234569');
+        $owner267->setBtw('NL123456799B01');
+        $owner267->setLNumber('L00');
+        
+        $owner268 = new Owner();
+        $owner268->setId(268);
+        $owner268->setName('');
+        $owner268->setKvk('01234569');
+        $owner268->setBtw('NL123456799B01');
+        $owner268->setLNumber('L00');
+        
+        $owner269 = new Owner();
+        $owner269->setId(269);
+        $owner269->setName('');
+        $owner269->setKvk('01234569');
+        $owner269->setBtw('NL123456799B01');
+        $owner269->setLNumber('L00');
+        
+        $owner270 = new Owner();
+        $owner270->setId(270);
+        $owner270->setName('');
+        $owner270->setKvk('01234569');
+        $owner270->setBtw('NL123456799B01');
+        $owner270->setLNumber('L00');
+        
+        $owner271 = new Owner();
+        $owner271->setId(271);
+        $owner271->setName('');
+        $owner271->setKvk('01234569');
+        $owner271->setBtw('NL123456799B01');
+        $owner271->setLNumber('L00');
+        
+        $owner272 = new Owner();
+        $owner272->setId(272);
+        $owner272->setName('');
+        $owner272->setKvk('01234569');
+        $owner272->etBtw('NL123456799B01');
+        $owner272->setLNumber('L00');
+        
+        $owner273 = new Owner();
+        $owner273->setId(273);
+        $owner273->setName('');
+        $owner273->setKvk('01234569');
+        $owner273->setBtw('NL123456799B01');
+        $owner273->setLNumber('L00');
+        
+        $owner274 = new Owner();
+        $owner274->setId(274);
+        $owner274->setName('');
+        $owner274->setKvk('01234569');
+        $owner274->setBtw('NL123456799B01');
+        $owner274->setLNumber('L00');
+       
+        $owner275 = new Owner();
+        $owner275->setId(275);
+        $owner275->setName('');
+        $owner275->setKvk('01234569');
+        $owner275->setBtw('NL123456799B01');
+        $owner275->setLNumber('L00');
+        
+        $owner276 = new Owner();
+        $owner276->setId(276);
+        $owner276->setName('');
+        $owner276->setKvk('01234569');
+        $owner276->setBtw('NL123456799B01');
+        $owner276->setLNumber('L00');
+        
+        $owner277 = new Owner();
+        $owner277->setId(277);
+        $owner277->setName('');
+        $owner277->setKvk('01234569');
+        $owner277->setBtw('NL123456799B01');
+        $owner277->setLNumber('L00');
+        
+        $owner278 = new Owner();
+        $owner278->setId(278);
+        $owner278->setName('');
+        $owner278->setKvk('01234569');
+        $owner278->setBtw('NL123456799B01');
+        $owner278->setLNumber('L00');
+        
+        $owner279 = new Owner();
+        $owner279->setId(279);
+        $owner279->setName('');
+        $owner279->setKvk('01234569');
+        $owner279->setBtw('NL123456799B01');
+        $owner279->setLNumber('L00');
+        
+        $owner280 = new Owner();
+        $owner280->setId(280);
+        $owner280->setName('');
+        $owner280->setKvk('01234569');
+        $owner280->setBtw('NL123456799B01');
+        $owner280->setLNumber('L00');
+        
+        $owner281 = new Owner();
+        $owner281->setId(281);
+        $owner281->setName('');
+        $owner281->setKvk('01234569');
+        $owner281->setBtw('NL123456799B01');
+        $owner281->setLNumber('L00');
+        
+        $owner282 = new Owner();
+        $owner282->setId(282);
+        $owner282->setName('');
+        $owner282->setKvk('01234569');
+        $owner282->etBtw('NL123456799B01');
+        $owner282->setLNumber('L00');
+        
+        $owner283 = new Owner();
+        $owner283->setId(283);
+        $owner283->setName('');
+        $owner283->setKvk('01234569');
+        $owner283->setBtw('NL123456799B01');
+        $owner283->setLNumber('L00');
+        
+        $owner284 = new Owner();
+        $owner284->setId(284);
+        $owner284->setName('');
+        $owner284->setKvk('01234569');
+        $owner284->setBtw('NL123456799B01');
+        $owner284->setLNumber('L00');
+       
+        $owner285 = new Owner();
+        $owner285->setId(285);
+        $owner285->setName('');
+        $owner285->setKvk('01234569');
+        $owner285->setBtw('NL123456799B01');
+        $owner285->setLNumber('L00');
+        
+        $owner286 = new Owner();
+        $owner286->setId(286);
+        $owner286->setName('');
+        $owner286->setKvk('01234569');
+        $owner286->setBtw('NL123456799B01');
+        $owner286->setLNumber('L00');
+        
+        $owner287 = new Owner();
+        $owner287->setId(287);
+        $owner287->setName('');
+        $owner287->setKvk('01234569');
+        $owner287->setBtw('NL123456799B01');
+        $owner287->setLNumber('L00');
+        
+        $owner288 = new Owner();
+        $owner288->setId(288);
+        $owner288->setName('');
+        $owner288->setKvk('01234569');
+        $owner288->setBtw('NL123456799B01');
+        $owner288->setLNumber('L00');
+        
+        $owner289 = new Owner();
+        $owner289->setId(289);
+        $owner289->setName('');
+        $owner289->setKvk('01234569');
+        $owner289->setBtw('NL123456799B01');
+        $owner289->setLNumber('L00');
+        
+        $owner290 = new Owner();
+        $owner290->setId(290);
+        $owner290->setName('');
+        $owner290->setKvk('01234569');
+        $owner290->setBtw('NL123456799B01');
+        $owner290->setLNumber('L00');
+        
+        $owner291 = new Owner();
+        $owner291->setId(291);
+        $owner291->setName('');
+        $owner291->setKvk('01234569');
+        $owner291->setBtw('NL123456799B01');
+        $owner291->setLNumber('L00');
+        
+        $owner292 = new Owner();
+        $owner292->setId(292);
+        $owner292->setName('');
+        $owner292->setKvk('01234569');
+        $owner292->etBtw('NL123456799B01');
+        $owner292->setLNumber('L00');
+        
+        $owner293 = new Owner();
+        $owner293->setId(293);
+        $owner293->setName('');
+        $owner293->setKvk('01234569');
+        $owner293->setBtw('NL123456799B01');
+        $owner293->setLNumber('L00');
+        
+        $owner294 = new Owner();
+        $owner294->setId(294);
+        $owner294->setName('');
+        $owner294->setKvk('01234569');
+        $owner294->setBtw('NL123456799B01');
+        $owner294->setLNumber('L00');
+       
+        $owner295 = new Owner();
+        $owner295->setId(295);
+        $owner295->setName('');
+        $owner295->setKvk('01234569');
+        $owner295->setBtw('NL123456799B01');
+        $owner295->setLNumber('L00');
+        
+        $owner296 = new Owner();
+        $owner296->setId(1296);
+        $owner296->setName('');
+        $owner296->setKvk('01234569');
+        $owner296->setBtw('NL123456799B01');
+        $owner296->setLNumber('L00');
+        
+        $owner297 = new Owner();
+        $owner297->setId(297);
+        $owner297->setName('');
+        $owner297->setKvk('01234569');
+        $owner297->setBtw('NL123456799B01');
+        $owner297->setLNumber('L00');
+        
+        $owner298 = new Owner();
+        $owner298->setId(298);
+        $owner298->setName('');
+        $owner298->setKvk('01234569');
+        $owner298->setBtw('NL123456799B01');
+        $owner298->setLNumber('L00');
+        
+        $owner299 = new Owner();
+        $owner299->setId(299);
+        $owner299->setName('');
+        $owner299->setKvk('01234569');
+        $owner299->setBtw('NL123456799B01');
+        $owner299->setLNumber('L00');
+        
+        $owner300 = new Owner();
+        $owner300->setId(300);
+        $owner300->setName('');
+        $owner300->setKvk('01234569');
+        $owner300->setBtw('NL123456799B01');
+        $owner300->setLNumber('L00')            
         
         $housingStock1 = new HousingStock();
         $housingStock1->setId(1);
