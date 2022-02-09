@@ -8,6 +8,7 @@ use JetBrains\PhpStorm\Pure;
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
@@ -19,6 +20,13 @@ use Doctrine\Common\Collections\Collection;
  */
 class HousingStock extends IdTimeIdentification
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Owner", inversedBy="housingStocks")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     * @Assert\Valid()
+     */
+    protected Owner $owner;
+
     /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
@@ -47,19 +55,17 @@ class HousingStock extends IdTimeIdentification
      */    
     protected Collection $buildingAddresses;
 
-    /**
-     * @ORM\OneToOne(targetEntity="Owner", cascade={"remove"}, mappedBy="housingStock")
-     *
-     * @OA\Property()
-     */
-    protected Owner $owner;
-
     #[Pure]
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
         $this->buildingTypes = new ArrayCollection();
         $this->buildingAddresses = new ArrayCollection();
+    }
+
+    public function getOwner(): Owner
+    {
+        return $this->owner;
     }
 
     public function getBlocks(): Collection
@@ -90,6 +96,11 @@ class HousingStock extends IdTimeIdentification
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
+    }
+
+    public function setOwner(Owner $owner): void
+    {
+        $this->owner = $owner;
     }
 
     public function addBlock(Block $block): void

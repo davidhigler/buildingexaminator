@@ -135,15 +135,15 @@ function loadHousingstocksPage() {
             $(data).each(function (index, element) {
                 rows +=
                     '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.description + '">\n' +
-                    '                <td><i class="material-icons prefix">domain</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">domain</i></td>\n' +
                     '                <td>' + element.code + '</td>\n' +
                     '                <td>' + element.name + '</td>\n' +
-                    '                <td>\n' +
+                    '                <td class="actions">\n' +
                     '                    <button class="btn" name="edit" onclick="loadHousingstockEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons left">edit</i>Edit\n' +
+                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                     '                    </button>\n' +
                     '                    <button class="btn" name="delete" onclick="showDeleteHousingstockModal(' + element.id + ' , \'' + element.name + '\');">\n' +
-                    '                        <i class="material-icons left">delete</i>Delete\n' +
+                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                     '                    </button>\n' +
                     '                </td>\n' +
                     '            </tr>\n';
@@ -154,14 +154,14 @@ function loadHousingstocksPage() {
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
                 '            <button class="btn" name="new" onclick="loadHousingstockNewPage();">\n' +
-                '                <i class="material-icons left">domain_add</i>New\n' +
+                '                <i class="material-icons">domain_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
                 '    <table>\n' +
                 '        <thead>\n' +
                 '            <tr>\n' +
-                '                <th></th>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
                 '                <th>Code</th>\n' +
                 '                <th>Name</th>\n' +
                 '                <th class="actions">Actions</th>\n' +
@@ -513,6 +513,9 @@ function loadBuildingaddressesPage() {
 }
 
 function loadBuildingaddressNewPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
     let yearNow = moment().year();
     let yearSelectValues = Array(100).fill(0).map((element, index) => index + yearNow - 98);
     let yearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n';
@@ -633,5 +636,29 @@ function loadBuildingaddressNewPage() {
         '        </div>\n' +
         '    </form>\n'
     );
+
     $('select').formSelect();
+
+    hideLoader();
+}
+
+function loadTestPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
+    $('div#content').html(
+        '    <h3 class="header">Test page</h3>\n' +
+        '    <form id="test">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <label class="custom-file-upload">\n' +
+        '                    <input type="file" accept="image/*" capture="environment" />\n' +
+        '                    Custom Upload' +
+        '                </label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    hideLoader();
 }

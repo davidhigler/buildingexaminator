@@ -5,6 +5,7 @@ namespace App\Entity\Portfolio;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
 use App\Entity\SuperClasses\Id;
 
 /**
@@ -18,11 +19,11 @@ use App\Entity\SuperClasses\Id;
 class Owner extends Id
 {
     /**
-     * @ORM\OneToOne(targetEntity="HousingStock", inversedBy="owner")
-     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity="HousingStock", mappedBy="owner", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
-    protected HousingStock $housingStock;
+    protected Collection $housingStocks;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
@@ -93,12 +94,11 @@ class Owner extends Id
      *
      * @OA\Property()
      */
-
     protected string $lNumber;
 
-    public function getHousingStock(): HousingStock
+    public function getHousingStocks(): Collection
     {
-        return $this->housingStock;
+        return $this->housingStocks;
     }
 
     public function getName(): string
@@ -121,9 +121,14 @@ class Owner extends Id
         return $this->lNumber;
     }
 
-    public function setHousingStock(HousingStock $housingStock): void
+    public function addHousingStock(HousingStock $housingStock): void
     {
-        $this->housingStock = $housingStock;
+        $this->housingStocks->add($housingStock);
+    }
+
+    public function removeHousingStock(HousingStock $housingStock): void
+    {
+        $this->housingStocks->removeElement($housingStock);
     }
 
     public function setName(string $name): void

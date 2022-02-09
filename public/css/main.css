@@ -68,7 +68,7 @@ a.sidenav-trigger.top-nav {
     width: 48px;
     top: 28px;
     float: none;
-    margin-left: 1.5rem;
+    margin-left: 0;
     color: #f3989b;
     font-size: 36px;
     z-index: 2;
@@ -160,7 +160,8 @@ div#content > h3 {
     padding-bottom: 20px;
 }
 
-div#content table th.actions {
+div#content table th.actions,
+div#content table td.actions {
     width: 230px;
     white-space: nowrap;
 }
@@ -174,6 +175,7 @@ ul.pagination {
 }
 
 div.possibleByLogos {
+    margin-top: 40px;
     text-align: center;
 }
 
@@ -185,4 +187,24 @@ a.possibleByLogo {
 a.possibleByLogo object {
     pointer-events: none;
     height: 57px;
+}
+
+label.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+label.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.btn, .btn-large, .btn-small {
+    white-space: nowrap;
+}
+
+span.button-content {
+    margin-left: 10px;
+    vertical-align: top;
 }
