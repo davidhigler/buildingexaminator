@@ -118,6 +118,111 @@ function loadHomePage() {
     location.reload();
 }
 
+function loadOwnersPage() {
+    $.ajax({
+        url: '/api/buildingexaminator/v1/owners',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">perm_identity</i></td>\n' +
+                    '                <td>' + element.name + '</td>\n' +
+                    '                <td>' + element.lNumber + '</td>\n' +
+                    '                <td class="actions">\n' +
+                    '                    <button class="btn" name="edit" onclick="loadOwnerEditPage(' + element.id + ');">\n' +
+                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                    '                    </button>\n' +
+                    '                </td>\n' +
+                    '            </tr>\n';
+            });
+
+            $('div#content').html(
+                '    <h3 class="header">Owners</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s12">\n' +
+                '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
+                '                <i class="material-icons">perm_identity</i><span class="button-content hide-on-small-only">New</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Name</th>\n' +
+                '                <th>L number</th>\n' +
+                '                <th class="actions">Actions</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n' +
+                '    <ul class="pagination">\n' +
+                '        <li class="disabled">' +
+                '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
+                '        </li>\n' +
+                '        <li class=""><a href="javascript:void(0);">1</a></li>\n' +
+                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">2</a></li> -->\n' +
+                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">3</a></li> -->\n' +
+                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">4</a></li> -->\n' +
+                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">5</a></li> -->\n' +
+                '        <li class="disabled">' +
+                '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
+                '        </li>\n' +
+                '    </ul>'
+            );
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+function loadOwnerNewPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
+    $('div#content').html(
+        '    <h3 class="header">New owner</h3>\n' +
+        '    <form id="newowner">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="name" name="name" type="text" class="validate">\n' +
+        '                <label for="name">Name</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s12">\n' +
+        '                <button type="submit" class="btn" name="create">\n' +
+        '                    <i class="material-icons left">perm_identity</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    hideLoader();
+}
+
+function loadOwnerEditPage(id) {
+
+}
+
 function loadHousingstocksPage() {
     $.ajax({
         url: '/api/buildingexaminator/v1/housingstocks',

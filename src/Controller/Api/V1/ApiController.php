@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\Portfolio\Owner;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -50,6 +51,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
+ *     schema="owners",
+ *     title="Owners",
+ *     description="An array of owners",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/Owner")
+ * )
+ * @OA\Schema(
  *     schema="housingStocks",
  *     title="Housing stocks",
  *     description="An array of housing stocks",
@@ -94,6 +102,43 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class ApiController extends AbstractController
 {
+    private const OWNER_LIST_FIELDS = [
+        'id',
+        'name',
+        'kvk',
+        'btw',
+        'l_number',
+        'housingstocks' => [
+            'id',
+        ],
+        'creationTime' => [
+            'timestamp',
+        ],
+        'lastChangeTime' => [
+            'timestamp',
+        ],
+    ];
+
+    private const OWNER_LIST_DETAIL_FIELDS = [
+        'id',
+        'name',
+        'kvk',
+        'btw',
+        'l_number',
+        'housingstocks' => [
+            'id',
+            'code',
+            'name',
+            'description',
+        ],
+        'creationTime' => [
+            'timestamp',
+        ],
+        'lastChangeTime' => [
+            'timestamp',
+        ],
+    ];
+
     private const HOUSING_STOCK_LIST_FIELDS = [
         'id',
         'code',
@@ -109,9 +154,6 @@ class ApiController extends AbstractController
             'id',
         ],
         'buildingAddresses' => [
-            'id',
-        ],
-        'housingStockOptionSet' => [
             'id',
         ],
         'creationTime' => [
@@ -204,12 +246,15 @@ class ApiController extends AbstractController
         'id',
         'residentialArea' => [
             'id',
+            'name',
         ],
         'buildingType' => [
             'id',
+            'name',
         ],
         'livingType' => [
             'id',
+            'name',
         ],
         'rentalUnitNumber',
         'streetName',
@@ -337,7 +382,79 @@ class ApiController extends AbstractController
      */
 
     #[Route('/owners', name: 'listowners', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/owners",
+     *     summary="Returns details about multiple ownerss",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple owners",
+     *         @OA\JsonContent(ref="#/components/schemas/owners")
+     *     )
+     * )
+     */
+    public function getOwners(LoggerInterface $logger): Response
+    {
+        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        return $this->renderData($ownerRepository->findAll(), self::OWNER_LIST_FIELDS, $logger);
+    }
+
     #[Route('/owners', name: 'addowner', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/owners",
+     *     summary="Add new owner",
+     *     @OA\RequestBody(
+     *         description="Details about new owner",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="l_number",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created owner",
+     *         @OA\JsonContent(ref="#/components/schemas/Owner")
+     *     )
+     * )
+     */
+    public function addOwner(Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $newOwner = json_decode($request->getContent(), true);
+
+        $owner = new Owner();
+        $owner->setName($newOwner['name']);
+        $owner->setName($newOwner['kvk']);
+        $owner->setName($newOwner['btw']);
+        $owner->setName($newOwner['l_nummer']);
+
+        $violations = $validator->validate($owner);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($owner);
+        $entityManager->flush();
+
+        return $this->renderData($owner, self::OWNER_LIST_DETAIL_FIELDS, $logger);
+    }
+
     #[Route('/owners', name: 'changeowner', methods: ['PUT'])]
     #[Route('/owners', name: 'deleteowner', methods: ['DELETE'])]
     #[Route('/owners', name: 'getowner', methods: ['GET'])]

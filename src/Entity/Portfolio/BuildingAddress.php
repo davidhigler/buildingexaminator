@@ -65,8 +65,6 @@ class BuildingAddress extends IdTime
      */
     protected Block $block;
 
-    protected FuturePlans $futurePlans;
-
     /**
      * @ORM\Column(type="boolean", nullable=false)
      * @Assert\Type(
