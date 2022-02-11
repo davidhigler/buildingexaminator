@@ -3545,6 +3545,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress39->setCreationTime();
         $buildingAddress39->setLastChangeTime();
 
+        $buildingAddress40 = new BuildingAddress();
+        $buildingAddress40->setId(40);
+        $buildingAddress40->setConstructionYear(1986);
+        $buildingAddress40->setRenovationYear(2002);
+        $buildingAddress40->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress40->setHouseNumber(10);
+        $buildingAddress40->setAddition('X');
+        $buildingAddress40->setZipcode('1234AA');
+        $buildingAddress40->setCity('Woonplaats A');
+        $buildingAddress40->setRentalUnitNumber('VHE0000');
+        $buildingAddress40->setDaeb(true);
+        $buildingAddress40->setVtw($vtw1);
+        $buildingAddress40->setResidentialArea($residentialArea10);
+        $buildingAddress40->setBuildingType($buildingType10);
+        $buildingAddress40->setLivingType($livingType3);
+        $buildingAddress40->setCreationTime();
+        $buildingAddress40->setLastChangeTime();
+        
         $buildingAddress49 = new BuildingAddress();
         $buildingAddress49->setId(49);
         $buildingAddress49->setConstructionYear(1976);
@@ -3562,6 +3580,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress49->setLivingType($livingType3);
         $buildingAddress49->setCreationTime();
         $buildingAddress49->setLastChangeTime();
+        
+        $buildingAddress50 = new BuildingAddress();
+        $buildingAddress50->setId(50);
+        $buildingAddress50->setConstructionYear(1986);
+        $buildingAddress50->setRenovationYear(2002);
+        $buildingAddress50->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress50->setHouseNumber(10);
+        $buildingAddress50->setAddition('X');
+        $buildingAddress50->setZipcode('1234AA');
+        $buildingAddress50->setCity('Woonplaats A');
+        $buildingAddress50->setRentalUnitNumber('VHE0000');
+        $buildingAddress50->setDaeb(true);
+        $buildingAddress50->setVtw($vtw1);
+        $buildingAddress50->setResidentialArea($residentialArea10);
+        $buildingAddress50->setBuildingType($buildingType10);
+        $buildingAddress50->setLivingType($livingType3);
+        $buildingAddress50->setCreationTime();
+        $buildingAddress50->setLastChangeTime();
 
         $buildingAddress59 = new BuildingAddress();
         $buildingAddress59->setId(59);
@@ -3580,6 +3616,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress59->setLivingType($livingType3);
         $buildingAddress59->setCreationTime();
         $buildingAddress59->setLastChangeTime();
+        
+        $buildingAddress60 = new BuildingAddress();
+        $buildingAddress60->setId(60);
+        $buildingAddress60->setConstructionYear(1986);
+        $buildingAddress60->setRenovationYear(2002);
+        $buildingAddress60->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress60->setHouseNumber(10);
+        $buildingAddress60->setAddition('X');
+        $buildingAddress60->setZipcode('1234AA');
+        $buildingAddress60->setCity('Woonplaats A');
+        $buildingAddress60->setRentalUnitNumber('VHE0000');
+        $buildingAddress60->setDaeb(true);
+        $buildingAddress60->setVtw($vtw1);
+        $buildingAddress60->setResidentialArea($residentialArea10);
+        $buildingAddress60->setBuildingType($buildingType10);
+        $buildingAddress60->setLivingType($livingType3);
+        $buildingAddress60->setCreationTime();
+        $buildingAddress60->setLastChangeTime();
 
         $buildingAddress69 = new BuildingAddress();
         $buildingAddress69->setId(69);
@@ -3599,6 +3653,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress69->setCreationTime();
         $buildingAddress69->setLastChangeTime();
 
+        $buildingAddress70 = new BuildingAddress();
+        $buildingAddress70->setId(70);
+        $buildingAddress70->setConstructionYear(1986);
+        $buildingAddress70->setRenovationYear(2002);
+        $buildingAddress70->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress70->setHouseNumber(10);
+        $buildingAddress70->setAddition('X');
+        $buildingAddress70->setZipcode('1234AA');
+        $buildingAddress70->setCity('Woonplaats A');
+        $buildingAddress70->setRentalUnitNumber('VHE0000');
+        $buildingAddress70->setDaeb(true);
+        $buildingAddress70->setVtw($vtw1);
+        $buildingAddress70->setResidentialArea($residentialArea10);
+        $buildingAddress70->setBuildingType($buildingType10);
+        $buildingAddress70->setLivingType($livingType3);
+        $buildingAddress70->setCreationTime();
+        $buildingAddress70->setLastChangeTime();
+        
         $buildingAddress79 = new BuildingAddress();
         $buildingAddress79->setId(79);
         $buildingAddress79->setConstructionYear(1976);
@@ -3616,7 +3688,25 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress79->setLivingType($livingType3);
         $buildingAddress79->setCreationTime();
         $buildingAddress79->setLastChangeTime();
-
+        
+        $buildingAddress80 = new BuildingAddress();
+        $buildingAddress80->setId(80);
+        $buildingAddress80->setConstructionYear(1986);
+        $buildingAddress80->setRenovationYear(2002);
+        $buildingAddress80->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress80->setHouseNumber(10);
+        $buildingAddress80->setAddition('X');
+        $buildingAddress80->setZipcode('1234AA');
+        $buildingAddress80->setCity('Woonplaats A');
+        $buildingAddress80->setRentalUnitNumber('VHE0000');
+        $buildingAddress80->setDaeb(true);
+        $buildingAddress80->setVtw($vtw1);
+        $buildingAddress80->setResidentialArea($residentialArea10);
+        $buildingAddress80->setBuildingType($buildingType10);
+        $buildingAddress80->setLivingType($livingType3);
+        $buildingAddress80->setCreationTime();
+        $buildingAddress80->setLastChangeTime();
+        
         $buildingAddress89 = new BuildingAddress();
         $buildingAddress89->setId(89);
         $buildingAddress89->setConstructionYear(1976);
@@ -3635,6 +3725,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress89->setCreationTime();
         $buildingAddress89->setLastChangeTime();
 
+        $buildingAddress90 = new BuildingAddress();
+        $buildingAddress90->setId(90);
+        $buildingAddress90->setConstructionYear(1986);
+        $buildingAddress90->setRenovationYear(2002);
+        $buildingAddress90->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress90->setHouseNumber(10);
+        $buildingAddress90->setAddition('X');
+        $buildingAddress90->setZipcode('1234AA');
+        $buildingAddress90->setCity('Woonplaats A');
+        $buildingAddress90->setRentalUnitNumber('VHE0000');
+        $buildingAddress90->setDaeb(true);
+        $buildingAddress90->setVtw($vtw1);
+        $buildingAddress90->setResidentialArea($residentialArea10);
+        $buildingAddress90->setBuildingType($buildingType10);
+        $buildingAddress90->setLivingType($livingType3);
+        $buildingAddress90->setCreationTime();
+        $buildingAddress90->setLastChangeTime();
+        
         $buildingAddress99 = new BuildingAddress();
         $buildingAddress99->setId(99);
         $buildingAddress99->setConstructionYear(1976);
@@ -3652,6 +3760,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress99->setLivingType($livingType3);
         $buildingAddress99->setCreationTime();
         $buildingAddress99->setLastChangeTime();
+        
+        $buildingAddress100 = new BuildingAddress();
+        $buildingAddress100->setId(100);
+        $buildingAddress100->setConstructionYear(1986);
+        $buildingAddress100->setRenovationYear(2002);
+        $buildingAddress100->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress100->setHouseNumber(10);
+        $buildingAddress100->setAddition('X');
+        $buildingAddress100->setZipcode('1234AA');
+        $buildingAddress100->setCity('Woonplaats A');
+        $buildingAddress100->setRentalUnitNumber('VHE0000');
+        $buildingAddress100->setDaeb(true);
+        $buildingAddress100->setVtw($vtw1);
+        $buildingAddress100->setResidentialArea($residentialArea10);
+        $buildingAddress100->setBuildingType($buildingType10);
+        $buildingAddress100->setLivingType($livingType3);
+        $buildingAddress100->setCreationTime();
+        $buildingAddress100->setLastChangeTime();
 
         $buildingAddress109 = new BuildingAddress();
         $buildingAddress109->setId(109);
@@ -3670,6 +3796,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress109->setLivingType($livingType3);
         $buildingAddress109->setCreationTime();
         $buildingAddress109->setLastChangeTime();
+        
+        $buildingAddress110 = new BuildingAddress();
+        $buildingAddress110->setId(110);
+        $buildingAddress110->setConstructionYear(1986);
+        $buildingAddress110->setRenovationYear(2002);
+        $buildingAddress110->setStreetName('Ą ą Ę ę Straatnaam A');
+        $buildingAddress110->setHouseNumber(10);
+        $buildingAddress110->setAddition('X');
+        $buildingAddress110->setZipcode('1234AA');
+        $buildingAddress110->setCity('Woonplaats A');
+        $buildingAddress110->setRentalUnitNumber('VHE0000');
+        $buildingAddress110->setDaeb(true);
+        $buildingAddress110->setVtw($vtw1);
+        $buildingAddress110->setResidentialArea($residentialArea10);
+        $buildingAddress110->setBuildingType($buildingType10);
+        $buildingAddress110->setLivingType($livingType3);
+        $buildingAddress110->setCreationTime();
+        $buildingAddress110->setLastChangeTime();
 
         $buildingAddress119 = new BuildingAddress();
         $buildingAddress119->setId(119);
@@ -3689,168 +3833,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress119->setCreationTime();
         $buildingAddress119->setLastChangeTime();
 
-        $buildingAddress129 = new BuildingAddress();
-        $buildingAddress129->setId(129);
-        $buildingAddress129->setConstructionYear(1976);
-        $buildingAddress129->setRenovationYear(2001);
-        $buildingAddress129->setStreetName('Straatnaam A');
-        $buildingAddress129->setHouseNumber(10);
-        $buildingAddress129->setAddition('I');
-        $buildingAddress129->setZipcode('1234AA');
-        $buildingAddress129->setCity('Woonplaats A');
-        $buildingAddress129->setRentalUnitNumber('VHE0000');
-        $buildingAddress129->setDaeb(true);
-        $buildingAddress129->setVtw($vtw1);
-        $buildingAddress129->setResidentialArea($residentialArea9);
-        $buildingAddress129->setBuildingType($buildingType9);
-        $buildingAddress129->setLivingType($livingType3);
-        $buildingAddress129->setCreationTime();
-        $buildingAddress129->setLastChangeTime();
-
-        $buildingAddress40 = new BuildingAddress();
-        $buildingAddress40->setId(40);
-        $buildingAddress40->setConstructionYear(1986);
-        $buildingAddress40->setRenovationYear(2002);
-        $buildingAddress40->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress40->setHouseNumber(10);
-        $buildingAddress40->setAddition('X');
-        $buildingAddress40->setZipcode('1234AA');
-        $buildingAddress40->setCity('Woonplaats A');
-        $buildingAddress40->setRentalUnitNumber('VHE0000');
-        $buildingAddress40->setDaeb(true);
-        $buildingAddress40->setVtw($vtw1);
-        $buildingAddress40->setResidentialArea($residentialArea10);
-        $buildingAddress40->setBuildingType($buildingType10);
-        $buildingAddress40->setLivingType($livingType3);
-        $buildingAddress40->setCreationTime();
-        $buildingAddress40->setLastChangeTime();
-
-        $buildingAddress50 = new BuildingAddress();
-        $buildingAddress50->setId(50);
-        $buildingAddress50->setConstructionYear(1986);
-        $buildingAddress50->setRenovationYear(2002);
-        $buildingAddress50->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress50->setHouseNumber(10);
-        $buildingAddress50->setAddition('X');
-        $buildingAddress50->setZipcode('1234AA');
-        $buildingAddress50->setCity('Woonplaats A');
-        $buildingAddress50->setRentalUnitNumber('VHE0000');
-        $buildingAddress50->setDaeb(true);
-        $buildingAddress50->setVtw($vtw1);
-        $buildingAddress50->setResidentialArea($residentialArea10);
-        $buildingAddress50->setBuildingType($buildingType10);
-        $buildingAddress50->setLivingType($livingType3);
-        $buildingAddress50->setCreationTime();
-        $buildingAddress50->setLastChangeTime();
-
-        $buildingAddress60 = new BuildingAddress();
-        $buildingAddress60->setId(60);
-        $buildingAddress60->setConstructionYear(1986);
-        $buildingAddress60->setRenovationYear(2002);
-        $buildingAddress60->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress60->setHouseNumber(10);
-        $buildingAddress60->setAddition('X');
-        $buildingAddress60->setZipcode('1234AA');
-        $buildingAddress60->setCity('Woonplaats A');
-        $buildingAddress60->setRentalUnitNumber('VHE0000');
-        $buildingAddress60->setDaeb(true);
-        $buildingAddress60->setVtw($vtw1);
-        $buildingAddress60->setResidentialArea($residentialArea10);
-        $buildingAddress60->setBuildingType($buildingType10);
-        $buildingAddress60->setLivingType($livingType3);
-        $buildingAddress60->setCreationTime();
-        $buildingAddress60->setLastChangeTime();
-
-        $buildingAddress70 = new BuildingAddress();
-        $buildingAddress70->setId(70);
-        $buildingAddress70->setConstructionYear(1986);
-        $buildingAddress70->setRenovationYear(2002);
-        $buildingAddress70->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress70->setHouseNumber(10);
-        $buildingAddress70->setAddition('X');
-        $buildingAddress70->setZipcode('1234AA');
-        $buildingAddress70->setCity('Woonplaats A');
-        $buildingAddress70->setRentalUnitNumber('VHE0000');
-        $buildingAddress70->setDaeb(true);
-        $buildingAddress70->setVtw($vtw1);
-        $buildingAddress70->setResidentialArea($residentialArea10);
-        $buildingAddress70->setBuildingType($buildingType10);
-        $buildingAddress70->setLivingType($livingType3);
-        $buildingAddress70->setCreationTime();
-        $buildingAddress70->setLastChangeTime();
-
-        $buildingAddress80 = new BuildingAddress();
-        $buildingAddress80->setId(80);
-        $buildingAddress80->setConstructionYear(1986);
-        $buildingAddress80->setRenovationYear(2002);
-        $buildingAddress80->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress80->setHouseNumber(10);
-        $buildingAddress80->setAddition('X');
-        $buildingAddress80->setZipcode('1234AA');
-        $buildingAddress80->setCity('Woonplaats A');
-        $buildingAddress80->setRentalUnitNumber('VHE0000');
-        $buildingAddress80->setDaeb(true);
-        $buildingAddress80->setVtw($vtw1);
-        $buildingAddress80->setResidentialArea($residentialArea10);
-        $buildingAddress80->setBuildingType($buildingType10);
-        $buildingAddress80->setLivingType($livingType3);
-        $buildingAddress80->setCreationTime();
-        $buildingAddress80->setLastChangeTime();
-
-        $buildingAddress90 = new BuildingAddress();
-        $buildingAddress90->setId(90);
-        $buildingAddress90->setConstructionYear(1986);
-        $buildingAddress90->setRenovationYear(2002);
-        $buildingAddress90->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress90->setHouseNumber(10);
-        $buildingAddress90->setAddition('X');
-        $buildingAddress90->setZipcode('1234AA');
-        $buildingAddress90->setCity('Woonplaats A');
-        $buildingAddress90->setRentalUnitNumber('VHE0000');
-        $buildingAddress90->setDaeb(true);
-        $buildingAddress90->setVtw($vtw1);
-        $buildingAddress90->setResidentialArea($residentialArea10);
-        $buildingAddress90->setBuildingType($buildingType10);
-        $buildingAddress90->setLivingType($livingType3);
-        $buildingAddress90->setCreationTime();
-        $buildingAddress90->setLastChangeTime();
-
-        $buildingAddress100 = new BuildingAddress();
-        $buildingAddress100->setId(100);
-        $buildingAddress100->setConstructionYear(1986);
-        $buildingAddress100->setRenovationYear(2002);
-        $buildingAddress100->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress100->setHouseNumber(10);
-        $buildingAddress100->setAddition('X');
-        $buildingAddress100->setZipcode('1234AA');
-        $buildingAddress100->setCity('Woonplaats A');
-        $buildingAddress100->setRentalUnitNumber('VHE0000');
-        $buildingAddress100->setDaeb(true);
-        $buildingAddress100->setVtw($vtw1);
-        $buildingAddress100->setResidentialArea($residentialArea10);
-        $buildingAddress100->setBuildingType($buildingType10);
-        $buildingAddress100->setLivingType($livingType3);
-        $buildingAddress100->setCreationTime();
-        $buildingAddress100->setLastChangeTime();
-
-        $buildingAddress110 = new BuildingAddress();
-        $buildingAddress110->setId(110);
-        $buildingAddress110->setConstructionYear(1986);
-        $buildingAddress110->setRenovationYear(2002);
-        $buildingAddress110->setStreetName('Ą ą Ę ę Straatnaam A');
-        $buildingAddress110->setHouseNumber(10);
-        $buildingAddress110->setAddition('X');
-        $buildingAddress110->setZipcode('1234AA');
-        $buildingAddress110->setCity('Woonplaats A');
-        $buildingAddress110->setRentalUnitNumber('VHE0000');
-        $buildingAddress110->setDaeb(true);
-        $buildingAddress110->setVtw($vtw1);
-        $buildingAddress110->setResidentialArea($residentialArea10);
-        $buildingAddress110->setBuildingType($buildingType10);
-        $buildingAddress110->setLivingType($livingType3);
-        $buildingAddress110->setCreationTime();
-        $buildingAddress110->setLastChangeTime();
-
         $buildingAddress120 = new BuildingAddress();
         $buildingAddress120->setId(120);
         $buildingAddress120->setConstructionYear(1986);
@@ -3868,6 +3850,24 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setLivingType($livingType3);
         $buildingAddress120->setCreationTime();
         $buildingAddress120->setLastChangeTime();
+        
+        $buildingAddress129 = new BuildingAddress();
+        $buildingAddress129->setId(129);
+        $buildingAddress129->setConstructionYear(1976);
+        $buildingAddress129->setRenovationYear(2001);
+        $buildingAddress129->setStreetName('Straatnaam A');
+        $buildingAddress129->setHouseNumber(10);
+        $buildingAddress129->setAddition('I');
+        $buildingAddress129->setZipcode('1234AA');
+        $buildingAddress129->setCity('Woonplaats A');
+        $buildingAddress129->setRentalUnitNumber('VHE0000');
+        $buildingAddress129->setDaeb(true);
+        $buildingAddress129->setVtw($vtw1);
+        $buildingAddress129->setResidentialArea($residentialArea9);
+        $buildingAddress129->setBuildingType($buildingType9);
+        $buildingAddress129->setLivingType($livingType3);
+        $buildingAddress129->setCreationTime();
+        $buildingAddress129->setLastChangeTime();
 
         $buildingAddress130 = new BuildingAddress();
         $buildingAddress130->setId(130);
@@ -5466,17 +5466,17 @@ class LoadTestHousingStockData extends Fixture
         // This owner is not linked to any housingstock                             
         $owner3 = new Owner();
         $owner3->setId(3);
-        $owner3->setName('zzz');
+        $owner3->setName('Stichting Eigen Bouw');
         $owner3->setKvk('01234569');
         $owner3->setBtw('NL123456799B01');
-        $owner3->setLNumber('L00');
+        $owner3->setLNumber('L0000');
         
         $owner4 = new Owner();
         $owner4->setId(4);
-        $owner4->setName('');
+        $owner4->setName('Wonen Noordwest Friesland');
         $owner4->setKvk('01234569');
         $owner4->setBtw('NL123456799B01');
-        $owner4->setLNumber('L00');
+        $owner4->setLNumber('L0003');
        
         $owner5 = new Owner();
         $owner5->setId(5);
