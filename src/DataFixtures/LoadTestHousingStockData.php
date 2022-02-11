@@ -8016,3 +8016,1011 @@ class LoadTestHousingStockData extends Fixture
     }
 
 }
+
+// L0000 Stichting Eigen Bouw 
+// 813 
+
+// L0003 Wonen Noordwest Friesland 
+// 3990 
+
+// L0005 Woningstichting Servatius 
+// 11821 
+
+// L0008 Wstg Openbaar Belang 
+// 2754 
+
+// L0013 Stichting Zayaz 
+// 13359 
+
+// L0017 Woningstichting Rochdale 
+// 41548
+
+// L0019 Intermaris 
+// 16995 
+
+// L0029 deltaWonen 
+// 14295 
+
+// L0033 Stichting v/h De Bouwvereniging 
+// 2464 
+
+// L0036 Stichting Lyaemer Wonen 
+// 1585 
+
+// L0041 Stichting Bo-Ex '91 
+// 9334 
+
+// L0045 Domesta 
+// 9875 
+
+// L0059 stichting Parteon 
+// 16566
+
+// L0063 Van Alckmaer voor Wonen 
+// 2495
+
+// L0065 Stichting Volkshuisvesting Arnhem 
+// 12510
+
+// L0068 Woningstichting Bergh 
+// 1658 
+
+// L0077 Stichting Wold & Waard 
+// 5041 
+
+// L0079 Stichting Woonstad Rotterdam
+// 54249
+
+// L0081 Stichting Wonen Zuid 
+// 13658
+
+// L0082 Woningstichtingf Vaals 
+// 1611 
+
+// L0089 l'escaut woonservice 
+// 6306 
+
+// L0093 Woningstichting SWZ 
+// 7762 
+
+// L0108 Woningstichting Eigen Haard 
+// 57872 
+
+// L0117 stichting Portaal 
+// 52337 
+
+// L0124 Stichting Stadgenoot 
+// 32067
+
+// L0144 Stichting Volksbelang Vianen
+// 3822
+
+// L0147 R.K. Woningbouwvereniging Zeist 
+// 893
+
+// L0151 Woonstichting ’thuis 
+// 10704
+
+// L0157 Woonstichting Stek 
+// 5781
+
+// L0160 Woningstichting Dinxperlo (WSD) 
+// 1317
+
+// L0165 Woningstichting Weststellingwerf 
+// 2780
+
+// L0173 Ons Huis 
+// 5072
+ 
+// L0176 Stichting BrabantWonen 
+// 14982 
+
+// L0178 Mijande Wonen 
+// 5260
+
+// L0202 Stichting WormerWonen 
+// 1935
+
+// L0221 Waardwonen 
+// 3850
+
+// L0225 Stichting Weller Wonen 
+// 9618
+
+// L0228 Woningstichting HEEMwonen 
+// 10420
+
+// L0231 Stichting Elan Wonen 
+// 6930
+
+// L0232 Stichting Mozaïek Wonen 
+// 8747
+
+// L0237 Standvast Wonen 
+// 8708
+
+// L0238 Woningstichting Voerendaal 
+// 1123 
+
+// L0241 Stichting Antares Woonservice 
+// 5359 
+
+// L0248 Patrimonium Barendrecht 
+// 2506
+
+// L0254 Woningstichting Heteren 
+// 878
+
+// L0267 Stichting Trivire 
+// 14247
+
+// L0269 Stichting ZO Wonen 
+// 15134
+
+// L0271 Woonservice Meander 
+// 2271
+// G
+// L0272 Wassenaarsche Bouwstichting 
+// 2394
+
+// L0274 Woningstichting Woonwenz 
+// 7833
+
+// L0278 Stichting Zaandamse Volkshuisvesting 
+// 5624
+
+// L0295 de Sleutels 
+// 7450
+
+// L0305 Woningbouwvereniging langedijk 
+// 1268
+
+// L0308 Woningstichting Alkemade 
+// 1883
+
+// L0309 Woonstichting Triada 
+// 6526
+
+// L0315 SVTwonen Tiel 
+// 3722
+
+// L0317 Provides 
+// 3624
+
+// L0331 Woonstichting Vryleve 
+// 1455
+
+// L0333 Woonstichting Vooruitgang 
+// 2068
+
+// L0343 Stichting KleurrijkWonen 
+// 11254
+
+// L0347 Viverion 
+// 5797
+
+// L0354 Wonen Wateringen 
+// 2101
+
+// L0358 AWS Beter Wonen 
+// 6381
+
+// L0363 Stichting Woonconcept 
+// 12524
+
+// L0366 Woningstichting Wierden en Borgen 
+// 5167
+
+// L0369 Stichting UWOON 
+// 8983
+
+// L0371 Wst Samenwerking Vlaardingen 
+// 3850
+
+// L0379 WBV Arnemuiden 
+// 377
+
+// L0380 Christelijke Woningstichting Patrimonium 
+// 6759
+
+// L0383 Dudok Wonen 
+// 6374
+
+// L0385 Stichting De Huismeesters 
+// 8230
+
+// L0386 Woningstichting Naarden 
+// 785
+
+// L0392 Havensteder 
+// 45167
+
+// L0410 Stichting Arcade mensen en wonen 
+// 6438
+
+// L0418 Stichting Clavis 
+// 2446
+
+// L0425 Woningstichting Haag Wonen 
+// 24000
+
+// L0439 Stichting Rhiant 
+// 1881
+
+// L0446 Wooncorporatie De Goede Woning 
+// 8199
+
+// L0449 Stichting Chr.Woongroep Marenland 
+// 2377
+
+// L0478 Wooncompagnie 
+// 13377
+
+// L0495 Stichting Allee Wonen 
+// 17694
+
+// L0497 Stichting TBV 
+// 6600
+
+// L0506 FidesWonen 
+// 2280
+
+// L0510 Stichting AWV Eigen Haard 
+// 1555
+
+// L0527 Trudo 
+// 7500
+
+// L0528 Woningstichting Simpelveld 
+// 1272
+
+// L0533 Woningbouwvereniging Laren 
+// 600 
+
+// L0540 Stichting QuaWonen 
+// 8624
+
+// L0543 Stichting R&B Wonen 
+// 4215
+
+// L0553 Stichting Elkien 
+// 17905
+
+// L0565 Stichting WonenCentraal 
+// 8426
+
+// L0568 Stichting Eelder Woningbouw 
+// 953
+
+// L0571 Woonpunt 
+// 17663
+
+// L0573 Sprengenland Wonen 
+// 2736
+
+// L0574 Actium 
+// 16500
+
+// L0579 Woonstichting Hulst 
+// 1455
+
+// L0582 Omnivera 
+// 2223
+
+// L0583 Woningstichting Kennemer Wonen 
+// 10632
+
+// L0590 Rondom Wonen 
+// 2453
+
+// L0602 Woonstichting SSW 
+// 5055
+
+// L0623 Woningstichting Warmunda 
+// 697
+
+// L0629 WBV Poortugaal 
+// 1189
+
+// L0630 Brederode Wonen 
+// 1606
+
+// L0632 Stichting Woningbouw Slochteren 
+// 1228
+
+// L0636 Wonen Meerssen 
+// 1708
+
+// L0637 Stichting De Sesyter Veste 
+// 4103
+
+// L0640 Pré Wonen 
+// 14146
+
+// L0642 Stichting Destion 
+// 2534
+
+// L0643 Bouwvereniging Huis & Erf 
+// 3410
+
+// L0653 Woningstichting Dinteloord 
+// 755
+
+// L0658 Stichting Vivare 
+// 24017
+
+// L0661 woonstichting Vechthorst 
+// 2208 
+
+// L0665 Woonbron 
+// 37063 
+
+// L0666 Woonborg 
+// 4906
+
+// L0667 Wbv Van Erfgooiers 
+// 275
+
+// L0669 Woningstichting Domus 
+// 977
+
+// L0672 Woningstichting Volksbelang 
+// 1974
+
+// L0673 WoonInvest 
+// 8661
+
+// L0676 Wonen Zuidwest Friesland 
+// 2222
+
+// L0678 Woningstichting Sint Antonius van Padua 
+// 2034
+
+// L0682 Woningstichting Ons Doel 
+// 2414
+
+// L0686 Stichting de Delthe 
+// 544
+
+// L0688 Stichting Uithuizer Woningbouw 
+// 796
+
+// L0689 Woonvisie 
+// 9055
+
+// L0694 Rentree 
+// 4152
+
+// L0705 Veenendaalse Woningstichting 
+// 1247
+
+// L0732 HW Wonen 
+// 10290
+
+// L0734 Patrimonium woonstichting 
+// 6403
+
+// L0740 Woonstichting Groninger Huis 
+// 2653
+
+// L0758 Woningstichting Kockengen 
+// 325
+
+// L0762 Woningstichting Beter Wonen Vechtdal 
+// 3297
+
+// L0764 Woningbouwvereniging Habeko Wonen 
+// 1868
+
+// L0765 Stichting Wonen Delden 
+// 759 
+
+// L0766 Stichting GroenWest 
+// 11807
+
+// L0782 Woningstichting Brummen 
+// 1534
+
+// L0817 Woningbouwvereniging Heerjansdam 
+// 504
+
+// L0835 Stichting ProWonen 
+// 7956
+
+// L0837 Woonstichting Jutphaas 
+// 1657
+
+// L0858 Stichting Beter Wonen IJsselmuiden 
+// 1090
+
+// L0861 Stichting Slagenland Wonen 
+// 831
+
+// L0867 Stichting Tablis Wonen (Sliedrecht) 
+// 4822
+
+// L0876 Stichting De Woonschakel Westfriesland 
+// 5724
+
+// L0883 Woningstichting Het Grootslag 
+// 2586
+
+// L0885 Stichting De Woningbouw 
+// 4011
+
+// L0886 Stichting Area 
+// 8400
+
+// L0898 Stichting Wonion 
+// 4093
+
+// L0921 Woningstichting St. Joseph Almelo 
+// 5454
+ 
+// L0923 Bouwvereniging Woningbelang 
+// 3788
+
+// L0927 Trifolium Woondiensten Boskoop 
+// 1894
+
+// L0928 Woonstichting 't Heem 
+// 984
+
+// L0936 Eemland Wonen 
+// 2590
+
+// L0939 Stichting Christelijke Woningcorporatie 
+// 3620
+
+// L0943 Woongoed Middelburg 
+// 6317
+
+// L0944 Casade Woonstichting 
+// 8129
+
+// L0968 Omnia Wonen 
+// 6965
+
+// L0979 de Woningstichting 
+// 5142
+
+// L0986 Maaskant Wonen 
+// 1837
+
+// L0992 Woningbouwvereniging Helpt Elkander 
+// 1394
+
+// L1005 Laurentius 
+// 9091
+
+// L1017 Sité Woondiensten 
+// 7093
+
+// L1034 Wbv De Goede Woning - Driemond 
+// 110
+
+// L1038 Woningstichting Maasvallei Maastricht 
+// 3751
+
+// L1040 Stichting Goed Wonen Zederik 
+// 1148
+
+// L1064 Stichting Welbions 
+// 12801
+
+// L1082 Woningstichting Laarbeek 
+// 2240
+
+// L1093 Stichting Vidomes 
+// 18170 
+
+// L1100 Wonen Midden-Delfland 
+// 1620
+
+// L1109 Stichting Nijestee 
+// 13680
+
+// L1122 Stichting Rijswijk Wonen 
+// 6152
+
+// L1128 Baston Wonen 
+// 3781
+
+// L1164 WBV ST WILLIBRORDUS 
+// 1342
+
+// L1182 Stichting Woonwaard Noord-Kennemerland 
+// 13593
+
+// L1207 Woningstichting Urmond 
+// 560 
+
+// L1215 Stichting 3B Wonen 
+// 4115
+
+// L1217 Stichting VitaalWonen 
+// 277
+
+// L1226 Woningbouwvereniging Bergopwaarts 
+// 4825
+
+// L1235 Woonbeheer Borne 
+// 2351
+
+// L1236 Woonstichting St. Joseph 
+// 3810
+
+// L1239 IJsseldal Wonen 
+// 3279
+
+// L1247 Woningstichting Obbicht & Papenhoven 
+// 185
+
+// L1306 Woningstichting Eendracht 
+// 217
+
+// L1357 Woningbouwstichting de Gemeenschap 
+// 2209
+
+// L1395 Winingbouwvereniging Maarn 
+// 312
+
+// L1399 Woningstichting Den Helder 
+// 10067
+
+// L1409 Stichting Woonservice IJssellan 
+// 2104
+
+// L1413 Woningstichting Hellendoorn 
+// 3126
+
+// L1415 Woningstichting Buitenlust 
+// 1498
+
+// L1418 Stichting Woonbedrijf ieder1 
+// 14723
+
+// L1426 Woningcorporatie Domijn 
+// 15669
+
+// L1436 Dunavie 
+// 7349
+
+// L1459 R.K. Woningbouwstichting De Goede Woning 
+// 6351
+
+// L1464 Stichting Woonbedrijf SWS.Hhvl 
+// 30932
+
+// L1468 stichting Woningbeheer Born-Grevenbicht 
+// 871
+
+// L1471 Woonwijze 
+// 2980
+
+// L1479 Talis 
+// 14096
+
+// L1491 Woningstichting Kessel 
+// 498
+
+// L1498 Woningstichting Kamerik 
+// 319
+
+// L1506 Woningstichting SallandWonen 
+// 5510
+
+// L1519 Stichting Wooninc. 
+// 7369
+
+// L1524 Rijnhart Wonen 
+// 3543
+
+// L1525 Stichting Woningbeheer De Vooruitgang 
+// 1159
+
+// L1532 wbs Samenwerking 
+// 249
+
+// L1533 Stichting WOONopMAAT 
+// 6470
+
+// L1542 Stichting Lefier 
+// 29126 
+
+// L1543 Vallei Wonen 
+// 1102
+
+// L1544 Woongoed GO 
+// 2502
+
+// L1549 Poort6 
+// 7836
+
+// L1550 Woningbouwvereniging "Goed Wonen" 
+// 282
+
+// L1559 wbv Beter Wonen 
+// 265
+
+// L1560 Stichting Woontij 
+// 2183
+
+// L1569 Woongoed ZVL 
+// 6289
+
+// L1573 Groen Wonen Vlist 
+// 1038
+
+// L1579 Woningstichting Wuta 
+// 181
+
+// L1581 Zeeuwland 
+// 4104
+
+// L1584 Bouwvereniging Ambt Delden 
+// 237
+
+// L1585 Woningbouwvereniging Vecht en Omstreken 
+// 2172
+
+// L1586 Woningbouwvereniging Nieuw-Lekkerland 
+// 1367
+ 
+// L1588 Woningbouwstichting Cothen 
+// 295
+
+// L1597 Woningbouwstichting Lek en Waard Wonen 
+// 938
+
+// L1598 Woningstichting Gouderak 
+// 321
+
+// L1606 Stichting Woonburg 
+// 1987
+
+// L1612 Kennemerhave 
+// 2130
+
+// L1622 Stichting Wonen Wittem 
+// 445
+
+// L1638 Stichting Accolade 
+// 16399
+
+// L1640 Woningbouwvereniging Hoek van Holand 
+// 2076
+
+// L1646 Stichting Woonzorg Nederland 
+// 44253
+
+// L1647 Stichting Woonpartners 
+// 7340
+
+// L1663 Stichting Woonfriesland 
+// 20769
+
+// L1670 Oosterpoort Wooncombinatie 
+// 4964
+
+// L1674 Chr. stichting BCM wonen 
+// 613
+
+// L1675 Steelande wonen 
+// 3546
+
+// L1678 Woningstichting Tubbergen 
+// 983
+
+// L1680 de Woonmensen/SJA 
+// 5753
+
+// L1689 Woningstichting St. Joseph 
+// 458
+
+// L1691 Ons Huis Woningstichting 
+// 5385
+ 
+// L1693 Woningstichting Nijkerk 
+// 2980
+
+// L1697 Wonen Limburg 
+// 23466
+
+// L1700 wbv Beter Wonen 
+// 1209
+
+// L1704 Woonstichting Land van Altena 
+// 995
+
+// L1709 Christelijke Woningstichting De Goede Woning 
+// 1344
+
+// L1712 Chr. Woonstichting Patrimonium 
+// 834
+
+// L1713 Wbv de Kombinatie 
+// 3608
+
+// L1716 Stichting Viveste 
+// 5030
+
+// L1718 Woningstichting Goed Wonen 
+// 669
+
+// L1723 Stichting Woonservice Urbanus 
+// 787
+
+// L1745 Goed Wonen 
+// 2577
+
+// L1748 Stichting Woningcorporatie WoonGenoot 
+// 1502
+
+// L1753 Wetland Wonen Groep 
+// 3490
+
+// L1760 Wbv. Reeuwijk 
+// 1031
+
+// L1761 Bernardus wonen 
+// 4087
+
+// L1762 Vieya 
+// 1960
+
+// L1763 Stichting Woonveste 
+// 5528
+
+// L1766 Stichting woCom 
+// 6629
+ 
+// L1768 Staedion 
+// 35354
+
+// L1781 Stichting Thuisvester 
+// 13491
+
+// L1785 Stichting Stadlander 
+// 15158
+
+// L1787 Stichting WSG 
+// 4588
+
+// L1788 Woonstichting Leystromen 
+// 9733
+
+// L1792 Stichting Thus wonen 
+// 6612
+
+// L1793 Stichting Acantus Groep 
+// 13382
+
+// L1794 Woningstichting de Zaligheden 
+// 3567
+
+// L1804 Mercatus 
+// 5168
+
+// L1807 Woningstichting Volksbelang 
+// 1943
+
+// L1811 Stichting PeelrandWonen 
+// 615
+
+// L1817 Stichting Mooiland 
+// 27637
+
+// L1821 Laris Wonen en diensten 
+// 2373
+
+// L1825 Woonstichting De Kernen 
+// 4436
+
+// L1835 Woningstichting Maasdriel 
+// 1032
+
+// L1836 Heuvelrug Wonen 
+// 3251
+
+// L1837 Woningvereniging Nederweert 
+// 1521
+
+// L1839 st. WoonGoed 2-Duizend 
+// 4904
+
+// L1842 Woningstichting De Woonplaats 
+// 16385
+
+// L1847 Woningbouwvereniging Compaen 
+// 3444
+
+// L1850 Woningstichting Woensdrecht 
+// 1037
+
+// L1852 Woningstichting Kleine Meierij 
+// 3730
+
+// L1855 Woonstichting Gendt 
+// 848
+
+// L1857 Wovesto 
+// 1339
+
+// L1861 Oost Flevoland Woondiensten 
+// 4822
+
+// L1864 Wonen Vierlingsbeek 
+// 495
+
+// L1865 Woningstichting Putten 
+// 1947
+
+// L1866 Woningbouwvereniging "Lopik" 
+// 663
+
+// L1875 Stichting Woningcorporaties Het Gooi en Omstreken 
+// 7199
+
+// L1876 Stichting Maasdelta Groep 
+// 16751
+
+// L1877 Stichting Woonservice Drenthe 
+// 4873
+
+// L1878 Woningstichting Leusden 
+// 2607
+
+// L1881 Stichting Woningbeheer Betuwe 
+// 3822
+
+// L1888 Woonstichting Centrada 
+// 8470
+
+// L1891 Woningstichting Goede Stede 
+// 7588
+
+// L1892 Woningbouwvereniging Oudewater 
+// 1067
+
+// L1893 Woonstichting Valburg 
+// 1224
+
+// L1896 Woningstichting De Leeuw van Putten 
+// 3857
+
+// L1899 Woningstichting De Volmacht 
+// 1527
+
+// L1901 Regionale Woningbouwvereniging Samenwerking 
+// 6417
+
+// L1903 Woningbouwvereniging Amerongen 
+// 616
+
+// L1906 Brabantse Waard 
+// 3802
+
+// L1909 Stichting Studenten Huisvesting 
+// 8418
+
+// L1910 WBO Wonen 
+// 4300
+
+// L1911 Stichting WonenBreburg 
+// 27617
+
+// L1912 Stichting de Alliantie 
+// 55907
+
+// L1913 Tiwos, Tilburgse Woonstichting 
+// 7556 
+
+// L1921 Woonkracht10 
+// 11278
+
+// L1924 Stichting Vestia Groep 
+// 89091
+
+// L1926 Stichting Ouderenhuisvesting Rotterdam 
+// 7186
+
+// L1933 Stichting Huisvesting Vredewold 
+// 622
+
+// L1944 SSHN 
+// 5226
+
+// L1964 Stichting Jongeren Huisvesting Twente 
+// 869
+
+// L1966 Stichting Verzorgd Wonen SHBB 
+// 229
+
+// L1969 SIB Woonservice 
+// 1200
+
+// L1985 Harmonisch Wonen 
+// 212 
+
+// L1986 SHBO 
+// 260
+
+// L2004 Stichting DUWO 
+// 25582
+
+// L2014 Stichting Woonpalet Zeewolde 
+// 1931
+
+// L2044 Stichting Wonen Wierden Enter 
+// 1706
+
+// L2047 Veron 
+// 171
+
+// L2051 Stichting Woonstede 
+// 9194
+
+// L2052 Woonstichting Etten-Leur 
+// 4862
+
+// L2053 ZorgGoedBrabant 
+// 1720
+
+// L2056 Ressort Wonen 
+// 2396
+
+// L2058 Stichting Mitros 
+// 28579
+
+// L2066 Stichting Laurens Wonen 
+// 2383
+
+// L2067 Wooncentrum Ouderen St. Zuidrandflat Gouda 
+// 220
+
+// L2068 Rhenense Woningstichting 
+// 2154
+
+// L2070 Stichting Ymere 
+// 81726
+
+// L2072 waterweg wonen 
+// 12183
+
+// L2073 Stichting Woningbedrijf Velsen 
+// 7428
+
+// L2082 Woningstichting Barneveld 
+// 3931
+
+// L2083 Woningstichting Nieuwkoop 
+// 1262
+
+// L2084 Stichting Woondiensten Aarwoude 
+// 1960
+
+// L2085 Stichting Woonplus Schiedam 
+// 11787
+
+// L2090 woonstichtibng De zes Kernen 
+// 1348
+
+// L2092 Noordwijkse Woningstichting 
+// 2305
+
+// L2101 Stichting Goed Wonen Liempde 
+// 227
+
+// L2103 Woonstichting De Key 
+// 33118
+
+// L2104 Stichting Woningbedrijf Warnsveld 
+// 621
+
+// L2110 WoonCompas 
+// 1002
+
+// L2114 Woonpartners Midden-Holland 
+// 6799
