@@ -135,7 +135,7 @@ function loadOwnersPage() {
             $(data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">perm_identity</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
                     '                <td>' + element.name + '</td>\n' +
                     '                <td>' + element.lNumber + '</td>\n' +
                     '                <td class="actions">\n' +
@@ -151,7 +151,7 @@ function loadOwnersPage() {
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
                 '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
-                '                <i class="material-icons">perm_identity</i><span class="button-content hide-on-small-only">New</span>\n' +
+                '                <i class="material-icons">person_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
@@ -204,6 +204,27 @@ function loadOwnerNewPage() {
         '                <i class="material-icons prefix">short_text</i>\n' +
         '                <input id="name" name="name" type="text" class="validate">\n' +
         '                <label for="name">Name</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="kvk" name="kvk" type="text" class="validate">\n' +
+        '                <label for="kvk">KVK</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="btw" name="btw" type="text" class="validate">\n' +
+        '                <label for="btw">BTW</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="l_number" name="l_number" type="text" class="validate">\n' +
+        '                <label for="l_number">L number</label>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +

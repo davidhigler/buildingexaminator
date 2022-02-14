@@ -156,6 +156,12 @@ i.material-icons.disabled {
     color: rgba(0, 0, 0, 0.42);
 }
 
+i.material-icons.ddd {
+    float: left;
+    font-size: 65px;
+    line-height: 65px;
+}
+
 div#content > h3 {
     padding-bottom: 20px;
 }
