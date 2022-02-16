@@ -27,7 +27,6 @@ class LoadTestHousingStockData extends Fixture
     public function load(ObjectManager $manager): void
     {
         $residentialArea1 = new ResidentialArea();
-        $residentialArea1->setId(1);
         $residentialArea1->setCode('*wedlônd◘');
         $residentialArea1->setName('ðorlogsplein 1945');
         $residentialArea1->setDescription('Patat Rât LN \'12');
@@ -35,7 +34,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea1->setLastChangeTime();
 
         $residentialArea2 = new ResidentialArea();
-        $residentialArea2->setId(2);
         $residentialArea2->setCode('Ðoenderstraat');
         $residentialArea2->setName('Bænstreetÿ');
         $residentialArea2->setDescription('\'s-Gravenland');
@@ -43,7 +41,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea2->setLastChangeTime();
 
         $residentialArea3 = new ResidentialArea();
-        $residentialArea3->setId(3);
         $residentialArea3->setCode('Wµ 3');
         $residentialArea3->setName('stroußenlaan');
         $residentialArea3->setDescription('Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch');
@@ -51,7 +48,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea3->setLastChangeTime();
 
         $residentialArea4 = new ResidentialArea();
-        $residentialArea4->setId(4);
         $residentialArea4->setCode('♥♦♣♠ ¾');
         $residentialArea4->setName('çoop §');
         $residentialArea4->setDescription('W@@lspröngé');
@@ -59,7 +55,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea4->setLastChangeTime();
 
         $residentialArea5 = new ResidentialArea();
-        $residentialArea5->setId(5);
         $residentialArea5->setCode('Dj`s');
         $residentialArea5->setName('"Ædrie Nus"');
         $residentialArea5->setDescription('å€©®¥¾');
@@ -67,7 +62,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea5->setLastChangeTime();
 
         $residentialArea6 = new ResidentialArea();
-        $residentialArea6->setId(6);
         $residentialArea6->setCode('Mw. Verdwaald- Onderwater');
         $residentialArea6->setName('Wil-Jannie Mostert-Uit de fles');
         $residentialArea6->setDescription('Etten-Leur-Noord');
@@ -75,7 +69,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea6->setLastChangeTime();
 
         $residentialArea7 = new ResidentialArea();
-        $residentialArea7->setId(7);
         $residentialArea7->setCode('Bangkokstrâët');
         $residentialArea7->setName('Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya');
         $residentialArea7->setDescription('Broekpolder samen met Beverwijk Ouverture Bàngert-Oosterpolder Höögh Teijïngen');
@@ -83,7 +76,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea7->setLastChangeTime();
 
         $residentialArea8 = new ResidentialArea();
-        $residentialArea8->setId(8);
         $residentialArea8->setCode('IC – Notting (oogarts)');
         $residentialArea8->setName('mw Plu→ in ’t Hol');
         $residentialArea8->setDescription('Zuidbroek (wijk in aanbouw)');
@@ -91,7 +83,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea8->setLastChangeTime();
 
         $residentialArea9 = new ResidentialArea();
-        $residentialArea9->setId(9);
         $residentialArea9->setCode('53° 13′ NB, 4° 12′ WL');
         $residentialArea9->setName('4#');
         $residentialArea9->setDescription('Zevenhuizen');
@@ -99,7 +90,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea9->setLastChangeTime();
 
         $residentialArea10 = new ResidentialArea();
-        $residentialArea10->setId(10);
         $residentialArea10->setCode('Prof Nl \'34');
         $residentialArea10->setName('A@ Prof. van Kinsbergen 1934');
         $residentialArea10->setDescription('Centrüm ïn de st&d');
@@ -107,7 +97,6 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea10->setLastChangeTime();
 
         $buildingType1 = new BuildingType();
-        $buildingType1->setId(1);
         $buildingType1->setCode('Rijwoning twee onder éénkap');
         $buildingType1->setName('5.Industriefunctie');
         $buildingType1->setDescription('Rijwoning twee onder éénkap');
@@ -115,7 +104,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType1->setLastChangeTime();
 
         $buildingType2 = new BuildingType();
-        $buildingType2->setId(2);
         $buildingType2->setCode('Transport Å2');
         $buildingType2->setName('4.Gezondheidszorgfunctie');
         $buildingType2->setDescription('van Hövell tot Westervlier en Wezeveld');
@@ -123,7 +111,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType2->setLastChangeTime();
 
         $buildingType3 = new BuildingType();
-        $buildingType3->setId(3);
         $buildingType3->setCode('SPORT & tentoonstelling');
         $buildingType3->setName('commerciële-gebouwen');
         $buildingType3->setDescription('gebouwtype 00000000000000000000000000000000000000001');
@@ -131,7 +118,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType3->setLastChangeTime();
 
         $buildingType4 = new BuildingType();
-        $buildingType4->setId(4);
         $buildingType4->setCode('Ziekenhuis');
         $buildingType4->setName('7.Logiesfunctie');
         $buildingType4->setDescription('Hoette zich noemende en schrijvende Hötte');
@@ -139,7 +125,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType4->setLastChangeTime();
 
         $buildingType5 = new BuildingType();
-        $buildingType5->setId(5);
         $buildingType5->setCode('GT0080');
         $buildingType5->setName('6.Kantoorfunctie');
         $buildingType5->setDescription('van den Heuvel tot Beichlingen, gezegd Bartolotti Rijnders');
@@ -147,7 +132,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType5->setLastChangeTime();
 
         $buildingType6 = new BuildingType();
-        $buildingType6->setId(6);
         $buildingType6->setCode('aaaaAAAAAA0006');
         $buildingType6->setName('9.Sportfunctie');
         $buildingType6->setDescription('l\'arquitecte');
@@ -155,7 +139,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType6->setLastChangeTime();
 
         $buildingType7 = new BuildingType();
-        $buildingType7->setId(7);
         $buildingType7->setCode('m@²Ö');
         $buildingType7->setName('3.Celfunctie');
         $buildingType7->setDescription('Grevink');
@@ -163,7 +146,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType7->setLastChangeTime();
 
         $buildingType8 = new BuildingType();
-        $buildingType8->setId(8);
         $buildingType8->setCode('GTA ¡²³¤');
         $buildingType8->setName('8.Onderwijsfunctie');
         $buildingType8->setDescription('Griemink');
@@ -171,7 +153,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType8->setLastChangeTime();
 
         $buildingType9 = new BuildingType();
-        $buildingType9->setId(9);
         $buildingType9->setCode('Rijwoning kleine gezinnen');
         $buildingType9->setName('2.Bijeenkomstfunctie');
         $buildingType9->setDescription('Sagrada Família');
@@ -179,7 +160,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType9->setLastChangeTime();
 
         $buildingType10 = new BuildingType();
-        $buildingType10->setId(10);
         $buildingType10->setCode('2.Rijwoning twee onder éénkap');
         $buildingType10->setName('12.Geen gebouw 11.Overige');
         $buildingType10->setDescription('Om \'t Hoekje');
@@ -187,7 +167,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType10->setLastChangeTime();
 
         $buildingType11 = new BuildingType();
-        $buildingType11->setId(11);
         $buildingType11->setCode('D@vïd Hïllêning');
         $buildingType11->setName('11.Overige');
         $buildingType11->setDescription('Hotel');
@@ -195,7 +174,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType11->setLastChangeTime();
 
         $buildingType12 = new BuildingType();
-        $buildingType12->setId(12);
         $buildingType12->setCode('Wôrdéè');
         $buildingType12->setName('13.kelderfunctie');
         $buildingType12->setDescription('omschrijving van het gebouwtype binnen de voorraad');
@@ -203,7 +181,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingType12->setLastChangeTime();
 
         $buildingType13 = new BuildingType();
-        $buildingType13->setId(13);
         $buildingType13->setCode('Legenda');
         $buildingType13->setName('Woonwagen');
         $buildingType13->setDescription('vhosihg hvuh dho ä ueabvuiabio haeehvoiaejb iodhvujabiobhaeiohviaeh ihasdkjhgioedhbv');
@@ -211,77 +188,66 @@ class LoadTestHousingStockData extends Fixture
         $buildingType13->setLastChangeTime();
 
         $livingType1 = new LivingType();
-        $livingType1->setId(1);
         $livingType1->setCode('lt1');
         $livingType1->setName('Niet van toepassing');
         $livingType1->setCreationTime();
         $livingType1->setLastChangeTime();
 
         $livingType2 = new LivingType();
-        $livingType2->setId(2);
         $livingType2->setCode('lt2');
         $livingType2->setName('Vrijstaande woning');
         $livingType2->setCreationTime();
         $livingType2->setLastChangeTime();
 
         $livingType3 = new LivingType();
-        $livingType3->setId(3);
         $livingType3->setCode('lt3');
         $livingType3->setName('Rijwoning twee onder éénkap');
         $livingType3->setCreationTime();
         $livingType3->setLastChangeTime();
-        
+
         $livingType4 = new LivingType();
-        $livingType4->setId(4);
         $livingType4->setCode('lt4');
         $livingType4->setName('Rijwoning eengezins');
         $livingType4->setCreationTime();
         $livingType4->setLastChangeTime();
 
         $livingType5 = new LivingType();
-        $livingType5->setId(5);
         $livingType5->setCode('lt5');
         $livingType5->setName('Rijwoning senioren');
         $livingType5->setCreationTime();
         $livingType5->setLastChangeTime();
 
         $livingType6 = new LivingType();
-        $livingType6->setId(6);
         $livingType6->setCode('lt6');
         $livingType6->setName('Rijwoning duplex kleine gezinnen');
         $livingType6->setCreationTime();
         $livingType6->setLastChangeTime();
-        
+
         $livingType7 = new LivingType();
-        $livingType7->setId(7);
         $livingType7->setCode('lt7');
         $livingType7->setName('Etagewoning galerijflat');
         $livingType7->setCreationTime();
         $livingType7->setLastChangeTime();
-        
+
         $livingType8 = new LivingType();
-        $livingType8->setId(8);
         $livingType8->setCode('lt8');
         $livingType8->setName('Etagewoning portiekflat');
         $livingType8->setCreationTime();
         $livingType8->setLastChangeTime();
 
         $livingType9 = new LivingType();
-        $livingType9->setId(9);
         $livingType9->setCode('lt9');
         $livingType9->setName('Etagewoning maisonette');
         $livingType9->setCreationTime();
         $livingType9->setLastChangeTime();
 
         $livingType10 = new LivingType();
-        $livingType10->setId(10);
         $livingType10->setCode('lt10');
         $livingType10->setName('Etagewoning penthouse');
         $livingType10->setCreationTime();
         $livingType10->setLastChangeTime();
-        
+
         $vtw1 = new Vtw();
-        $vtw1->setId(1);
         $vtw1->setCode('WT 1');
         $vtw1->setType('eengezinswoning');
         $vtw1->setBuildingType('1');
@@ -289,15 +255,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw1->setRooftype('hellend dak');
 
         $vtw2 = new Vtw();
-        $vtw2->setId(2);
         $vtw2->setCode('WT 1R');
         $vtw2->setType('renovatie eengezinswoning');
         $vtw2->setBuildingType('1R');
         $vtw2->setBouwjaar('voor 1950');
         $vtw2->setRooftype('hellend dak');
-            
+
         $vtw3 = new Vtw();
-        $vtw3->setId(3);
         $vtw3->setCode('WT 2');
         $vtw3->setType('eengezinswoning');
         $vtw3->setBuildingType('2');
@@ -305,15 +269,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw3->setRooftype('hellend dak');
 
         $vtw4 = new Vtw();
-        $vtw4->setId(4);
         $vtw4->setCode('WT 2R');
         $vtw4->setType('renovatie eengezinswoning');
         $vtw4->setBuildingType('2R');
         $vtw4->setBouwjaar('tussen 1950 en 1970');
         $vtw4->setRooftype('hellend dak');
-            
+
         $vtw5 = new Vtw();
-        $vtw5->setId(5);
         $vtw5->setCode('WT 3');
         $vtw5->setType('eengezinswoning');
         $vtw5->setBuildingType('3');
@@ -321,15 +283,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw5->setRooftype('hellend dak');
 
         $vtw6 = new Vtw();
-        $vtw6->setId(6);
         $vtw6->setCode('WT 4');
         $vtw6->setType('eengezinswoning/senioren-woning');
         $vtw6->setBuildingType('4');
         $vtw6->setBouwjaar('tussen 1990 en 2000');
         $vtw6->setRooftype('hellend dak');
-            
+
         $vtw7 = new Vtw();
-        $vtw7->setId(7);
         $vtw7->setCode('WT 5');
         $vtw7->setType('eengezinswoning');
         $vtw7->setBuildingType('5');
@@ -337,31 +297,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw7->setRooftype('hellend dak');
 
         $vtw8 = new Vtw();
-        $vtw8->setId(8);
         $vtw8->setCode('WT 6');
         $vtw8->setType('eengezinswoning');
         $vtw8->setBuildingType('6');
         $vtw8->setBouwjaar('na 2000');
         $vtw8->setRooftype('hellend dak');
-        
+
         $vtw9 = new Vtw();
-        $vtw9->setId(9);
         $vtw9->setCode('WT 7R');
         $vtw9->setType('renovatie eengezinswoning');
         $vtw9->setBuildingType('7R');
         $vtw9->setBouwjaar('tussen 1950 en 1970');
         $vtw9->setRooftype('hellend dak');
-            
+
         $vtw10 = new Vtw();
-        $vtw10->setId(10);
         $vtw10->setCode('WT 8');
         $vtw10->setType('eengezinswoning');
         $vtw10->setBuildingType('8');
         $vtw10->setBouwjaar('tussen 1970 en 1990');
         $vtw10->setRooftype('hellend dak');
-        
+
         $vtw11 = new Vtw();
-        $vtw11->setId(11);
         $vtw11->setCode('WT 9');
         $vtw11->setType('eengezinswoning');
         $vtw11->setBuildingType('9');
@@ -369,15 +325,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw11->setRooftype('hellend dak');
 
         $vtw12 = new Vtw();
-        $vtw12->setId(12);
         $vtw12->setCode('WT 10');
         $vtw12->setType('eengezinswoning');
         $vtw12->setBuildingType('10');
         $vtw12->setBouwjaar('na 2000');
         $vtw12->setRooftype('hellend dak');
-            
+
         $vtw13 = new Vtw();
-        $vtw13->setId(13);
         $vtw13->setCode('WT 11');
         $vtw13->setType('eengezinswoning');
         $vtw13->setBuildingType('11');
@@ -385,15 +339,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw13->setRooftype('vlak dak');
 
         $vtw14 = new Vtw();
-        $vtw14->setId(14);
         $vtw14->setCode('WT 11R');
         $vtw14->setType('renovatie eengezinswoning');
         $vtw14->setBuildingType('11R');
         $vtw14->setBouwjaar('tussen 1950 en 1970');
         $vtw14->setRooftype('vlak dak');
-            
+
         $vtw15 = new Vtw();
-        $vtw15->setId(15);
         $vtw15->setCode('WT 12');
         $vtw15->setType('eengezinswoning');
         $vtw15->setBuildingType('12');
@@ -401,15 +353,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw15->setRooftype('vlak dak');
 
         $vtw16 = new Vtw();
-        $vtw16->setId(16);
         $vtw16->setCode('WT 13');
         $vtw16->setType('eengezinswoning');
         $vtw16->setBuildingType('13');
         $vtw16->setBouwjaar('na 1990');
         $vtw16->setRooftype('vlak dak');
-            
+
         $vtw17 = new Vtw();
-        $vtw17->setId(17);
         $vtw17->setCode('WT 14');
         $vtw17->setType('open portiekwoning');
         $vtw17->setBuildingType('14');
@@ -417,31 +367,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw17->setRooftype('hellend dak');
 
         $vtw18 = new Vtw();
-        $vtw18->setId(18);
         $vtw18->setCode('WT 14R');
         $vtw18->setType('eengezinswoning');
         $vtw18->setBuildingType('14R');
         $vtw18->setBouwjaar('voor 1950');
         $vtw18->setRooftype('hellend dak');
-        
+
         $vtw19 = new Vtw();
-        $vtw19->setId(19);
         $vtw19->setCode('WT 15');
         $vtw19->setType('open portiekwoning');
         $vtw19->setBuildingType('15');
         $vtw19->setBouwjaar('voor 1950');
         $vtw19->setRooftype('vlak dak');
-            
+
         $vtw20 = new Vtw();
-        $vtw20->setId(20);
         $vtw20->setCode('WT 15R');
         $vtw20->setType('renovatie open portiekwoning');
         $vtw20->setBuildingType('15R');
         $vtw20->setBouwjaar('voor 1950');
         $vtw20->setRooftype('vlak dak');
-            
+
         $vtw21 = new Vtw();
-        $vtw21->setId(21);
         $vtw21->setCode('WT 16');
         $vtw21->setType('etagewoning');
         $vtw21->setBuildingType('16');
@@ -449,15 +395,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw21->setRooftype('hellend dak');
 
         $vtw22 = new Vtw();
-        $vtw22->setId(22);
         $vtw22->setCode('WT 16R');
         $vtw22->setType('renovatie etagewoning');
         $vtw22->setBuildingType('16R');
         $vtw22->setBouwjaar('voor 1950');
         $vtw22->setRooftype('hellend dak');
-            
+
         $vtw23 = new Vtw();
-        $vtw23->setId(23);
         $vtw23->setCode('WT 17');
         $vtw23->setType('etagewoning');
         $vtw23->setBuildingType('17');
@@ -465,15 +409,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw23->setRooftype('vlak dak');
 
         $vtw24 = new Vtw();
-        $vtw24->setId(24);
         $vtw24->setCode('WT 17R');
         $vtw24->setType('renovatie etagewoning');
         $vtw24->setBuildingType('17R');
         $vtw24->setBouwjaar('voor 1950');
         $vtw24->setRooftype('vlak dak');
-            
+
         $vtw25 = new Vtw();
-        $vtw25->setId(25);
         $vtw25->setCode('WT 18');
         $vtw25->setType('trappenhuisflat Amsterdamse school');
         $vtw25->setBuildingType('18');
@@ -481,15 +423,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw25->setRooftype('hellend dak');
 
         $vtw26 = new Vtw();
-        $vtw26->setId(26);
         $vtw26->setCode('WT 18R');
         $vtw26->setType('renovatie trappenhuisflat Amsterdamse school');
         $vtw26->setBuildingType('18R');
         $vtw26->setBouwjaar('voor 1950');
         $vtw26->setRooftype('hellend dak');
-            
+
         $vtw27 = new Vtw();
-        $vtw27->setId(27);
         $vtw27->setCode('WT 19');
         $vtw27->setType('trappenhuisflat tot en met 4 lagen');
         $vtw27->setBuildingType('19');
@@ -497,31 +437,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw27->setRooftype('hellend dak');
 
         $vtw28 = new Vtw();
-        $vtw28->setId(28);
         $vtw28->setCode('WT 19R');
         $vtw28->setType('renovatie trappenhuisflat tot en met 4 lagen');
         $vtw28->setBuildingType('19R');
         $vtw28->setBouwjaar('voor 1950');
         $vtw28->setRooftype('hellend dak');
-        
+
         $vtw29 = new Vtw();
-        $vtw29->setId(29);
         $vtw29->setCode('WT 20');
         $vtw29->setType('trappenhuisflat tot en met 4 lagen');
         $vtw29->setBuildingType('20');
         $vtw29->setBouwjaar('tussen 1950 en 1970');
         $vtw29->setRooftype('hellend dak');
-            
+
         $vtw30 = new Vtw();
-        $vtw30->setId(30);
         $vtw30->setCode('WT 20R');
         $vtw30->setType('trappenhuisflat tot en met 4 lagen');
         $vtw30->setBuildingType('20R');
         $vtw30->setBouwjaar('tussen 1950 en 1970');
         $vtw30->setRooftype('hellend dak');
-        
+
         $vtw31 = new Vtw();
-        $vtw31->setId(31);
         $vtw31->setCode('WT 21');
         $vtw31->setType('trappenhuisflat tot en met 4 lagen');
         $vtw31->setBuildingType('21');
@@ -529,15 +465,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw31->setRooftype('vlak dak');
 
         $vtw32 = new Vtw();
-        $vtw32->setId(32);
         $vtw32->setCode('WT 21R');
         $vtw32->setType('renovatie trappenhuisflat tot en met 4 lagen');
         $vtw32->setBuildingType('21R');
         $vtw32->setBouwjaar('voor 1950');
         $vtw32->setRooftype('vlak dak');
-            
+
         $vtw33 = new Vtw();
-        $vtw33->setId(33);
         $vtw33->setCode('WT 22');
         $vtw33->setType('trappenhuisflat tot en met 4 lagen');
         $vtw33->setBuildingType('22');
@@ -545,15 +479,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw33->setRooftype('vlak dak');
 
         $vtw34 = new Vtw();
-        $vtw34->setId(34);
         $vtw34->setCode('WT 22R');
         $vtw34->setType('renovatie trappenhuisflat tot en met 4 lagen');
         $vtw34->setBuildingType('22R');
         $vtw34->setBouwjaar('tussen 1950 en 1970');
         $vtw34->setRooftype('vlak dak');
-            
+
         $vtw35 = new Vtw();
-        $vtw35->setId(35);
         $vtw35->setCode('WT 23');
         $vtw35->setType('trappenhuisflat tot en met 4 lagen');
         $vtw35->setBuildingType('23');
@@ -561,15 +493,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw35->setRooftype('vlak dak');
 
         $vtw36 = new Vtw();
-        $vtw36->setId(36);
         $vtw36->setCode('WT 24');
         $vtw36->setType('trappenhuisflat tot en met 4 lagen');
         $vtw36->setBuildingType('24');
         $vtw36->setBouwjaar('na 1990');
         $vtw36->setRooftype('vlak dak');
-            
+
         $vtw37 = new Vtw();
-        $vtw37->setId(37);
         $vtw37->setCode('WT 25');
         $vtw37->setType('trappenhuisflat tot en met 4 lagen');
         $vtw37->setBuildingType('25');
@@ -577,31 +507,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw37->setRooftype('vlak dak');
 
         $vtw38 = new Vtw();
-        $vtw38->setId(38);
         $vtw38->setCode('WT 26');
         $vtw38->setType('trappenhuisflat tot en met 4 lagen');
         $vtw38->setBuildingType('26');
         $vtw38->setBouwjaar('na 1990');
         $vtw38->setRooftype('vlak dak');
-        
+
         $vtw39 = new Vtw();
-        $vtw39->setId(39);
         $vtw39->setCode('WT 27');
         $vtw39->setType('trappenhuis-/corridorflat zgn. Urban villa tot en met 4 lagen');
         $vtw39->setBuildingType('27');
         $vtw39->setBouwjaar('na 1990');
         $vtw39->setRooftype('vlak en hellend dak');
-            
+
         $vtw40 = new Vtw();
-        $vtw40->setId(40);
         $vtw40->setCode('WT 28');
         $vtw40->setType('trappenhuis-/corridorflat meer dan 4 lagen');
         $vtw40->setBuildingType('28');
         $vtw40->setBouwjaar('1950 en 1970');
         $vtw40->setRooftype('vlak dak');
-            
+
         $vtw41 = new Vtw();
-        $vtw41->setId(41);
         $vtw41->setCode('WT 28R');
         $vtw41->setType('renovatie-trappenhuis-/corridorflat meer dan 4 lagen');
         $vtw41->setBuildingType('28R');
@@ -609,15 +535,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw41->setRooftype('vlak dak');
 
         $vtw42 = new Vtw();
-        $vtw42->setId(42);
         $vtw42->setCode('WT 29');
         $vtw42->setType('trappenhuis-/corridorflat meer dan 4 lagen');
         $vtw42->setBuildingType('29');
         $vtw42->setBouwjaar('tussen 1970 en 1990');
         $vtw42->setRooftype('vlak dak');
-            
+
         $vtw43 = new Vtw();
-        $vtw43->setId(43);
         $vtw43->setCode('WT 30');
         $vtw43->setType('trappenhuis-/corridorflat meer dan 4 lagen');
         $vtw43->setBuildingType('30');
@@ -625,15 +549,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw43->setRooftype('vlak dak');
 
         $vtw44 = new Vtw();
-        $vtw44->setId(44);
         $vtw44->setCode('WT 31');
         $vtw44->setType('galerijflat tot en met 2 lagen');
         $vtw44->setBuildingType('31');
         $vtw44->setBouwjaar('tussen 1950 en 1970');
         $vtw44->setRooftype('vlak dak');
-            
+
         $vtw45 = new Vtw();
-        $vtw45->setId(45);
         $vtw45->setCode('WT 32');
         $vtw45->setType('galerijflat tot en met 4 lagen');
         $vtw45->setBuildingType('32');
@@ -641,15 +563,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw45->setRooftype('vlak dak');
 
         $vtw46 = new Vtw();
-        $vtw46->setId(46);
         $vtw46->setCode('WT 32R');
         $vtw46->setType('renovatie galerijflat tot en met 4 lagen');
         $vtw46->setBuildingType('32R');
         $vtw46->setBouwjaar('tussen 1950 en 1970');
         $vtw46->setRooftype('vlak dak');
-            
+
         $vtw47 = new Vtw();
-        $vtw47->setId(47);
         $vtw47->setCode('WT 33');
         $vtw47->setType('galerijflat tot en met 4 lagen');
         $vtw47->setBuildingType('33');
@@ -657,31 +577,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw47->setRooftype('vlak dak');
 
         $vtw48 = new Vtw();
-        $vtw48->setId(48);
         $vtw48->setCode('WT 34');
         $vtw48->setType('galerijflat tot en met 4 lagen');
         $vtw48->setBuildingType('34');
         $vtw48->setBouwjaar('na 1970');
         $vtw48->setRooftype('vlak dak');
-        
+
         $vtw49 = new Vtw();
-        $vtw49->setId(49);
         $vtw49->setCode('WT 35');
         $vtw49->setType('galerijflat meer dan 4 lagen');
         $vtw49->setBuildingType('35');
         $vtw49->setBouwjaar('tussen 1950 en 1970');
         $vtw49->setRooftype('vlak dak');
-            
+
         $vtw50 = new Vtw();
-        $vtw50->setId(50);
         $vtw50->setCode('WT 35R');
         $vtw50->setType('renovatie galerijflat meer dan 4 lagen');
         $vtw50->setBuildingType('35R');
         $vtw50->setBouwjaar('tussen 1950 en 1970');
         $vtw50->setRooftype('vlak dak');
-       
+
         $vtw51 = new Vtw();
-        $vtw51->setId(51);
         $vtw51->setCode('WT 36');
         $vtw51->setType('galerijflat meer dan 4 lagen');
         $vtw51->setBuildingType('36');
@@ -689,15 +605,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw51->setRooftype('vlak dak');
 
         $vtw52 = new Vtw();
-        $vtw52->setId(52);
         $vtw52->setCode('WT 37');
         $vtw52->setType('galerijflat meer dan 4 lagen');
         $vtw52->setBuildingType('37');
         $vtw52->setBouwjaar('na 1990');
         $vtw52->setRooftype('vlak dak');
-            
+
         $vtw53 = new Vtw();
-        $vtw53->setId(53);
         $vtw53->setCode('WT 38R');
         $vtw53->setType('renovatie galerijmaisonnette meer dan 4 lagen');
         $vtw53->setBuildingType('38R');
@@ -705,15 +619,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw53->setRooftype('vlak dak');
 
         $vtw54 = new Vtw();
-        $vtw54->setId(54);
         $vtw54->setCode('WT 39R');
         $vtw54->setType('renovatie eengezinswoning');
         $vtw54->setBuildingType('39R');
         $vtw54->setBouwjaar('voor 1950');
         $vtw54->setRooftype('hellend dak');
-            
+
         $vtw55 = new Vtw();
-        $vtw55->setId(55);
         $vtw55->setCode('WT 40');
         $vtw55->setType('luxe appartementencomplex meer dan 4 lagen');
         $vtw55->setBuildingType('40');
@@ -721,15 +633,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw55->setRooftype('vlak dak');
 
         $vtw56 = new Vtw();
-        $vtw56->setId(56);
         $vtw56->setCode('WT 41');
         $vtw56->setType('bovenwoning');
         $vtw56->setBuildingType('41');
         $vtw56->setBouwjaar('tussen 1950 en 1970');
         $vtw56->setRooftype('vlak dak');
-            
+
         $vtw57 = new Vtw();
-        $vtw57->setId(57);
         $vtw57->setCode('WT 42');
         $vtw57->setType('vinexwoning');
         $vtw57->setBuildingType('42');
@@ -737,31 +647,27 @@ class LoadTestHousingStockData extends Fixture
         $vtw57->setRooftype('vlak dak');
 
         $vtw58 = new Vtw();
-        $vtw58->setId(58);
         $vtw58->setCode('WT 43');
         $vtw58->setType('galerijflat 2 lagen');
         $vtw58->setBuildingType('43');
         $vtw58->setBouwjaar('na 1990');
         $vtw58->setRooftype('hellend dak');
-        
+
         $vtw59 = new Vtw();
-        $vtw59->setId(59);
         $vtw59->setCode('WT 44');
         $vtw59->setType('appartementen in grachtenpand');
         $vtw59->setBuildingType('44');
         $vtw59->setBouwjaar('voor 1900');
         $vtw59->setRooftype('vlak en hellend dak');
-            
+
         $vtw60 = new Vtw();
-        $vtw60->setId(60);
         $vtw60->setCode('WT 45');
         $vtw60->setType('eengezinswoning');
         $vtw60->setBuildingType('45');
         $vtw60->setBouwjaar('na 2000');
         $vtw60->setRooftype('vlak dak');
-        
+
         $vtw61 = new Vtw();
-        $vtw61->setId(61);
         $vtw61->setCode('WT 46');
         $vtw61->setType('eengezinswoning');
         $vtw61->setBuildingType('46');
@@ -769,15 +675,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw61->setRooftype('vlak dak');
 
         $vtw62 = new Vtw();
-        $vtw62->setId(62);
         $vtw62->setCode('WT 47');
         $vtw62->setType('eengezinswoning');
         $vtw62->setBuildingType('47');
         $vtw62->setBouwjaar('na 2000');
         $vtw62->setRooftype('hellend dak');
-            
+
         $vtw63 = new Vtw();
-        $vtw63->setId(63);
         $vtw63->setCode('WT 48R');
         $vtw63->setType('Renovatie eengezinswoning');
         $vtw63->setBuildingType('48R');
@@ -785,15 +689,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw63->setRooftype('hellend dak');
 
         $vtw64 = new Vtw();
-        $vtw64->setId(64);
         $vtw64->setCode('WT 49');
         $vtw64->setType('duurzame eengezinswoning');
         $vtw64->setBuildingType('49');
         $vtw64->setBouwjaar('na 2015');
         $vtw64->setRooftype('hellend dak');
-            
+
         $vtw65 = new Vtw();
-        $vtw65->setId(65);
         $vtw65->setCode('WT 50');
         $vtw65->setType('duurzame galerij appartementen');
         $vtw65->setBuildingType('50');
@@ -801,15 +703,13 @@ class LoadTestHousingStockData extends Fixture
         $vtw65->setRooftype('vlak dak');
 
         $vtw66 = new Vtw();
-        $vtw66->setId(66);
         $vtw66->setCode('WT 51R');
         $vtw66->setType('renovatie eengezinswoning nul op de meter');
         $vtw66->setBuildingType('51R');
         $vtw66->setBouwjaar('tussen 1970 en 1990');
         $vtw66->setRooftype('hellend dak');
-            
+
         $vtw67 = new Vtw();
-        $vtw67->setId(67);
         $vtw67->setCode('WT 52');
         $vtw67->setType('energieneutrale eengezinswoning nul op de meter');
         $vtw67->setBuildingType('52');
@@ -817,719 +717,629 @@ class LoadTestHousingStockData extends Fixture
         $vtw67->setRooftype('hellend dak');
 
         $vtw68 = new Vtw();
-        $vtw68->setId(68);
         $vtw68->setCode('WT 135');
         $vtw68->setType('energieneutrale appartementencomplex nul op de meter');
         $vtw68->setBuildingType('135');
         $vtw68->setBouwjaar('na 2019');
         $vtw68->setRooftype('vlak dak');
-            
+
         $vtw80 = new Vtw();
-        $vtw80->setId(80);
         $vtw80->setCode('GT 1');
         $vtw80->setType('aangebouwde garagebox');
         $vtw80->setBuildingType('1');
         $vtw80->setBouwjaar('nvt');
         $vtw80->setRooftype('hellend dak');
-            
+
         $vtw81 = new Vtw();
-        $vtw81->setId(81);
         $vtw81->setCode('GT 2');
         $vtw81->setType('aangebouwde garagebox');
         $vtw81->setBuildingType('2');
         $vtw81->setBouwjaar('nvt');
         $vtw81->setRooftype('vlak dak');
-            
+
         $vtw82 = new Vtw();
-        $vtw82->setId(82);
         $vtw82->setCode('GT 3');
         $vtw82->setType('vrijstaande garagebox');
         $vtw82->setBuildingType('3');
         $vtw82->setBouwjaar('nvt');
         $vtw82->setRooftype('vlak dak');
-            
+
         $vtw83 = new Vtw();
-        $vtw83->setId(83);
         $vtw83->setCode('GT 4');
         $vtw83->setType('garagebox in rij');
         $vtw83->setBuildingType('4');
         $vtw83->setBouwjaar('nvt');
         $vtw83->setRooftype('vlak dak');
-            
+
         $vtw84 = new Vtw();
-        $vtw84->setId(84);
         $vtw84->setCode('GT 5');
         $vtw84->setType('garagebox onder gebouw');
         $vtw84->setBuildingType('5');
         $vtw84->setBouwjaar('nvt');
         $vtw84->setRooftype('nvt');
-         
+
         $vtw85 = new Vtw();
-        $vtw85->setId(85);
         $vtw85->setCode('GT 6');
         $vtw85->setType('garagebox ondergronds');
         $vtw85->setBuildingType('6');
         $vtw85->setBouwjaar('nvt');
         $vtw85->setRooftype('nvt');
-            
+
         $vtw86 = new Vtw();
-        $vtw86->setId(86);
         $vtw86->setCode('GT 7');
         $vtw86->setType('garagebox bovengronds');
         $vtw86->setBuildingType('7');
         $vtw86->setBouwjaar('nvt');
         $vtw86->setRooftype('nvt');
-            
+
         $vtw90 = new Vtw();
-        $vtw90->setId(90);
         $vtw90->setCode('KT 1');
         $vtw90->setType('grachtenpand gevel(s) in metselwerk');
         $vtw90->setBuildingType('1');
         $vtw90->setBouwjaar('nvt');
         $vtw90->setRooftype('nvt');
-            
+
         $vtw91 = new Vtw();
-        $vtw91->setId(91);
         $vtw91->setCode('KT 2');
         $vtw91->setType('grachtenpand gevel(s) gestukadoord en geschilderd');
         $vtw91->setBuildingType('2');
         $vtw91->setBouwjaar('nvt');
         $vtw91->setRooftype('nvt');
-            
+
         $vtw92 = new Vtw();
-        $vtw92->setId(92);
         $vtw92->setCode('KT 3');
         $vtw92->setType('klassieke (monumentale) kantoorvilla gevel(s) in metselwerk');
         $vtw92->setBuildingType('3');
         $vtw92->setBouwjaar('nvt');
         $vtw92->setRooftype('nvt');
-            
+
         $vtw93 = new Vtw();
-        $vtw93->setId(93);
         $vtw93->setCode('KT 4');
         $vtw93->setType('klassieke (monumentale) kantoorvilla gevel(s) gestukadoord en geschilderd');
         $vtw93->setBuildingType('4');
         $vtw93->setBouwjaar('nvt');
         $vtw93->setRooftype('nvt');
-            
+
         $vtw94 = new Vtw();
-        $vtw94->setId(94);
         $vtw94->setCode('KT 5');
         $vtw94->setType('middelhoog jaren zestig-zeventig bouw gevel(s) in metselwerk');
         $vtw94->setBuildingType('5');
         $vtw94->setBouwjaar('nvt');
         $vtw94->setRooftype('nvt');
-            
+
         $vtw95 = new Vtw();
-        $vtw95->setId(95);
         $vtw95->setCode('KT 6');
         $vtw95->setType('middelhoog jaren zestig-zeventig bouw gevel(s) in beton');
         $vtw95->setBuildingType('6');
         $vtw95->setBouwjaar('nvt');
         $vtw95->setRooftype('nvt');
-           
+
         $vtw96 = new Vtw();
-        $vtw96->setId(96);
         $vtw96->setCode('KT 7');
         $vtw96->setType('laag gevel(s) in metselwerk');
         $vtw96->setBuildingType('7');
         $vtw96->setBouwjaar('nvt');
         $vtw96->setRooftype('nvt');
-         
+
         $vtw97 = new Vtw();
-        $vtw97->setId(97);
         $vtw97->setCode('KT 8');
         $vtw97->setType('laag vliesgevel(s)');
         $vtw97->setBuildingType('8');
         $vtw97->setBouwjaar('nvt');
         $vtw97->setRooftype('nvt');
-            
+
         $vtw98 = new Vtw();
-        $vtw98->setId(98);
         $vtw98->setCode('KT 9');
         $vtw98->setType('laag gevel(s) in natuursteen');
         $vtw98->setBuildingType('9');
         $vtw98->setBouwjaar('nvt');
         $vtw98->setRooftype('nvt');
-        
+
         $vtw99 = new Vtw();
-        $vtw99->setId(99);
         $vtw99->setCode('KT 10');
         $vtw99->setType('laag gevel(s) in beton');
         $vtw99->setBuildingType('10');
         $vtw99->setBouwjaar('nvt');
         $vtw99->setRooftype('nvt');
-            
+
         $vtw100 = new Vtw();
-        $vtw100->setId(100);
         $vtw100->setCode('KT 11');
         $vtw100->setType('laag gevel(s) in metaal');
         $vtw100->setBuildingType('11');
         $vtw100->setBouwjaar('nvt');
         $vtw100->setRooftype('nvt');
-            
+
         $vtw101 = new Vtw();
-        $vtw101->setId(101);
         $vtw101->setCode('KT 12');
         $vtw101->setType('middelhoog gevel(s) metselwerk');
         $vtw101->setBuildingType('12');
         $vtw101->setBouwjaar('nvt');
         $vtw101->setRooftype('nvt');
-            
+
         $vtw102 = new Vtw();
-        $vtw102->setId(102);
         $vtw102->setCode('KT 13');
         $vtw102->setType('middelhoog vliesgevel(s)');
         $vtw102->setBuildingType('13');
         $vtw102->setBouwjaar('nvt');
         $vtw102->setRooftype('nvt');
-            
+
         $vtw103 = new Vtw();
-        $vtw103->setId(103);
         $vtw103->setCode('KT 14');
         $vtw103->setType('middelhoog gevel(s) in natuursteen');
         $vtw103->setBuildingType('14');
         $vtw103->setBouwjaar('nvt');
         $vtw103->setRooftype('nvt');
-            
+
         $vtw104 = new Vtw();
-        $vtw104->setId(104);
         $vtw104->setCode('KT 15');
         $vtw104->setType('middelhoog gevel(s) in beton');
         $vtw104->setBuildingType('15');
         $vtw104->setBouwjaar('nvt');
         $vtw104->setRooftype('nvt');
-            
+
         $vtw105 = new Vtw();
-        $vtw105->setId(105);
         $vtw105->setCode('KT 16');
         $vtw105->setType('middelhoog gevel(s) in metaal');
         $vtw105->setBuildingType('16');
         $vtw105->setBouwjaar('nvt');
         $vtw105->setRooftype('nvt');
-            
+
         $vtw106 = new Vtw();
-        $vtw106->setId(106);
         $vtw106->setCode('KT 17');
         $vtw106->setType('hoog vliesgevel(s)');
         $vtw106->setBuildingType('17');
         $vtw106->setBouwjaar('nvt');
         $vtw106->setRooftype('nvt');
-           
+
         $vtw107 = new Vtw();
-        $vtw107->setId(107);
         $vtw107->setCode('KT 18');
         $vtw107->setType('hoog gevel(s) in natuursteen');
         $vtw107->setBuildingType('18');
         $vtw107->setBouwjaar('nvt');
         $vtw107->setRooftype('nvt');
-         
+
         $vtw108 = new Vtw();
-        $vtw108->setId(108);
         $vtw108->setCode('KT 19');
         $vtw108->setType('hoog gevel(s) in beton');
         $vtw108->setBuildingType('19');
         $vtw108->setBouwjaar('nvt');
         $vtw108->setRooftype('nvt');
-            
+
         $vtw109 = new Vtw();
-        $vtw109->setId(109);
         $vtw109->setCode('KT 20');
         $vtw109->setType('hoog gevel(s) in metaal');
         $vtw109->setBuildingType('20');
         $vtw109->setBouwjaar('nvt');
         $vtw109->setRooftype('nvt');
-        
+
         $vtw110 = new Vtw();
-        $vtw110->setId(110);
         $vtw110->setCode('KT 21');
         $vtw110->setType('kleinschalige kantoorvilla eigentijds moderne architectuur gevel(s) in metselwerk');
         $vtw110->setBuildingType('21');
         $vtw110->setBouwjaar('nvt');
         $vtw110->setRooftype('nvt');
-            
+
         $vtw111 = new Vtw();
-        $vtw111->setId(111);
         $vtw111->setCode('KT 22');
         $vtw111->setType('kleinschalige kantoorvilla eigentijds moderne architectuur gevel(s) in isolatiestukwerk');
         $vtw111->setBuildingType('22');
         $vtw111->setBouwjaar('nvt');
         $vtw111->setRooftype('nvt');
-           
+
         $vtw112 = new Vtw();
-        $vtw112->setId(112);
         $vtw112->setCode('KT 23');
         $vtw112->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in natuursteen');
         $vtw112->setBuildingType('23');
         $vtw112->setBouwjaar('nvt');
         $vtw112->setRooftype('nvt');
-            
+
         $vtw113 = new Vtw();
-        $vtw113->setId(113);
         $vtw113->setCode('KT 24');
         $vtw113->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in metaal ');
         $vtw113->setBuildingType('24');
         $vtw113->setBouwjaar('nvt');
         $vtw113->setRooftype('nvt');
-            
+
         $vtw114 = new Vtw();
-        $vtw114->setId(114);
         $vtw114->setCode('KT 25');
         $vtw114->setType('kleinschalige kantoorvilla eigentijds moderne architectuur in beton');
         $vtw114->setBuildingType('25');
         $vtw114->setBouwjaar('nvt');
         $vtw114->setRooftype('nvt');
-            
+
         $vtw115 = new Vtw();
-        $vtw115->setId(115);
         $vtw115->setCode('KT 26');
         $vtw115->setType('middelhoog eigetijds klassieke architectuur gevel(s) in metselwerk');
         $vtw115->setBuildingType('26');
         $vtw115->setBouwjaar('nvt');
         $vtw115->setRooftype('nvt');
-            
+
         $vtw116 = new Vtw();
-        $vtw116->setId(116);
         $vtw116->setCode('KT 27');
         $vtw116->setType('laag gevel(s) in metselwerk inclusief parkeergarage');
         $vtw116->setBuildingType('27');
         $vtw116->setBouwjaar('nvt');
         $vtw116->setRooftype('nvt');
-           
+
         $vtw117 = new Vtw();
-        $vtw117->setId(117);
         $vtw117->setCode('KT 28R');
         $vtw117->setType('Revitalisatie kantoorgebouw middelhoog gevels in sierbeton elementen');
         $vtw117->setBuildingType('28R');
         $vtw117->setBouwjaar('nvt');
         $vtw117->setRooftype('nvt');
-         
+
         $vtw118 = new Vtw();
-        $vtw118->setId(118);
         $vtw118->setCode('KT 40');
         $vtw118->setType('energieneutraal kantoorgebouw nul op de meter duurzaam gebouw onder moderne architectuur');
         $vtw118->setBuildingType('40');
         $vtw118->setBouwjaar('nvt');
         $vtw118->setRooftype('nvt');
-                     
+
         $vtw120 = new Vtw();
-        $vtw120->setId(120);
         $vtw120->setCode('BT 1');
         $vtw120->setType('kleinschalig gevel(s) in metselwerk');
         $vtw120->setBuildingType('1');
         $vtw120->setBouwjaar('nvt');
         $vtw120->setRooftype('nvt');
-            
+
         $vtw121 = new Vtw();
-        $vtw121->setId(121);
         $vtw121->setCode('BT 2');
         $vtw121->setType('kleinschalig gevel(s) in metaal');
         $vtw121->setBuildingType('2');
         $vtw121->setBouwjaar('nvt');
         $vtw121->setRooftype('nvt');
-            
+
         $vtw122 = new Vtw();
-        $vtw122->setId(122);
         $vtw122->setCode('BT 3');
         $vtw122->setType('kleinschalig gevel(s) in metselwerk/metaal');
         $vtw122->setBuildingType('3');
         $vtw122->setBouwjaar('nvt');
         $vtw122->setRooftype('nvt');
-            
+
         $vtw123 = new Vtw();
-        $vtw123->setId(123);
         $vtw123->setCode('BT 4');
         $vtw123->setType('middelschalig gevel(s) in metselwerk');
         $vtw123->setBuildingType('4');
         $vtw123->setBouwjaar('nvt');
         $vtw123->setRooftype('nvt');
-            
+
         $vtw124 = new Vtw();
-        $vtw124->setId(124);
         $vtw124->setCode('BT 5');
         $vtw124->setType('middelschalig gevel(s) in metaal');
         $vtw124->setBuildingType('5');
         $vtw124->setBouwjaar('nvt');
         $vtw124->setRooftype('nvt');
-            
+
         $vtw125 = new Vtw();
-        $vtw125->setId(125);
         $vtw125->setCode('BT 6');
         $vtw125->setType('middelschalig gevel(s) in metselwerk/metaal');
         $vtw125->setBuildingType('6');
         $vtw125->setBouwjaar('nvt');
         $vtw125->setRooftype('nvt');
-            
+
         $vtw126 = new Vtw();
-        $vtw126->setId(126);
         $vtw126->setCode('BT 7');
         $vtw126->setType('grootschalig gevel(s) in metselwerk');
         $vtw126->setBuildingType('7');
         $vtw126->setBouwjaar('nvt');
         $vtw126->setRooftype('nvt');
-           
+
         $vtw127 = new Vtw();
-        $vtw127->setId(127);
         $vtw127->setCode('BT 8');
         $vtw127->setType('grootschalig gevel(s) in metaal');
         $vtw127->setBuildingType('8');
         $vtw127->setBouwjaar('nvt');
         $vtw127->setRooftype('nvt');
-        
+
         $vtw128 = new Vtw();
-        $vtw128->setId(128);
         $vtw128->setCode('BT 9');
         $vtw128->setType('grootschalig gevel(s) in metselwerk/metaal');
         $vtw128->setBuildingType('9');
         $vtw128->setBouwjaar('nvt');
         $vtw128->setRooftype('nvt');
-            
+
         $vtw129 = new Vtw();
-        $vtw129->setId(129);
         $vtw129->setCode('BT 10');
         $vtw129->setType('klein- tot grootschailg gevel(s) en dak in metaal');
         $vtw129->setBuildingType('10');
         $vtw129->setBouwjaar('nvt');
         $vtw129->setRooftype('nvt');
-       
+
         $vtw130 = new Vtw();
-        $vtw130->setId(130);
         $vtw130->setCode('BT 11');
         $vtw130->setType('combinatiegebouw met showroom/serviceruimte kantoor en bedrijfsruimte');
         $vtw130->setBuildingType('11');
         $vtw130->setBouwjaar('nvt');
         $vtw130->setRooftype('nvt');
-            
+
         $vtw131 = new Vtw();
-        $vtw131->setId(131);
         $vtw131->setCode('BT 12');
         $vtw131->setType('bedrijfsverzamelgebouw');
         $vtw131->setBuildingType('12');
         $vtw131->setBouwjaar('nvt');
         $vtw131->setRooftype('nvt');
-            
+
         $vtw132 = new Vtw();
-        $vtw132->setId(132);
         $vtw132->setCode('BT 13');
         $vtw132->setType('kleinschalig distrubutiecentrum');
         $vtw132->setBuildingType('13');
         $vtw132->setBouwjaar('nvt');
         $vtw132->setRooftype('nvt');
-           
+
         $vtw133 = new Vtw();
-        $vtw133->setId(133);
         $vtw133->setCode('BT 14');
         $vtw133->setType('grootschalig distrubutiecentrum');
         $vtw133->setBuildingType('14');
         $vtw133->setBouwjaar('nvt');
         $vtw133->setRooftype('nvt');
-            
+
         $vtw134 = new Vtw();
-        $vtw134->setId(134);
         $vtw134->setCode('BT 15');
         $vtw134->setType('garagebedrijf met showroom en kantoren');
         $vtw134->setBuildingType('15');
         $vtw134->setBouwjaar('nvt');
         $vtw134->setRooftype('nvt');
-            
+
         $vtw135 = new Vtw();
-        $vtw135->setId(135);
         $vtw135->setCode('BT 16');
         $vtw135->setType('bedrijfsverzamelgebouw prefab betonbouw');
         $vtw135->setBuildingType('16');
         $vtw135->setBouwjaar('nvt');
         $vtw135->setRooftype('nvt');
-            
+
         $vtw140 = new Vtw();
-        $vtw140->setId(140);
         $vtw140->setCode('WINT 1');
         $vtw140->setType('individuele winkel / winkel in winkelstraat ouder type');
         $vtw140->setBuildingType('1');
         $vtw140->setBouwjaar('nvt');
         $vtw140->setRooftype('nvt');
-            
+
         $vtw141 = new Vtw();
-        $vtw141->setId(141);
         $vtw141->setCode('WINT 2');
         $vtw141->setType('individuele winkel / winkel in winkelstraat recenter type');
         $vtw141->setBuildingType('2');
         $vtw141->setBouwjaar('nvt');
         $vtw141->setRooftype('nvt');
-            
+
         $vtw142 = new Vtw();
-        $vtw142->setId(142);
         $vtw142->setCode('WINT 3');
         $vtw142->setType('winkel in het centrum niet dekt ouder type');
         $vtw142->setBuildingType('3');
         $vtw142->setBouwjaar('nvt');
         $vtw142->setRooftype('nvt');
-            
+
         $vtw143 = new Vtw();
-        $vtw143->setId(143);
         $vtw143->setCode('WINT 4');
         $vtw143->setType('winkel in het centrum niet dekt recenter type');
         $vtw143->setBuildingType('4');
         $vtw143->setBouwjaar('nvt');
         $vtw143->setRooftype('nvt');
-            
+
         $vtw144 = new Vtw();
-        $vtw144->setId(144);
         $vtw144->setCode('WINT 5');
         $vtw144->setType('winkel in het centrum overdekt ouder type');
         $vtw144->setBuildingType('5');
         $vtw144->setBouwjaar('nvt');
         $vtw144->setRooftype('nvt');
-            
+
         $vtw145 = new Vtw();
-        $vtw145->setId(145);
         $vtw145->setCode('WINT 6');
         $vtw145->setType('winkel in het centrum overdekt recenter type');
         $vtw145->setBuildingType('6');
         $vtw145->setBouwjaar('nvt');
         $vtw145->setRooftype('nvt');
-            
+
         $vtw146 = new Vtw();
-        $vtw146->setId(146);
         $vtw146->setCode('WINT 7');
         $vtw146->setType('kiosk');
         $vtw146->setBuildingType('7');
         $vtw146->setBouwjaar('nvt');
         $vtw146->setRooftype('nvt');
-           
+
         $vtw147 = new Vtw();
-        $vtw147->setId(147);
         $vtw147->setCode('WINT 8');
         $vtw147->setType('solitaire supermakrt');
         $vtw147->setBuildingType('8');
         $vtw147->setBouwjaar('nvt');
         $vtw147->setRooftype('nvt');
-       
+
         $vtw148 = new Vtw();
-        $vtw148->setId(148);
         $vtw148->setCode('WINT 9');
         $vtw148->setType('grootschalige detailhandelsunit');
         $vtw148->setBuildingType('9');
         $vtw148->setBouwjaar('nvt');
         $vtw148->setRooftype('nvt');
-            
+
         $vtw149 = new Vtw();
-        $vtw149->setId(149);
         $vtw149->setCode('WINT 10');
         $vtw149->setType('perifere grootschalige detailhandelsunit');
         $vtw149->setBuildingType('10');
         $vtw149->setBouwjaar('nvt');
         $vtw149->setRooftype('nvt');
-       
+
         $vtw150 = new Vtw();
-        $vtw150->setId(150);
         $vtw150->setCode('WINT 11');
         $vtw150->setType('bouwmarkt');
         $vtw150->setBuildingType('11');
         $vtw150->setBouwjaar('nvt');
         $vtw150->setRooftype('nvt');
-            
+
         $vtw151 = new Vtw();
-        $vtw151->setId(151);
         $vtw151->setCode('WINT 23');
         $vtw151->setType('energieneutraal solitaire supermarkt nul op de meter');
         $vtw151->setBuildingType('23');
         $vtw151->setBouwjaar('nvt');
         $vtw151->setRooftype('nvt');
-          
+
         $vtw160 = new Vtw();
-        $vtw160->setId(160);
         $vtw160->setCode('HT 1R');
         $vtw160->setType('voormalig schoolgebouw');
         $vtw160->setBuildingType('1R');
         $vtw160->setBouwjaar('tussen 1900 en 1930');
         $vtw160->setRooftype('nvt');
-            
+
         $vtw161 = new Vtw();
-        $vtw161->setId(161);
         $vtw161->setCode('HT 2R');
         $vtw161->setType('voormalig kantoorgebouw');
         $vtw161->setBuildingType('2R');
         $vtw161->setBouwjaar('tussen 1970 en 1990');
         $vtw161->setRooftype('nvt');
-            
+
         $vtw162 = new Vtw();
-        $vtw162->setId(162);
         $vtw162->setCode('HT 3R');
         $vtw162->setType('voormalig fabrieksgebouw');
         $vtw162->setBuildingType('3R');
         $vtw162->setBouwjaar('tussen 1900 en 1930');
         $vtw162->setRooftype('nvt');
-           
+
         $vtw163 = new Vtw();
-        $vtw163->setId(163);
         $vtw163->setCode('HT 4R');
         $vtw163->setType('voormalig jongerencentrum');
         $vtw163->setBuildingType('4R');
         $vtw163->setBouwjaar('tussen 1950 en 1970');
         $vtw163->setRooftype('nvt');
-            
+
         $vtw164 = new Vtw();
-        $vtw164->setId(164);
         $vtw164->setCode('HT 5R');
         $vtw164->setType('voormalig kantoorgebouw');
         $vtw164->setBuildingType('5R');
         $vtw164->setBouwjaar('nvt');
-        $vtw164->setRooftype('nvt');  
-            
+        $vtw164->setRooftype('nvt');
+
         $vtw170 = new Vtw();
-        $vtw170->setId(170);
         $vtw170->setCode('OT 1');
         $vtw170->setType('café / restaurant');
         $vtw170->setBuildingType('1');
         $vtw170->setBouwjaar('nvt');
         $vtw170->setRooftype('nvt');
-            
+
         $vtw171 = new Vtw();
-        $vtw171->setId(171);
         $vtw171->setCode('OT 2');
         $vtw171->setType('hotel kleinschalig');
         $vtw171->setBuildingType('2');
         $vtw171->setBouwjaar('nvt');
         $vtw171->setRooftype('nvt');
-            
+
         $vtw172 = new Vtw();
-        $vtw172->setId(172);
         $vtw172->setCode('OT 3');
         $vtw172->setType('hotel grootschalig');
         $vtw172->setBuildingType('3');
         $vtw172->setBouwjaar('nvt');
         $vtw172->setRooftype('nvt');
-            
+
         $vtw173 = new Vtw();
-        $vtw173->setId(173);
         $vtw173->setCode('OT 4');
         $vtw173->setType('bioscoop');
         $vtw173->setBuildingType('4');
         $vtw173->setBouwjaar('nvt');
         $vtw173->setRooftype('nvt');
-            
+
         $vtw174 = new Vtw();
-        $vtw174->setId(174);
         $vtw174->setCode('OT 5');
         $vtw174->setType('discotheek');
         $vtw174->setBuildingType('5');
         $vtw174->setBouwjaar('nvt');
         $vtw174->setRooftype('nvt');
-           
+
         $vtw175 = new Vtw();
-        $vtw175->setId(175);
         $vtw175->setCode('OT 6');
         $vtw175->setType('woon-/zorgcomplex');
         $vtw175->setBuildingType('6');
         $vtw175->setBouwjaar('nvt');
         $vtw175->setRooftype('nvt');
-            
+
         $vtw176 = new Vtw();
-        $vtw176->setId(176);
         $vtw176->setCode('OT 7');
         $vtw176->setType('gemeentehuis');
         $vtw176->setBuildingType('7');
         $vtw176->setBouwjaar('nvt');
         $vtw176->setRooftype('nvt');
-           
+
         $vtw177 = new Vtw();
-        $vtw177->setId(177);
         $vtw177->setCode('OT 8');
         $vtw177->setType('brandweerkazerne');
         $vtw177->setBuildingType('8');
         $vtw177->setBouwjaar('nvt');
         $vtw177->setRooftype('nvt');
-       
+
         $vtw178 = new Vtw();
-        $vtw178->setId(178);
         $vtw178->setCode('OT 9');
         $vtw178->setType('theater middelgroot modern');
         $vtw178->setBuildingType('9');
         $vtw178->setBouwjaar('nvt');
         $vtw178->setRooftype('nvt');
-            
+
         $vtw179 = new Vtw();
-        $vtw179->setId(179);
         $vtw179->setCode('OT 10');
         $vtw179->setType('theater kleinscahig');
         $vtw179->setBuildingType('10');
         $vtw179->setBouwjaar('nvt');
         $vtw179->setRooftype('nvt');
-       
+
         $vtw180 = new Vtw();
-        $vtw180->setId(180);
         $vtw180->setCode('OT 11');
         $vtw180->setType('kleinschalig woon-/zorgcomplex');
         $vtw180->setBuildingType('11');
         $vtw180->setBouwjaar('nvt');
         $vtw180->setRooftype('nvt');
-            
+
         $vtw181 = new Vtw();
-        $vtw181->setId(181);
         $vtw181->setCode('OT 12');
         $vtw181->setType('grootschalig woon-/zorgcomplex');
         $vtw181->setBuildingType('12');
         $vtw181->setBouwjaar('nvt');
         $vtw181->setRooftype('nvt');
-            
+
         $vtw190 = new Vtw();
-        $vtw190->setId(190);
         $vtw190->setCode('AT 1');
         $vtw190->setType('woonboederij');
         $vtw190->setBuildingType('1');
         $vtw190->setBouwjaar('nvt');
         $vtw190->setRooftype('nvt');
-            
+
         $vtw191 = new Vtw();
-        $vtw191->setId(191);
         $vtw191->setCode('AT 2');
         $vtw191->setType('woonboederij');
         $vtw191->setBuildingType('2');
         $vtw191->setBouwjaar('nvt');
         $vtw191->setRooftype('nvt');
-            
+
         $vtw192 = new Vtw();
-        $vtw192->setId(192);
         $vtw192->setCode('AT 3');
         $vtw192->setType('vleesvarkensstal');
         $vtw192->setBuildingType('3');
         $vtw192->setBouwjaar('nvt');
         $vtw192->setRooftype('nvt');
-            
+
         $vtw193 = new Vtw();
-        $vtw193->setId(193);
         $vtw193->setCode('AT 4');
         $vtw193->setType('loodsgebouw');
         $vtw193->setBuildingType('4');
         $vtw193->setBouwjaar('nvt');
         $vtw193->setRooftype('nvt');
-            
+
         $vtw194 = new Vtw();
-        $vtw194->setId(194);
         $vtw194->setCode('AT 5');
         $vtw194->setType('pluimveestal');
         $vtw194->setBuildingType('5');
         $vtw194->setBouwjaar('nvt');
         $vtw194->setRooftype('nvt');
-           
+
         $vtw195 = new Vtw();
-        $vtw195->setId(195);
         $vtw195->setCode('AT 6');
         $vtw195->setType('paardenhouderij');
         $vtw195->setBuildingType('6');
         $vtw195->setBouwjaar('nvt');
         $vtw195->setRooftype('nvt');
-            
+
         $vtw196 = new Vtw();
-        $vtw196->setId(196);
         $vtw196->setCode('AT 7');
         $vtw196->setType('melkveestal');
         $vtw196->setBuildingType('7');
         $vtw196->setBouwjaar('nvt');
         $vtw196->setRooftype('nvt');
-            
+
         $buildingAddress0 = new BuildingAddress();
-        $buildingAddress0->setId(0);
         $buildingAddress0->setConstructionYear(1986);
         $buildingAddress0->setRenovationYear(2002);
         $buildingAddress0->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -1547,7 +1357,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setLastChangeTime();
 
         $buildingAddress1 = new BuildingAddress();
-        $buildingAddress1->setId(1);
         $buildingAddress1->setConstructionYear(1954);
         $buildingAddress1->setRenovationYear(1986);
         $buildingAddress1->setStreetName('Straatnaam A');
@@ -1565,7 +1374,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress1->setLastChangeTime();
 
         $buildingAddress2 = new BuildingAddress();
-        $buildingAddress2->setId(2);
         $buildingAddress2->setConstructionYear(1998);
         $buildingAddress2->setRenovationYear(2021);
         $buildingAddress2->setStreetName('Straatnaam A');
@@ -1583,7 +1391,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress2->setLastChangeTime();
 
         $buildingAddress3 = new BuildingAddress();
-        $buildingAddress3->setId(3);
         $buildingAddress3->setConstructionYear(1984);
         $buildingAddress3->setRenovationYear(2000);
         $buildingAddress3->setStreetName('Straatnaam A');
@@ -1601,7 +1408,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress3->setLastChangeTime();
 
         $buildingAddress4 = new BuildingAddress();
-        $buildingAddress4->setId(4);
         $buildingAddress4->setConstructionYear(2010);
         $buildingAddress4->setRenovationYear(2010);
         $buildingAddress4->setStreetName('Straatnaam A');
@@ -1619,7 +1425,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress4->setLastChangeTime();
 
         $buildingAddress5 = new BuildingAddress();
-        $buildingAddress5->setId(5);
         $buildingAddress5->setConstructionYear(1888);
         $buildingAddress5->setRenovationYear(2005);
         $buildingAddress5->setStreetName('Straatnaam A');
@@ -1637,7 +1442,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setLastChangeTime();
 
         $buildingAddress6 = new BuildingAddress();
-        $buildingAddress6->setId(6);
         $buildingAddress6->setConstructionYear(1908);
         $buildingAddress6->setRenovationYear(200);
         $buildingAddress6->setStreetName('Straatnaam A');
@@ -1655,7 +1459,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress6->setLastChangeTime();
 
         $buildingAddress7 = new BuildingAddress();
-        $buildingAddress7->setId(7);
         $buildingAddress7->setConstructionYear(2006);
         $buildingAddress7->setRenovationYear(2006);
         $buildingAddress7->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -1673,7 +1476,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress7->setLastChangeTime();
 
         $buildingAddress8 = new BuildingAddress();
-        $buildingAddress8->setId(8);
         $buildingAddress8->setConstructionYear(2026);
         $buildingAddress8->setRenovationYear(2081);
         $buildingAddress8->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -1691,7 +1493,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress8->setLastChangeTime();
 
         $buildingAddress9 = new BuildingAddress();
-        $buildingAddress9->setId(9);
         $buildingAddress9->setConstructionYear(1976);
         $buildingAddress9->setRenovationYear(2001);
         $buildingAddress9->setStreetName('Straatnaam A');
@@ -1709,7 +1510,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress9->setLastChangeTime();
 
         $buildingAddress10 = new BuildingAddress();
-        $buildingAddress10->setId(10);
         $buildingAddress10->setConstructionYear(1986);
         $buildingAddress10->setRenovationYear(2002);
         $buildingAddress10->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -1727,7 +1527,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress10->setLastChangeTime();
 
         $buildingAddress11 = new BuildingAddress();
-        $buildingAddress11->setId(11);
         $buildingAddress11->setConstructionYear(1954);
         $buildingAddress11->setRenovationYear(1986);
         $buildingAddress11->setStreetName('Straatnaam A');
@@ -1745,7 +1544,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress11->setLastChangeTime();
 
         $buildingAddress12 = new BuildingAddress();
-        $buildingAddress12->setId(12);
         $buildingAddress12->setConstructionYear(1998);
         $buildingAddress12->setRenovationYear(2021);
         $buildingAddress12->setStreetName('Straatnaam A');
@@ -1763,7 +1561,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress12->setLastChangeTime();
 
         $buildingAddress13 = new BuildingAddress();
-        $buildingAddress13->setId(13);
         $buildingAddress13->setConstructionYear(1984);
         $buildingAddress13->setRenovationYear(2000);
         $buildingAddress13->setStreetName('Straatnaam A');
@@ -1782,7 +1579,6 @@ class LoadTestHousingStockData extends Fixture
 
 
         $buildingAddress14 = new BuildingAddress();
-        $buildingAddress14->setId(14);
         $buildingAddress14->setConstructionYear(2010);
         $buildingAddress14->setRenovationYear(2010);
         $buildingAddress14->setStreetName('Straatnaam A');
@@ -1800,7 +1596,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress14->setLastChangeTime();
 
         $buildingAddress15 = new BuildingAddress();
-        $buildingAddress15->setId(15);
         $buildingAddress15->setConstructionYear(1888);
         $buildingAddress15->setRenovationYear(2005);
         $buildingAddress15->setStreetName('Straatnaam A');
@@ -1818,7 +1613,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress15->setLastChangeTime();
 
         $buildingAddress16 = new BuildingAddress();
-        $buildingAddress16->setId(16);
         $buildingAddress16->setConstructionYear(1908);
         $buildingAddress16->setRenovationYear(200);
         $buildingAddress16->setStreetName('Straatnaam A');
@@ -1836,7 +1630,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress16->setLastChangeTime();
 
         $buildingAddress17 = new BuildingAddress();
-        $buildingAddress17->setId(17);
         $buildingAddress17->setConstructionYear(2006);
         $buildingAddress17->setRenovationYear(2006);
         $buildingAddress17->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -1854,7 +1647,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress17->setLastChangeTime();
 
         $buildingAddress18 = new BuildingAddress();
-        $buildingAddress18->setId(18);
         $buildingAddress18->setConstructionYear(2026);
         $buildingAddress18->setRenovationYear(2081);
         $buildingAddress18->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -1872,7 +1664,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress18->setLastChangeTime();
 
         $buildingAddress19 = new BuildingAddress();
-        $buildingAddress19->setId(19);
         $buildingAddress19->setConstructionYear(1976);
         $buildingAddress19->setRenovationYear(2001);
         $buildingAddress19->setStreetName('Straatnaam A');
@@ -1890,7 +1681,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress19->setLastChangeTime();
 
         $buildingAddress20 = new BuildingAddress();
-        $buildingAddress20->setId(20);
         $buildingAddress20->setConstructionYear(1986);
         $buildingAddress20->setRenovationYear(2002);
         $buildingAddress20->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -1908,7 +1698,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress20->setLastChangeTime();
 
         $buildingAddress21 = new BuildingAddress();
-        $buildingAddress21->setId(21);
         $buildingAddress21->setConstructionYear(1954);
         $buildingAddress21->setRenovationYear(1986);
         $buildingAddress21->setStreetName('Straatnaam A');
@@ -1926,7 +1715,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress21->setLastChangeTime();
 
         $buildingAddress22 = new BuildingAddress();
-        $buildingAddress22->setId(22);
         $buildingAddress22->setConstructionYear(1998);
         $buildingAddress22->setRenovationYear(2021);
         $buildingAddress22->setStreetName('Straatnaam A');
@@ -1944,7 +1732,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress22->setLastChangeTime();
 
         $buildingAddress23 = new BuildingAddress();
-        $buildingAddress23->setId(23);
         $buildingAddress23->setConstructionYear(1984);
         $buildingAddress23->setRenovationYear(2000);
         $buildingAddress23->setStreetName('Straatnaam A');
@@ -1962,7 +1749,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setLastChangeTime();
 
         $buildingAddress24 = new BuildingAddress();
-        $buildingAddress24->setId(24);
         $buildingAddress24->setConstructionYear(2010);
         $buildingAddress24->setRenovationYear(2010);
         $buildingAddress24->setStreetName('Straatnaam A');
@@ -1980,7 +1766,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setLastChangeTime();
 
         $buildingAddress25 = new BuildingAddress();
-        $buildingAddress25->setId(25);
         $buildingAddress25->setConstructionYear(1888);
         $buildingAddress25->setRenovationYear(2005);
         $buildingAddress25->setStreetName('Straatnaam A');
@@ -1998,7 +1783,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setLastChangeTime();
 
         $buildingAddress26 = new BuildingAddress();
-        $buildingAddress26->setId(26);
         $buildingAddress26->setConstructionYear(1908);
         $buildingAddress26->setRenovationYear(200);
         $buildingAddress26->setStreetName('Straatnaam A');
@@ -2016,7 +1800,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress26->setLastChangeTime();
 
         $buildingAddress27 = new BuildingAddress();
-        $buildingAddress27->setId(27);
         $buildingAddress27->setConstructionYear(2006);
         $buildingAddress27->setRenovationYear(2006);
         $buildingAddress27->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -2034,7 +1817,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress27->setLastChangeTime();
 
         $buildingAddress28 = new BuildingAddress();
-        $buildingAddress28->setId(28);
         $buildingAddress28->setConstructionYear(2026);
         $buildingAddress28->setRenovationYear(2081);
         $buildingAddress28->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -2052,7 +1834,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress28->setLastChangeTime();
 
         $buildingAddress29 = new BuildingAddress();
-        $buildingAddress29->setId(29);
         $buildingAddress29->setConstructionYear(1976);
         $buildingAddress29->setRenovationYear(2001);
         $buildingAddress29->setStreetName('Straatnaam A');
@@ -2070,7 +1851,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress29->setLastChangeTime();
 
         $buildingAddress30 = new BuildingAddress();
-        $buildingAddress30->setId(1);
         $buildingAddress30->setConstructionYear(1986);
         $buildingAddress30->setRenovationYear(2002);
         $buildingAddress30->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -2088,7 +1868,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress30->setLastChangeTime();
 
         $buildingAddress31 = new BuildingAddress();
-        $buildingAddress31->setId(31);
         $buildingAddress31->setConstructionYear(1954);
         $buildingAddress31->setRenovationYear(1986);
         $buildingAddress31->setStreetName('Straatnaam A');
@@ -2106,7 +1885,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress31->setLastChangeTime();
 
         $buildingAddress41 = new BuildingAddress();
-        $buildingAddress41->setId(41);
         $buildingAddress41->setConstructionYear(1954);
         $buildingAddress41->setRenovationYear(1986);
         $buildingAddress41->setStreetName('Straatnaam A');
@@ -2124,7 +1902,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress41->setLastChangeTime();
 
         $buildingAddress51 = new BuildingAddress();
-        $buildingAddress51->setId(51);
         $buildingAddress51->setConstructionYear(1954);
         $buildingAddress51->setRenovationYear(1986);
         $buildingAddress51->setStreetName('Straatnaam A');
@@ -2142,7 +1919,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setLastChangeTime();
 
         $buildingAddress61 = new BuildingAddress();
-        $buildingAddress61->setId(61);
         $buildingAddress61->setConstructionYear(1954);
         $buildingAddress61->setRenovationYear(1986);
         $buildingAddress61->setStreetName('Straatnaam A');
@@ -2160,7 +1936,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress61->setLastChangeTime();
 
         $buildingAddress71 = new BuildingAddress();
-        $buildingAddress71->setId(71);
         $buildingAddress71->setConstructionYear(1954);
         $buildingAddress71->setRenovationYear(1986);
         $buildingAddress71->setStreetName('Straatnaam A');
@@ -2178,7 +1953,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress71->setLastChangeTime();
 
         $buildingAddress81 = new BuildingAddress();
-        $buildingAddress81->setId(81);
         $buildingAddress81->setConstructionYear(1954);
         $buildingAddress81->setRenovationYear(1986);
         $buildingAddress81->setStreetName('Straatnaam A');
@@ -2196,7 +1970,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress81->setLastChangeTime();
 
         $buildingAddress91 = new BuildingAddress();
-        $buildingAddress91->setId(91);
         $buildingAddress91->setConstructionYear(1954);
         $buildingAddress91->setRenovationYear(1986);
         $buildingAddress91->setStreetName('Straatnaam A');
@@ -2214,7 +1987,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress91->setLastChangeTime();
 
         $buildingAddress101 = new BuildingAddress();
-        $buildingAddress101->setId(101);
         $buildingAddress101->setConstructionYear(1954);
         $buildingAddress101->setRenovationYear(1986);
         $buildingAddress101->setStreetName('Straatnaam A');
@@ -2232,7 +2004,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress101->setLastChangeTime();
 
         $buildingAddress111 = new BuildingAddress();
-        $buildingAddress111->setId(111);
         $buildingAddress111->setConstructionYear(1954);
         $buildingAddress111->setRenovationYear(1986);
         $buildingAddress111->setStreetName('Straatnaam A');
@@ -2250,7 +2021,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress111->setLastChangeTime();
 
         $buildingAddress121 = new BuildingAddress();
-        $buildingAddress121->setId(121);
         $buildingAddress121->setConstructionYear(1954);
         $buildingAddress121->setRenovationYear(1986);
         $buildingAddress121->setStreetName('Straatnaam A');
@@ -2268,7 +2038,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress121->setLastChangeTime();
 
         $buildingAddress32 = new BuildingAddress();
-        $buildingAddress32->setId(32);
         $buildingAddress32->setConstructionYear(1998);
         $buildingAddress32->setRenovationYear(2021);
         $buildingAddress32->setStreetName('Straatnaam A');
@@ -2286,7 +2055,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress32->setLastChangeTime();
 
         $buildingAddress42 = new BuildingAddress();
-        $buildingAddress42->setId(42);
         $buildingAddress42->setConstructionYear(1998);
         $buildingAddress42->setRenovationYear(2021);
         $buildingAddress42->setStreetName('Straatnaam A');
@@ -2304,7 +2072,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress42->setLastChangeTime();
 
         $buildingAddress52 = new BuildingAddress();
-        $buildingAddress52->setId(52);
         $buildingAddress52->setConstructionYear(1998);
         $buildingAddress52->setRenovationYear(2021);
         $buildingAddress52->setStreetName('Straatnaam A');
@@ -2322,7 +2089,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress52->setLastChangeTime();
 
         $buildingAddress62 = new BuildingAddress();
-        $buildingAddress62->setId(62);
         $buildingAddress62->setConstructionYear(1998);
         $buildingAddress62->setRenovationYear(2021);
         $buildingAddress62->setStreetName('Straatnaam A');
@@ -2340,7 +2106,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress62->setLastChangeTime();
 
         $buildingAddress72 = new BuildingAddress();
-        $buildingAddress72->setId(72);
         $buildingAddress72->setConstructionYear(1998);
         $buildingAddress72->setRenovationYear(2021);
         $buildingAddress72->setStreetName('Straatnaam A');
@@ -2358,7 +2123,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress72->setLastChangeTime();
 
         $buildingAddress82 = new BuildingAddress();
-        $buildingAddress82->setId(82);
         $buildingAddress82->setConstructionYear(1998);
         $buildingAddress82->setRenovationYear(2021);
         $buildingAddress82->setStreetName('Straatnaam A');
@@ -2376,7 +2140,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress82->setLastChangeTime();
 
         $buildingAddress92 = new BuildingAddress();
-        $buildingAddress92->setId(92);
         $buildingAddress92->setConstructionYear(1998);
         $buildingAddress92->setRenovationYear(2021);
         $buildingAddress92->setStreetName('Straatnaam A');
@@ -2394,7 +2157,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress92->setLastChangeTime();
 
         $buildingAddress102 = new BuildingAddress();
-        $buildingAddress102->setId(102);
         $buildingAddress102->setConstructionYear(1998);
         $buildingAddress102->setRenovationYear(2021);
         $buildingAddress102->setStreetName('Straatnaam A');
@@ -2412,7 +2174,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress102->setLastChangeTime();
 
         $buildingAddress112 = new BuildingAddress();
-        $buildingAddress112->setId(112);
         $buildingAddress112->setConstructionYear(1998);
         $buildingAddress112->setRenovationYear(2021);
         $buildingAddress112->setStreetName('Straatnaam A');
@@ -2430,7 +2191,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress112->setLastChangeTime();
 
         $buildingAddress122 = new BuildingAddress();
-        $buildingAddress122->setId(122);
         $buildingAddress122->setConstructionYear(1998);
         $buildingAddress122->setRenovationYear(2021);
         $buildingAddress122->setStreetName('Straatnaam A');
@@ -2448,7 +2208,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress122->setLastChangeTime();
 
         $buildingAddress33 = new BuildingAddress();
-        $buildingAddress33->setId(33);
         $buildingAddress33->setConstructionYear(1984);
         $buildingAddress33->setRenovationYear(2000);
         $buildingAddress33->setStreetName('Straatnaam A');
@@ -2466,7 +2225,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress33->setLastChangeTime();
 
         $buildingAddress43 = new BuildingAddress();
-        $buildingAddress43->setId(43);
         $buildingAddress43->setConstructionYear(1984);
         $buildingAddress43->setRenovationYear(2000);
         $buildingAddress43->setStreetName('Straatnaam A');
@@ -2484,7 +2242,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress43->setLastChangeTime();
 
         $buildingAddress53 = new BuildingAddress();
-        $buildingAddress53->setId(53);
         $buildingAddress53->setConstructionYear(1984);
         $buildingAddress53->setRenovationYear(2000);
         $buildingAddress53->setStreetName('Straatnaam A');
@@ -2502,7 +2259,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress53->setLastChangeTime();
 
         $buildingAddress63 = new BuildingAddress();
-        $buildingAddress63->setId(63);
         $buildingAddress63->setConstructionYear(1984);
         $buildingAddress63->setRenovationYear(2000);
         $buildingAddress63->setStreetName('Straatnaam A');
@@ -2520,7 +2276,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress63->setLastChangeTime();
 
         $buildingAddress73 = new BuildingAddress();
-        $buildingAddress73->setId(73);
         $buildingAddress73->setConstructionYear(1984);
         $buildingAddress73->setRenovationYear(2000);
         $buildingAddress73->setStreetName('Straatnaam A');
@@ -2538,7 +2293,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress73->setLastChangeTime();
 
         $buildingAddress83 = new BuildingAddress();
-        $buildingAddress83->setId(83);
         $buildingAddress83->setConstructionYear(1984);
         $buildingAddress83->setRenovationYear(2000);
         $buildingAddress83->setStreetName('Straatnaam A');
@@ -2556,7 +2310,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress83->setLastChangeTime();
 
         $buildingAddress93 = new BuildingAddress();
-        $buildingAddress93->setId(93);
         $buildingAddress93->setConstructionYear(1984);
         $buildingAddress93->setRenovationYear(2000);
         $buildingAddress93->setStreetName('Straatnaam A');
@@ -2574,7 +2327,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress93->setLastChangeTime();
 
         $buildingAddress103 = new BuildingAddress();
-        $buildingAddress103->setId(103);
         $buildingAddress103->setConstructionYear(1984);
         $buildingAddress103->setRenovationYear(2000);
         $buildingAddress103->setStreetName('Straatnaam A');
@@ -2592,7 +2344,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress103->setLastChangeTime();
 
         $buildingAddress113 = new BuildingAddress();
-        $buildingAddress113->setId(113);
         $buildingAddress113->setConstructionYear(1984);
         $buildingAddress113->setRenovationYear(2000);
         $buildingAddress113->setStreetName('Straatnaam A');
@@ -2610,7 +2361,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress113->setLastChangeTime();
 
         $buildingAddress123 = new BuildingAddress();
-        $buildingAddress123->setId(123);
         $buildingAddress123->setConstructionYear(1984);
         $buildingAddress123->setRenovationYear(2000);
         $buildingAddress123->setStreetName('Straatnaam A');
@@ -2628,7 +2378,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress123->setLastChangeTime();
 
         $buildingAddress34 = new BuildingAddress();
-        $buildingAddress34->setId(34);
         $buildingAddress34->setConstructionYear(2010);
         $buildingAddress34->setRenovationYear(2010);
         $buildingAddress34->setStreetName('Straatnaam A');
@@ -2646,7 +2395,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress34->setLastChangeTime();
 
         $buildingAddress44 = new BuildingAddress();
-        $buildingAddress44->setId(44);
         $buildingAddress44->setConstructionYear(2010);
         $buildingAddress44->setRenovationYear(2010);
         $buildingAddress44->setStreetName('Straatnaam A');
@@ -2664,7 +2412,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress44->setLastChangeTime();
 
         $buildingAddress54 = new BuildingAddress();
-        $buildingAddress54->setId(54);
         $buildingAddress54->setConstructionYear(2010);
         $buildingAddress54->setRenovationYear(2010);
         $buildingAddress54->setStreetName('Straatnaam A');
@@ -2682,7 +2429,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress54->setLastChangeTime();
 
         $buildingAddress64 = new BuildingAddress();
-        $buildingAddress64->setId(64);
         $buildingAddress64->setConstructionYear(2010);
         $buildingAddress64->setRenovationYear(2010);
         $buildingAddress64->setStreetName('Straatnaam A');
@@ -2700,7 +2446,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress64->setLastChangeTime();
 
         $buildingAddress74 = new BuildingAddress();
-        $buildingAddress74->setId(74);
         $buildingAddress74->setConstructionYear(2010);
         $buildingAddress74->setRenovationYear(2010);
         $buildingAddress74->setStreetName('Straatnaam A');
@@ -2718,7 +2463,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress74->setLastChangeTime();
 
         $buildingAddress84 = new BuildingAddress();
-        $buildingAddress84->setId(84);
         $buildingAddress84->setConstructionYear(2010);
         $buildingAddress84->setRenovationYear(2010);
         $buildingAddress84->setStreetName('Straatnaam A');
@@ -2736,7 +2480,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress84->setLastChangeTime();
 
         $buildingAddress94 = new BuildingAddress();
-        $buildingAddress94->setId(94);
         $buildingAddress94->setConstructionYear(2010);
         $buildingAddress94->setRenovationYear(2010);
         $buildingAddress94->setStreetName('Straatnaam A');
@@ -2754,7 +2497,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress94->setLastChangeTime();
 
         $buildingAddress104 = new BuildingAddress();
-        $buildingAddress104->setId(104);
         $buildingAddress104->setConstructionYear(2010);
         $buildingAddress104->setRenovationYear(2010);
         $buildingAddress104->setStreetName('Straatnaam A');
@@ -2772,7 +2514,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress104->setLastChangeTime();
 
         $buildingAddress114 = new BuildingAddress();
-        $buildingAddress114->setId(114);
         $buildingAddress114->setConstructionYear(2010);
         $buildingAddress114->setRenovationYear(2010);
         $buildingAddress114->setStreetName('Straatnaam A');
@@ -2790,7 +2531,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress114->setLastChangeTime();
 
         $buildingAddress124 = new BuildingAddress();
-        $buildingAddress124->setId(124);
         $buildingAddress124->setConstructionYear(2010);
         $buildingAddress124->setRenovationYear(2010);
         $buildingAddress124->setStreetName('Straatnaam A');
@@ -2808,7 +2548,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress124->setLastChangeTime();
 
         $buildingAddress35 = new BuildingAddress();
-        $buildingAddress35->setId(35);
         $buildingAddress35->setConstructionYear(1888);
         $buildingAddress35->setRenovationYear(2005);
         $buildingAddress35->setStreetName('Straatnaam A');
@@ -2826,7 +2565,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress35->setLastChangeTime();
 
         $buildingAddress45 = new BuildingAddress();
-        $buildingAddress45->setId(45);
         $buildingAddress45->setConstructionYear(1888);
         $buildingAddress45->setRenovationYear(2005);
         $buildingAddress45->setStreetName('Straatnaam A');
@@ -2844,7 +2582,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress45->setLastChangeTime();
 
         $buildingAddress55 = new BuildingAddress();
-        $buildingAddress55->setId(55);
         $buildingAddress55->setConstructionYear(1888);
         $buildingAddress55->setRenovationYear(2005);
         $buildingAddress55->setStreetName('Straatnaam A');
@@ -2862,7 +2599,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress55->setLastChangeTime();
 
         $buildingAddress65 = new BuildingAddress();
-        $buildingAddress65->setId(65);
         $buildingAddress65->setConstructionYear(1888);
         $buildingAddress65->setRenovationYear(2005);
         $buildingAddress65->setStreetName('Straatnaam A');
@@ -2880,7 +2616,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress65->setLastChangeTime();
 
         $buildingAddress75 = new BuildingAddress();
-        $buildingAddress75->setId(75);
         $buildingAddress75->setConstructionYear(1888);
         $buildingAddress75->setRenovationYear(2005);
         $buildingAddress75->setStreetName('Straatnaam A');
@@ -2898,7 +2633,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress75->setLastChangeTime();
 
         $buildingAddress85 = new BuildingAddress();
-        $buildingAddress85->setId(85);
         $buildingAddress85->setConstructionYear(1888);
         $buildingAddress85->setRenovationYear(2005);
         $buildingAddress85->setStreetName('Straatnaam A');
@@ -2916,7 +2650,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress85->setLastChangeTime();
 
         $buildingAddress95 = new BuildingAddress();
-        $buildingAddress95->setId(95);
         $buildingAddress95->setConstructionYear(1888);
         $buildingAddress95->setRenovationYear(2005);
         $buildingAddress95->setStreetName('Straatnaam A');
@@ -2934,7 +2667,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress95->setLastChangeTime();
 
         $buildingAddress105 = new BuildingAddress();
-        $buildingAddress105->setId(105);
         $buildingAddress105->setConstructionYear(1888);
         $buildingAddress105->setRenovationYear(2005);
         $buildingAddress105->setStreetName('Straatnaam A');
@@ -2952,7 +2684,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress105->setLastChangeTime();
 
         $buildingAddress115 = new BuildingAddress();
-        $buildingAddress115->setId(115);
         $buildingAddress115->setConstructionYear(1888);
         $buildingAddress115->setRenovationYear(2005);
         $buildingAddress115->setStreetName('Straatnaam A');
@@ -2970,7 +2701,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress115->setLastChangeTime();
 
         $buildingAddress125 = new BuildingAddress();
-        $buildingAddress125->setId(125);
         $buildingAddress125->setConstructionYear(1888);
         $buildingAddress125->setRenovationYear(2005);
         $buildingAddress125->setStreetName('Straatnaam A');
@@ -2988,7 +2718,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress125->setLastChangeTime();
 
         $buildingAddress36 = new BuildingAddress();
-        $buildingAddress36->setId(36);
         $buildingAddress36->setConstructionYear(1908);
         $buildingAddress36->setRenovationYear(200);
         $buildingAddress36->setStreetName('Straatnaam A');
@@ -3006,7 +2735,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress36->setLastChangeTime();
 
         $buildingAddress46 = new BuildingAddress();
-        $buildingAddress46->setId(46);
         $buildingAddress46->setConstructionYear(1908);
         $buildingAddress46->setRenovationYear(200);
         $buildingAddress46->setStreetName('Straatnaam A');
@@ -3024,7 +2752,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress46->setLastChangeTime();
 
         $buildingAddress56 = new BuildingAddress();
-        $buildingAddress56->setId(56);
         $buildingAddress56->setConstructionYear(1908);
         $buildingAddress56->setRenovationYear(200);
         $buildingAddress56->setStreetName('Straatnaam A');
@@ -3042,7 +2769,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress56->setLastChangeTime();
 
         $buildingAddress66 = new BuildingAddress();
-        $buildingAddress66->setId(66);
         $buildingAddress66->setConstructionYear(1908);
         $buildingAddress66->setRenovationYear(200);
         $buildingAddress66->setStreetName('Straatnaam A');
@@ -3060,7 +2786,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress66->setLastChangeTime();
 
         $buildingAddress76 = new BuildingAddress();
-        $buildingAddress76->setId(76);
         $buildingAddress76->setConstructionYear(1908);
         $buildingAddress76->setRenovationYear(200);
         $buildingAddress76->setStreetName('Straatnaam A');
@@ -3078,7 +2803,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress76->setLastChangeTime();
 
         $buildingAddress86 = new BuildingAddress();
-        $buildingAddress86->setId(86);
         $buildingAddress86->setConstructionYear(1908);
         $buildingAddress86->setRenovationYear(200);
         $buildingAddress86->setStreetName('Straatnaam A');
@@ -3096,7 +2820,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress86->setLastChangeTime();
 
         $buildingAddress96 = new BuildingAddress();
-        $buildingAddress96->setId(96);
         $buildingAddress96->setConstructionYear(1908);
         $buildingAddress96->setRenovationYear(200);
         $buildingAddress96->setStreetName('Straatnaam A');
@@ -3114,7 +2837,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress96->setLastChangeTime();
 
         $buildingAddress106 = new BuildingAddress();
-        $buildingAddress106->setId(106);
         $buildingAddress106->setConstructionYear(1908);
         $buildingAddress106->setRenovationYear(200);
         $buildingAddress106->setStreetName('Straatnaam A');
@@ -3132,7 +2854,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress106->setLastChangeTime();
 
         $buildingAddress116 = new BuildingAddress();
-        $buildingAddress116->setId(116);
         $buildingAddress116->setConstructionYear(1908);
         $buildingAddress116->setRenovationYear(200);
         $buildingAddress116->setStreetName('Straatnaam A');
@@ -3150,7 +2871,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress116->setLastChangeTime();
 
         $buildingAddress126 = new BuildingAddress();
-        $buildingAddress126->setId(126);
         $buildingAddress126->setConstructionYear(1908);
         $buildingAddress126->setRenovationYear(200);
         $buildingAddress126->setStreetName('Straatnaam A');
@@ -3168,7 +2888,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress126->setLastChangeTime();
 
         $buildingAddress37 = new BuildingAddress();
-        $buildingAddress37->setId(37);
         $buildingAddress37->setConstructionYear(2006);
         $buildingAddress37->setRenovationYear(2006);
         $buildingAddress37->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3186,7 +2905,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress37->setLastChangeTime();
 
         $buildingAddress47 = new BuildingAddress();
-        $buildingAddress47->setId(47);
         $buildingAddress47->setConstructionYear(2006);
         $buildingAddress47->setRenovationYear(2006);
         $buildingAddress47->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3204,7 +2922,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress47->setLastChangeTime();
 
         $buildingAddress57 = new BuildingAddress();
-        $buildingAddress57->setId(57);
         $buildingAddress57->setConstructionYear(2006);
         $buildingAddress57->setRenovationYear(2006);
         $buildingAddress57->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3222,7 +2939,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress57->setLastChangeTime();
 
         $buildingAddress67 = new BuildingAddress();
-        $buildingAddress67->setId(67);
         $buildingAddress67->setConstructionYear(2006);
         $buildingAddress67->setRenovationYear(2006);
         $buildingAddress67->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3240,7 +2956,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress67->setLastChangeTime();
 
         $buildingAddress77 = new BuildingAddress();
-        $buildingAddress77->setId(77);
         $buildingAddress77->setConstructionYear(2006);
         $buildingAddress77->setRenovationYear(2006);
         $buildingAddress77->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3258,7 +2973,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress77->setLastChangeTime();
 
         $buildingAddress87 = new BuildingAddress();
-        $buildingAddress87->setId(87);
         $buildingAddress87->setConstructionYear(2006);
         $buildingAddress87->setRenovationYear(2006);
         $buildingAddress87->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3276,7 +2990,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setLastChangeTime();
 
         $buildingAddress97 = new BuildingAddress();
-        $buildingAddress97->setId(97);
         $buildingAddress97->setConstructionYear(2006);
         $buildingAddress97->setRenovationYear(2006);
         $buildingAddress97->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3294,7 +3007,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress97->setLastChangeTime();
 
         $buildingAddress107 = new BuildingAddress();
-        $buildingAddress107->setId(107);
         $buildingAddress107->setConstructionYear(2006);
         $buildingAddress107->setRenovationYear(2006);
         $buildingAddress107->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3312,7 +3024,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress107->setLastChangeTime();
 
         $buildingAddress117 = new BuildingAddress();
-        $buildingAddress117->setId(117);
         $buildingAddress117->setConstructionYear(2006);
         $buildingAddress117->setRenovationYear(2006);
         $buildingAddress117->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3330,7 +3041,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress117->setLastChangeTime();
 
         $buildingAddress127 = new BuildingAddress();
-        $buildingAddress127->setId(127);
         $buildingAddress127->setConstructionYear(2006);
         $buildingAddress127->setRenovationYear(2006);
         $buildingAddress127->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -3348,7 +3058,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress127->setLastChangeTime();
 
         $buildingAddress38 = new BuildingAddress();
-        $buildingAddress38->setId(38);
         $buildingAddress38->setConstructionYear(2026);
         $buildingAddress38->setRenovationYear(2081);
         $buildingAddress38->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3366,7 +3075,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress38->setLastChangeTime();
 
         $buildingAddress48 = new BuildingAddress();
-        $buildingAddress48->setId(48);
         $buildingAddress48->setConstructionYear(2026);
         $buildingAddress48->setRenovationYear(2081);
         $buildingAddress48->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3384,7 +3092,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress48->setLastChangeTime();
 
         $buildingAddress58 = new BuildingAddress();
-        $buildingAddress58->setId(58);
         $buildingAddress58->setConstructionYear(2026);
         $buildingAddress58->setRenovationYear(2081);
         $buildingAddress58->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3402,7 +3109,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress58->setLastChangeTime();
 
         $buildingAddress68 = new BuildingAddress();
-        $buildingAddress68->setId(68);
         $buildingAddress68->setConstructionYear(2026);
         $buildingAddress68->setRenovationYear(2081);
         $buildingAddress68->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3420,7 +3126,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress68->setLastChangeTime();
 
         $buildingAddress78 = new BuildingAddress();
-        $buildingAddress78->setId(78);
         $buildingAddress78->setConstructionYear(2026);
         $buildingAddress78->setRenovationYear(2081);
         $buildingAddress78->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3438,7 +3143,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress78->setLastChangeTime();
 
         $buildingAddress88 = new BuildingAddress();
-        $buildingAddress88->setId(88);
         $buildingAddress88->setConstructionYear(2026);
         $buildingAddress88->setRenovationYear(2081);
         $buildingAddress88->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3456,7 +3160,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress88->setLastChangeTime();
 
         $buildingAddress98 = new BuildingAddress();
-        $buildingAddress98->setId(98);
         $buildingAddress98->setConstructionYear(2026);
         $buildingAddress98->setRenovationYear(2081);
         $buildingAddress98->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3474,7 +3177,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress98->setLastChangeTime();
 
         $buildingAddress108 = new BuildingAddress();
-        $buildingAddress108->setId(108);
         $buildingAddress108->setConstructionYear(2026);
         $buildingAddress108->setRenovationYear(2081);
         $buildingAddress108->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3492,7 +3194,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress108->setLastChangeTime();
 
         $buildingAddress118 = new BuildingAddress();
-        $buildingAddress118->setId(118);
         $buildingAddress118->setConstructionYear(2026);
         $buildingAddress118->setRenovationYear(2081);
         $buildingAddress118->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3510,7 +3211,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress118->setLastChangeTime();
 
         $buildingAddress128 = new BuildingAddress();
-        $buildingAddress128->setId(128);
         $buildingAddress128->setConstructionYear(2026);
         $buildingAddress128->setRenovationYear(2081);
         $buildingAddress128->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3528,7 +3228,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setLastChangeTime();
 
         $buildingAddress39 = new BuildingAddress();
-        $buildingAddress39->setId(39);
         $buildingAddress39->setConstructionYear(1976);
         $buildingAddress39->setRenovationYear(2001);
         $buildingAddress39->setStreetName('Straatnaam A');
@@ -3546,7 +3245,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress39->setLastChangeTime();
 
         $buildingAddress40 = new BuildingAddress();
-        $buildingAddress40->setId(40);
         $buildingAddress40->setConstructionYear(1986);
         $buildingAddress40->setRenovationYear(2002);
         $buildingAddress40->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3562,9 +3260,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress40->setLivingType($livingType3);
         $buildingAddress40->setCreationTime();
         $buildingAddress40->setLastChangeTime();
-        
+
         $buildingAddress49 = new BuildingAddress();
-        $buildingAddress49->setId(49);
         $buildingAddress49->setConstructionYear(1976);
         $buildingAddress49->setRenovationYear(2001);
         $buildingAddress49->setStreetName('Straatnaam A');
@@ -3580,9 +3277,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress49->setLivingType($livingType3);
         $buildingAddress49->setCreationTime();
         $buildingAddress49->setLastChangeTime();
-        
+
         $buildingAddress50 = new BuildingAddress();
-        $buildingAddress50->setId(50);
         $buildingAddress50->setConstructionYear(1986);
         $buildingAddress50->setRenovationYear(2002);
         $buildingAddress50->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3600,7 +3296,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress50->setLastChangeTime();
 
         $buildingAddress59 = new BuildingAddress();
-        $buildingAddress59->setId(59);
         $buildingAddress59->setConstructionYear(1976);
         $buildingAddress59->setRenovationYear(2001);
         $buildingAddress59->setStreetName('Straatnaam A');
@@ -3616,9 +3311,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress59->setLivingType($livingType3);
         $buildingAddress59->setCreationTime();
         $buildingAddress59->setLastChangeTime();
-        
+
         $buildingAddress60 = new BuildingAddress();
-        $buildingAddress60->setId(60);
         $buildingAddress60->setConstructionYear(1986);
         $buildingAddress60->setRenovationYear(2002);
         $buildingAddress60->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3636,7 +3330,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress60->setLastChangeTime();
 
         $buildingAddress69 = new BuildingAddress();
-        $buildingAddress69->setId(69);
         $buildingAddress69->setConstructionYear(1976);
         $buildingAddress69->setRenovationYear(2001);
         $buildingAddress69->setStreetName('Straatnaam A');
@@ -3654,7 +3347,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress69->setLastChangeTime();
 
         $buildingAddress70 = new BuildingAddress();
-        $buildingAddress70->setId(70);
         $buildingAddress70->setConstructionYear(1986);
         $buildingAddress70->setRenovationYear(2002);
         $buildingAddress70->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3670,9 +3362,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress70->setLivingType($livingType3);
         $buildingAddress70->setCreationTime();
         $buildingAddress70->setLastChangeTime();
-        
+
         $buildingAddress79 = new BuildingAddress();
-        $buildingAddress79->setId(79);
         $buildingAddress79->setConstructionYear(1976);
         $buildingAddress79->setRenovationYear(2001);
         $buildingAddress79->setStreetName('Straatnaam A');
@@ -3688,9 +3379,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress79->setLivingType($livingType3);
         $buildingAddress79->setCreationTime();
         $buildingAddress79->setLastChangeTime();
-        
+
         $buildingAddress80 = new BuildingAddress();
-        $buildingAddress80->setId(80);
         $buildingAddress80->setConstructionYear(1986);
         $buildingAddress80->setRenovationYear(2002);
         $buildingAddress80->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3706,9 +3396,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress80->setLivingType($livingType3);
         $buildingAddress80->setCreationTime();
         $buildingAddress80->setLastChangeTime();
-        
+
         $buildingAddress89 = new BuildingAddress();
-        $buildingAddress89->setId(89);
         $buildingAddress89->setConstructionYear(1976);
         $buildingAddress89->setRenovationYear(2001);
         $buildingAddress89->setStreetName('Straatnaam A');
@@ -3726,7 +3415,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress89->setLastChangeTime();
 
         $buildingAddress90 = new BuildingAddress();
-        $buildingAddress90->setId(90);
         $buildingAddress90->setConstructionYear(1986);
         $buildingAddress90->setRenovationYear(2002);
         $buildingAddress90->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3742,9 +3430,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress90->setLivingType($livingType3);
         $buildingAddress90->setCreationTime();
         $buildingAddress90->setLastChangeTime();
-        
+
         $buildingAddress99 = new BuildingAddress();
-        $buildingAddress99->setId(99);
         $buildingAddress99->setConstructionYear(1976);
         $buildingAddress99->setRenovationYear(2001);
         $buildingAddress99->setStreetName('Straatnaam A');
@@ -3760,9 +3447,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress99->setLivingType($livingType3);
         $buildingAddress99->setCreationTime();
         $buildingAddress99->setLastChangeTime();
-        
+
         $buildingAddress100 = new BuildingAddress();
-        $buildingAddress100->setId(100);
         $buildingAddress100->setConstructionYear(1986);
         $buildingAddress100->setRenovationYear(2002);
         $buildingAddress100->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3780,7 +3466,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress100->setLastChangeTime();
 
         $buildingAddress109 = new BuildingAddress();
-        $buildingAddress109->setId(109);
         $buildingAddress109->setConstructionYear(1976);
         $buildingAddress109->setRenovationYear(2001);
         $buildingAddress109->setStreetName('Straatnaam A');
@@ -3796,9 +3481,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress109->setLivingType($livingType3);
         $buildingAddress109->setCreationTime();
         $buildingAddress109->setLastChangeTime();
-        
+
         $buildingAddress110 = new BuildingAddress();
-        $buildingAddress110->setId(110);
         $buildingAddress110->setConstructionYear(1986);
         $buildingAddress110->setRenovationYear(2002);
         $buildingAddress110->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3816,7 +3500,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress110->setLastChangeTime();
 
         $buildingAddress119 = new BuildingAddress();
-        $buildingAddress119->setId(119);
         $buildingAddress119->setConstructionYear(1976);
         $buildingAddress119->setRenovationYear(2001);
         $buildingAddress119->setStreetName('Straatnaam A');
@@ -3834,7 +3517,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress119->setLastChangeTime();
 
         $buildingAddress120 = new BuildingAddress();
-        $buildingAddress120->setId(120);
         $buildingAddress120->setConstructionYear(1986);
         $buildingAddress120->setRenovationYear(2002);
         $buildingAddress120->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3850,9 +3532,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setLivingType($livingType3);
         $buildingAddress120->setCreationTime();
         $buildingAddress120->setLastChangeTime();
-        
+
         $buildingAddress129 = new BuildingAddress();
-        $buildingAddress129->setId(129);
         $buildingAddress129->setConstructionYear(1976);
         $buildingAddress129->setRenovationYear(2001);
         $buildingAddress129->setStreetName('Straatnaam A');
@@ -3870,7 +3551,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress129->setLastChangeTime();
 
         $buildingAddress130 = new BuildingAddress();
-        $buildingAddress130->setId(130);
         $buildingAddress130->setConstructionYear(1986);
         $buildingAddress130->setRenovationYear(2002);
         $buildingAddress130->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3888,7 +3568,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress130->setLastChangeTime();
 
         $buildingAddress131 = new BuildingAddress();
-        $buildingAddress131->setId(131);
         $buildingAddress131->setConstructionYear(1986);
         $buildingAddress131->setRenovationYear(2002);
         $buildingAddress131->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3904,9 +3583,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress131->setLivingType($livingType3);
         $buildingAddress131->setCreationTime();
         $buildingAddress131->setLastChangeTime();
-        
+
         $buildingAddress132 = new BuildingAddress();
-        $buildingAddress132->setId(132);
         $buildingAddress132->setConstructionYear(1986);
         $buildingAddress132->setRenovationYear(2002);
         $buildingAddress132->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3922,9 +3600,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress132->setLivingType($livingType3);
         $buildingAddress132->setCreationTime();
         $buildingAddress132->setLastChangeTime();
-                
+
         $buildingAddress133 = new BuildingAddress();
-        $buildingAddress133->setId(133);
         $buildingAddress133->setConstructionYear(1986);
         $buildingAddress133->setRenovationYear(2002);
         $buildingAddress133->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3940,9 +3617,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress133->setLivingType($livingType3);
         $buildingAddress133->setCreationTime();
         $buildingAddress133->setLastChangeTime();
-                
+
         $buildingAddress134 = new BuildingAddress();
-        $buildingAddress134->setId(134);
         $buildingAddress134->setConstructionYear(1986);
         $buildingAddress134->setRenovationYear(2002);
         $buildingAddress134->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3958,9 +3634,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress134->setLivingType($livingType3);
         $buildingAddress134->setCreationTime();
         $buildingAddress134->setLastChangeTime();
-                
+
         $buildingAddress135 = new BuildingAddress();
-        $buildingAddress135->setId(135);
         $buildingAddress135->setConstructionYear(1986);
         $buildingAddress135->setRenovationYear(2002);
         $buildingAddress135->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3976,9 +3651,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress135->setLivingType($livingType3);
         $buildingAddress135->setCreationTime();
         $buildingAddress135->setLastChangeTime();
-                
+
         $buildingAddress136 = new BuildingAddress();
-        $buildingAddress136->setId(136);
         $buildingAddress136->setConstructionYear(1986);
         $buildingAddress136->setRenovationYear(2002);
         $buildingAddress136->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -3994,9 +3668,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress136->setLivingType($livingType3);
         $buildingAddress136->setCreationTime();
         $buildingAddress136->setLastChangeTime();
-                
+
         $buildingAddress137 = new BuildingAddress();
-        $buildingAddress137->setId(137);
         $buildingAddress137->setConstructionYear(1986);
         $buildingAddress137->setRenovationYear(2002);
         $buildingAddress137->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -4012,9 +3685,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress137->setLivingType($livingType3);
         $buildingAddress137->setCreationTime();
         $buildingAddress137->setLastChangeTime();
-               
+
         $buildingAddress138 = new BuildingAddress();
-        $buildingAddress138->setId(138);
         $buildingAddress138->setConstructionYear(1986);
         $buildingAddress138->setRenovationYear(2002);
         $buildingAddress138->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -4030,9 +3702,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress138->setLivingType($livingType3);
         $buildingAddress138->setCreationTime();
         $buildingAddress138->setLastChangeTime();
-                
+
         $buildingAddress139 = new BuildingAddress();
-        $buildingAddress139->setId(139);
         $buildingAddress139->setConstructionYear(1986);
         $buildingAddress139->setRenovationYear(2002);
         $buildingAddress139->setStreetName('Ą ą Ę ę Straatnaam A');
@@ -4048,9 +3719,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress139->setLivingType($livingType3);
         $buildingAddress139->setCreationTime();
         $buildingAddress139->setLastChangeTime();
-        
+
         $buildingAddress140 = new BuildingAddress();
-        $buildingAddress140->setId(140);
         $buildingAddress140->setConstructionYear(2010);
         $buildingAddress140->setRenovationYear(2010);
         $buildingAddress140->setStreetName('Straatnaam A');
@@ -4066,9 +3736,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress140->setLivingType($livingType1);
         $buildingAddress140->setCreationTime();
         $buildingAddress140->setLastChangeTime();
-                
+
         $buildingAddress141 = new BuildingAddress();
-        $buildingAddress141->setId(141);
         $buildingAddress141->setConstructionYear(2010);
         $buildingAddress141->setRenovationYear(2010);
         $buildingAddress141->setStreetName('Straatnaam A');
@@ -4084,9 +3753,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress141->setLivingType($livingType1);
         $buildingAddress141->setCreationTime();
         $buildingAddress141->setLastChangeTime();
-                
+
         $buildingAddress142 = new BuildingAddress();
-        $buildingAddress142->setId(142);
         $buildingAddress142->setConstructionYear(2010);
         $buildingAddress142->setRenovationYear(2010);
         $buildingAddress142->setStreetName('Straatnaam A');
@@ -4102,9 +3770,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress142->setLivingType($livingType1);
         $buildingAddress142->setCreationTime();
         $buildingAddress142->setLastChangeTime();
-                
+
         $buildingAddress143 = new BuildingAddress();
-        $buildingAddress143->setId(143);
         $buildingAddress143->setConstructionYear(2010);
         $buildingAddress143->setRenovationYear(2010);
         $buildingAddress143->setStreetName('Straatnaam A');
@@ -4120,9 +3787,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress143->setLivingType($livingType1);
         $buildingAddress143->setCreationTime();
         $buildingAddress143->setLastChangeTime();
-                
+
         $buildingAddress144 = new BuildingAddress();
-        $buildingAddress144->setId(144);
         $buildingAddress144->setConstructionYear(2010);
         $buildingAddress144->setRenovationYear(2010);
         $buildingAddress144->setStreetName('Straatnaam A');
@@ -4138,9 +3804,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress144->setLivingType($livingType1);
         $buildingAddress144->setCreationTime();
         $buildingAddress144->setLastChangeTime();
-                
+
         $buildingAddress145 = new BuildingAddress();
-        $buildingAddress145->setId(145);
         $buildingAddress145->setConstructionYear(2010);
         $buildingAddress145->setRenovationYear(2010);
         $buildingAddress145->setStreetName('Straatnaam A');
@@ -4156,9 +3821,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress145->setLivingType($livingType1);
         $buildingAddress145->setCreationTime();
         $buildingAddress145->setLastChangeTime();
-                
+
         $buildingAddress146 = new BuildingAddress();
-        $buildingAddress146->setId(146);
         $buildingAddress146->setConstructionYear(2010);
         $buildingAddress146->setRenovationYear(2010);
         $buildingAddress146->setStreetName('Straatnaam A');
@@ -4174,9 +3838,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress146->setLivingType($livingType1);
         $buildingAddress146->setCreationTime();
         $buildingAddress146->setLastChangeTime();
-                
+
         $buildingAddress147 = new BuildingAddress();
-        $buildingAddress147->setId(147);
         $buildingAddress147->setConstructionYear(2010);
         $buildingAddress147->setRenovationYear(2010);
         $buildingAddress147->setStreetName('Straatnaam A');
@@ -4191,10 +3854,9 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress147->setBuildingType($buildingType4);
         $buildingAddress147->setLivingType($livingType1);
         $buildingAddress147->setCreationTime();
-        $buildingAddress147->setLastChangeTime();        
-        
+        $buildingAddress147->setLastChangeTime();
+
         $buildingAddress148 = new BuildingAddress();
-        $buildingAddress148->setId(148);
         $buildingAddress148->setConstructionYear(2010);
         $buildingAddress148->setRenovationYear(2010);
         $buildingAddress148->setStreetName('Straatnaam A');
@@ -4209,10 +3871,9 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress148->setBuildingType($buildingType4);
         $buildingAddress148->setLivingType($livingType1);
         $buildingAddress148->setCreationTime();
-        $buildingAddress148->setLastChangeTime();        
-        
+        $buildingAddress148->setLastChangeTime();
+
         $buildingAddress149 = new BuildingAddress();
-        $buildingAddress149->setId(149);
         $buildingAddress149->setConstructionYear(2010);
         $buildingAddress149->setRenovationYear(2010);
         $buildingAddress149->setStreetName('Straatnaam A');
@@ -4228,9 +3889,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress149->setLivingType($livingType1);
         $buildingAddress149->setCreationTime();
         $buildingAddress149->setLastChangeTime();
-                
+
         $buildingAddress150 = new BuildingAddress();
-        $buildingAddress150->setId(150);
         $buildingAddress150->setConstructionYear(1888);
         $buildingAddress150->setRenovationYear(2005);
         $buildingAddress150->setStreetName('Straatnaam A');
@@ -4246,9 +3906,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress150->setLivingType($livingType2);
         $buildingAddress150->setCreationTime();
         $buildingAddress150->setLastChangeTime();
-                
+
         $buildingAddress151 = new BuildingAddress();
-        $buildingAddress151->setId(151);
         $buildingAddress151->setConstructionYear(1888);
         $buildingAddress151->setRenovationYear(2005);
         $buildingAddress151->setStreetName('Straatnaam A');
@@ -4264,9 +3923,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress151->setLivingType($livingType2);
         $buildingAddress151->setCreationTime();
         $buildingAddress151->setLastChangeTime();
-                
+
         $buildingAddress152 = new BuildingAddress();
-        $buildingAddress152->setId(152);
         $buildingAddress152->setConstructionYear(1888);
         $buildingAddress152->setRenovationYear(2005);
         $buildingAddress152->setStreetName('Straatnaam A');
@@ -4282,9 +3940,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress152->setLivingType($livingType2);
         $buildingAddress152->setCreationTime();
         $buildingAddress152->setLastChangeTime();
-                
+
         $buildingAddress153 = new BuildingAddress();
-        $buildingAddress153->setId(153);
         $buildingAddress153->setConstructionYear(1888);
         $buildingAddress153->setRenovationYear(2005);
         $buildingAddress153->setStreetName('Straatnaam A');
@@ -4300,9 +3957,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress153->setLivingType($livingType2);
         $buildingAddress153->setCreationTime();
         $buildingAddress153->setLastChangeTime();
-                
+
         $buildingAddress154 = new BuildingAddress();
-        $buildingAddress154->setId(154);
         $buildingAddress154->setConstructionYear(1888);
         $buildingAddress154->setRenovationYear(2005);
         $buildingAddress154->setStreetName('Straatnaam A');
@@ -4312,15 +3968,14 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress154->setCity('Woonplaats A');
         $buildingAddress154->setRentalUnitNumber('VHE0000');
         $buildingAddress154->setDaeb(true);
-        $buildingAddress154->setVtw($vtw1);    
+        $buildingAddress154->setVtw($vtw1);
         $buildingAddress154->setResidentialArea($residentialArea5);
         $buildingAddress154->setBuildingType($buildingType5);
         $buildingAddress154->setLivingType($livingType2);
         $buildingAddress154->setCreationTime();
         $buildingAddress154->setLastChangeTime();
-                       
+
         $buildingAddress155 = new BuildingAddress();
-        $buildingAddress155->setId(155);
         $buildingAddress155->setConstructionYear(1888);
         $buildingAddress155->setRenovationYear(2005);
         $buildingAddress155->setStreetName('Straatnaam A');
@@ -4336,9 +3991,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress155->setLivingType($livingType2);
         $buildingAddress155->setCreationTime();
         $buildingAddress155->setLastChangeTime();
-                
+
         $buildingAddress156 = new BuildingAddress();
-        $buildingAddress156->setId(156);
         $buildingAddress156->setConstructionYear(1888);
         $buildingAddress156->setRenovationYear(2005);
         $buildingAddress156->setStreetName('Straatnaam A');
@@ -4354,9 +4008,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress156->setLivingType($livingType2);
         $buildingAddress156->setCreationTime();
         $buildingAddress156->setLastChangeTime();
-                
+
         $buildingAddress157 = new BuildingAddress();
-        $buildingAddress157->setId(157);
         $buildingAddress157->setStreetName('Straatnaam A');
         $buildingAddress157->setHouseNumber(10);
         $buildingAddress157->setAddition('A');
@@ -4370,9 +4023,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress157->setLivingType($livingType2);
         $buildingAddress157->setCreationTime();
         $buildingAddress157->setLastChangeTime();
-                
+
         $buildingAddress158 = new BuildingAddress();
-        $buildingAddress158->setId(158);
         $buildingAddress158->setConstructionYear(1888);
         $buildingAddress158->setRenovationYear(2005);
         $buildingAddress158->setStreetName('Straatnaam A');
@@ -4388,9 +4040,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress158->setLivingType($livingType2);
         $buildingAddress158->setCreationTime();
         $buildingAddress158->setLastChangeTime();
-       
+
         $buildingAddress159 = new BuildingAddress();
-        $buildingAddress159->setId(159);
         $buildingAddress159->setConstructionYear(1888);
         $buildingAddress159->setRenovationYear(2005);
         $buildingAddress159->setStreetName('Straatnaam A');
@@ -4408,7 +4059,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress159->setLastChangeTime();
 
         $buildingAddress160 = new BuildingAddress();
-        $buildingAddress160->setId(160);
         $buildingAddress160->setConstructionYear(1908);
         $buildingAddress160->setRenovationYear(200);
         $buildingAddress160->setStreetName('Straatnaam A');
@@ -4424,9 +4074,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress160->setLivingType($livingType2);
         $buildingAddress160->setCreationTime();
         $buildingAddress160->setLastChangeTime();
-                
+
         $buildingAddress161 = new BuildingAddress();
-        $buildingAddress161->setId(161);
         $buildingAddress161->setConstructionYear(1908);
         $buildingAddress161->setRenovationYear(200);
         $buildingAddress161->setStreetName('Straatnaam A');
@@ -4442,9 +4091,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress161->setLivingType($livingType2);
         $buildingAddress161->setCreationTime();
         $buildingAddress161->setLastChangeTime();
-                
+
         $buildingAddress162 = new BuildingAddress();
-        $buildingAddress162->setId(162);
         $buildingAddress162->setConstructionYear(1908);
         $buildingAddress162->setRenovationYear(200);
         $buildingAddress162->setStreetName('Straatnaam A');
@@ -4460,9 +4108,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress162->setLivingType($livingType2);
         $buildingAddress162->setCreationTime();
         $buildingAddress162->setLastChangeTime();
-                
+
         $buildingAddress163 = new BuildingAddress();
-        $buildingAddress163->setId(163);
         $buildingAddress163->setConstructionYear(1908);
         $buildingAddress163->setRenovationYear(200);
         $buildingAddress163->setStreetName('Straatnaam A');
@@ -4478,9 +4125,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress163->setLivingType($livingType2);
         $buildingAddress163->setCreationTime();
         $buildingAddress163->setLastChangeTime();
-                
+
         $buildingAddress164 = new BuildingAddress();
-        $buildingAddress164->setId(164);
         $buildingAddress164->setConstructionYear(1908);
         $buildingAddress164->setRenovationYear(200);
         $buildingAddress164->setStreetName('Straatnaam A');
@@ -4496,9 +4142,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress164->setLivingType($livingType2);
         $buildingAddress164->setCreationTime();
         $buildingAddress164->setLastChangeTime();
-                
+
         $buildingAddress165 = new BuildingAddress();
-        $buildingAddress165->setId(165);
         $buildingAddress165->setConstructionYear(1908);
         $buildingAddress165->setRenovationYear(200);
         $buildingAddress165->setStreetName('Straatnaam A');
@@ -4514,9 +4159,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress165->setLivingType($livingType2);
         $buildingAddress165->setCreationTime();
         $buildingAddress165->setLastChangeTime();
-                
+
         $buildingAddress166 = new BuildingAddress();
-        $buildingAddress166->setId(166);
         $buildingAddress166->setConstructionYear(1908);
         $buildingAddress166->setRenovationYear(200);
         $buildingAddress166->setStreetName('Straatnaam A');
@@ -4532,9 +4176,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress166->setLivingType($livingType2);
         $buildingAddress166->setCreationTime();
         $buildingAddress166->setLastChangeTime();
-                
+
         $buildingAddress167 = new BuildingAddress();
-        $buildingAddress167->setId(167);
         $buildingAddress167->setConstructionYear(1908);
         $buildingAddress167->setRenovationYear(200);
         $buildingAddress167->setStreetName('Straatnaam A');
@@ -4550,9 +4193,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress167->setLivingType($livingType2);
         $buildingAddress167->setCreationTime();
         $buildingAddress167->setLastChangeTime();
-                
+
         $buildingAddress168 = new BuildingAddress();
-        $buildingAddress168->setId(168);
         $buildingAddress168->setConstructionYear(1908);
         $buildingAddress168->setRenovationYear(200);
         $buildingAddress168->setStreetName('Straatnaam A');
@@ -4568,9 +4210,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress168->setLivingType($livingType2);
         $buildingAddress168->setCreationTime();
         $buildingAddress168->setLastChangeTime();
-                
+
         $buildingAddress169 = new BuildingAddress();
-        $buildingAddress169->setId(169);
         $buildingAddress169->setConstructionYear(1908);
         $buildingAddress169->setRenovationYear(200);
         $buildingAddress169->setStreetName('Straatnaam A');
@@ -4586,9 +4227,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress169->setLivingType($livingType2);
         $buildingAddress169->setCreationTime();
         $buildingAddress169->setLastChangeTime();
-                
+
         $buildingAddress170 = new BuildingAddress();
-        $buildingAddress170->setId(170);
         $buildingAddress170->setConstructionYear(2006);
         $buildingAddress170->setRenovationYear(2006);
         $buildingAddress170->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4604,9 +4244,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress170->setLivingType($livingType2);
         $buildingAddress170->setCreationTime();
         $buildingAddress170->setLastChangeTime();
-                
+
         $buildingAddress171 = new BuildingAddress();
-        $buildingAddress171->setId(171);
         $buildingAddress171->setConstructionYear(2006);
         $buildingAddress171->setRenovationYear(2006);
         $buildingAddress171->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4622,9 +4261,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress171->setLivingType($livingType2);
         $buildingAddress171->setCreationTime();
         $buildingAddress171->setLastChangeTime();
-                
+
         $buildingAddress172 = new BuildingAddress();
-        $buildingAddress172->setId(172);
         $buildingAddress172->setConstructionYear(2006);
         $buildingAddress172->setRenovationYear(2006);
         $buildingAddress172->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4640,9 +4278,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress172->setLivingType($livingType2);
         $buildingAddress172->setCreationTime();
         $buildingAddress172->setLastChangeTime();
-                
+
         $buildingAddress173 = new BuildingAddress();
-        $buildingAddress173->setId(173);
         $buildingAddress173->setConstructionYear(2006);
         $buildingAddress173->setRenovationYear(2006);
         $buildingAddress173->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4658,9 +4295,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress173->setLivingType($livingType2);
         $buildingAddress173->setCreationTime();
         $buildingAddress173->setLastChangeTime();
-                
+
         $buildingAddress174 = new BuildingAddress();
-        $buildingAddress174->setId(174);
         $buildingAddress174->setConstructionYear(2006);
         $buildingAddress174->setRenovationYear(2006);
         $buildingAddress174->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4676,9 +4312,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress174->setLivingType($livingType2);
         $buildingAddress174->setCreationTime();
         $buildingAddress174->setLastChangeTime();
-                
+
         $buildingAddress175 = new BuildingAddress();
-        $buildingAddress175->setId(175);
         $buildingAddress175->setConstructionYear(2006);
         $buildingAddress175->setRenovationYear(2006);
         $buildingAddress175->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4694,9 +4329,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress175->setLivingType($livingType2);
         $buildingAddress175->setCreationTime();
         $buildingAddress175->setLastChangeTime();
-                 
+
         $buildingAddress176 = new BuildingAddress();
-        $buildingAddress176->setId(176);
         $buildingAddress176->setConstructionYear(2006);
         $buildingAddress176->setRenovationYear(2006);
         $buildingAddress176->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4711,10 +4345,9 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress176->setBuildingType($buildingType7);
         $buildingAddress176->setLivingType($livingType2);
         $buildingAddress176->setCreationTime();
-        $buildingAddress176->setLastChangeTime();        
-        
+        $buildingAddress176->setLastChangeTime();
+
         $buildingAddress177 = new BuildingAddress();
-        $buildingAddress177->setId(177);
         $buildingAddress177->setConstructionYear(2006);
         $buildingAddress177->setRenovationYear(2006);
         $buildingAddress177->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4730,9 +4363,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress177->setLivingType($livingType2);
         $buildingAddress177->setCreationTime();
         $buildingAddress177->setLastChangeTime();
-                
+
         $buildingAddress178 = new BuildingAddress();
-        $buildingAddress178->setId(178);
         $buildingAddress178->setConstructionYear(2006);
         $buildingAddress178->setRenovationYear(2006);
         $buildingAddress178->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4748,9 +4380,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress178->setLivingType($livingType2);
         $buildingAddress178->setCreationTime();
         $buildingAddress178->setLastChangeTime();
-                
+
         $buildingAddress179 = new BuildingAddress();
-        $buildingAddress179->setId(179);
         $buildingAddress179->setConstructionYear(2006);
         $buildingAddress179->setRenovationYear(2006);
         $buildingAddress179->setStreetName('Æ æ Œ œ Straatnaam A');
@@ -4766,9 +4397,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress179->setLivingType($livingType2);
         $buildingAddress179->setCreationTime();
         $buildingAddress179->setLastChangeTime();
-      
+
         $buildingAddress180 = new BuildingAddress();
-        $buildingAddress180->setId(180);
         $buildingAddress180->setConstructionYear(2026);
         $buildingAddress180->setRenovationYear(2081);
         $buildingAddress180->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4784,9 +4414,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress180->setLivingType($livingType2);
         $buildingAddress180->setCreationTime();
         $buildingAddress180->setLastChangeTime();
-                
+
         $buildingAddress181 = new BuildingAddress();
-        $buildingAddress181->setId(181);
         $buildingAddress181->setConstructionYear(2026);
         $buildingAddress181->setRenovationYear(2081);
         $buildingAddress181->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4802,9 +4431,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress181->setLivingType($livingType2);
         $buildingAddress181->setCreationTime();
         $buildingAddress181->setLastChangeTime();
-                
+
         $buildingAddress182 = new BuildingAddress();
-        $buildingAddress182->setId(182);
         $buildingAddress182->setConstructionYear(2026);
         $buildingAddress182->setRenovationYear(2081);
         $buildingAddress182->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4820,9 +4448,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress182->setLivingType($livingType2);
         $buildingAddress182->setCreationTime();
         $buildingAddress182->setLastChangeTime();
-                
+
         $buildingAddress183 = new BuildingAddress();
-        $buildingAddress183->setId(183);
         $buildingAddress183->setConstructionYear(2026);
         $buildingAddress183->setRenovationYear(2081);
         $buildingAddress183->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4838,9 +4465,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress183->setLivingType($livingType2);
         $buildingAddress183->setCreationTime();
         $buildingAddress183->setLastChangeTime();
-                
+
         $buildingAddress184 = new BuildingAddress();
-        $buildingAddress184->setId(184);
         $buildingAddress184->setConstructionYear(2026);
         $buildingAddress184->setRenovationYear(2081);
         $buildingAddress184->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4856,9 +4482,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress184->setLivingType($livingType2);
         $buildingAddress184->setCreationTime();
         $buildingAddress184->setLastChangeTime();
-               
+
         $buildingAddress185 = new BuildingAddress();
-        $buildingAddress185->setId(185);
         $buildingAddress185->setConstructionYear(2026);
         $buildingAddress185->setRenovationYear(2081);
         $buildingAddress185->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4874,9 +4499,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress185->setLivingType($livingType2);
         $buildingAddress185->setCreationTime();
         $buildingAddress185->setLastChangeTime();
-                
+
         $buildingAddress186 = new BuildingAddress();
-        $buildingAddress186->setId(186);
         $buildingAddress186->setConstructionYear(2026);
         $buildingAddress186->setRenovationYear(2081);
         $buildingAddress186->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4892,9 +4516,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress186->setLivingType($livingType2);
         $buildingAddress186->setCreationTime();
         $buildingAddress186->setLastChangeTime();
-                
+
         $buildingAddress187 = new BuildingAddress();
-        $buildingAddress187->setId(187);
         $buildingAddress187->setConstructionYear(2026);
         $buildingAddress187->setRenovationYear(2081);
         $buildingAddress187->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4910,9 +4533,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress187->setLivingType($livingType2);
         $buildingAddress187->setCreationTime();
         $buildingAddress187->setLastChangeTime();
-                            
+
         $buildingAddress188 = new BuildingAddress();
-        $buildingAddress188->setId(188);
         $buildingAddress188->setConstructionYear(2026);
         $buildingAddress188->setRenovationYear(2081);
         $buildingAddress188->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -4928,9 +4550,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress188->setLivingType($livingType2);
         $buildingAddress188->setCreationTime();
         $buildingAddress188->setLastChangeTime();
-           
+
         $buildingAddress189 = new BuildingAddress();
-        $buildingAddress189->setId(189);
         $buildingAddress189->setConstructionYear(1976);
         $buildingAddress189->setRenovationYear(2001);
         $buildingAddress189->setStreetName('Straatnaam A');
@@ -4945,10 +4566,9 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress189->setBuildingType($buildingType9);
         $buildingAddress189->setLivingType($livingType2);
         $buildingAddress189->setCreationTime();
-        $buildingAddress189->setLastChangeTime();     
-       
+        $buildingAddress189->setLastChangeTime();
+
         $buildingAddress190 = new BuildingAddress();
-        $buildingAddress190->setId(190);
         $buildingAddress190->setConstructionYear(1976);
         $buildingAddress190->setRenovationYear(2001);
         $buildingAddress190->setStreetName('Straatnaam A');
@@ -4964,9 +4584,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress190->setLivingType($livingType2);
         $buildingAddress190->setCreationTime();
         $buildingAddress190->setLastChangeTime();
-                
+
         $buildingAddress191 = new BuildingAddress();
-        $buildingAddress191->setId(191);
         $buildingAddress191->setConstructionYear(1976);
         $buildingAddress191->setRenovationYear(2001);
         $buildingAddress191->setStreetName('Straatnaam A');
@@ -4982,9 +4601,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress191->setLivingType($livingType2);
         $buildingAddress191->setCreationTime();
         $buildingAddress191->setLastChangeTime();
-                
+
         $buildingAddress192 = new BuildingAddress();
-        $buildingAddress192->setId(192);
         $buildingAddress192->setConstructionYear(1976);
         $buildingAddress192->setRenovationYear(2001);
         $buildingAddress192->setStreetName('Straatnaam A');
@@ -5000,9 +4618,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress192->setLivingType($livingType2);
         $buildingAddress192->setCreationTime();
         $buildingAddress192->setLastChangeTime();
-                
+
         $buildingAddress193 = new BuildingAddress();
-        $buildingAddress193->setId(193);
         $buildingAddress193->setConstructionYear(1976);
         $buildingAddress193->setRenovationYear(2001);
         $buildingAddress193->setStreetName('Straatnaam A');
@@ -5018,9 +4635,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress193->setLivingType($livingType2);
         $buildingAddress193->setCreationTime();
         $buildingAddress193->setLastChangeTime();
-                
+
         $buildingAddress194 = new BuildingAddress();
-        $buildingAddress194->setId(194);
         $buildingAddress194->setConstructionYear(1976);
         $buildingAddress194->setRenovationYear(2001);
         $buildingAddress194->setStreetName('Straatnaam A');
@@ -5036,9 +4652,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress194->setLivingType($livingType2);
         $buildingAddress194->setCreationTime();
         $buildingAddress194->setLastChangeTime();
-                
+
         $buildingAddress195 = new BuildingAddress();
-        $buildingAddress195->setId(195);
         $buildingAddress195->setConstructionYear(1976);
         $buildingAddress195->setRenovationYear(2001);
         $buildingAddress195->setStreetName('Straatnaam A');
@@ -5054,9 +4669,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress195->setLivingType($livingType2);
         $buildingAddress195->setCreationTime();
         $buildingAddress195->setLastChangeTime();
-                
+
         $buildingAddress196 = new BuildingAddress();
-        $buildingAddress196->setId(196);
         $buildingAddress196->setConstructionYear(1976);
         $buildingAddress196->setRenovationYear(2001);
         $buildingAddress196->setStreetName('Straatnaam A');
@@ -5072,9 +4686,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress196->setLivingType($livingType2);
         $buildingAddress196->setCreationTime();
         $buildingAddress196->setLastChangeTime();
-                
+
         $buildingAddress197 = new BuildingAddress();
-        $buildingAddress197->setId(197);
         $buildingAddress197->setConstructionYear(1976);
         $buildingAddress197->setRenovationYear(2001);
         $buildingAddress197->setStreetName('Straatnaam A');
@@ -5090,9 +4703,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress197->setLivingType($livingType2);
         $buildingAddress197->setCreationTime();
         $buildingAddress197->setLastChangeTime();
-                
+
         $buildingAddress198 = new BuildingAddress();
-        $buildingAddress198->setId(198);
         $buildingAddress198->setConstructionYear(1976);
         $buildingAddress198->setRenovationYear(2001);
         $buildingAddress198->setStreetName('Straatnaam A');
@@ -5108,9 +4720,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress198->setLivingType($livingType2);
         $buildingAddress198->setCreationTime();
         $buildingAddress198->setLastChangeTime();
-                
+
         $buildingAddress199 = new BuildingAddress();
-        $buildingAddress199->setId(199);
         $buildingAddress199->setConstructionYear(1976);
         $buildingAddress199->setRenovationYear(2001);
         $buildingAddress199->setStreetName('Straatnaam A');
@@ -5126,9 +4737,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress199->setLivingType($livingType2);
         $buildingAddress199->setCreationTime();
         $buildingAddress199->setLastChangeTime();
-      
+
         $block1 = new Block();
-        $block1->setId(1);
         $block1->setCode('NAP A1');
         $block1->setName('Napoleoncomplex');
         $block1->setFinancialNumber('1111');
@@ -5171,7 +4781,6 @@ class LoadTestHousingStockData extends Fixture
         $block1->setLastChangeTime();
 
         $block2 = new Block();
-        $block2->setId(2);
         $block2->setCode('Æ æ Œ œ ');
         $block2->setName('Ą ą Ę ę ');
         $block2->setFinancialNumber('2222');
@@ -5185,7 +4794,6 @@ class LoadTestHousingStockData extends Fixture
         $block2->setLastChangeTime();
 
         $block3 = new Block();
-        $block3->setId(3);
         $block3->setCode('C001');
         $block3->setName('Complex 20.66-078');
         $block3->setFinancialNumber('3333');
@@ -5195,7 +4803,6 @@ class LoadTestHousingStockData extends Fixture
         $block3->setLastChangeTime();
 
         $block4 = new Block();
-        $block4->setId(4);
         $block4->setCode('mobilisatiecomplex');
         $block4->setName('Complex 20028123');
         $block4->setFinancialNumber('4444');
@@ -5220,7 +4827,6 @@ class LoadTestHousingStockData extends Fixture
         $block4->setLastChangeTime();
 
         $block5 = new Block();
-        $block5->setId(5);
         $block5->setCode('4567894645');
         $block5->setName('áé200');
         $block5->setFinancialNumber('5555');
@@ -5240,7 +4846,6 @@ class LoadTestHousingStockData extends Fixture
         $block5->setLastChangeTime();
 
         $block6 = new Block();
-        $block6->setId(6);
         $block6->setCode('C-20');
         $block6->setName('Z-2076A');
         $block6->setFinancialNumber('6666');
@@ -5251,7 +4856,6 @@ class LoadTestHousingStockData extends Fixture
         $block6->setLastChangeTime();
 
         $block7 = new Block();
-        $block7->setId(7);
         $block7->setCode('ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ');
         $block7->setName('ɨ ʉ ɯ ɪ ʏ ʊ ø ɘ ɵ ɤ ə ɛ œ ɜ ɞ ʌ ɔ æ ɐ ɶ ɑ ɒ ɚ');
         $block7->setFinancialNumber('7777');
@@ -5264,7 +4868,6 @@ class LoadTestHousingStockData extends Fixture
         $block7->setLastChangeTime();
 
         $block8 = new Block();
-        $block8->setId(8);
         $block8->setCode('ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ');
         $block8->setName('ʈ ɖ ɟ ɢ ʔ ɱ ɳ ɲ ŋ ɴ ʙ ʀ ɽ ɸ β θɭ ʎ ʟ ʍ ɥ ʜ ʢ ʡ ɕ ʑ ɺ ɧ ɡ ʲ ʷ');
         $block8->setFinancialNumber('8888');
@@ -5341,7 +4944,6 @@ class LoadTestHousingStockData extends Fixture
         $block8->setLastChangeTime();
 
         $block9 = new Block();
-        $block9->setId(9);
         $block9->setCode('ID 899');
         $block9->setName('Complex 899');
         $block9->setFinancialNumber('9999');
@@ -5357,81 +4959,72 @@ class LoadTestHousingStockData extends Fixture
         $block9->addBuildingAddress($buildingAddress130);
         $block9->setCreationTime();
         $block9->setLastChangeTime();
-                       
+
         $buildingTypeSelection1 = new BuildingTypeSelection();
-        $buildingTypeSelection1->setId(1);
         $buildingTypeSelection1->setCode('lat1');
         $buildingTypeSelection1->setName('building type 1');
         $buildingTypeSelection1->setblock($block1);
         $buildingTypeSelection1->setbuildingType($buildingType1);
         $buildingTypeSelection1->setCreationTime();
         $buildingTypeSelection1->setLastChangeTime();
-        
+
         $buildingTypeSelection2 = new BuildingTypeSelection();
-        $buildingTypeSelection2->setId(2);
         $buildingTypeSelection2->setCode('lat2');
         $buildingTypeSelection2->setName('building type 2');
         $buildingTypeSelection2->setblock($block2);
         $buildingTypeSelection2->setbuildingType($buildingType2);
         $buildingTypeSelection2->setCreationTime();
         $buildingTypeSelection2->setLastChangeTime();
-        
+
         $buildingTypeSelection3 = new BuildingTypeSelection();
-        $buildingTypeSelection3->setId(3);
         $buildingTypeSelection3->setCode('lat3');
         $buildingTypeSelection3->setName('building type 3');
         $buildingTypeSelection3->setblock($block3);
         $buildingTypeSelection3->setbuildingType($buildingType3);
         $buildingTypeSelection3->setCreationTime();
         $buildingTypeSelection3->setLastChangeTime();
-        
+
         $buildingTypeSelection4 = new BuildingTypeSelection();
-        $buildingTypeSelection4->setId(4);
         $buildingTypeSelection4->setCode('lat4');
         $buildingTypeSelection4->setName('building type 4');
         $buildingTypeSelection4->setblock($block4);
         $buildingTypeSelection4->setbuildingType($buildingType2);
         $buildingTypeSelection4->setCreationTime();
         $buildingTypeSelection4->setLastChangeTime();
-        
+
         $buildingTypeSelection5 = new BuildingTypeSelection();
-        $buildingTypeSelection5->setId(5);
         $buildingTypeSelection5->setCode('lat5');
         $buildingTypeSelection5->setName('building type 5');
         $buildingTypeSelection5->setblock($block5);
         $buildingTypeSelection5->setbuildingType($buildingType4);
         $buildingTypeSelection5->setCreationTime();
         $buildingTypeSelection5->setLastChangeTime();
-        
+
         $buildingTypeSelection6 = new BuildingTypeSelection();
-        $buildingTypeSelection6->setId(6);
         $buildingTypeSelection6->setCode('lat6');
         $buildingTypeSelection6->setName('building type 6');
         $buildingTypeSelection6->setblock($block6);
         $buildingTypeSelection6->setbuildingType($buildingType6);
         $buildingTypeSelection6->setCreationTime();
         $buildingTypeSelection6->setLastChangeTime();
-        
+
         $buildingTypeSelection7 = new BuildingTypeSelection();
-        $buildingTypeSelection7->setId(7);
         $buildingTypeSelection7->setCode('lat7');
         $buildingTypeSelection7->setName('building type 7');
         $buildingTypeSelection7->setblock($block7);
         $buildingTypeSelection7->setbuildingType($buildingType7);
         $buildingTypeSelection7->setCreationTime();
         $buildingTypeSelection7->setLastChangeTime();
-        
+
         $buildingTypeSelection8 = new BuildingTypeSelection();
-        $buildingTypeSelection8->setId(8);
         $buildingTypeSelection8->setCode('lat8');
         $buildingTypeSelection8->setName('building type 8');
         $buildingTypeSelection8->setblock($block8);
         $buildingTypeSelection8->setbuildingType($buildingType5);
         $buildingTypeSelection8->setCreationTime();
         $buildingTypeSelection8->setLastChangeTime();
-                
+
         $buildingTypeSelection9 = new BuildingTypeSelection();
-        $buildingTypeSelection9->setId(9);
         $buildingTypeSelection9->setCode('lat9');
         $buildingTypeSelection9->setName('building type 9');
         $buildingTypeSelection9->setblock($block9);
@@ -5439,2410 +5032,1384 @@ class LoadTestHousingStockData extends Fixture
         $buildingTypeSelection9->setCreationTime();
         $buildingTypeSelection9->setLastChangeTime();
 
-        /**
-         * Below a list of owners, used as test set in the initial database.
-         *
-         * To be clear:
-         * - A housingstock can only be linked to one owner
-         * - Is is OK to make an owner but not link it to any housingstocks
-         */
+        $owner1 = new Owner();
+        $owner1->setName('Woonpartners Midden-Holland');
+        $owner1->setKvk('29045958');
+        $owner1->setBtw('NL804644433B01');
+        $owner1->setLNumber('L2114');
+        $owner1->setWebsite('https://www.woonpartners-mh.nl');
 
-        // This owner is linked to one housingstock
-        $owner1 = new Owner(); // Always start a new owner object with this line. Every owner gets it's own name like $owner1, $owner2, ..., $ownerN, etc.
-        $owner1->setId(1); // This is the ID the owner will get in the database. Following owner must get an unique auto increment ID number. 1, 2, 3, 4, ..., N, etc.
-        $owner1->setName('Woonpartners Midden-Holland'); // This is the name of the owner. In most cases this will be the name of the housing corporation.
-        $owner1->setKvk(01234567); // The KVK number of the housing corporation.
-        $owner1->setBtw('NL123456780B01'); // The BTW number of the housing corporation.
-        $owner1->setLNumber('L2114'); // The L number of the housing corporation.
-
-        // This housingstock is linked to 2 housingstocks
         $owner2 = new Owner();
-        $owner2->setId(2);
         $owner2->setName('WoonCompas');
-        $owner2->setKvk('01234568');
-        $owner2->setBtw('NL123456799B01');
+        $owner2->setKvk('24108743');
+        $owner2->setBtw('NL002776911B01');
         $owner2->setLNumber('L2110');
+        $owner2->setWebsite('https://www.wooncompas.nl');
 
-        // This owner is not linked to any housingstock                             
         $owner3 = new Owner();
-        $owner3->setId(3);
         $owner3->setName('Stichting Woningbedrijf Warnsveld');
-        $owner3->setKvk('01234569');
-        $owner3->setBtw('NL123456799B01');
         $owner3->setLNumber('L2104');
-        
+
         $owner4 = new Owner();
-        $owner4->setId(4);
         $owner4->setName('Woonstichting De Key');
-        $owner4->setKvk('01234569');
-        $owner4->setBtw('NL123456799B01');
         $owner4->setLNumber('L2103');
-       
+
         $owner5 = new Owner();
-        $owner5->setId(5);
         $owner5->setName('Stichting Goed Wonen Liempde');
-        $owner5->setKvk('01234569');
-        $owner5->setBtw('NL123456799B01');
         $owner5->setLNumber('L2101');
-        
+
         $owner6 = new Owner();
-        $owner6->setId(6);
         $owner6->setName('Noordwijkse Woningstichting');
-        $owner6->setKvk('01234569');
-        $owner6->setBtw('NL123456799B01');
         $owner6->setLNumber('L2092');
-        
+
         $owner7 = new Owner();
-        $owner7->setId(7);
         $owner7->setName('Woonstichtibng De zes Kernen');
-        $owner7->setKvk('01234569');
-        $owner7->setBtw('NL123456799B01');
         $owner7->setLNumber('L2090');
-        
+
         $owner8 = new Owner();
-        $owner8->setId(8);
         $owner8->setName('Stichting Woonplus Schiedam');
-        $owner8->setKvk('01234569');
-        $owner8->setBtw('NL123456799B01');
         $owner8->setLNumber('L2085');
-        
+
         $owner9 = new Owner();
-        $owner9->setId(9);
         $owner9->setName('Stichting Woondiensten Aarwoude');
-        $owner9->setKvk('01234569');
-        $owner9->setBtw('NL123456799B01');
         $owner9->setLNumber('L2084');
-        
+
         $owner10 = new Owner();
-        $owner10->setId(10);
         $owner10->setName('Woningstichting Nieuwkoop');
-        $owner10->setKvk('01234569');
-        $owner10->setBtw('NL123456799B01');
         $owner10->setLNumber('L2083');
-        
+
         $owner11 = new Owner();
-        $owner11->setId(11);
         $owner11->setName('Woningstichting Barneveld');
-        $owner11->setKvk('01234569');
-        $owner11->setBtw('NL123456799B01');
         $owner11->setLNumber('L2082');
-        
+
         $owner12 = new Owner();
-        $owner12->setId(12);
         $owner12->setName('Stichting Woningbedrijf Velsen');
-        $owner12->setKvk('01234569');
-        $owner12->etBtw('NL123456799B01');
         $owner12->setLNumber('L2073');
-        
+
         $owner13 = new Owner();
-        $owner13->setId(13);
         $owner13->setName('Waterweg wonen');
-        $owner13->setKvk('01234569');
-        $owner13->setBtw('NL123456799B01');
         $owner13->setLNumber('L2072');
-        
+
         $owner14 = new Owner();
-        $owner14->setId(14);
         $owner14->setName('Stichting Ymere');
-        $owner14->setKvk('01234569');
-        $owner14->setBtw('NL123456799B01');
         $owner14->setLNumber('L2070');
-       
+
         $owner15 = new Owner();
-        $owner15->setId(15);
         $owner15->setName('Rhenense Woningstichting');
-        $owner15->setKvk('01234569');
-        $owner15->setBtw('NL123456799B01');
         $owner15->setLNumber('L2068');
-        
+
         $owner16 = new Owner();
-        $owner16->setId(16);
         $owner16->setName('Wooncentrum Ouderen St. Zuidrandflat Gouda');
-        $owner16->setKvk('01234569');
-        $owner16->setBtw('NL123456799B01');
         $owner16->setLNumber('L2067');
-        
+
         $owner17 = new Owner();
-        $owner17->setId(17);
         $owner17->setName('Stichting Laurens Wonen ');
-        $owner17->setKvk('01234569');
-        $owner17->setBtw('NL123456799B01');
         $owner17->setLNumber('L2066');
-        
+
         $owner18 = new Owner();
-        $owner18->setId(18);
         $owner18->setName('Stichting Mitros');
-        $owner18->setKvk('01234569');
-        $owner18->setBtw('NL123456799B01');
         $owner18->setLNumber('L2058');
-        
+
         $owner19 = new Owner();
-        $owner19->setId(19);
         $owner19->setName('Ressort Wonen');
-        $owner19->setKvk('01234569');
-        $owner19->setBtw('NL123456799B01');
         $owner19->setLNumber('L2056');
-        
-        $owner20 = new Owner();
-        $owner20->setId(20);
-        $owner20->setName('');
-        $owner20->setKvk('01234569');
-        $owner20->setBtw('NL123456799B01');
-        $owner20->setLNumber('L00');
-        
+
+//        $owner20 = new Owner();
+//        $owner20->setId(20);
+//        $owner20->setName('');
+//        $owner20->setLNumber('L00');
+
         $owner21 = new Owner();
-        $owner21->setId(21);
         $owner21->setName('ZorgGoedBrabant');
-        $owner21->setKvk('01234569');
-        $owner21->setBtw('NL123456799B01');
         $owner21->setLNumber('L2053');
-        
+
         $owner22 = new Owner();
-        $owner22->setId(22);
         $owner22->setName('Woonstichting Etten-Leur');
-        $owner22->setKvk('01234569');
-        $owner22->etBtw('NL123456799B01');
         $owner22->setLNumber('L2052');
-        
+
         $owner23 = new Owner();
-        $owner23->setId(23);
         $owner23->setName('Stichting Woonstede');
-        $owner23->setKvk('01234569');
-        $owner23->setBtw('NL123456799B01');
         $owner23->setLNumber('L2051');
-        
+
         $owner24 = new Owner();
-        $owner24->setId(24);
         $owner24->setName('Veron');
-        $owner24->setKvk('01234569');
-        $owner24->setBtw('NL123456799B01');
         $owner24->setLNumber('L2047');
-       
+
         $owner25 = new Owner();
-        $owner25->setId(25);
         $owner25->setName('Stichting Wonen Wierden Enter');
-        $owner25->setKvk('01234569');
-        $owner25->setBtw('NL123456799B01');
         $owner25->setLNumber('L2044');
-        
+
         $owner26 = new Owner();
-        $owner26->setId(26);
         $owner26->setName('Stichting Woonpalet Zeewolde');
-        $owner26->setKvk('01234569');
-        $owner26->setBtw('NL123456799B01');
         $owner26->setLNumber('L2014');
-        
+
         $owner27 = new Owner();
-        $owner27->setId(27);
         $owner27->setName('Stichting DUWO');
-        $owner27->setKvk('01234569');
-        $owner27->setBtw('NL123456799B01');
         $owner27->setLNumber('L2004');
-        
+
         $owner28 = new Owner();
-        $owner28->setId(28);
         $owner28->setName('SHBO');
-        $owner28->setKvk('01234569');
-        $owner28->setBtw('NL123456799B01');
         $owner28->setLNumber('L1986');
-        
+
         $owner29 = new Owner();
-        $owner29->setId(29);
         $owner29->setName('Harmonisch Wonen');
-        $owner29->setKvk('01234569');
-        $owner29->setBtw('NL123456799B01');
         $owner29->setLNumber('L1985');
-        
+
         $owner30 = new Owner();
-        $owner30->setId(30);
         $owner30->setName('SIB Woonservice');
-        $owner30->setKvk('01234569');
-        $owner30->setBtw('NL123456799B01');
         $owner30->setLNumber('L1969');
-        
+
         $owner31 = new Owner();
-        $owner31->setId(31);
         $owner31->setName('Stichting Verzorgd Wonen SHBB');
-        $owner31->setKvk('01234569');
-        $owner31->setBtw('NL123456799B01');
         $owner31->setLNumber('L1966');
-        
+
         $owner32 = new Owner();
-        $owner32->setId(32);
         $owner32->setName('Stichting Jongeren Huisvesting Twente');
-        $owner32->setKvk('01234569');
-        $owner32->etBtw('NL123456799B01');
         $owner32->setLNumber('L1964');
-        
+
         $owner33 = new Owner();
-        $owner33->setId(33);
         $owner33->setName('SSHN');
-        $owner33->setKvk('01234569');
-        $owner33->setBtw('NL123456799B01');
         $owner33->setLNumber('L1944');
-        
+
         $owner34 = new Owner();
-        $owner34->setId(34);
         $owner34->setName('Stichting Huisvesting Vredewold');
-        $owner34->setKvk('01234569');
-        $owner34->setBtw('NL123456799B01');
         $owner34->setLNumber('L1933');
-       
-        $owner35 = new Owner();
-        $owner35->setId(35);
-        $owner35->setName('');
-        $owner35->setKvk('01234569');
-        $owner35->setBtw('NL123456799B01');
-        $owner35->setLNumber('L00');
-        
+
+//        $owner35 = new Owner();
+//        $owner35->setId(35);
+//        $owner35->setName('');
+//        $owner35->setLNumber('L00');
+
         $owner36 = new Owner();
-        $owner36->setId(36);
         $owner36->setName('Stichting Ouderenhuisvesting Rotterdam');
-        $owner36->setKvk('01234569');
-        $owner36->setBtw('NL123456799B01');
         $owner36->setLNumber('L1926');
-        
+
         $owner37 = new Owner();
-        $owner37->setId(37);
         $owner37->setName('Stichting Vestia Groep');
-        $owner37->setKvk('01234569');
-        $owner37->setBtw('NL123456799B01');
         $owner37->setLNumber('L1924');
-        
+
         $owner38 = new Owner();
-        $owner38->setId(38);
         $owner38->setName('Woonkracht10');
-        $owner38->setKvk('01234569');
-        $owner38->setBtw('NL123456799B01');
         $owner38->setLNumber('L1921');
-        
+
         $owner39 = new Owner();
-        $owner39->setId(39);
         $owner39->setName('Tiwos, Tilburgse Woonstichting');
-        $owner39->setKvk('01234569');
-        $owner39->setBtw('NL123456799B01');
         $owner39->setLNumber('L1913');
-        
+
         $owner40 = new Owner();
-        $owner40->setId(40);
         $owner40->setName('Stichting de Alliantie');
-        $owner40->setKvk('01234569');
-        $owner40->setBtw('NL123456799B01');
         $owner40->setLNumber('L1912');
-        
+
         $owner41 = new Owner();
-        $owner41->setId(41);
         $owner41->setName('Stichting WonenBreburg');
-        $owner41->setKvk('01234569');
-        $owner41->setBtw('NL123456799B01');
         $owner41->setLNumber('L1911');
-        
+
         $owner42 = new Owner();
-        $owner42->setId(42);
         $owner42->setName('WBO Wonen');
-        $owner42->setKvk('01234569');
-        $owner42->etBtw('NL123456799B01');
         $owner42->setLNumber('L1910');
-        
+
         $owner43 = new Owner();
-        $owner43->setId(43);
         $owner43->setName('Stichting Studenten Huisvesting');
-        $owner43->setKvk('01234569');
-        $owner43->setBtw('NL123456799B01');
         $owner43->setLNumber('L1909');
-        
+
         $owner44 = new Owner();
-        $owner44->setId(44);
         $owner44->setName('Brabantse Waard');
-        $owner44->setKvk('01234569');
-        $owner44->setBtw('NL123456799B01');
         $owner44->setLNumber('L1906');
-       
+
         $owner45 = new Owner();
-        $owner45->setId(45);
         $owner45->setName('Woningbouwvereniging Amerongen');
-        $owner45->setKvk('01234569');
-        $owner45->setBtw('NL123456799B01');
         $owner45->setLNumber('L1903');
-        
+
         $owner46 = new Owner();
-        $owner46->setId(46);
         $owner46->setName('Regionale Woningbouwvereniging Samenwerking ');
-        $owner46->setKvk('01234569');
-        $owner46->setBtw('NL123456799B01');
         $owner46->setLNumber('L1901');
-        
+
         $owner47 = new Owner();
-        $owner47->setId(47);
         $owner47->setName('Woningstichting De Volmacht');
-        $owner47->setKvk('01234569');
-        $owner47->setBtw('NL123456799B01');
         $owner47->setLNumber('L1899');
-        
+
         $owner48 = new Owner();
-        $owner48->setId(48);
         $owner48->setName('Woningstichting De Leeuw van Putten');
-        $owner48->setKvk('01234569');
-        $owner48->setBtw('NL123456799B01');
         $owner48->setLNumber('L1896');
-        
+
         $owner49 = new Owner();
-        $owner49->setId(49);
         $owner49->setName('Woonstichting Valburg');
-        $owner49->setKvk('01234569');
-        $owner49->setBtw('NL123456799B01');
         $owner49->setLNumber('L1893');
-        
+
         $owner50 = new Owner();
-        $owner50->setId(50);
         $owner50->setName('Woningbouwvereniging Oudewater');
-        $owner50->setKvk('01234569');
-        $owner50->setBtw('NL123456799B01');
         $owner50->setLNumber('L1892');
-        
+
         $owner51 = new Owner();
-        $owner51->setId(51);
         $owner51->setName('Woningstichting Goede Stede ');
-        $owner51->setKvk('01234569');
-        $owner51->setBtw('NL123456799B01');
         $owner51->setLNumber('L1891');
-        
+
         $owner52 = new Owner();
-        $owner52->setId(52);
         $owner52->setName('Woonstichting Centrada');
-        $owner52->setKvk('01234569');
-        $owner52->etBtw('NL123456799B01');
         $owner52->setLNumber('L1888');
-        
+
         $owner53 = new Owner();
-        $owner53->setId(53);
         $owner53->setName('Stichting Woningbeheer Betuwe');
-        $owner53->setKvk('01234569');
-        $owner53->setBtw('NL123456799B01');
         $owner53->setLNumber('L1881');
-        
+
         $owner54 = new Owner();
-        $owner54->setId(54);
         $owner54->setName('Woningstichting Leusden');
-        $owner54->setKvk('01234569');
-        $owner54->setBtw('NL123456799B01');
         $owner54->setLNumber('L1878');
-       
+
         $owner55 = new Owner();
-        $owner55->setId(55);
         $owner55->setName('Stichting Woonservice Drenthe');
-        $owner55->setKvk('01234569');
-        $owner55->setBtw('NL123456799B01');
         $owner55->setLNumber('L1877');
-        
+
         $owner56 = new Owner();
-        $owner56->setId(56);
         $owner56->setName('Stichting Maasdelta Groep');
-        $owner56->setKvk('01234569');
-        $owner56->setBtw('NL123456799B01');
         $owner56->setLNumber('L1876');
-        
+
         $owner57 = new Owner();
-        $owner57->setId(57);
         $owner57->setName('Stichting Woningcorporaties Het Gooi en Omstreken');
-        $owner57->setKvk('01234569');
-        $owner57->setBtw('NL123456799B01');
         $owner57->setLNumber('L1875');
-        
+
         $owner58 = new Owner();
-        $owner58->setId(58);
         $owner58->setName('Woningbouwvereniging "Lopik"');
-        $owner58->setKvk('01234569');
-        $owner58->setBtw('NL123456799B01');
         $owner58->setLNumber('L1866');
-        
+
         $owner59 = new Owner();
-        $owner59->setId(59);
         $owner59->setName('Woningstichting Putten');
-        $owner59->setKvk('01234569');
-        $owner59->setBtw('NL123456799B01');
         $owner59->setLNumber('L1865');
-        
+
         $owner60 = new Owner();
-        $owner60->setId(60);
         $owner60->setName('Wonen Vierlingsbeek');
-        $owner60->setKvk('01234569');
-        $owner60->setBtw('NL123456799B01');
         $owner60->setLNumber('L1864');
-        
+
         $owner61 = new Owner();
-        $owner61->setId(61);
         $owner61->setName('Oost Flevoland Woondiensten');
-        $owner61->setKvk('01234569');
-        $owner61->setBtw('NL123456799B01');
         $owner61->setLNumber('L1861');
-        
+
         $owner62 = new Owner();
-        $owner62->setId(62);
         $owner62->setName('Wovesto');
-        $owner62->setKvk('01234569');
-        $owner62->etBtw('NL123456799B01');
         $owner62->setLNumber('L1857');
-        
+
         $owner63 = new Owner();
-        $owner63->setId(63);
         $owner63->setName('Woonstichting Gendt');
-        $owner63->setKvk('01234569');
-        $owner63->setBtw('NL123456799B01');
         $owner63->setLNumber('L1855');
-        
+
         $owner64 = new Owner();
-        $owner64->setId(64);
         $owner64->setName('Woningstichting Kleine Meierij');
-        $owner64->setKvk('01234569');
-        $owner64->setBtw('NL123456799B01');
         $owner64->setLNumber('L1852');
-       
+
         $owner65 = new Owner();
-        $owner65->setId(65);
         $owner65->setName('Woningstichting Woensdrecht');
-        $owner65->setKvk('01234569');
-        $owner65->setBtw('NL123456799B01');
         $owner65->setLNumber('L1850');
-        
+
         $owner66 = new Owner();
-        $owner66->setId(66);
         $owner66->setName('Woningbouwvereniging Compaen');
-        $owner66->setKvk('01234569');
-        $owner66->setBtw('NL123456799B01');
         $owner66->setLNumber('L1847');
-        
+
         $owner67 = new Owner();
-        $owner67->setId(67);
         $owner67->setName('Woningstichting De Woonplaats');
-        $owner67->setKvk('01234569');
-        $owner67->setBtw('NL123456799B01');
         $owner67->setLNumber('L1842');
-        
+
         $owner68 = new Owner();
-        $owner68->setId(68);
         $owner68->setName('st. WoonGoed 2-Duizend');
-        $owner68->setKvk('01234569');
-        $owner68->setBtw('NL123456799B01');
         $owner68->setLNumber('L1839');
-        
+
         $owner69 = new Owner();
-        $owner69->setId(69);
         $owner69->setName('Woningvereniging Nederweert');
-        $owner69->setKvk('01234569');
-        $owner69->setBtw('NL123456799B01');
         $owner69->setLNumber('L1837');
-        
+
         $owner70 = new Owner();
-        $owner70->setId(70);
         $owner70->setName('Heuvelrug Wonen');
-        $owner70->setKvk('01234569');
-        $owner70->setBtw('NL123456799B01');
         $owner70->setLNumber('L1836');
-        
+
         $owner71 = new Owner();
-        $owner71->setId(71);
         $owner71->setName('Woningstichting Maasdriel');
-        $owner71->setKvk('01234569');
-        $owner71->setBtw('NL123456799B01');
         $owner71->setLNumber('L1835');
-        
+
         $owner72 = new Owner();
-        $owner72->setId(72);
         $owner72->setName('Woonstichting De Kernen');
-        $owner72->setKvk('01234569');
-        $owner72->etBtw('NL123456799B01');
         $owner72->setLNumber('L1825');
-        
+
         $owner73 = new Owner();
-        $owner73->setId(73);
         $owner73->setName('Laris Wonen en diensten');
-        $owner73->setKvk('01234569');
-        $owner73->setBtw('NL123456799B01');
         $owner73->setLNumber('L1821');
-        
+
         $owner74 = new Owner();
-        $owner74->setId(74);
         $owner74->setName('Stichting Mooiland');
-        $owner74->setKvk('01234569');
-        $owner74->setBtw('NL123456799B01');
         $owner74->setLNumber('L1817');
-       
+
         $owner75 = new Owner();
-        $owner75->setId(75);
         $owner75->setName('Stichting PeelrandWonen');
-        $owner75->setKvk('01234569');
-        $owner75->setBtw('NL123456799B01');
         $owner75->setLNumber('L1811');
-        
+
         $owner76 = new Owner();
-        $owner76->setId(76);
         $owner76->setName('Woningstichting Volksbelang');
-        $owner76->setKvk('01234569');
-        $owner76->setBtw('NL123456799B01');
         $owner76->setLNumber('L1807');
-        
+
         $owner77 = new Owner();
-        $owner77->setId(77);
         $owner77->setName('Mercatus');
-        $owner77->setKvk('01234569');
-        $owner77->setBtw('NL123456799B01');
         $owner77->setLNumber('L1804');
-        
+
         $owner78 = new Owner();
-        $owner78->setId(78);
         $owner78->setName('Woningstichting de Zaligheden');
-        $owner78->setKvk('01234569');
-        $owner78->setBtw('NL123456799B01');
         $owner78->setLNumber('L1794');
-        
+
         $owner79 = new Owner();
-        $owner79->setId(79);
         $owner79->setName('Stichting Acantus Groep');
-        $owner79->setKvk('01234569');
-        $owner79->setBtw('NL123456799B01');
         $owner79->setLNumber('L1793');
-        
+
         $owner80 = new Owner();
-        $owner80->setId(80);
         $owner80->setName('Stichting Thus wonen');
-        $owner80->setKvk('01234569');
-        $owner80->setBtw('NL123456799B01');
         $owner80->setLNumber('L1792');
-        
+
         $owner81 = new Owner();
-        $owner81->setId(81);
         $owner81->setName('Woonstichting Leystromen');
-        $owner81->setKvk('01234569');
-        $owner81->setBtw('NL123456799B01');
         $owner81->setLNumber('L1788');
-        
+
         $owner82 = new Owner();
-        $owner82->setId(82);
         $owner82->setName('Stichting WSG');
-        $owner82->setKvk('01234569');
-        $owner82->etBtw('NL123456799B01');
         $owner82->setLNumber('L1787');
-        
+
         $owner83 = new Owner();
-        $owner83->setId(83);
         $owner83->setName('Stichting Stadlander');
-        $owner83->setKvk('01234569');
-        $owner83->setBtw('NL123456799B01');
         $owner83->setLNumber('L1785');
-        
+
         $owner84 = new Owner();
-        $owner84->setId(84);
         $owner84->setName('Stichting Thuisvester');
-        $owner84->setKvk('01234569');
-        $owner84->setBtw('NL123456799B01');
         $owner84->setLNumber('L1781');
-       
+
         $owner85 = new Owner();
-        $owner85->setId(85);
         $owner85->setName('Staedion');
-        $owner85->setKvk('01234569');
-        $owner85->setBtw('NL123456799B01');
         $owner85->setLNumber('L1768');
-        
+
         $owner86 = new Owner();
-        $owner86->setId(86);
         $owner86->setName('Stichting woCom');
-        $owner86->setKvk('01234569');
-        $owner86->setBtw('NL123456799B01');
         $owner86->setLNumber('L1766');
-        
+
         $owner87 = new Owner();
-        $owner87->setId(87);
         $owner87->setName('Stichting Woonveste');
-        $owner87->setKvk('01234569');
-        $owner87->setBtw('NL123456799B01');
         $owner87->setLNumber('L1763');
-        
+
         $owner88 = new Owner();
-        $owner88->setId(88);
         $owner88->setName('Vieya');
-        $owner88->setKvk('01234569');
-        $owner88->setBtw('NL123456799B01');
         $owner88->setLNumber('L1762');
-        
+
         $owner89 = new Owner();
-        $owner89->setId(89);
         $owner89->setName('Bernardus wonen');
-        $owner89->setKvk('01234569');
-        $owner89->setBtw('NL123456799B01');
         $owner89->setLNumber('L1761');
-        
+
         $owner90 = new Owner();
-        $owner90->setId(90);
         $owner90->setName('Wbv. Reeuwijk');
-        $owner90->setKvk('01234569');
-        $owner90->setBtw('NL123456799B01');
         $owner90->setLNumber('L1760');
-        
+
         $owner91 = new Owner();
-        $owner91->setId(91);
         $owner91->setName('Wetland Wonen Groep');
-        $owner91->setKvk('01234569');
-        $owner91->setBtw('NL123456799B01');
         $owner91->setLNumber('L1753');
-        
+
         $owner92 = new Owner();
-        $owner92->setId(92);
         $owner92->setName('Stichting Woningcorporatie WoonGenoot');
-        $owner92->setKvk('01234569');
-        $owner92->etBtw('NL123456799B01');
         $owner92->setLNumber('L1748');
-        
+
         $owner93 = new Owner();
-        $owner93->setId(93);
         $owner93->setName('Goed Wonen');
-        $owner93->setKvk('01234569');
-        $owner93->setBtw('NL123456799B01');
         $owner93->setLNumber('L1745');
-        
+
         $owner94 = new Owner();
-        $owner94->setId(94);
         $owner94->setName('Stichting Woonservice Urbanus');
-        $owner94->setKvk('01234569');
-        $owner94->setBtw('NL123456799B01');
         $owner94->setLNumber('L1723');
-       
+
         $owner95 = new Owner();
-        $owner95->setId(95);
         $owner95->setName('Woningstichting Goed Wonen');
-        $owner95->setKvk('01234569');
-        $owner95->setBtw('NL123456799B01');
         $owner95->setLNumber('L1718');
-        
+
         $owner96 = new Owner();
-        $owner96->setId(96);
         $owner96->setName('Stichting Viveste');
-        $owner96->setKvk('01234569');
-        $owner96->setBtw('NL123456799B01');
         $owner96->setLNumber('L1716');
-        
+
         $owner97 = new Owner();
-        $owner97->setId(97);
         $owner97->setName('Wbv de Kombinatie');
-        $owner97->setKvk('01234569');
-        $owner97->setBtw('NL123456799B01');
         $owner97->setLNumber('L1713');
-        
+
         $owner98 = new Owner();
-        $owner98->setId(98);
         $owner98->setName('Chr. Woonstichting Patrimonium');
-        $owner98->setKvk('01234569');
-        $owner98->setBtw('NL123456799B01');
         $owner98->setLNumber('L1712');
-        
+
         $owner99 = new Owner();
-        $owner99->setId(99);
         $owner99->setName('Christelijke Woningstichting De Goede Woning');
-        $owner99->setKvk('01234569');
-        $owner99->setBtw('NL123456799B01');
         $owner99->setLNumber('L1709');
-        
+
         $owner100 = new Owner();
-        $owner100->setId(100);
         $owner100->setName('Woonstichting Land van Altena');
-        $owner100->setKvk('01234569');
-        $owner100->setBtw('NL123456799B01');
-        $owner100->setLNumber('L1704')
-        
+        $owner100->setLNumber('L1704');
+
         $owner101 = new Owner();
-        $owner101->setId(101);
         $owner101->setName('wbv Beter Wonen');
-        $owner101->setKvk('01234569');
-        $owner101->setBtw('NL123456799B01');
         $owner101->setLNumber('L1700');
-        
+
         $owner102 = new Owner();
-        $owner102->setId(102);
         $owner102->setName('Wonen Limburg');
-        $owner102->setKvk('01234569');
-        $owner102->etBtw('NL123456799B01');
         $owner102->setLNumber('L1697');
-                       
+
         $owner103 = new Owner();
-        $owner103->setId(103);
         $owner103->setName('Woningstichting Nijkerk');
-        $owner103->setKvk('01234569');
-        $owner103->setBtw('NL123456799B01');
         $owner103->setLNumber('L1693');
-        
+
         $owner104 = new Owner();
-        $owner104->setId(104);
         $owner104->setName('Ons Huis Woningstichting');
-        $owner104->setKvk('01234569');
-        $owner104->setBtw('NL123456799B01');
         $owner104->setLNumber('L1691');
-       
+
         $owner105 = new Owner();
-        $owner105->setId(105);
         $owner105->setName('Woningstichting St. Joseph');
-        $owner105->setKvk('01234569');
-        $owner105->setBtw('NL123456799B01');
         $owner105->setLNumber('L1689');
-        
+
         $owner106 = new Owner();
-        $owner106->setId(106);
         $owner106->setName('de Woonmensen/SJA');
-        $owner106->setKvk('01234569');
-        $owner106->setBtw('NL123456799B01');
         $owner106->setLNumber('L1680');
-        
+
         $owner107 = new Owner();
-        $owner107->setId(107);
         $owner107->setName('Woningstichting Tubbergen');
-        $owner107->setKvk('01234569');
-        $owner107->setBtw('NL123456799B01');
         $owner107->setLNumber('L1678');
-        
+
         $owner108 = new Owner();
-        $owner108->setId(108);
         $owner108->setName('Steelande wonen');
-        $owner108->setKvk('01234569');
-        $owner108->setBtw('NL123456799B01');
         $owner108->setLNumber('L1675');
-        
+
         $owner109 = new Owner();
-        $owner109->setId(109);
         $owner109->setName('Chr. stichting BCM wonen');
-        $owner109->setKvk('01234569');
-        $owner109->setBtw('NL123456799B01');
         $owner109->setLNumber('L1674');
-        
+
         $owner110 = new Owner();
-        $owner110->setId(110);
         $owner110->setName('Oosterpoort Wooncombinatie');
-        $owner110->setKvk('01234569');
-        $owner110->setBtw('NL123456799B01');
         $owner110->setLNumber('L1670');
-        
+
         $owner111 = new Owner();
-        $owner111->setId(111);
         $owner111->setName('Stichting Woonfriesland');
-        $owner111->setKvk('01234569');
-        $owner111->setBtw('NL123456799B01');
         $owner111->setLNumber('L1663');
-        
+
         $owner112 = new Owner();
-        $owner112->setId(112);
         $owner112->setName('Stichting Woonpartners');
-        $owner112->setKvk('01234569');
-        $owner112->etBtw('NL123456799B01');
         $owner112->setLNumber('L1647');
-        
+
         $owner113 = new Owner();
-        $owner113->setId(113);
         $owner113->setName('Stichting Woonzorg Nederland');
-        $owner113->setKvk('01234569');
-        $owner113->setBtw('NL123456799B01');
         $owner113->setLNumber('L1646');
-        
+
         $owner114 = new Owner();
-        $owner114->setId(114);
         $owner114->setName('Woningbouwvereniging Hoek van Holand');
-        $owner114->setKvk('01234569');
-        $owner114->setBtw('NL123456799B01');
         $owner114->setLNumber('L1640');
-       
+
         $owner115 = new Owner();
-        $owner115->setId(115);
         $owner115->setName('Stichting Accolade');
-        $owner115->setKvk('01234569');
-        $owner115->setBtw('NL123456799B01');
         $owner115->setLNumber('L1638');
-        
+
         $owner116 = new Owner();
-        $owner116->setId(116);
         $owner116->setName('Stichting Wonen Wittem');
-        $owner116->setKvk('01234569');
-        $owner116->setBtw('NL123456799B01');
         $owner116->setLNumber('L1622');
-        
+
         $owner117 = new Owner();
-        $owner117->setId(117);
         $owner117->setName('Kennemerhave');
-        $owner117->setKvk('01234569');
-        $owner117->setBtw('NL123456799B01');
         $owner117->setLNumber('L1612');
-        
+
         $owner118 = new Owner();
-        $owner118->setId(118);
         $owner118->setName('Stichting Woonburg');
-        $owner118->setKvk('01234569');
-        $owner118->setBtw('NL123456799B01');
         $owner118->setLNumber('L1606');
-        
+
         $owner119 = new Owner();
-        $owner119->setId(119);
         $owner119->setName('Woningstichting Gouderak');
-        $owner119->setKvk('01234569');
-        $owner119->setBtw('NL123456799B01');
         $owner119->setLNumber('L1598');
-        
+
         $owner120 = new Owner();
-        $owner120->setId(120);
         $owner120->setName('Woningbouwstichting Lek en Waard Wonen');
-        $owner120->setKvk('01234569');
-        $owner120->setBtw('NL123456799B01');
         $owner120->setLNumber('L1597');
-        
+
         $owner121 = new Owner();
-        $owner121->setId(121);
         $owner121->setName('Woningbouwstichting Cothen');
-        $owner121->setKvk('01234569');
-        $owner121->setBtw('NL123456799B01');
         $owner121->setLNumber('L1588');
-        
+
         $owner122 = new Owner();
-        $owner122->setId(122);
         $owner122->setName('Woningbouwvereniging Nieuw-Lekkerland');
-        $owner122->setKvk('01234569');
-        $owner122->etBtw('NL123456799B01');
         $owner122->setLNumber('L1586');
-        
+
         $owner123 = new Owner();
-        $owner123->setId(123);
         $owner123->setName('Woningbouwvereniging Vecht en Omstreken ');
-        $owner123->setKvk('01234569');
-        $owner123->setBtw('NL123456799B01');
         $owner123->setLNumber('L1585');
-        
+
         $owner124 = new Owner();
-        $owner124->setId(124);
         $owner124->setName('Bouwvereniging Ambt Delden');
-        $owner124->setKvk('01234569');
-        $owner124->setBtw('NL123456799B01');
         $owner124->setLNumber('L1584');
-       
+
         $owner125 = new Owner();
-        $owner125->setId(125);
         $owner125->setName('Zeeuwland');
-        $owner125->setKvk('01234569');
-        $owner125->setBtw('NL123456799B01');
         $owner125->setLNumber('L1581');
-        
+
         $owner126 = new Owner();
-        $owner126->setId(126);
         $owner126->setName('Woningstichting Wuta');
-        $owner126->setKvk('01234569');
-        $owner126->setBtw('NL123456799B01');
         $owner126->setLNumber('L1579');
-        
+
         $owner127 = new Owner();
-        $owner127->setId(127);
         $owner127->setName('Groen Wonen Vlist');
-        $owner127->setKvk('01234569');
-        $owner127->setBtw('NL123456799B01');
         $owner127->setLNumber('L1573');
-        
+
         $owner128 = new Owner();
-        $owner128->setId(128);
         $owner128->setName('Woongoed ZVL');
-        $owner128->setKvk('01234569');
-        $owner128->setBtw('NL123456799B01');
         $owner128->setLNumber('L1569');
-        
+
         $owner129 = new Owner();
-        $owner129->setId(129);
         $owner129->setName('Stichting Woontij');
-        $owner129->setKvk('01234569');
-        $owner129->setBtw('NL123456799B01');
         $owner129->setLNumber('L1560');
-        
+
         $owner130 = new Owner();
-        $owner130->setId(130);
         $owner130->setName('wbv Beter Wonen');
-        $owner130->setKvk('01234569');
-        $owner130->setBtw('NL123456799B01');
         $owner130->setLNumber('L1559');
-        
+
         $owner131 = new Owner();
-        $owner131->setId(131);
         $owner131->setName('Woningbouwvereniging "Goed Wonen"');
-        $owner131->setKvk('01234569');
-        $owner131->setBtw('NL123456799B01');
         $owner131->setLNumber('L1550');
-        
+
         $owner132 = new Owner();
-        $owner132->setId(132);
         $owner132->setName('Poort6');
-        $owner132->setKvk('01234569');
-        $owner132->etBtw('NL123456799B01');
         $owner132->setLNumber('L1549');
-        
+
         $owner133 = new Owner();
-        $owner133->setId(133);
         $owner133->setName('Woongoed GO');
-        $owner133->setKvk('01234569');
-        $owner133->setBtw('NL123456799B01');
         $owner133->setLNumber('L1544');
-        
+
         $owner134 = new Owner();
-        $owner134->setId(134);
         $owner134->setName('Vallei Wonen ');
-        $owner134->setKvk('01234569');
-        $owner134->setBtw('NL123456799B01');
         $owner134->setLNumber('L1543');
-       
+
         $owner135 = new Owner();
-        $owner135->setId(135);
         $owner135->setName('Stichting Lefier');
-        $owner135->setKvk('01234569');
-        $owner135->setBtw('NL123456799B01');
         $owner135->setLNumber('L1542');
-        
+
         $owner136 = new Owner();
-        $owner136->setId(136);
         $owner136->setName('Stichting WOONopMAAT');
-        $owner136->setKvk('01234569');
-        $owner136->setBtw('NL123456799B01');
         $owner136->setLNumber('L1533');
-        
+
         $owner137 = new Owner();
-        $owner137->setId(137);
         $owner137->setName('wbs Samenwerking');
-        $owner137->setKvk('01234569');
-        $owner137->setBtw('NL123456799B01');
         $owner137->setLNumber('L1532');
-        
+
         $owner138 = new Owner();
-        $owner138->setId(138);
         $owner138->setName('Stichting Woningbeheer De Vooruitgang');
-        $owner138->setKvk('01234569');
-        $owner138->setBtw('NL123456799B01');
         $owner138->setLNumber('L1525');
-        
+
         $owner139 = new Owner();
-        $owner139->setId(139Rijnhart Wonen);
-        $owner139->setName('');
-        $owner139->setKvk('01234569');
-        $owner139->setBtw('NL123456799B01');
+        $owner139->setName('Rijnhart Wonen');
         $owner139->setLNumber('L1524');
-        
+
         $owner140 = new Owner();
-        $owner140->setId(140);
         $owner140->setName('Stichting Wooninc.');
-        $owner140->setKvk('01234569');
-        $owner140->setBtw('NL123456799B01');
         $owner140->setLNumber('L1519');
-        
+
         $owner141 = new Owner();
-        $owner141->setId(141);
         $owner141->setName('Woningstichting SallandWonen');
-        $owner141->setKvk('01234569');
-        $owner141->setBtw('NL123456799B01');
         $owner141->setLNumber('L1506');
-        
+
         $owner142 = new Owner();
-        $owner142->setId(142);
         $owner142->setName('Woningstichting Kamerik');
-        $owner142->setKvk('01234569');
-        $owner142->etBtw('NL123456799B01');
         $owner142->setLNumber('L1498');
-        
+
         $owner143 = new Owner();
-        $owner143->setId(143);
         $owner143->setName('Woningstichting Kessel');
-        $owner143->setKvk('01234569');
-        $owner143->setBtw('NL123456799B01');
         $owner143->setLNumber('L1491');
-        
+
         $owner144 = new Owner();
-        $owner144->setId(144);
         $owner144->setName('Talis');
-        $owner144->setKvk('01234569');
-        $owner144->setBtw('NL123456799B01');
         $owner144->setLNumber('L1479');
-       
+
         $owner145 = new Owner();
-        $owner145->setId(145);
         $owner145->setName('Woonwijze');
-        $owner145->setKvk('01234569');
-        $owner145->setBtw('NL123456799B01');
         $owner145->setLNumber('L1471');
-        
+
         $owner146 = new Owner();
-        $owner146->setId(146);
         $owner146->setName('Stichting Woningbeheer Born-Grevenbicht');
-        $owner146->setKvk('01234569');
-        $owner146->setBtw('NL123456799B01');
         $owner146->setLNumber('L1468');
-        
+
         $owner147 = new Owner();
-        $owner147->setId(147);
         $owner147->setName('Stichting Woonbedrijf SWS.Hhvl');
-        $owner147->setKvk('01234569');
-        $owner147->setBtw('NL123456799B01');
         $owner147->setLNumber('L1464');
-        
+
         $owner148 = new Owner();
-        $owner148->setId(148);
         $owner148->setName('R.K. Woningbouwstichting De Goede Woning');
-        $owner148->setKvk('01234569');
-        $owner148->setBtw('NL123456799B01');
         $owner148->setLNumber('L1459');
-        
+
         $owner149 = new Owner();
-        $owner149->setId(149);
         $owner149->setName('Dunavie');
-        $owner149->setKvk('01234569');
-        $owner149->setBtw('NL123456799B01');
         $owner149->setLNumber('L1436');
-        
+
         $owner150 = new Owner();
-        $owner150->setId(150);
         $owner150->setName('Woningcorporatie Domijn');
-        $owner150->setKvk('01234569');
-        $owner150->setBtw('NL123456799B01');
         $owner150->setLNumber('L1426');
-        
+
         $owner151 = new Owner();
-        $owner151->setId(151);
         $owner151->setName('Stichting Woonbedrijf ieder1');
-        $owner151->setKvk('01234569');
-        $owner151->setBtw('NL123456799B01');
         $owner151->setLNumber('L1418');
-        
+
         $owner152 = new Owner();
-        $owner152->setId(152);
         $owner152->setName('Woningstichting Buitenlust');
-        $owner152->setKvk('01234569');
-        $owner152->etBtw('NL123456799B01');
         $owner152->setLNumber('L1415');
-        
+
         $owner153 = new Owner();
-        $owner153->setId(153);
         $owner153->setName('Woningstichting Hellendoorn');
-        $owner153->setKvk('01234569');
-        $owner153->setBtw('NL123456799B01');
         $owner153->setLNumber('L1413');
-        
+
         $owner154 = new Owner();
-        $owner154->setId(154);
         $owner154->setName('Stichting Woonservice IJsselland');
-        $owner154->setKvk('01234569');
-        $owner154->setBtw('NL123456799B01');
         $owner154->setLNumber('L1409');
-       
+
         $owner155 = new Owner();
-        $owner155->setId(155);
         $owner155->setName('Woningstichting Den Helder');
-        $owner155->setKvk('01234569');
-        $owner155->setBtw('NL123456799B01');
         $owner155->setLNumber('L1399');
-        
+
         $owner156 = new Owner();
-        $owner156->setId(156);
         $owner156->setName('Winingbouwvereniging Maarn');
-        $owner156->setKvk('01234569');
-        $owner156->setBtw('NL123456799B01');
         $owner156->setLNumber('L1395');
-        
+
         $owner157 = new Owner();
-        $owner157->setId(157);
         $owner157->setName('Woningbouwstichting de Gemeenschap');
-        $owner157->setKvk('01234569');
-        $owner157->setBtw('NL123456799B01');
         $owner157->setLNumber('L1357');
-        
+
         $owner158 = new Owner();
-        $owner158->setId(158);
         $owner158->setName('Woningstichting Eendracht');
-        $owner158->setKvk('01234569');
-        $owner158->setBtw('NL123456799B01');
         $owner158->setLNumber('L1306');
-        
+
         $owner159 = new Owner();
-        $owner159->setId(159);
         $owner159->setName('Woningstichting Obbicht & Papenhoven');
-        $owner159->setKvk('01234569');
-        $owner159->setBtw('NL123456799B01');
         $owner159->setLNumber('L1247');
-        
+
         $owner160 = new Owner();
-        $owner160->setId(160);
         $owner160->setName('IJsseldal Wonen');
-        $owner160->setKvk('01234569');
-        $owner160->setBtw('NL123456799B01');
         $owner160->setLNumber('L1239');
-        
+
         $owner161 = new Owner();
-        $owner161->setId(161);
         $owner161->setName('Woonstichting St. Joseph');
-        $owner161->setKvk('01234569');
-        $owner161->setBtw('NL123456799B01');
         $owner161->setLNumber('L1236');
-        
+
         $owner162 = new Owner();
-        $owner162->setId(162);
         $owner162->setName('Woonbeheer Borne');
-        $owner162->setKvk('01234569');
-        $owner162->etBtw('NL123456799B01');
         $owner162->setLNumber('L1235');
-        
+
         $owner163 = new Owner();
-        $owner163->setId(163);
         $owner163->setName('Woningbouwvereniging Bergopwaarts');
-        $owner163->setKvk('01234569');
-        $owner163->setBtw('NL123456799B01');
         $owner163->setLNumber('L1226');
-        
+
         $owner164 = new Owner();
-        $owner164->setId(164);
         $owner164->setName('Stichting VitaalWonen');
-        $owner164->setKvk('01234569');
-        $owner164->setBtw('NL123456799B01');
         $owner164->setLNumber('L1217');
-       
+
         $owner165 = new Owner();
-        $owner165->setId(165);
         $owner165->setName('Stichting 3B Wonen');
-        $owner165->setKvk('01234569');
-        $owner165->setBtw('NL123456799B01');
         $owner165->setLNumber('L1215');
-        
+
         $owner166 = new Owner();
-        $owner166->setId(166);
         $owner166->setName('Woningstichting Urmond');
-        $owner166->setKvk('01234569');
-        $owner166->setBtw('NL123456799B01');
         $owner166->setLNumber('L1207');
-        
+
         $owner167 = new Owner();
-        $owner167->setId(167);
         $owner167->setName('Stichting Woonwaard Noord-Kennemerland');
-        $owner167->setKvk('01234569');
-        $owner167->setBtw('NL123456799B01');
         $owner167->setLNumber('L1182');
-        
+
         $owner168 = new Owner();
-        $owner168->setId(168);
         $owner168->setName('WBV ST WILLIBRORDUS');
-        $owner168->setKvk('01234569');
-        $owner168->setBtw('NL123456799B01');
         $owner168->setLNumber('L1164');
-        
+
         $owner169 = new Owner();
-        $owner169->setId(169);
         $owner169->setName('Baston Wonen');
-        $owner169->setKvk('01234569');
-        $owner169->setBtw('NL123456799B01');
         $owner169->setLNumber('L1128');
-        
+
         $owner170 = new Owner();
-        $owner170->setId(170);
         $owner170->setName('Stichting Rijswijk Wonen');
-        $owner170->setKvk('01234569');
-        $owner170->setBtw('NL123456799B01');
         $owner170->setLNumber('L1122');
-        
+
         $owner171 = new Owner();
-        $owner171->setId(171);
         $owner171->setName('Stichting Nijestee');
-        $owner171->setKvk('01234569');
-        $owner171->setBtw('NL123456799B01');
         $owner171->setLNumber('L1109');
-        
+
         $owner172 = new Owner();
-        $owner172->setId(172);
         $owner172->setName('Wonen Midden-Delfland');
-        $owner172->setKvk('01234569');
-        $owner172->etBtw('NL123456799B01');
         $owner172->setLNumber('L1100');
-        
+
         $owner173 = new Owner();
-        $owner173->setId(173);
         $owner173->setName('Stichting Vidomes');
-        $owner173->setKvk('01234569');
-        $owner173->setBtw('NL123456799B01');
         $owner173->setLNumber('L1093');
-        
+
         $owner174 = new Owner();
-        $owner174->setId(174);
         $owner174->setName('Woningstichting Laarbeek');
-        $owner174->setKvk('01234569');
-        $owner174->setBtw('NL123456799B01');
         $owner174->setLNumber('L1082');
-       
+
         $owner175 = new Owner();
-        $owner175->setId(175);
         $owner175->setName('Stichting Welbions');
-        $owner175->setKvk('01234569');
-        $owner175->setBtw('NL123456799B01');
         $owner175->setLNumber('L1064');
-        
+
         $owner176 = new Owner();
-        $owner176->setId(176);
         $owner176->setName('Stichting Goed Wonen Zederik');
-        $owner176->setKvk('01234569');
-        $owner176->setBtw('NL123456799B01');
         $owner176->setLNumber('L1040');
-        
+
         $owner177 = new Owner();
-        $owner177->setId(177);
         $owner177->setName('Woningstichting Maasvallei Maastricht');
-        $owner177->setKvk('01234569');
-        $owner177->setBtw('NL123456799B01');
         $owner177->setLNumber('L1038');
-        
+
         $owner178 = new Owner();
-        $owner178->setId(178);
         $owner178->setName('Wbv De Goede Woning - Driemond');
-        $owner178->setKvk('01234569');
-        $owner178->setBtw('NL123456799B01');
         $owner178->setLNumber('L1034');
-        
+
         $owner179 = new Owner();
-        $owner179->setId(179);
         $owner179->setName('Sité Woondiensten');
-        $owner179->setKvk('01234569');
-        $owner179->setBtw('NL123456799B01');
         $owner179->setLNumber('L1017');
-        
+
         $owner180 = new Owner();
-        $owner180->setId(180);
         $owner180->setName('Laurentius');
-        $owner180->setKvk('01234569');
-        $owner180->setBtw('NL123456799B01');
         $owner180->setLNumber('L1005');
-        
+
         $owner181 = new Owner();
-        $owner181->setId(181);
         $owner181->setName('Woningbouwvereniging Helpt Elkander ');
-        $owner181->setKvk('01234569');
-        $owner181->setBtw('NL123456799B01');
         $owner181->setLNumber('L0992');
-        
+
         $owner182 = new Owner();
-        $owner182->setId(182);
         $owner182->setName('Maaskant Wonen');
-        $owner182->setKvk('01234569');
-        $owner182->etBtw('NL123456799B01');
         $owner182->setLNumber('L0986');
-        
+
         $owner183 = new Owner();
-        $owner183->setId(183);
         $owner183->setName('de Woningstichting');
-        $owner183->setKvk('01234569');
-        $owner183->setBtw('NL123456799B01');
         $owner183->setLNumber('L0979');
-        
+
         $owner184 = new Owner();
-        $owner184->setId(184);
         $owner184->setName('Omnia Wonen');
-        $owner184->setKvk('01234569');
-        $owner184->setBtw('NL123456799B01');
         $owner184->setLNumber('L0968');
-       
+
         $owner185 = new Owner();
-        $owner185->setId(185);
         $owner185->setName('Casade Woonstichting');
-        $owner185->setKvk('01234569');
-        $owner185->setBtw('NL123456799B01');
         $owner185->setLNumber('L0944');
-        
+
         $owner186 = new Owner();
-        $owner186->setId(186);
         $owner186->setName('Woongoed Middelburg');
-        $owner186->setKvk('01234569');
-        $owner186->setBtw('NL123456799B01');
         $owner186->setLNumber('L0943');
-        
+
         $owner187 = new Owner();
-        $owner187->setId(187);
         $owner187->setName('Stichting Christelijke Woningcorporatie');
-        $owner187->setKvk('01234569');
-        $owner187->setBtw('NL123456799B01');
         $owner187->setLNumber('L0939');
-        
+
         $owner188 = new Owner();
-        $owner188->setId(188);
         $owner188->setName('Eemland Wonen');
-        $owner188->setKvk('01234569');
-        $owner188->setBtw('NL123456799B01');
         $owner188->setLNumber('L0936');
-        
+
         $owner189 = new Owner();
-        $owner189->setId(189);
-        $owner189->setName('Woonstichting 't Heem');
-        $owner189->setKvk('01234569');
-        $owner189->setBtw('NL123456799B01');
+        $owner189->setName('Woonstichting \'t Heem');
         $owner189->setLNumber('L0928');
-        
+
         $owner190 = new Owner();
-        $owner190->setId(190);
         $owner190->setName('Trifolium Woondiensten Boskoop');
-        $owner190->setKvk('01234569');
-        $owner190->setBtw('NL123456799B01');
         $owner190->setLNumber('L0927');
-        
+
         $owner191 = new Owner();
-        $owner191->setId(191);
         $owner191->setName('Bouwvereniging Woningbelang');
-        $owner191->setKvk('01234569');
-        $owner191->setBtw('NL123456799B01');
         $owner191->setLNumber('L0923');
-        
+
         $owner192 = new Owner();
-        $owner192->setId(192);
         $owner192->setName('Woningstichting St. Joseph Almelo');
-        $owner192->setKvk('01234569');
-        $owner192->etBtw('NL123456799B01');
         $owner192->setLNumber('L0921');
-        
+
         $owner193 = new Owner();
-        $owner193->setId(193);
-        $owner193->setName('Stichting Wonion ');
-        $owner193->setKvk('01234569');
-        $owner193->setBtw('NL123456799B01');
+        $owner193->setName('Stichting Wonion');
         $owner193->setLNumber('L0898');
-        
+
         $owner194 = new Owner();
-        $owner194->setId(194);
         $owner194->setName('Stichting Area');
-        $owner194->setKvk('01234569');
-        $owner194->setBtw('NL123456799B01');
         $owner194->setLNumber('L0886');
-       
+
         $owner195 = new Owner();
-        $owner195->setId(195);
         $owner195->setName('Stichting De Woningbouw');
-        $owner195->setKvk('01234569');
-        $owner195->setBtw('NL123456799B01');
         $owner195->setLNumber('L0885');
-        
+
         $owner196 = new Owner();
-        $owner196->setId(196);
         $owner196->setName('Woningstichting Het Grootslag');
-        $owner196->setKvk('01234569');
-        $owner196->setBtw('NL123456799B01');
         $owner196->setLNumber('L0883');
-        
+
         $owner197 = new Owner();
-        $owner197->setId(197);
         $owner197->setName('Stichting De Woonschakel Westfriesland');
-        $owner197->setKvk('01234569');
-        $owner197->setBtw('NL123456799B01');
         $owner197->setLNumber('L0876');
-        
+
         $owner198 = new Owner();
-        $owner198->setId(198);
         $owner198->setName('Stichting Tablis Wonen (Sliedrecht)');
-        $owner198->setKvk('01234569');
-        $owner198->setBtw('NL123456799B01');
         $owner198->setLNumber('L0867');
-        
+
         $owner199 = new Owner();
-        $owner199->setId(199);
         $owner199->setName('Stichting Slagenland Wonen');
-        $owner199->setKvk('01234569');
-        $owner199->setBtw('NL123456799B01');
         $owner199->setLNumber('L0861');
-        
+
         $owner200 = new Owner();
-        $owner200->setId(200);
         $owner200->setName('Stichting Beter Wonen IJsselmuiden');
-        $owner200->setKvk('01234569');
-        $owner200->setBtw('NL123456799B01');
-        $owner200->setLNumber('L0858')        
+        $owner200->setLNumber('L0858');
 
         $owner201 = new Owner();
-        $owner201->setId(201);
         $owner201->setName('Woonstichting Jutphaas');
-        $owner201->setKvk('01234569');
-        $owner201->setBtw('NL123456799B01');
         $owner201->setLNumber('L0837');
-        
+
         $owner202 = new Owner();
-        $owner202->setId(202);
         $owner202->setName('Stichting ProWonen');
-        $owner202->setKvk('01234569');
-        $owner202->etBtw('NL123456799B01');
         $owner202->setLNumber('L0835');
-                       
+
         $owner203 = new Owner();
-        $owner203->setId(203);
         $owner203->setName('Woningbouwvereniging Heerjansdam');
-        $owner203->setKvk('01234569');
-        $owner203->setBtw('NL123456799B01');
         $owner203->setLNumber('L0817');
-        
+
         $owner204 = new Owner();
-        $owner204->setId(204);
         $owner204->setName('Woningstichting Brummen');
-        $owner204->setKvk('01234569');
-        $owner204->setBtw('NL123456799B01');
         $owner204->setLNumber('L0782');
-       
+
         $owner205 = new Owner();
-        $owner205->setId(205);
         $owner205->setName('Stichting GroenWest');
-        $owner205->setKvk('01234569');
-        $owner205->setBtw('NL123456799B01');
         $owner205->setLNumber('L0766');
-        
+
         $owner206 = new Owner();
-        $owner206->setId(206);
         $owner206->setName('Stichting Wonen Delden');
-        $owner206->setKvk('01234569');
-        $owner206->setBtw('NL123456799B01');
         $owner206->setLNumber('L0765');
-        
+
         $owner207 = new Owner();
-        $owner207->setId(207);
         $owner207->setName('Woningbouwvereniging Habeko Wonen');
-        $owner207->setKvk('01234569');
-        $owner207->setBtw('NL123456799B01');
         $owner207->setLNumber('L0764');
-        
+
         $owner208 = new Owner();
-        $owner208->setId(208);
         $owner208->setName('Woningstichting Beter Wonen Vechtdal');
-        $owner208->setKvk('01234569');
-        $owner208->setBtw('NL123456799B01');
         $owner208->setLNumber('L0762');
-        
+
         $owner209 = new Owner();
-        $owner209->setId(209);
         $owner209->setName('Woningstichting Kockengen');
-        $owner209->setKvk('01234569');
-        $owner209->setBtw('NL123456799B01');
         $owner209->setLNumber('L0758');
-        
+
         $owner210 = new Owner();
-        $owner210->setId(210);
         $owner210->setName('Woonstichting Groninger Huis');
-        $owner210->setKvk('01234569');
-        $owner210->setBtw('NL123456799B01');
         $owner210->setLNumber('L0740');
-        
+
         $owner211 = new Owner();
-        $owner211->setId(211);
         $owner211->setName('Patrimonium woonstichting');
-        $owner211->setKvk('01234569');
-        $owner211->setBtw('NL123456799B01');
         $owner211->setLNumber('L0734');
-        
+
         $owner212 = new Owner();
-        $owner212->setId(212);
         $owner212->setName('HW Wonen');
-        $owner212->setKvk('01234569');
-        $owner212->etBtw('NL123456799B01');
         $owner212->setLNumber('L0732');
-        
+
         $owner213 = new Owner();
-        $owner213->setId(213);
         $owner213->setName('Veenendaalse Woningstichting');
-        $owner213->setKvk('01234569');
-        $owner213->setBtw('NL123456799B01');
         $owner213->setLNumber('L0705');
-        
+
         $owner214 = new Owner();
-        $owner214->setId(214);
         $owner214->setName('Rentree');
-        $owner214->setKvk('01234569');
-        $owner214->setBtw('NL123456799B01');
         $owner214->setLNumber('L0694');
-       
+
         $owner215 = new Owner();
-        $owner215->setId(215);
         $owner215->setName('Woonvisie');
-        $owner215->setKvk('01234569');
-        $owner215->setBtw('NL123456799B01');
         $owner215->setLNumber('L0689');
-        
+
         $owner216 = new Owner();
-        $owner216->setId(216);
         $owner216->setName('Stichting Uithuizer Woningbouw');
-        $owner216->setKvk('01234569');
-        $owner216->setBtw('NL123456799B01');
         $owner216->setLNumber('L0688');
-        
+
         $owner217 = new Owner();
-        $owner217->setId(217);
         $owner217->setName('Stichting de Delthe');
-        $owner217->setKvk('01234569');
-        $owner217->setBtw('NL123456799B01');
         $owner217->setLNumber('L0686');
-        
+
         $owner218 = new Owner();
-        $owner218->setId(218);
         $owner218->setName('Woningstichting Ons Doel');
-        $owner218->setKvk('01234569');
-        $owner218->setBtw('NL123456799B01');
         $owner218->setLNumber('L0682');
-        
+
         $owner219 = new Owner();
-        $owner219->setId(219);
         $owner219->setName('Woningstichting Sint Antonius van Padua');
-        $owner219->setKvk('01234569');
-        $owner219->setBtw('NL123456799B01');
         $owner219->setLNumber('L0678');
-        
+
         $owner220 = new Owner();
-        $owner220->setId(220);
         $owner220->setName('Wonen Zuidwest Friesland');
-        $owner220->setKvk('01234569');
-        $owner220->setBtw('NL123456799B01');
         $owner220->setLNumber('L0676');
-        
+
         $owner221 = new Owner();
-        $owner221->setId(221);
         $owner221->setName('WoonInvest');
-        $owner221->setKvk('01234569');
-        $owner221->setBtw('NL123456799B01');
         $owner221->setLNumber('L0673');
-        
+
         $owner222 = new Owner();
-        $owner222->setId(222);
         $owner222->setName('Woningstichting Volksbelang');
-        $owner222->setKvk('01234569');
-        $owner222->etBtw('NL123456799B01');
         $owner222->setLNumber('L0672');
-        
+
         $owner223 = new Owner();
-        $owner223->setId(223);
         $owner223->setName('Woningstichting Domus');
-        $owner223->setKvk('01234569');
-        $owner223->setBtw('NL123456799B01');
         $owner223->setLNumber('L0669');
-        
+
         $owner224 = new Owner();
-        $owner224->setId(224);
         $owner224->setName('Wbv Van Erfgooiers');
-        $owner224->setKvk('01234569');
-        $owner224->setBtw('NL123456799B01');
         $owner224->setLNumber('L0667');
-       
+
         $owner225 = new Owner();
-        $owner225->setId(225);
         $owner225->setName('Woonborg');
-        $owner225->setKvk('01234569');
-        $owner225->setBtw('NL123456799B01');
         $owner225->setLNumber('L0666');
-        
+
         $owner226 = new Owner();
-        $owner226->setId(226);
         $owner226->setName('Woonbron');
-        $owner226->setKvk('01234569');
-        $owner226->setBtw('NL123456799B01');
         $owner226->setLNumber('L0665');
-        
+
         $owner227 = new Owner();
-        $owner227->setId(227);
         $owner227->setName('Woonstichting Vechthorst');
-        $owner227->setKvk('01234569');
-        $owner227->setBtw('NL123456799B01');
         $owner227->setLNumber('L0661');
-        
+
         $owner228 = new Owner();
-        $owner228->setId(228);
         $owner228->setName('Stichting Vivare');
-        $owner228->setKvk('01234569');
-        $owner228->setBtw('NL123456799B01');
         $owner228->setLNumber('L0658');
-        
+
         $owner229 = new Owner();
-        $owner229->setId(229);
         $owner229->setName('Woningstichting Dinteloord');
-        $owner229->setKvk('01234569');
-        $owner229->setBtw('NL123456799B01');
         $owner229->setLNumber('L0653');
-        
+
         $owner230 = new Owner();
-        $owner230->setId(230);
         $owner230->setName('Bouwvereniging Huis & Erf');
-        $owner230->setKvk('01234569');
-        $owner230->setBtw('NL123456799B01');
         $owner230->setLNumber('L0643');
-        
+
         $owner231 = new Owner();
-        $owner231->setId(231);
         $owner231->setName('Stichting Destion');
-        $owner231->setKvk('01234569');
-        $owner231->setBtw('NL123456799B01');
         $owner231->setLNumber('L0642');
-        
+
         $owner232 = new Owner();
-        $owner232->setId(232);
         $owner232->setName('Pré Wonen');
-        $owner232->setKvk('01234569');
-        $owner232->etBtw('NL123456799B01');
         $owner232->setLNumber('L0640');
-        
+
         $owner233 = new Owner();
-        $owner233->setId(233);
         $owner233->setName('Stichting De Sesyter Veste');
-        $owner233->setKvk('01234569');
-        $owner233->setBtw('NL123456799B01');
         $owner233->setLNumber('L0637');
-        
+
         $owner234 = new Owner();
-        $owner234->setId(234);
         $owner234->setName('Wonen Meerssen');
-        $owner324->setKvk('01234569');
-        $owner234->setBtw('NL123456799B01');
         $owner234->setLNumber('L0636');
-       
+
         $owner235 = new Owner();
-        $owner235->setId(235);
         $owner235->setName('Stichting Woningbouw Slochteren');
-        $owner235->setKvk('01234569');
-        $owner235->setBtw('NL123456799B01');
         $owner235->setLNumber('L0632');
-        
+
         $owner236 = new Owner();
-        $owner236->setId(236);
         $owner236->setName('Brederode Wonen');
-        $owner236->setKvk('01234569');
-        $owner236->setBtw('NL123456799B01');
         $owner236->setLNumber('L0630');
-        
+
         $owner237 = new Owner();
-        $owner237->setId(237);
         $owner237->setName('WBV Poortugaal ');
-        $owner237->setKvk('01234569');
-        $owner237->setBtw('NL123456799B01');
         $owner237->setLNumber('L0629');
-        
+
         $owner238 = new Owner();
-        $owner238->setId(238);
         $owner238->setName('Woningstichting Warmunda');
-        $owner238->setKvk('01234569');
-        $owner238->setBtw('NL123456799B01');
         $owner238->setLNumber('L0623');
-        
+
         $owner239 = new Owner();
-        $owner239->setId(239);
         $owner239->setName('Woonstichting SSW');
-        $owner239->setKvk('01234569');
-        $owner239->setBtw('NL123456799B01');
         $owner239->setLNumber('L0602');
-        
+
         $owner240 = new Owner();
-        $owner240->setId(240);
         $owner240->setName('Rondom Wonen');
-        $owner240->setKvk('01234569');
-        $owner240->setBtw('NL123456799B01');
         $owner240->setLNumber('L0590');
-        
+
         $owner241 = new Owner();
-        $owner241->setId(241);
         $owner241->setName('Woningstichting Kennemer Wonen');
-        $owner241->setKvk('01234569');
-        $owner241->setBtw('NL123456799B01');
         $owner241->setLNumber('L0583');
-        
+
         $owner242 = new Owner();
-        $owner242->setId(242);
         $owner242->setName('Omnivera');
-        $owner242->setKvk('01234569');
-        $owner242->etBtw('NL123456799B01');
         $owner242->setLNumber('L0582');
-        
+
         $owner243 = new Owner();
-        $owner243->setId(243);
         $owner243->setName('Woonstichting Hulst');
-        $owner243->setKvk('01234569');
-        $owner243->setBtw('NL123456799B01');
         $owner243->setLNumber('L0579');
-        
+
         $owner244 = new Owner();
-        $owner244->setId(244);
         $owner244->setName('Actium');
-        $owner244->setKvk('01234569');
-        $owner244->setBtw('NL123456799B01');
         $owner244->setLNumber('L0574');
-       
+
         $owner245 = new Owner();
-        $owner245->setId(245);
         $owner245->setName('Sprengenland Wonen');
-        $owner245->setKvk('01234569');
-        $owner245->setBtw('NL123456799B01');
         $owner245->setLNumber('L0573');
-        
+
         $owner246 = new Owner();
-        $owner246->setId(246);
         $owner246->setName('Woonpunt');
-        $owner246->setKvk('01234569');
-        $owner246->setBtw('NL123456799B01');
         $owner246->setLNumber('L0571');
-        
+
         $owner247 = new Owner();
-        $owner247->setId(247);
         $owner247->setName('Stichting Eelder Woningbouw');
-        $owner247->setKvk('01234569');
-        $owner247->setBtw('NL123456799B01');
         $owner247->setLNumber('L0568');
-        
+
         $owner248 = new Owner();
-        $owner248->setId(248);
         $owner248->setName('Stichting WonenCentraal');
-        $owner248->setKvk('01234569');
-        $owner248->setBtw('NL123456799B01');
         $owner248->setLNumber('L0565');
-        
+
         $owner249 = new Owner();
-        $owner249->setId(249);
         $owner249->setName('Stichting Elkien');
-        $owner249->setKvk('01234569');
-        $owner249->setBtw('NL123456799B01');
         $owner249->setLNumber('L0553');
-        
+
         $owner250 = new Owner();
-        $owner250->setId(250);
         $owner250->setName('Stichting R&B Wonen');
-        $owner250->setKvk('01234569');
-        $owner250->setBtw('NL123456799B01');
         $owner250->setLNumber('L0543');
-        
+
         $owner251 = new Owner();
-        $owner251->setId(251);
         $owner251->setName('Stichting QuaWonen');
-        $owner251->setKvk('01234569');
-        $owner251->setBtw('NL123456799B01');
         $owner251->setLNumber('L0540');
-        
+
         $owner252 = new Owner();
-        $owner252->setId(252);
         $owner252->setName('Woningbouwvereniging Laren');
-        $owner252->setKvk('01234569');
-        $owner252->etBtw('NL123456799B01');
         $owner252->setLNumber('L0533');
-        
+
         $owner253 = new Owner();
-        $owner253->setId(253);
         $owner253->setName('Woningstichting Simpelveld');
-        $owner253->setKvk('01234569');
-        $owner253->setBtw('NL123456799B01');
         $owner253->setLNumber('L0528');
-        
+
         $owner254 = new Owner();
-        $owner254->setId(254);
         $owner254->setName('Trudo');
-        $owner254->setKvk('01234569');
-        $owner254->setBtw('NL123456799B01');
         $owner254->setLNumber('L0527');
-       
+
         $owner255 = new Owner();
-        $owner255->setId(255);
         $owner255->setName('Stichting AWV Eigen Haard');
-        $owner255->setKvk('01234569');
-        $owner255->setBtw('NL123456799B01');
         $owner255->setLNumber('L0510');
-        
+
         $owner256 = new Owner();
-        $owner256->setId(256);
         $owner256->setName('FidesWonen');
-        $owner256->setKvk('01234569');
-        $owner256->setBtw('NL123456799B01');
         $owner256->setLNumber('L0506');
-        
+
         $owner257 = new Owner();
-        $owner257->setId(257);
         $owner257->setName('Stichting TBV');
-        $owner257->setKvk('01234569');
-        $owner257->setBtw('NL123456799B01');
         $owner257->setLNumber('L0497');
-        
+
         $owner258 = new Owner();
-        $owner258->setId(258);
         $owner258->setName('Stichting Allee Wonen');
-        $owner258->setKvk('01234569');
-        $owner258->setBtw('NL123456799B01');
         $owner258->setLNumber('L0495');
-        
+
         $owner259 = new Owner();
-        $owner259->setId(259);
         $owner259->setName('Wooncompagnie');
-        $owner259->setKvk('01234569');
-        $owner259->setBtw('NL123456799B01');
         $owner259->setLNumber('L0478');
-        
+
         $owner260 = new Owner();
-        $owner260->setId(260);
         $owner260->setName('Stichting Chr.Woongroep Marenland');
-        $owner260->setKvk('01234569');
-        $owner260->setBtw('NL123456799B01');
         $owner260->setLNumber('L0449');
-        
+
         $owner261 = new Owner();
-        $owner261->setId(261);
         $owner261->setName('Wooncorporatie De Goede Woning');
-        $owner261->setKvk('01234569');
-        $owner261->setBtw('NL123456799B01');
         $owner261->setLNumber('L0446');
-        
+
         $owner262 = new Owner();
-        $owner262->setId(262);
         $owner262->setName('Stichting Rhiant');
-        $owner262->setKvk('01234569');
-        $owner262->etBtw('NL123456799B01');
         $owner262->setLNumber('L0439');
-        
+
         $owner263 = new Owner();
-        $owner263->setId(263);
         $owner263->setName('Woningstichting Haag Wonen');
-        $owner263->setKvk('01234569');
-        $owner263->setBtw('NL123456799B01');
         $owner263->setLNumber('L0425');
-        
+
         $owner264 = new Owner();
-        $owner264->setId(264);
         $owner264->setName('Stichting Clavis');
-        $owner264->setKvk('01234569');
-        $owner264->setBtw('NL123456799B01');
         $owner264->setLNumber('L0418');
-       
+
         $owner265 = new Owner();
-        $owner265->setId(265);
         $owner265->setName('Stichting Arcade mensen en wonen');
-        $owner265->setKvk('01234569');
-        $owner265->setBtw('NL123456799B01');
         $owner265->setLNumber('L0410');
-        
+
         $owner266 = new Owner();
-        $owner266->setId(266);
         $owner266->setName('Havensteder');
-        $owner266->setKvk('01234569');
-        $owner266->setBtw('NL123456799B01');
         $owner266->setLNumber('L0392');
-        
+
         $owner267 = new Owner();
-        $owner267->setId(267);
         $owner267->setName('Woningstichting Naarden');
-        $owner267->setKvk('01234569');
-        $owner267->setBtw('NL123456799B01');
         $owner267->setLNumber('L0386');
-        
+
         $owner268 = new Owner();
-        $owner268->setId(268);
         $owner268->setName('Stichting De Huismeesters');
-        $owner268->setKvk('01234569');
-        $owner268->setBtw('NL123456799B01');
         $owner268->setLNumber('L0385');
-        
+
         $owner269 = new Owner();
-        $owner269->setId(269);
         $owner269->setName('Dudok Wonen');
-        $owner269->setKvk('01234569');
-        $owner269->setBtw('NL123456799B01');
         $owner269->setLNumber('L0383');
-        
+
         $owner270 = new Owner();
-        $owner270->setId(270);
         $owner270->setName('Christelijke Woningstichting Patrimonium');
-        $owner270->setKvk('01234569');
-        $owner270->setBtw('NL123456799B01');
         $owner270->setLNumber('L0380');
-        
+
         $owner271 = new Owner();
-        $owner271->setId(271);
         $owner271->setName('WBV Arnemuiden');
-        $owner271->setKvk('01234569');
-        $owner271->setBtw('NL123456799B01');
         $owner271->setLNumber('L0379');
-        
+
         $owner272 = new Owner();
-        $owner272->setId(272);
         $owner272->setName('Wst Samenwerking Vlaardingen');
-        $owner272->setKvk('01234569');
-        $owner272->etBtw('NL123456799B01');
         $owner272->setLNumber('L0371');
-        
+
         $owner273 = new Owner();
-        $owner273->setId(273);
         $owner273->setName('Stichting UWOON');
-        $owner273->setKvk('01234569');
-        $owner273->setBtw('NL123456799B01');
         $owner273->setLNumber('L0369');
-        
+
         $owner274 = new Owner();
-        $owner274->setId(274);
         $owner274->setName('Woningstichting Wierden en Borgen');
-        $owner274->setKvk('01234569');
-        $owner274->setBtw('NL123456799B01');
         $owner274->setLNumber('L0366');
-       
+
         $owner275 = new Owner();
-        $owner275->setId(275);
         $owner275->setName('Stichting Woonconcept');
-        $owner275->setKvk('01234569');
-        $owner275->setBtw('NL123456799B01');
         $owner275->setLNumber('L0363');
-        
+
         $owner276 = new Owner();
-        $owner276->setId(276);
         $owner276->setName('AWS Beter Wonen');
-        $owner276->setKvk('01234569');
-        $owner276->setBtw('NL123456799B01');
         $owner276->setLNumber('L0358');
-        
+
         $owner277 = new Owner();
-        $owner277->setId(277);
         $owner277->setName('Wonen Wateringen');
-        $owner277->setKvk('01234569');
-        $owner277->setBtw('NL123456799B01');
         $owner277->setLNumber('L0354');
-        
+
         $owner278 = new Owner();
-        $owner278->setId(278);
         $owner278->setName('Viverion');
-        $owner278->setKvk('01234569');
-        $owner278->setBtw('NL123456799B01');
         $owner278->setLNumber('L0347');
-        
+
         $owner279 = new Owner();
-        $owner279->setId(279);
         $owner279->setName('Stichting KleurrijkWonen');
-        $owner279->setKvk('01234569');
-        $owner279->setBtw('NL123456799B01');
         $owner279->setLNumber('L0343');
-        
+
         $owner280 = new Owner();
-        $owner280->setId(280);
         $owner280->setName('Woonstichting Vooruitgang');
-        $owner280->setKvk('01234569');
-        $owner280->setBtw('NL123456799B01');
         $owner280->setLNumber('L0333');
-        
+
         $owner281 = new Owner();
-        $owner281->setId(281);
         $owner281->setName('Woonstichting Vryleve');
-        $owner281->setKvk('01234569');
-        $owner281->setBtw('NL123456799B01');
         $owner281->setLNumber('L0331');
-        
+
         $owner282 = new Owner();
-        $owner282->setId(282);
         $owner282->setName('Provides');
-        $owner282->setKvk('01234569');
-        $owner282->etBtw('NL123456799B01');
         $owner282->setLNumber('L0317');
-        
+
         $owner283 = new Owner();
-        $owner283->setId(283);
         $owner283->setName('SVTwonen Tiel');
-        $owner283->setKvk('01234569');
-        $owner283->setBtw('NL123456799B01');
         $owner283->setLNumber('L0315');
-        
+
         $owner284 = new Owner();
-        $owner284->setId(284);
         $owner284->setName('Woonstichting Triada');
-        $owner284->setKvk('01234569');
-        $owner284->setBtw('NL123456799B01');
         $owner284->setLNumber('L0309');
-       
+
         $owner285 = new Owner();
-        $owner285->setId(285);
         $owner285->setName('Woningstichting Alkemade');
-        $owner285->setKvk('01234569');
-        $owner285->setBtw('NL123456799B01');
         $owner285->setLNumber('L0308');
-        
+
         $owner286 = new Owner();
-        $owner286->setId(286);
         $owner286->setName('Woningbouwvereniging langedijk');
-        $owner286->setKvk('01234569');
-        $owner286->setBtw('NL123456799B01');
         $owner286->setLNumber('L0305');
-        
+
         $owner287 = new Owner();
-        $owner287->setId(287);
         $owner287->setName('de Sleutels');
-        $owner287->setKvk('01234569');
-        $owner287->setBtw('NL123456799B01');
         $owner287->setLNumber('L0295');
-        
+
         $owner288 = new Owner();
-        $owner288->setId(288);
         $owner288->setName('Stichting Zaandamse Volkshuisvesting');
-        $owner288->setKvk('01234569');
-        $owner288->setBtw('NL123456799B01');
         $owner288->setLNumber('L0278');
-        
+
         $owner289 = new Owner();
-        $owner289->setId(289);
         $owner289->setName('Woningstichting Woonwenz');
-        $owner289->setKvk('01234569');
-        $owner289->setBtw('NL123456799B01');
         $owner289->setLNumber('L0274');
-        
+
         $owner290 = new Owner();
-        $owner290->setId(290);
         $owner290->setName('Wassenaarsche Bouwstichting');
-        $owner290->setKvk('01234569');
-        $owner290->setBtw('NL123456799B01');
         $owner290->setLNumber('L0272');
-        
+
         $owner291 = new Owner();
-        $owner291->setId(291);
         $owner291->setName('Woonservice Meander');
-        $owner291->setKvk('01234569');
-        $owner291->setBtw('NL123456799B01');
         $owner291->setLNumber('L0271');
-        
+
         $owner292 = new Owner();
-        $owner292->setId(292);
         $owner292->setName('Stichting ZO Wonen');
-        $owner292->setKvk('01234569');
-        $owner292->etBtw('NL123456799B01');
         $owner292->setLNumber('L0269');
-        
+
         $owner293 = new Owner();
-        $owner293->setId(293);
         $owner293->setName('Stichting Trivire');
-        $owner293->setKvk('01234569');
-        $owner293->setBtw('NL123456799B01');
         $owner293->setLNumber('L0267');
-        
+
         $owner294 = new Owner();
-        $owner294->setId(294);
         $owner294->setName('Woningstichting Heteren');
-        $owner294->setKvk('01234569');
-        $owner294->setBtw('NL123456799B01');
         $owner294->setLNumber('L0254');
-       
+
         $owner295 = new Owner();
-        $owner295->setId(295);
         $owner295->setName('Patrimonium Barendrecht');
-        $owner295->setKvk('01234569');
-        $owner295->setBtw('NL123456799B01');
         $owner295->setLNumber('L0248');
-        
+
         $owner296 = new Owner();
         $owner296->setId(1296);
         $owner296->setName('Stichting Antares Woonservice');
-        $owner296->setKvk('01234569');
-        $owner296->setBtw('NL123456799B01');
         $owner296->setLNumber('L0241');
-        
+
         $owner297 = new Owner();
-        $owner297->setId(297);
         $owner297->setName('Woningstichting Voerendaal');
-        $owner297->setKvk('01234569');
-        $owner297->setBtw('NL123456799B01');
         $owner297->setLNumber('L0238');
-        
+
         $owner298 = new Owner();
-        $owner298->setId(298);
         $owner298->setName('Standvast Wonen');
-        $owner298->setKvk('01234569');
-        $owner298->setBtw('NL123456799B01');
         $owner298->setLNumber('L0237');
-        
+
         $owner299 = new Owner();
-        $owner299->setId(299);
         $owner299->setName('Stichting Mozaïek Wonen');
-        $owner299->setKvk('01234569');
-        $owner299->setBtw('NL123456799B01');
         $owner299->setLNumber('L0232');
-        
+
         $owner300 = new Owner();
-        $owner300->setId(300);
         $owner300->setName('Stichting Elan Wonen');
-        $owner300->setKvk('01234569');
-        $owner300->setBtw('NL123456799B01');
-        $owner300->setLNumber('L0231')      
-        
+        $owner300->setLNumber('L0231');
+
         $owner301 = new Owner();
-        $owner301->setId(301);
         $owner301->setName('Woningstichting HEEMwonen');
-        $owner301->setKvk('01234569');
-        $owner301->setBtw('NL123456799B01');
-        $owner301->setLNumber('L0228')         
-       
+        $owner301->setLNumber('L0228');
+
         $owner302 = new Owner();
-        $owner302->setId(302);
         $owner302->setName('Stichting Weller Wonen');
-        $owner302->setKvk('01234569');
-        $owner302->setBtw('NL123456799B01');
-        $owner302->setLNumber('L0225') 
-        
+        $owner302->setLNumber('L0225');
+
         $owner303 = new Owner();
-        $owner303->setId(303);
         $owner303->setName('Waardwonen');
-        $owner303->setKvk('01234569');
-        $owner303->setBtw('NL123456799B01');
-        $owner303->setLNumber('L0221')         
-       
+        $owner303->setLNumber('L0221');
+
         $owner304 = new Owner();
-        $owner304->setId(304);
         $owner304->setName('Stichting WormerWonen');
-        $owner304->setKvk('01234569');
-        $owner304->setBtw('NL123456799B01');
-        $owner304->setLNumber('L0202') 
-        
+        $owner304->setLNumber('L0202');
+
         $owner305 = new Owner();
-        $owner305->setId(305);
         $owner305->setName('Mijande Wonen');
-        $owner305->setKvk('01234569');
-        $owner305->setBtw('NL123456799B01');
-        $owner305->setLNumber('L0178')         
-       
+        $owner305->setLNumber('L0178');
+
         $owner306 = new Owner();
-        $owner306->setId(306);
         $owner306->setName('Stichting BrabantWonen');
-        $owner306->setKvk('01234569');
-        $owner306->setBtw('NL123456799B01');
-        $owner306->setLNumber('L0176') 
-        
+        $owner306->setLNumber('L0176');
+
         $owner307 = new Owner();
-        $owner307->setId(307);
         $owner307->setName('Ons Huis');
-        $owner307->setKvk('01234569');
-        $owner307->setBtw('NL123456799B01');
-        $owner307->setLNumber('L0173')         
-       
+        $owner307->setLNumber('L0173');
+
         $owner308 = new Owner();
-        $owner308->setId(308);
         $owner308->setName('Woningstichting Weststellingwerf');
-        $owner308->setKvk('01234569');
-        $owner308->setBtw('NL123456799B01');
-        $owner308->setLNumber('L0165') 
-        
+        $owner308->setLNumber('L0165');
+
         $owner309 = new Owner();
-        $owner309->setId(309);
         $owner309->setName('Woningstichting Dinxperlo (WSD)');
-        $owner309->setKvk('01234569');
-        $owner309->setBtw('NL123456799B01');
-        $owner309->setLNumber('L0160')         
-       
+        $owner309->setLNumber('L0160');
+
         $owner310 = new Owner();
-        $owner310->setId(310);
         $owner310->setName('Woonstichting Stek');
-        $owner310->setKvk('01234569');
-        $owner310->setBtw('NL123456799B01');
-        $owner310->setLNumber('L0157') 
-  
+        $owner310->setLNumber('L0157');
+
         $owner311 = new Owner();
-        $owner311->setId(311);
         $owner311->setName('Woonstichting ’thuis');
-        $owner311->setKvk('01234569');
-        $owner311->setBtw('NL123456799B01');
-        $owner311->setLNumber('L0151')
-        
+        $owner311->setLNumber('L0151');
+
         $owner312 = new Owner();
-        $owner312->setId(312);
         $owner312->setName('R.K. Woningbouwvereniging Zeist');
-        $owner312->setKvk('01234569');
-        $owner312->setBtw('NL123456799B01');
-        $owner312->setLNumber('L0147')
-        
+        $owner312->setLNumber('L0147');
+
         $owner313 = new Owner();
-        $owner313->setId(313);
         $owner313->setName('Stichting Volksbelang Vianen');
-        $owner313->setKvk('01234569');
-        $owner313->setBtw('NL123456799B01');
-        $owner313->setLNumber('L0144')
-        
+        $owner313->setLNumber('L0144');
+
         $owner314 = new Owner();
-        $owner314->setId(314);
         $owner314->setName('Stichting Stadgenoot');
-        $owner314->setKvk('01234569');
-        $owner314->setBtw('NL123456799B01');
-        $owner314->setLNumber('L0124')
-        
+        $owner314->setLNumber('L0124');
+
         $owner315 = new Owner();
-        $owner315->setId(315);
         $owner315->setName('stichting Portaal');
-        $owner315->setKvk('01234569');
-        $owner315->setBtw('NL123456799B01');
-        $owner315->setLNumber('L0117')
-        
+        $owner315->setLNumber('L0117');
+
         $owner316 = new Owner();
-        $owner316->setId(316);
         $owner316->setName('Woningstichting Eigen Haard');
-        $owner316->setKvk('01234569');
-        $owner316->setBtw('NL123456799B01');
-        $owner316->setLNumber('L0108')
-       
+        $owner316->setLNumber('L0108');
+
         $owner317 = new Owner();
-        $owner317->setId(317);
         $owner317->setName('Woningstichting SWZ');
-        $owner317->setKvk('01234569');
-        $owner317->setBtw('NL123456799B01');
-        $owner317->setLNumber('L0093')
-        
+        $owner317->setLNumber('L0093');
+
         $owner318 = new Owner();
-        $owner318->setId(318);
-        $owner318->setName('l'escaut woonservice');
-        $owner318->setKvk('01234569');
-        $owner318->setBtw('NL123456799B01');
-        $owner318->setLNumber('L0089')
-        
+        $owner318->setName('l\'escaut woonservice');
+        $owner318->setLNumber('L0089');
+
         $owner319 = new Owner();
-        $owner319->setId(319);
         $owner319->setName('Woningstichtingf Vaals');
-        $owner319->setKvk('01234569');
-        $owner319->setBtw('NL123456799B01');
-        $owner319->setLNumber('L0082')
-        
+        $owner319->setLNumber('L0082');
+
         $owner320 = new Owner();
-        $owner320->setId(320);
         $owner320->setName('Stichting Wonen Zuid');
-        $owner320->setKvk('01234569');
-        $owner320->setBtw('NL123456799B01');
-        $owner320->setLNumber('L0081')    
-        
+        $owner320->setLNumber('L0081');
+
         $owner321 = new Owner();
-        $owner321->setId(321);
         $owner321->setName('Stichting Woonstad Rotterdam');
-        $owner321->setKvk('01234569');
-        $owner321->setBtw('NL123456799B01');
-        $owner321->setLNumber('L0079') 
-        
+        $owner321->setLNumber('L0079');
+
         $owner322 = new Owner();
-        $owner322->setId(322);
         $owner322->setName('Stichting Wold & Waard');
-        $owner322->setKvk('01234569');
-        $owner322->setBtw('NL123456799B01');
-        $owner322->setLNumber('L0077') 
-        
+        $owner322->setLNumber('L0077');
+
         $owner323 = new Owner();
-        $owner323->setId(323);
         $owner323->setName('Woningstichting Bergh');
-        $owner323->setKvk('01234569');
-        $owner323->setBtw('NL123456799B01');
-        $owner323->setLNumber('L0068') 
-        
+        $owner323->setLNumber('L0068');
+
         $owner324 = new Owner();
-        $owner324->setId(324);
         $owner324->setName('Stichting Volkshuisvesting Arnhem');
-        $owner324->setKvk('01234569');
-        $owner324->setBtw('NL123456799B01');
-        $owner324->setLNumber('L0065') 
-        
+        $owner324->setLNumber('L0065');
+
         $owner325 = new Owner();
-        $owner325->setId(325);
         $owner325->setName('Van Alckmaer voor Wonen');
-        $owner325->setKvk('01234569');
-        $owner325->setBtw('NL123456799B01');
-        $owner325->setLNumber('L0063') 
-        
+        $owner325->setLNumber('L0063');
+
         $owner326 = new Owner();
-        $owner326->setId(326);
         $owner326->setName('Stichting Parteon');
-        $owner326->setKvk('01234569');
-        $owner326->setBtw('NL123456799B01');
-        $owner326->setLNumber('L0059') 
-        
+        $owner326->setLNumber('L0059');
+
         $owner327 = new Owner();
-        $owner327->setId(327);
         $owner327->setName('Domesta');
-        $owner327->setKvk('01234569');
-        $owner327->setBtw('NL123456799B01');
-        $owner327->setLNumber('L0045') 
-        
+        $owner327->setLNumber('L0045');
+
         $owner328 = new Owner();
-        $owner328->setId(328);
-        $owner328->setName('Stichting Bo-Ex '91');
-        $owner328->setKvk('01234569');
-        $owner328->setBtw('NL123456799B01');
-        $owner328->setLNumber('L0041') 
-        
+        $owner328->setName('Stichting Bo-Ex \'91');
+        $owner328->setLNumber('L0041');
+
         $owner329 = new Owner();
-        $owner329->setId(329);
         $owner329->setName('Stichting Lyaemer Wonen');
-        $owner329->setKvk('01234569');
-        $owner329->setBtw('NL123456799B01');
-        $owner329->setLNumber('L0036') 
-        
+        $owner329->setLNumber('L0036');
+
         $owner330 = new Owner();
-        $owner330->setId(330);
         $owner330->setName('Stichting v/h De Bouwvereniging');
-        $owner330->setKvk('01234569');
-        $owner330->setBtw('NL123456799B01');
-        $owner330->setLNumber('L0033') 
-        
+        $owner330->setLNumber('L0033');
+
         $owner331 = new Owner();
-        $owner331->setId(331);
         $owner331->setName('deltaWonen');
-        $owner331->setKvk('01234569');
-        $owner331->setBtw('NL123456799B01');
-        $owner331->setLNumber('L0029')
-        
+        $owner331->setLNumber('L0029');
+
         $owner332 = new Owner();
-        $owner332->setId(332);
         $owner332->setName('Intermaris');
-        $owner332->setKvk('01234569');
-        $owner332->setBtw('NL123456799B01');
-        $owner332->setLNumber('L0019')
-        
+        $owner332->setLNumber('L0019');
+
         $owner333 = new Owner();
-        $owner333->setId(333);
         $owner333->setName('Woningstichting Rochdale');
-        $owner333->setKvk('01234569');
-        $owner333->setBtw('NL123456799B01');
-        $owner333->setLNumber('L0017')
-        
+        $owner333->setLNumber('L0017');
+
         $owner334 = new Owner();
-        $owner334->setId(334);
         $owner334->setName('Stichting Zayaz');
-        $owner334->setKvk('01234569');
-        $owner334->setBtw('NL123456799B01');
-        $owner334->setLNumber('L0013')
-        
+        $owner334->setLNumber('L0013');
+
         $owner335 = new Owner();
-        $owner335->setId(335);
         $owner335->setName('Wstg Openbaar Belang');
-        $owner335->setKvk('01234569');
-        $owner335->setBtw('NL123456799B01');
-        $owner335->setLNumber('L0008')
-        
+        $owner335->setLNumber('L0008');
+
         $owner336 = new Owner();
-        $owner336->setId(336);
         $owner336->setName('Woningstichting Servatius');
-        $owner336->setKvk('01234569');
-        $owner336->setBtw('NL123456799B01');
-        $owner336->setLNumber('L0005')
-        
+        $owner336->setLNumber('L0005');
+
         $owner337 = new Owner();
-        $owner337->setId(337);
         $owner337->setName('Wonen Noordwest Friesland');
-        $owner337->setKvk('01234569');
-        $owner337->setBtw('NL123456799B01');
-        $owner337->setLNumber('L0003')
-        
+        $owner337->setLNumber('L0003');
+
         $owner338 = new Owner();
-        $owner338->setId(338);
         $owner338->setName('Stichting Eigen Bouw');
-        $owner338->setKvk('01234569');
-        $owner338->setBtw('NL123456799B01');
-        $owner338->setLNumber('L0001')
-        
-        $owner339 = new Owner();
-        $owner339->setId(339);
-        $owner339->setName('Nieuw');
-        $owner339->setKvk('01234569');
-        $owner339->setBtw('NL123456799B01');
-        $owner339->setLNumber('L0000')    
-        
+        $owner338->setLNumber('L0001');
+
         $housingStock1 = new HousingStock();
-        $housingStock1->setId(1);
         $housingStock1->setCode('DobrCmTest');
         $housingStock1->setName('DobrCm - Test');
         $housingStock1->setDescription('Dit is de standaard test omgeving voor DobroCm1');
         $housingStock1->setCreationTime();
         $housingStock1->setLastChangeTime();
         $housingStock1->setOwner($owner1);
-        
+
         $housingStock2 = new HousingStock();
-        $housingStock2->setId(2);
         $housingStock2->setCode('DobrCmTest1');
         $housingStock2->setName('DobrCm - Test1');
         $housingStock2->setDescription('Dit is de standaard test omgeving voor DobroCm2');
         $housingStock2->setCreationTime();
         $housingStock2->setLastChangeTime();
         $housingStock2->setOwner($owner2);
-        
+
         $housingStock3 = new HousingStock();
-        $housingStock3->setId(3);
         $housingStock3->setCode('DobrCmTest2');
         $housingStock3->setName('DobrCm - Test2');
         $housingStock3->setDescription('Dit is de standaard test omgeving voor DobroCm3');
@@ -7980,7 +6547,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setHousingStock($housingStock1);
         $buildingAddress129->setHousingStock($housingStock1);
         $buildingAddress130->setHousingStock($housingStock1);
-        
+
         $buildingAddress131->setHousingStock($housingStock2);
         $buildingAddress132->setHousingStock($housingStock2);
         $buildingAddress133->setHousingStock($housingStock2);
@@ -8221,1079 +6788,50 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea8->setHousingStock($housingStock1);
         $residentialArea9->setHousingStock($housingStock1);
         $residentialArea10->setHousingStock($housingStock1);
-        
-        $manager->persist($residentialArea1);
-        $manager->persist($residentialArea2);
-        $manager->persist($residentialArea3);
-        $manager->persist($residentialArea4);
-        $manager->persist($residentialArea5);
-        $manager->persist($residentialArea6);
-        $manager->persist($residentialArea7);
-        $manager->persist($residentialArea8);
-        $manager->persist($residentialArea9);
-        $manager->persist($residentialArea10);
 
-        $manager->persist($buildingType1);
-        $manager->persist($buildingType2);
-        $manager->persist($buildingType3);
-        $manager->persist($buildingType4);
-        $manager->persist($buildingType5);
-        $manager->persist($buildingType6);
-        $manager->persist($buildingType7);
-        $manager->persist($buildingType8);
-        $manager->persist($buildingType9);
-        $manager->persist($buildingType10);
-        $manager->persist($buildingType11);
-        $manager->persist($buildingType12);
-        $manager->persist($buildingType13);
-
-        $manager->persist($livingType1);
-        $manager->persist($livingType2);
-        $manager->persist($livingType3);
-        $manager->persist($livingType4);
-        $manager->persist($livingType5);
-        $manager->persist($livingType6);
-        $manager->persist($livingType7);
-        $manager->persist($livingType8);
-        $manager->persist($livingType9);
-        $manager->persist($livingType10);
-
-        for ($i = 1; $i <= 199; $i++) {
-            $manager->persist(${'buildingAddress'.$i});
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'residentialArea' . $i})) {
+                $manager->persist(${'residentialArea' . $i});
+            }
         }
 
-        $manager->persist($block1);
-        $manager->persist($block2);
-        $manager->persist($block3);
-        $manager->persist($block4);
-        $manager->persist($block5);
-        $manager->persist($block6);
-        $manager->persist($block7);
-        $manager->persist($block8);
-        $manager->persist($block9);
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'buildingType' . $i})) {
+                $manager->persist(${'buildingType' . $i});
+            }
+        }
 
-        /**
-         * Every owner needs a line here to save that specific owner to the database.
-         */
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'livingType' . $i})) {
+                $manager->persist(${'livingType' . $i});
+            }
+        }
 
-        $manager->persist($owner1);
-        $manager->persist($owner2);
-        $manager->persist($owner3);
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'buildingAddress' . $i})) {
+                $manager->persist(${'buildingAddress' . $i});
+            }
+        }
 
-        $manager->persist($housingStock1);
-        $manager->persist($housingStock2);
-        $manager->persist($housingStock3);
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'block' . $i})) {
+                $manager->persist(${'block' . $i});
+            }
+        }
 
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'owner' . $i})) {
+                $manager->persist(${'owner' . $i});
+            }
+        }
+
+        for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'housingStock' . $i})) {
+                $manager->persist(${'housingStock' . $i});
+            }
+        }
 
         $manager->flush();
     }
 
 }
-
-// L0000 Stichting Eigen Bouw 
-// 813 
-
-// L0003 Wonen Noordwest Friesland 
-// 3990 
-
-// L0005 Woningstichting Servatius 
-// 11821 
-
-// L0008 Wstg Openbaar Belang 
-// 2754 
-
-// L0013 Stichting Zayaz 
-// 13359 
-
-// L0017 Woningstichting Rochdale 
-// 41548
-
-// L0019 Intermaris 
-// 16995 
-
-// L0029 deltaWonen 
-// 14295 
-
-// L0033 Stichting v/h De Bouwvereniging 
-// 2464 
-
-// L0036 Stichting Lyaemer Wonen 
-// 1585 
-
-// L0041 Stichting Bo-Ex '91 
-// 9334 
-
-// L0045 Domesta 
-// 9875 
-
-// L0059 stichting Parteon 
-// 16566
-
-// L0063 Van Alckmaer voor Wonen 
-// 2495
-
-// L0065 Stichting Volkshuisvesting Arnhem 
-// 12510
-
-// L0068 Woningstichting Bergh 
-// 1658 
-
-// L0077 Stichting Wold & Waard 
-// 5041 
-
-// L0079 Stichting Woonstad Rotterdam
-// 54249
-
-// L0081 Stichting Wonen Zuid 
-// 13658
-
-// L0082 Woningstichtingf Vaals 
-// 1611 
-
-// L0089 l'escaut woonservice 
-// 6306 
-
-// L0093 Woningstichting SWZ 
-// 7762 
-
-// L0108 Woningstichting Eigen Haard 
-// 57872 
-
-// L0117 stichting Portaal 
-// 52337 
-
-// L0124 Stichting Stadgenoot 
-// 32067
-
-// L0144 Stichting Volksbelang Vianen
-// 3822
-
-// L0147 R.K. Woningbouwvereniging Zeist 
-// 893
-
-// L0151 Woonstichting ’thuis 
-// 10704
-
-// L0157 Woonstichting Stek 
-// 5781
-
-// L0160 Woningstichting Dinxperlo (WSD) 
-// 1317
-
-// L0165 Woningstichting Weststellingwerf 
-// 2780
-
-// L0173 Ons Huis 
-// 5072
- 
-// L0176 Stichting BrabantWonen 
-// 14982 
-
-// L0178 Mijande Wonen 
-// 5260
-
-// L0202 Stichting WormerWonen 
-// 1935
-
-// L0221 Waardwonen 
-// 3850
-
-// L0225 Stichting Weller Wonen 
-// 9618
-
-// L0228 Woningstichting HEEMwonen 
-// 10420
-
-// L0231 Stichting Elan Wonen 
-// 6930
-
-// L0232 Stichting Mozaïek Wonen 
-// 8747
-
-// L0237 Standvast Wonen 
-// 8708
-
-// L0238 Woningstichting Voerendaal 
-// 1123 
-
-// L0241 Stichting Antares Woonservice 
-// 5359 
-
-// L0248 Patrimonium Barendrecht 
-// 2506
-
-// L0254 Woningstichting Heteren 
-// 878
-
-// L0267 Stichting Trivire 
-// 14247
-
-// L0269 Stichting ZO Wonen 
-// 15134
-
-// L0271 Woonservice Meander 
-// 2271
-// G
-// L0272 Wassenaarsche Bouwstichting 
-// 2394
-
-// L0274 Woningstichting Woonwenz 
-// 7833
-
-// L0278 Stichting Zaandamse Volkshuisvesting 
-// 5624
-
-// L0295 de Sleutels 
-// 7450
-
-// L0305 Woningbouwvereniging langedijk 
-// 1268
-
-// L0308 Woningstichting Alkemade 
-// 1883
-
-// L0309 Woonstichting Triada 
-// 6526
-
-// L0315 SVTwonen Tiel 
-// 3722
-
-// L0317 Provides 
-// 3624
-
-// L0331 Woonstichting Vryleve 
-// 1455
-
-// L0333 Woonstichting Vooruitgang 
-// 2068
-
-// L0343 Stichting KleurrijkWonen 
-// 11254
-
-// L0347 Viverion 
-// 5797
-
-// L0354 Wonen Wateringen 
-// 2101
-
-// L0358 AWS Beter Wonen 
-// 6381
-
-// L0363 Stichting Woonconcept 
-// 12524
-
-// L0366 Woningstichting Wierden en Borgen 
-// 5167
-
-// L0369 Stichting UWOON 
-// 8983
-
-// L0371 Wst Samenwerking Vlaardingen 
-// 3850
-
-// L0379 WBV Arnemuiden 
-// 377
-
-// L0380 Christelijke Woningstichting Patrimonium 
-// 6759
-
-// L0383 Dudok Wonen 
-// 6374
-
-// L0385 Stichting De Huismeesters 
-// 8230
-
-// L0386 Woningstichting Naarden 
-// 785
-
-// L0392 Havensteder 
-// 45167
-
-// L0410 Stichting Arcade mensen en wonen 
-// 6438
-
-// L0418 Stichting Clavis 
-// 2446
-
-// L0425 Woningstichting Haag Wonen 
-// 24000
-
-// L0439 Stichting Rhiant 
-// 1881
-
-// L0446 Wooncorporatie De Goede Woning 
-// 8199
-
-// L0449 Stichting Chr.Woongroep Marenland 
-// 2377
-
-// L0478 Wooncompagnie 
-// 13377
-
-// L0495 Stichting Allee Wonen 
-// 17694
-
-// L0497 Stichting TBV 
-// 6600
-
-// L0506 FidesWonen 
-// 2280
-
-// L0510 Stichting AWV Eigen Haard 
-// 1555
-
-// L0527 Trudo 
-// 7500
-
-// L0528 Woningstichting Simpelveld 
-// 1272
-
-// L0533 Woningbouwvereniging Laren 
-// 600 
-
-// L0540 Stichting QuaWonen 
-// 8624
-
-// L0543 Stichting R&B Wonen 
-// 4215
-
-// L0553 Stichting Elkien 
-// 17905
-
-// L0565 Stichting WonenCentraal 
-// 8426
-
-// L0568 Stichting Eelder Woningbouw 
-// 953
-
-// L0571 Woonpunt 
-// 17663
-
-// L0573 Sprengenland Wonen 
-// 2736
-
-// L0574 Actium 
-// 16500
-
-// L0579 Woonstichting Hulst 
-// 1455
-
-// L0582 Omnivera 
-// 2223
-
-// L0583 Woningstichting Kennemer Wonen 
-// 10632
-
-// L0590 Rondom Wonen 
-// 2453
-
-// L0602 Woonstichting SSW 
-// 5055
-
-// L0623 Woningstichting Warmunda 
-// 697
-
-// L0629 WBV Poortugaal 
-// 1189
-
-// L0630 Brederode Wonen 
-// 1606
-
-// L0632 Stichting Woningbouw Slochteren 
-// 1228
-
-// L0636 Wonen Meerssen 
-// 1708
-
-// L0637 Stichting De Sesyter Veste 
-// 4103
-
-// L0640 Pré Wonen 
-// 14146
-
-// L0642 Stichting Destion 
-// 2534
-
-// L0643 Bouwvereniging Huis & Erf 
-// 3410
-
-// L0653 Woningstichting Dinteloord 
-// 755
-
-// L0658 Stichting Vivare 
-// 24017
-
-// L0661 woonstichting Vechthorst 
-// 2208 
-
-// L0665 Woonbron 
-// 37063 
-
-// L0666 Woonborg 
-// 4906
-
-// L0667 Wbv Van Erfgooiers 
-// 275
-
-// L0669 Woningstichting Domus 
-// 977
-
-// L0672 Woningstichting Volksbelang 
-// 1974
-
-// L0673 WoonInvest 
-// 8661
-
-// L0676 Wonen Zuidwest Friesland 
-// 2222
-
-// L0678 Woningstichting Sint Antonius van Padua 
-// 2034
-
-// L0682 Woningstichting Ons Doel 
-// 2414
-
-// L0686 Stichting de Delthe 
-// 544
-
-// L0688 Stichting Uithuizer Woningbouw 
-// 796
-
-// L0689 Woonvisie 
-// 9055
-
-// L0694 Rentree 
-// 4152
-
-// L0705 Veenendaalse Woningstichting 
-// 1247
-
-// L0732 HW Wonen 
-// 10290
-
-// L0734 Patrimonium woonstichting 
-// 6403
-
-// L0740 Woonstichting Groninger Huis 
-// 2653
-
-// L0758 Woningstichting Kockengen 
-// 325
-
-// L0762 Woningstichting Beter Wonen Vechtdal 
-// 3297
-
-// L0764 Woningbouwvereniging Habeko Wonen 
-// 1868
-
-// L0765 Stichting Wonen Delden 
-// 759 
-
-// L0766 Stichting GroenWest 
-// 11807
-
-// L0782 Woningstichting Brummen 
-// 1534
-
-// L0817 Woningbouwvereniging Heerjansdam 
-// 504
-
-// L0835 Stichting ProWonen 
-// 7956
-
-// L0837 Woonstichting Jutphaas 
-// 1657
-
-// L0858 Stichting Beter Wonen IJsselmuiden 
-// 1090
-
-// L0861 Stichting Slagenland Wonen 
-// 831
-
-// L0867 Stichting Tablis Wonen (Sliedrecht) 
-// 4822
-
-// L0876 Stichting De Woonschakel Westfriesland 
-// 5724
-
-// L0883 Woningstichting Het Grootslag 
-// 2586
-
-// L0885 Stichting De Woningbouw 
-// 4011
-
-// L0886 Stichting Area 
-// 8400
-
-// L0898 Stichting Wonion 
-// 4093
-
-// L0921 Woningstichting St. Joseph Almelo 
-// 5454
- 
-// L0923 Bouwvereniging Woningbelang 
-// 3788
-
-// L0927 Trifolium Woondiensten Boskoop 
-// 1894
-
-// L0928 Woonstichting 't Heem 
-// 984
-
-// L0936 Eemland Wonen 
-// 2590
-
-// L0939 Stichting Christelijke Woningcorporatie 
-// 3620
-
-// L0943 Woongoed Middelburg 
-// 6317
-
-// L0944 Casade Woonstichting 
-// 8129
-
-// L0968 Omnia Wonen 
-// 6965
-
-// L0979 de Woningstichting 
-// 5142
-
-// L0986 Maaskant Wonen 
-// 1837
-
-// L0992 Woningbouwvereniging Helpt Elkander 
-// 1394
-
-// L1005 Laurentius 
-// 9091
-
-// L1017 Sité Woondiensten 
-// 7093
-
-// L1034 Wbv De Goede Woning - Driemond 
-// 110
-
-// L1038 Woningstichting Maasvallei Maastricht 
-// 3751
-
-// L1040 Stichting Goed Wonen Zederik 
-// 1148
-
-// L1064 Stichting Welbions 
-// 12801
-
-// L1082 Woningstichting Laarbeek 
-// 2240
-
-// L1093 Stichting Vidomes 
-// 18170 
-
-// L1100 Wonen Midden-Delfland 
-// 1620
-
-// L1109 Stichting Nijestee 
-// 13680
-
-// L1122 Stichting Rijswijk Wonen 
-// 6152
-
-// L1128 Baston Wonen 
-// 3781
-
-// L1164 WBV ST WILLIBRORDUS 
-// 1342
-
-// L1182 Stichting Woonwaard Noord-Kennemerland 
-// 13593
-
-// L1207 Woningstichting Urmond 
-// 560 
-
-// L1215 Stichting 3B Wonen 
-// 4115
-
-// L1217 Stichting VitaalWonen 
-// 277
-
-// L1226 Woningbouwvereniging Bergopwaarts 
-// 4825
-
-// L1235 Woonbeheer Borne 
-// 2351
-
-// L1236 Woonstichting St. Joseph 
-// 3810
-
-// L1239 IJsseldal Wonen 
-// 3279
-
-// L1247 Woningstichting Obbicht & Papenhoven 
-// 185
-
-// L1306 Woningstichting Eendracht 
-// 217
-
-// L1357 Woningbouwstichting de Gemeenschap 
-// 2209
-
-// L1395 Winingbouwvereniging Maarn 
-// 312
-
-// L1399 Woningstichting Den Helder 
-// 10067
-
-// L1409 Stichting Woonservice IJssellan 
-// 2104
-
-// L1413 Woningstichting Hellendoorn 
-// 3126
-
-// L1415 Woningstichting Buitenlust 
-// 1498
-
-// L1418 Stichting Woonbedrijf ieder1 
-// 14723
-
-// L1426 Woningcorporatie Domijn 
-// 15669
-
-// L1436 Dunavie 
-// 7349
-
-// L1459 R.K. Woningbouwstichting De Goede Woning 
-// 6351
-
-// L1464 Stichting Woonbedrijf SWS.Hhvl 
-// 30932
-
-// L1468 stichting Woningbeheer Born-Grevenbicht 
-// 871
-
-// L1471 Woonwijze 
-// 2980
-
-// L1479 Talis 
-// 14096
-
-// L1491 Woningstichting Kessel 
-// 498
-
-// L1498 Woningstichting Kamerik 
-// 319
-
-// L1506 Woningstichting SallandWonen 
-// 5510
-
-// L1519 Stichting Wooninc. 
-// 7369
-
-// L1524 Rijnhart Wonen 
-// 3543
-
-// L1525 Stichting Woningbeheer De Vooruitgang 
-// 1159
-
-// L1532 wbs Samenwerking 
-// 249
-
-// L1533 Stichting WOONopMAAT 
-// 6470
-
-// L1542 Stichting Lefier 
-// 29126 
-
-// L1543 Vallei Wonen 
-// 1102
-
-// L1544 Woongoed GO 
-// 2502
-
-// L1549 Poort6 
-// 7836
-
-// L1550 Woningbouwvereniging "Goed Wonen" 
-// 282
-
-// L1559 wbv Beter Wonen 
-// 265
-
-// L1560 Stichting Woontij 
-// 2183
-
-// L1569 Woongoed ZVL 
-// 6289
-
-// L1573 Groen Wonen Vlist 
-// 1038
-
-// L1579 Woningstichting Wuta 
-// 181
-
-// L1581 Zeeuwland 
-// 4104
-
-// L1584 Bouwvereniging Ambt Delden 
-// 237
-
-// L1585 Woningbouwvereniging Vecht en Omstreken 
-// 2172
-
-// L1586 Woningbouwvereniging Nieuw-Lekkerland 
-// 1367
- 
-// L1588 Woningbouwstichting Cothen 
-// 295
-
-// L1597 Woningbouwstichting Lek en Waard Wonen 
-// 938
-
-// L1598 Woningstichting Gouderak 
-// 321
-
-// L1606 Stichting Woonburg 
-// 1987
-
-// L1612 Kennemerhave 
-// 2130
-
-// L1622 Stichting Wonen Wittem 
-// 445
-
-// L1638 Stichting Accolade 
-// 16399
-
-// L1640 Woningbouwvereniging Hoek van Holand 
-// 2076
-
-// L1646 Stichting Woonzorg Nederland 
-// 44253
-
-// L1647 Stichting Woonpartners 
-// 7340
-
-// L1663 Stichting Woonfriesland 
-// 20769
-
-// L1670 Oosterpoort Wooncombinatie 
-// 4964
-
-// L1674 Chr. stichting BCM wonen 
-// 613
-
-// L1675 Steelande wonen 
-// 3546
-
-// L1678 Woningstichting Tubbergen 
-// 983
-
-// L1680 de Woonmensen/SJA 
-// 5753
-
-// L1689 Woningstichting St. Joseph 
-// 458
-
-// L1691 Ons Huis Woningstichting 
-// 5385
- 
-// L1693 Woningstichting Nijkerk 
-// 2980
-
-// L1697 Wonen Limburg 
-// 23466
-
-// L1700 wbv Beter Wonen 
-// 1209
-
-// L1704 Woonstichting Land van Altena 
-// 995
-
-// L1709 Christelijke Woningstichting De Goede Woning 
-// 1344
-
-// L1712 Chr. Woonstichting Patrimonium 
-// 834
-
-// L1713 Wbv de Kombinatie 
-// 3608
-
-// L1716 Stichting Viveste 
-// 5030
-
-// L1718 Woningstichting Goed Wonen 
-// 669
-
-// L1723 Stichting Woonservice Urbanus 
-// 787
-
-// L1745 Goed Wonen 
-// 2577
-
-// L1748 Stichting Woningcorporatie WoonGenoot 
-// 1502
-
-// L1753 Wetland Wonen Groep 
-// 3490
-
-// L1760 Wbv. Reeuwijk 
-// 1031
-
-// L1761 Bernardus wonen 
-// 4087
-
-// L1762 Vieya 
-// 1960
-
-// L1763 Stichting Woonveste 
-// 5528
-
-// L1766 Stichting woCom 
-// 6629
- 
-// L1768 Staedion 
-// 35354
-
-// L1781 Stichting Thuisvester 
-// 13491
-
-// L1785 Stichting Stadlander 
-// 15158
-
-// L1787 Stichting WSG 
-// 4588
-
-// L1788 Woonstichting Leystromen 
-// 9733
-
-// L1792 Stichting Thus wonen 
-// 6612
-
-// L1793 Stichting Acantus Groep 
-// 13382
-
-// L1794 Woningstichting de Zaligheden 
-// 3567
-
-// L1804 Mercatus 
-// 5168
-
-// L1807 Woningstichting Volksbelang 
-// 1943
-
-// L1811 Stichting PeelrandWonen 
-// 615
-
-// L1817 Stichting Mooiland 
-// 27637
-
-// L1821 Laris Wonen en diensten 
-// 2373
-
-// L1825 Woonstichting De Kernen 
-// 4436
-
-// L1835 Woningstichting Maasdriel 
-// 1032
-
-// L1836 Heuvelrug Wonen 
-// 3251
-
-// L1837 Woningvereniging Nederweert 
-// 1521
-
-// L1839 st. WoonGoed 2-Duizend 
-// 4904
-
-// L1842 Woningstichting De Woonplaats 
-// 16385
-
-// L1847 Woningbouwvereniging Compaen 
-// 3444
-
-// L1850 Woningstichting Woensdrecht 
-// 1037
-
-// L1852 Woningstichting Kleine Meierij 
-// 3730
-
-// L1855 Woonstichting Gendt 
-// 848
-
-// L1857 Wovesto 
-// 1339
-
-// L1861 Oost Flevoland Woondiensten 
-// 4822
-
-// L1864 Wonen Vierlingsbeek 
-// 495
-
-// L1865 Woningstichting Putten 
-// 1947
-
-// L1866 Woningbouwvereniging "Lopik" 
-// 663
-
-// L1875 Stichting Woningcorporaties Het Gooi en Omstreken 
-// 7199
-
-// L1876 Stichting Maasdelta Groep 
-// 16751
-
-// L1877 Stichting Woonservice Drenthe 
-// 4873
-
-// L1878 Woningstichting Leusden 
-// 2607
-
-// L1881 Stichting Woningbeheer Betuwe 
-// 3822
-
-// L1888 Woonstichting Centrada 
-// 8470
-
-// L1891 Woningstichting Goede Stede 
-// 7588
-
-// L1892 Woningbouwvereniging Oudewater 
-// 1067
-
-// L1893 Woonstichting Valburg 
-// 1224
-
-// L1896 Woningstichting De Leeuw van Putten 
-// 3857
-
-// L1899 Woningstichting De Volmacht 
-// 1527
-
-// L1901 Regionale Woningbouwvereniging Samenwerking 
-// 6417
-
-// L1903 Woningbouwvereniging Amerongen 
-// 616
-
-// L1906 Brabantse Waard 
-// 3802
-
-// L1909 Stichting Studenten Huisvesting 
-// 8418
-
-// L1910 WBO Wonen 
-// 4300
-
-// L1911 Stichting WonenBreburg 
-// 27617
-
-// L1912 Stichting de Alliantie 
-// 55907
-
-// L1913 Tiwos, Tilburgse Woonstichting 
-// 7556 
-
-// L1921 Woonkracht10 
-// 11278
-
-// L1924 Stichting Vestia Groep 
-// 89091
-
-// L1926 Stichting Ouderenhuisvesting Rotterdam 
-// 7186
-
-// L1933 Stichting Huisvesting Vredewold 
-// 622
-
-// L1944 SSHN 
-// 5226
-
-// L1964 Stichting Jongeren Huisvesting Twente 
-// 869
-
-// L1966 Stichting Verzorgd Wonen SHBB 
-// 229
-
-// L1969 SIB Woonservice 
-// 1200
-
-// L1985 Harmonisch Wonen 
-// 212 
-
-// L1986 SHBO 
-// 260
-
-// L2004 Stichting DUWO 
-// 25582
-
-// L2014 Stichting Woonpalet Zeewolde 
-// 1931
-
-// L2044 Stichting Wonen Wierden Enter 
-// 1706
-
-// L2047 Veron 
-// 171
-
-// L2051 Stichting Woonstede 
-// 9194
-
-// L2052 Woonstichting Etten-Leur 
-// 4862
-
-// L2053 ZorgGoedBrabant 
-// 1720
-
-// L2056 Ressort Wonen 
-// 2396
-
-// L2058 Stichting Mitros 
-// 28579
-
-// L2066 Stichting Laurens Wonen 
-// 2383
-
-// L2067 Wooncentrum Ouderen St. Zuidrandflat Gouda 
-// 220
-
-// L2068 Rhenense Woningstichting 
-// 2154
-
-// L2070 Stichting Ymere 
-// 81726
-
-// L2072 waterweg wonen 
-// 12183
-
-// L2073 Stichting Woningbedrijf Velsen 
-// 7428
-
-// L2082 Woningstichting Barneveld 
-// 3931
-
-// L2083 Woningstichting Nieuwkoop 
-// 1262
-
-// L2084 Stichting Woondiensten Aarwoude 
-// 1960
-
-// L2085 Stichting Woonplus Schiedam 
-// 11787
-
-// L2090 woonstichtibng De zes Kernen 
-// 1348
-
-// L2092 Noordwijkse Woningstichting 
-// 2305
-
-// L2101 Stichting Goed Wonen Liempde 
-// 227
-
-// L2103 Woonstichting De Key 
-// 33118
-
-// L2104 Stichting Woningbedrijf Warnsveld 
-// 621
-
-// L2110 WoonCompas 
-// 1002
-
-// L2114 Woonpartners Midden-Holland 
-// 6799

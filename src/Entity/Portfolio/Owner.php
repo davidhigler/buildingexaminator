@@ -79,7 +79,7 @@ class Owner extends Id
     protected string $btw;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=32, nullable=true)
      * @Assert\Type(
      *     type="string",
      *     message="%property% is not a valid %type%"
@@ -97,6 +97,27 @@ class Owner extends Id
      * @OA\Property()
      */
     protected string $lNumber;
+
+    /**
+     * @ORM\Column(type="string", length=256, nullable=true)
+     * @Assert\Type(
+     *     type="string",
+     *     message="%property% is not a valid %type%"
+     * )
+     * @Assert\Length(
+     *      min=3,
+     *      max=256,
+     *      minMessage="%property% must be at least %limit% characters long",
+     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     * )
+     * @Assert\Url(
+     *      protocols = {"http", "https"},
+     *      message = "The url '{{ value }}' is not a valid url"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $website;
 
     #[Pure]
     public function __construct()
@@ -129,6 +150,11 @@ class Owner extends Id
         return $this->lNumber;
     }
 
+    public function getWebsite(): string
+    {
+        return $this->website;
+    }
+
     public function addHousingStock(HousingStock $housingStock): void
     {
         $this->housingStocks->add($housingStock);
@@ -157,5 +183,10 @@ class Owner extends Id
     public function setLNumber(string $lNumber): void
     {
         $this->lNumber = $lNumber;
+    }
+
+    public function setWebsite(string $website): void
+    {
+        $this->website = $website;
     }
 }
