@@ -208,21 +208,21 @@ function loadOwnerNewPage() {
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <i class="material-icons prefix">kvk</i>\n' +
         '                <input id="kvk" name="kvk" type="text" class="validate">\n' +
         '                <label for="kvk">KVK</label>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <i class="material-icons prefix">belastingdienst</i>\n' +
         '                <input id="btw" name="btw" type="text" class="validate">\n' +
         '                <label for="btw">BTW</label>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <i class="material-icons prefix">aedes</i>\n' +
         '                <input id="l_number" name="l_number" type="text" class="validate">\n' +
         '                <label for="l_number">L number</label>\n' +
         '            </div>\n' +
@@ -230,7 +230,7 @@ function loadOwnerNewPage() {
         '        <div class="row">\n' +
         '            <div class="col s12">\n' +
         '                <button type="submit" class="btn" name="create">\n' +
-        '                    <i class="material-icons left">perm_identity</i>Create\n' +
+        '                    <i class="material-icons left">person_add</i>Create\n' +
         '                </button>\n' +
         '            </div>\n' +
         '        </div>\n' +
