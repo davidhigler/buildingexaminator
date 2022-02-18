@@ -1736,6 +1736,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setRenovationYear(1986);
         $buildingAddress23->setStreetName('Löeff Berchmakerstraat');
         $buildingAddress23->setHouseNumber(6);
+	$buildingAddress23->setAddition('');
         $buildingAddress23->setZipcode('1105BV');
         $buildingAddress23->setCity('Utrecht');
         $buildingAddress23->setRentalUnitNumber('VHE0023');
@@ -1752,6 +1753,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setRenovationYear(1986);
         $buildingAddress24->setStreetName('Löeff Berchmakerstraat');
         $buildingAddress24->setHouseNumber(8);
+	$buildingAddress24->setAddition('');
         $buildingAddress24->setZipcode('1105BV');
         $buildingAddress24->setCity('Utrecht');
         $buildingAddress24->setRentalUnitNumber('VHE0024');
@@ -1768,6 +1770,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setRenovationYear(1986);
         $buildingAddress25->setStreetName('Löeff Berchmakerstraat');
         $buildingAddress25->setHouseNumber(10);
+	$buildingAddress23->setAddition('');
         $buildingAddress25->setZipcode('1105BV');
         $buildingAddress25->setCity('Utrecht');
         $buildingAddress25->setRentalUnitNumber('VHE0025');
