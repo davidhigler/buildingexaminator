@@ -17,6 +17,10 @@ $(document).ready(function(){
     localStorage.setItem('activeHousingstock', '1');
 });
 
+/**
+ * Support functions
+ */
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -72,10 +76,90 @@ function hideLoader() {
     $('div.overlay').hide();
 }
 
-function loadErrorPage(jqXHR) {
-    console.log(jqXHR);
+function addPagination(pager, callback) {
+    let html = '    <ul class="pagination">\n';
+    if (pager.previous > 0) {
+        html +=
+            '        <li>' +
+            '            <a href="javascript:' + callback + '(' + pager.previous + ');"><i class="material-icons">chevron_left</i></a>' +
+            '        </li>\n';
+    } else {
+        html +=
+            '        <li class="disabled">' +
+            '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
+            '        </li>\n';
+    }
+    for (let i = 4; i > 0; i--) {
+        let previousIndex = pager.current - i;
+        if (previousIndex > 0) {
+            html +=
+                '        <li>' +
+                '            <a href="javascript:' + callback + '(' + previousIndex + ');">' + previousIndex + '</a>' +
+                '        </li>\n';
+        }
+    }
+    html +=
+        '        <li class="active">' +
+        '            <a href="javascript:' + callback + '(' + pager.current + ');">' + pager.current + '</a>' +
+        '        </li>\n';
+    for (let i = 1; i < 5; i++) {
+        let nextIndex = pager.current + i;
+        if (nextIndex < pager.count) {
+            html +=
+                '        <li>' +
+                '            <a href="javascript:' + callback + '(' + nextIndex + ');">' + nextIndex + '</a>' +
+                '        </li>\n';
+        }
+    }
+    if (pager.next > 0) {
+        html +=
+            '        <li>' +
+            '            <a href="javascript:' + callback + '(' + pager.next + ');"><i class="material-icons">chevron_right</i></a>' +
+            '        </li>\n';
+    } else {
+        html +=
+            '        <li class="disabled">' +
+            '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
+            '        </li>\n';
+    }
+    html += '    </ul>';
 
-    let response, message, IS_JSON = true;
+    return html;
+}
+
+function showDeleteModal(id, name, callback) {
+    let modal = $('<div/>', {'id': 'modal-delete', 'class': 'modal'})
+        .append(
+            $('<div/>', {'class': 'modal-content'})
+                .append($('<h4/>').text('Delete ' + name))
+                .append($('<p/>').text('Are you sure?'))
+        )
+        .append(
+            $('<div/>', {'class': 'modal-footer'})
+                .append($('<a/>', {'class': 'modal-close btn-flat'}).text('No'))
+                .append($('<a/>', {'onclick': callback + '(' + id + ');', 'class': 'modal-close btn-flat'}).text('Yes'))
+        )
+        .appendTo('body')
+        .modal(
+            {
+                'dismissible': false,
+                'preventScrolling': false,
+                'onCloseEnd': function() {
+                    this.destroy();
+                    $('div#' + this.id).remove();
+                }
+            }
+        );
+    let modalInstance = M.Modal.getInstance(modal);
+    modalInstance.open();
+}
+
+/**
+ * Support pages
+ */
+
+function loadErrorPage(jqXHR) {
+    let response, message = '', IS_JSON = true;
 
     try {
         response = $.parseJSON(jqXHR.responseText);
@@ -84,7 +168,20 @@ function loadErrorPage(jqXHR) {
     }
 
     if(IS_JSON) {
-        message = response.class + ': ' + response.detail;
+        if(
+            typeof response.class !== "undefined"
+            && typeof response.detail !== "undefined"
+        ) {
+            message = response.class + ': ' + response.detail;
+        } else if(Array.isArray(response)) {
+            message = '<ul>';
+            for (let i = 0; i < response.length; i++) {
+                message += "<li>" + response[i].message + "</li>";
+            }
+            message += '</ul>';
+        } else {
+            message = '';
+        }
     } else {
         message = jqXHR.status + ': ' + jqXHR.statusText;
     }
@@ -118,10 +215,17 @@ function loadHomePage() {
     location.reload();
 }
 
-function loadOwnersPage() {
+/**
+ * Owners
+ */
+
+function loadOwnersPage(page = 1) {
     $.ajax({
         url: '/api/buildingexaminator/v1/owners',
         type: 'GET',
+        data: {
+            page: page
+        },
         dataType: 'json',
         accepts: {
             json: 'application/json'
@@ -132,21 +236,24 @@ function loadOwnersPage() {
         },
         success: function(data) {
             let rows = '';
-            $(data).each(function (index, element) {
+            $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
                     '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
-                    '                <td>' + element.name + '</td>\n' +
-                    '                <td>' + element.lNumber + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
+                    '                <td>' + (element.lnumber ?? '') + '</td>\n' +
                     '                <td class="actions">\n' +
                     '                    <button class="btn" name="edit" onclick="loadOwnerEditPage(' + element.id + ');">\n' +
                     '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                    '                    </button>\n' +
+                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteOwner\');">\n' +
+                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                     '                    </button>\n' +
                     '                </td>\n' +
                     '            </tr>\n';
             });
 
-            $('div#content').html(
+            let html =
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
@@ -167,21 +274,11 @@ function loadOwnersPage() {
                 '        <tbody>\n' +
                 rows +
                 '        </tbody>\n' +
-                '    </table>\n' +
-                '    <ul class="pagination">\n' +
-                '        <li class="disabled">' +
-                '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
-                '        </li>\n' +
-                '        <li class=""><a href="javascript:void(0);">1</a></li>\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">2</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">3</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">4</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">5</a></li> -->\n' +
-                '        <li class="disabled">' +
-                '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
-                '        </li>\n' +
-                '    </ul>'
-            );
+                '    </table>\n';
+
+            html += addPagination(data.pager, 'loadOwnersPage');
+
+            $('div#content').html(html);
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
@@ -223,8 +320,15 @@ function loadOwnerNewPage() {
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">aedes</i>\n' +
-        '                <input id="l_number" name="l_number" type="text" class="validate">\n' +
-        '                <label for="l_number">L number</label>\n' +
+        '                <input id="lnumber" name="lnumber" type="text" class="validate">\n' +
+        '                <label for="lnumber">L number</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">http</i>\n' +
+        '                <input id="website" name="website" type="text" class="validate">\n' +
+        '                <label for="website">Website</label>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
@@ -238,15 +342,46 @@ function loadOwnerNewPage() {
     );
 
     hideLoader();
+
+    $('form#newowner').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/buildingexaminator/v1/owners',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'name': $('input#name').val(),
+                    'kvk': $('input#kvk').val(),
+                    'btw': $('input#btw').val(),
+                    'lnumber': $('input#lnumber').val(),
+                    'website': $('input#website').val(),
+                }
+            ),
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadOwnersPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                hideLoader();
+            },
+        });
+    });
 }
 
 function loadOwnerEditPage(id) {
-
-}
-
-function loadHousingstocksPage() {
     $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks',
+        url: '/api/buildingexaminator/v1/owners/' + id,
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -257,25 +392,163 @@ function loadHousingstocksPage() {
             $('#slide-out').sidenav('close');
         },
         success: function(data) {
+            console.log(data.data.lnumber);
+            $('div#content').html(
+                '    <h3 class="header">Edit owner</h3>\n' +
+                '    <form id="editowner">\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                '                <label for="id" class="active">Id</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate" value="' + data.data.name + '">\n' +
+                '                <label for="name" class="active">Name</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">kvk</i>\n' +
+                '                <input id="kvk" name="kvk" type="text" class="validate" value="' + (data.data.kvk ?? '') + '">\n' +
+                '                <label for="kvk" class="active">KVK</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">belastingdienst</i>\n' +
+                '                <input id="btw" name="btw" type="text" class="validate" value="' + (data.data.btw ?? '') + '">\n' +
+                '                <label for="btw" class="active">BTW</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">aedes</i>\n' +
+                '                <input id="lnumber" name="lnumber" type="text" class="validate" value="' + (data.data.lnumber ?? '') + '">\n' +
+                '                <label for="lnumber" class="active">L number</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">http</i>\n' +
+                '                <input id="website" name="website" type="text" class="validate" value="' + (data.data.website ?? '') + '">\n' +
+                '                <label for="website" class="active">Website</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s12">\n' +
+                '                <button type="submit" class="btn" name="save">\n' +
+                '                    <i class="material-icons left">save</i>Save\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
+
+            $('form#editowner').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/buildingexaminator/v1/owners/' + $('input#id').val(),
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'name': $('input#name').val(),
+                            'kvk': $('input#kvk').val(),
+                            'btw': $('input#btw').val(),
+                            'lnumber': $('input#lnumber').val(),
+                            'website': $('input#website').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                        $('#slide-out').sidenav('close');
+                    },
+                    success: function() {
+                        loadOwnersPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        hideLoader();
+                    },
+                });
+            });
+        },
+        error: function (jqXHR) {
+            loadErrorPage(jqXHR)
+        },
+        complete: function () {
+            hideLoader();
+        },
+    });
+}
+
+function deleteOwner(id) {
+    $.ajax({
+        url: '/api/buildingexaminator/v1/owners/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function() {
+            loadOwnersPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            hideLoader();
+        },
+    });
+}
+
+/**
+ * Housingstocks
+ */
+
+function loadHousingstocksPage(page = 1) {
+    $.ajax({
+        url: '/api/buildingexaminator/v1/housingstocks',
+        type: 'GET',
+        data: {
+            page: page
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
             let rows = '';
-            $(data).each(function (index, element) {
+            $(data.data).each(function (index, element) {
                 rows +=
-                    '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.description + '">\n' +
+                    '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
                     '                <td class="hide-on-small-only"><i class="material-icons prefix">domain</i></td>\n' +
-                    '                <td>' + element.code + '</td>\n' +
-                    '                <td>' + element.name + '</td>\n' +
+                    '                <td>' + (element.code ?? '') + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
                     '                <td class="actions">\n' +
                     '                    <button class="btn" name="edit" onclick="loadHousingstockEditPage(' + element.id + ');">\n' +
                     '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                     '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteHousingstockModal(' + element.id + ' , \'' + element.name + '\');">\n' +
+                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteHousingstock\');">\n' +
                     '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                     '                    </button>\n' +
                     '                </td>\n' +
                     '            </tr>\n';
             });
 
-            $('div#content').html(
+            let html =
                 '    <h3 class="header">Housingstocks</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
@@ -296,21 +569,12 @@ function loadHousingstocksPage() {
                 '        <tbody>\n' +
                 rows +
                 '        </tbody>\n' +
-                '    </table>\n' +
-                '    <ul class="pagination">\n' +
-                '        <li class="disabled">' +
-                '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
-                '        </li>\n' +
-                '        <li class=""><a href="javascript:void(0);">1</a></li>\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">2</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">3</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">4</a></li> -->\n' +
-                '        <!-- <li class="waves-effect"><a href="javascript:void(0);">5</a></li> -->\n' +
-                '        <li class="disabled">' +
-                '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
-                '        </li>\n' +
-                '    </ul>'
-            );
+                '    </table>\n';
+
+            html += addPagination(data.pager, 'loadHousingstocksPage');
+
+            $('div#content').html(html);
+
             updateActiveHousingstockInput();
         },
         error: function(jqXHR) {
@@ -416,42 +680,42 @@ function loadHousingstockEditPage(id) {
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.id + '">\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
                 '                <label for="id" class="active">Id</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate" value="' + data.code + '">\n' +
+                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
                 '                <label for="code" class="active">Code</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" value="' + data.name + '">\n' +
+                '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
                 '                <label for="name" class="active">Name</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">description</i>\n' +
-                '                <textarea id="description" name="description" class="materialize-textarea">' + data.description + '</textarea>\n' +
+                '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
                 '                <label for="description" class="active">Description</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix disabled">schedule</i>\n' +
-                '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
                 '                <label for="created" class="active">Created</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix disabled">update</i>\n' +
-                '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
                 '                <label for="lastchange" class="active">Last change</label>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
@@ -507,33 +771,6 @@ function loadHousingstockEditPage(id) {
     });
 }
 
-function showDeleteHousingstockModal(id, name) {
-    let modal = $('<div/>', {'id': 'modal-delete', 'class': 'modal'})
-        .append(
-            $('<div/>', {'class': 'modal-content'})
-                .append($('<h4/>').text('Delete ' + name))
-                .append($('<p/>').text('Are you sure?'))
-        )
-        .append(
-            $('<div/>', {'class': 'modal-footer'})
-                .append($('<a/>', {'class': 'modal-close btn-flat'}).text('No'))
-                .append($('<a/>', {'onclick': 'deleteHousingstock(' + id + ');', 'class': 'modal-close btn-flat'}).text('Yes'))
-        )
-        .appendTo('body')
-        .modal(
-            {
-                'dismissible': false,
-                'preventScrolling': false,
-                'onCloseEnd': function() {
-                    this.destroy();
-                    $('div#' + this.id).remove();
-                }
-            }
-        );
-    let modalInstance = M.Modal.getInstance(modal);
-    modalInstance.open();
-}
-
 function deleteHousingstock(id) {
     $.ajax({
         url: '/api/buildingexaminator/v1/housingstocks/' + id,
@@ -551,6 +788,10 @@ function deleteHousingstock(id) {
         },
     });
 }
+
+/**
+ * Buildingaddresses
+ */
 
 function loadBuildingaddressesPage() {
     if(localStorage.getItem('activeHousingstock')) {
@@ -571,10 +812,10 @@ function loadBuildingaddressesPage() {
                     rows +=
                         '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
                         '                <td class="hide-on-small-only"><i class="material-icons prefix">home</i></td>\n' +
-                        '                <td class="hide-on-small-only">' + element.rentalUnitNumber + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + element.streetName + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + element.houseNumber + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + element.addition + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.rentalUnitNumber ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.streetName ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.houseNumber ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.addition ?? '') + '</td>\n' +
                         '                <td class="hide-on-med-and-up">' +
                         '                    ' + element.rentalUnitNumber + '<br />\n' +
                         '                    ' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />\n' +
@@ -775,6 +1016,10 @@ function loadBuildingaddressNewPage() {
 
     hideLoader();
 }
+
+/**
+ * Testpages
+ */
 
 function loadTestPage() {
     showLoader();

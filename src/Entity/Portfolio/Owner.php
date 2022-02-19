@@ -29,15 +29,19 @@ class Owner extends Id
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The name is not a valid {{ type }}"
+     * )
+     * @Assert\NotBlank(
+     *     message="The name can not be empty"
      * )
      * @Assert\Length(
-     *      min=3,
-     *      max=128,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *     min=3,
+     *     max=128,
+     *     minMessage="The name must be at least {{ limit }} characters long",
+     *     maxMessage="The name can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -45,16 +49,16 @@ class Owner extends Id
     protected string $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", length=8, nullable=true)
+     *
      * @Assert\Type(
      *     type="integer",
-     *     message="%property% is not a valid %type%"
+     *     message="The KVK number is not a valid {{ type }}"
      * )
      * @Assert\Length(
-     *      min=8,
-     *      max=8,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *     min=8,
+     *     max=8,
+     *     exactMessage="The KVK number must be exactly {{ limit }} characters long"
      * )
      *
      * @OA\Property()
@@ -62,16 +66,16 @@ class Owner extends Id
     protected int $kvk;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=14, nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The BTW number is not a valid {{ type }}"
      * )
      * @Assert\Length(
-     *      min=14,
-     *      max=14,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *     min=14,
+     *     max=14,
+     *     exactMessage="The BTW number must be exactly {{ limit }} characters long"
      * )
      *
      * @OA\Property()
@@ -79,40 +83,38 @@ class Owner extends Id
     protected string $btw;
 
     /**
-     * @ORM\Column(type="string", length=32, nullable=true)
+     * @ORM\Column(type="string", length=5, nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The L number is not a valid {{ type }}"
      * )
-     * @Assert\AtLeastOneOf({
-     *     @Assert\Blank,
-     *     @Assert\Length(
-     *         min=5,
-     *         max=5,
-     *         minMessage="%property% must be at least %limit% characters long",
-     *         maxMessage="%property% can contain a maximum of %limit% characters"
-     *     )
-     * })
+     * @Assert\Length(
+     *     min=5,
+     *     max=5,
+     *     exactMessage="The L number must be axactly {{ limit }} characters long"
+     * )
      *
      * @OA\Property()
      */
-    protected string $lNumber;
+    protected string $lnumber;
 
     /**
      * @ORM\Column(type="string", length=256, nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The website is not a valid {{ type }}"
      * )
      * @Assert\Length(
-     *      min=3,
+     *      min=8,
      *      max=256,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      minMessage="The website must be at least {{ limit }} characters long",
+     *      maxMessage="The website can contain a maximum of {{ limit }} characters"
      * )
      * @Assert\Url(
      *      protocols = {"http", "https"},
-     *      message = "The url '{{ value }}' is not a valid url"
+     *      message = "The website '{{ value }}' is not a valid url"
      * )
      *
      * @OA\Property()
@@ -145,9 +147,9 @@ class Owner extends Id
         return $this->btw;
     }
 
-    public function getLNumber(): string
+    public function getLnumber(): string
     {
-        return $this->lNumber;
+        return $this->lnumber;
     }
 
     public function getWebsite(): string
@@ -180,9 +182,9 @@ class Owner extends Id
         $this->btw = $btw;
     }
 
-    public function setLNumber(string $lNumber): void
+    public function setLnumber(string $lnumber): void
     {
-        $this->lNumber = $lNumber;
+        $this->lnumber = $lnumber;
     }
 
     public function setWebsite(string $website): void

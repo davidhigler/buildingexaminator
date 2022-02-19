@@ -1339,7 +1339,7 @@ class LoadTestHousingStockData extends Fixture
         $vtw196->setBouwjaar('nvt');
         $vtw196->setRooftype('nvt');
 		
-	$buildingAddress0 = new BuildingAddress();
+	    $buildingAddress0 = new BuildingAddress();
         $buildingAddress0->setConstructionYear(1944);
         $buildingAddress0->setRenovationYear(1986);
         $buildingAddress0->setStreetName('Löeff Berchmakerstraat');
@@ -1349,8 +1349,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setCity('Utrecht');
         $buildingAddress0->setRentalUnitNumber('VHE0000');
         $buildingAddress0->setDaeb(true);
-        $buildingAddress0->setVtw($vtw1R);
-        $buildingAddress0->setResidentialArea($residentialArea`4);
+        $buildingAddress0->setVtw($vtw1);
+        $buildingAddress0->setResidentialArea($residentialArea4);
         $buildingAddress0->setBuildingType($buildingType2);
         $buildingAddress0->setLivingType($livingType6);
         $buildingAddress0->setCreationTime();
@@ -1366,7 +1366,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress1->setCity('Utrecht');
         $buildingAddress1->setRentalUnitNumber('VHE0001');
         $buildingAddress1->setDaeb(true);
-        $buildingAddress1->setVtw($vtw1R);
+        $buildingAddress1->setVtw($vtw1);
         $buildingAddress1->setResidentialArea($residentialArea4);
         $buildingAddress1->setBuildingType($buildingType2);
         $buildingAddress1->setLivingType($livingType6);
@@ -1383,7 +1383,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress2->setCity('Utrecht');
         $buildingAddress2->setRentalUnitNumber('VHE0002');
         $buildingAddress2->setDaeb(false);
-        $buildingAddress2->setVtw($vtw1R);
+        $buildingAddress2->setVtw($vtw1);
         $buildingAddress2->setResidentialArea($residentialArea4);
         $buildingAddress2->setBuildingType($buildingType2);
         $buildingAddress2->setLivingType($livingType6);
@@ -1400,7 +1400,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress3->setCity('Utrecht');
         $buildingAddress3->setRentalUnitNumber('VHE0003');
         $buildingAddress3->setDaeb(true);
-        $buildingAddress3->setVtw($vtw1R);
+        $buildingAddress3->setVtw($vtw1);
         $buildingAddress3->setResidentialArea($residentialArea4);
         $buildingAddress3->setBuildingType($buildingType2);
         $buildingAddress3->setLivingType($livingType6);
@@ -1417,7 +1417,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress4->setCity('Utrecht');
         $buildingAddress4->setRentalUnitNumber('VHE0004');
         $buildingAddress4->setDaeb(true);
-        $buildingAddress4->setVtw($vtw1R);
+        $buildingAddress4->setVtw($vtw1);
         $buildingAddress4->setResidentialArea($residentialArea4);
         $buildingAddress4->setBuildingType($buildingType2);
         $buildingAddress4->setLivingType($livingType6);
@@ -1434,7 +1434,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setCity('Utrecht');
         $buildingAddress5->setRentalUnitNumber('VHE0005');
         $buildingAddress5->setDaeb(true);
-        $buildingAddress5->setVtw($vtw1R);
+        $buildingAddress5->setVtw($vtw1);
         $buildingAddress5->setResidentialArea($residentialArea4);
         $buildingAddress5->setBuildingType($buildingType2);
         $buildingAddress5->setLivingType($livingType6);
@@ -1451,7 +1451,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress6->setCity('Utrecht');
         $buildingAddress6->setRentalUnitNumber('VHE0006');
         $buildingAddress6->setDaeb(true);
-        $buildingAddress6->setVtw($vtw1R);
+        $buildingAddress6->setVtw($vtw1);
         $buildingAddress6->setResidentialArea($residentialArea4);
         $buildingAddress6->setBuildingType($buildingType2);
         $buildingAddress6->setLivingType($livingType6);
@@ -1468,7 +1468,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress7->setCity('Utrecht');
         $buildingAddress7->setRentalUnitNumber('VHE0007');
         $buildingAddress7->setDaeb(true);
-        $buildingAddress7->setVtw($vtw1R);
+        $buildingAddress7->setVtw($vtw1);
         $buildingAddress7->setResidentialArea($residentialArea4);
         $buildingAddress7->setBuildingType($buildingType2);
         $buildingAddress7->setLivingType($livingType6);
@@ -1536,7 +1536,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress11->setCity('Utrecht');
         $buildingAddress11->setRentalUnitNumber('VHE0011');
         $buildingAddress11->setDaeb(true);
-        $buildingAddress11->setVtw($vtw1R);
+        $buildingAddress11->setVtw($vtw1);
         $buildingAddress11->setResidentialArea($residentialArea4);
         $buildingAddress11->setBuildingType($buildingType2);
         $buildingAddress11->setLivingType($livingType6);
@@ -1553,7 +1553,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress12->setCity('Utrecht');
         $buildingAddress12->setRentalUnitNumber('VHE0012');
         $buildingAddress12->setDaeb(true);
-        $buildingAddress12->setVtw($vtw1R);
+        $buildingAddress12->setVtw($vtw1);
         $buildingAddress12->setResidentialArea($residentialArea4);
         $buildingAddress12->setBuildingType($buildingType2);
         $buildingAddress12->setLivingType($livingType6);
@@ -1570,7 +1570,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress13->setCity('Utrecht');
         $buildingAddress13->setRentalUnitNumber('VHE0013');
         $buildingAddress13->setDaeb(false);
-        $buildingAddress13->setVtw($vtw75);
+        $buildingAddress13->setVtw($vtw7);
         $buildingAddress13->setResidentialArea($residentialArea4);
         $buildingAddress13->setBuildingType($buildingType2);
         $buildingAddress13->setLivingType($livingType6);
@@ -1588,7 +1588,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress14->setCity('Utrecht');
         $buildingAddress14->setRentalUnitNumber('VHE0014');
         $buildingAddress14->setDaeb(true);
-        $buildingAddress14->setVtw($vtw1R);
+        $buildingAddress14->setVtw($vtw1);
         $buildingAddress14->setResidentialArea($residentialArea4);
         $buildingAddress14->setBuildingType($buildingType2);
         $buildingAddress14->setLivingType($livingType6);
@@ -1605,7 +1605,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress15->setCity('Utrecht');
         $buildingAddress15->setRentalUnitNumber('VHE0015');
         $buildingAddress15->setDaeb(true);
-        $buildingAddress15->setVtw($vtw1R);
+        $buildingAddress15->setVtw($vtw1);
         $buildingAddress15->setResidentialArea($residentialArea4);
         $buildingAddress15->setBuildingType($buildingType2);
         $buildingAddress15->setLivingType($livingType6);
@@ -1622,7 +1622,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress16->setCity('Utrecht');
         $buildingAddress16->setRentalUnitNumber('VHE0016');
         $buildingAddress16->setDaeb(true);
-        $buildingAddress16->setVtw($vtw1R);
+        $buildingAddress16->setVtw($vtw1);
         $buildingAddress16->setResidentialArea($residentialArea4);
         $buildingAddress16->setBuildingType($buildingType2);
         $buildingAddress16->setLivingType($livingType6);
@@ -1639,7 +1639,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress17->setCity('Utrecht');
         $buildingAddress17->setRentalUnitNumber('VHE0017');
         $buildingAddress17->setDaeb(true);
-        $buildingAddress17->setVtw($vtw1R);
+        $buildingAddress17->setVtw($vtw1);
         $buildingAddress17->setResidentialArea($residentialArea4);
         $buildingAddress17->setBuildingType($buildingType2);
         $buildingAddress17->setLivingType($livingType6);
@@ -1656,7 +1656,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress18->setCity('Utrecht');
         $buildingAddress18->setRentalUnitNumber('VHE0018');
         $buildingAddress18->setDaeb(false);
-        $buildingAddress18->setVtw($vtw1R);
+        $buildingAddress18->setVtw($vtw1);
         $buildingAddress18->setResidentialArea($residentialArea4);
         $buildingAddress18->setBuildingType($buildingType2);
         $buildingAddress18->setLivingType($livingType6);
@@ -1673,7 +1673,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress19->setCity('Utrecht');
         $buildingAddress19->setRentalUnitNumber('VHE0019');
         $buildingAddress19->setDaeb(true);
-        $buildingAddress19->setVtw($vtw1R);
+        $buildingAddress19->setVtw($vtw1);
         $buildingAddress19->setResidentialArea($residentialArea4);
         $buildingAddress19->setBuildingType($buildingType2);
         $buildingAddress19->setLivingType($livingType6);
@@ -1690,7 +1690,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress20->setCity('Utrecht');
         $buildingAddress20->setRentalUnitNumber('VHE0020');
         $buildingAddress20->setDaeb(true);
-        $buildingAddress20->setVtw($vtw1R);
+        $buildingAddress20->setVtw($vtw1);
         $buildingAddress20->setResidentialArea($residentialArea4);
         $buildingAddress20->setBuildingType($buildingType2);
         $buildingAddress20->setLivingType($livingType6);
@@ -1707,7 +1707,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress21->setCity('Utrecht');
         $buildingAddress21->setRentalUnitNumber('VHE0021');
         $buildingAddress21->setDaeb(true);
-        $buildingAddress21->setVtw($vtw1R);
+        $buildingAddress21->setVtw($vtw1);
         $buildingAddress21->setResidentialArea($residentialArea4);
         $buildingAddress21->setBuildingType($buildingType2);
         $buildingAddress21->setLivingType($livingType6);
@@ -1724,7 +1724,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress22->setCity('Utrecht');
         $buildingAddress22->setRentalUnitNumber('VHE0022');
         $buildingAddress22->setDaeb(true);
-        $buildingAddress22->setVtw($vtw1r);
+        $buildingAddress22->setVtw($vtw1);
         $buildingAddress22->setResidentialArea($residentialArea4);
         $buildingAddress22->setBuildingType($buildingType2);
         $buildingAddress22->setLivingType($livingType6);
@@ -1741,7 +1741,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress23->setCity('Utrecht');
         $buildingAddress23->setRentalUnitNumber('VHE0023');
         $buildingAddress23->setDaeb(true);
-        $buildingAddress23->setVtw($vtw1R);
+        $buildingAddress23->setVtw($vtw1);
         $buildingAddress23->setResidentialArea($residentialArea4);
         $buildingAddress23->setBuildingType($buildingType2);
         $buildingAddress23->setLivingType($livingType6);
@@ -1758,7 +1758,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress24->setCity('Utrecht');
         $buildingAddress24->setRentalUnitNumber('VHE0024');
         $buildingAddress24->setDaeb(true);
-        $buildingAddress24->setVtw($vtw1R);
+        $buildingAddress24->setVtw($vtw1);
         $buildingAddress24->setResidentialArea($residentialArea4);
         $buildingAddress24->setBuildingType($buildingType2);
         $buildingAddress24->setLivingType($livingType6);
@@ -1775,7 +1775,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress25->setCity('Utrecht');
         $buildingAddress25->setRentalUnitNumber('VHE0025');
         $buildingAddress25->setDaeb(true);
-        $buildingAddress25->setVtw($vtw1R);
+        $buildingAddress25->setVtw($vtw1);
         $buildingAddress25->setResidentialArea($residentialArea4);
         $buildingAddress25->setBuildingType($buildingType2);
         $buildingAddress25->setLivingType($livingType6);
@@ -2218,7 +2218,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setCity('Woonplaats A');
         $buildingAddress51->setRentalUnitNumber('VHE0000');
         $buildingAddress51->setDaeb(true);
-        $buildingAddress51->setVtw($vtw188);
+        $buildingAddress51->setVtw($vtw18);
         $buildingAddress51->setResidentialArea($residentialArea1);
         $buildingAddress51->setBuildingType($buildingType1);
         $buildingAddress51->setLivingType($livingType3);
@@ -5039,83 +5039,83 @@ class LoadTestHousingStockData extends Fixture
         $owner1->setName('Woonpartners Midden-Holland');
         $owner1->setKvk('29045958');
         $owner1->setBtw('NL804644433B01');
-        $owner1->setLNumber('L2114');
+        $owner1->setLnumber('L2114');
         $owner1->setWebsite('https://www.woonpartners-mh.nl');
 
         $owner2 = new Owner();
         $owner2->setName('WoonCompas');
         $owner2->setKvk('24108743');
         $owner2->setBtw('NL002776911B01');
-        $owner2->setLNumber('L2110');
+        $owner2->setLnumber('L2110');
         $owner2->setWebsite('https://www.wooncompas.nl');
 
         $owner3 = new Owner();
         $owner3->setName('Stichting Woningbedrijf Warnsveld');
-        $owner3->setLNumber('L2104');
+        $owner3->setLnumber('L2104');
 
         $owner4 = new Owner();
         $owner4->setName('Woonstichting De Key');
-        $owner4->setLNumber('L2103');
+        $owner4->setLnumber('L2103');
 
         $owner5 = new Owner();
         $owner5->setName('Stichting Goed Wonen Liempde');
-        $owner5->setLNumber('L2101');
+        $owner5->setLnumber('L2101');
 
         $owner6 = new Owner();
         $owner6->setName('Noordwijkse Woningstichting');
-        $owner6->setLNumber('L2092');
+        $owner6->setLnumber('L2092');
 
         $owner7 = new Owner();
         $owner7->setName('Woonstichtibng De zes Kernen');
-        $owner7->setLNumber('L2090');
+        $owner7->setLnumber('L2090');
 
         $owner8 = new Owner();
         $owner8->setName('Stichting Woonplus Schiedam');
-        $owner8->setLNumber('L2085');
+        $owner8->setLnumber('L2085');
 
         $owner9 = new Owner();
         $owner9->setName('Stichting Woondiensten Aarwoude');
-        $owner9->setLNumber('L2084');
+        $owner9->setLnumber('L2084');
 
         $owner10 = new Owner();
         $owner10->setName('Woningstichting Nieuwkoop');
-        $owner10->setLNumber('L2083');
+        $owner10->setLnumber('L2083');
 
         $owner11 = new Owner();
         $owner11->setName('Woningstichting Barneveld');
-        $owner11->setLNumber('L2082');
+        $owner11->setLnumber('L2082');
 
         $owner12 = new Owner();
         $owner12->setName('Stichting Woningbedrijf Velsen');
-        $owner12->setLNumber('L2073');
+        $owner12->setLnumber('L2073');
 
         $owner13 = new Owner();
         $owner13->setName('Waterweg wonen');
-        $owner13->setLNumber('L2072');
+        $owner13->setLnumber('L2072');
 
         $owner14 = new Owner();
         $owner14->setName('Stichting Ymere');
-        $owner14->setLNumber('L2070');
+        $owner14->setLnumber('L2070');
 
         $owner15 = new Owner();
         $owner15->setName('Rhenense Woningstichting');
-        $owner15->setLNumber('L2068');
+        $owner15->setLnumber('L2068');
 
         $owner16 = new Owner();
         $owner16->setName('Wooncentrum Ouderen St. Zuidrandflat Gouda');
-        $owner16->setLNumber('L2067');
+        $owner16->setLnumber('L2067');
 
         $owner17 = new Owner();
         $owner17->setName('Stichting Laurens Wonen ');
-        $owner17->setLNumber('L2066');
+        $owner17->setLnumber('L2066');
 
         $owner18 = new Owner();
         $owner18->setName('Stichting Mitros');
-        $owner18->setLNumber('L2058');
+        $owner18->setLnumber('L2058');
 
         $owner19 = new Owner();
         $owner19->setName('Ressort Wonen');
-        $owner19->setLNumber('L2056');
+        $owner19->setLnumber('L2056');
 
 //        $owner20 = new Owner();
 //        $owner20->setId(20);
@@ -5124,59 +5124,59 @@ class LoadTestHousingStockData extends Fixture
 
         $owner21 = new Owner();
         $owner21->setName('ZorgGoedBrabant');
-        $owner21->setLNumber('L2053');
+        $owner21->setLnumber('L2053');
 
         $owner22 = new Owner();
         $owner22->setName('Woonstichting Etten-Leur');
-        $owner22->setLNumber('L2052');
+        $owner22->setLnumber('L2052');
 
         $owner23 = new Owner();
         $owner23->setName('Stichting Woonstede');
-        $owner23->setLNumber('L2051');
+        $owner23->setLnumber('L2051');
 
         $owner24 = new Owner();
         $owner24->setName('Veron');
-        $owner24->setLNumber('L2047');
+        $owner24->setLnumber('L2047');
 
         $owner25 = new Owner();
         $owner25->setName('Stichting Wonen Wierden Enter');
-        $owner25->setLNumber('L2044');
+        $owner25->setLnumber('L2044');
 
         $owner26 = new Owner();
         $owner26->setName('Stichting Woonpalet Zeewolde');
-        $owner26->setLNumber('L2014');
+        $owner26->setLnumber('L2014');
 
         $owner27 = new Owner();
         $owner27->setName('Stichting DUWO');
-        $owner27->setLNumber('L2004');
+        $owner27->setLnumber('L2004');
 
         $owner28 = new Owner();
         $owner28->setName('SHBO');
-        $owner28->setLNumber('L1986');
+        $owner28->setLnumber('L1986');
 
         $owner29 = new Owner();
         $owner29->setName('Harmonisch Wonen');
-        $owner29->setLNumber('L1985');
+        $owner29->setLnumber('L1985');
 
         $owner30 = new Owner();
         $owner30->setName('SIB Woonservice');
-        $owner30->setLNumber('L1969');
+        $owner30->setLnumber('L1969');
 
         $owner31 = new Owner();
         $owner31->setName('Stichting Verzorgd Wonen SHBB');
-        $owner31->setLNumber('L1966');
+        $owner31->setLnumber('L1966');
 
         $owner32 = new Owner();
         $owner32->setName('Stichting Jongeren Huisvesting Twente');
-        $owner32->setLNumber('L1964');
+        $owner32->setLnumber('L1964');
 
         $owner33 = new Owner();
         $owner33->setName('SSHN');
-        $owner33->setLNumber('L1944');
+        $owner33->setLnumber('L1944');
 
         $owner34 = new Owner();
         $owner34->setName('Stichting Huisvesting Vredewold');
-        $owner34->setLNumber('L1933');
+        $owner34->setLnumber('L1933');
 
 //        $owner35 = new Owner();
 //        $owner35->setId(35);
@@ -5185,1216 +5185,1216 @@ class LoadTestHousingStockData extends Fixture
 
         $owner36 = new Owner();
         $owner36->setName('Stichting Ouderenhuisvesting Rotterdam');
-        $owner36->setLNumber('L1926');
+        $owner36->setLnumber('L1926');
 
         $owner37 = new Owner();
         $owner37->setName('Stichting Vestia Groep');
-        $owner37->setLNumber('L1924');
+        $owner37->setLnumber('L1924');
 
         $owner38 = new Owner();
         $owner38->setName('Woonkracht10');
-        $owner38->setLNumber('L1921');
+        $owner38->setLnumber('L1921');
 
         $owner39 = new Owner();
         $owner39->setName('Tiwos, Tilburgse Woonstichting');
-        $owner39->setLNumber('L1913');
+        $owner39->setLnumber('L1913');
 
         $owner40 = new Owner();
         $owner40->setName('Stichting de Alliantie');
-        $owner40->setLNumber('L1912');
+        $owner40->setLnumber('L1912');
 
         $owner41 = new Owner();
         $owner41->setName('Stichting WonenBreburg');
-        $owner41->setLNumber('L1911');
+        $owner41->setLnumber('L1911');
 
         $owner42 = new Owner();
         $owner42->setName('WBO Wonen');
-        $owner42->setLNumber('L1910');
+        $owner42->setLnumber('L1910');
 
         $owner43 = new Owner();
         $owner43->setName('Stichting Studenten Huisvesting');
-        $owner43->setLNumber('L1909');
+        $owner43->setLnumber('L1909');
 
         $owner44 = new Owner();
         $owner44->setName('Brabantse Waard');
-        $owner44->setLNumber('L1906');
+        $owner44->setLnumber('L1906');
 
         $owner45 = new Owner();
         $owner45->setName('Woningbouwvereniging Amerongen');
-        $owner45->setLNumber('L1903');
+        $owner45->setLnumber('L1903');
 
         $owner46 = new Owner();
         $owner46->setName('Regionale Woningbouwvereniging Samenwerking ');
-        $owner46->setLNumber('L1901');
+        $owner46->setLnumber('L1901');
 
         $owner47 = new Owner();
         $owner47->setName('Woningstichting De Volmacht');
-        $owner47->setLNumber('L1899');
+        $owner47->setLnumber('L1899');
 
         $owner48 = new Owner();
         $owner48->setName('Woningstichting De Leeuw van Putten');
-        $owner48->setLNumber('L1896');
+        $owner48->setLnumber('L1896');
 
         $owner49 = new Owner();
         $owner49->setName('Woonstichting Valburg');
-        $owner49->setLNumber('L1893');
+        $owner49->setLnumber('L1893');
 
         $owner50 = new Owner();
         $owner50->setName('Woningbouwvereniging Oudewater');
-        $owner50->setLNumber('L1892');
+        $owner50->setLnumber('L1892');
 
         $owner51 = new Owner();
         $owner51->setName('Woningstichting Goede Stede ');
-        $owner51->setLNumber('L1891');
+        $owner51->setLnumber('L1891');
 
         $owner52 = new Owner();
         $owner52->setName('Woonstichting Centrada');
-        $owner52->setLNumber('L1888');
+        $owner52->setLnumber('L1888');
 
         $owner53 = new Owner();
         $owner53->setName('Stichting Woningbeheer Betuwe');
-        $owner53->setLNumber('L1881');
+        $owner53->setLnumber('L1881');
 
         $owner54 = new Owner();
         $owner54->setName('Woningstichting Leusden');
-        $owner54->setLNumber('L1878');
+        $owner54->setLnumber('L1878');
 
         $owner55 = new Owner();
         $owner55->setName('Stichting Woonservice Drenthe');
-        $owner55->setLNumber('L1877');
+        $owner55->setLnumber('L1877');
 
         $owner56 = new Owner();
         $owner56->setName('Stichting Maasdelta Groep');
-        $owner56->setLNumber('L1876');
+        $owner56->setLnumber('L1876');
 
         $owner57 = new Owner();
         $owner57->setName('Stichting Woningcorporaties Het Gooi en Omstreken');
-        $owner57->setLNumber('L1875');
+        $owner57->setLnumber('L1875');
 
         $owner58 = new Owner();
         $owner58->setName('Woningbouwvereniging "Lopik"');
-        $owner58->setLNumber('L1866');
+        $owner58->setLnumber('L1866');
 
         $owner59 = new Owner();
         $owner59->setName('Woningstichting Putten');
-        $owner59->setLNumber('L1865');
+        $owner59->setLnumber('L1865');
 
         $owner60 = new Owner();
         $owner60->setName('Wonen Vierlingsbeek');
-        $owner60->setLNumber('L1864');
+        $owner60->setLnumber('L1864');
 
         $owner61 = new Owner();
         $owner61->setName('Oost Flevoland Woondiensten');
-        $owner61->setLNumber('L1861');
+        $owner61->setLnumber('L1861');
 
         $owner62 = new Owner();
         $owner62->setName('Wovesto');
-        $owner62->setLNumber('L1857');
+        $owner62->setLnumber('L1857');
 
         $owner63 = new Owner();
         $owner63->setName('Woonstichting Gendt');
-        $owner63->setLNumber('L1855');
+        $owner63->setLnumber('L1855');
 
         $owner64 = new Owner();
         $owner64->setName('Woningstichting Kleine Meierij');
-        $owner64->setLNumber('L1852');
+        $owner64->setLnumber('L1852');
 
         $owner65 = new Owner();
         $owner65->setName('Woningstichting Woensdrecht');
-        $owner65->setLNumber('L1850');
+        $owner65->setLnumber('L1850');
 
         $owner66 = new Owner();
         $owner66->setName('Woningbouwvereniging Compaen');
-        $owner66->setLNumber('L1847');
+        $owner66->setLnumber('L1847');
 
         $owner67 = new Owner();
         $owner67->setName('Woningstichting De Woonplaats');
-        $owner67->setLNumber('L1842');
+        $owner67->setLnumber('L1842');
 
         $owner68 = new Owner();
         $owner68->setName('st. WoonGoed 2-Duizend');
-        $owner68->setLNumber('L1839');
+        $owner68->setLnumber('L1839');
 
         $owner69 = new Owner();
         $owner69->setName('Woningvereniging Nederweert');
-        $owner69->setLNumber('L1837');
+        $owner69->setLnumber('L1837');
 
         $owner70 = new Owner();
         $owner70->setName('Heuvelrug Wonen');
-        $owner70->setLNumber('L1836');
+        $owner70->setLnumber('L1836');
 
         $owner71 = new Owner();
         $owner71->setName('Woningstichting Maasdriel');
-        $owner71->setLNumber('L1835');
+        $owner71->setLnumber('L1835');
 
         $owner72 = new Owner();
         $owner72->setName('Woonstichting De Kernen');
-        $owner72->setLNumber('L1825');
+        $owner72->setLnumber('L1825');
 
         $owner73 = new Owner();
         $owner73->setName('Laris Wonen en diensten');
-        $owner73->setLNumber('L1821');
+        $owner73->setLnumber('L1821');
 
         $owner74 = new Owner();
         $owner74->setName('Stichting Mooiland');
-        $owner74->setLNumber('L1817');
+        $owner74->setLnumber('L1817');
 
         $owner75 = new Owner();
         $owner75->setName('Stichting PeelrandWonen');
-        $owner75->setLNumber('L1811');
+        $owner75->setLnumber('L1811');
 
         $owner76 = new Owner();
         $owner76->setName('Woningstichting Volksbelang');
-        $owner76->setLNumber('L1807');
+        $owner76->setLnumber('L1807');
 
         $owner77 = new Owner();
         $owner77->setName('Mercatus');
-        $owner77->setLNumber('L1804');
+        $owner77->setLnumber('L1804');
 
         $owner78 = new Owner();
         $owner78->setName('Woningstichting de Zaligheden');
-        $owner78->setLNumber('L1794');
+        $owner78->setLnumber('L1794');
 
         $owner79 = new Owner();
         $owner79->setName('Stichting Acantus Groep');
-        $owner79->setLNumber('L1793');
+        $owner79->setLnumber('L1793');
 
         $owner80 = new Owner();
         $owner80->setName('Stichting Thus wonen');
-        $owner80->setLNumber('L1792');
+        $owner80->setLnumber('L1792');
 
         $owner81 = new Owner();
         $owner81->setName('Woonstichting Leystromen');
-        $owner81->setLNumber('L1788');
+        $owner81->setLnumber('L1788');
 
         $owner82 = new Owner();
         $owner82->setName('Stichting WSG');
-        $owner82->setLNumber('L1787');
+        $owner82->setLnumber('L1787');
 
         $owner83 = new Owner();
         $owner83->setName('Stichting Stadlander');
-        $owner83->setLNumber('L1785');
+        $owner83->setLnumber('L1785');
 
         $owner84 = new Owner();
         $owner84->setName('Stichting Thuisvester');
-        $owner84->setLNumber('L1781');
+        $owner84->setLnumber('L1781');
 
         $owner85 = new Owner();
         $owner85->setName('Staedion');
-        $owner85->setLNumber('L1768');
+        $owner85->setLnumber('L1768');
 
         $owner86 = new Owner();
         $owner86->setName('Stichting woCom');
-        $owner86->setLNumber('L1766');
+        $owner86->setLnumber('L1766');
 
         $owner87 = new Owner();
         $owner87->setName('Stichting Woonveste');
-        $owner87->setLNumber('L1763');
+        $owner87->setLnumber('L1763');
 
         $owner88 = new Owner();
         $owner88->setName('Vieya');
-        $owner88->setLNumber('L1762');
+        $owner88->setLnumber('L1762');
 
         $owner89 = new Owner();
         $owner89->setName('Bernardus wonen');
-        $owner89->setLNumber('L1761');
+        $owner89->setLnumber('L1761');
 
         $owner90 = new Owner();
         $owner90->setName('Wbv. Reeuwijk');
-        $owner90->setLNumber('L1760');
+        $owner90->setLnumber('L1760');
 
         $owner91 = new Owner();
         $owner91->setName('Wetland Wonen Groep');
-        $owner91->setLNumber('L1753');
+        $owner91->setLnumber('L1753');
 
         $owner92 = new Owner();
         $owner92->setName('Stichting Woningcorporatie WoonGenoot');
-        $owner92->setLNumber('L1748');
+        $owner92->setLnumber('L1748');
 
         $owner93 = new Owner();
         $owner93->setName('Goed Wonen');
-        $owner93->setLNumber('L1745');
+        $owner93->setLnumber('L1745');
 
         $owner94 = new Owner();
         $owner94->setName('Stichting Woonservice Urbanus');
-        $owner94->setLNumber('L1723');
+        $owner94->setLnumber('L1723');
 
         $owner95 = new Owner();
         $owner95->setName('Woningstichting Goed Wonen');
-        $owner95->setLNumber('L1718');
+        $owner95->setLnumber('L1718');
 
         $owner96 = new Owner();
         $owner96->setName('Stichting Viveste');
-        $owner96->setLNumber('L1716');
+        $owner96->setLnumber('L1716');
 
         $owner97 = new Owner();
         $owner97->setName('Wbv de Kombinatie');
-        $owner97->setLNumber('L1713');
+        $owner97->setLnumber('L1713');
 
         $owner98 = new Owner();
         $owner98->setName('Chr. Woonstichting Patrimonium');
-        $owner98->setLNumber('L1712');
+        $owner98->setLnumber('L1712');
 
         $owner99 = new Owner();
         $owner99->setName('Christelijke Woningstichting De Goede Woning');
-        $owner99->setLNumber('L1709');
+        $owner99->setLnumber('L1709');
 
         $owner100 = new Owner();
         $owner100->setName('Woonstichting Land van Altena');
-        $owner100->setLNumber('L1704');
+        $owner100->setLnumber('L1704');
 
         $owner101 = new Owner();
         $owner101->setName('wbv Beter Wonen');
-        $owner101->setLNumber('L1700');
+        $owner101->setLnumber('L1700');
 
         $owner102 = new Owner();
         $owner102->setName('Wonen Limburg');
-        $owner102->setLNumber('L1697');
+        $owner102->setLnumber('L1697');
 
         $owner103 = new Owner();
         $owner103->setName('Woningstichting Nijkerk');
-        $owner103->setLNumber('L1693');
+        $owner103->setLnumber('L1693');
 
         $owner104 = new Owner();
         $owner104->setName('Ons Huis Woningstichting');
-        $owner104->setLNumber('L1691');
+        $owner104->setLnumber('L1691');
 
         $owner105 = new Owner();
         $owner105->setName('Woningstichting St. Joseph');
-        $owner105->setLNumber('L1689');
+        $owner105->setLnumber('L1689');
 
         $owner106 = new Owner();
         $owner106->setName('de Woonmensen/SJA');
-        $owner106->setLNumber('L1680');
+        $owner106->setLnumber('L1680');
 
         $owner107 = new Owner();
         $owner107->setName('Woningstichting Tubbergen');
-        $owner107->setLNumber('L1678');
+        $owner107->setLnumber('L1678');
 
         $owner108 = new Owner();
         $owner108->setName('Steelande wonen');
-        $owner108->setLNumber('L1675');
+        $owner108->setLnumber('L1675');
 
         $owner109 = new Owner();
         $owner109->setName('Chr. stichting BCM wonen');
-        $owner109->setLNumber('L1674');
+        $owner109->setLnumber('L1674');
 
         $owner110 = new Owner();
         $owner110->setName('Oosterpoort Wooncombinatie');
-        $owner110->setLNumber('L1670');
+        $owner110->setLnumber('L1670');
 
         $owner111 = new Owner();
         $owner111->setName('Stichting Woonfriesland');
-        $owner111->setLNumber('L1663');
+        $owner111->setLnumber('L1663');
 
         $owner112 = new Owner();
         $owner112->setName('Stichting Woonpartners');
-        $owner112->setLNumber('L1647');
+        $owner112->setLnumber('L1647');
 
         $owner113 = new Owner();
         $owner113->setName('Stichting Woonzorg Nederland');
-        $owner113->setLNumber('L1646');
+        $owner113->setLnumber('L1646');
 
         $owner114 = new Owner();
         $owner114->setName('Woningbouwvereniging Hoek van Holand');
-        $owner114->setLNumber('L1640');
+        $owner114->setLnumber('L1640');
 
         $owner115 = new Owner();
         $owner115->setName('Stichting Accolade');
-        $owner115->setLNumber('L1638');
+        $owner115->setLnumber('L1638');
 
         $owner116 = new Owner();
         $owner116->setName('Stichting Wonen Wittem');
-        $owner116->setLNumber('L1622');
+        $owner116->setLnumber('L1622');
 
         $owner117 = new Owner();
         $owner117->setName('Kennemerhave');
-        $owner117->setLNumber('L1612');
+        $owner117->setLnumber('L1612');
 
         $owner118 = new Owner();
         $owner118->setName('Stichting Woonburg');
-        $owner118->setLNumber('L1606');
+        $owner118->setLnumber('L1606');
 
         $owner119 = new Owner();
         $owner119->setName('Woningstichting Gouderak');
-        $owner119->setLNumber('L1598');
+        $owner119->setLnumber('L1598');
 
         $owner120 = new Owner();
         $owner120->setName('Woningbouwstichting Lek en Waard Wonen');
-        $owner120->setLNumber('L1597');
+        $owner120->setLnumber('L1597');
 
         $owner121 = new Owner();
         $owner121->setName('Woningbouwstichting Cothen');
-        $owner121->setLNumber('L1588');
+        $owner121->setLnumber('L1588');
 
         $owner122 = new Owner();
         $owner122->setName('Woningbouwvereniging Nieuw-Lekkerland');
-        $owner122->setLNumber('L1586');
+        $owner122->setLnumber('L1586');
 
         $owner123 = new Owner();
         $owner123->setName('Woningbouwvereniging Vecht en Omstreken ');
-        $owner123->setLNumber('L1585');
+        $owner123->setLnumber('L1585');
 
         $owner124 = new Owner();
         $owner124->setName('Bouwvereniging Ambt Delden');
-        $owner124->setLNumber('L1584');
+        $owner124->setLnumber('L1584');
 
         $owner125 = new Owner();
         $owner125->setName('Zeeuwland');
-        $owner125->setLNumber('L1581');
+        $owner125->setLnumber('L1581');
 
         $owner126 = new Owner();
         $owner126->setName('Woningstichting Wuta');
-        $owner126->setLNumber('L1579');
+        $owner126->setLnumber('L1579');
 
         $owner127 = new Owner();
         $owner127->setName('Groen Wonen Vlist');
-        $owner127->setLNumber('L1573');
+        $owner127->setLnumber('L1573');
 
         $owner128 = new Owner();
         $owner128->setName('Woongoed ZVL');
-        $owner128->setLNumber('L1569');
+        $owner128->setLnumber('L1569');
 
         $owner129 = new Owner();
         $owner129->setName('Stichting Woontij');
-        $owner129->setLNumber('L1560');
+        $owner129->setLnumber('L1560');
 
         $owner130 = new Owner();
         $owner130->setName('wbv Beter Wonen');
-        $owner130->setLNumber('L1559');
+        $owner130->setLnumber('L1559');
 
         $owner131 = new Owner();
         $owner131->setName('Woningbouwvereniging "Goed Wonen"');
-        $owner131->setLNumber('L1550');
+        $owner131->setLnumber('L1550');
 
         $owner132 = new Owner();
         $owner132->setName('Poort6');
-        $owner132->setLNumber('L1549');
+        $owner132->setLnumber('L1549');
 
         $owner133 = new Owner();
         $owner133->setName('Woongoed GO');
-        $owner133->setLNumber('L1544');
+        $owner133->setLnumber('L1544');
 
         $owner134 = new Owner();
         $owner134->setName('Vallei Wonen ');
-        $owner134->setLNumber('L1543');
+        $owner134->setLnumber('L1543');
 
         $owner135 = new Owner();
         $owner135->setName('Stichting Lefier');
-        $owner135->setLNumber('L1542');
+        $owner135->setLnumber('L1542');
 
         $owner136 = new Owner();
         $owner136->setName('Stichting WOONopMAAT');
-        $owner136->setLNumber('L1533');
+        $owner136->setLnumber('L1533');
 
         $owner137 = new Owner();
         $owner137->setName('wbs Samenwerking');
-        $owner137->setLNumber('L1532');
+        $owner137->setLnumber('L1532');
 
         $owner138 = new Owner();
         $owner138->setName('Stichting Woningbeheer De Vooruitgang');
-        $owner138->setLNumber('L1525');
+        $owner138->setLnumber('L1525');
 
         $owner139 = new Owner();
         $owner139->setName('Rijnhart Wonen');
-        $owner139->setLNumber('L1524');
+        $owner139->setLnumber('L1524');
 
         $owner140 = new Owner();
         $owner140->setName('Stichting Wooninc.');
-        $owner140->setLNumber('L1519');
+        $owner140->setLnumber('L1519');
 
         $owner141 = new Owner();
         $owner141->setName('Woningstichting SallandWonen');
-        $owner141->setLNumber('L1506');
+        $owner141->setLnumber('L1506');
 
         $owner142 = new Owner();
         $owner142->setName('Woningstichting Kamerik');
-        $owner142->setLNumber('L1498');
+        $owner142->setLnumber('L1498');
 
         $owner143 = new Owner();
         $owner143->setName('Woningstichting Kessel');
-        $owner143->setLNumber('L1491');
+        $owner143->setLnumber('L1491');
 
         $owner144 = new Owner();
         $owner144->setName('Talis');
-        $owner144->setLNumber('L1479');
+        $owner144->setLnumber('L1479');
 
         $owner145 = new Owner();
         $owner145->setName('Woonwijze');
-        $owner145->setLNumber('L1471');
+        $owner145->setLnumber('L1471');
 
         $owner146 = new Owner();
         $owner146->setName('Stichting Woningbeheer Born-Grevenbicht');
-        $owner146->setLNumber('L1468');
+        $owner146->setLnumber('L1468');
 
         $owner147 = new Owner();
         $owner147->setName('Stichting Woonbedrijf SWS.Hhvl');
-        $owner147->setLNumber('L1464');
+        $owner147->setLnumber('L1464');
 
         $owner148 = new Owner();
         $owner148->setName('R.K. Woningbouwstichting De Goede Woning');
-        $owner148->setLNumber('L1459');
+        $owner148->setLnumber('L1459');
 
         $owner149 = new Owner();
         $owner149->setName('Dunavie');
-        $owner149->setLNumber('L1436');
+        $owner149->setLnumber('L1436');
 
         $owner150 = new Owner();
         $owner150->setName('Woningcorporatie Domijn');
-        $owner150->setLNumber('L1426');
+        $owner150->setLnumber('L1426');
 
         $owner151 = new Owner();
         $owner151->setName('Stichting Woonbedrijf ieder1');
-        $owner151->setLNumber('L1418');
+        $owner151->setLnumber('L1418');
 
         $owner152 = new Owner();
         $owner152->setName('Woningstichting Buitenlust');
-        $owner152->setLNumber('L1415');
+        $owner152->setLnumber('L1415');
 
         $owner153 = new Owner();
         $owner153->setName('Woningstichting Hellendoorn');
-        $owner153->setLNumber('L1413');
+        $owner153->setLnumber('L1413');
 
         $owner154 = new Owner();
         $owner154->setName('Stichting Woonservice IJsselland');
-        $owner154->setLNumber('L1409');
+        $owner154->setLnumber('L1409');
 
         $owner155 = new Owner();
         $owner155->setName('Woningstichting Den Helder');
-        $owner155->setLNumber('L1399');
+        $owner155->setLnumber('L1399');
 
         $owner156 = new Owner();
         $owner156->setName('Winingbouwvereniging Maarn');
-        $owner156->setLNumber('L1395');
+        $owner156->setLnumber('L1395');
 
         $owner157 = new Owner();
         $owner157->setName('Woningbouwstichting de Gemeenschap');
-        $owner157->setLNumber('L1357');
+        $owner157->setLnumber('L1357');
 
         $owner158 = new Owner();
         $owner158->setName('Woningstichting Eendracht');
-        $owner158->setLNumber('L1306');
+        $owner158->setLnumber('L1306');
 
         $owner159 = new Owner();
         $owner159->setName('Woningstichting Obbicht & Papenhoven');
-        $owner159->setLNumber('L1247');
+        $owner159->setLnumber('L1247');
 
         $owner160 = new Owner();
         $owner160->setName('IJsseldal Wonen');
-        $owner160->setLNumber('L1239');
+        $owner160->setLnumber('L1239');
 
         $owner161 = new Owner();
         $owner161->setName('Woonstichting St. Joseph');
-        $owner161->setLNumber('L1236');
+        $owner161->setLnumber('L1236');
 
         $owner162 = new Owner();
         $owner162->setName('Woonbeheer Borne');
-        $owner162->setLNumber('L1235');
+        $owner162->setLnumber('L1235');
 
         $owner163 = new Owner();
         $owner163->setName('Woningbouwvereniging Bergopwaarts');
-        $owner163->setLNumber('L1226');
+        $owner163->setLnumber('L1226');
 
         $owner164 = new Owner();
         $owner164->setName('Stichting VitaalWonen');
-        $owner164->setLNumber('L1217');
+        $owner164->setLnumber('L1217');
 
         $owner165 = new Owner();
         $owner165->setName('Stichting 3B Wonen');
-        $owner165->setLNumber('L1215');
+        $owner165->setLnumber('L1215');
 
         $owner166 = new Owner();
         $owner166->setName('Woningstichting Urmond');
-        $owner166->setLNumber('L1207');
+        $owner166->setLnumber('L1207');
 
         $owner167 = new Owner();
         $owner167->setName('Stichting Woonwaard Noord-Kennemerland');
-        $owner167->setLNumber('L1182');
+        $owner167->setLnumber('L1182');
 
         $owner168 = new Owner();
         $owner168->setName('WBV ST WILLIBRORDUS');
-        $owner168->setLNumber('L1164');
+        $owner168->setLnumber('L1164');
 
         $owner169 = new Owner();
         $owner169->setName('Baston Wonen');
-        $owner169->setLNumber('L1128');
+        $owner169->setLnumber('L1128');
 
         $owner170 = new Owner();
         $owner170->setName('Stichting Rijswijk Wonen');
-        $owner170->setLNumber('L1122');
+        $owner170->setLnumber('L1122');
 
         $owner171 = new Owner();
         $owner171->setName('Stichting Nijestee');
-        $owner171->setLNumber('L1109');
+        $owner171->setLnumber('L1109');
 
         $owner172 = new Owner();
         $owner172->setName('Wonen Midden-Delfland');
-        $owner172->setLNumber('L1100');
+        $owner172->setLnumber('L1100');
 
         $owner173 = new Owner();
         $owner173->setName('Stichting Vidomes');
-        $owner173->setLNumber('L1093');
+        $owner173->setLnumber('L1093');
 
         $owner174 = new Owner();
         $owner174->setName('Woningstichting Laarbeek');
-        $owner174->setLNumber('L1082');
+        $owner174->setLnumber('L1082');
 
         $owner175 = new Owner();
         $owner175->setName('Stichting Welbions');
-        $owner175->setLNumber('L1064');
+        $owner175->setLnumber('L1064');
 
         $owner176 = new Owner();
         $owner176->setName('Stichting Goed Wonen Zederik');
-        $owner176->setLNumber('L1040');
+        $owner176->setLnumber('L1040');
 
         $owner177 = new Owner();
         $owner177->setName('Woningstichting Maasvallei Maastricht');
-        $owner177->setLNumber('L1038');
+        $owner177->setLnumber('L1038');
 
         $owner178 = new Owner();
         $owner178->setName('Wbv De Goede Woning - Driemond');
-        $owner178->setLNumber('L1034');
+        $owner178->setLnumber('L1034');
 
         $owner179 = new Owner();
         $owner179->setName('Sité Woondiensten');
-        $owner179->setLNumber('L1017');
+        $owner179->setLnumber('L1017');
 
         $owner180 = new Owner();
         $owner180->setName('Laurentius');
-        $owner180->setLNumber('L1005');
+        $owner180->setLnumber('L1005');
 
         $owner181 = new Owner();
         $owner181->setName('Woningbouwvereniging Helpt Elkander ');
-        $owner181->setLNumber('L0992');
+        $owner181->setLnumber('L0992');
 
         $owner182 = new Owner();
         $owner182->setName('Maaskant Wonen');
-        $owner182->setLNumber('L0986');
+        $owner182->setLnumber('L0986');
 
         $owner183 = new Owner();
         $owner183->setName('de Woningstichting');
-        $owner183->setLNumber('L0979');
+        $owner183->setLnumber('L0979');
 
         $owner184 = new Owner();
         $owner184->setName('Omnia Wonen');
-        $owner184->setLNumber('L0968');
+        $owner184->setLnumber('L0968');
 
         $owner185 = new Owner();
         $owner185->setName('Casade Woonstichting');
-        $owner185->setLNumber('L0944');
+        $owner185->setLnumber('L0944');
 
         $owner186 = new Owner();
         $owner186->setName('Woongoed Middelburg');
-        $owner186->setLNumber('L0943');
+        $owner186->setLnumber('L0943');
 
         $owner187 = new Owner();
         $owner187->setName('Stichting Christelijke Woningcorporatie');
-        $owner187->setLNumber('L0939');
+        $owner187->setLnumber('L0939');
 
         $owner188 = new Owner();
         $owner188->setName('Eemland Wonen');
-        $owner188->setLNumber('L0936');
+        $owner188->setLnumber('L0936');
 
         $owner189 = new Owner();
         $owner189->setName('Woonstichting \'t Heem');
-        $owner189->setLNumber('L0928');
+        $owner189->setLnumber('L0928');
 
         $owner190 = new Owner();
         $owner190->setName('Trifolium Woondiensten Boskoop');
-        $owner190->setLNumber('L0927');
+        $owner190->setLnumber('L0927');
 
         $owner191 = new Owner();
         $owner191->setName('Bouwvereniging Woningbelang');
-        $owner191->setLNumber('L0923');
+        $owner191->setLnumber('L0923');
 
         $owner192 = new Owner();
         $owner192->setName('Woningstichting St. Joseph Almelo');
-        $owner192->setLNumber('L0921');
+        $owner192->setLnumber('L0921');
 
         $owner193 = new Owner();
         $owner193->setName('Stichting Wonion');
-        $owner193->setLNumber('L0898');
+        $owner193->setLnumber('L0898');
 
         $owner194 = new Owner();
         $owner194->setName('Stichting Area');
-        $owner194->setLNumber('L0886');
+        $owner194->setLnumber('L0886');
 
         $owner195 = new Owner();
         $owner195->setName('Stichting De Woningbouw');
-        $owner195->setLNumber('L0885');
+        $owner195->setLnumber('L0885');
 
         $owner196 = new Owner();
         $owner196->setName('Woningstichting Het Grootslag');
-        $owner196->setLNumber('L0883');
+        $owner196->setLnumber('L0883');
 
         $owner197 = new Owner();
         $owner197->setName('Stichting De Woonschakel Westfriesland');
-        $owner197->setLNumber('L0876');
+        $owner197->setLnumber('L0876');
 
         $owner198 = new Owner();
         $owner198->setName('Stichting Tablis Wonen (Sliedrecht)');
-        $owner198->setLNumber('L0867');
+        $owner198->setLnumber('L0867');
 
         $owner199 = new Owner();
         $owner199->setName('Stichting Slagenland Wonen');
-        $owner199->setLNumber('L0861');
+        $owner199->setLnumber('L0861');
 
         $owner200 = new Owner();
         $owner200->setName('Stichting Beter Wonen IJsselmuiden');
-        $owner200->setLNumber('L0858');
+        $owner200->setLnumber('L0858');
 
         $owner201 = new Owner();
         $owner201->setName('Woonstichting Jutphaas');
-        $owner201->setLNumber('L0837');
+        $owner201->setLnumber('L0837');
 
         $owner202 = new Owner();
         $owner202->setName('Stichting ProWonen');
-        $owner202->setLNumber('L0835');
+        $owner202->setLnumber('L0835');
 
         $owner203 = new Owner();
         $owner203->setName('Woningbouwvereniging Heerjansdam');
-        $owner203->setLNumber('L0817');
+        $owner203->setLnumber('L0817');
 
         $owner204 = new Owner();
         $owner204->setName('Woningstichting Brummen');
-        $owner204->setLNumber('L0782');
+        $owner204->setLnumber('L0782');
 
         $owner205 = new Owner();
         $owner205->setName('Stichting GroenWest');
-        $owner205->setLNumber('L0766');
+        $owner205->setLnumber('L0766');
 
         $owner206 = new Owner();
         $owner206->setName('Stichting Wonen Delden');
-        $owner206->setLNumber('L0765');
+        $owner206->setLnumber('L0765');
 
         $owner207 = new Owner();
         $owner207->setName('Woningbouwvereniging Habeko Wonen');
-        $owner207->setLNumber('L0764');
+        $owner207->setLnumber('L0764');
 
         $owner208 = new Owner();
         $owner208->setName('Woningstichting Beter Wonen Vechtdal');
-        $owner208->setLNumber('L0762');
+        $owner208->setLnumber('L0762');
 
         $owner209 = new Owner();
         $owner209->setName('Woningstichting Kockengen');
-        $owner209->setLNumber('L0758');
+        $owner209->setLnumber('L0758');
 
         $owner210 = new Owner();
         $owner210->setName('Woonstichting Groninger Huis');
-        $owner210->setLNumber('L0740');
+        $owner210->setLnumber('L0740');
 
         $owner211 = new Owner();
         $owner211->setName('Patrimonium woonstichting');
-        $owner211->setLNumber('L0734');
+        $owner211->setLnumber('L0734');
 
         $owner212 = new Owner();
         $owner212->setName('HW Wonen');
-        $owner212->setLNumber('L0732');
+        $owner212->setLnumber('L0732');
 
         $owner213 = new Owner();
         $owner213->setName('Veenendaalse Woningstichting');
-        $owner213->setLNumber('L0705');
+        $owner213->setLnumber('L0705');
 
         $owner214 = new Owner();
         $owner214->setName('Rentree');
-        $owner214->setLNumber('L0694');
+        $owner214->setLnumber('L0694');
 
         $owner215 = new Owner();
         $owner215->setName('Woonvisie');
-        $owner215->setLNumber('L0689');
+        $owner215->setLnumber('L0689');
 
         $owner216 = new Owner();
         $owner216->setName('Stichting Uithuizer Woningbouw');
-        $owner216->setLNumber('L0688');
+        $owner216->setLnumber('L0688');
 
         $owner217 = new Owner();
         $owner217->setName('Stichting de Delthe');
-        $owner217->setLNumber('L0686');
+        $owner217->setLnumber('L0686');
 
         $owner218 = new Owner();
         $owner218->setName('Woningstichting Ons Doel');
-        $owner218->setLNumber('L0682');
+        $owner218->setLnumber('L0682');
 
         $owner219 = new Owner();
         $owner219->setName('Woningstichting Sint Antonius van Padua');
-        $owner219->setLNumber('L0678');
+        $owner219->setLnumber('L0678');
 
         $owner220 = new Owner();
         $owner220->setName('Wonen Zuidwest Friesland');
-        $owner220->setLNumber('L0676');
+        $owner220->setLnumber('L0676');
 
         $owner221 = new Owner();
         $owner221->setName('WoonInvest');
-        $owner221->setLNumber('L0673');
+        $owner221->setLnumber('L0673');
 
         $owner222 = new Owner();
         $owner222->setName('Woningstichting Volksbelang');
-        $owner222->setLNumber('L0672');
+        $owner222->setLnumber('L0672');
 
         $owner223 = new Owner();
         $owner223->setName('Woningstichting Domus');
-        $owner223->setLNumber('L0669');
+        $owner223->setLnumber('L0669');
 
         $owner224 = new Owner();
         $owner224->setName('Wbv Van Erfgooiers');
-        $owner224->setLNumber('L0667');
+        $owner224->setLnumber('L0667');
 
         $owner225 = new Owner();
         $owner225->setName('Woonborg');
-        $owner225->setLNumber('L0666');
+        $owner225->setLnumber('L0666');
 
         $owner226 = new Owner();
         $owner226->setName('Woonbron');
-        $owner226->setLNumber('L0665');
+        $owner226->setLnumber('L0665');
 
         $owner227 = new Owner();
         $owner227->setName('Woonstichting Vechthorst');
-        $owner227->setLNumber('L0661');
+        $owner227->setLnumber('L0661');
 
         $owner228 = new Owner();
         $owner228->setName('Stichting Vivare');
-        $owner228->setLNumber('L0658');
+        $owner228->setLnumber('L0658');
 
         $owner229 = new Owner();
         $owner229->setName('Woningstichting Dinteloord');
-        $owner229->setLNumber('L0653');
+        $owner229->setLnumber('L0653');
 
         $owner230 = new Owner();
         $owner230->setName('Bouwvereniging Huis & Erf');
-        $owner230->setLNumber('L0643');
+        $owner230->setLnumber('L0643');
 
         $owner231 = new Owner();
         $owner231->setName('Stichting Destion');
-        $owner231->setLNumber('L0642');
+        $owner231->setLnumber('L0642');
 
         $owner232 = new Owner();
         $owner232->setName('Pré Wonen');
-        $owner232->setLNumber('L0640');
+        $owner232->setLnumber('L0640');
 
         $owner233 = new Owner();
         $owner233->setName('Stichting De Sesyter Veste');
-        $owner233->setLNumber('L0637');
+        $owner233->setLnumber('L0637');
 
         $owner234 = new Owner();
         $owner234->setName('Wonen Meerssen');
-        $owner234->setLNumber('L0636');
+        $owner234->setLnumber('L0636');
 
         $owner235 = new Owner();
         $owner235->setName('Stichting Woningbouw Slochteren');
-        $owner235->setLNumber('L0632');
+        $owner235->setLnumber('L0632');
 
         $owner236 = new Owner();
         $owner236->setName('Brederode Wonen');
-        $owner236->setLNumber('L0630');
+        $owner236->setLnumber('L0630');
 
         $owner237 = new Owner();
         $owner237->setName('WBV Poortugaal ');
-        $owner237->setLNumber('L0629');
+        $owner237->setLnumber('L0629');
 
         $owner238 = new Owner();
         $owner238->setName('Woningstichting Warmunda');
-        $owner238->setLNumber('L0623');
+        $owner238->setLnumber('L0623');
 
         $owner239 = new Owner();
         $owner239->setName('Woonstichting SSW');
-        $owner239->setLNumber('L0602');
+        $owner239->setLnumber('L0602');
 
         $owner240 = new Owner();
         $owner240->setName('Rondom Wonen');
-        $owner240->setLNumber('L0590');
+        $owner240->setLnumber('L0590');
 
         $owner241 = new Owner();
         $owner241->setName('Woningstichting Kennemer Wonen');
-        $owner241->setLNumber('L0583');
+        $owner241->setLnumber('L0583');
 
         $owner242 = new Owner();
         $owner242->setName('Omnivera');
-        $owner242->setLNumber('L0582');
+        $owner242->setLnumber('L0582');
 
         $owner243 = new Owner();
         $owner243->setName('Woonstichting Hulst');
-        $owner243->setLNumber('L0579');
+        $owner243->setLnumber('L0579');
 
         $owner244 = new Owner();
         $owner244->setName('Actium');
-        $owner244->setLNumber('L0574');
+        $owner244->setLnumber('L0574');
 
         $owner245 = new Owner();
         $owner245->setName('Sprengenland Wonen');
-        $owner245->setLNumber('L0573');
+        $owner245->setLnumber('L0573');
 
         $owner246 = new Owner();
         $owner246->setName('Woonpunt');
-        $owner246->setLNumber('L0571');
+        $owner246->setLnumber('L0571');
 
         $owner247 = new Owner();
         $owner247->setName('Stichting Eelder Woningbouw');
-        $owner247->setLNumber('L0568');
+        $owner247->setLnumber('L0568');
 
         $owner248 = new Owner();
         $owner248->setName('Stichting WonenCentraal');
-        $owner248->setLNumber('L0565');
+        $owner248->setLnumber('L0565');
 
         $owner249 = new Owner();
         $owner249->setName('Stichting Elkien');
-        $owner249->setLNumber('L0553');
+        $owner249->setLnumber('L0553');
 
         $owner250 = new Owner();
         $owner250->setName('Stichting R&B Wonen');
-        $owner250->setLNumber('L0543');
+        $owner250->setLnumber('L0543');
 
         $owner251 = new Owner();
         $owner251->setName('Stichting QuaWonen');
-        $owner251->setLNumber('L0540');
+        $owner251->setLnumber('L0540');
 
         $owner252 = new Owner();
         $owner252->setName('Woningbouwvereniging Laren');
-        $owner252->setLNumber('L0533');
+        $owner252->setLnumber('L0533');
 
         $owner253 = new Owner();
         $owner253->setName('Woningstichting Simpelveld');
-        $owner253->setLNumber('L0528');
+        $owner253->setLnumber('L0528');
 
         $owner254 = new Owner();
         $owner254->setName('Trudo');
-        $owner254->setLNumber('L0527');
+        $owner254->setLnumber('L0527');
 
         $owner255 = new Owner();
         $owner255->setName('Stichting AWV Eigen Haard');
-        $owner255->setLNumber('L0510');
+        $owner255->setLnumber('L0510');
 
         $owner256 = new Owner();
         $owner256->setName('FidesWonen');
-        $owner256->setLNumber('L0506');
+        $owner256->setLnumber('L0506');
 
         $owner257 = new Owner();
         $owner257->setName('Stichting TBV');
-        $owner257->setLNumber('L0497');
+        $owner257->setLnumber('L0497');
 
         $owner258 = new Owner();
         $owner258->setName('Stichting Allee Wonen');
-        $owner258->setLNumber('L0495');
+        $owner258->setLnumber('L0495');
 
         $owner259 = new Owner();
         $owner259->setName('Wooncompagnie');
-        $owner259->setLNumber('L0478');
+        $owner259->setLnumber('L0478');
 
         $owner260 = new Owner();
         $owner260->setName('Stichting Chr.Woongroep Marenland');
-        $owner260->setLNumber('L0449');
+        $owner260->setLnumber('L0449');
 
         $owner261 = new Owner();
         $owner261->setName('Wooncorporatie De Goede Woning');
-        $owner261->setLNumber('L0446');
+        $owner261->setLnumber('L0446');
 
         $owner262 = new Owner();
         $owner262->setName('Stichting Rhiant');
-        $owner262->setLNumber('L0439');
+        $owner262->setLnumber('L0439');
 
         $owner263 = new Owner();
         $owner263->setName('Woningstichting Haag Wonen');
-        $owner263->setLNumber('L0425');
+        $owner263->setLnumber('L0425');
 
         $owner264 = new Owner();
         $owner264->setName('Stichting Clavis');
-        $owner264->setLNumber('L0418');
+        $owner264->setLnumber('L0418');
 
         $owner265 = new Owner();
         $owner265->setName('Stichting Arcade mensen en wonen');
-        $owner265->setLNumber('L0410');
+        $owner265->setLnumber('L0410');
 
         $owner266 = new Owner();
         $owner266->setName('Havensteder');
-        $owner266->setLNumber('L0392');
+        $owner266->setLnumber('L0392');
 
         $owner267 = new Owner();
         $owner267->setName('Woningstichting Naarden');
-        $owner267->setLNumber('L0386');
+        $owner267->setLnumber('L0386');
 
         $owner268 = new Owner();
         $owner268->setName('Stichting De Huismeesters');
-        $owner268->setLNumber('L0385');
+        $owner268->setLnumber('L0385');
 
         $owner269 = new Owner();
         $owner269->setName('Dudok Wonen');
-        $owner269->setLNumber('L0383');
+        $owner269->setLnumber('L0383');
 
         $owner270 = new Owner();
         $owner270->setName('Christelijke Woningstichting Patrimonium');
-        $owner270->setLNumber('L0380');
+        $owner270->setLnumber('L0380');
 
         $owner271 = new Owner();
         $owner271->setName('WBV Arnemuiden');
-        $owner271->setLNumber('L0379');
+        $owner271->setLnumber('L0379');
 
         $owner272 = new Owner();
         $owner272->setName('Wst Samenwerking Vlaardingen');
-        $owner272->setLNumber('L0371');
+        $owner272->setLnumber('L0371');
 
         $owner273 = new Owner();
         $owner273->setName('Stichting UWOON');
-        $owner273->setLNumber('L0369');
+        $owner273->setLnumber('L0369');
 
         $owner274 = new Owner();
         $owner274->setName('Woningstichting Wierden en Borgen');
-        $owner274->setLNumber('L0366');
+        $owner274->setLnumber('L0366');
 
         $owner275 = new Owner();
         $owner275->setName('Stichting Woonconcept');
-        $owner275->setLNumber('L0363');
+        $owner275->setLnumber('L0363');
 
         $owner276 = new Owner();
         $owner276->setName('AWS Beter Wonen');
-        $owner276->setLNumber('L0358');
+        $owner276->setLnumber('L0358');
 
         $owner277 = new Owner();
         $owner277->setName('Wonen Wateringen');
-        $owner277->setLNumber('L0354');
+        $owner277->setLnumber('L0354');
 
         $owner278 = new Owner();
         $owner278->setName('Viverion');
-        $owner278->setLNumber('L0347');
+        $owner278->setLnumber('L0347');
 
         $owner279 = new Owner();
         $owner279->setName('Stichting KleurrijkWonen');
-        $owner279->setLNumber('L0343');
+        $owner279->setLnumber('L0343');
 
         $owner280 = new Owner();
         $owner280->setName('Woonstichting Vooruitgang');
-        $owner280->setLNumber('L0333');
+        $owner280->setLnumber('L0333');
 
         $owner281 = new Owner();
         $owner281->setName('Woonstichting Vryleve');
-        $owner281->setLNumber('L0331');
+        $owner281->setLnumber('L0331');
 
         $owner282 = new Owner();
         $owner282->setName('Provides');
-        $owner282->setLNumber('L0317');
+        $owner282->setLnumber('L0317');
 
         $owner283 = new Owner();
         $owner283->setName('SVTwonen Tiel');
-        $owner283->setLNumber('L0315');
+        $owner283->setLnumber('L0315');
 
         $owner284 = new Owner();
         $owner284->setName('Woonstichting Triada');
-        $owner284->setLNumber('L0309');
+        $owner284->setLnumber('L0309');
 
         $owner285 = new Owner();
         $owner285->setName('Woningstichting Alkemade');
-        $owner285->setLNumber('L0308');
+        $owner285->setLnumber('L0308');
 
         $owner286 = new Owner();
         $owner286->setName('Woningbouwvereniging langedijk');
-        $owner286->setLNumber('L0305');
+        $owner286->setLnumber('L0305');
 
         $owner287 = new Owner();
         $owner287->setName('de Sleutels');
-        $owner287->setLNumber('L0295');
+        $owner287->setLnumber('L0295');
 
         $owner288 = new Owner();
         $owner288->setName('Stichting Zaandamse Volkshuisvesting');
-        $owner288->setLNumber('L0278');
+        $owner288->setLnumber('L0278');
 
         $owner289 = new Owner();
         $owner289->setName('Woningstichting Woonwenz');
-        $owner289->setLNumber('L0274');
+        $owner289->setLnumber('L0274');
 
         $owner290 = new Owner();
         $owner290->setName('Wassenaarsche Bouwstichting');
-        $owner290->setLNumber('L0272');
+        $owner290->setLnumber('L0272');
 
         $owner291 = new Owner();
         $owner291->setName('Woonservice Meander');
-        $owner291->setLNumber('L0271');
+        $owner291->setLnumber('L0271');
 
         $owner292 = new Owner();
         $owner292->setName('Stichting ZO Wonen');
-        $owner292->setLNumber('L0269');
+        $owner292->setLnumber('L0269');
 
         $owner293 = new Owner();
         $owner293->setName('Stichting Trivire');
-        $owner293->setLNumber('L0267');
+        $owner293->setLnumber('L0267');
 
         $owner294 = new Owner();
         $owner294->setName('Woningstichting Heteren');
-        $owner294->setLNumber('L0254');
+        $owner294->setLnumber('L0254');
 
         $owner295 = new Owner();
         $owner295->setName('Patrimonium Barendrecht');
-        $owner295->setLNumber('L0248');
+        $owner295->setLnumber('L0248');
 
         $owner296 = new Owner();
         $owner296->setId(1296);
         $owner296->setName('Stichting Antares Woonservice');
-        $owner296->setLNumber('L0241');
+        $owner296->setLnumber('L0241');
 
         $owner297 = new Owner();
         $owner297->setName('Woningstichting Voerendaal');
-        $owner297->setLNumber('L0238');
+        $owner297->setLnumber('L0238');
 
         $owner298 = new Owner();
         $owner298->setName('Standvast Wonen');
-        $owner298->setLNumber('L0237');
+        $owner298->setLnumber('L0237');
 
         $owner299 = new Owner();
         $owner299->setName('Stichting Mozaïek Wonen');
-        $owner299->setLNumber('L0232');
+        $owner299->setLnumber('L0232');
 
         $owner300 = new Owner();
         $owner300->setName('Stichting Elan Wonen');
-        $owner300->setLNumber('L0231');
+        $owner300->setLnumber('L0231');
 
         $owner301 = new Owner();
         $owner301->setName('Woningstichting HEEMwonen');
-        $owner301->setLNumber('L0228');
+        $owner301->setLnumber('L0228');
 
         $owner302 = new Owner();
         $owner302->setName('Stichting Weller Wonen');
-        $owner302->setLNumber('L0225');
+        $owner302->setLnumber('L0225');
 
         $owner303 = new Owner();
         $owner303->setName('Waardwonen');
-        $owner303->setLNumber('L0221');
+        $owner303->setLnumber('L0221');
 
         $owner304 = new Owner();
         $owner304->setName('Stichting WormerWonen');
-        $owner304->setLNumber('L0202');
+        $owner304->setLnumber('L0202');
 
         $owner305 = new Owner();
         $owner305->setName('Mijande Wonen');
-        $owner305->setLNumber('L0178');
+        $owner305->setLnumber('L0178');
 
         $owner306 = new Owner();
         $owner306->setName('Stichting BrabantWonen');
-        $owner306->setLNumber('L0176');
+        $owner306->setLnumber('L0176');
 
         $owner307 = new Owner();
         $owner307->setName('Ons Huis');
-        $owner307->setLNumber('L0173');
+        $owner307->setLnumber('L0173');
 
         $owner308 = new Owner();
         $owner308->setName('Woningstichting Weststellingwerf');
-        $owner308->setLNumber('L0165');
+        $owner308->setLnumber('L0165');
 
         $owner309 = new Owner();
         $owner309->setName('Woningstichting Dinxperlo (WSD)');
-        $owner309->setLNumber('L0160');
+        $owner309->setLnumber('L0160');
 
         $owner310 = new Owner();
         $owner310->setName('Woonstichting Stek');
-        $owner310->setLNumber('L0157');
+        $owner310->setLnumber('L0157');
 
         $owner311 = new Owner();
         $owner311->setName('Woonstichting ’thuis');
-        $owner311->setLNumber('L0151');
+        $owner311->setLnumber('L0151');
 
         $owner312 = new Owner();
         $owner312->setName('R.K. Woningbouwvereniging Zeist');
-        $owner312->setLNumber('L0147');
+        $owner312->setLnumber('L0147');
 
         $owner313 = new Owner();
         $owner313->setName('Stichting Volksbelang Vianen');
-        $owner313->setLNumber('L0144');
+        $owner313->setLnumber('L0144');
 
         $owner314 = new Owner();
         $owner314->setName('Stichting Stadgenoot');
-        $owner314->setLNumber('L0124');
+        $owner314->setLnumber('L0124');
 
         $owner315 = new Owner();
         $owner315->setName('stichting Portaal');
-        $owner315->setLNumber('L0117');
+        $owner315->setLnumber('L0117');
 
         $owner316 = new Owner();
         $owner316->setName('Woningstichting Eigen Haard');
-        $owner316->setLNumber('L0108');
+        $owner316->setLnumber('L0108');
 
         $owner317 = new Owner();
         $owner317->setName('Woningstichting SWZ');
-        $owner317->setLNumber('L0093');
+        $owner317->setLnumber('L0093');
 
         $owner318 = new Owner();
         $owner318->setName('l\'escaut woonservice');
-        $owner318->setLNumber('L0089');
+        $owner318->setLnumber('L0089');
 
         $owner319 = new Owner();
         $owner319->setName('Woningstichtingf Vaals');
-        $owner319->setLNumber('L0082');
+        $owner319->setLnumber('L0082');
 
         $owner320 = new Owner();
         $owner320->setName('Stichting Wonen Zuid');
-        $owner320->setLNumber('L0081');
+        $owner320->setLnumber('L0081');
 
         $owner321 = new Owner();
         $owner321->setName('Stichting Woonstad Rotterdam');
-        $owner321->setLNumber('L0079');
+        $owner321->setLnumber('L0079');
 
         $owner322 = new Owner();
         $owner322->setName('Stichting Wold & Waard');
-        $owner322->setLNumber('L0077');
+        $owner322->setLnumber('L0077');
 
         $owner323 = new Owner();
         $owner323->setName('Woningstichting Bergh');
-        $owner323->setLNumber('L0068');
+        $owner323->setLnumber('L0068');
 
         $owner324 = new Owner();
         $owner324->setName('Stichting Volkshuisvesting Arnhem');
-        $owner324->setLNumber('L0065');
+        $owner324->setLnumber('L0065');
 
         $owner325 = new Owner();
         $owner325->setName('Van Alckmaer voor Wonen');
-        $owner325->setLNumber('L0063');
+        $owner325->setLnumber('L0063');
 
         $owner326 = new Owner();
         $owner326->setName('Stichting Parteon');
-        $owner326->setLNumber('L0059');
+        $owner326->setLnumber('L0059');
 
         $owner327 = new Owner();
         $owner327->setName('Domesta');
-        $owner327->setLNumber('L0045');
+        $owner327->setLnumber('L0045');
 
         $owner328 = new Owner();
         $owner328->setName('Stichting Bo-Ex \'91');
-        $owner328->setLNumber('L0041');
+        $owner328->setLnumber('L0041');
 
         $owner329 = new Owner();
         $owner329->setName('Stichting Lyaemer Wonen');
-        $owner329->setLNumber('L0036');
+        $owner329->setLnumber('L0036');
 
         $owner330 = new Owner();
         $owner330->setName('Stichting v/h De Bouwvereniging');
-        $owner330->setLNumber('L0033');
+        $owner330->setLnumber('L0033');
 
         $owner331 = new Owner();
         $owner331->setName('deltaWonen');
-        $owner331->setLNumber('L0029');
+        $owner331->setLnumber('L0029');
 
         $owner332 = new Owner();
         $owner332->setName('Intermaris');
-        $owner332->setLNumber('L0019');
+        $owner332->setLnumber('L0019');
 
         $owner333 = new Owner();
         $owner333->setName('Woningstichting Rochdale');
-        $owner333->setLNumber('L0017');
+        $owner333->setLnumber('L0017');
 
         $owner334 = new Owner();
         $owner334->setName('Stichting Zayaz');
-        $owner334->setLNumber('L0013');
+        $owner334->setLnumber('L0013');
 
         $owner335 = new Owner();
         $owner335->setName('Wstg Openbaar Belang');
-        $owner335->setLNumber('L0008');
+        $owner335->setLnumber('L0008');
 
         $owner336 = new Owner();
         $owner336->setName('Woningstichting Servatius');
-        $owner336->setLNumber('L0005');
+        $owner336->setLnumber('L0005');
 
         $owner337 = new Owner();
         $owner337->setName('Wonen Noordwest Friesland');
-        $owner337->setLNumber('L0003');
+        $owner337->setLnumber('L0003');
 
         $owner338 = new Owner();
         $owner338->setName('Stichting Eigen Bouw');
-        $owner338->setLNumber('L0001');
+        $owner338->setLnumber('L0001');
 
         $housingStock1 = new HousingStock();
         $housingStock1->setCode('DobrCmTest');

@@ -132,7 +132,7 @@ class BuildingAddress extends IdTime
     protected int $houseNumber;
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=32, nullable=true)
      * @Assert\Type(
      *     type="string",
      *     message="%property% is not a valid %type%"

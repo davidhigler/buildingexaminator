@@ -10,6 +10,8 @@ use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
 use App\Entity\Portfolio\ResidentialArea;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -102,29 +104,28 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class ApiController extends AbstractController
 {
+    private const DEFAULT_PAGE_LIMIT = 10;
+
     private const OWNER_LIST_FIELDS = [
         'id',
         'name',
         'kvk',
         'btw',
-        'l_number',
+        'lnumber',
+        'website',
         'housingstocks' => [
             'id',
-        ],
-        'creationTime' => [
-            'timestamp',
-        ],
-        'lastChangeTime' => [
-            'timestamp',
+            'name',
         ],
     ];
 
-    private const OWNER_LIST_DETAIL_FIELDS = [
+    private const OWNER_DETAIL_FIELDS = [
         'id',
         'name',
         'kvk',
         'btw',
-        'l_number',
+        'lnumber',
+        'website',
         'housingstocks' => [
             'id',
             'code',
@@ -377,8 +378,6 @@ class ApiController extends AbstractController
 
     /**
      * OWNERS
-     *
-     * @ToDo Define the needed functions and routes
      */
 
     #[Route('/owners', name: 'listowners', methods: ['GET'])]
@@ -386,6 +385,15 @@ class ApiController extends AbstractController
      * @OA\Get(
      *     path="/owners",
      *     summary="Returns details about multiple ownerss",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query"
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple owners",
@@ -393,10 +401,19 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getOwners(LoggerInterface $logger): Response
+    public function getOwners(Request $request, LoggerInterface $logger): Response
     {
-        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        return $this->renderData($ownerRepository->findAll(), self::OWNER_LIST_FIELDS, $logger);
+        $pager = new Pagerfanta(
+            new QueryAdapter(
+                $this->getDoctrine()->getRepository(Owner::class)
+                    ->createQueryBuilder('o')
+            )
+        );
+
+        $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+        $pager->setCurrentPage($request->query->get('page') ?? 1);
+
+        return $this->renderData($pager, self::OWNER_LIST_FIELDS, $logger);
     }
 
     #[Route('/owners', name: 'addowner', methods: ['POST'])]
@@ -421,7 +438,11 @@ class ApiController extends AbstractController
      *                 type="string"
      *             ),
      *             @OA\Property(
-     *                 property="l_number",
+     *                 property="lnumber",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
      *                 type="string"
      *             )
      *         )
@@ -439,9 +460,18 @@ class ApiController extends AbstractController
 
         $owner = new Owner();
         $owner->setName($newOwner['name']);
-        $owner->setName($newOwner['kvk']);
-        $owner->setName($newOwner['btw']);
-        $owner->setName($newOwner['l_nummer']);
+        if (!empty($newOwner['kvk'])) {
+            $owner->setKvk($newOwner['kvk']);
+        }
+        if (!empty($newOwner['btw'])) {
+            $owner->setBtw($newOwner['btw']);
+        }
+        if (!empty($newOwner['lnumber'])) {
+            $owner->setLnumber($newOwner['lnumber']);
+        }
+        if (!empty($newOwner['website'])) {
+            $owner->setWebsite($newOwner['website']);
+        }
 
         $violations = $validator->validate($owner);
         if ($violations->count() > 0) {
@@ -452,12 +482,151 @@ class ApiController extends AbstractController
         $entityManager->persist($owner);
         $entityManager->flush();
 
-        return $this->renderData($owner, self::OWNER_LIST_DETAIL_FIELDS, $logger);
+        return $this->renderData($owner, self::OWNER_DETAIL_FIELDS, $logger);
     }
 
-    #[Route('/owners', name: 'changeowner', methods: ['PUT'])]
-    #[Route('/owners', name: 'deleteowner', methods: ['DELETE'])]
-    #[Route('/owners', name: 'getowner', methods: ['GET'])]
+    #[Route('/owners/{ownerId}', name: 'changeowner', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/owners/{ownerId}",
+     *     summary="Change owner",
+     *     @OA\RequestBody(
+     *         description="Details for changing owner",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="lnumber",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the owner",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed housing stock",
+     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
+     *     )
+     * )
+     */
+    public function changeOwner(string $ownerId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeOwner = json_decode($request->getContent(), true);
+
+        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        /** @var Owner $owner */
+        $owner = $ownerRepository->find((int) $ownerId);
+
+        $owner->setName($changeOwner['name']);
+        if (!empty($changeOwner['kvk'])) {
+            $owner->setKvk($changeOwner['kvk']);
+        }
+        if (!empty($changeOwner['btw'])) {
+            $owner->setBtw($changeOwner['btw']);
+        }
+        if (!empty($changeOwner['lnumber'])) {
+            $owner->setLnumber($changeOwner['lnumber']);
+        }
+        if (!empty($changeOwner['website'])) {
+            $owner->setWebsite($changeOwner['website']);
+        }
+
+        $violations = $validator->validate($owner);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($owner);
+        $entityManager->flush();
+
+        return $this->renderData($owner, self::OWNER_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/owners/{ownerId}', name: 'deleteowner', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/owners/{ownerId}",
+     *     summary="Delete owner",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the owner",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted an owner"
+     *     )
+     * )
+     */
+    public function deleteOwner(string $ownerId, LoggerInterface $logger): Response
+    {
+        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $owner = $ownerRepository->find((int) $ownerId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($owner);
+        $entityManager->flush();
+
+        return new Response('', 200);
+    }
+
+    #[Route('/owners/{ownerId}', name: 'getowner', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/owners/{ownerId}",
+     *     summary="Returns details about an owner",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the owner",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about an owner",
+     *         @OA\JsonContent(ref="#/components/schemas/Owner")
+     *     )
+     * )
+     */
+    public function getOwner(string $ownerId, LoggerInterface $logger): Response
+    {
+        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        return $this->renderData($ownerRepository->find((int) $ownerId), self::OWNER_DETAIL_FIELDS, $logger);
+    }
 
     /**
      * HOUSINGSTOCKS
@@ -475,10 +644,19 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getHousingStocks(LoggerInterface $logger): Response
+    public function getHousingStocks(Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        return $this->renderData($housingStockRepository->findAll(), self::HOUSING_STOCK_LIST_FIELDS, $logger);
+        $pager = new Pagerfanta(
+            new QueryAdapter(
+                $this->getDoctrine()->getRepository(HousingStock::class)
+                    ->createQueryBuilder('h')
+            )
+        );
+
+        $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+        $pager->setCurrentPage($request->query->get('page') ?? 1);
+
+        return $this->renderData($pager, self::HOUSING_STOCK_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
@@ -1431,7 +1609,7 @@ class ApiController extends AbstractController
         try {
             $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
             $data = $serializer->normalize(
-                $results,
+                $results instanceof Pagerfanta ? $results->getCurrentPageResults() : $results,
                 null,
                 [AbstractNormalizer::ATTRIBUTES => $fields]
             );
@@ -1446,7 +1624,27 @@ class ApiController extends AbstractController
             return $this->json(['error' => $exception->getMessage()], 500);
         }
 
-        return $this->json($data, 200);
+        if ($results instanceof Pagerfanta) {
+            return $this->json(
+                [
+                    'data' => $data,
+                    'pager' => [
+                        'count' => $results->getNbPages(),
+                        'current' => $results->getCurrentPage(),
+                        'next' => $results->hasNextPage() ? $results->getNextPage() : 0,
+                        'previous' => $results->hasPreviousPage() ? $results->getPreviousPage() : 0,
+                    ],
+                ],
+                200
+            );
+        } else {
+            return $this->json(
+                [
+                    'data' => $data
+                ],
+                200
+            );
+        }
     }
 
     private function extractErrorsFromViolations(ConstraintViolationListInterface $violations): array
