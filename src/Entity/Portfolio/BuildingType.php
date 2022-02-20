@@ -24,21 +24,18 @@ class BuildingType extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingTypes")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="buildingType", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */

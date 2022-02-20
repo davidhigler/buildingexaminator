@@ -159,7 +159,7 @@ function showDeleteModal(id, name, callback) {
  */
 
 function loadErrorPage(jqXHR) {
-    let response, message = '', IS_JSON = true;
+    let response, message, IS_JSON = true;
 
     try {
         response = $.parseJSON(jqXHR.responseText);
@@ -392,7 +392,6 @@ function loadOwnerEditPage(id) {
             $('#slide-out').sidenav('close');
         },
         success: function(data) {
-            console.log(data.data.lnumber);
             $('div#content').html(
                 '    <h3 class="header">Edit owner</h3>\n' +
                 '    <form id="editowner">\n' +
@@ -588,76 +587,110 @@ function loadHousingstocksPage(page = 1) {
 }
 
 function loadHousingstockNewPage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
+    $.ajax({
+        url: '/api/buildingexaminator/v1/owners',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let ownerSelectHtml =
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">person</i>\n' +
+                '                <select id="owner" name="owner">\n' +
+                '                    <option disabled selected>Choose an owner</option>\n';
+            $(data.data).each(function (index, element) {
+                ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
+            });
+            ownerSelectHtml +=
+                '                </select>\n' +
+                '                <label>Owner</label>\n' +
+                '            </div>\n' +
+                '        </div>\n';
 
-    $('div#content').html(
-        '    <h3 class="header">New housingstock</h3>\n' +
-        '    <form id="newhousingstock">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate">\n' +
-        '                <label for="name">Name</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">description</i>\n' +
-        '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-        '                <label for="description">Description</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s12">\n' +
-        '                <button type="submit" class="btn" name="create">\n' +
-        '                    <i class="material-icons left">domain_add</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
+            $('div#content').html(
+                '    <h3 class="header">New housingstock</h3>\n' +
+                '    <form id="newhousingstock">\n' +
+                ownerSelectHtml +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                '                <input id="code" name="code" type="text" class="validate">\n' +
+                '                <label for="code">Code</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate">\n' +
+                '                <label for="name">Name</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">description</i>\n' +
+                '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+                '                <label for="description">Description</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s12">\n' +
+                '                <button type="submit" class="btn" name="create">\n' +
+                '                    <i class="material-icons left">domain_add</i>Create\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
 
-    hideLoader();
+            $('form#newhousingstock').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/buildingexaminator/v1/housingstocks',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'owner': $('select#owner').val(),
+                            'code': $('input#code').val(),
+                            'name': $('input#name').val(),
+                            'description': $('textarea#description').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                        $('#slide-out').sidenav('close');
+                    },
+                    success: function() {
+                        loadHousingstocksPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        hideLoader();
+                    },
+                });
+            });
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
 
-    $('form#newhousingstock').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-            accepts: {
-                json: 'application/json'
-            },
-            data: JSON.stringify(
-                {
-                    'code': $('input#code').val(),
-                    'name': $('input#name').val(),
-                    'description': $('textarea#description').val(),
-                }
-            ),
-            beforeSend: function() {
-                showLoader();
-                $('#slide-out').sidenav('close');
-            },
-            success: function() {
-                loadHousingstocksPage();
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                hideLoader();
-            },
-        });
+            $('select').formSelect();
+        },
     });
 }
 
@@ -793,11 +826,14 @@ function deleteHousingstock(id) {
  * Buildingaddresses
  */
 
-function loadBuildingaddressesPage() {
+function loadBuildingaddressesPage(page = 1) {
     if(localStorage.getItem('activeHousingstock')) {
         $.ajax({
             url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstock') + '/addresses',
             type: 'GET',
+            data: {
+                page: page
+            },
             dataType: 'json',
             accepts: {
                 json: 'application/json'
@@ -808,7 +844,7 @@ function loadBuildingaddressesPage() {
             },
             success: function(data) {
                 let rows = '';
-                $(data).each(function (index, element) {
+                $(data.data).each(function (index, element) {
                     rows +=
                         '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
                         '                <td class="hide-on-small-only"><i class="material-icons prefix">home</i></td>\n' +
@@ -825,14 +861,14 @@ function loadBuildingaddressesPage() {
                         '                    <button class="btn" name="edit" onclick="loadBuildingaddressEditPage(' + element.id + ');">\n' +
                         '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                         '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteBuildingaddressModal(' + element.id + ' , \'' + element.name + '\');">\n' +
+                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteBuildingaddress\');">\n' +
                         '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                         '                    </button>\n' +
                         '                </td>\n' +
                         '            </tr>\n';
                 });
 
-                $('div#content').html(
+                let html =
                     '    <h3 class="header">Buildingaddresses</h3>\n' +
                     '    <div class="row">\n' +
                     '        <div class="input-field col s12">\n' +
@@ -856,21 +892,11 @@ function loadBuildingaddressesPage() {
                     '        <tbody>\n' +
                     rows +
                     '        </tbody>\n' +
-                    '    </table>\n' +
-                    '    <ul class="pagination">\n' +
-                    '        <li class="disabled">' +
-                    '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
-                    '        </li>\n' +
-                    '        <li class=""><a href="javascript:void(0);">1</a></li>\n' +
-                    '        <!-- <li class="waves-effect"><a href="javascript:void(0);">2</a></li> -->\n' +
-                    '        <!-- <li class="waves-effect"><a href="javascript:void(0);">3</a></li> -->\n' +
-                    '        <!-- <li class="waves-effect"><a href="javascript:void(0);">4</a></li> -->\n' +
-                    '        <!-- <li class="waves-effect"><a href="javascript:void(0);">5</a></li> -->\n' +
-                    '        <li class="disabled">' +
-                    '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
-                    '        </li>\n' +
-                    '    </ul>'
-                );
+                    '    </table>\n';
+
+                html += addPagination(data.pager, 'loadBuildingaddressesPage');
+
+                $('div#content').html(html);
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);

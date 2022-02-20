@@ -23,13 +23,17 @@ class Block extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="blocks")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
+     *
+     * @Assert\NotBlank(
+     *     message="A block must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="block", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
@@ -37,7 +41,6 @@ class Block extends IdTimeIdentification
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
@@ -45,15 +48,14 @@ class Block extends IdTimeIdentification
 
     /**
      * @ORM\Column(type="string", length=128)
-     * @Assert\NotBlank(
-     *      message="%property% may not be empty"
-     * )
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The financial number is not a valid {{ type }}"
      * )
      * @Assert\Length(
-     *      max=128
+     *      max=128,
+     *      maxMessage="The financial number can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()

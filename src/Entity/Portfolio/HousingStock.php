@@ -23,7 +23,12 @@ class HousingStock extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="Owner", inversedBy="housingStocks")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     * @Assert\Valid()
+     *
+     * @Assert\NotBlank(
+     *     message="A housingstock must have an owner"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Owner $owner;
 
@@ -49,7 +54,7 @@ class HousingStock extends IdTimeIdentification
     protected Collection $livingTypes;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="housingStock", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */    
@@ -60,6 +65,7 @@ class HousingStock extends IdTimeIdentification
     {
         $this->blocks = new ArrayCollection();
         $this->buildingTypes = new ArrayCollection();
+        $this->livingTypes = new ArrayCollection();
         $this->buildingAddresses = new ArrayCollection();
     }
 
@@ -78,11 +84,6 @@ class HousingStock extends IdTimeIdentification
         return count($this->blocks);
     }
 
-    public function getNumberOfBuildingAddresses(): int
-    {
-        return count($this->buildingAddresses);
-    }
-
     public function getBuildingTypes(): Collection
     {
         return $this->buildingTypes;
@@ -96,6 +97,11 @@ class HousingStock extends IdTimeIdentification
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
+    }
+
+    public function getNumberOfBuildingAddresses(): int
+    {
+        return count($this->buildingAddresses);
     }
 
     public function setOwner(Owner $owner): void

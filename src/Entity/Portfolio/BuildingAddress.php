@@ -23,43 +23,38 @@ use App\Entity\SuperClasses\IdTime;
 class BuildingAddress extends IdTime
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses")
+     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
      */
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
-     * @Assert\Valid()
      *
      * @OA\Property()
      */
     protected ResidentialArea $residentialArea;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
-     * @Assert\Valid()
      *
      * @OA\Property()
      */
     protected BuildingType $buildingType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
-     * @Assert\Valid()
      *
      * @OA\Property()
      */
     protected LivingType $livingType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
-     * @Assert\Valid()
      *
      * @OA\Property()
      */
@@ -67,9 +62,10 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
+     *
      * @Assert\Type(
      *     type="bool",
-     *     message="%property% is not a valid %type%"
+     *     message="Daeb is not a valid {{ type }}"
      * )
      *
      * @OA\Property()
@@ -78,15 +74,16 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The rental unit number is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      min=3,
      *      max=128,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      minMessage="The rental unit number must be at least {{ limit }} characters long",
+     *      maxMessage="The rental unit number can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -94,19 +91,20 @@ class BuildingAddress extends IdTime
     protected string $rentalUnitNumber;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The street name may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The street name is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      min=3,
      *      max=128,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      minMessage="The street name must be at least {{ limit }} characters long",
+     *      maxMessage="The street name can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -114,17 +112,18 @@ class BuildingAddress extends IdTime
     protected string $streetName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", length=5, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The house number may not be empty"
      * )
      * @Assert\Type(
      *      type="integer",
-     *      message="%property% is not a valid %type%"
+     *      message="The house number is not a valid {{ type }}"
      * )
      * @Assert\Range(
      *      min = 1,
-     *      max = 9999
+     *      max = 99999
      * )
      *
      * @OA\Property()
@@ -133,13 +132,14 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="string", length=32, nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The addition is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=32,
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      maxMessage="The addition can contain a maximum of %limit% characters"
      * )
      *
      * @OA\Property()
@@ -147,13 +147,14 @@ class BuildingAddress extends IdTime
     protected string $addition;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=6, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The zipcode may not be empty"
      * )
      * @Assert\Type(
      *      type="string",
-     *      message="%property% is not a valid %type%"
+     *      message="The zipcode is not a valid {{ type }}"
      * )
      *
      * @OA\Property()
@@ -161,19 +162,20 @@ class BuildingAddress extends IdTime
     protected string $zipcode;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The city may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The city is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      min=3,
      *      max=128,
-     *      minMessage="%property% must be at least %limit% characters long",
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      minMessage="The city must be at least {{ limit }} characters long",
+     *      maxMessage="The city can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -182,9 +184,10 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      * @Assert\Type(
      *      type="integer",
-     *      message="%property% is not a valid %type%"
+     *      message="The BAG id is not a valid {{ type }}"
      * )
      *
      * @OA\Property()
@@ -193,12 +196,13 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The construction year may not be empty"
      * )
      * @Assert\Type(
      *      type="integer",
-     *      message="%property% is not a valid %type%"
+     *      message="The construction year is not a valid {{ type }}"
      * )
      * @Assert\Range(
      *      min = 1800,
@@ -211,9 +215,10 @@ class BuildingAddress extends IdTime
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      * @Assert\Regex(
      *      pattern="/(|[\d]{4})/",
-     *      message="%property% is not a valid %type%"
+     *      message="The renovation year is not a valid year"
      * )
      *
      * @OA\Property()

@@ -13,17 +13,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class IdTimeIdentification extends IdTime
 {
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=32, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The code may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The code is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=32,
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      maxMessage="The code can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -31,17 +32,18 @@ class IdTimeIdentification extends IdTime
     protected string $code;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
      * @Assert\NotBlank(
-     *      message="%property% may not be empty"
+     *      message="The name may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The name is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=128,
-     *      maxMessage="%property% can contain a maximum of %limit% characters"
+     *      maxMessage="The name can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
@@ -50,9 +52,10 @@ class IdTimeIdentification extends IdTime
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @Assert\Type(
      *     type="string",
-     *     message="%property% is not a valid %type%"
+     *     message="The description is not a valid {{ type }}"
      * )
      *
      * @OA\Property()

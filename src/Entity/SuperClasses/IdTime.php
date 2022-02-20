@@ -15,9 +15,10 @@ class IdTime extends Id
 {
     /**
      * @ORM\Column(type="datetimetz")
+     *
      * @Assert\Type(
      *     type="object",
-     *     message="%property% is not a valid %type%"
+     *     message="The creation time is not a valid {{ type }}"
      * )
      *
      * @OA\Property()
@@ -26,9 +27,10 @@ class IdTime extends Id
 
     /**
      * @ORM\Column(type="datetimetz")
+     *
      * @Assert\Type(
      *     type="object",
-     *     message="%property% is not a valid %type%"
+     *     message="The last change time is not a valid {{ type }}"
      * )
      *
      * @OA\Property()

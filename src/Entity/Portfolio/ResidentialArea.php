@@ -24,13 +24,11 @@ class ResidentialArea extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     * @Assert\Valid()
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="residentialArea", fetch="EXTRA_LAZY")
-     * @Assert\Valid()
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */
