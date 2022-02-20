@@ -3,8 +3,6 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Portfolio\Owner;
-use Doctrine\ORM\Mapping\ClassMetadata;
-use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -164,6 +162,10 @@ class ApiController extends AbstractController
         'code',
         'name',
         'description',
+        'owner' => [
+            'id',
+            'name',
+        ],
         'blocks' => [
             'id',
             'code',

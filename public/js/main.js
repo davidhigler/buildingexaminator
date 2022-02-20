@@ -1,20 +1,7 @@
-window.housingstocks = {};
-window.housingstocksToId = {};
-window.activeHousingstockInput = null;
-
 $(document).ready(function(){
-    let activeHousingstockInput = $('input#active-stock-input').autocomplete({
-        data: window.housingstocks,
-        onAutocomplete: function() {
-            console.log(this);
-        },
-    });
-    window.activeHousingstockInput = M.Autocomplete.getInstance(activeHousingstockInput);
     $('.sidenav').sidenav();
-    updateActiveHousingstockInput();
     diaOfLogo();
-
-    localStorage.setItem('activeHousingstock', '1');
+    updateActiveHousingstockInput();
 });
 
 /**
@@ -34,38 +21,6 @@ async function diaOfLogo() {
         await sleep(60);
         i++;
     }
-}
-
-function updateActiveHousingstockInput() {
-    $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks',
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            for (let variableKey in window.housingstocks){
-                if (window.housingstocks.hasOwnProperty(variableKey)){
-                    delete window.housingstocks[variableKey];
-                }
-            }
-            for (let variableKey in window.housingstocksToId){
-                if (window.housingstocksToId.hasOwnProperty(variableKey)){
-                    delete window.housingstocksToId[variableKey];
-                }
-            }
-        },
-        success: function(data) {
-            $(data).each(function() {
-                window.housingstocks[this.name + ' - ' + this.code] = null;
-                window.housingstocksToId[this.name + ' - ' + this.code] = this.id;
-            });
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-    });
 }
 
 function showLoader() {
@@ -152,6 +107,30 @@ function showDeleteModal(id, name, callback) {
         );
     let modalInstance = M.Modal.getInstance(modal);
     modalInstance.open();
+}
+
+function updateActiveHousingstockInput() {
+    $.ajax({
+        url: '/api/buildingexaminator/v1/housingstocks',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        success: function(data) {
+            let housingstocks = {};
+            for (let i = 0; i < data.data.length; i++) {
+                housingstocks[data.data[i].name] = null;
+            }
+            $('input#active-stock-input').autocomplete({
+                data: housingstocks,
+                limit: 5,
+            });
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+    });
 }
 
 /**
@@ -573,8 +552,6 @@ function loadHousingstocksPage(page = 1) {
             html += addPagination(data.pager, 'loadHousingstocksPage');
 
             $('div#content').html(html);
-
-            updateActiveHousingstockInput();
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
@@ -696,7 +673,7 @@ function loadHousingstockNewPage() {
 
 function loadHousingstockEditPage(id) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks/' + id,
+        url: '/api/buildingexaminator/v1/owners',
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -706,100 +683,135 @@ function loadHousingstockEditPage(id) {
             showLoader();
             $('#slide-out').sidenav('close');
         },
-        success: function(data) {
-            $('div#content').html(
-                '    <h3 class="header">Edit housingstock</h3>\n' +
-                '    <form id="edithousingstock">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                '                <label for="code" class="active">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">description</i>\n' +
-                '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                '                <label for="description" class="active">Description</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">schedule</i>\n' +
-                '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                '                <label for="created" class="active">Created</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">update</i>\n' +
-                '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                '                <label for="lastchange" class="active">Last change</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s12">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
-            );
-
-            $('form#edithousingstock').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/api/buildingexaminator/v1/housingstocks/' + $('input#id').val(),
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    accepts: {
-                        json: 'application/json'
-                    },
-                    data: JSON.stringify(
-                        {
-                            'code': $('input#code').val(),
-                            'name': $('input#name').val(),
-                            'description': $('textarea#description').val(),
+        success: function(dataOwners) {
+            $.ajax({
+                url: '/api/buildingexaminator/v1/housingstocks/' + id,
+                type: 'GET',
+                dataType: 'json',
+                accepts: {
+                    json: 'application/json'
+                },
+                success: function(data) {
+                    let ownerSelectHtml =
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">person</i>\n' +
+                        '                <select id="owner" name="owner">\n';
+                    $(dataOwners.data).each(function (index, element) {
+                        if (element.id === data.data.owner.id) {
+                            ownerSelectHtml += '                    <option value="' + element.id + '" selected>' + element.name + '</option>\n';
+                        } else {
+                            ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
                         }
-                    ),
-                    beforeSend: function() {
-                        showLoader();
-                        $('#slide-out').sidenav('close');
-                    },
-                    success: function() {
-                        loadHousingstocksPage();
-                    },
-                    error: function(jqXHR) {
-                        loadErrorPage(jqXHR);
-                    },
-                    complete: function() {
-                        hideLoader();
-                    },
-                });
+                    });
+                    ownerSelectHtml +=
+                        '                </select>\n' +
+                        '                <label>Owner</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n';
+
+                    $('div#content').html(
+                        '    <h3 class="header">Edit housingstock</h3>\n' +
+                        '    <form id="edithousingstock">\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                        '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                        '                <label for="id" class="active">Id</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        ownerSelectHtml +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                        '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                        '                <label for="code" class="active">Code</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">short_text</i>\n' +
+                        '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
+                        '                <label for="name" class="active">Name</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">description</i>\n' +
+                        '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
+                        '                <label for="description" class="active">Description</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">schedule</i>\n' +
+                        '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                        '                <label for="created" class="active">Created</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">update</i>\n' +
+                        '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                        '                <label for="lastchange" class="active">Last change</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="col s12">\n' +
+                        '                <button type="submit" class="btn" name="save">\n' +
+                        '                    <i class="material-icons left">save</i>Save\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '    </form>\n'
+                    );
+
+                    $('form#edithousingstock').submit(function(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            url: '/api/buildingexaminator/v1/housingstocks/' + $('input#id').val(),
+                            type: 'PUT',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=UTF-8',
+                            accepts: {
+                                json: 'application/json'
+                            },
+                            data: JSON.stringify(
+                                {
+                                    'owner': $('select#owner').val(),
+                                    'code': $('input#code').val(),
+                                    'name': $('input#name').val(),
+                                    'description': $('textarea#description').val(),
+                                }
+                            ),
+                            beforeSend: function() {
+                                showLoader();
+                                $('#slide-out').sidenav('close');
+                            },
+                            success: function() {
+                                loadHousingstocksPage();
+                            },
+                            error: function(jqXHR) {
+                                loadErrorPage(jqXHR);
+                            },
+                            complete: function() {
+                                hideLoader();
+                            },
+                        });
+                    });
+                },
+                error: function (jqXHR) {
+                    loadErrorPage(jqXHR)
+                },
+                complete: function () {
+                    $('select').formSelect();
+
+                    hideLoader();
+                },
             });
         },
-        error: function (jqXHR) {
-            loadErrorPage(jqXHR)
-        },
-        complete: function () {
-            hideLoader();
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
         },
     });
 }
@@ -922,9 +934,20 @@ function loadBuildingaddressNewPage() {
         yearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
     });
 
+    //window.housingstocksToId[parseInt(localStorage.getItem('activeHousingstock'))].name +
+    console.log(window.housingstocksToId);
+    console.log(localStorage.getItem('activeHousingstock'));
+
     $('div#content').html(
         '    <h3 class="header">New buildingaddress</h3>\n' +
         '    <form id="newbuildingaddress">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">domain</i>\n' +
+        '                <input disabled id="housingstock" name="housingstock" type="text" value="' + '">\n' +
+        '                <label for="housingstock" class="active">Housingstock</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">qr_code_2</i>\n' +

@@ -5036,18 +5036,11 @@ class LoadTestHousingStockData extends Fixture
         $buildingTypeSelection9->setLastChangeTime();
 
         $owner1 = new Owner();
-        $owner1->setName('Woonpartners Midden-Holland');
-        $owner1->setKvk('29045958');
-        $owner1->setBtw('NL804644433B01');
-        $owner1->setLnumber('L2114');
-        $owner1->setWebsite('https://www.woonpartners-mh.nl');
+        $owner1->setName('Dobro BV');
+        $owner1->setWebsite('https://www.buildingexaminator.nl');
 
-        $owner2 = new Owner();
-        $owner2->setName('WoonCompas');
-        $owner2->setKvk('24108743');
-        $owner2->setBtw('NL002776911B01');
-        $owner2->setLnumber('L2110');
-        $owner2->setWebsite('https://www.wooncompas.nl');
+        //$owner2 = new Owner();
+        //$owner2->setName('');
 
         $owner3 = new Owner();
         $owner3->setName('Stichting Woningbedrijf Warnsveld');
@@ -5117,10 +5110,12 @@ class LoadTestHousingStockData extends Fixture
         $owner19->setName('Ressort Wonen');
         $owner19->setLnumber('L2056');
 
-//        $owner20 = new Owner();
-//        $owner20->setId(20);
-//        $owner20->setName('');
-//        $owner20->setLNumber('L00');
+        $owner20 = new Owner();
+        $owner20->setName('Woonpartners Midden-Holland');
+        $owner20->setKvk('29045958');
+        $owner20->setBtw('NL804644433B01');
+        $owner20->setLnumber('L2114');
+        $owner20->setWebsite('https://www.woonpartners-mh.nl');
 
         $owner21 = new Owner();
         $owner21->setName('ZorgGoedBrabant');
@@ -5178,10 +5173,12 @@ class LoadTestHousingStockData extends Fixture
         $owner34->setName('Stichting Huisvesting Vredewold');
         $owner34->setLnumber('L1933');
 
-//        $owner35 = new Owner();
-//        $owner35->setId(35);
-//        $owner35->setName('');
-//        $owner35->setLNumber('L00');
+        $owner35 = new Owner();
+        $owner35->setName('WoonCompas');
+        $owner35->setKvk('24108743');
+        $owner35->setBtw('NL002776911B01');
+        $owner35->setLnumber('L2110');
+        $owner35->setWebsite('https://www.wooncompas.nl');
 
         $owner36 = new Owner();
         $owner36->setName('Stichting Ouderenhuisvesting Rotterdam');
@@ -6397,28 +6394,108 @@ class LoadTestHousingStockData extends Fixture
         $owner338->setLnumber('L0001');
 
         $housingStock1 = new HousingStock();
-        $housingStock1->setCode('DobrCmTest');
-        $housingStock1->setName('DobrCm - Test');
-        $housingStock1->setDescription('Dit is de standaard test omgeving voor DobroCm1');
+        $housingStock1->setCode('Dobro-BE-01');
+        $housingStock1->setName('Dobro Building Examinator Test 01');
+        $housingStock1->setDescription('This is the standard test environment of Dobro Building Examinator 1');
         $housingStock1->setCreationTime();
         $housingStock1->setLastChangeTime();
         $housingStock1->setOwner($owner1);
 
         $housingStock2 = new HousingStock();
-        $housingStock2->setCode('DobrCmTest1');
-        $housingStock2->setName('DobrCm - Test1');
-        $housingStock2->setDescription('Dit is de standaard test omgeving voor DobroCm2');
+        $housingStock2->setCode('Dobro-BE-02');
+        $housingStock2->setName('Dobro Building Examinator Test 02');
+        $housingStock2->setDescription('This is the standard test environment of Dobro Building Examinator 2');
         $housingStock2->setCreationTime();
         $housingStock2->setLastChangeTime();
-        $housingStock2->setOwner($owner2);
+        $housingStock2->setOwner($owner1);
 
         $housingStock3 = new HousingStock();
-        $housingStock3->setCode('DobrCmTest2');
-        $housingStock3->setName('DobrCm - Test2');
-        $housingStock3->setDescription('Dit is de standaard test omgeving voor DobroCm3');
+        $housingStock3->setCode('Dobro-BE-03');
+        $housingStock3->setName('Dobro Building Examinator Test 03');
+        $housingStock3->setDescription('This is the standard test environment of Dobro Building Examinator 3');
         $housingStock3->setCreationTime();
         $housingStock3->setLastChangeTime();
-        $housingStock3->setOwner($owner2);
+        $housingStock3->setOwner($owner1);
+
+        $housingStock4 = new HousingStock();
+        $housingStock4->setCode('HS-ACT-01');
+        $housingStock4->setName('Main houses of Actium');
+        $housingStock4->setDescription('This is the main set of houses of the company Actium');
+        $housingStock4->setCreationTime();
+        $housingStock4->setLastChangeTime();
+        $housingStock4->setOwner($owner244);
+
+        $housingStock5 = new HousingStock();
+        $housingStock5->setCode('HS-ACT-02');
+        $housingStock5->setName('Subset 01 houses of Actium');
+        $housingStock5->setDescription('This is the subset 01 set of houses of the company Actium');
+        $housingStock5->setCreationTime();
+        $housingStock5->setLastChangeTime();
+        $housingStock5->setOwner($owner244);
+
+        $housingStock6 = new HousingStock();
+        $housingStock6->setCode('HS-ACT-03');
+        $housingStock6->setName('Subset 02 houses of Actium');
+        $housingStock6->setDescription('This is the subset 02 set of houses of the company Actium');
+        $housingStock6->setCreationTime();
+        $housingStock6->setLastChangeTime();
+        $housingStock6->setOwner($owner244);
+
+        $housingStock6 = new HousingStock();
+        $housingStock6->setCode('HS-AWS-01');
+        $housingStock6->setName('Houses of AWS Beter Wonen');
+        $housingStock6->setDescription('This is the main set of houses of the company AWS Beter Wonen');
+        $housingStock6->setCreationTime();
+        $housingStock6->setLastChangeTime();
+        $housingStock6->setOwner($owner276);
+
+        $housingStock7 = new HousingStock();
+        $housingStock7->setCode('BW-1');
+        $housingStock7->setName('All houses Baston Wonen');
+        $housingStock7->setDescription('All the houses of the company Baston Wonen');
+        $housingStock7->setCreationTime();
+        $housingStock7->setLastChangeTime();
+        $housingStock7->setOwner($owner169);
+
+        $housingStock8 = new HousingStock();
+        $housingStock8->setCode('BW-2');
+        $housingStock8->setName('Second set of houses Baston Wonen');
+        $housingStock8->setDescription('The second set of houses of the company Baston Wonen');
+        $housingStock8->setCreationTime();
+        $housingStock8->setLastChangeTime();
+        $housingStock8->setOwner($owner169);
+
+        $housingStock9 = new HousingStock();
+        $housingStock9->setCode('BW-3');
+        $housingStock9->setName('Third set of houses Baston Wonen');
+        $housingStock9->setDescription('The third set of houses of the company Baston Wonen');
+        $housingStock9->setCreationTime();
+        $housingStock9->setLastChangeTime();
+        $housingStock9->setOwner($owner169);
+
+        $housingStock10 = new HousingStock();
+        $housingStock10->setCode('BW-4');
+        $housingStock10->setName('Fourth set of houses Baston Wonen');
+        $housingStock10->setDescription('The fourth set of houses of the company Baston Wonen');
+        $housingStock10->setCreationTime();
+        $housingStock10->setLastChangeTime();
+        $housingStock10->setOwner($owner169);
+
+        $housingStock11 = new HousingStock();
+        $housingStock11->setCode('BW-5');
+        $housingStock11->setName('Fifth set of houses Baston Wonen');
+        $housingStock11->setDescription('The fifth set of houses of the company Baston Wonen');
+        $housingStock11->setCreationTime();
+        $housingStock11->setLastChangeTime();
+        $housingStock11->setOwner($owner169);
+
+        $housingStock12 = new HousingStock();
+        $housingStock12->setCode('BW-6');
+        $housingStock12->setName('Sixth set of houses Baston Wonen');
+        $housingStock12->setDescription('The sixth set of houses of the company Baston Wonen');
+        $housingStock12->setCreationTime();
+        $housingStock12->setLastChangeTime();
+        $housingStock12->setOwner($owner169);
 
         $buildingAddress1->setHousingStock($housingStock1);
         $buildingAddress2->setHousingStock($housingStock1);
