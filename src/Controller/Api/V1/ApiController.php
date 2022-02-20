@@ -645,18 +645,20 @@ class ApiController extends AbstractController
      */
     public function getHousingStocks(Request $request, LoggerInterface $logger): Response
     {
-        $pager = new Pagerfanta(
-            new QueryAdapter(
-                $this->getDoctrine()
-                    ->getRepository(HousingStock::class)
-                    ->createQueryBuilder('h')
-            )
-        );
+        $repository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $page = $request->query->get('page');
 
-        $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-        $pager->setCurrentPage($request->query->get('page') ?? 1);
+        if ($page === null) {
+            return $this->renderData($repository->findBy([], ['name' => 'ASC']), self::HOUSING_STOCK_LIST_FIELDS, $logger);
+        } else {
+            $adapter = $repository->createQueryBuilder('h')->orderBy('h.name', 'ASC');
 
-        return $this->renderData($pager, self::HOUSING_STOCK_LIST_FIELDS, $logger);
+            $pager = new Pagerfanta(new QueryAdapter($adapter));
+            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $pager->setCurrentPage($page);
+
+            return $this->renderData($pager, self::HOUSING_STOCK_LIST_FIELDS, $logger);
+        }
     }
 
     #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]

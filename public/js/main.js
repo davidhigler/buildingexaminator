@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
     diaOfLogo();
+    localStorage.removeItem('activeHousingstockId');
     updateActiveHousingstockInput();
 });
 
@@ -59,7 +60,7 @@ function addPagination(pager, callback) {
         '        </li>\n';
     for (let i = 1; i < 5; i++) {
         let nextIndex = pager.current + i;
-        if (nextIndex < pager.count) {
+        if (nextIndex <= pager.count) {
             html +=
                 '        <li>' +
                 '            <a href="javascript:' + callback + '(' + nextIndex + ');">' + nextIndex + '</a>' +
@@ -118,13 +119,24 @@ function updateActiveHousingstockInput() {
             json: 'application/json'
         },
         success: function(data) {
+            let housingstocksAutocomplete = {};
             let housingstocks = {};
             for (let i = 0; i < data.data.length; i++) {
-                housingstocks[data.data[i].name] = null;
+                housingstocksAutocomplete[data.data[i].name] = null;
+                housingstocks[data.data[i].name] = data.data[i];
             }
+            localStorage.setItem('housingstocks', JSON.stringify(housingstocks));
             $('input#active-stock-input').autocomplete({
-                data: housingstocks,
+                data: housingstocksAutocomplete,
+                minLength: 3,
                 limit: 5,
+                onAutocomplete: function(data) {
+                    let storedHousingstocks = JSON.parse(localStorage.getItem('housingstocks'));
+                    localStorage.setItem('activeHousingstockId', storedHousingstocks[data].id);
+                }
+            }).focus(function() {
+                $(this).val('');
+                localStorage.removeItem('activeHousingstockId');
             });
         },
         error: function(jqXHR) {
@@ -839,9 +851,9 @@ function deleteHousingstock(id) {
  */
 
 function loadBuildingaddressesPage(page = 1) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstock') + '/addresses',
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
             type: 'GET',
             data: {
                 page: page
@@ -933,10 +945,6 @@ function loadBuildingaddressNewPage() {
     yearSelectValues.forEach(function(item) {
         yearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
     });
-
-    //window.housingstocksToId[parseInt(localStorage.getItem('activeHousingstock'))].name +
-    console.log(window.housingstocksToId);
-    console.log(localStorage.getItem('activeHousingstock'));
 
     $('div#content').html(
         '    <h3 class="header">New buildingaddress</h3>\n' +
