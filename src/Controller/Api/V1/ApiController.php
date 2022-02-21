@@ -135,24 +135,6 @@ class ApiController extends AbstractController
         'code',
         'name',
         'description',
-        'blocks' => [
-            'id',
-        ],
-        'buildingTypes' => [
-            'id',
-        ],
-        'livingTypes' => [
-            'id',
-        ],
-        'buildingAddresses' => [
-            'id',
-        ],
-        'creationTime' => [
-            'timestamp',
-        ],
-        'lastChangeTime' => [
-            'timestamp',
-        ],
         'numberOfBlocks',
         'numberOfBuildingAddresses',
     ];
@@ -201,6 +183,31 @@ class ApiController extends AbstractController
         'numberOfBuildingAddresses',
     ];
 
+    private const RESIDENTIALAREA_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+        ],
+    ];
+
+    private const RESIDENTIALAREA_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'buildingAddresses' => [
+            'id',
+            'streetName',
+            'houseNumber',
+            'addition',
+            'zipcode',
+            'city',
+        ],
+    ];
+
     private const BLOCK_LIST_FIELDS = [
         'id',
         'code',
@@ -235,58 +242,6 @@ class ApiController extends AbstractController
             'name',
         ],
         'financialNumber',
-    ];
-
-    private const ADDRESS_LIST_FIELDS = [
-        'id',
-        'residentialArea' => [
-            'id',
-            'name',
-        ],
-        'buildingType' => [
-            'id',
-            'name',
-        ],
-        'livingType' => [
-            'id',
-            'name',
-        ],
-        'rentalUnitNumber',
-        'streetName',
-        'houseNumber',
-        'addition',
-        'zipcode',
-        'city',
-    ];
-
-    private const ADDRESS_DETAIL_FIELDS = [
-        'id',
-        'residentialArea' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'buildingType' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'livingType' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'blocks' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'streetName',
-        'houseNumber',
-        'addition',
-        'zipcode',
-        'city',
-        'daeb',
     ];
 
     private const BUILDINGTYPE_LIST_FIELDS = [
@@ -339,29 +294,56 @@ class ApiController extends AbstractController
         ],
     ];
 
-    private const RESIDENTIALAREA_LIST_FIELDS = [
+    private const ADDRESS_LIST_FIELDS = [
         'id',
-        'code',
-        'name',
-        'description',
-        'buildingAddresses' => [
+        'residentialArea' => [
             'id',
+            'name',
         ],
+        'buildingType' => [
+            'id',
+            'name',
+        ],
+        'livingType' => [
+            'id',
+            'name',
+        ],
+        'rentalUnitNumber',
+        'streetName',
+        'houseNumber',
+        'addition',
+        'zipcode',
+        'city',
     ];
 
-    private const RESIDENTIALAREA_DETAIL_FIELDS = [
+    private const ADDRESS_DETAIL_FIELDS = [
         'id',
-        'code',
-        'name',
-        'description',
-        'buildingAddresses' => [
+        'residentialArea' => [
             'id',
-            'streetName',
-            'houseNumber',
-            'addition',
-            'zipcode',
-            'city',
+            'code',
+            'name',
         ],
+        'buildingType' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'livingType' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'blocks' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'streetName',
+        'houseNumber',
+        'addition',
+        'zipcode',
+        'city',
+        'daeb',
     ];
 
     #[Route('/documentation', name: 'documentation', methods: ['GET'])]
@@ -671,6 +653,10 @@ class ApiController extends AbstractController
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
+     *                 property="owner",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
      *                 property="name",
      *                 type="string"
      *             ),
@@ -735,6 +721,10 @@ class ApiController extends AbstractController
      *         description="Details for changing housing stock",
      *         @OA\JsonContent(
      *             type="object",
+     *             @OA\Property(
+     *                 property="owner",
+     *                 type="integer"
+     *             ),
      *             @OA\Property(
      *                 property="name",
      *                 type="string"
@@ -857,16 +847,16 @@ class ApiController extends AbstractController
     }
 
     /**
-     * ADDRESSES
+     * RESIDENTIALAREAS
      *
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddress', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses",
-     *     summary="Returns details about multiple addresses",
+     *     path="/housingstocks/{housingStockId}/residentialareas",
+     *     summary="Returns details about multiple residential areas",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -879,33 +869,37 @@ class ApiController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about multiple addresses",
-     *         @OA\JsonContent(ref="#/components/schemas/buildingAddresses")
+     *         description="Details about multiple residential areas",
+     *         @OA\JsonContent(ref="#/components/schemas/residentialAreas")
      *     )
      * )
      */
-    public function getAddresses(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getResidentialAreas(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $pager = new Pagerfanta(
-            new QueryAdapter(
-                $this->getDoctrine()
-                    ->getRepository(BuildingAddress::class)
-                    ->createQueryBuilder('b')
-                    ->where('b.housingStock = ' . $housingStockId)
-            )
-        );
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-        $pager->setCurrentPage($request->query->get('page') ?? 1);
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        $page = $request->query->get('page');
 
-        return $this->renderData($pager, self::ADDRESS_LIST_FIELDS, $logger);
+        if ($page === null) {
+            return $this->renderData($residentialAreaRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+        } else {
+            $adapter = $residentialAreaRepository->createQueryBuilder('r')->orderBy('r.name', 'ASC');
+
+            $pager = new Pagerfanta(new QueryAdapter($adapter));
+            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $pager->setCurrentPage($page);
+
+            return $this->renderData($pager, self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+        }
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
+    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'addresidentialarea', methods: ['POST'])]
     /**
      * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/addresses",
-     *     summary="Add new address",
+     *     path="/housingstocks/{housingStockId}/residentialareas",
+     *     summary="Add new residential area",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -917,205 +911,76 @@ class ApiController extends AbstractController
      *         required=true
      *     ),
      *     @OA\RequestBody(
-     *         description="Details about new address",
+     *         description="Details about new residential area",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
-     *                 property="streetname",
+     *                 property="name",
      *                 type="string"
      *             ),
      *             @OA\Property(
-     *                 property="housenumber",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="addition",
+     *                 property="code",
      *                 type="string"
      *             ),
      *             @OA\Property(
-     *                 property="zipcode",
+     *                 property="description",
      *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="city",
-     *                 type="string"
-     *             ),
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created address",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
-     *     )
-     * )
-     */
-    public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
-    {
-        $newAddress = json_decode($request->getContent(), true);
-
-        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $blockRepository->find((int) $housingStockId);
-
-        $address = new BuildingAddress();
-        $address->setHousingStock($housingStock);
-        $address->setStreetName($newAddress['streetname']);
-        $address->setHouseNumber($newAddress['housenumber']);
-        $address->setAddition($newAddress['addition']);
-        $address->setZipcode($newAddress['zipcode']);
-        $address->setCity($newAddress['city']);
-        $address->setCreationTime();
-        $address->setLastChangeTime();
-
-        $violations = $validator->validate($address);
-        if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
-        }
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($address);
-        $entityManager->flush();
-
-        return $this->renderData($address, self::ADDRESS_DETAIL_FIELDS, $logger);
-    }
-
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Change address",
-     *     @OA\RequestBody(
-     *         description="Details for changing address",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="streetName",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="houseNumber",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="addition",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="zipcode",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="city",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="daeb",
-     *                 type="bool"
      *             )
      *         )
      *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of a housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about changed address",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *         description="Details about created residential area",
+     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
      *     )
      * )
      */
-    public function changeAddress(string $addressId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function addResidentialArea(string $housingStockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
     {
-        $changeAddress = json_decode($request->getContent(), true);
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        /** @var BuildingAddress $buildingAddress */
-        $buildingAddress = $buildingAddressRepository->find((int) $addressId);
+        $newResidentialArea = json_decode($request->getContent(), true);
 
-        $buildingAddress->setStreetName($changeAddress['streetName']);
-        $buildingAddress->setHouseNumber($changeAddress['houseNumber']);
-        $buildingAddress->setAddition($changeAddress['addition']);
-        $buildingAddress->setZipcode($changeAddress['zipcode']);
-        $buildingAddress->setCity($changeAddress['city']);
-        $buildingAddress->setDaeb($changeAddress['daeb']);
-        $buildingAddress->setLastChangeTime();
+        $residentialArea = new ResidentialArea();
+        $residentialArea->setHousingStock($housingStock);
+        if (!empty($newResidentialArea['name'])) {
+            $residentialArea->setName($newResidentialArea['name']);
+        }
+        if (!empty($newResidentialArea['code'])) {
+            $residentialArea->setCode($newResidentialArea['code']);
+        }
+        if (!empty($newResidentialArea['description'])) {
+            $residentialArea->setDescription($newResidentialArea['description']);
+        }
+        $residentialArea->setCreationTime();
+        $residentialArea->setLastChangeTime();
 
-        $violations = $validator->validate($buildingAddress);
+        $violations = $validator->validate($residentialArea);
         if ($violations->count() > 0) {
             return $this->json($this->extractErrorsFromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($buildingAddress);
+        $entityManager->persist($residentialArea);
         $entityManager->flush();
 
-        return $this->renderData($buildingAddress, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->renderData($residentialArea, self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/blocks/{addressId}",
-     *     summary="Delete address",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted an address"
-     *     )
-     * )
-     */
-    public function deleteAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
-    {
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
+    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'changeresidentialarea', methods: ['PUT'])]
+    public function changeResidentialArea(string $housingStockId, string $residentialAreaId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {}
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($buildingAddress);
-        $entityManager->flush();
+    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'deleteresidentialarea', methods: ['DELETE'])]
+    public function deleteResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
+    {}
 
-        return new Response('', 200);
-    }
-
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Returns details about an address",
+     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
+     *     summary="Returns details about a residential area",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -1127,8 +992,8 @@ class ApiController extends AbstractController
      *         required=true
      *     ),
      *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
+     *         name="residentialAreaId",
+     *         description="The id of a residential area",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -1138,15 +1003,15 @@ class ApiController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about an address",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *         description="Details about a residential area",
+     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
      *     )
      * )
      */
-    public function getAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
+    public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
     {
-        $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
     }
 
     /**
@@ -1556,16 +1421,16 @@ class ApiController extends AbstractController
     }
 
     /**
-     * RESIDENTIALAREAS
+     * ADDRESSES
      *
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'listresidentialareas', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddress', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residentialareas",
-     *     summary="Returns details about multiple residential areas",
+     *     path="/housingstocks/{housingStockId}/addresses",
+     *     summary="Returns details about multiple addresses",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -1578,22 +1443,200 @@ class ApiController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about multiple residential areas",
-     *         @OA\JsonContent(ref="#/components/schemas/residentialAreas")
+     *         description="Details about multiple addresses",
+     *         @OA\JsonContent(ref="#/components/schemas/buildingAddresses")
      *     )
      * )
      */
-    public function getResidentialAreas(string $housingStockId, LoggerInterface $logger): Response
+    public function getAddresses(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId]), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+        $pager = new Pagerfanta(
+            new QueryAdapter(
+                $this->getDoctrine()
+                    ->getRepository(BuildingAddress::class)
+                    ->createQueryBuilder('b')
+                    ->where('b.housingStock = ' . $housingStockId)
+            )
+        );
+
+        $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+        $pager->setCurrentPage($request->query->get('page') ?? 1);
+
+        return $this->renderData($pager, self::ADDRESS_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'getresidentialArea', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
     /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
-     *     summary="Returns details about a residential area",
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/addresses",
+     *     summary="Add new address",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new address",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="streetname",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="housenumber",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="addition",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="zipcode",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="city",
+     *                 type="string"
+     *             ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created address",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *     )
+     * )
+     */
+    public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    {
+        $newAddress = json_decode($request->getContent(), true);
+
+        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $blockRepository->find((int) $housingStockId);
+
+        $address = new BuildingAddress();
+        $address->setHousingStock($housingStock);
+        $address->setStreetName($newAddress['streetname']);
+        $address->setHouseNumber($newAddress['housenumber']);
+        $address->setAddition($newAddress['addition']);
+        $address->setZipcode($newAddress['zipcode']);
+        $address->setCity($newAddress['city']);
+        $address->setCreationTime();
+        $address->setLastChangeTime();
+
+        $violations = $validator->validate($address);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($address);
+        $entityManager->flush();
+
+        return $this->renderData($address, self::ADDRESS_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
+     *     summary="Change address",
+     *     @OA\RequestBody(
+     *         description="Details for changing address",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="streetName",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="houseNumber",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="addition",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="zipcode",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="city",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="daeb",
+     *                 type="bool"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of a housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="addressId",
+     *         description="The id of an address",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed address",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *     )
+     * )
+     */
+    public function changeAddress(string $addressId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeAddress = json_decode($request->getContent(), true);
+
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        /** @var BuildingAddress $buildingAddress */
+        $buildingAddress = $buildingAddressRepository->find((int) $addressId);
+
+        $buildingAddress->setStreetName($changeAddress['streetName']);
+        $buildingAddress->setHouseNumber($changeAddress['houseNumber']);
+        $buildingAddress->setAddition($changeAddress['addition']);
+        $buildingAddress->setZipcode($changeAddress['zipcode']);
+        $buildingAddress->setCity($changeAddress['city']);
+        $buildingAddress->setDaeb($changeAddress['daeb']);
+        $buildingAddress->setLastChangeTime();
+
+        $violations = $validator->validate($buildingAddress);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($buildingAddress);
+        $entityManager->flush();
+
+        return $this->renderData($buildingAddress, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}/blocks/{addressId}",
+     *     summary="Delete address",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -1605,8 +1648,8 @@ class ApiController extends AbstractController
      *         required=true
      *     ),
      *     @OA\Parameter(
-     *         name="residentialAreaId",
-     *         description="The id of a residential area",
+     *         name="addressId",
+     *         description="The id of an address",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -1616,15 +1659,58 @@ class ApiController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about a residential area",
-     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
+     *         description="Successfully deleted an address"
      *     )
      * )
      */
-    public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
+    public function deleteAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
     {
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($buildingAddress);
+        $entityManager->flush();
+
+        return new Response('', 200);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
+     *     summary="Returns details about an address",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="addressId",
+     *         description="The id of an address",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about an address",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *     )
+     * )
+     */
+    public function getAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
+    {
+        $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
 
     /**

@@ -24,6 +24,8 @@ class ResidentialArea extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
      */
     protected HousingStock $housingStock;
 

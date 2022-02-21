@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
     diaOfLogo();
-    localStorage.removeItem('activeHousingstockId');
+    localStorage.removeItem('activeHousingstock');
     updateActiveHousingstockInput();
 });
 
@@ -132,11 +132,11 @@ function updateActiveHousingstockInput() {
                 limit: 5,
                 onAutocomplete: function(data) {
                     let storedHousingstocks = JSON.parse(localStorage.getItem('housingstocks'));
-                    localStorage.setItem('activeHousingstockId', storedHousingstocks[data].id);
+                    localStorage.setItem('activeHousingstock', JSON.stringify(storedHousingstocks[data]));
                 }
             }).focus(function() {
                 $(this).val('');
-                localStorage.removeItem('activeHousingstockId');
+                localStorage.removeItem('activeHousingstock');
             });
         },
         error: function(jqXHR) {
@@ -204,6 +204,41 @@ function loadHomePage() {
     showLoader();
     $('#slide-out').sidenav('close');
     location.reload();
+}
+
+function loadTestPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
+    $('div#content').html(
+        '    <h3 class="header">Test page</h3>\n' +
+        '    <form id="test">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <label class="custom-file-upload">\n' +
+        '                    <input id="imageUpload" type="file" accept="image/*" capture="environment" />\n' +
+        '                    Custom Upload\n' +
+        '                </label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <img width="200px" id="imagePreview" src="#" alt="Image preview" />\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    $('img#imagePreview').materialbox();
+
+    imageUpload.onchange = evt => {
+        const [file] = imageUpload.files
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file)
+        }
+    }
+
+    hideLoader();
 }
 
 /**
@@ -847,13 +882,143 @@ function deleteHousingstock(id) {
 }
 
 /**
+ * ResidentialAreas
+ */
+
+function loadResidentialAreasPage(page = 1) {
+    if(localStorage.getItem('activeHousingstock')) {
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/residentialareas',
+            type: 'GET',
+            data: {
+                page: page
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">view_quilt</i></td>\n' +
+                        '                <td>' + (element.code ?? '') + '</td>\n' +
+                        '                <td>' + (element.name ?? '') + '</td>\n' +
+                        '                <td class="actions">\n' +
+                        '                    <button class="btn" name="edit" onclick="loadResidentialAreaEditPage(' + element.id + ');">\n' +
+                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                        '                    </button>\n' +
+                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteResidentialArea\');">\n' +
+                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
+                        '                    </button>\n' +
+                        '                </td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Residential areas</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s12">\n' +
+                    '            <button class="btn" name="new" onclick="loadResidentialAreaNewPage();">\n' +
+                    '                <i class="material-icons">add_view_quilt</i><span class="button-content hide-on-small-only">New</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Code</th>\n' +
+                    '                <th>Name</th>\n' +
+                    '                <th class="actions">Actions</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, 'loadResidentialAreasPage');
+
+                $('div#content').html(html);
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                hideLoader();
+            },
+        });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function loadResidentialAreaNewPage() {
+    if(localStorage.getItem('activeHousingstock')) {
+        let html =
+            '    <h3 class="header">New residential area</h3>\n' +
+            '    <div class="card error blue-grey darken-2">\n' +
+            '        <div class="card-content white-text valign-wrapper">\n' +
+            '            <i class="medium material-icons">construction</i>\n' +
+            '            <p>Under construction</p>\n' +
+            '        </div>\n' +
+            '    </div>\n';
+
+        $('div#content').html(html);
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function loadResidentialAreaEditPage(id) {
+    if(localStorage.getItem('activeHousingstock')) {
+        let html =
+            '    <h3 class="header">Edit residential area</h3>\n' +
+            '    <div class="card error blue-grey darken-2">\n' +
+            '        <div class="card-content white-text valign-wrapper">\n' +
+            '            <i class="medium material-icons">construction</i>\n' +
+            '            <p>Under construction</p>\n' +
+            '        </div>\n' +
+            '    </div>\n';
+
+        $('div#content').html(html);
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function deleteResidentialArea(id) {
+    if(localStorage.getItem('activeHousingstock')) {
+        let html =
+            '    <h3 class="header">Delete residential area</h3>\n' +
+            '    <div class="card error blue-grey darken-2">\n' +
+            '        <div class="card-content white-text valign-wrapper">\n' +
+            '            <i class="medium material-icons">construction</i>\n' +
+            '            <p>Under construction</p>\n' +
+            '        </div>\n' +
+            '    </div>\n';
+
+        $('div#content').html(html);
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
  * Buildingaddresses
  */
 
 function loadBuildingaddressesPage(page = 1) {
-    if(localStorage.getItem('activeHousingstockId')) {
+    if(localStorage.getItem('activeHousingstock')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
+            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/addresses',
             type: 'GET',
             data: {
                 page: page
@@ -936,165 +1101,206 @@ function loadBuildingaddressesPage(page = 1) {
 }
 
 function loadBuildingaddressNewPage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
+    if(localStorage.getItem('activeHousingstock')) {
+        showLoader();
+        $('#slide-out').sidenav('close');
 
-    let yearNow = moment().year();
-    let yearSelectValues = Array(100).fill(0).map((element, index) => index + yearNow - 98);
-    let yearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n';
-    yearSelectValues.forEach(function(item) {
-        yearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
-    });
+        let yearNow = moment().year();
+        let yearSelectValues = Array(100).fill(0).map((element, index) => index + yearNow - 98);
+        let yearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n';
+        yearSelectValues.forEach(function(item) {
+            yearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        });
 
-    $('div#content').html(
-        '    <h3 class="header">New buildingaddress</h3>\n' +
-        '    <form id="newbuildingaddress">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">domain</i>\n' +
-        '                <input disabled id="housingstock" name="housingstock" type="text" value="' + '">\n' +
-        '                <label for="housingstock" class="active">Housingstock</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate">\n' +
-        '                <label for="rentalunitnumber">Rental unit number</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">road</i>\n' +
-        '                <input id="streetname" name="streetname" type="text" class="validate">\n' +
-        '                <label for="streetname">Street name</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">123</i>\n' +
-        '                <input id="housenumber" name="housenumber" type="text" class="validate">\n' +
-        '                <label for="housenumber">House number</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">abc</i>\n' +
-        '                <input id="addition" name="addition" type="text" class="validate">\n' +
-        '                <label for="addition">Addition</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">zipcode</i>\n' +
-        '                <input id="zipcode" name="zipcode" type="text" class="validate">\n' +
-        '                <label for="zipcode">Zipcode</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">location_city</i>\n' +
-        '                <input id="city" name="city" type="text" class="validate">\n' +
-        '                <label for="city">City</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="bagid" name="bagid" type="text" class="validate">\n' +
-        '                <label for="bagid">BAG id</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">calendar_today</i>\n' +
-        '                <select name="constructionyear">\n' +
-        yearHtmlOptions +
-        '                </select>\n' +
-        '                <label>Construction year</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">calendar_today</i>\n' +
-        '                <select name="constructionyear">\n' +
-        yearHtmlOptions +
-        '                </select>\n' +
-        '                <label>Renovation year</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">explore</i>\n' +
-        '                <select name="orientation">\n' +
-        '                    <option disabled selected>Choose a direction</option>\n' +
-        '                    <option value="n" data-icon="/images/directions/n.png">Noord</option>\n' +
-        '                    <option value="nne" data-icon="/images/directions/nne.png">Noord Noord Oost</option>\n' +
-        '                    <option value="ne" data-icon="/images/directions/ne.png">Noord Oost</option>\n' +
-        '                    <option value="nee" data-icon="/images/directions/nee.png">Noord Oost Oost</option>\n' +
-        '                    <option value="e" data-icon="/images/directions/e.png">Oost</option>\n' +
-        '                    <option value="see" data-icon="/images/directions/see.png">Zuid Oost Oost</option>\n' +
-        '                    <option value="se" data-icon="/images/directions/se.png">Zuid Oost</option>\n' +
-        '                    <option value="sse" data-icon="/images/directions/sse.png">Zuid Zuid Oost</option>\n' +
-        '                    <option value="s" data-icon="/images/directions/s.png">Zuid</option>\n' +
-        '                    <option value="ssw" data-icon="/images/directions/ssw.png">Zuid Zuid West</option>\n' +
-        '                    <option value="sw" data-icon="/images/directions/sw.png">Zuid West</option>\n' +
-        '                    <option value="sww" data-icon="/images/directions/sww.png">Zuid West West</option>\n' +
-        '                    <option value="w" data-icon="/images/directions/w.png">West</option>\n' +
-        '                    <option value="nww" data-icon="/images/directions/nww.png">Noord West West</option>\n' +
-        '                    <option value="nw" data-icon="/images/directions/nw.png">Noord West</option>\n' +
-        '                    <option value="nnw" data-icon="/images/directions/nnw.png">Noord Noord West</option>\n' +
-        '                </select>\n' +
-        '                <label>Orientation façade</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <p>\n' +
-        '                    <i class="material-icons prefix">house_money</i>\n' +
-        '                    <label>\n' +
-        '                        <input type="checkbox">\n' +
-        '                        <span>Deab</span>\n' +
-        '                    </label>\n' +
-        '                </p>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s12">\n' +
-        '                <button type="submit" class="btn" name="create">\n' +
-        '                    <i class="material-icons left">house_add</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
+        $('div#content').html(
+            '    <h3 class="header">New buildingaddress</h3>\n' +
+            '    <form id="newbuildingaddress">\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix disabled">domain</i>\n' +
+            '                <input disabled id="housingstock" name="housingstock" type="text" value="' + JSON.parse(localStorage.getItem('activeHousingstock')).name + '">\n' +
+            '                <label for="housingstock" class="active">Housingstock</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix disabled">view_quilt</i>\n' +
+            '                <input disabled id="residentialarea" name="residentialarea" type="text" value="">\n' +
+            '                <label for="residentialarea" class="active">Residential area</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix disabled">view_module</i>\n' +
+            '                <input disabled id="block" name="block" type="text" value="">\n' +
+            '                <label for="block" class="active">Block</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix disabled">home_work</i>\n' +
+            '                <input disabled id="buildingtype" name="buildingtype" type="text" value="">\n' +
+            '                <label for="buildingtype" class="active">Building type</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix disabled">villa</i>\n' +
+            '                <input disabled id="livingtype" name="livingtype" type="text" value="">\n' +
+            '                <label for="livingtype" class="active">Living type</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">qr_code_2</i>\n' +
+            '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate">\n' +
+            '                <label for="rentalunitnumber">Rental unit number</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">road</i>\n' +
+            '                <input id="streetname" name="streetname" type="text" class="validate">\n' +
+            '                <label for="streetname">Street name</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">123</i>\n' +
+            '                <input id="housenumber" name="housenumber" type="text" class="validate">\n' +
+            '                <label for="housenumber">House number</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">abc</i>\n' +
+            '                <input id="addition" name="addition" type="text" class="validate">\n' +
+            '                <label for="addition">Addition</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">zipcode</i>\n' +
+            '                <input id="zipcode" name="zipcode" type="text" class="validate">\n' +
+            '                <label for="zipcode">Zipcode</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">location_city</i>\n' +
+            '                <input id="city" name="city" type="text" class="validate">\n' +
+            '                <label for="city">City</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">qr_code_2</i>\n' +
+            '                <input id="bagid" name="bagid" type="text" class="validate">\n' +
+            '                <label for="bagid">BAG id</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">calendar_today</i>\n' +
+            '                <select name="constructionyear">\n' +
+            yearHtmlOptions +
+            '                </select>\n' +
+            '                <label>Construction year</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">calendar_today</i>\n' +
+            '                <select name="constructionyear">\n' +
+            yearHtmlOptions +
+            '                </select>\n' +
+            '                <label>Renovation year</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">explore</i>\n' +
+            '                <select name="orientation">\n' +
+            '                    <option disabled selected>Choose a direction</option>\n' +
+            '                    <option value="n" data-icon="/images/directions/n.png">Noord</option>\n' +
+            '                    <option value="nne" data-icon="/images/directions/nne.png">Noord Noord Oost</option>\n' +
+            '                    <option value="ne" data-icon="/images/directions/ne.png">Noord Oost</option>\n' +
+            '                    <option value="nee" data-icon="/images/directions/nee.png">Noord Oost Oost</option>\n' +
+            '                    <option value="e" data-icon="/images/directions/e.png">Oost</option>\n' +
+            '                    <option value="see" data-icon="/images/directions/see.png">Zuid Oost Oost</option>\n' +
+            '                    <option value="se" data-icon="/images/directions/se.png">Zuid Oost</option>\n' +
+            '                    <option value="sse" data-icon="/images/directions/sse.png">Zuid Zuid Oost</option>\n' +
+            '                    <option value="s" data-icon="/images/directions/s.png">Zuid</option>\n' +
+            '                    <option value="ssw" data-icon="/images/directions/ssw.png">Zuid Zuid West</option>\n' +
+            '                    <option value="sw" data-icon="/images/directions/sw.png">Zuid West</option>\n' +
+            '                    <option value="sww" data-icon="/images/directions/sww.png">Zuid West West</option>\n' +
+            '                    <option value="w" data-icon="/images/directions/w.png">West</option>\n' +
+            '                    <option value="nww" data-icon="/images/directions/nww.png">Noord West West</option>\n' +
+            '                    <option value="nw" data-icon="/images/directions/nw.png">Noord West</option>\n' +
+            '                    <option value="nnw" data-icon="/images/directions/nnw.png">Noord Noord West</option>\n' +
+            '                </select>\n' +
+            '                <label>Orientation façade</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <p>\n' +
+            '                    <i class="material-icons prefix">house_money</i>\n' +
+            '                    <label>\n' +
+            '                        <input type="checkbox">\n' +
+            '                        <span>Deab</span>\n' +
+            '                    </label>\n' +
+            '                </p>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="col s12">\n' +
+            '                <button type="submit" class="btn" name="create">\n' +
+            '                    <i class="material-icons left">house_add</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </form>\n'
+        );
 
-    $('select').formSelect();
+        $('select').formSelect();
 
-    hideLoader();
+        hideLoader();
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
 }
 
-/**
- * Testpages
- */
+function loadBuildingaddressEditPage(id) {
+    if(localStorage.getItem('activeHousingstock')) {
+        let html =
+            '    <h3 class="header">Edit buildingaddress</h3>\n' +
+            '    <div class="card error blue-grey darken-2">\n' +
+            '        <div class="card-content white-text valign-wrapper">\n' +
+            '            <i class="medium material-icons">construction</i>\n' +
+            '            <p>Under construction</p>\n' +
+            '        </div>\n' +
+            '    </div>\n';
 
-function loadTestPage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
+        $('div#content').html(html);
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
 
-    $('div#content').html(
-        '    <h3 class="header">Test page</h3>\n' +
-        '    <form id="test">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <label class="custom-file-upload">\n' +
-        '                    <input type="file" accept="image/*" capture="environment" />\n' +
-        '                    Custom Upload' +
-        '                </label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
+function deleteBuildingaddress(id) {
+    if(localStorage.getItem('activeHousingstock')) {
+        let html =
+            '    <h3 class="header">Delete buildingaddress</h3>\n' +
+            '    <div class="card error blue-grey darken-2">\n' +
+            '        <div class="card-content white-text valign-wrapper">\n' +
+            '            <i class="medium material-icons">construction</i>\n' +
+            '            <p>Under construction</p>\n' +
+            '        </div>\n' +
+            '    </div>\n';
 
-    hideLoader();
+        $('div#content').html(html);
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
 }
