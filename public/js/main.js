@@ -186,6 +186,8 @@ function loadErrorPage(jqXHR) {
         '        </div>\n' +
         '    </div>\n'
     );
+
+    $('#slide-out').sidenav('close');
 }
 
 function loadInformationPage(message) {
@@ -198,6 +200,22 @@ function loadInformationPage(message) {
         '        </div>\n' +
         '    </div>\n'
     );
+
+    $('#slide-out').sidenav('close');
+}
+
+function loadUnderConstructionPage(title) {
+    $('div#content').html(
+        '    <h3 class="header">' + title + '</h3>\n' +
+        '    <div class="card error blue-grey darken-2">\n' +
+        '        <div class="card-content white-text valign-wrapper">\n' +
+        '            <i class="medium material-icons">construction</i>\n' +
+        '            <p>Under construction</p>\n' +
+        '        </div>\n' +
+        '    </div>\n'
+    );
+
+    $('#slide-out').sidenav('close');
 }
 
 function loadHomePage() {
@@ -962,16 +980,7 @@ function loadResidentialAreasPage(page = 1) {
 
 function loadResidentialAreaNewPage() {
     if(localStorage.getItem('activeHousingstock')) {
-        let html =
-            '    <h3 class="header">New residential area</h3>\n' +
-            '    <div class="card error blue-grey darken-2">\n' +
-            '        <div class="card-content white-text valign-wrapper">\n' +
-            '            <i class="medium material-icons">construction</i>\n' +
-            '            <p>Under construction</p>\n' +
-            '        </div>\n' +
-            '    </div>\n';
-
-        $('div#content').html(html);
+        loadUnderConstructionPage('New residential area');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -979,16 +988,7 @@ function loadResidentialAreaNewPage() {
 
 function loadResidentialAreaEditPage(id) {
     if(localStorage.getItem('activeHousingstock')) {
-        let html =
-            '    <h3 class="header">Edit residential area</h3>\n' +
-            '    <div class="card error blue-grey darken-2">\n' +
-            '        <div class="card-content white-text valign-wrapper">\n' +
-            '            <i class="medium material-icons">construction</i>\n' +
-            '            <p>Under construction</p>\n' +
-            '        </div>\n' +
-            '    </div>\n';
-
-        $('div#content').html(html);
+        loadUnderConstructionPage('Edit residential area');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -996,16 +996,7 @@ function loadResidentialAreaEditPage(id) {
 
 function deleteResidentialArea(id) {
     if(localStorage.getItem('activeHousingstock')) {
-        let html =
-            '    <h3 class="header">Delete residential area</h3>\n' +
-            '    <div class="card error blue-grey darken-2">\n' +
-            '        <div class="card-content white-text valign-wrapper">\n' +
-            '            <i class="medium material-icons">construction</i>\n' +
-            '            <p>Under construction</p>\n' +
-            '        </div>\n' +
-            '    </div>\n';
-
-        $('div#content').html(html);
+        loadUnderConstructionPage('Delete residential area');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1273,16 +1264,7 @@ function loadBuildingaddressNewPage() {
 
 function loadBuildingaddressEditPage(id) {
     if(localStorage.getItem('activeHousingstock')) {
-        let html =
-            '    <h3 class="header">Edit buildingaddress</h3>\n' +
-            '    <div class="card error blue-grey darken-2">\n' +
-            '        <div class="card-content white-text valign-wrapper">\n' +
-            '            <i class="medium material-icons">construction</i>\n' +
-            '            <p>Under construction</p>\n' +
-            '        </div>\n' +
-            '    </div>\n';
-
-        $('div#content').html(html);
+        loadUnderConstructionPage('Edit buildingaddress');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1290,16 +1272,7 @@ function loadBuildingaddressEditPage(id) {
 
 function deleteBuildingaddress(id) {
     if(localStorage.getItem('activeHousingstock')) {
-        let html =
-            '    <h3 class="header">Delete buildingaddress</h3>\n' +
-            '    <div class="card error blue-grey darken-2">\n' +
-            '        <div class="card-content white-text valign-wrapper">\n' +
-            '            <i class="medium material-icons">construction</i>\n' +
-            '            <p>Under construction</p>\n' +
-            '        </div>\n' +
-            '    </div>\n';
-
-        $('div#content').html(html);
+        loadUnderConstructionPage('Delete buildingaddress');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
