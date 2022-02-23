@@ -126,7 +126,7 @@ function updateActiveHousingstockInput() {
                 housingstocks[data.data[i].name] = data.data[i];
             }
             localStorage.setItem('housingstocks', JSON.stringify(housingstocks));
-            $('input#active-stock-input').autocomplete({
+            $('input.active-stock-input').autocomplete({
                 data: housingstocksAutocomplete,
                 minLength: 3,
                 limit: 5,
