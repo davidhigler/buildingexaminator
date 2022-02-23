@@ -27,74 +27,116 @@ class LoadTestHousingStockData extends Fixture
     public function load(ObjectManager $manager): void
     {
         $residentialArea1 = new ResidentialArea();
-        $residentialArea1->setCode('*wedlônd◘');
-        $residentialArea1->setName('ðorlogsplein 1945');
-        $residentialArea1->setDescription('Patat Rât LN \'12');
+        $residentialArea1->setCode('019310');
+        $residentialArea1->setName('Binnenstad');
+        $residentialArea1->setDescription('De binnenstad van Zwolle is een autoluwe wijk met in het oude centrum van de stad. Het gebied wordt begrensd door de voormalige stadsmuren en grachten. Het is een wijk waar tegenwoordig met name winkelgebied is gelegen, zoals in de Sassenstraat, de Diezerstraat, de Oude Vismarkt, de Luttekestraat, de Melkmarkt, het Grote Kerkplein, het Rodetorenplein en de Grote Markt.');
         $residentialArea1->setCreationTime();
         $residentialArea1->setLastChangeTime();
 
         $residentialArea2 = new ResidentialArea();
-        $residentialArea2->setCode('Ðoenderstraat');
-        $residentialArea2->setName('Bænstreetÿ');
-        $residentialArea2->setDescription('\'s-Gravenland');
+        $residentialArea2->setCode('019311');
+        $residentialArea2->setName('Diezerpoort');
+        $residentialArea2->setDescription('Diezerpoort (ook: Dieze, Nijstad, Nieuwstad) is een woonwijk in de Overijsselse plaats Zwolle. De wijk bestaat uit een aantal buurten[2], te weten Dieze-Centrum, Dieze-West, Dieze-Oost en de Indische Buurt. De wijk wordt ook wel Dieze genoemd. De wijk is vernoemd naar de gelijknamige stadspoort.');
         $residentialArea2->setCreationTime();
         $residentialArea2->setLastChangeTime();
 
         $residentialArea3 = new ResidentialArea();
-        $residentialArea3->setCode('Wµ 3');
-        $residentialArea3->setName('stroußenlaan');
-        $residentialArea3->setDescription('Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch');
+        $residentialArea3->setCode('019312');
+        $residentialArea3->setName('Wipstrik');
+        $residentialArea3->setDescription('Wipstrik is een woonwijk in de Overijsselse hoofdstad Zwolle. De wijk ligt dicht bij de binnenstad en is goed bereikbaar per auto, fiets en lopend. In de wijk wonen ongeveer 6.400 mensen.');
         $residentialArea3->setCreationTime();
         $residentialArea3->setLastChangeTime();
 
         $residentialArea4 = new ResidentialArea();
-        $residentialArea4->setCode('♥♦♣♠ ¾');
-        $residentialArea4->setName('çoop §');
-        $residentialArea4->setDescription('W@@lspröngé');
+        $residentialArea4->setCode('019313');
+        $residentialArea4->setName('Assendorp');
+        $residentialArea4->setDescription('Assendorp (Nedersaksisch: Ass'ndörp) is een wijk in Zwolle, in de Nederlandse provincie Overijssel.');
         $residentialArea4->setCreationTime();
         $residentialArea4->setLastChangeTime();
 
         $residentialArea5 = new ResidentialArea();
-        $residentialArea5->setCode('Dj`s');
-        $residentialArea5->setName('"Ædrie Nus"');
-        $residentialArea5->setDescription('å€©®¥¾');
+        $residentialArea5->setCode('019314');
+        $residentialArea5->setName('Kamperpoort-Veerallee');
+        $residentialArea5->setDescription('Kamperpoort-Veerallee is een woonwijk van de gemeente Zwolle. Het omvat de buurten Kamperpoort en Veerallee.');
         $residentialArea5->setCreationTime();
         $residentialArea5->setLastChangeTime();
 
         $residentialArea6 = new ResidentialArea();
-        $residentialArea6->setCode('Mw. Verdwaald- Onderwater');
-        $residentialArea6->setName('Wil-Jannie Mostert-Uit de fles');
-        $residentialArea6->setDescription('Etten-Leur-Noord');
+        $residentialArea6->setCode('019320');
+        $residentialArea6->setName('Poort van Zwolle');
+        $residentialArea6->setDescription('Poort van Zwolle is een woonwijk in de gemeente Zwolle. Het omvat de buurten Spoolde, het bedrijventerrein Voorst-B en het bedrijventerrein Voorst-A. Er staan anno 2013 156 woningen.');
         $residentialArea6->setCreationTime();
         $residentialArea6->setLastChangeTime();
 
         $residentialArea7 = new ResidentialArea();
-        $residentialArea7->setCode('Bangkokstrâët');
-        $residentialArea7->setName('Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya');
-        $residentialArea7->setDescription('Broekpolder samen met Beverwijk Ouverture Bàngert-Oosterpolder Höögh Teijïngen');
+        $residentialArea7->setCode('019321');
+        $residentialArea7->setName('Westenholte');
+        $residentialArea7->setDescription('Westenholte is een wijk in Zwolle en een voormalige buurtschap in de Nederlandse provincie Overijssel.');
         $residentialArea7->setCreationTime();
         $residentialArea7->setLastChangeTime();
 
         $residentialArea8 = new ResidentialArea();
-        $residentialArea8->setCode('IC – Notting (oogarts)');
-        $residentialArea8->setName('mw Plu→ in ’t Hol');
-        $residentialArea8->setDescription('Zuidbroek (wijk in aanbouw)');
+        $residentialArea8->setCode('019322');
+        $residentialArea8->setName('Stadshagen');
+        $residentialArea8->setDescription('Stadshagen is een Vinex-locatie in Zwolle gelegen in de polder Mastenbroek. Het telt 26.605 inwoners op 1 januari 2020.');
         $residentialArea8->setCreationTime();
         $residentialArea8->setLastChangeTime();
 
         $residentialArea9 = new ResidentialArea();
-        $residentialArea9->setCode('53° 13′ NB, 4° 12′ WL');
-        $residentialArea9->setName('4#');
-        $residentialArea9->setDescription('Zevenhuizen');
+        $residentialArea9->setCode('019330');
+        $residentialArea9->setName('Holtenbroek');
+        $residentialArea9->setDescription('Holtenbroek is een woonwijk in de Overijsselse hoofdstad Zwolle.');
         $residentialArea9->setCreationTime();
         $residentialArea9->setLastChangeTime();
 
         $residentialArea10 = new ResidentialArea();
-        $residentialArea10->setCode('Prof Nl \'34');
-        $residentialArea10->setName('A@ Prof. van Kinsbergen 1934');
-        $residentialArea10->setDescription('Centrüm ïn de st&d');
+        $residentialArea10->setCode('019331');
+        $residentialArea10->setName('Aalanden');
+        $residentialArea10->setDescription('Aa-landen (uitspraak: A-landen) is een woonwijk in de Overijsselse plaats Zwolle. De wijk kent de volgende buurten: Aalanden-Noord, Aalanden-Oost, Aalanden-Midden, Aalanden-Zuid');
         $residentialArea10->setCreationTime();
         $residentialArea10->setLastChangeTime();
+		
+	$residentialArea11 = new ResidentialArea();
+        $residentialArea11->setCode('019332');
+        $residentialArea11->setName('Vechtlanden');
+        $residentialArea11->setDescription('Vechtlanden is een dunbevolkte wijk in het buitengebied ten noorden van de gemeente Zwolle.');
+        $residentialArea11->setCreationTime();
+        $residentialArea11->setLastChangeTime();
+		
+	$residentialArea12 = new ResidentialArea();
+        $residentialArea12->setCode('019340');
+        $residentialArea12->setName('Berkum');
+        $residentialArea12->setDescription('Berkum (Nedersaksisch: Bärkum of Berkum) is een wijk en buurt van de stad Zwolle in de Nederlandse provincie Overijssel. Berkum bestaat uit Berkum, Veldhoek, Bedrijventerrein de Vrolijkheid en kantorenterrein Oosterenk.De wijk ligt ingeklemd tussen de Overijsselse Vecht, de Nieuwe Vecht en de A28. Een groot deel van de inwoners bestaat uit mensen van 65 jaar en ouder (1152). De laatste jaren komen er steeds meer jonge gezinnen bij. De voetbalvereniging VV Berkum heeft hier haar thuisbasis.');
+        $residentialArea12->setCreationTime();
+        $residentialArea12->setLastChangeTime();
+		
+	$residentialArea13 = new ResidentialArea();
+        $residentialArea13->setCode('019341');
+        $residentialArea13->setName('Marsweteringlanden');
+        $residentialArea13->setDescription('Marsweteringlanden is een woonwijk in Zwolle die wordt gevormd door de buurtschappen Herfte en Wijthmen. In deze wijk is bedrijventerrein Marslanden-Zuid gesitueerd.');
+        $residentialArea13->setCreationTime();
+        $residentialArea13->setLastChangeTime();
+		
+	$residentialArea14 = new ResidentialArea();
+        $residentialArea14->setCode('019350');
+        $residentialArea14->setName('Schelle');
+        $residentialArea14->setDescription('Schelle (Zwols: Skelle) is een wijk en buurtschap in de Overijsselse gemeente Zwolle in Nederland. Het ligt op een rivierduin dat is gevormd in het Preboreaal, een etage van het Holoceen. Inmiddels is de buurtschap opgenomen in de woonwijk Zwolle-Zuid en zijn er drie wijkgedeelten rondom naar de buurtschap vernoemd: Schellerhoek, Schellerbroek en Schellerlanden. De naam is ook terug te vinden in enkele straten in de omgeving zoals de Schellerweg, Schellerallee, Schellerbergweg en Schellerenkweg en een stuk dijk langs de IJssel, de Schellerdijk. Schelle bestaat uit de wijken Oud Schelle, Schelle-Zuid en Oldeneel, Schellerhoek, Schellerbroek, Schellerlanden, Oldenelerlanden-West, Oldenelerlanden-Oost, Oldenelerbroek en Katerveer-Engelse Werk.');
+        $residentialArea14->setCreationTime();
+        $residentialArea14->setLastChangeTime();
+		
+	$residentialArea15 = new ResidentialArea();
+        $residentialArea15->setCode('019351');
+        $residentialArea15->setName('Ittersum');
+        $residentialArea15->setDescription('Ittersum is een voormalig gehucht dat behoorde tot de gemeente Zwollerkerspel, die in 1967 werd opgeheven. Ittersum is opgeslokt door Zwolle en is een wijk (CBS wijknummer 51) in Zwolle-Zuid met (anno 2011) 15.230 inwoners.[1] In deze wijk liggen de buurten Geren, Oud Ittersum, Gerenlanden, Gerenbroek, Ittersumerlanden en Ittersumerbroek. Van 1891 tot 1918 had Ittersum een eigen halte aan de spoorlijn Arnhem - Leeuwarden, de stopplaats Ittersum. Ittersum heeft ook een eigen voetbalclub, v.v. SVI (Sport Vereniging Ittersum), waar voormalig profvoetballer Harry Decheiver hoofdtrainer was.');
+        $residentialArea15->setCreationTime();
+        $residentialArea15->setLastChangeTime();
+		
+	$residentialArea16 = new ResidentialArea();
+        $residentialArea16->setCode('019352');
+        $residentialArea16->setName('Soestweteringlanden');
+        $residentialArea16->setDescription('Soestweteringlanden is een wijk van de gemeente Zwolle in het stadsdeel Zwolle-Zuid. Het omvat de buurtschappen Harculo en Hoog-Zuthem en Windesheim.');
+        $residentialArea16->setCreationTime();
+        $residentialArea16->setLastChangeTime();
 
         $buildingType1 = new BuildingType();
         $buildingType1->setCode('Rijwoning twee onder éénkap');
