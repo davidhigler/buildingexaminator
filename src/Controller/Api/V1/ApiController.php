@@ -969,12 +969,126 @@ class ApiController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'changeresidentialarea', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
+     *     summary="Change residential area",
+     *     @OA\RequestBody(
+     *         description="Details for changing residential area",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="residentialAreaId",
+     *         description="The id of the residential area",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed residential area",
+     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
+     *     )
+     * )
+     */
     public function changeResidentialArea(string $housingStockId, string $residentialAreaId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
-    {}
+    {
+        $changeResidentialArea = json_decode($request->getContent(), true);
+
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $residentialArea->setHousingStock($housingStock);
+        $residentialArea->setName($changeResidentialArea['name']);
+        $residentialArea->setCode($changeResidentialArea['code']);
+        $residentialArea->setDescription($changeResidentialArea['description']);
+        $residentialArea->setLastChangeTime();
+
+        $violations = $validator->validate($residentialArea);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($residentialArea);
+        $entityManager->flush();
+
+        return $this->renderData($residentialArea, self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+    }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'deleteresidentialarea', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}",
+     *     summary="Delete housing stock",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="residentialAreaId",
+     *         description="The id of the residential area",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a housing stock"
+     *     )
+     * )
+     */
     public function deleteResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
-    {}
+    {
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($residentialArea);
+        $entityManager->flush();
+
+        return new Response('', 200);
+    }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
     /**

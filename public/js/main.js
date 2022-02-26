@@ -979,11 +979,72 @@ function loadResidentialAreasPage(page = 1) {
 }
 
 function loadResidentialAreaNewPage() {
-    if(localStorage.getItem('activeHousingstock')) {
-        loadUnderConstructionPage('New residential area');
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
+    $('div#content').html(
+        '    <h3 class="header">New residential area</h3>\n' +
+        '    <form id="newresidentialarea">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">qr_code_2</i>\n' +
+        '                <input id="code" name="code" type="text" class="validate">\n' +
+        '                <label for="code">Code</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="name" name="name" type="text" class="validate">\n' +
+        '                <label for="name">Name</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">description</i>\n' +
+        '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+        '                <label for="description">Description</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s12">\n' +
+        '                <button type="submit" class="btn" name="create">\n' +
+        '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    $('form#newresidentialarea').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/residentialareas',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'code': $('input#code').val(),
+                    'name': $('input#name').val(),
+                    'description': $('textarea#description').val(),
+                }
+            ),
+            beforeSend: function () {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function () {
+                loadResidentialAreasPage();
+            },
+            error: function (jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function () {
+                hideLoader();
+            },
+        });
+    });
 }
 
 function loadResidentialAreaEditPage(id) {
