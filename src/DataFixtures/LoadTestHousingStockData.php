@@ -250,65 +250,91 @@ class LoadTestHousingStockData extends Fixture
         $buildingType14->setCreationTime();
         $buildingType14->setLastChangeTime();
 
+        
         $livingType1 = new LivingType();
+        $livingType1->setId(1);
         $livingType1->setCode('lt1');
-        $livingType1->setName('Niet van toepassing');
+        $livingType1->setName('Vrijstaande woning');
         $livingType1->setCreationTime();
         $livingType1->setLastChangeTime();
 
         $livingType2 = new LivingType();
+        $livingType2->setId(2);
         $livingType2->setCode('lt2');
-        $livingType2->setName('Vrijstaande woning');
+        $livingType2->setName('Rijwoning twee onder één kap');
         $livingType2->setCreationTime();
         $livingType2->setLastChangeTime();
 
         $livingType3 = new LivingType();
+        $livingType3->setId(3);
         $livingType3->setCode('lt3');
-        $livingType3->setName('Rijwoning twee onder éénkap');
+        $livingType3->setName('Rijwoning ééngezins ');
         $livingType3->setCreationTime();
         $livingType3->setLastChangeTime();
 
         $livingType4 = new LivingType();
+        $livingType4->setId(4);
         $livingType4->setCode('lt4');
-        $livingType4->setName('Rijwoning eengezins');
+        $livingType4->setName('Rijwoning senioren');
         $livingType4->setCreationTime();
         $livingType4->setLastChangeTime();
 
         $livingType5 = new LivingType();
+        $livingType5->setId(5);
         $livingType5->setCode('lt5');
-        $livingType5->setName('Rijwoning senioren');
+        $livingType5->setName('Rijwoning duplex kleine gezinnen');
         $livingType5->setCreationTime();
         $livingType5->setLastChangeTime();
 
         $livingType6 = new LivingType();
+        $livingType6->setId(6);
         $livingType6->setCode('lt6');
-        $livingType6->setName('Rijwoning duplex kleine gezinnen');
+        $livingType6->setName('Etagewoning galerijflat');
         $livingType6->setCreationTime();
         $livingType6->setLastChangeTime();
 
         $livingType7 = new LivingType();
+        $livingType7->setId(7);
         $livingType7->setCode('lt7');
-        $livingType7->setName('Etagewoning galerijflat');
+        $livingType7->setName('Etagewoning portiekflat');
         $livingType7->setCreationTime();
         $livingType7->setLastChangeTime();
 
         $livingType8 = new LivingType();
+        $livingType8->setId(8);
         $livingType8->setCode('lt8');
-        $livingType8->setName('Etagewoning portiekflat');
+        $livingType8->setName('Etagewoning maisonette');
         $livingType8->setCreationTime();
         $livingType8->setLastChangeTime();
 
         $livingType9 = new LivingType();
+        $livingType9->setId(9);
         $livingType9->setCode('lt9');
-        $livingType9->setName('Etagewoning maisonette');
+        $livingType9->setName('Etagewoning penthouse');
         $livingType9->setCreationTime();
         $livingType9->setLastChangeTime();
 
         $livingType10 = new LivingType();
+        $livingType10->setId(10);
         $livingType10->setCode('lt10');
-        $livingType10->setName('Etagewoning penthouse');
+        $livingType10->setName('Woonwagen');
         $livingType10->setCreationTime();
         $livingType10->setLastChangeTime();
+
+        $livingType11 = new LivingType();
+        $livingType11->setId(11);
+        $livingType11->setCode('lt11');
+        $livingType11->setName('Aanbouw');
+        $livingType11->setCreationTime();
+        $livingType11->setLastChangeTime();
+
+        $livingType12 = new LivingType();
+        $livingType12->setId(12);
+        $livingType12->setCode('lt12');
+        $livingType12->setName('Bedrijfsgebouw met woning(en)');
+        $livingType12->setCreationTime();
+        $livingType12->setLastChangeTime();
+
 
         $vtw1 = new Vtw();
         $vtw1->setCode('WT 1');
