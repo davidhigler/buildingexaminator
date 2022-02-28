@@ -1,8 +1,7 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
+    loadHomePage();
     diaOfLogo();
-    localStorage.removeItem('activeHousingstock');
-    updateActiveHousingstockInput();
 });
 
 /**
@@ -110,41 +109,6 @@ function showDeleteModal(id, name, callback) {
     modalInstance.open();
 }
 
-function updateActiveHousingstockInput() {
-    $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks',
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        success: function(data) {
-            let housingstocksAutocomplete = {};
-            let housingstocks = {};
-            for (let i = 0; i < data.data.length; i++) {
-                housingstocksAutocomplete[data.data[i].name] = null;
-                housingstocks[data.data[i].name] = data.data[i];
-            }
-            localStorage.setItem('housingstocks', JSON.stringify(housingstocks));
-            $('input.active-stock-input').autocomplete({
-                data: housingstocksAutocomplete,
-                minLength: 3,
-                limit: 5,
-                onAutocomplete: function(data) {
-                    let storedHousingstocks = JSON.parse(localStorage.getItem('housingstocks'));
-                    localStorage.setItem('activeHousingstock', JSON.stringify(storedHousingstocks[data]));
-                }
-            }).focus(function() {
-                $(this).val('');
-                localStorage.removeItem('activeHousingstock');
-            });
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-    });
-}
-
 /**
  * Support pages
  */
@@ -219,32 +183,80 @@ function loadUnderConstructionPage(title) {
 }
 
 function loadHomePage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
-    location.reload();
+    $.ajax({
+        url: '/api/buildingexaminator/v1/housingstocks',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let select2Html = '            <select id="active_housingstock_select" style="width: 100%;">\n' +
+                '                <option></option>\n';
+            $(data.data).each(function (index, element) {
+                if (parseInt(localStorage.getItem('activeHousingstockId')) === parseInt(element.id)) {
+                    select2Html += '                <option value="' + element.id + '" selected="selected">' + element.code + ' ' + element.name + '</option>\n';
+                } else {
+                    select2Html += '                <option value="' + element.id + '">' + element.code + ' ' + element.name + '</option>\n';
+                }
+            });
+            select2Html += '</select>\n';
+
+            $('div#activeHousingstockSelector').html(select2Html);
+
+            $('div#content').html('<h3 class="header">Building Examinator</h3>\n' +
+                '<p>This is the testing application for our app the Building Examinator.</p>\n'
+            );
+
+            let activeHousingstockSelect2 = $('select#active_housingstock_select').select2({
+                maximumInputLength: 20,
+                placeholder: "Select active housingstock",
+                allowClear: true
+            }).change(function () {
+                let selectedActiveHousingstock = $(this).select2('data').shift();
+                if (typeof selectedActiveHousingstock === 'undefined') {
+                    localStorage.removeItem('activeHousingstockId');
+                } else {
+                    localStorage.setItem('activeHousingstockId', selectedActiveHousingstock.id);
+                }
+            });
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
 }
 
 function loadTestPage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
-
     $('div#content').html(
         '    <h3 class="header">Test page</h3>\n' +
-        '    <form id="test">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <label class="custom-file-upload">\n' +
-        '                    <input id="imageUpload" type="file" accept="image/*" capture="environment" />\n' +
-        '                    Custom Upload\n' +
-        '                </label>\n' +
-        '            </div>\n' +
+        '    <h4 class="header">Image make and upload</h4>\n' +
+        '    <div class="row">\n' +
+        '        <div class="col s12">\n' +
+        '            <form id="test">\n' +
+        '                <div class="row">\n' +
+        '                    <div class="input-field col s12">\n' +
+        '                        <label class="custom-file-upload">\n' +
+        '                            <input id="imageUpload" type="file" accept="image/*" capture="environment" />\n' +
+        '                            Custom Upload\n' +
+        '                        </label>\n' +
+        '                    </div>\n' +
+        '                </div>\n' +
+        '            </form>\n' +
         '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <img width="200px" id="imagePreview" src="#" alt="Image preview" />\n' +
-        '            </div>\n' +
+        '    </div>\n' +
+        '    <div class="row">\n' +
+        '        <div class="col s12">\n' +
+        '            <img width="200px" id="imagePreview" src="#" alt="Image preview" />\n' +
         '        </div>\n' +
-        '    </form>\n'
+        '    </div>\n'
     );
 
     $('img#imagePreview').materialbox();
@@ -255,8 +267,6 @@ function loadTestPage() {
             imagePreview.src = URL.createObjectURL(file)
         }
     }
-
-    hideLoader();
 }
 
 /**
@@ -284,8 +294,8 @@ function loadOwnersPage(page = 1) {
                 rows +=
                     '            <tr>\n' +
                     '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
                     '                <td>' + (element.lnumber ?? '') + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
                     '                <td class="actions">\n' +
                     '                    <button class="btn" name="edit" onclick="loadOwnerEditPage(' + element.id + ');">\n' +
                     '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
@@ -310,8 +320,8 @@ function loadOwnersPage(page = 1) {
                 '        <thead>\n' +
                 '            <tr>\n' +
                 '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Name</th>\n' +
                 '                <th>L number</th>\n' +
+                '                <th>Name</th>\n' +
                 '                <th class="actions">Actions</th>\n' +
                 '            </tr>\n' +
                 '        </thead>\n' +
@@ -904,9 +914,9 @@ function deleteHousingstock(id) {
  */
 
 function loadResidentialAreasPage(page = 1) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/residentialareas',
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
             type: 'GET',
             data: {
                 page: page
@@ -1016,7 +1026,7 @@ function loadResidentialAreaNewPage() {
     $('form#newresidentialarea').submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/residentialareas',
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
@@ -1048,7 +1058,7 @@ function loadResidentialAreaNewPage() {
 }
 
 function loadResidentialAreaEditPage(id) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Edit residential area');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
@@ -1056,8 +1066,44 @@ function loadResidentialAreaEditPage(id) {
 }
 
 function deleteResidentialArea(id) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Delete residential area');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
+ * Blocks
+ */
+
+function loadBlocksPage(page = 1) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show blocks page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
+ * Buildingtypes
+ */
+
+function loadBuildingtypesPage(page = 1) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show buildingtypes page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
+ * Livingtypes
+ */
+
+function loadLivingtypesPage(page = 1) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show livingtypes page');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1068,9 +1114,9 @@ function deleteResidentialArea(id) {
  */
 
 function loadBuildingaddressesPage(page = 1) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + JSON.parse(localStorage.getItem('activeHousingstock')).id + '/addresses',
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
             type: 'GET',
             data: {
                 page: page
@@ -1087,7 +1133,7 @@ function loadBuildingaddressesPage(page = 1) {
                 let rows = '';
                 $(data.data).each(function (index, element) {
                     rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
+                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + ' - ' + (element.rentalUnitNumber ?? '') + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
                         '                <td class="hide-on-small-only"><i class="material-icons prefix">home</i></td>\n' +
                         '                <td class="hide-on-small-only">' + (element.rentalUnitNumber ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.streetName ?? '') + '</td>\n' +
@@ -1153,7 +1199,7 @@ function loadBuildingaddressesPage(page = 1) {
 }
 
 function loadBuildingaddressNewPage() {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
         $('#slide-out').sidenav('close');
 
@@ -1167,13 +1213,6 @@ function loadBuildingaddressNewPage() {
         $('div#content').html(
             '    <h3 class="header">New buildingaddress</h3>\n' +
             '    <form id="newbuildingaddress">\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix disabled">domain</i>\n' +
-            '                <input disabled id="housingstock" name="housingstock" type="text" value="' + JSON.parse(localStorage.getItem('activeHousingstock')).name + '">\n' +
-            '                <label for="housingstock" class="active">Housingstock</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix disabled">view_quilt</i>\n' +
@@ -1263,7 +1302,7 @@ function loadBuildingaddressNewPage() {
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix">calendar_today</i>\n' +
-            '                <select name="constructionyear">\n' +
+            '                <select name="renovationyear">\n' +
             yearHtmlOptions +
             '                </select>\n' +
             '                <label>Renovation year</label>\n' +
@@ -1315,7 +1354,7 @@ function loadBuildingaddressNewPage() {
             '    </form>\n'
         );
 
-        $('select').formSelect();
+        $('div#content select').formSelect();
 
         hideLoader();
     } else {
@@ -1324,7 +1363,7 @@ function loadBuildingaddressNewPage() {
 }
 
 function loadBuildingaddressEditPage(id) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Edit buildingaddress');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
@@ -1332,7 +1371,7 @@ function loadBuildingaddressEditPage(id) {
 }
 
 function deleteBuildingaddress(id) {
-    if(localStorage.getItem('activeHousingstock')) {
+    if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Delete buildingaddress');
     } else {
         loadInformationPage('You need to first choose an active housingstock');

@@ -885,7 +885,10 @@ class ApiController extends AbstractController
         if ($page === null) {
             return $this->renderData($residentialAreaRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
         } else {
-            $adapter = $residentialAreaRepository->createQueryBuilder('r')->orderBy('r.name', 'ASC');
+            $adapter = $residentialAreaRepository->createQueryBuilder('r')
+                ->where('r.housingStock = :housingStockId')
+                ->setParameter('housingStockId', $housingStock->getId())
+                ->orderBy('r.name', 'ASC');
 
             $pager = new Pagerfanta(new QueryAdapter($adapter));
             $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);

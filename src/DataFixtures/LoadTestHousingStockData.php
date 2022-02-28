@@ -50,7 +50,7 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea4 = new ResidentialArea();
         $residentialArea4->setCode('019313');
         $residentialArea4->setName('Assendorp');
-        $residentialArea4->setDescription('Assendorp (Nedersaksisch: Ass'ndörp) is een wijk in Zwolle, in de Nederlandse provincie Overijssel.');
+        $residentialArea4->setDescription("Assendorp (Nedersaksisch: Ass'ndörp) is een wijk in Zwolle, in de Nederlandse provincie Overijssel.");
         $residentialArea4->setCreationTime();
         $residentialArea4->setLastChangeTime();
 
@@ -96,42 +96,42 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea10->setCreationTime();
         $residentialArea10->setLastChangeTime();
 		
-	$residentialArea11 = new ResidentialArea();
+        $residentialArea11 = new ResidentialArea();
         $residentialArea11->setCode('019332');
         $residentialArea11->setName('Vechtlanden');
         $residentialArea11->setDescription('Vechtlanden is een dunbevolkte wijk in het buitengebied ten noorden van de gemeente Zwolle.');
         $residentialArea11->setCreationTime();
         $residentialArea11->setLastChangeTime();
 		
-	$residentialArea12 = new ResidentialArea();
+        $residentialArea12 = new ResidentialArea();
         $residentialArea12->setCode('019340');
         $residentialArea12->setName('Berkum');
         $residentialArea12->setDescription('Berkum (Nedersaksisch: Bärkum of Berkum) is een wijk en buurt van de stad Zwolle in de Nederlandse provincie Overijssel. Berkum bestaat uit Berkum, Veldhoek, Bedrijventerrein de Vrolijkheid en kantorenterrein Oosterenk.De wijk ligt ingeklemd tussen de Overijsselse Vecht, de Nieuwe Vecht en de A28. Een groot deel van de inwoners bestaat uit mensen van 65 jaar en ouder (1152). De laatste jaren komen er steeds meer jonge gezinnen bij. De voetbalvereniging VV Berkum heeft hier haar thuisbasis.');
         $residentialArea12->setCreationTime();
         $residentialArea12->setLastChangeTime();
 		
-	$residentialArea13 = new ResidentialArea();
+        $residentialArea13 = new ResidentialArea();
         $residentialArea13->setCode('019341');
         $residentialArea13->setName('Marsweteringlanden');
         $residentialArea13->setDescription('Marsweteringlanden is een woonwijk in Zwolle die wordt gevormd door de buurtschappen Herfte en Wijthmen. In deze wijk is bedrijventerrein Marslanden-Zuid gesitueerd.');
         $residentialArea13->setCreationTime();
         $residentialArea13->setLastChangeTime();
 		
-	$residentialArea14 = new ResidentialArea();
+        $residentialArea14 = new ResidentialArea();
         $residentialArea14->setCode('019350');
         $residentialArea14->setName('Schelle');
         $residentialArea14->setDescription('Schelle (Zwols: Skelle) is een wijk en buurtschap in de Overijsselse gemeente Zwolle in Nederland. Het ligt op een rivierduin dat is gevormd in het Preboreaal, een etage van het Holoceen. Inmiddels is de buurtschap opgenomen in de woonwijk Zwolle-Zuid en zijn er drie wijkgedeelten rondom naar de buurtschap vernoemd: Schellerhoek, Schellerbroek en Schellerlanden. De naam is ook terug te vinden in enkele straten in de omgeving zoals de Schellerweg, Schellerallee, Schellerbergweg en Schellerenkweg en een stuk dijk langs de IJssel, de Schellerdijk. Schelle bestaat uit de wijken Oud Schelle, Schelle-Zuid en Oldeneel, Schellerhoek, Schellerbroek, Schellerlanden, Oldenelerlanden-West, Oldenelerlanden-Oost, Oldenelerbroek en Katerveer-Engelse Werk.');
         $residentialArea14->setCreationTime();
         $residentialArea14->setLastChangeTime();
 		
-	$residentialArea15 = new ResidentialArea();
+        $residentialArea15 = new ResidentialArea();
         $residentialArea15->setCode('019351');
         $residentialArea15->setName('Ittersum');
         $residentialArea15->setDescription('Ittersum is een voormalig gehucht dat behoorde tot de gemeente Zwollerkerspel, die in 1967 werd opgeheven. Ittersum is opgeslokt door Zwolle en is een wijk (CBS wijknummer 51) in Zwolle-Zuid met (anno 2011) 15.230 inwoners.[1] In deze wijk liggen de buurten Geren, Oud Ittersum, Gerenlanden, Gerenbroek, Ittersumerlanden en Ittersumerbroek. Van 1891 tot 1918 had Ittersum een eigen halte aan de spoorlijn Arnhem - Leeuwarden, de stopplaats Ittersum. Ittersum heeft ook een eigen voetbalclub, v.v. SVI (Sport Vereniging Ittersum), waar voormalig profvoetballer Harry Decheiver hoofdtrainer was.');
         $residentialArea15->setCreationTime();
         $residentialArea15->setLastChangeTime();
 		
-	$residentialArea16 = new ResidentialArea();
+        $residentialArea16 = new ResidentialArea();
         $residentialArea16->setCode('019352');
         $residentialArea16->setName('Soestweteringlanden');
         $residentialArea16->setDescription('Soestweteringlanden is een wijk van de gemeente Zwolle in het stadsdeel Zwolle-Zuid. Het omvat de buurtschappen Harculo en Hoog-Zuthem en Windesheim.');

@@ -16,12 +16,6 @@
             <li id="menu-logo">
                 <div id="logo-dia"></div>
             </li>
-            <li class="active-stock">
-                <div class="active-stock-wrapper input-field">
-                    <input class="active-stock-input" placeholder="Active housingstock"><i class="material-icons">search</i>
-                    <div class="active-stock-results"></div>
-                </div>
-            </li>
             <li><a href="javascript:void(0);" onclick="loadHomePage();">Home</a></li>
             <li><a href="javascript:void(0);" onclick="loadTestPage();">TEST</a></li>
             <li><div class="divider"></div></li>
@@ -29,9 +23,9 @@
             <li><a href="javascript:void(0);" onclick="loadHousingstocksPage();">Housingstocks</a></li>
             <li><div class="divider"></div></li>
             <li><a href="javascript:void(0);" onclick="loadResidentialAreasPage();">Residential areas</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Blocks</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Building types</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Living types</a></li>
+            <li><a href="javascript:void(0);" onclick="loadBlocksPage();" class="subheader">Blocks</a></li>
+            <li><a href="javascript:void(0);" onclick="loadBuildingtypesPage();" class="subheader">Building types</a></li>
+            <li><a href="javascript:void(0);" onclick="loadLivingtypesPage();" class="subheader">Living types</a></li>
             <li><a href="javascript:void(0);" onclick="loadBuildingaddressesPage();">Addresses</a></li>
             <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Selections</a></li>
             <li><div class="divider"></div></li>
@@ -40,12 +34,6 @@
             <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Users</a></li>
         </ul>
         <ul id="slide-out" class="sidenav">
-            <!-- <li class="active-stock">
-                <div class="active-stock-wrapper input-field">
-                    <input class="active-stock-input" placeholder="Active housingstock"><i class="material-icons">search</i>
-                    <div class="active-stock-results"></div>
-                </div>
-            </li> -->
             <li><a href="javascript:void(0);" onclick="loadHomePage();">Home</a></li>
             <li><a href="javascript:void(0);" onclick="loadTestPage();">TEST</a></li>
             <li><div class="divider"></div></li>
@@ -53,9 +41,9 @@
             <li><a href="javascript:void(0);" onclick="loadHousingstocksPage();">Housingstocks</a></li>
             <li><div class="divider"></div></li>
             <li><a href="javascript:void(0);" onclick="loadResidentialAreasPage();">Residential areas</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Blocks</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Building types</a></li>
-            <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Living types</a></li>
+            <li><a href="javascript:void(0);" onclick="loadBlocksPage();" class="subheader">Blocks</a></li>
+            <li><a href="javascript:void(0);" onclick="loadBuildingtypesPage();" class="subheader">Building types</a></li>
+            <li><a href="javascript:void(0);" onclick="loadLivingtypesPage();" class="subheader">Living types</a></li>
             <li><a href="javascript:void(0);" onclick="loadBuildingaddressesPage();">Addresses</a></li>
             <li><a href="javascript:void(0);" onclick="void(0);" class="subheader">Selections</a></li>
             <li><div class="divider"></div></li>
@@ -79,9 +67,11 @@
         </div>
         <div class="container">
             <div class="row">
+                <div class="col s12 m12 l9 offset-l3" id="activeHousingstockSelector">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col s12 m12 l9 offset-l3" id="content">
-                    <h3 class="header">Building Examinator</h3>
-                    <p>This is the testing application for our app the Building Examinator.</p>
                 </div>
             </div>
         </div>
