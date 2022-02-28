@@ -1165,10 +1165,28 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getBlocks(string $housingStockId, LoggerInterface $logger): Response
+    public function getBlocks(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId]), self::BLOCK_LIST_FIELDS, $logger);
+        $page = $request->query->get('page');
+
+        if ($page === null) {
+            return $this->renderData($blockRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::BLOCK_LIST_FIELDS, $logger);
+        } else {
+            $adapter = $blockRepository->createQueryBuilder('b')
+                ->where('b.housingStock = :housingStockId')
+                ->setParameter('housingStockId', $housingStock->getId())
+                ->orderBy('b.name', 'ASC');
+
+            $pager = new Pagerfanta(new QueryAdapter($adapter));
+            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $pager->setCurrentPage($page);
+
+            return $this->renderData($pager, self::BLOCK_LIST_FIELDS, $logger);
+        }
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'addblock', methods: ['POST'])]

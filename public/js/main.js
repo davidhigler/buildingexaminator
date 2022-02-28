@@ -293,7 +293,7 @@ function loadOwnersPage(page = 1) {
             $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person_outline</i></td>\n' +
                     '                <td>' + (element.lnumber ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
                     '                <td class="actions">\n' +
@@ -312,7 +312,7 @@ function loadOwnersPage(page = 1) {
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
                 '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
-                '                <i class="material-icons">person_add</i><span class="button-content hide-on-small-only">New</span>\n' +
+                '                <i class="material-icons">person_add_alt</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
@@ -989,72 +989,76 @@ function loadResidentialAreasPage(page = 1) {
 }
 
 function loadResidentialAreaNewPage() {
-    $('div#content').html(
-        '    <h3 class="header">New residential area</h3>\n' +
-        '    <form id="newresidentialarea">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate">\n' +
-        '                <label for="name">Name</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">description</i>\n' +
-        '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-        '                <label for="description">Description</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s12">\n' +
-        '                <button type="submit" class="btn" name="create">\n' +
-        '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
+    if(localStorage.getItem('activeHousingstockId')) {
+        $('div#content').html(
+            '    <h3 class="header">New residential area</h3>\n' +
+            '    <form id="newresidentialarea">\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">qr_code_2</i>\n' +
+            '                <input id="code" name="code" type="text" class="validate">\n' +
+            '                <label for="code">Code</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">short_text</i>\n' +
+            '                <input id="name" name="name" type="text" class="validate">\n' +
+            '                <label for="name">Name</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">description</i>\n' +
+            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+            '                <label for="description">Description</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="col s12">\n' +
+            '                <button type="submit" class="btn" name="create">\n' +
+            '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </form>\n'
+        );
 
-    $('form#newresidentialarea').submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-            accepts: {
-                json: 'application/json'
-            },
-            data: JSON.stringify(
-                {
-                    'code': $('input#code').val(),
-                    'name': $('input#name').val(),
-                    'description': $('textarea#description').val(),
-                }
-            ),
-            beforeSend: function () {
-                showLoader();
-                $('#slide-out').sidenav('close');
-            },
-            success: function () {
-                loadResidentialAreasPage();
-            },
-            error: function (jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function () {
-                hideLoader();
-            },
+        $('form#newresidentialarea').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                accepts: {
+                    json: 'application/json'
+                },
+                data: JSON.stringify(
+                    {
+                        'code': $('input#code').val(),
+                        'name': $('input#name').val(),
+                        'description': $('textarea#description').val(),
+                    }
+                ),
+                beforeSend: function () {
+                    showLoader();
+                    $('#slide-out').sidenav('close');
+                },
+                success: function () {
+                    loadResidentialAreasPage();
+                },
+                error: function (jqXHR) {
+                    loadErrorPage(jqXHR);
+                },
+                complete: function () {
+                    hideLoader();
+                },
+            });
         });
-    });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
 }
 
 function loadResidentialAreaEditPage(id) {
@@ -1186,7 +1190,98 @@ function deleteResidentialArea(id) {
 
 function loadBlocksPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Show blocks page');
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
+            type: 'GET',
+            data: {
+                page: page
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">view_module</i></td>\n' +
+                        '                <td>' + (element.code ?? '') + '</td>\n' +
+                        '                <td>' + (element.name ?? '') + '</td>\n' +
+                        '                <td class="actions">\n' +
+                        '                    <button class="btn" name="edit" onclick="loadBlockEditPage(' + element.id + ');">\n' +
+                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                        '                    </button>\n' +
+                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteBlock\');">\n' +
+                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
+                        '                    </button>\n' +
+                        '                </td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Blocks</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s12">\n' +
+                    '            <button class="btn" name="new" onclick="loadBlockNewPage();">\n' +
+                    '                <i class="material-icons">add_view_module</i><span class="button-content hide-on-small-only">New</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Code</th>\n' +
+                    '                <th>Name</th>\n' +
+                    '                <th class="actions">Actions</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, 'loadBlocksPage');
+
+                $('div#content').html(html);
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                hideLoader();
+            },
+        });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function loadBlockNewPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('New block page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function loadBlockEditPage(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Edit block page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+function deleteBlock(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Delete block page');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
