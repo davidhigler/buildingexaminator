@@ -212,7 +212,7 @@ function loadHomePage() {
                 '<p>This is the testing application for our app the Building Examinator.</p>\n'
             );
 
-            let activeHousingstockSelect2 = $('select#active_housingstock_select').select2({
+            $('select#active_housingstock_select').select2({
                 maximumInputLength: 20,
                 placeholder: "Select active housingstock",
                 allowClear: true
@@ -1059,7 +1059,100 @@ function loadResidentialAreaNewPage() {
 
 function loadResidentialAreaEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Edit residential area');
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+            type: 'GET',
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                console.log(data);
+                $('div#content').html(
+                    '    <h3 class="header">Edit residential area</h3>\n' +
+                    '    <form id="editresidentialarea">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                    '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                    '                <label for="id" class="active">Id</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                    '                <label for="code" class="active">Code</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">short_text</i>\n' +
+                    '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
+                    '                <label for="name" class="active">Name</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">description</i>\n' +
+                    '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
+                    '                <label for="description" class="active">Description</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col s12">\n' +
+                    '                <button type="submit" class="btn" name="save">\n' +
+                    '                    <i class="material-icons left">save</i>Save\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </form>\n'
+                );
+
+                $('form#editresidentialarea').submit(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+                        type: 'PUT',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        accepts: {
+                            json: 'application/json'
+                        },
+                        data: JSON.stringify(
+                            {
+                                'code': $('input#code').val(),
+                                'name': $('input#name').val(),
+                                'description': $('textarea#description').val(),
+                            }
+                        ),
+                        beforeSend: function() {
+                            showLoader();
+                            $('#slide-out').sidenav('close');
+                        },
+                        success: function() {
+                            loadResidentialAreasPage();
+                        },
+                        error: function(jqXHR) {
+                            loadErrorPage(jqXHR);
+                        },
+                        complete: function() {
+                            hideLoader();
+                        },
+                    });
+                });
+            },
+            error: function (jqXHR) {
+                loadErrorPage(jqXHR)
+            },
+            complete: function () {
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1067,7 +1160,21 @@ function loadResidentialAreaEditPage(id) {
 
 function deleteResidentialArea(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Delete residential area');
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+            type: 'DELETE',
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadResidentialAreasPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }

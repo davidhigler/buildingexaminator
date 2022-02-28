@@ -3,6 +3,8 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Portfolio\Owner;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Exception;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -1088,7 +1090,11 @@ class ApiController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($residentialArea);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (ForeignKeyConstraintViolationException $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -1128,7 +1134,7 @@ class ApiController extends AbstractController
     public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->renderData($residentialAreaRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+        return $this->renderData($residentialAreaRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
     }
 
     /**
@@ -1889,6 +1895,16 @@ class ApiController extends AbstractController
             $error->message = $violation->getMessage();
             $errors[] = $error;
         }
+        return $errors;
+    }
+
+    private function extractErrorFromException(Exception $exception): array
+    {
+        $errors = [];
+        $error = new \stdClass();
+        $error->code = $exception->getCode();
+        $error->message = $exception->getMessage();
+        $errors[] = $error;
         return $errors;
     }
 }
