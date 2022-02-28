@@ -1524,7 +1524,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress5->setCity('Utrecht');
         $buildingAddress5->setRentalUnitNumber('VHE0005');
         $buildingAddress5->setDaeb(true);
-        $buildingAddress5->setVtw($vtw1R);
+        $buildingAddress5->setVtw($vtw1);
         $buildingAddress5->setResidentialArea($residentialArea4);
         $buildingAddress5->setBuildingType($buildingType2);
         $buildingAddress5->setLivingType($livingType6);
