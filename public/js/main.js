@@ -312,7 +312,7 @@ function loadOwnersPage(page = 1) {
                 '    <div class="row">\n' +
                 '        <div class="input-field col s12">\n' +
                 '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
-                '                <i class="material-icons">person_add_alt</i><span class="button-content hide-on-small-only">New</span>\n' +
+                '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
@@ -388,7 +388,7 @@ function loadOwnerNewPage() {
         '        <div class="row">\n' +
         '            <div class="col s12">\n' +
         '                <button type="submit" class="btn" name="create">\n' +
-        '                    <i class="material-icons left">person_add</i>Create\n' +
+        '                    <i class="material-icons left">add_owner</i>Create\n' +
         '                </button>\n' +
         '            </div>\n' +
         '        </div>\n' +
