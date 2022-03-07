@@ -182,7 +182,7 @@ function loadUnderConstructionPage(title) {
 
 function loadHomePage() {
     $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks',
+        url: '/api/v1/housingstocks',
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -273,7 +273,7 @@ function loadTestPage() {
 
 function loadOwnersPage(page = 1) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/owners',
+        url: '/api/v1/owners',
         type: 'GET',
         data: {
             page: page
@@ -401,7 +401,7 @@ function loadOwnerNewPage() {
     $('form#newowner').submit(function(event) {
         event.preventDefault();
         $.ajax({
-            url: '/api/buildingexaminator/v1/owners',
+            url: '/api/v1/owners',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
@@ -436,7 +436,7 @@ function loadOwnerNewPage() {
 
 function loadOwnerEditPage(id) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/owners/' + id,
+        url: '/api/v1/owners/' + id,
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -505,7 +505,7 @@ function loadOwnerEditPage(id) {
             $('form#editowner').submit(function(event) {
                 event.preventDefault();
                 $.ajax({
-                    url: '/api/buildingexaminator/v1/owners/' + $('input#id').val(),
+                    url: '/api/v1/owners/' + $('input#id').val(),
                     type: 'PUT',
                     dataType: 'json',
                     contentType: 'application/json; charset=UTF-8',
@@ -548,7 +548,7 @@ function loadOwnerEditPage(id) {
 
 function deleteOwner(id) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/owners/' + id,
+        url: '/api/v1/owners/' + id,
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
@@ -570,7 +570,7 @@ function deleteOwner(id) {
 
 function loadHousingstocksPage(page = 1) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks',
+        url: '/api/v1/housingstocks',
         type: 'GET',
         data: {
             page: page
@@ -641,7 +641,7 @@ function loadHousingstocksPage(page = 1) {
 
 function loadHousingstockNewPage() {
     $.ajax({
-        url: '/api/buildingexaminator/v1/owners',
+        url: '/api/v1/owners',
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -705,7 +705,7 @@ function loadHousingstockNewPage() {
             $('form#newhousingstock').submit(function(event) {
                 event.preventDefault();
                 $.ajax({
-                    url: '/api/buildingexaminator/v1/housingstocks',
+                    url: '/api/v1/housingstocks',
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json; charset=UTF-8',
@@ -749,7 +749,7 @@ function loadHousingstockNewPage() {
 
 function loadHousingstockEditPage(id) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/owners',
+        url: '/api/v1/owners',
         type: 'GET',
         dataType: 'json',
         accepts: {
@@ -761,7 +761,7 @@ function loadHousingstockEditPage(id) {
         },
         success: function(dataOwners) {
             $.ajax({
-                url: '/api/buildingexaminator/v1/housingstocks/' + id,
+                url: '/api/v1/housingstocks/' + id,
                 type: 'GET',
                 dataType: 'json',
                 accepts: {
@@ -845,7 +845,7 @@ function loadHousingstockEditPage(id) {
                     $('form#edithousingstock').submit(function(event) {
                         event.preventDefault();
                         $.ajax({
-                            url: '/api/buildingexaminator/v1/housingstocks/' + $('input#id').val(),
+                            url: '/api/v1/housingstocks/' + $('input#id').val(),
                             type: 'PUT',
                             dataType: 'json',
                             contentType: 'application/json; charset=UTF-8',
@@ -894,7 +894,7 @@ function loadHousingstockEditPage(id) {
 
 function deleteHousingstock(id) {
     $.ajax({
-        url: '/api/buildingexaminator/v1/housingstocks/' + id,
+        url: '/api/v1/housingstocks/' + id,
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
@@ -917,7 +917,7 @@ function deleteHousingstock(id) {
 function loadResidentialAreasPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
             type: 'GET',
             data: {
                 page: page
@@ -1028,7 +1028,7 @@ function loadResidentialAreaNewPage() {
         $('form#newresidentialarea').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
+                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
@@ -1065,7 +1065,7 @@ function loadResidentialAreaNewPage() {
 function loadResidentialAreaEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+            url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
             type: 'GET',
             dataType: 'json',
             accepts: {
@@ -1121,7 +1121,7 @@ function loadResidentialAreaEditPage(id) {
                 $('form#editresidentialarea').submit(function(event) {
                     event.preventDefault();
                     $.ajax({
-                        url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+                        url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
                         type: 'PUT',
                         dataType: 'json',
                         contentType: 'application/json; charset=UTF-8',
@@ -1166,7 +1166,7 @@ function loadResidentialAreaEditPage(id) {
 function deleteResidentialArea(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
@@ -1192,7 +1192,7 @@ function deleteResidentialArea(id) {
 function loadBlocksPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
             type: 'GET',
             data: {
                 page: page
@@ -1310,7 +1310,7 @@ function loadBlockNewPage() {
         $('form#newblock').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
+                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
@@ -1348,7 +1348,7 @@ function loadBlockNewPage() {
 function loadBlockEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+            url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
             type: 'GET',
             dataType: 'json',
             accepts: {
@@ -1410,7 +1410,7 @@ function loadBlockEditPage(id) {
                 $('form#editblock').submit(function(event) {
                     event.preventDefault();
                     $.ajax({
-                        url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+                        url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
                         type: 'PUT',
                         dataType: 'json',
                         contentType: 'application/json; charset=UTF-8',
@@ -1456,7 +1456,7 @@ function loadBlockEditPage(id) {
 function deleteBlock(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
@@ -1508,7 +1508,7 @@ function loadLivingtypesPage(page = 1) {
 function loadBuildingaddressesPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
             type: 'GET',
             data: {
                 page: page

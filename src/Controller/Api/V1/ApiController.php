@@ -28,7 +28,7 @@ use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[Route('/api/buildingexaminator/v1', name: 'api-v1-')]
+#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  *
@@ -37,10 +37,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     version="0.0.1"
  * )
  * @OA\ExternalDocumentation(
- *     url="/api/buildingexaminator/v1/documentation"
+ *     url="/api/v1/documentation"
  * )
  * @OA\Server(
- *     url="http://localhost/api/buildingexaminator/v1",
+ *     url="http://localhost/api/v1",
  *     description="Development"
  * )
  * @OA\Schema(
@@ -1056,8 +1056,8 @@ class ApiController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'deleteresidentialarea', methods: ['DELETE'])]
     /**
      * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}",
-     *     summary="Delete housing stock",
+     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
+     *     summary="Delete residential area",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -1080,7 +1080,7 @@ class ApiController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successfully deleted a housing stock"
+     *         description="Successfully deleted a residential area"
      *     )
      * )
      */
