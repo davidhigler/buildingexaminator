@@ -540,9 +540,6 @@ function loadOwnerEditPage(id) {
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
         },
-        complete: function () {
-            hideLoader();
-        },
     });
 }
 
@@ -1154,9 +1151,6 @@ function loadResidentialAreaEditPage(id) {
             error: function (jqXHR) {
                 loadErrorPage(jqXHR)
             },
-            complete: function () {
-                hideLoader();
-            },
         });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
@@ -1444,9 +1438,6 @@ function loadBlockEditPage(id) {
             error: function (jqXHR) {
                 loadErrorPage(jqXHR)
             },
-            complete: function () {
-                hideLoader();
-            },
         });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
@@ -1488,6 +1479,33 @@ function loadBuildingtypesPage(page = 1) {
     }
 }
 
+/** ToDo */
+function loadBuildingtypeNewPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show buildingtype new page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/** ToDo */
+function loadBuildingTypeEditPage(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show buildingtype edit page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/** ToDo */
+function deleteBuildingType(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Delete buildingtype page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
 /**
  * Livingtypes
  */
@@ -1496,6 +1514,33 @@ function loadBuildingtypesPage(page = 1) {
 function loadLivingtypesPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Show livingtypes page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/** ToDo */
+function loadLivingTypeNewPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show livingtype new page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/** ToDo */
+function loadLivingTypeEditPage(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Show livingtype edit page');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/** ToDo */
+function deleteLivingType(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Delete livingtype page');
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
