@@ -1028,6 +1028,7 @@ class ApiController extends AbstractController
         $changeResidentialArea = json_decode($request->getContent(), true);
 
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var ResidentialArea $residentialArea */
         $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -1311,7 +1312,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function changeBlock(string $blockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeBlock(string $housingStockId, string $blockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
     {
         $changeBlock = json_decode($request->getContent(), true);
 
@@ -1319,8 +1320,14 @@ class ApiController extends AbstractController
         /** @var Block $block */
         $block = $blockRepository->find((int) $blockId);
 
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $block->setHousingStock($housingStock);
         $block->setName($changeBlock['name']);
         $block->setCode($changeBlock['code']);
+        $block->setFinancialNumber($changeBlock['financialNumber']);
         $block->setDescription($changeBlock['description']);
         $block->setLastChangeTime();
 
@@ -1333,7 +1340,7 @@ class ApiController extends AbstractController
         $entityManager->persist($block);
         $entityManager->flush();
 
-        return $this->renderData($block, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->renderData($block, self::BLOCK_DETAIL_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'deleteblock', methods: ['DELETE'])]

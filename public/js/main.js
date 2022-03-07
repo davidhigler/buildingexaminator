@@ -1,26 +1,24 @@
+let logo_y = 0, logo_up = true;
+
 $(document).ready(function(){
     $('.sidenav').sidenav();
+    setInterval(diaOfLogo, 80);
     loadHomePage();
-    diaOfLogo();
 });
 
 /**
  * Support functions
  */
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function diaOfLogo() {
-    let logo_dia = $('#logo-dia');
-    let y_cor = 0;
-    for (let i = 0; i < 293;) {
-        y_cor = i * -125;
-        logo_dia.css('backgroundPosition', '0px ' + y_cor + 'px');
-        await sleep(60);
-        i++;
+function diaOfLogo() {
+    if (logo_up) {
+        ++logo_y;
+        if (logo_y >= 292) { logo_up = false; }
+    } else {
+        --logo_y;
+        if (logo_y <= 0) { logo_up = true; }
     }
+    $('#logo-dia').css('backgroundPosition', '0px ' + (logo_y * -125) + 'px');
 }
 
 function showLoader() {
@@ -293,7 +291,7 @@ function loadOwnersPage(page = 1) {
             $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person_outline</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">owner</i></td>\n' +
                     '                <td>' + (element.lnumber ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
                     '                <td class="actions">\n' +
@@ -310,8 +308,11 @@ function loadOwnersPage(page = 1) {
             let html =
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
-                '        <div class="input-field col s12">\n' +
-                '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
+                '        <div class="input-field col s10">\n' +
+                '            \n' +
+                '        </div>\n' +
+                '        <div class="input-field col s2">\n' +
+                '            <button class="btn right" name="new" onclick="loadOwnerNewPage();">\n' +
                 '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
@@ -320,7 +321,7 @@ function loadOwnersPage(page = 1) {
                 '        <thead>\n' +
                 '            <tr>\n' +
                 '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>L number</th>\n' +
+                '                <th>L no</th>\n' +
                 '                <th>Name</th>\n' +
                 '                <th class="actions">Actions</th>\n' +
                 '            </tr>\n' +
@@ -1265,7 +1266,80 @@ function loadBlocksPage(page = 1) {
 
 function loadBlockNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('New block page');
+        $('div#content').html(
+            '    <h3 class="header">New block</h3>\n' +
+            '    <form id="newblock">\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">qr_code_2</i>\n' +
+            '                <input id="code" name="code" type="text" class="validate">\n' +
+            '                <label for="code">Code</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">short_text</i>\n' +
+            '                <input id="name" name="name" type="text" class="validate">\n' +
+            '                <label for="name">Name</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">euro_symbol</i>\n' +
+            '                <input id="financialNumber" name="financialNumber" type="text" class="validate">\n' +
+            '                <label for="financialNumber">Financial number</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">description</i>\n' +
+            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+            '                <label for="description">Description</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="col s12">\n' +
+            '                <button type="submit" class="btn" name="create">\n' +
+            '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </form>\n'
+        );
+
+        $('form#newblock').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                accepts: {
+                    json: 'application/json'
+                },
+                data: JSON.stringify(
+                    {
+                        'code': $('input#code').val(),
+                        'name': $('input#name').val(),
+                        'financialNumber': $('input#financialNumber').val(),
+                        'description': $('textarea#description').val(),
+                    }
+                ),
+                beforeSend: function () {
+                    showLoader();
+                    $('#slide-out').sidenav('close');
+                },
+                success: function () {
+                    loadBlocksPage();
+                },
+                error: function (jqXHR) {
+                    loadErrorPage(jqXHR);
+                },
+                complete: function () {
+                    hideLoader();
+                },
+            });
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1273,7 +1347,108 @@ function loadBlockNewPage() {
 
 function loadBlockEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Edit block page');
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+            type: 'GET',
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                console.log(data);
+                $('div#content').html(
+                    '    <h3 class="header">Edit block</h3>\n' +
+                    '    <form id="editblock">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                    '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                    '                <label for="id" class="active">Id</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                    '                <label for="code" class="active">Code</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">short_text</i>\n' +
+                    '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
+                    '                <label for="name" class="active">Name</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">euro_symbol</i>\n' +
+                    '                <input id="financialNumber" name="financialNumber" type="text" class="validate" value="' + (data.data.financialNumber ?? '') + '">\n' +
+                    '                <label for="financialNumber">Financial number</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">description</i>\n' +
+                    '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
+                    '                <label for="description" class="active">Description</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col s12">\n' +
+                    '                <button type="submit" class="btn" name="save">\n' +
+                    '                    <i class="material-icons left">save</i>Save\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </form>\n'
+                );
+
+                $('form#editblock').submit(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/api/buildingexaminator/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+                        type: 'PUT',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        accepts: {
+                            json: 'application/json'
+                        },
+                        data: JSON.stringify(
+                            {
+                                'code': $('input#code').val(),
+                                'name': $('input#name').val(),
+                                'financialNumber': $('input#financialNumber').val(),
+                                'description': $('textarea#description').val(),
+                            }
+                        ),
+                        beforeSend: function() {
+                            showLoader();
+                            $('#slide-out').sidenav('close');
+                        },
+                        success: function() {
+                            loadBlocksPage();
+                        },
+                        error: function(jqXHR) {
+                            loadErrorPage(jqXHR);
+                        },
+                        complete: function() {
+                            hideLoader();
+                        },
+                    });
+                });
+            },
+            error: function (jqXHR) {
+                loadErrorPage(jqXHR)
+            },
+            complete: function () {
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1281,7 +1456,21 @@ function loadBlockEditPage(id) {
 
 function deleteBlock(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Delete block page');
+        $.ajax({
+            url: '/api/buildingexaminator/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks/' + id,
+            type: 'DELETE',
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadBlocksPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
@@ -1291,6 +1480,7 @@ function deleteBlock(id) {
  * Buildingtypes
  */
 
+/** ToDo */
 function loadBuildingtypesPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Show buildingtypes page');
@@ -1303,6 +1493,7 @@ function loadBuildingtypesPage(page = 1) {
  * Livingtypes
  */
 
+/** ToDo */
 function loadLivingtypesPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Show livingtypes page');
@@ -1400,6 +1591,7 @@ function loadBuildingaddressesPage(page = 1) {
     }
 }
 
+/** ToDo */
 function loadBuildingaddressNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
@@ -1564,6 +1756,7 @@ function loadBuildingaddressNewPage() {
     }
 }
 
+/** ToDo */
 function loadBuildingaddressEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Edit buildingaddress');
@@ -1572,6 +1765,7 @@ function loadBuildingaddressEditPage(id) {
     }
 }
 
+/** ToDo */
 function deleteBuildingaddress(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Delete buildingaddress');
