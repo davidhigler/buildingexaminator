@@ -95,42 +95,42 @@ class LoadTestHousingStockData extends Fixture
         $residentialArea10->setDescription('Aa-landen (uitspraak: A-landen) is een woonwijk in de Overijsselse plaats Zwolle. De wijk kent de volgende buurten: Aalanden-Noord, Aalanden-Oost, Aalanden-Midden, Aalanden-Zuid');
         $residentialArea10->setCreationTime();
         $residentialArea10->setLastChangeTime();
-		
+
         $residentialArea11 = new ResidentialArea();
         $residentialArea11->setCode('019332');
         $residentialArea11->setName('Vechtlanden');
         $residentialArea11->setDescription('Vechtlanden is een dunbevolkte wijk in het buitengebied ten noorden van de gemeente Zwolle.');
         $residentialArea11->setCreationTime();
         $residentialArea11->setLastChangeTime();
-		
+
         $residentialArea12 = new ResidentialArea();
         $residentialArea12->setCode('019340');
         $residentialArea12->setName('Berkum');
         $residentialArea12->setDescription('Berkum (Nedersaksisch: Bärkum of Berkum) is een wijk en buurt van de stad Zwolle in de Nederlandse provincie Overijssel. Berkum bestaat uit Berkum, Veldhoek, Bedrijventerrein de Vrolijkheid en kantorenterrein Oosterenk.De wijk ligt ingeklemd tussen de Overijsselse Vecht, de Nieuwe Vecht en de A28. Een groot deel van de inwoners bestaat uit mensen van 65 jaar en ouder (1152). De laatste jaren komen er steeds meer jonge gezinnen bij. De voetbalvereniging VV Berkum heeft hier haar thuisbasis.');
         $residentialArea12->setCreationTime();
         $residentialArea12->setLastChangeTime();
-		
+
         $residentialArea13 = new ResidentialArea();
         $residentialArea13->setCode('019341');
         $residentialArea13->setName('Marsweteringlanden');
         $residentialArea13->setDescription('Marsweteringlanden is een woonwijk in Zwolle die wordt gevormd door de buurtschappen Herfte en Wijthmen. In deze wijk is bedrijventerrein Marslanden-Zuid gesitueerd.');
         $residentialArea13->setCreationTime();
         $residentialArea13->setLastChangeTime();
-		
+
         $residentialArea14 = new ResidentialArea();
         $residentialArea14->setCode('019350');
         $residentialArea14->setName('Schelle');
         $residentialArea14->setDescription('Schelle (Zwols: Skelle) is een wijk en buurtschap in de Overijsselse gemeente Zwolle in Nederland. Het ligt op een rivierduin dat is gevormd in het Preboreaal, een etage van het Holoceen. Inmiddels is de buurtschap opgenomen in de woonwijk Zwolle-Zuid en zijn er drie wijkgedeelten rondom naar de buurtschap vernoemd: Schellerhoek, Schellerbroek en Schellerlanden. De naam is ook terug te vinden in enkele straten in de omgeving zoals de Schellerweg, Schellerallee, Schellerbergweg en Schellerenkweg en een stuk dijk langs de IJssel, de Schellerdijk. Schelle bestaat uit de wijken Oud Schelle, Schelle-Zuid en Oldeneel, Schellerhoek, Schellerbroek, Schellerlanden, Oldenelerlanden-West, Oldenelerlanden-Oost, Oldenelerbroek en Katerveer-Engelse Werk.');
         $residentialArea14->setCreationTime();
         $residentialArea14->setLastChangeTime();
-		
+
         $residentialArea15 = new ResidentialArea();
         $residentialArea15->setCode('019351');
         $residentialArea15->setName('Ittersum');
         $residentialArea15->setDescription('Ittersum is een voormalig gehucht dat behoorde tot de gemeente Zwollerkerspel, die in 1967 werd opgeheven. Ittersum is opgeslokt door Zwolle en is een wijk (CBS wijknummer 51) in Zwolle-Zuid met (anno 2011) 15.230 inwoners.[1] In deze wijk liggen de buurten Geren, Oud Ittersum, Gerenlanden, Gerenbroek, Ittersumerlanden en Ittersumerbroek. Van 1891 tot 1918 had Ittersum een eigen halte aan de spoorlijn Arnhem - Leeuwarden, de stopplaats Ittersum. Ittersum heeft ook een eigen voetbalclub, v.v. SVI (Sport Vereniging Ittersum), waar voormalig profvoetballer Harry Decheiver hoofdtrainer was.');
         $residentialArea15->setCreationTime();
         $residentialArea15->setLastChangeTime();
-		
+
         $residentialArea16 = new ResidentialArea();
         $residentialArea16->setCode('019352');
         $residentialArea16->setName('Soestweteringlanden');
@@ -1428,8 +1428,8 @@ class LoadTestHousingStockData extends Fixture
         $vtw196->setBuildingType('7');
         $vtw196->setBouwjaar('nvt');
         $vtw196->setRooftype('nvt');
-		
-	    $buildingAddress0 = new BuildingAddress();
+
+        $buildingAddress0 = new BuildingAddress();
         $buildingAddress0->setConstructionYear(1944);
         $buildingAddress0->setRenovationYear(1986);
         $buildingAddress0->setStreetName('Löeff Berchmakerstraat');
@@ -1445,8 +1445,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress0->setLivingType($livingType6);
         $buildingAddress0->setCreationTime();
         $buildingAddress0->setLastChangeTime();
-		
-	$buildingAddress1 = new BuildingAddress();
+
+        $buildingAddress1 = new BuildingAddress();
         $buildingAddress1->setConstructionYear(1944);
         $buildingAddress1->setRenovationYear(1986);
         $buildingAddress1->setStreetName('Löeff Berchmakerstraat');
@@ -1987,7 +1987,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress32->setLivingType($livingType3);
         $buildingAddress32->setCreationTime();
         $buildingAddress32->setLastChangeTime();
-		
+
         $buildingAddress33 = new BuildingAddress();
         $buildingAddress33->setConstructionYear(1984);
         $buildingAddress33->setRenovationYear(2000);
@@ -2004,7 +2004,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress33->setLivingType($livingType3);
         $buildingAddress33->setCreationTime();
         $buildingAddress33->setLastChangeTime();
-		
+
         $buildingAddress34 = new BuildingAddress();
         $buildingAddress34->setConstructionYear(2010);
         $buildingAddress34->setRenovationYear(2010);
@@ -2054,7 +2054,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress36->setBuildingType($buildingType6);
         $buildingAddress36->setLivingType($livingType3);
         $buildingAddress36->setCreationTime();
-        $buildingAddress36->setLastChangeTime();		
+        $buildingAddress36->setLastChangeTime();
 
         $buildingAddress37 = new BuildingAddress();
         $buildingAddress37->setConstructionYear(2006);
@@ -2123,7 +2123,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress40->setLivingType($livingType3);
         $buildingAddress40->setCreationTime();
         $buildingAddress40->setLastChangeTime();
-		
+
         $buildingAddress41 = new BuildingAddress();
         $buildingAddress41->setConstructionYear(1954);
         $buildingAddress41->setRenovationYear(1986);
@@ -2224,7 +2224,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress46->setBuildingType($buildingType6);
         $buildingAddress46->setLivingType($livingType3);
         $buildingAddress46->setCreationTime();
-        $buildingAddress46->setLastChangeTime();		
+        $buildingAddress46->setLastChangeTime();
 
         $buildingAddress47 = new BuildingAddress();
         $buildingAddress47->setConstructionYear(2006);
@@ -2294,7 +2294,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress50->setLivingType($livingType3);
         $buildingAddress50->setCreationTime();
         $buildingAddress50->setLastChangeTime();
-		
+
         $buildingAddress51 = new BuildingAddress();
         $buildingAddress51->setConstructionYear(1954);
         $buildingAddress51->setRenovationYear(1986);
@@ -2311,7 +2311,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress51->setLivingType($livingType3);
         $buildingAddress51->setCreationTime();
         $buildingAddress51->setLastChangeTime();
-		
+
         $buildingAddress52 = new BuildingAddress();
         $buildingAddress52->setConstructionYear(1998);
         $buildingAddress52->setRenovationYear(2021);
@@ -2328,7 +2328,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress52->setLivingType($livingType3);
         $buildingAddress52->setCreationTime();
         $buildingAddress52->setLastChangeTime();
-		
+
         $buildingAddress53 = new BuildingAddress();
         $buildingAddress53->setConstructionYear(1984);
         $buildingAddress53->setRenovationYear(2000);
@@ -2362,7 +2362,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress54->setLivingType($livingType3);
         $buildingAddress54->setCreationTime();
         $buildingAddress54->setLastChangeTime();
-		
+
         $buildingAddress55 = new BuildingAddress();
         $buildingAddress55->setConstructionYear(1888);
         $buildingAddress55->setRenovationYear(2005);
@@ -2379,7 +2379,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress55->setLivingType($livingType3);
         $buildingAddress55->setCreationTime();
         $buildingAddress55->setLastChangeTime();
-		
+
         $buildingAddress56 = new BuildingAddress();
         $buildingAddress56->setConstructionYear(1908);
         $buildingAddress56->setRenovationYear(200);
@@ -2430,7 +2430,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress58->setLivingType($livingType3);
         $buildingAddress58->setCreationTime();
         $buildingAddress58->setLastChangeTime();
-		
+
         $buildingAddress59 = new BuildingAddress();
         $buildingAddress59->setConstructionYear(1976);
         $buildingAddress59->setRenovationYear(2001);
@@ -2464,7 +2464,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress60->setLivingType($livingType3);
         $buildingAddress60->setCreationTime();
         $buildingAddress60->setLastChangeTime();
-		
+
         $buildingAddress61 = new BuildingAddress();
         $buildingAddress61->setConstructionYear(1954);
         $buildingAddress61->setRenovationYear(1986);
@@ -2565,7 +2565,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress66->setBuildingType($buildingType6);
         $buildingAddress66->setLivingType($livingType3);
         $buildingAddress66->setCreationTime();
-        $buildingAddress66->setLastChangeTime();		
+        $buildingAddress66->setLastChangeTime();
 
         $buildingAddress67 = new BuildingAddress();
         $buildingAddress67->setConstructionYear(2006);
@@ -2600,7 +2600,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress68->setLivingType($livingType3);
         $buildingAddress68->setCreationTime();
         $buildingAddress68->setLastChangeTime();
-		
+
         $buildingAddress69 = new BuildingAddress();
         $buildingAddress69->setConstructionYear(1976);
         $buildingAddress69->setRenovationYear(2001);
@@ -2651,7 +2651,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress71->setLivingType($livingType3);
         $buildingAddress71->setCreationTime();
         $buildingAddress71->setLastChangeTime();
-		
+
         $buildingAddress72 = new BuildingAddress();
         $buildingAddress72->setConstructionYear(1998);
         $buildingAddress72->setRenovationYear(2021);
@@ -2685,7 +2685,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress73->setLivingType($livingType3);
         $buildingAddress73->setCreationTime();
         $buildingAddress73->setLastChangeTime();
-		
+
         $buildingAddress74 = new BuildingAddress();
         $buildingAddress74->setConstructionYear(2010);
         $buildingAddress74->setRenovationYear(2010);
@@ -2702,7 +2702,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress74->setLivingType($livingType3);
         $buildingAddress74->setCreationTime();
         $buildingAddress74->setLastChangeTime();
-		
+
         $buildingAddress75 = new BuildingAddress();
         $buildingAddress75->setConstructionYear(1888);
         $buildingAddress75->setRenovationYear(2005);
@@ -2719,7 +2719,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress75->setLivingType($livingType3);
         $buildingAddress75->setCreationTime();
         $buildingAddress75->setLastChangeTime();
-		
+
         $buildingAddress76 = new BuildingAddress();
         $buildingAddress76->setConstructionYear(1908);
         $buildingAddress76->setRenovationYear(200);
@@ -2770,7 +2770,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress78->setLivingType($livingType3);
         $buildingAddress78->setCreationTime();
         $buildingAddress78->setLastChangeTime();
-		
+
         $buildingAddress79 = new BuildingAddress();
         $buildingAddress79->setConstructionYear(1976);
         $buildingAddress79->setRenovationYear(2001);
@@ -2804,7 +2804,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress80->setLivingType($livingType3);
         $buildingAddress80->setCreationTime();
         $buildingAddress80->setLastChangeTime();
-		
+
         $buildingAddress81 = new BuildingAddress();
         $buildingAddress81->setConstructionYear(1954);
         $buildingAddress81->setRenovationYear(1986);
@@ -2905,7 +2905,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress86->setBuildingType($buildingType6);
         $buildingAddress86->setLivingType($livingType3);
         $buildingAddress86->setCreationTime();
-        $buildingAddress86->setLastChangeTime();		
+        $buildingAddress86->setLastChangeTime();
 
         $buildingAddress87 = new BuildingAddress();
         $buildingAddress87->setConstructionYear(2006);
@@ -2923,7 +2923,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setLivingType($livingType3);
         $buildingAddress87->setCreationTime();
         $buildingAddress87->setLastChangeTime();
-		
+
         $buildingAddress88 = new BuildingAddress();
         $buildingAddress88->setConstructionYear(2026);
         $buildingAddress88->setRenovationYear(2081);
@@ -2940,7 +2940,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress88->setLivingType($livingType3);
         $buildingAddress88->setCreationTime();
         $buildingAddress88->setLastChangeTime();
-		
+
         $buildingAddress89 = new BuildingAddress();
         $buildingAddress89->setConstructionYear(1976);
         $buildingAddress89->setRenovationYear(2001);
@@ -2974,8 +2974,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress90->setLivingType($livingType3);
         $buildingAddress90->setCreationTime();
         $buildingAddress90->setLastChangeTime();
-		
-		$buildingAddress91 = new BuildingAddress();
+
+        $buildingAddress91 = new BuildingAddress();
         $buildingAddress91->setConstructionYear(1954);
         $buildingAddress91->setRenovationYear(1986);
         $buildingAddress91->setStreetName('Straatnaam A');
@@ -2991,7 +2991,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress91->setLivingType($livingType3);
         $buildingAddress91->setCreationTime();
         $buildingAddress91->setLastChangeTime();
-		
+
         $buildingAddress92 = new BuildingAddress();
         $buildingAddress92->setConstructionYear(1998);
         $buildingAddress92->setRenovationYear(2021);
@@ -3008,7 +3008,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress92->setLivingType($livingType3);
         $buildingAddress92->setCreationTime();
         $buildingAddress92->setLastChangeTime();
-		
+
         $buildingAddress93 = new BuildingAddress();
         $buildingAddress93->setConstructionYear(1984);
         $buildingAddress93->setRenovationYear(2000);
@@ -3025,7 +3025,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress93->setLivingType($livingType3);
         $buildingAddress93->setCreationTime();
         $buildingAddress93->setLastChangeTime();
-		
+
         $buildingAddress94 = new BuildingAddress();
         $buildingAddress94->setConstructionYear(2010);
         $buildingAddress94->setRenovationYear(2010);
@@ -3059,7 +3059,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress95->setLivingType($livingType3);
         $buildingAddress95->setCreationTime();
         $buildingAddress95->setLastChangeTime();
-		
+
         $buildingAddress96 = new BuildingAddress();
         $buildingAddress96->setConstructionYear(1908);
         $buildingAddress96->setRenovationYear(200);
@@ -3110,7 +3110,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress98->setLivingType($livingType3);
         $buildingAddress98->setCreationTime();
         $buildingAddress98->setLastChangeTime();
-		
+
         $buildingAddress99 = new BuildingAddress();
         $buildingAddress99->setConstructionYear(1976);
         $buildingAddress99->setRenovationYear(2001);
@@ -3144,7 +3144,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress100->setLivingType($livingType3);
         $buildingAddress100->setCreationTime();
         $buildingAddress100->setLastChangeTime();
-		
+
         $buildingAddress101 = new BuildingAddress();
         $buildingAddress101->setConstructionYear(1954);
         $buildingAddress101->setRenovationYear(1986);
@@ -3245,7 +3245,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress106->setBuildingType($buildingType6);
         $buildingAddress106->setLivingType($livingType3);
         $buildingAddress106->setCreationTime();
-        $buildingAddress106->setLastChangeTime();		
+        $buildingAddress106->setLastChangeTime();
 
         $buildingAddress107 = new BuildingAddress();
         $buildingAddress107->setConstructionYear(2006);
@@ -3280,7 +3280,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress108->setLivingType($livingType3);
         $buildingAddress108->setCreationTime();
         $buildingAddress108->setLastChangeTime();
-		
+
         $buildingAddress109 = new BuildingAddress();
         $buildingAddress109->setConstructionYear(1976);
         $buildingAddress109->setRenovationYear(2001);
@@ -3314,7 +3314,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress110->setLivingType($livingType3);
         $buildingAddress110->setCreationTime();
         $buildingAddress110->setLastChangeTime();
-		
+
         $buildingAddress111 = new BuildingAddress();
         $buildingAddress111->setConstructionYear(1954);
         $buildingAddress111->setRenovationYear(1986);
@@ -3348,7 +3348,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress112->setLivingType($livingType3);
         $buildingAddress112->setCreationTime();
         $buildingAddress112->setLastChangeTime();
-		
+
         $buildingAddress113 = new BuildingAddress();
         $buildingAddress113->setConstructionYear(1984);
         $buildingAddress113->setRenovationYear(2000);
@@ -3364,8 +3364,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress113->setBuildingType($buildingType3);
         $buildingAddress113->setLivingType($livingType3);
         $buildingAddress113->setCreationTime();
-        $buildingAddress113->setLastChangeTime();		
-		
+        $buildingAddress113->setLastChangeTime();
+
         $buildingAddress114 = new BuildingAddress();
         $buildingAddress114->setConstructionYear(2010);
         $buildingAddress114->setRenovationYear(2010);
@@ -3381,8 +3381,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress114->setBuildingType($buildingType4);
         $buildingAddress114->setLivingType($livingType3);
         $buildingAddress114->setCreationTime();
-        $buildingAddress114->setLastChangeTime();		
-		
+        $buildingAddress114->setLastChangeTime();
+
         $buildingAddress115 = new BuildingAddress();
         $buildingAddress115->setConstructionYear(1888);
         $buildingAddress115->setRenovationYear(2005);
@@ -3450,7 +3450,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress118->setLivingType($livingType3);
         $buildingAddress118->setCreationTime();
         $buildingAddress118->setLastChangeTime();
-		
+
         $buildingAddress119 = new BuildingAddress();
         $buildingAddress119->setConstructionYear(1976);
         $buildingAddress119->setRenovationYear(2001);
@@ -3484,7 +3484,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress120->setLivingType($livingType3);
         $buildingAddress120->setCreationTime();
         $buildingAddress120->setLastChangeTime();
-		
+
         $buildingAddress121 = new BuildingAddress();
         $buildingAddress121->setConstructionYear(1954);
         $buildingAddress121->setRenovationYear(1986);
@@ -3604,7 +3604,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress127->setCreationTime();
         $buildingAddress127->setLastChangeTime();
  
-		$buildingAddress128 = new BuildingAddress();
+        $buildingAddress128 = new BuildingAddress();
         $buildingAddress128->setConstructionYear(2026);
         $buildingAddress128->setRenovationYear(2081);
         $buildingAddress128->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
@@ -3620,7 +3620,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setLivingType($livingType3);
         $buildingAddress128->setCreationTime();
         $buildingAddress128->setLastChangeTime();
-		
+
         $buildingAddress129 = new BuildingAddress();
         $buildingAddress129->setConstructionYear(1976);
         $buildingAddress129->setRenovationYear(2001);
@@ -4825,8 +4825,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress199->setLivingType($livingType2);
         $buildingAddress199->setCreationTime();
         $buildingAddress199->setLastChangeTime();
-		
-	$buildingAddress200 = new BuildingAddress();
+
+        $buildingAddress200 = new BuildingAddress();
         $buildingAddress200->setConstructionYear(1976);
         $buildingAddress200->setRenovationYear(2001);
         $buildingAddress200->setStreetName('æŒRǿndestraat');
@@ -4842,9 +4842,6 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress200->setLivingType($livingType2);
         $buildingAddress200->setCreationTime();
         $buildingAddress200->setLastChangeTime();
-
-
-
 
         
         $block1 = new Block();
@@ -6935,7 +6932,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress128->setBlock($block4);
         $buildingAddress129->setBlock($block4);
         $buildingAddress130->setBlock($block4);
-	$buildingAddress131->setBlock($block5);
+        $buildingAddress131->setBlock($block5);
         $buildingAddress132->setBlock($block5);
         $buildingAddress133->setBlock($block5);
         $buildingAddress134->setBlock($block5);
@@ -6945,7 +6942,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress138->setBlock($block6);
         $buildingAddress139->setBlock($block6);
         $buildingAddress140->setBlock($block6);
-	$buildingAddress141->setBlock($block7);
+        $buildingAddress141->setBlock($block7);
         $buildingAddress142->setBlock($block7);
         $buildingAddress143->setBlock($block7);
         $buildingAddress144->setBlock($block7);
@@ -6955,7 +6952,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress148->setBlock($block7);
         $buildingAddress149->setBlock($block8);
         $buildingAddress150->setBlock($block8);
-	$buildingAddress151->setBlock($block8);
+        $buildingAddress151->setBlock($block8);
         $buildingAddress152->setBlock($block8);
         $buildingAddress153->setBlock($block8);
         $buildingAddress154->setBlock($block8);
@@ -6975,7 +6972,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress168->setBlock($block9);
         $buildingAddress169->setBlock($block9);
         $buildingAddress170->setBlock($block9);
-	    
+        
         $buildingType1->setHousingStock($housingStock1);
         $buildingType2->setHousingStock($housingStock1);
         $buildingType3->setHousingStock($housingStock1);
@@ -6993,10 +6990,10 @@ class LoadTestHousingStockData extends Fixture
         $livingType1->setHousingStock($housingStock1);
         $livingType2->setHousingStock($housingStock1);
         $livingType3->setHousingStock($housingStock1);
-	$livingType4->setHousingStock($housingStock1);
+        $livingType4->setHousingStock($housingStock1);
         $livingType5->setHousingStock($housingStock1);
         $livingType6->setHousingStock($housingStock2);
-	$livingType7->setHousingStock($housingStock2);
+        $livingType7->setHousingStock($housingStock2);
         $livingType8->setHousingStock($housingStock2);
         $livingType9->setHousingStock($housingStock3);
         $livingType10->setHousingStock($housingStock3);
