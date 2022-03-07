@@ -1421,7 +1421,7 @@ class ApiController extends AbstractController
     public function getBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        return $this->renderData($blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]), self::BLOCK_DETAIL_FIELDS, $logger);
+        return $this->renderData($blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]), self::BLOCK_DETAIL_FIELDS, $logger);
     }
 
     /**

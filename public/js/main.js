@@ -1359,7 +1359,6 @@ function loadBlockEditPage(id) {
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
-                console.log(data);
                 $('div#content').html(
                     '    <h3 class="header">Edit block</h3>\n' +
                     '    <form id="editblock">\n' +
@@ -1388,7 +1387,7 @@ function loadBlockEditPage(id) {
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">euro_symbol</i>\n' +
                     '                <input id="financialNumber" name="financialNumber" type="text" class="validate" value="' + (data.data.financialNumber ?? '') + '">\n' +
-                    '                <label for="financialNumber">Financial number</label>\n' +
+                    '                <label for="financialNumber" class="active">Financial number</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
