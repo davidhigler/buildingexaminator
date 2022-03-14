@@ -5582,11 +5582,11 @@ $jscomp.polyfill = function (e, r, p, m) {
         this._handleCloseReleaseBound = this._handleCloseRelease.bind(this);
         this._handleCloseTriggerClickBound = this._handleCloseTriggerClick.bind(this);
 
-        this.dragTarget.addEventListener('touchmove', this._handleDragTargetDragBound);
+        this.dragTarget.addEventListener('touchmove', this._handleDragTargetDragBound, {passive: true });
         this.dragTarget.addEventListener('touchend', this._handleDragTargetReleaseBound);
-        this._overlay.addEventListener('touchmove', this._handleCloseDragBound);
+        this._overlay.addEventListener('touchmove', this._handleCloseDragBound, {passive: true });
         this._overlay.addEventListener('touchend', this._handleCloseReleaseBound);
-        this.el.addEventListener('touchmove', this._handleCloseDragBound);
+        this.el.addEventListener('touchmove', this._handleCloseDragBound, {passive: true });
         this.el.addEventListener('touchend', this._handleCloseReleaseBound);
         this.el.addEventListener('click', this._handleCloseTriggerClickBound);
 
