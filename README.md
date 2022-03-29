@@ -31,7 +31,7 @@ default_redis_provider: redis://<host>:<port>
 
 ### Git clone
 ```shell
-git ...
+git clone git@github.com:davidhigler/buildingexaminator.git www
 ```
 
 ### Composer
