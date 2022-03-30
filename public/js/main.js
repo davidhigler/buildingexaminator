@@ -540,6 +540,9 @@ function loadOwnerEditPage(id) {
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
         },
+        complete: function() {
+            hideLoader();
+        },
     });
 }
 
@@ -886,6 +889,9 @@ function loadHousingstockEditPage(id) {
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
         },
+        complete: function() {
+            hideLoader();
+        },
     });
 }
 
@@ -1150,6 +1156,9 @@ function loadResidentialAreaEditPage(id) {
             },
             error: function (jqXHR) {
                 loadErrorPage(jqXHR)
+            },
+            complete: function() {
+                hideLoader();
             },
         });
     } else {
@@ -1437,6 +1446,9 @@ function loadBlockEditPage(id) {
             },
             error: function (jqXHR) {
                 loadErrorPage(jqXHR)
+            },
+            complete: function() {
+                hideLoader();
             },
         });
     } else {
