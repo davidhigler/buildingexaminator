@@ -880,8 +880,6 @@ function loadHousingstockEditPage(id) {
                     loadErrorPage(jqXHR)
                 },
                 complete: function () {
-                    $('select').formSelect();
-
                     hideLoader();
                 },
             });
