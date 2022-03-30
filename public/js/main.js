@@ -312,7 +312,7 @@ function loadOwnersPage(page = 1) {
                 '            \n' +
                 '        </div>\n' +
                 '        <div class="input-field col s2">\n' +
-                '            <button class="btn right" name="new" onclick="loadOwnerNewPage();">\n' +
+                '            <button class="btn" name="new" onclick="loadOwnerNewPage();">\n' +
                 '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
