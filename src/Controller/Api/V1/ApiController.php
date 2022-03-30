@@ -5,6 +5,7 @@ namespace App\Controller\Api\V1;
 use App\Entity\Portfolio\Owner;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Exception;
+use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
@@ -1517,8 +1518,6 @@ class ApiController extends AbstractController
         }
     }
 
-
-
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['get'])]
     /**
      * @OA\Get(
@@ -1578,6 +1577,16 @@ class ApiController extends AbstractController
      *         in="path",
      *         required=true
      *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple living types",
@@ -1585,10 +1594,28 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getLivingTypes(string $housingStockId, LoggerInterface $logger): Response
+    public function getLivingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::LIVINGTYPE_LIST_FIELDS, $logger);
+        $page = $request->query->get('page');
+
+        if ($page === null) {
+            return $this->renderData($livingTypeRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::LIVINGTYPE_LIST_FIELDS, $logger);
+        } else {
+            $adapter = $livingTypeRepository->createQueryBuilder('l')
+                ->where('l.housingStock = :housingStockId')
+                ->setParameter('housingStockId', $housingStock->getId())
+                ->orderBy('l.name', 'ASC');
+
+            $pager = new Pagerfanta(new QueryAdapter($adapter));
+            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $pager->setCurrentPage($page);
+
+            return $this->renderData($pager, self::LIVINGTYPE_LIST_FIELDS, $logger);
+        }
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['get'])]
@@ -1984,6 +2011,7 @@ class ApiController extends AbstractController
         return $errors;
     }
 
+    #[Pure]
     private function extractErrorFromException(Exception $exception): array
     {
         $errors = [];

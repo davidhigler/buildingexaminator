@@ -1585,10 +1585,76 @@ function deleteBuildingType(id) {
  * Livingtypes
  */
 
-/** ToDo */
 function loadLivingtypesPage(page = 1) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Show livingtypes page');
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes',
+            type: 'GET',
+            data: {
+                page: page
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">villa</i></td>\n' +
+                        '                <td>' + (element.code ?? '') + '</td>\n' +
+                        '                <td>' + (element.name ?? '') + '</td>\n' +
+                        '                <td class="actions">\n' +
+                        '                    <button class="btn" name="edit" onclick="loadLivingTypeEditPage(' + element.id + ');">\n' +
+                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                        '                    </button>\n' +
+                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteLivingType\');">\n' +
+                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
+                        '                    </button>\n' +
+                        '                </td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Living types</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s12">\n' +
+                    '            <button class="btn" name="new" onclick="loadLivingTypeNewPage();">\n' +
+                    '                <i class="material-icons">add_villa</i><span class="button-content hide-on-small-only">New</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Code</th>\n' +
+                    '                <th>Name</th>\n' +
+                    '                <th class="actions">Actions</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, 'loadLivingtypesPage');
+
+                $('div#content').html(html);
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
