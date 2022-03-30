@@ -1593,7 +1593,7 @@ function loadBuildingtypeNewPage() {
         $('form#newbuildingtype').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtype',
+                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
