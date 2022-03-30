@@ -1,6 +1,6 @@
 {
-    "name": "davidhigler/first-time-symfony",
-    "description": "Learning Symfony 5",
+    "name": "davidhigler/buildingexaminator",
+    "description": "Building Examinator",
     "license": "proprietary",
     "type": "project",
     "authors": [
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "1.11.99.4",

@@ -370,7 +370,8 @@ class ApiController extends AbstractController
      *             type="integer",
      *             format="int64",
      *         ),
-     *         in="query"
+     *         in="query",
+     *         required=false
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -620,6 +621,16 @@ class ApiController extends AbstractController
      * @OA\Get(
      *     path="/housingstocks",
      *     summary="Returns details about multiple housing stocks",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple housing stocks",
@@ -868,6 +879,16 @@ class ApiController extends AbstractController
      *         ),
      *         in="path",
      *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1159,6 +1180,16 @@ class ApiController extends AbstractController
      *         in="path",
      *         required=true
      *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple blocks",
@@ -1445,6 +1476,16 @@ class ApiController extends AbstractController
      *         in="path",
      *         required=true
      *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple buildingtypes",
@@ -1452,11 +1493,31 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getBuildingTypes(string $housingStockId, LoggerInterface $logger): Response
+    public function getBuildingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId]), self::BUILDINGTYPE_LIST_FIELDS, $logger);
+        $page = $request->query->get('page');
+
+        if ($page === null) {
+            return $this->renderData($buildingTypeRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::BUILDINGTYPE_LIST_FIELDS, $logger);
+        } else {
+            $adapter = $buildingTypeRepository->createQueryBuilder('b')
+                ->where('b.housingStock = :housingStockId')
+                ->setParameter('housingStockId', $housingStock->getId())
+                ->orderBy('b.name', 'ASC');
+
+            $pager = new Pagerfanta(new QueryAdapter($adapter));
+            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $pager->setCurrentPage($page);
+
+            return $this->renderData($pager, self::BUILDINGTYPE_LIST_FIELDS, $logger);
+        }
     }
+
+
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['get'])]
     /**
