@@ -3,7 +3,6 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Portfolio\Owner;
-use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Exception;
 use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
@@ -16,6 +15,7 @@ use App\Entity\Portfolio\ResidentialArea;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerInterface;
+use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -573,7 +573,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteOwner(string $ownerId, LoggerInterface $logger): Response
+    public function deleteOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
         $owner = $ownerRepository->find((int) $ownerId);
@@ -820,7 +820,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteHousingStock(string $housingStockId, LoggerInterface $logger): Response
+    public function deleteHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $housingStock = $housingStockRepository->find((int) $housingStockId);
@@ -1106,7 +1106,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
+    public function deleteResidentialArea(string $housingStockId, string $residentialAreaId): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
@@ -1115,7 +1115,7 @@ class ApiController extends AbstractController
         $entityManager->remove($residentialArea);
         try {
             $entityManager->flush();
-        } catch (ForeignKeyConstraintViolationException $exception) {
+        } catch (Exception $exception) {
             return $this->json($this->extractErrorFromException($exception), 500);
         }
 
@@ -1270,8 +1270,8 @@ class ApiController extends AbstractController
     {
         $newBlock = json_decode($request->getContent(), true);
 
-        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $blockRepository->find((int) $housingStockId);
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $block = new Block();
         $block->setHousingStock($housingStock);
@@ -1406,7 +1406,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
+    public function deleteBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         $block = (object)$blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId], null, 1);
@@ -1518,6 +1518,73 @@ class ApiController extends AbstractController
         }
     }
 
+    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'addbuildingtype', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/buildingtypes",
+     *     summary="Add new building type",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new building type",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created building type",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
+     *     )
+     * )
+     */
+    public function addBuildingType(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    {
+        $newBuildingType = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $buildingType = new BuildingType();
+        $buildingType->setHousingStock($housingStock);
+        $buildingType->setName($newBuildingType['name']);
+        $buildingType->setCode($newBuildingType['code']);
+        $buildingType->setDescription($newBuildingType['description']);
+        $buildingType->setCreationTime();
+        $buildingType->setLastChangeTime();
+
+        $violations = $validator->validate($buildingType);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($buildingType);
+        $entityManager->flush();
+
+        return $this->renderData($buildingType, self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+    }
+
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['get'])]
     /**
      * @OA\Get(
@@ -1553,7 +1620,7 @@ class ApiController extends AbstractController
     public function getBuildingType(string $housingStockId, string $buildingtypeId, LoggerInterface $logger): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        return $this->renderData($buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->renderData($buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
 
     /**
@@ -1899,7 +1966,7 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
+    public function deleteAddress(string $housingStockId, string $addressId): Response
     {
         $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
@@ -1955,8 +2022,6 @@ class ApiController extends AbstractController
 
     private function renderData($results, array $fields, LoggerInterface $logger): Response
     {
-        $data = [];
-
         try {
             $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
             $data = $serializer->normalize(
@@ -1985,15 +2050,13 @@ class ApiController extends AbstractController
                         'next' => $results->hasNextPage() ? $results->getNextPage() : 0,
                         'previous' => $results->hasPreviousPage() ? $results->getPreviousPage() : 0,
                     ],
-                ],
-                200
+                ]
             );
         } else {
             return $this->json(
                 [
                     'data' => $data
-                ],
-                200
+                ]
             );
         }
     }
@@ -2003,7 +2066,7 @@ class ApiController extends AbstractController
         $errors = [];
         /** @var ConstraintViolationInterface $violation */
         foreach ($violations as $violation) {
-            $error = new \stdClass();
+            $error = new stdClass();
             $error->code = $violation->getCode();
             $error->message = $violation->getMessage();
             $errors[] = $error;
@@ -2015,7 +2078,7 @@ class ApiController extends AbstractController
     private function extractErrorFromException(Exception $exception): array
     {
         $errors = [];
-        $error = new \stdClass();
+        $error = new stdClass();
         $error->code = $exception->getCode();
         $error->message = $exception->getMessage();
         $errors[] = $error;
