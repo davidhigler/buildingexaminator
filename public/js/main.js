@@ -1727,10 +1727,23 @@ function loadBuildingTypeEditPage(id) {
     }
 }
 
-/** ToDo */
 function deleteBuildingType(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Delete buildingtype page');
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtype/' + id,
+            type: 'DELETE',
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadBuildingtypesPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }

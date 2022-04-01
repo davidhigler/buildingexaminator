@@ -1462,7 +1462,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/buildingtypes",
@@ -1585,7 +1585,130 @@ class ApiController extends AbstractController
         return $this->renderData($buildingType, self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'changebuildingtype', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}",
+     *     summary="Change building type",
+     *     @OA\RequestBody(
+     *         description="Details for changing building type",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of a housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="buildingTypeId",
+     *         description="The id of a building type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed building type",
+     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
+     *     )
+     * )
+     */
+    public function changeBuildingType(string $housingStockId, string $buildingTypeId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeBuildingType = json_decode($request->getContent(), true);
+
+        $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        /** @var BuildingType $buildingType */
+        $buildingType = $buildingTypeRepository->find((int) $buildingTypeId);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $buildingType->setHousingStock($housingStock);
+        $buildingType->setName($changeBuildingType['name']);
+        $buildingType->setCode($changeBuildingType['code']);
+        $buildingType->setDescription($changeBuildingType['description']);
+        $buildingType->setLastChangeTime();
+
+        $violations = $validator->validate($buildingType);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($buildingType);
+        $entityManager->flush();
+
+        return $this->renderData($buildingType, self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'deletebuildingtype', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}",
+     *     summary="Delete building type",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="buildingTypeId",
+     *         description="The id of a building type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a building type"
+     *     )
+     * )
+     */
+    public function deleteBuildingType(string $housingStockId, string $buildingTypeId): Response
+    {
+        $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        $buildingType = (object)$buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId], null, 1);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($buildingType);
+        $entityManager->flush();
+
+        return new Response('', 200);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}",
@@ -1629,7 +1752,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'listlivingtypes', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'listlivingtypes', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/livingtypes",
@@ -1685,7 +1808,7 @@ class ApiController extends AbstractController
         }
     }
 
-    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['get'])]
+    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
