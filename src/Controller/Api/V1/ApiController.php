@@ -1109,7 +1109,7 @@ class ApiController extends AbstractController
     public function deleteResidentialArea(string $housingStockId, string $residentialAreaId): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
+        $residentialArea = $residentialAreaRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($residentialArea);
@@ -1409,7 +1409,7 @@ class ApiController extends AbstractController
     public function deleteBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        $block = (object)$blockRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId], null, 1);
+        $block = $blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($block);
@@ -1699,7 +1699,7 @@ class ApiController extends AbstractController
     public function deleteBuildingType(string $housingStockId, string $buildingTypeId): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        $buildingType = (object)$buildingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId], null, 1);
+        $buildingType = $buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId]);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($buildingType);
@@ -1745,6 +1745,11 @@ class ApiController extends AbstractController
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
         return $this->renderData($buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
+
+
+
+
+
 
     /**
      * LIVINGTYPES
