@@ -1413,7 +1413,11 @@ class ApiController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($block);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -1703,7 +1707,11 @@ class ApiController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($buildingType);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -1745,7 +1753,6 @@ class ApiController extends AbstractController
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
         return $this->renderData($buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
-
 
 
 
@@ -1850,6 +1857,10 @@ class ApiController extends AbstractController
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
         return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
+
+
+
+
 
     /**
      * ADDRESSES
@@ -2101,7 +2112,11 @@ class ApiController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($buildingAddress);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -2143,6 +2158,10 @@ class ApiController extends AbstractController
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
+
+
+
+
 
     /**
      * EXTRA
