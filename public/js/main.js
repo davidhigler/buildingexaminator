@@ -1828,10 +1828,74 @@ function loadLivingtypesPage(page = 1) {
     }
 }
 
-/** ToDo */
 function loadLivingTypeNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Show livingtype new page');
+        $('div#content').html(
+            '    <h3 class="header">New living type</h3>\n' +
+            '    <form id="newlivingtype">\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">qr_code_2</i>\n' +
+            '                <input id="code" name="code" type="text" class="validate">\n' +
+            '                <label for="code">Code</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">short_text</i>\n' +
+            '                <input id="name" name="name" type="text" class="validate">\n' +
+            '                <label for="name">Name</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="input-field col s12">\n' +
+            '                <i class="material-icons prefix">description</i>\n' +
+            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+            '                <label for="description">Description</label>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="row">\n' +
+            '            <div class="col s12">\n' +
+            '                <button type="submit" class="btn" name="create">\n' +
+            '                    <i class="material-icons left">add_villa</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </form>\n'
+        );
+
+        $('form#newlivingtype').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                accepts: {
+                    json: 'application/json'
+                },
+                data: JSON.stringify(
+                    {
+                        'code': $('input#code').val(),
+                        'name': $('input#name').val(),
+                        'description': $('textarea#description').val(),
+                    }
+                ),
+                beforeSend: function () {
+                    showLoader();
+                    $('#slide-out').sidenav('close');
+                },
+                success: function () {
+                    loadLivingtypesPage();
+                },
+                error: function (jqXHR) {
+                    loadErrorPage(jqXHR);
+                },
+                complete: function () {
+                    hideLoader();
+                },
+            });
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }

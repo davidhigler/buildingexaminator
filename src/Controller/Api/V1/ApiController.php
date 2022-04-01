@@ -1820,6 +1820,73 @@ class ApiController extends AbstractController
         }
     }
 
+    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'addlivingtype', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/livingtypes",
+     *     summary="Add new living type",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new living type",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created living type",
+     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
+     *     )
+     * )
+     */
+    public function addLivingType(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    {
+        $newLivingType = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $livingType = new LivingType();
+        $livingType->setHousingStock($housingStock);
+        $livingType->setName($newLivingType['name']);
+        $livingType->setCode($newLivingType['code']);
+        $livingType->setDescription($newLivingType['description']);
+        $livingType->setCreationTime();
+        $livingType->setLastChangeTime();
+
+        $violations = $validator->validate($livingType);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($livingType);
+        $entityManager->flush();
+
+        return $this->renderData($livingType, self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+    }
+
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['GET'])]
     /**
      * @OA\Get(
@@ -1855,7 +1922,7 @@ class ApiController extends AbstractController
     public function getLivingType(string $housingStockId, string $livingTypeId, LoggerInterface $logger): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->renderData($livingTypeRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->renderData($livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
 
 
