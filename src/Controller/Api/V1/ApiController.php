@@ -1887,6 +1887,53 @@ class ApiController extends AbstractController
         return $this->renderData($livingType, self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
 
+    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'deletelivingtype', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
+     *     summary="Delete living type",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="livingTypeId",
+     *         description="The id of a living type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a living type"
+     *     )
+     * )
+     */
+    public function deleteLivingType(string $housingStockId, string $livingTypeId): Response
+    {
+        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        $livingType = $livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($livingType);
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
+
+        return new Response('', 200);
+    }
+
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['GET'])]
     /**
      * @OA\Get(

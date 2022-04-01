@@ -1910,10 +1910,23 @@ function loadLivingTypeEditPage(id) {
     }
 }
 
-/** ToDo */
 function deleteLivingType(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Delete livingtype page');
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes/' + id,
+            type: 'DELETE',
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadLivingtypesPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
