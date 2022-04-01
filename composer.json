@@ -115,7 +115,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.3.*"
+            "require": "5.3.*",
+            "docker": false
         },
         "runtime": {
             "class": "Symfony\\Component\\Runtime\\GenericRuntime"
