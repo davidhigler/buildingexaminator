@@ -1730,7 +1730,7 @@ function loadBuildingTypeEditPage(id) {
 function deleteBuildingType(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtype/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes/' + id,
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
