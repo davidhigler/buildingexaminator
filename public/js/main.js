@@ -2118,8 +2118,31 @@ function loadBuildingaddressNewPage() {
         showLoader();
         $('#slide-out').sidenav('close');
 
-        let yearNow = moment().year();
-        let yearSelectValues = Array(100).fill(0).map((element, index) => index + yearNow - 98);
+        let residentialAreaSelectValues = Array();
+        let residentialAreaHtmlOptions = '                    <option disabled selected>Choose a residential area</option>\n';
+        residentialAreaSelectValues.forEach(function(item) {
+            residentialAreaHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        });
+
+        let blockSelectValues = Array();
+        let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
+        blockSelectValues.forEach(function(item) {
+            blockHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        });
+
+        let buildingTypeSelectValues = Array();
+        let buildingTypeHtmlOptions = '                    <option disabled selected>Choose a building type</option>\n';
+        buildingTypeSelectValues.forEach(function(item) {
+            buildingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        });
+
+        let livingTypeSelectValues = Array();
+        let livingTypeHtmlOptions = '                    <option disabled selected>Choose a living type</option>\n';
+        livingTypeSelectValues.forEach(function(item) {
+            livingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        });
+
+        let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
         let yearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n';
         yearSelectValues.forEach(function(item) {
             yearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
@@ -2131,29 +2154,37 @@ function loadBuildingaddressNewPage() {
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix disabled">view_quilt</i>\n' +
-            '                <input disabled id="residentialarea" name="residentialarea" type="text" value="">\n' +
-            '                <label for="residentialarea" class="active">Residential area</label>\n' +
+            '                <select name="residentialarea">\n' +
+            residentialAreaHtmlOptions +
+            '                </select>\n' +
+            '                <label>Residential area</label>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix disabled">view_module</i>\n' +
-            '                <input disabled id="block" name="block" type="text" value="">\n' +
-            '                <label for="block" class="active">Block</label>\n' +
+            '                <select name="block">\n' +
+            blockHtmlOptions +
+            '                </select>\n' +
+            '                <label>Block</label>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix disabled">home_work</i>\n' +
-            '                <input disabled id="buildingtype" name="buildingtype" type="text" value="">\n' +
-            '                <label for="buildingtype" class="active">Building type</label>\n' +
+            '                <select name="buildingtype">\n' +
+            buildingTypeHtmlOptions +
+            '                </select>\n' +
+            '                <label>Building type</label>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
             '                <i class="material-icons prefix disabled">villa</i>\n' +
-            '                <input disabled id="livingtype" name="livingtype" type="text" value="">\n' +
-            '                <label for="livingtype" class="active">Living type</label>\n' +
+            '                <select name="livingtype">\n' +
+            livingTypeHtmlOptions +
+            '                </select>\n' +
+            '                <label>Living type</label>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
