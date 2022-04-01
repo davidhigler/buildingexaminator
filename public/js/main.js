@@ -2153,7 +2153,7 @@ function loadBuildingaddressNewPage() {
             '    <form id="newbuildingaddress">\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix disabled">view_quilt</i>\n' +
+            '                <i class="material-icons prefix">view_quilt</i>\n' +
             '                <select name="residentialarea">\n' +
             residentialAreaHtmlOptions +
             '                </select>\n' +
@@ -2162,7 +2162,7 @@ function loadBuildingaddressNewPage() {
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix disabled">view_module</i>\n' +
+            '                <i class="material-icons prefix">view_module</i>\n' +
             '                <select name="block">\n' +
             blockHtmlOptions +
             '                </select>\n' +
@@ -2171,7 +2171,7 @@ function loadBuildingaddressNewPage() {
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix disabled">home_work</i>\n' +
+            '                <i class="material-icons prefix">home_work</i>\n' +
             '                <select name="buildingtype">\n' +
             buildingTypeHtmlOptions +
             '                </select>\n' +
@@ -2180,7 +2180,7 @@ function loadBuildingaddressNewPage() {
             '        </div>\n' +
             '        <div class="row">\n' +
             '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix disabled">villa</i>\n' +
+            '                <i class="material-icons prefix">villa</i>\n' +
             '                <select name="livingtype">\n' +
             livingTypeHtmlOptions +
             '                </select>\n' +
