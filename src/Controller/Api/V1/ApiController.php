@@ -1754,10 +1754,6 @@ class ApiController extends AbstractController
         return $this->renderData($buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
     }
 
-
-
-
-
     /**
      * LIVINGTYPES
      *
@@ -1873,6 +1869,86 @@ class ApiController extends AbstractController
         $livingType->setCode($newLivingType['code']);
         $livingType->setDescription($newLivingType['description']);
         $livingType->setCreationTime();
+        $livingType->setLastChangeTime();
+
+        $violations = $validator->validate($livingType);
+        if ($violations->count() > 0) {
+            return $this->json($this->extractErrorsFromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($livingType);
+        $entityManager->flush();
+
+        return $this->renderData($livingType, self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+    }
+
+    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'changelivingtype', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
+     *     summary="Change living type",
+     *     @OA\RequestBody(
+     *         description="Details for changing living type",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="description",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of a housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="buildingTypeId",
+     *         description="The id of a living type",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed living type",
+     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
+     *     )
+     * )
+     */
+    public function changeLivingType(string $housingStockId, string $livingTypeId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    {
+        $changeLivingType = json_decode($request->getContent(), true);
+
+        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        /** @var LivingType $livingType */
+        $livingType = $livingTypeRepository->find((int) $livingTypeId);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $livingType->setHousingStock($housingStock);
+        $livingType->setName($changeLivingType['name']);
+        $livingType->setCode($changeLivingType['code']);
+        $livingType->setDescription($changeLivingType['description']);
         $livingType->setLastChangeTime();
 
         $violations = $validator->validate($livingType);
