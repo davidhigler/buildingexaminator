@@ -403,7 +403,7 @@ function loadOwnerNewPage() {
 
     hideLoader();
 
-    $("form#newowner button[name='cancel']").onclick(
+    $("form#newowner button[name='cancel']").click(
         function(event) {
             event.preventDefault();
             loadOwnersPage();
