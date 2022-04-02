@@ -2132,22 +2132,22 @@ function loadBuildingaddressNewPage() {
             ) {
                 let residentialAreaHtmlOptions = '                    <option disabled selected>Choose a residential area</option>\n';
                 residentialAreas[0].data.forEach(function(item) {
-                    residentialAreaHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                    residentialAreaHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
                 });
 
                 let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
                 blocks[0].data.forEach(function(item) {
-                    blockHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                    blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
                 });
 
                 let buildingTypeHtmlOptions = '                    <option disabled selected>Choose a building type</option>\n';
                 buildingtypes[0].data.forEach(function(item) {
-                    buildingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                    buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
                 });
 
                 let livingTypeHtmlOptions = '                    <option disabled selected>Choose a living type</option>\n';
                 livingtypes[0].data.forEach(function(item) {
-                    livingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                    livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
                 });
 
                 let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
