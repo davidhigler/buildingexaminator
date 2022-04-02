@@ -668,7 +668,7 @@ function loadHousingstockNewPage() {
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">person</i>\n' +
-                '                <select id="owner" name="owner">\n' +
+                '                <select name="owner">\n' +
                 '                    <option disabled selected>Choose an owner</option>\n';
             $(data.data).each(function (index, element) {
                 ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
@@ -705,13 +705,27 @@ function loadHousingstockNewPage() {
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
-                '            <div class="col s12">\n' +
-                '                <button type="submit" class="btn" name="create">\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn" name="create" type="submit">\n' +
                 '                    <i class="material-icons left">domain_add</i>Create\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
                 '                </button>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '    </form>\n'
+            );
+
+            $('form#newhousingstock select').formSelect();
+
+            $("form#newhousingstock button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadHousingstocksPage();
+                }
             );
 
             $('form#newhousingstock').submit(function(event) {
@@ -753,8 +767,6 @@ function loadHousingstockNewPage() {
         },
         complete: function() {
             hideLoader();
-
-            $('select').formSelect();
         },
     });
 }
@@ -1029,13 +1041,25 @@ function loadResidentialAreaNewPage() {
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
-            '            <div class="col s12">\n' +
-            '                <button type="submit" class="btn" name="create">\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn" name="create" type="submit">\n' +
             '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn right" name="cancel">\n' +
+            '                    <i class="material-icons left">cancel</i>Cancel\n' +
             '                </button>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </form>\n'
+        );
+
+        $("form#newresidentialarea button[name='cancel']").click(
+            function(event) {
+                event.preventDefault();
+                loadResidentialAreasPage();
+            }
         );
 
         $('form#newresidentialarea').submit(function (event) {
@@ -1310,13 +1334,25 @@ function loadBlockNewPage() {
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
-            '            <div class="col s12">\n' +
-            '                <button type="submit" class="btn" name="create">\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn" name="create" type="submit">\n' +
             '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn right" name="cancel">\n' +
+            '                    <i class="material-icons left">cancel</i>Cancel\n' +
             '                </button>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </form>\n'
+        );
+
+        $("form#newblock button[name='cancel']").click(
+            function(event) {
+                event.preventDefault();
+                loadBlocksPage();
+            }
         );
 
         $('form#newblock').submit(function (event) {
@@ -1593,13 +1629,25 @@ function loadBuildingtypeNewPage() {
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
-            '            <div class="col s12">\n' +
-            '                <button type="submit" class="btn" name="create">\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn" name="create" type="submit">\n' +
             '                    <i class="material-icons left">add_home_work</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn right" name="cancel">\n' +
+            '                    <i class="material-icons left">cancel</i>Cancel\n' +
             '                </button>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </form>\n'
+        );
+
+        $("form#newbuildingtype button[name='cancel']").click(
+            function(event) {
+                event.preventDefault();
+                loadBuildingtypesPage();
+            }
         );
 
         $('form#newbuildingtype').submit(function (event) {
@@ -1867,13 +1915,25 @@ function loadLivingTypeNewPage() {
             '            </div>\n' +
             '        </div>\n' +
             '        <div class="row">\n' +
-            '            <div class="col s12">\n' +
-            '                <button type="submit" class="btn" name="create">\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn" name="create" type="submit">\n' +
             '                    <i class="material-icons left">add_villa</i>Create\n' +
+            '                </button>\n' +
+            '            </div>\n' +
+            '            <div class="col s6">\n' +
+            '                <button class="btn right" name="cancel">\n' +
+            '                    <i class="material-icons left">cancel</i>Cancel\n' +
             '                </button>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </form>\n'
+        );
+
+        $("form#newlivingtype button[name='cancel']").click(
+            function(event) {
+                event.preventDefault();
+                loadLivingtypesPage();
+            }
         );
 
         $('form#newlivingtype').submit(function (event) {
@@ -2311,16 +2371,28 @@ function loadBuildingaddressNewPage() {
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <button type="submit" class="btn" name="create">\n' +
+                    '            <div class="col s6">\n' +
+                    '                <button class="btn" name="create" type="submit">\n' +
                     '                    <i class="material-icons left">house_add</i>Create\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
+                    '            <div class="col s6">\n' +
+                    '                <button class="btn right" name="cancel">\n' +
+                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
                     '                </button>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '    </form>\n'
                 );
 
-                $('div#content select').formSelect();
+                $('form#newbuildingaddress select').formSelect();
+
+                $("form#newbuildingaddress button[name='cancel']").click(
+                    function(event) {
+                        event.preventDefault();
+                        loadBuildingaddressesPage();
+                    }
+                );
 
                 hideLoader();
             }
