@@ -2131,22 +2131,22 @@ function loadBuildingaddressNewPage() {
                 livingtypes
             ) {
                 let residentialAreaHtmlOptions = '                    <option disabled selected>Choose a residential area</option>\n';
-                residentialAreas.forEach(function(item) {
+                residentialAreas[0].data.forEach(function(item) {
                     residentialAreaHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
                 });
 
                 let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
-                blocks.forEach(function(item) {
+                blocks[0].data.forEach(function(item) {
                     blockHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
                 });
 
                 let buildingTypeHtmlOptions = '                    <option disabled selected>Choose a building type</option>\n';
-                buildingtypes.forEach(function(item) {
+                buildingtypes[0].data.forEach(function(item) {
                     buildingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
                 });
 
                 let livingTypeHtmlOptions = '                    <option disabled selected>Choose a living type</option>\n';
-                livingtypes.forEach(function(item) {
+                livingtypes[0].data.forEach(function(item) {
                     livingTypeHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
                 });
 
