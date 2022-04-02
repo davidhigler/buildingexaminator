@@ -387,9 +387,14 @@ function loadOwnerNewPage() {
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
-        '            <div class="col s12">\n' +
+        '            <div class="col s6">\n' +
         '                <button type="submit" class="btn" name="create">\n' +
         '                    <i class="material-icons left">add_owner</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="col s6 right">\n' +
+        '                <button class="btn" name="cancel">\n' +
+        '                    <i class="material-icons left">cancel</i>Cancel\n' +
         '                </button>\n' +
         '            </div>\n' +
         '        </div>\n' +
