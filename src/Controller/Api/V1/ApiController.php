@@ -2048,10 +2048,6 @@ class ApiController extends AbstractController
         return $this->renderData($livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
     }
 
-
-
-
-
     /**
      * ADDRESSES
      *
@@ -2348,10 +2344,6 @@ class ApiController extends AbstractController
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
-
-
-
-
 
     /**
      * EXTRA
