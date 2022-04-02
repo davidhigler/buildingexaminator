@@ -310,7 +310,8 @@ function loadOwnersPage(page = 1) {
                 '    <div class="row">\n' +
                 '        <div class="input-field col s10">\n' +
                 '            <i class="material-icons prefix">search</i>\n' +
-                '            <input placeholder="Search">\n' +
+                '            <input id="search" name="search" type="text">\n' +
+                '            <label for="search">Search</label>\n' +
                 '        </div>\n' +
                 '        <div class="input-field col s2">\n' +
                 '            <button class="btn right" name="new" onclick="loadOwnerNewPage();">\n' +
