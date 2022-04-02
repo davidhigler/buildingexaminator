@@ -403,6 +403,13 @@ function loadOwnerNewPage() {
 
     hideLoader();
 
+    $("form#newowner button[name='cancel']").onclick(
+        function(event) {
+            event.preventDefault();
+            loadOwnersPage();
+        }
+    );
+
     $('form#newowner').submit(function(event) {
         event.preventDefault();
         $.ajax({
