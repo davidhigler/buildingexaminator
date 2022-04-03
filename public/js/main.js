@@ -275,7 +275,7 @@ function loadTestPage() {
         '            <div class="file-field input-field">\n' +
         '                <div class="btn">\n' +
         '                    <span><i class="material-icons left">add_a_photo</i>Photo</span>\n' +
-        '                    <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(event);" />\n' +
+        '                    <input id="photoUpload" type="file" accept="image/*" capture="environment" />\n' +
         '                </div>\n' +
         '                <div class="file-path-wrapper">\n' +
         '                    <input class="file-path validate" type="text" />\n' +
@@ -285,18 +285,16 @@ function loadTestPage() {
         '    </div>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
-        '            <img id="imagePreview" src="#" alt="Image preview" />\n' +
+        '            <img id="photoPreview" src="#" alt="Image preview" style="display: none;" />\n' +
         '        </div>\n' +
         '    </div>\n'
     );
 
-    var previewPhoto = function(event) {
-        var output = document.getElementById('imagePreview');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
+    $('input#photoUpload').change(
+        function(event) {
+            console.log(event);
         }
-    };
+    );
 }
 
 /**
