@@ -308,10 +308,11 @@ function loadOwnersPage(page = 1) {
             let html =
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
-                '        <div class="input-field col s9">\n' +
-                '            <div class="input-field inline">\n' +
-                '                <input name="searchterm" type="text">\n' +
-                '            </div>\n' +
+                '        <div class="input-field col s6">\n' +
+                '            <input id="searchterm" name="searchterm" type="text">\n' +
+                '            <label for="searchterm">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
                 '            <button class="btn" name="search" onclick="console.log(\'test\');">\n' +
                 '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
                 '            </button>\n' +
