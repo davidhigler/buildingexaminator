@@ -269,36 +269,28 @@ function loadHomePage() {
 function loadTestPage() {
     $('div#content').html(
         '    <h3 class="header">Test page</h3>\n' +
-        '    <h4 class="header">Make image and upload</h4>\n' +
+        '    <h4 class="header">Image</h4>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
-        '            <form id="test">\n' +
-        '                <div class="row">\n' +
-        '                    <div class="input-field col s12">\n' +
-        '                        <label class="custom-file-upload">\n' +
-        '                            <input id="imageUpload" type="file" accept="image/*" capture="environment" />\n' +
-        '                            Custom Upload\n' +
-        '                        </label>\n' +
-        '                    </div>\n' +
+        '            <div class="file-field input-field">\n' +
+        '                <div class="btn">\n' +
+        '                    <span><i class="material-icons">add_a_photo</i>Photo</span>\n' +
+        '                    <input type="file">\n' +
         '                </div>\n' +
-        '            </form>\n' +
+        '                <div class="file-path-wrapper">\n' +
+        '                    <input class="file-path validate" type="text">\n' +
+        '                </div>\n' +
+        '             </div>\n' +
         '        </div>\n' +
         '    </div>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
-        '            <img width="200px" id="imagePreview" src="#" alt="Image preview" />\n' +
+        '            <img width="0" id="imagePreview" src="#" alt="Image preview" />\n' +
         '        </div>\n' +
         '    </div>\n'
     );
 
     $('img#imagePreview').materialbox();
-
-    imageUpload.onchange = evt => {
-        const [file] = imageUpload.files
-        if (file) {
-            imagePreview.src = URL.createObjectURL(file)
-        }
-    }
 }
 
 /**
