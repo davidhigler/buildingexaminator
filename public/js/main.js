@@ -210,20 +210,26 @@ function loadHomePage() {
                 '        <h3 class="header">Building Examinator</h3>\n' +
                 '        <p>This is the testing application for our app the Building Examinator.</p>\n' +
                 '        <div class="possibleByLogos">\n' +
-                '            <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
-                '                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
+                '            <a href="https://www.php.net" target="_blank" class="possibleByLogo">\n' +
+                '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg">Your browser does not support SVG</object>\n' +
+                '            </a>\n' +
+                '            <a href="https://www.mysql.com" target="_blank" class="possibleByLogo">\n' +
+                '                <img src="/images/logos/MySql.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +
                 '                <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
+                '            </a>\n' +
+                '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
+                '                <img src="/images/logos/ThePhpLeague.png">\n' +
+                '            </a>\n' +
+                '            <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
+                '                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
                 '            <a href="https://jquery.com" target="_blank" class="possibleByLogo">\n' +
                 '                <img src="/images/logos/jQuery.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
                 '                <img src="/images/logos/MomentJS.png">\n' +
-                '            </a>\n' +
-                '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/ThePhpLeague.png">\n' +
                 '            </a>\n' +
                 '        </div>\n'
             );
