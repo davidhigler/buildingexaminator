@@ -222,6 +222,9 @@ function loadHomePage() {
                 '            <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
                 '                <img src="/images/logos/MomentJS.png">\n' +
                 '            </a>\n' +
+                '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
+                '                <img src="/images/logos/ThePhpLeague.png">\n' +
+                '            </a>\n' +
                 '        </div>\n'
             );
 
