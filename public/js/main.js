@@ -269,28 +269,34 @@ function loadHomePage() {
 function loadTestPage() {
     $('div#content').html(
         '    <h3 class="header">Test page</h3>\n' +
-        '    <h4 class="header">Image</h4>\n' +
+        '    <h4 class="header">Make and upload image</h4>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
         '            <div class="file-field input-field">\n' +
         '                <div class="btn">\n' +
         '                    <span><i class="material-icons left">add_a_photo</i>Photo</span>\n' +
-        '                    <input type="file">\n' +
+        '                    <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(event);" />\n' +
         '                </div>\n' +
         '                <div class="file-path-wrapper">\n' +
-        '                    <input class="file-path validate" type="text">\n' +
+        '                    <input class="file-path validate" type="text" />\n' +
         '                </div>\n' +
         '             </div>\n' +
         '        </div>\n' +
         '    </div>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
-        '            <img width="0" id="imagePreview" src="#" alt="Image preview" />\n' +
+        '            <img id="imagePreview" src="#" alt="Image preview" />\n' +
         '        </div>\n' +
         '    </div>\n'
     );
 
-    $('img#imagePreview').materialbox();
+    var previewPhoto = function(event) {
+        var output = document.getElementById('imagePreview');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
 }
 
 /**
