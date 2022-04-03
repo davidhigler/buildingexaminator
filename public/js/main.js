@@ -210,23 +210,21 @@ function loadHomePage() {
                 '        <h3 class="header">Building Examinator</h3>\n' +
                 '        <p>This is the testing application for our app the Building Examinator.</p>\n' +
                 '        <nav class="bottom-nav">\n' +
-                '            <div class="container">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col s12 m12 l9 offset-l3 footer">\n' +
-                '                        <div class="possibleByLogos">\n' +
-                '                            <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
-                '                                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
-                '                            </a>\n' +
-                '                            <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +
-                '                                <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
-                '                            </a>\n' +
-                '                            <a href="https://jquery.com" target="_blank" class="possibleByLogo">\n' +
-                '                                <img src="/images/logos/jQuery.png">\n' +
-                '                            </a>\n' +
-                '                            <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
-                '                                <img src="/images/logos/MomentJS.png">\n' +
-                '                            </a>\n' +
-                '                        </div>\n' +
+                '            <div class="row">\n' +
+                '                <div class="col s12 footer">\n' +
+                '                    <div class="possibleByLogos">\n' +
+                '                        <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
+                '                            <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
+                '                        </a>\n' +
+                '                        <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +
+                '                            <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
+                '                        </a>\n' +
+                '                        <a href="https://jquery.com" target="_blank" class="possibleByLogo">\n' +
+                '                            <img src="/images/logos/jQuery.png">\n' +
+                '                        </a>\n' +
+                '                        <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
+                '                            <img src="/images/logos/MomentJS.png">\n' +
+                '                        </a>\n' +
                 '                    </div>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
