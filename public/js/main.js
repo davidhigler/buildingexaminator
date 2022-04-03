@@ -210,6 +210,9 @@ function loadHomePage() {
                 '        <h3 class="header">Building Examinator</h3>\n' +
                 '        <p>This is the testing application for our app the Building Examinator.</p>\n' +
                 '        <div class="possibleByLogos">\n' +
+                '            <a href="https://www.nginx.com" target="_blank" class="possibleByLogo">\n' +
+                '                <img src="/images/logos/NGinX.png">\n' +
+                '            </a>\n' +
                 '            <a href="https://www.php.net" target="_blank" class="possibleByLogo">\n' +
                 '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
