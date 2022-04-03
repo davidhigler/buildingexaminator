@@ -308,12 +308,13 @@ function loadOwnersPage(page = 1) {
             let html =
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
-                '        <div class="input-field col s10">\n' +
-                '            <i class="material-icons prefix">search</i>\n' +
-                '            <input id="search" name="search" type="text">\n' +
-                '            <label for="search">Search</label>\n' +
+                '        <div class="input-field col s9">\n' +
+                '            <input name="searchterm" type="text">\n' +
+                '            <button class="btn" name="search" onclick="console.log(\'test\');">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
                 '        </div>\n' +
-                '        <div class="input-field col s2">\n' +
+                '        <div class="input-field col s3">\n' +
                 '            <button class="btn right" name="new" onclick="loadOwnerNewPage();">\n' +
                 '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
