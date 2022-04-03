@@ -274,7 +274,7 @@ function loadTestPage() {
         '        <div class="col s12">\n' +
         '            <div class="file-field input-field">\n' +
         '                <div class="btn">\n' +
-        '                    <span><i class="material-icons">add_a_photo</i>Photo</span>\n' +
+        '                    <span><i class="material-icons left">add_a_photo</i>Photo</span>\n' +
         '                    <input type="file">\n' +
         '                </div>\n' +
         '                <div class="file-path-wrapper">\n' +
