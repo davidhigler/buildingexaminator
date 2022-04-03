@@ -219,12 +219,19 @@ function loadHomePage() {
                 '            <a href="https://www.mysql.com" target="_blank" class="possibleByLogo">\n' +
                 '                <img src="/images/logos/MySql.png">\n' +
                 '            </a>\n' +
+                '            <br/>\n' +
+                '            <br/>\n' +
                 '            <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +
                 '                <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
+                '            </a>\n' +
+                '            <a href="https://getcomposer.org" target="_blank" class="possibleByLogo">\n' +
+                '                <img src="/images/logos/Composer.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
                 '                <img src="/images/logos/ThePhpLeague.png">\n' +
                 '            </a>\n' +
+                '            <br/>\n' +
+                '            <br/>\n' +
                 '            <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
                 '                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
