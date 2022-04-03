@@ -309,7 +309,9 @@ function loadOwnersPage(page = 1) {
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s9">\n' +
-                '            <input name="searchterm" type="text">\n' +
+                '            <div class="input-field inline">\n' +
+                '                <input name="searchterm" type="text">\n' +
+                '            </div>\n' +
                 '            <button class="btn" name="search" onclick="console.log(\'test\');">\n' +
                 '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
                 '            </button>\n' +
