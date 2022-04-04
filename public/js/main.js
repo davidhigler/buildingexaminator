@@ -267,6 +267,9 @@ function loadHomePage() {
 }
 
 function loadTestPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
     $('div#content').html(
         '    <h3 class="header">Test page</h3>\n' +
         '    <h4 class="header">Make and upload image</h4>\n' +
@@ -285,7 +288,7 @@ function loadTestPage() {
         '    </div>\n' +
         '    <div class="row">\n' +
         '        <div class="col s12">\n' +
-        '            <img id="photoPreview" src="#" alt="Image preview" style="display: none;" />\n' +
+        '            <img id="photoPreview" src="#" alt="Image preview" style="display: none; width: 100%;" />\n' +
         '        </div>\n' +
         '    </div>\n'
     );
@@ -295,6 +298,8 @@ function loadTestPage() {
             $('img#photoPreview').attr('src', URL.createObjectURL(event.target.files[0])).show();
         }
     );
+
+    hideLoader();
 }
 
 /**
