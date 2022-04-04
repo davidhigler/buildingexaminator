@@ -366,17 +366,17 @@ function loadOwnersPage(page = 1, searchterm = '') {
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" name="searchterm" type="text">\n' +
+                '            <input id="searchterm" type="search">\n' +
                 '            <label for="searchterm">Search</label>\n' +
                 '            <i class="material-icons right">cancel</i>\n' +
                 '        </div>\n' +
                 '        <div class="input-field col s3">\n' +
-                '            <button class="btn" name="search" onclick="console.log($(\'input#searchterm\').val());">\n' +
+                '            <button class="btn" onclick="console.log($(\'input#searchterm\').val());">\n' +
                 '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
                 '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" name="new" onclick="loadOwnerNewPage();">\n' +
+                '            <button class="btn right" onclick="loadOwnerNewPage();">\n' +
                 '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
