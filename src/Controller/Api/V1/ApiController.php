@@ -59,49 +59,49 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     schema="owners",
  *     title="Owners",
  *     description="An array of owners",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/Owner")
  * )
  * @OA\Schema(
  *     schema="housingStocks",
  *     title="Housing stocks",
  *     description="An array of housing stocks",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/HousingStock")
  * )
  * @OA\Schema(
  *     schema="blocks",
  *     title="Blocks",
  *     description="An array of blocks",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/Block")
  * )
  * @OA\Schema(
  *     schema="buildingAddresses",
  *     title="Addresses",
  *     description="An array of addresses",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/BuildingAddress")
  * )
  * @OA\Schema(
  *     schema="buildingTypes",
  *     title="Building types",
  *     description="An array of building types",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/BuildingType")
  * )
  * @OA\Schema(
  *     schema="livingTypes",
  *     title="Living types",
  *     description="An array of living types",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/LivingType")
  * )
  * @OA\Schema(
  *     schema="residentialAreas",
  *     title="Residential areas",
  *     description="An array of residential areas",
- *     type="array",
+ *     type="object",
  *     @OA\Items(ref="#/components/schemas/ResidentialArea")
  * )
  */
@@ -363,7 +363,7 @@ class ApiController extends AbstractController
     /**
      * @OA\Get(
      *     path="/owners",
-     *     summary="Returns details about multiple ownerss",
+     *     summary="Returns details about multiple owners",
      *     @OA\Parameter(
      *         name="page",
      *         description="The page number to get",
@@ -655,18 +655,30 @@ class ApiController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(HousingStock::class);
         $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $adapter = $repository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
-            return $this->renderData($repository->findBy([], ['name' => 'ASC']), self::HOUSING_STOCK_LIST_FIELDS, $logger);
+            $data = $adapter->getQuery()->getResult();
         } else {
-            $adapter = $repository->createQueryBuilder('h')->orderBy('h.name', 'ASC');
-
-            $pager = new Pagerfanta(new QueryAdapter($adapter));
-            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $pager->setCurrentPage($page);
-
-            return $this->renderData($pager, self::HOUSING_STOCK_LIST_FIELDS, $logger);
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
         }
+
+        return $this->renderData($data, self::HOUSING_STOCK_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
@@ -915,23 +927,33 @@ class ApiController extends AbstractController
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        $repository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $adapter = $repository->createQueryBuilder('o');
+        $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
-            return $this->renderData($residentialAreaRepository->findBy(['housingStock' => $housingStock->getId()], ['name' => 'ASC']), self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+            $data = $adapter->getQuery()->getResult();
         } else {
-            $adapter = $residentialAreaRepository->createQueryBuilder('r')
-                ->where('r.housingStock = :housingStockId')
-                ->setParameter('housingStockId', $housingStock->getId())
-                ->orderBy('r.name', 'ASC');
-
-            $pager = new Pagerfanta(new QueryAdapter($adapter));
-            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $pager->setCurrentPage($page);
-
-            return $this->renderData($pager, self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
         }
+
+        return $this->renderData($data, self::RESIDENTIALAREA_LIST_FIELDS, $logger);
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'addresidentialarea', methods: ['POST'])]
