@@ -387,26 +387,26 @@ class ApiController extends AbstractController
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        if ($page === null) {
-            $data = $repository->findBy([], ['name' => 'ASC']);
-            return $this->renderData($data, self::OWNER_LIST_FIELDS, $logger);
-        } else {
-            $adapter = $repository->createQueryBuilder('o');
+        $adapter = $repository->createQueryBuilder('o');
 
-            if ($searchTerm !== null) {
-                $adapter
-                    ->andWhere('o.name LIKE :searchTerm')
-                    ->setParameter('searchTerm', '%'.$searchTerm.'%');
-            }
-
-            $adapter->orderBy('o.name', 'ASC');
-
-            $pager = new Pagerfanta(new QueryAdapter($adapter));
-            $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $pager->setCurrentPage($page);
-
-            return $this->renderData($pager, self::OWNER_LIST_FIELDS, $logger);
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere('o.name LIKE :searchTerm')
+                ->setParameter('searchTerm', '%'.$searchTerm.'%');
         }
+
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->renderData($data, self::OWNER_LIST_FIELDS, $logger);
     }
 
     #[Route('/owners', name: 'addowner', methods: ['POST'])]
