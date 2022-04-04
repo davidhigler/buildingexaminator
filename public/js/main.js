@@ -303,7 +303,8 @@ function loadTestPage() {
                 .show()
                 .click(
                     function(event) {
-                        console.log(event);
+                        console.log('offsetX: ' + event.offsetX);
+                        console.log('offsetY: ' + event.offsetY);
                     }
                 );
         }
