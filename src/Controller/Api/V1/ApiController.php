@@ -392,9 +392,9 @@ class ApiController extends AbstractController
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
-                        $adapter->expr()->like('name', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('lnumber', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->eq('id', $searchTerm)
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.lnumber', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $searchTerm)
                     )
                 );
         }
