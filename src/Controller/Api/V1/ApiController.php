@@ -394,11 +394,11 @@ class ApiController extends AbstractController
                     $adapter->expr()->orX(
                         $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.lnumber', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->eq('o.id', $searchTerm)
+                        //$adapter->expr()->eq('o.id', $searchTerm)
                     )
                 );
         }
-        $adapter->orderBy('o.name', 'ASC');
+        //$adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
