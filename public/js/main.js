@@ -303,6 +303,7 @@ function loadTestPage() {
                 .show()
                 .click(
                     function(event) {
+                        console.log(event);
                         console.log('offsetX: ' + event.offsetX);
                         console.log('clientWidth: ' + event.clientWidth);
                         console.log('offsetY: ' + event.offsetY);
