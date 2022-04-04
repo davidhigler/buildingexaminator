@@ -388,19 +388,21 @@ class ApiController extends AbstractController
         $searchTerm = $request->query->get('searchterm');
 
         $adapter = $repository->createQueryBuilder('o');
-
         if ($searchTerm !== null) {
             $adapter
-                ->andWhere('o.name LIKE :searchTerm')
-                ->setParameter('searchTerm', '%'.$searchTerm.'%');
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('lnumber', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('id', $searchTerm)
+                    )
+                );
         }
-
         $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
         } else {
-
             $data = new Pagerfanta(new QueryAdapter($adapter));
             $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
             $data->setCurrentPage($page);
