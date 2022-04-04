@@ -301,6 +301,7 @@ function loadTestPage() {
                     URL.createObjectURL(event.target.files[0])
                 )
                 .show()
+                .off('click')
                 .click(
                     function(event) {
                         console.log(event);
@@ -308,13 +309,17 @@ function loadTestPage() {
                         console.log('event.target.clientWidth: ' + event.target.clientWidth);
                         console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
 
-                        console.log(Math.floor((event.offsetX/event.target.clientWidth)*event.target.naturalWidth));
+                        let realX = Math.floor((event.offsetX/event.target.clientWidth)*event.target.naturalWidth);
+                        console.log(realX);
 
                         console.log('event.offsetY: ' + event.offsetY);
                         console.log('event.target.clientHeight: ' + event.target.clientHeight);
                         console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
 
-                        console.log(Math.floor((event.offsetY/event.target.clientHeight)*event.target.naturalHeight));
+                        let realY = Math.floor((event.offsetY/event.target.clientHeight)*event.target.naturalHeight);
+                        console.log(realY);
+
+                        M.toast({html: 'X:' + realX + ' Y:' + realY});
                     }
                 );
         }
