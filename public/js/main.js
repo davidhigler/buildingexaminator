@@ -304,7 +304,9 @@ function loadTestPage() {
                 .click(
                     function(event) {
                         console.log('offsetX: ' + event.offsetX);
+                        console.log('clientWidth: ' + event.clientWidth);
                         console.log('offsetY: ' + event.offsetY);
+                        console.log('clientHeight: ' + event.clientHeight);
                     }
                 );
         }
