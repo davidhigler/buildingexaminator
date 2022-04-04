@@ -385,11 +385,21 @@ class ApiController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Owner::class);
         $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
 
         if ($page === null) {
-            return $this->renderData($repository->findBy([], ['name' => 'ASC']), self::OWNER_LIST_FIELDS, $logger);
+            $data = $repository->findBy([], ['name' => 'ASC']);
+            return $this->renderData($data, self::OWNER_LIST_FIELDS, $logger);
         } else {
-            $adapter = $repository->createQueryBuilder('o')->orderBy('o.name', 'ASC');
+            $adapter = $repository->createQueryBuilder('o');
+
+            if ($searchTerm !== null) {
+                $adapter
+                    ->andWhere('o.name LIKE :searchTerm')
+                    ->setParameter('searchTerm', '%'.$searchTerm.'%');
+            }
+
+            $adapter->orderBy('o.name', 'ASC');
 
             $pager = new Pagerfanta(new QueryAdapter($adapter));
             $pager->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
