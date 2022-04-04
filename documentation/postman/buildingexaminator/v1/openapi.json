@@ -6,14 +6,14 @@
     },
     "servers": [
         {
-            "url": "http://localhost/api/v1",
+            "url": "https://www.buildingexaminator.nl/api/v1",
             "description": "Development"
         }
     ],
     "paths": {
         "/owners": {
             "get": {
-                "summary": "Returns details about multiple ownerss",
+                "summary": "Returns details about multiple owners",
                 "operationId": "167e76dc2dac458ed65bbb8d8486cfcf",
                 "parameters": [
                     {
@@ -1487,58 +1487,93 @@
             "owners": {
                 "title": "Owners",
                 "description": "An array of owners",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/Owner"
-                }
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Owner"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "housingStocks": {
                 "title": "Housing stocks",
                 "description": "An array of housing stocks",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/HousingStock"
-                }
-            },
-            "blocks": {
-                "title": "Blocks",
-                "description": "An array of blocks",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/Block"
-                }
-            },
-            "buildingAddresses": {
-                "title": "Addresses",
-                "description": "An array of addresses",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/BuildingAddress"
-                }
-            },
-            "buildingTypes": {
-                "title": "Building types",
-                "description": "An array of building types",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/BuildingType"
-                }
-            },
-            "livingTypes": {
-                "title": "Living types",
-                "description": "An array of living types",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/LivingType"
-                }
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HousingStock"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "residentialAreas": {
                 "title": "Residential areas",
                 "description": "An array of residential areas",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ResidentialArea"
-                }
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResidentialArea"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "blocks": {
+                "title": "Blocks",
+                "description": "An array of blocks",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Block"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "buildingTypes": {
+                "title": "Building types",
+                "description": "An array of building types",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BuildingType"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "livingTypes": {
+                "title": "Living types",
+                "description": "An array of living types",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LivingType"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "buildingAddresses": {
+                "title": "Addresses",
+                "description": "An array of addresses",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BuildingAddress"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "Group": {
                 "properties": {
