@@ -295,7 +295,17 @@ function loadTestPage() {
 
     $('input#photoUpload').change(
         function(event) {
-            $('img#photoPreview').attr('src', URL.createObjectURL(event.target.files[0])).show();
+            $('img#photoPreview')
+                .attr(
+                    'src',
+                    URL.createObjectURL(event.target.files[0])
+                )
+                .show()
+                .click(
+                    function(event) {
+                        console.log(event);
+                    }
+                );
         }
     );
 
