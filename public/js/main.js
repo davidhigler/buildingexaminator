@@ -292,7 +292,7 @@ function loadTestPage() {
 
     $('input#photoUpload').change(
         function(event) {
-            console.log(event);
+            $('img#photoPreview').attr('src', URL.createObjectURL(event.target.files[0])).show();
         }
     );
 }
