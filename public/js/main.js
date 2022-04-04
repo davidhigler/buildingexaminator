@@ -304,10 +304,12 @@ function loadTestPage() {
                 .click(
                     function(event) {
                         console.log(event);
-                        console.log('offsetX: ' + event.offsetX);
-                        console.log('clientWidth: ' + event.clientWidth);
-                        console.log('offsetY: ' + event.offsetY);
-                        console.log('clientHeight: ' + event.clientHeight);
+                        console.log('event.offsetX: ' + event.offsetX);
+                        console.log('event.target.clientWidth: ' + event.target.clientWidth);
+                        console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
+                        console.log('event.offsetY: ' + event.offsetY);
+                        console.log('event.target.clientHeight: ' + event.target.clientHeight);
+                        console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
                     }
                 );
         }
