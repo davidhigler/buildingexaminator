@@ -366,8 +366,8 @@ function loadOwnersPage(page = 1, searchterm = '') {
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search">\n' +
-                '            <label for="searchterm">Search</label>\n' +
+                '            <input id="searchterm" type="text">\n' +
+                '            <label for="searchterm">Search<i class="material-icons right">cancel</i></label>\n' +
                 '        </div>\n' +
                 '        <div class="input-field col s3">\n' +
                 '            <button class="btn" onclick="console.log($(\'input#searchterm\').val());">\n' +
