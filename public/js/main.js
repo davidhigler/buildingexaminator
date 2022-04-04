@@ -307,9 +307,14 @@ function loadTestPage() {
                         console.log('event.offsetX: ' + event.offsetX);
                         console.log('event.target.clientWidth: ' + event.target.clientWidth);
                         console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
+
+                        console.log(Math.floor((event.offsetX/event.target.clientWidth)*event.target.naturalWidth));
+
                         console.log('event.offsetY: ' + event.offsetY);
                         console.log('event.target.clientHeight: ' + event.target.clientHeight);
                         console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
+
+                        console.log(Math.floor((event.offsetY/event.target.clientHeight)*event.target.naturalHeight));
                     }
                 );
         }
