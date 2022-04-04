@@ -303,24 +303,8 @@ span.button-content {
     vertical-align: top;
 }
 
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    height: 1em;
-    width: 1em;
-    border-radius: 50em;
-    background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
-    background-size: contain;
-    opacity: 0;
-    pointer-events: none;
-}
-
 .input-field input[type=search]:focus:not(.browser-default) {
     border-bottom: 1px solid #26a69a;
     -webkit-box-shadow: 0 1px 0 0 #26a69a;
     box-shadow: 0 1px 0 0 #26a69a;
-}
-
-input[type="search"]:focus::-webkit-search-cancel-button {
-    opacity: .3;
-    pointer-events: all;
 }

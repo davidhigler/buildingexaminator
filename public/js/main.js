@@ -29,12 +29,12 @@ function hideLoader() {
     $('div.overlay').hide();
 }
 
-function addPagination(pager, callback) {
+function addPagination(pager, searchterm, callback) {
     let html = '    <ul class="pagination">\n';
     if (pager.previous > 0) {
         html +=
             '        <li>' +
-            '            <a href="javascript:' + callback + '(' + pager.previous + ');"><i class="material-icons">chevron_left</i></a>' +
+            '            <a href="javascript:' + callback + '(' + pager.previous + ', \'' + searchterm + '\');"><i class="material-icons">chevron_left</i></a>' +
             '        </li>\n';
     } else {
         html +=
@@ -47,27 +47,27 @@ function addPagination(pager, callback) {
         if (previousIndex > 0) {
             html +=
                 '        <li>' +
-                '            <a href="javascript:' + callback + '(' + previousIndex + ');">' + previousIndex + '</a>' +
+                '            <a href="javascript:' + callback + '(' + previousIndex + ', \'' + searchterm + '\');">' + previousIndex + '</a>' +
                 '        </li>\n';
         }
     }
     html +=
         '        <li class="active">' +
-        '            <a href="javascript:' + callback + '(' + pager.current + ');">' + pager.current + '</a>' +
+        '            <a href="javascript:' + callback + '(' + pager.current + ', \'' + searchterm + '\');">' + pager.current + '</a>' +
         '        </li>\n';
     for (let i = 1; i < 5; i++) {
         let nextIndex = pager.current + i;
         if (nextIndex <= pager.count) {
             html +=
                 '        <li>' +
-                '            <a href="javascript:' + callback + '(' + nextIndex + ');">' + nextIndex + '</a>' +
+                '            <a href="javascript:' + callback + '(' + nextIndex + ', \'' + searchterm + '\');">' + nextIndex + '</a>' +
                 '        </li>\n';
         }
     }
     if (pager.next > 0) {
         html +=
             '        <li>' +
-            '            <a href="javascript:' + callback + '(' + pager.next + ');"><i class="material-icons">chevron_right</i></a>' +
+            '            <a href="javascript:' + callback + '(' + pager.next + ', \'' + searchterm + '\');"><i class="material-icons">chevron_right</i></a>' +
             '        </li>\n';
     } else {
         html +=
@@ -366,11 +366,11 @@ function loadOwnersPage(page = 1, searchterm = '') {
                 '    <h3 class="header">Owners</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search">\n' +
-                '            <label for="searchterm">Search</label>\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
                 '        </div>\n' +
                 '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="console.log($(\'input#searchterm\').val());">\n' +
+                '            <button class="btn" onclick="loadOwnersPage(1, $(\'input#searchterm\').val());">\n' +
                 '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
@@ -394,7 +394,7 @@ function loadOwnersPage(page = 1, searchterm = '') {
                 '        </tbody>\n' +
                 '    </table>\n';
 
-            html += addPagination(data.pager, 'loadOwnersPage');
+            html += addPagination(data.pager, searchterm, 'loadOwnersPage');
 
             $('div#content').html(html);
         },
@@ -643,12 +643,13 @@ function deleteOwner(id) {
  * Housingstocks
  */
 
-function loadHousingstocksPage(page = 1) {
+function loadHousingstocksPage(page = 1, searchterm = '') {
     $.ajax({
         url: '/api/v1/housingstocks',
         type: 'GET',
         data: {
-            page: page
+            page: page,
+            searchterm: searchterm
         },
         dataType: 'json',
         accepts: {
@@ -656,6 +657,7 @@ function loadHousingstocksPage(page = 1) {
         },
         beforeSend: function() {
             showLoader();
+            $('.material-tooltip').remove();
             $('#slide-out').sidenav('close');
         },
         success: function(data) {
@@ -680,8 +682,17 @@ function loadHousingstocksPage(page = 1) {
             let html =
                 '    <h3 class="header">Housingstocks</h3>\n' +
                 '    <div class="row">\n' +
-                '        <div class="input-field col s12">\n' +
-                '            <button class="btn" name="new" onclick="loadHousingstockNewPage();">\n' +
+                '        <div class="input-field col s6">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadHousingstocksPage(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn right" onclick="loadHousingstockNewPage();">\n' +
                 '                <i class="material-icons">domain_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                 '            </button>\n' +
                 '        </div>\n' +
@@ -700,7 +711,7 @@ function loadHousingstocksPage(page = 1) {
                 '        </tbody>\n' +
                 '    </table>\n';
 
-            html += addPagination(data.pager, 'loadHousingstocksPage');
+            html += addPagination(data.pager, searchterm, 'loadHousingstocksPage');
 
             $('div#content').html(html);
         },
@@ -1002,13 +1013,14 @@ function deleteHousingstock(id) {
  * ResidentialAreas
  */
 
-function loadResidentialAreasPage(page = 1) {
+function loadResidentialAreasPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
             type: 'GET',
             data: {
-                page: page
+                page: page,
+                searchterm: searchterm
             },
             dataType: 'json',
             accepts: {
@@ -1016,6 +1028,7 @@ function loadResidentialAreasPage(page = 1) {
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
@@ -1040,8 +1053,17 @@ function loadResidentialAreasPage(page = 1) {
                 let html =
                     '    <h3 class="header">Residential areas</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s12">\n' +
-                    '            <button class="btn" name="new" onclick="loadResidentialAreaNewPage();">\n' +
+                    '        <div class="input-field col s6">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadResidentialAreasPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn right" onclick="loadResidentialAreaNewPage();">\n' +
                     '                <i class="material-icons">add_view_quilt</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -1060,7 +1082,7 @@ function loadResidentialAreasPage(page = 1) {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, 'loadResidentialAreasPage');
+                html += addPagination(data.pager, searchterm, 'loadResidentialAreasPage');
 
                 $('div#content').html(html);
             },
@@ -1288,13 +1310,14 @@ function deleteResidentialArea(id) {
  * Blocks
  */
 
-function loadBlocksPage(page = 1) {
+function loadBlocksPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks',
             type: 'GET',
             data: {
-                page: page
+                page: page,
+                searchterm: searchterm
             },
             dataType: 'json',
             accepts: {
@@ -1302,6 +1325,7 @@ function loadBlocksPage(page = 1) {
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
@@ -1326,8 +1350,17 @@ function loadBlocksPage(page = 1) {
                 let html =
                     '    <h3 class="header">Blocks</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s12">\n' +
-                    '            <button class="btn" name="new" onclick="loadBlockNewPage();">\n' +
+                    '        <div class="input-field col s6">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadBlocksPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn right" onclick="loadBlockNewPage();">\n' +
                     '                <i class="material-icons">add_view_module</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -1346,7 +1379,7 @@ function loadBlocksPage(page = 1) {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, 'loadBlocksPage');
+                html += addPagination(data.pager, searchterm, 'loadBlocksPage');
 
                 $('div#content').html(html);
             },
@@ -1590,13 +1623,14 @@ function deleteBlock(id) {
  * Buildingtypes
  */
 
-function loadBuildingtypesPage(page = 1) {
+function loadBuildingtypesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes',
             type: 'GET',
             data: {
-                page: page
+                page: page,
+                searchterm: searchterm
             },
             dataType: 'json',
             accepts: {
@@ -1604,6 +1638,7 @@ function loadBuildingtypesPage(page = 1) {
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
@@ -1628,8 +1663,17 @@ function loadBuildingtypesPage(page = 1) {
                 let html =
                     '    <h3 class="header">Building types</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s12">\n' +
-                    '            <button class="btn" name="new" onclick="loadBuildingtypeNewPage();">\n' +
+                    '        <div class="input-field col s6">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadBuildingtypesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn right" onclick="loadBuildingtypeNewPage();">\n' +
                     '                <i class="material-icons">add_home_work</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -1648,7 +1692,7 @@ function loadBuildingtypesPage(page = 1) {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, 'loadBuildingtypesPage');
+                html += addPagination(data.pager, searchterm, 'loadBuildingtypesPage');
 
                 $('div#content').html(html);
             },
@@ -1876,13 +1920,14 @@ function deleteBuildingType(id) {
  * Livingtypes
  */
 
-function loadLivingtypesPage(page = 1) {
+function loadLivingtypesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes',
             type: 'GET',
             data: {
-                page: page
+                page: page,
+                searchterm: searchterm
             },
             dataType: 'json',
             accepts: {
@@ -1890,6 +1935,7 @@ function loadLivingtypesPage(page = 1) {
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
@@ -1914,8 +1960,17 @@ function loadLivingtypesPage(page = 1) {
                 let html =
                     '    <h3 class="header">Living types</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s12">\n' +
-                    '            <button class="btn" name="new" onclick="loadLivingTypeNewPage();">\n' +
+                    '        <div class="input-field col s6">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadLivingtypesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn right" onclick="loadLivingTypeNewPage();">\n' +
                     '                <i class="material-icons">add_villa</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -1934,7 +1989,7 @@ function loadLivingtypesPage(page = 1) {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, 'loadLivingtypesPage');
+                html += addPagination(data.pager, searchterm, 'loadLivingtypesPage');
 
                 $('div#content').html(html);
             },
@@ -2162,13 +2217,14 @@ function deleteLivingType(id) {
  * Buildingaddresses
  */
 
-function loadBuildingaddressesPage(page = 1) {
+function loadBuildingaddressesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
             type: 'GET',
             data: {
-                page: page
+                page: page,
+                searchterm: searchterm
             },
             dataType: 'json',
             accepts: {
@@ -2176,6 +2232,7 @@ function loadBuildingaddressesPage(page = 1) {
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
@@ -2207,8 +2264,17 @@ function loadBuildingaddressesPage(page = 1) {
                 let html =
                     '    <h3 class="header">Buildingaddresses</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s12">\n' +
-                    '            <button class="btn" name="new" onclick="loadBuildingaddressNewPage();">\n' +
+                    '        <div class="input-field col s6">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadBuildingaddressesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn right" onclick="loadBuildingaddressNewPage();">\n' +
                     '                <i class="material-icons">house_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -2230,7 +2296,7 @@ function loadBuildingaddressesPage(page = 1) {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, 'loadBuildingaddressesPage');
+                html += addPagination(data.pager, searchterm, 'loadBuildingaddressesPage');
 
                 $('div#content').html(html);
             },

@@ -2173,7 +2173,7 @@ class ApiController extends AbstractController
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $repository = $this->getDoctrine()->getRepository(LivingType::class);
+        $repository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -2183,7 +2183,6 @@ class ApiController extends AbstractController
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
-                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.streetName', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.city', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.rentalUnitNumber', $adapter->expr()->literal($searchTerm . '%')),
@@ -2191,7 +2190,7 @@ class ApiController extends AbstractController
                     )
                 );
         }
-        $adapter->orderBy('o.name', 'ASC');
+        $adapter->orderBy('o.city', 'ASC')->orderBy('o.streetName', 'ASC')->orderBy('o.houseNumber', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
