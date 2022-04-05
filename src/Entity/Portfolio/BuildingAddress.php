@@ -61,18 +61,6 @@ class BuildingAddress extends IdTime
     protected Block $block;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false)
-     *
-     * @Assert\Type(
-     *     type="bool",
-     *     message="Daeb is not a valid {{ type }}"
-     * )
-     *
-     * @OA\Property()
-     */
-    protected bool $daeb;
-
-    /**
      * @ORM\Column(type="string", length=128, nullable=true)
      *
      * @Assert\Type(
@@ -225,7 +213,38 @@ class BuildingAddress extends IdTime
      */
     protected int $renovationYear;
 
-    protected Vtw $vtw;
+    /**
+     * @ORM\Column(type="string", length=3, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The orientation may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The orientation is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      min=1,
+     *      max=3,
+     *      minMessage="The orientation must be at least {{ limit }} character long",
+     *      maxMessage="The orientation can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $orientation;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     *
+     * @Assert\Type(
+     *     type="bool",
+     *     message="Daeb is not a valid {{ type }}"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected bool $daeb;
 
     #[Pure]
     public function __construct()
@@ -255,11 +274,6 @@ class BuildingAddress extends IdTime
     public function getBlock(): Block
     {
         return $this->block;
-    }
-
-    public function getDaeb(): bool
-    {
-        return $this->daeb;
     }
 
     public function getRentalUnitNumber(): string
@@ -307,6 +321,16 @@ class BuildingAddress extends IdTime
         return $this->renovationYear;
     }
 
+    public function getOrientation(): string
+    {
+        return $this->orientation;
+    }
+
+    public function getDaeb(): bool
+    {
+        return $this->daeb;
+    }
+
     public function setHousingStock(HousingStock $housingStock): void
     {
         $this->housingStock = $housingStock;
@@ -317,6 +341,11 @@ class BuildingAddress extends IdTime
         $this->residentialArea = $residentialArea;
     }
 
+    public function setBlock(Block $block): void
+    {
+        $this->block = $block;
+    }
+
     public function setBuildingType(BuildingType $buildingType): void
     {
         $this->buildingType = $buildingType;
@@ -325,16 +354,6 @@ class BuildingAddress extends IdTime
     public function setLivingType(LivingType $livingType): void
     {
         $this->livingType = $livingType;
-    }
-
-    public function setBlock(Block $block): void
-    {
-        $this->block = $block;
-    }
-
-    public function setDaeb(bool $daeb): void
-    {
-        $this->daeb = $daeb;
     }
 
     public function setRentalUnitNumber(string $rentalUnitNumber): void
@@ -372,10 +391,6 @@ class BuildingAddress extends IdTime
         $this->bagId = $bagId;
     }
 
-    public function setVtw(Vtw $vtw): void {
-        $this->vtw = $vtw;
-    }
-
     public function setConstructionYear(int $constructionYear): void
     {
         $this->constructionYear = $constructionYear;
@@ -384,6 +399,16 @@ class BuildingAddress extends IdTime
     public function setRenovationYear(int $renovationYear): void
     {
         $this->renovationYear = $renovationYear;
+    }
+
+    public function setOrientation(string $orientation): void
+    {
+        $this->orientation = $orientation;
+    }
+
+    public function setDaeb(bool $daeb): void
+    {
+        $this->daeb = $daeb;
     }
 
 }

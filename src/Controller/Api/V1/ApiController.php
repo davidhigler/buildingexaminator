@@ -411,11 +411,11 @@ class ApiController extends AbstractController
      */
     public function getOwners(Request $request, LoggerInterface $logger): Response
     {
-        $repository = $this->getDoctrine()->getRepository(Owner::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $adapter = $ownerRepository->createQueryBuilder('o');
         if ($searchTerm !== null) {
             $adapter
                 ->andWhere(
@@ -569,15 +569,23 @@ class ApiController extends AbstractController
         $owner->setName($changeOwner['name']);
         if (!empty($changeOwner['kvk'])) {
             $owner->setKvk($changeOwner['kvk']);
+        } else {
+            $owner->setKvk(null);
         }
         if (!empty($changeOwner['btw'])) {
             $owner->setBtw($changeOwner['btw']);
+        } else {
+            $owner->setBtw(null);
         }
         if (!empty($changeOwner['lnumber'])) {
             $owner->setLnumber($changeOwner['lnumber']);
+        } else {
+            $owner->setLnumber(null);
         }
         if (!empty($changeOwner['website'])) {
             $owner->setWebsite($changeOwner['website']);
+        } else {
+            $owner->setWebsite(null);
         }
 
         $violations = $validator->validate($owner);
@@ -616,11 +624,16 @@ class ApiController extends AbstractController
     public function deleteOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($owner);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -681,11 +694,11 @@ class ApiController extends AbstractController
      */
     public function getHousingStocks(Request $request, LoggerInterface $logger): Response
     {
-        $repository = $this->getDoctrine()->getRepository(HousingStock::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $adapter = $housingStockRepository->createQueryBuilder('o');
         if ($searchTerm !== null) {
             $adapter
                 ->andWhere(
@@ -748,6 +761,7 @@ class ApiController extends AbstractController
         $newHousingStock = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $newHousingStock['owner']);
 
         $housingStock = new HousingStock();
@@ -831,12 +845,29 @@ class ApiController extends AbstractController
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $changeHousingStock['owner']);
 
-        $housingStock->setOwner($owner);
-        $housingStock->setName($changeHousingStock['name']);
-        $housingStock->setCode($changeHousingStock['code']);
-        $housingStock->setDescription($changeHousingStock['description']);
+        if (!empty($owner)) {
+            $housingStock->setOwner($owner);
+        } else {
+            $housingStock->setOwner(null);
+        }
+        if (!empty($changeHousingStock['name'])) {
+            $housingStock->setName($changeHousingStock['name']);
+        } else {
+            $housingStock->setName(null);
+        }
+        if (!empty($changeHousingStock['code'])) {
+            $housingStock->setCode($changeHousingStock['code']);
+        } else {
+            $housingStock->setCode(null);
+        }
+        if (!empty($changeHousingStock['description'])) {
+            $housingStock->setDescription($changeHousingStock['description']);
+        } else {
+            $housingStock->setDescription(null);
+        }
         $housingStock->setLastChangeTime();
 
         $violations = $validator->validate($housingStock);
@@ -875,11 +906,16 @@ class ApiController extends AbstractController
     public function deleteHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($housingStock);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json($this->extractErrorFromException($exception), 500);
+        }
 
         return new Response('', 200);
     }
@@ -952,14 +988,15 @@ class ApiController extends AbstractController
      */
     public function getResidentialAreas(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $repository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        $adapter = $residentialAreaRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -1026,13 +1063,16 @@ class ApiController extends AbstractController
      */
     public function addResidentialArea(string $housingStockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
         $newResidentialArea = json_decode($request->getContent(), true);
 
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
         $residentialArea = new ResidentialArea();
-        $residentialArea->setHousingStock($housingStock);
+        if (!empty($housingStock)) {
+            $residentialArea->setHousingStock($housingStock);
+        }
         if (!empty($newResidentialArea['name'])) {
             $residentialArea->setName($newResidentialArea['name']);
         }
@@ -1119,10 +1159,26 @@ class ApiController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $residentialArea->setHousingStock($housingStock);
-        $residentialArea->setName($changeResidentialArea['name']);
-        $residentialArea->setCode($changeResidentialArea['code']);
-        $residentialArea->setDescription($changeResidentialArea['description']);
+        if (!empty($housingStock)) {
+            $residentialArea->setHousingStock($housingStock);
+        } else {
+            $residentialArea->setHousingStock(null);
+        }
+        if (!empty($changeResidentialArea['name'])) {
+            $residentialArea->setName($changeResidentialArea['name']);
+        } else {
+            $residentialArea->setName(null);
+        }
+        if (!empty($changeResidentialArea['code'])) {
+            $residentialArea->setCode($changeResidentialArea['code']);
+        } else {
+            $residentialArea->setCode(null);
+        }
+        if (!empty($changeResidentialArea['description'])) {
+            $residentialArea->setDescription($changeResidentialArea['description']);
+        } else {
+            $residentialArea->setDescription(null);
+        }
         $residentialArea->setLastChangeTime();
 
         $violations = $validator->validate($residentialArea);
@@ -1171,6 +1227,7 @@ class ApiController extends AbstractController
     public function deleteResidentialArea(string $housingStockId, string $residentialAreaId): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var ResidentialArea $residentialArea */
         $residentialArea = $residentialAreaRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -1262,14 +1319,15 @@ class ApiController extends AbstractController
      */
     public function getBlocks(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $repository = $this->getDoctrine()->getRepository(Block::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+        $adapter = $blockRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -1343,14 +1401,25 @@ class ApiController extends AbstractController
         $newBlock = json_decode($request->getContent(), true);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $block = new Block();
-        $block->setHousingStock($housingStock);
-        $block->setName($newBlock['name']);
-        $block->setCode($newBlock['code']);
-        $block->setDescription($newBlock['description']);
-        $block->setFinancialNumber($newBlock['financialnumber']);
+        if (!empty($housingStock)) {
+            $block->setHousingStock($housingStock);
+        }
+        if (!empty($newBlock['name'])) {
+            $block->setName($newBlock['name']);
+        }
+        if (!empty($newBlock['code'])) {
+            $block->setCode($newBlock['code']);
+        }
+        if (!empty($newBlock['description'])) {
+            $block->setDescription($newBlock['description']);
+        }
+        if (!empty($newBlock['financialnumber'])) {
+            $block->setFinancialNumber($newBlock['financialnumber']);
+        }
         $block->setCreationTime();
         $block->setLastChangeTime();
 
@@ -1428,11 +1497,31 @@ class ApiController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $block->setHousingStock($housingStock);
-        $block->setName($changeBlock['name']);
-        $block->setCode($changeBlock['code']);
-        $block->setFinancialNumber($changeBlock['financialNumber']);
-        $block->setDescription($changeBlock['description']);
+        if (!empty($housingStock)) {
+            $block->setHousingStock($housingStock);
+        } else {
+            $block->setHousingStock(null);
+        }
+        if (!empty($changeBlock['name'])) {
+            $block->setName($changeBlock['name']);
+        } else {
+            $block->setName(null);
+        }
+        if (!empty($changeBlock['code'])) {
+            $block->setCode($changeBlock['code']);
+        } else {
+            $block->setCode(null);
+        }
+        if (!empty($changeBlock['financialNumber'])) {
+            $block->setFinancialNumber($changeBlock['financialNumber']);
+        } else {
+            $block->setFinancialNumber(null);
+        }
+        if (!empty($changeBlock['description'])) {
+            $block->setDescription($changeBlock['description']);
+        } else {
+            $block->setDescription(null);
+        }
         $block->setLastChangeTime();
 
         $violations = $validator->validate($block);
@@ -1481,6 +1570,7 @@ class ApiController extends AbstractController
     public function deleteBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+        /** @var Block $block */
         $block = $blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -1572,14 +1662,15 @@ class ApiController extends AbstractController
      */
     public function getBuildingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $repository = $this->getDoctrine()->getRepository(BuildingType::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        $adapter = $buildingTypeRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -1649,13 +1740,22 @@ class ApiController extends AbstractController
         $newBuildingType = json_decode($request->getContent(), true);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $buildingType = new BuildingType();
-        $buildingType->setHousingStock($housingStock);
-        $buildingType->setName($newBuildingType['name']);
-        $buildingType->setCode($newBuildingType['code']);
-        $buildingType->setDescription($newBuildingType['description']);
+        if (!empty($housingStock)) {
+            $buildingType->setHousingStock($housingStock);
+        }
+        if (!empty($newBuildingType['name'])) {
+            $buildingType->setName($newBuildingType['name']);
+        }
+        if (!empty($newBuildingType['code'])) {
+            $buildingType->setCode($newBuildingType['code']);
+        }
+        if (!empty($newBuildingType['description'])) {
+            $buildingType->setDescription($newBuildingType['description']);
+        }
         $buildingType->setCreationTime();
         $buildingType->setLastChangeTime();
 
@@ -1733,10 +1833,26 @@ class ApiController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $buildingType->setHousingStock($housingStock);
-        $buildingType->setName($changeBuildingType['name']);
-        $buildingType->setCode($changeBuildingType['code']);
-        $buildingType->setDescription($changeBuildingType['description']);
+        if (!empty($housingStock)) {
+            $buildingType->setHousingStock($housingStock);
+        } else {
+            $buildingType->setHousingStock(null);
+        }
+        if (!empty($changeBuildingType['name'])) {
+            $buildingType->setName($changeBuildingType['name']);
+        } else {
+            $buildingType->setName(null);
+        }
+        if (!empty($changeBuildingType['code'])) {
+            $buildingType->setCode($changeBuildingType['code']);
+        } else {
+            $buildingType->setCode(null);
+        }
+        if (!empty($changeBuildingType['description'])) {
+            $buildingType->setDescription($changeBuildingType['description']);
+        } else {
+            $buildingType->setDescription(null);
+        }
         $buildingType->setLastChangeTime();
 
         $violations = $validator->validate($buildingType);
@@ -1785,6 +1901,7 @@ class ApiController extends AbstractController
     public function deleteBuildingType(string $housingStockId, string $buildingTypeId): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        /** @var BuildingType $buildingType */
         $buildingType = $buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId]);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -1876,14 +1993,15 @@ class ApiController extends AbstractController
      */
     public function getLivingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $repository = $this->getDoctrine()->getRepository(LivingType::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        $adapter = $livingTypeRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -1953,13 +2071,22 @@ class ApiController extends AbstractController
         $newLivingType = json_decode($request->getContent(), true);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $livingType = new LivingType();
-        $livingType->setHousingStock($housingStock);
-        $livingType->setName($newLivingType['name']);
-        $livingType->setCode($newLivingType['code']);
-        $livingType->setDescription($newLivingType['description']);
+        if (!empty($housingStock)) {
+            $livingType->setHousingStock($housingStock);
+        }
+        if (!empty($newLivingType['name'])) {
+            $livingType->setName($newLivingType['name']);
+        }
+        if (!empty($newLivingType['code'])) {
+            $livingType->setCode($newLivingType['code']);
+        }
+        if (!empty($newLivingType['description'])) {
+            $livingType->setDescription($newLivingType['description']);
+        }
         $livingType->setCreationTime();
         $livingType->setLastChangeTime();
 
@@ -2037,10 +2164,26 @@ class ApiController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $livingType->setHousingStock($housingStock);
-        $livingType->setName($changeLivingType['name']);
-        $livingType->setCode($changeLivingType['code']);
-        $livingType->setDescription($changeLivingType['description']);
+        if (!empty($housingStock)) {
+            $livingType->setHousingStock($housingStock);
+        } else {
+            $livingType->setHousingStock(null);
+        }
+        if (!empty($changeLivingType['name'])) {
+            $livingType->setName($changeLivingType['name']);
+        } else {
+            $livingType->setName(null);
+        }
+        if (!empty($changeLivingType['code'])) {
+            $livingType->setCode($changeLivingType['code']);
+        } else {
+            $livingType->setCode(null);
+        }
+        if (!empty($changeLivingType['description'])) {
+            $livingType->setDescription($changeLivingType['description']);
+        } else {
+            $livingType->setDescription(null);
+        }
         $livingType->setLastChangeTime();
 
         $violations = $validator->validate($livingType);
@@ -2089,6 +2232,7 @@ class ApiController extends AbstractController
     public function deleteLivingType(string $housingStockId, string $livingTypeId): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        /** @var LivingType $livingType */
         $livingType = $livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -2146,7 +2290,7 @@ class ApiController extends AbstractController
      * @Todo Define the POST, PUT and DELETE methods
      */
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddress', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'listbuildingaddresses', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/addresses",
@@ -2168,16 +2312,17 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getAddresses(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getBuildingAddresses(string $housingStockId, Request $request, LoggerInterface $logger): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $repository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $adapter = $repository->createQueryBuilder('o');
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        $adapter = $buildingAddressRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -2203,7 +2348,7 @@ class ApiController extends AbstractController
         return $this->renderData($data, self::ADDRESS_LIST_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
+    #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'addbuildingaddress', methods: ['POST'])]
     /**
      * @OA\Post(
      *     path="/housingstocks/{housingStockId}/addresses",
@@ -2222,6 +2367,26 @@ class ApiController extends AbstractController
      *         description="Details about new address",
      *         @OA\JsonContent(
      *             type="object",
+     *             @OA\Property(
+     *                 property="residentialarea",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="block",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="buildingtype",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="livingtype",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="rentalunitnumber",
+     *                 type="string"
+     *             ),
      *             @OA\Property(
      *                 property="streetname",
      *                 type="string"
@@ -2242,6 +2407,26 @@ class ApiController extends AbstractController
      *                 property="city",
      *                 type="string"
      *             ),
+     *             @OA\Property(
+     *                 property="bagid",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="constructionyear",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="renovationyear",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="orientation",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="deab",
+     *                 type="boolean"
+     *             )
      *         )
      *     ),
      *     @OA\Response(
@@ -2251,20 +2436,79 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    public function addBuildingAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
     {
         $newAddress = json_decode($request->getContent(), true);
 
         $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
         $housingStock = $blockRepository->find((int) $housingStockId);
 
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var ResidentialArea $residentialArea */
+        $residentialArea = $residentialAreaRepository->find((int) $newAddress['residentialarea']);
+
+        $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+        /** @var Block $block */
+        $block = $blockRepository->find((int) $newAddress['block']);
+
+        $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        /** @var BuildingType $buildingType */
+        $buildingType = $buildingTypeRepository->find((int) $newAddress['buildingtype']);
+
+        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        /** @var LivingType $livingType */
+        $livingType = $livingTypeRepository->find((int) $newAddress['livingtype']);
+
         $address = new BuildingAddress();
-        $address->setHousingStock($housingStock);
-        $address->setStreetName($newAddress['streetname']);
-        $address->setHouseNumber($newAddress['housenumber']);
-        $address->setAddition($newAddress['addition']);
-        $address->setZipcode($newAddress['zipcode']);
-        $address->setCity($newAddress['city']);
+        if (!empty($housingStock)) {
+            $address->setHousingStock($housingStock);
+        }
+        if (!empty($residentialArea)) {
+            $address->setResidentialArea($residentialArea);
+        }
+        if (!empty($block)) {
+            $address->setBlock($block);
+        }
+        if (!empty($buildingType)) {
+            $address->setBuildingType($buildingType);
+        }
+        if (!empty($livingType)) {
+            $address->setLivingType($livingType);
+        }
+        if (!empty($newAddress['rentalunitnumber'])) {
+            $address->setRentalUnitNumber($newAddress['rentalunitnumber']);
+        }
+        if (!empty($newAddress['streetname'])) {
+            $address->setStreetName($newAddress['streetname']);
+        }
+        if (!empty($newAddress['housenumber'])) {
+            $address->setHouseNumber($newAddress['housenumber']);
+        }
+        if (!empty($newAddress['addition'])) {
+            $address->setAddition($newAddress['addition']);
+        }
+        if (!empty($newAddress['zipcode'])) {
+            $address->setZipcode($newAddress['zipcode']);
+        }
+        if (!empty($newAddress['city'])) {
+            $address->setCity($newAddress['city']);
+        }
+        if (!empty($newAddress['bagid'])) {
+            $address->setBagId($newAddress['bagid']);
+        }
+        if (!empty($newAddress['constructionyear'])) {
+            $address->setConstructionYear($newAddress['constructionyear']);
+        }
+        if (!empty($newAddress['renovationyear'])) {
+            $address->setRenovationYear($newAddress['renovationyear']);
+        }
+        if (!empty($newAddress['orientation'])) {
+            $address->setOrientation($newAddress['orientation']);
+        }
+        if (!empty($newAddress['daeb'])) {
+            $address->setDaeb($newAddress['daeb']);
+        }
         $address->setCreationTime();
         $address->setLastChangeTime();
 
@@ -2280,7 +2524,8 @@ class ApiController extends AbstractController
         return $this->renderData($address, self::ADDRESS_DETAIL_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
+    // @ToDo Conform to standards from above
+    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'changebuildingaddress', methods: ['PUT'])]
     /**
      * @OA\Put(
      *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
@@ -2342,13 +2587,13 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function changeAddress(string $addressId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeBuildingAddress(string $buildingAddressId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
     {
         $changeAddress = json_decode($request->getContent(), true);
 
         $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
         /** @var BuildingAddress $buildingAddress */
-        $buildingAddress = $buildingAddressRepository->find((int) $addressId);
+        $buildingAddress = $buildingAddressRepository->find((int) $buildingAddressId);
 
         $buildingAddress->setStreetName($changeAddress['streetName']);
         $buildingAddress->setHouseNumber($changeAddress['houseNumber']);
@@ -2370,7 +2615,7 @@ class ApiController extends AbstractController
         return $this->renderData($buildingAddress, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
+    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'deletebuildingaddress', methods: ['DELETE'])]
     /**
      * @OA\Delete(
      *     path="/housingstocks/{housingStockId}/blocks/{addressId}",
@@ -2401,10 +2646,11 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function deleteAddress(string $housingStockId, string $addressId): Response
+    public function deleteBuildingAddress(string $housingStockId, string $buildingAddressId): Response
     {
         $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
+        /** @var BuildingAddress $buildingAddress */
+        $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingAddressId], null, 1);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($buildingAddress);
@@ -2417,7 +2663,7 @@ class ApiController extends AbstractController
         return new Response('', 200);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'getbuildingaddress', methods: ['GET'])]
     /**
      * @OA\Get(
      *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
@@ -2449,10 +2695,10 @@ class ApiController extends AbstractController
      *     )
      * )
      */
-    public function getAddress(string $housingStockId, string $addressId, LoggerInterface $logger): Response
+    public function getBuildingAddress(string $housingStockId, string $buildingAddressId, LoggerInterface $logger): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
+        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingAddressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
     }
 
     /**

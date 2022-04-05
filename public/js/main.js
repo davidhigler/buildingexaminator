@@ -2225,7 +2225,7 @@ function deleteLivingType(id) {
 function loadBuildingaddressesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
             type: 'GET',
             data: {
                 page: page,
@@ -2318,7 +2318,6 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
     }
 }
 
-/** ToDo */
 function loadBuildingaddressNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
@@ -2368,7 +2367,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">view_quilt</i>\n' +
-                    '                <select name="residentialarea">\n' +
+                    '                <select id="residentialarea" name="residentialarea">\n' +
                     residentialAreaHtmlOptions +
                     '                </select>\n' +
                     '                <label>Residential area</label>\n' +
@@ -2377,7 +2376,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">view_module</i>\n' +
-                    '                <select name="block">\n' +
+                    '                <select id="block" name="block">\n' +
                     blockHtmlOptions +
                     '                </select>\n' +
                     '                <label>Block</label>\n' +
@@ -2386,7 +2385,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">home_work</i>\n' +
-                    '                <select name="buildingtype">\n' +
+                    '                <select id="buildingtype" name="buildingtype">\n' +
                     buildingTypeHtmlOptions +
                     '                </select>\n' +
                     '                <label>Building type</label>\n' +
@@ -2395,7 +2394,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">villa</i>\n' +
-                    '                <select name="livingtype">\n' +
+                    '                <select id="livingtype" name="livingtype">\n' +
                     livingTypeHtmlOptions +
                     '                </select>\n' +
                     '                <label>Living type</label>\n' +
@@ -2453,7 +2452,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">calendar_today</i>\n' +
-                    '                <select name="constructionyear">\n' +
+                    '                <select id="constructionyear" name="constructionyear">\n' +
                     yearHtmlOptions +
                     '                </select>\n' +
                     '                <label>Construction year</label>\n' +
@@ -2462,7 +2461,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">calendar_today</i>\n' +
-                    '                <select name="renovationyear">\n' +
+                    '                <select id="renovationyear" name="renovationyear">\n' +
                     yearHtmlOptions +
                     '                </select>\n' +
                     '                <label>Renovation year</label>\n' +
@@ -2471,7 +2470,7 @@ function loadBuildingaddressNewPage() {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">explore</i>\n' +
-                    '                <select name="orientation">\n' +
+                    '                <select id="orientation" name="orientation">\n' +
                     '                    <option disabled selected>Choose a direction</option>\n' +
                     '                    <option value="n" data-icon="/images/directions/n.png">Noord</option>\n' +
                     '                    <option value="nne" data-icon="/images/directions/nne.png">Noord Noord Oost</option>\n' +
@@ -2498,7 +2497,7 @@ function loadBuildingaddressNewPage() {
                     '                <p>\n' +
                     '                    <i class="material-icons prefix">house_money</i>\n' +
                     '                    <label>\n' +
-                    '                        <input type="checkbox">\n' +
+                    '                        <input id="deab" name="deab" type="checkbox">\n' +
                     '                        <span>Deab</span>\n' +
                     '                    </label>\n' +
                     '                </p>\n' +
@@ -2527,6 +2526,51 @@ function loadBuildingaddressNewPage() {
                         loadBuildingaddressesPage();
                     }
                 );
+
+                $('form#newbuildingaddress').submit(function (event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        accepts: {
+                            json: 'application/json'
+                        },
+                        data: JSON.stringify(
+                            {
+                                'residentialarea': $('select#residentialarea').val(),
+                                'block': $('select#block').val(),
+                                'buildingtype': $('select#buildingtype').val(),
+                                'livingtype': $('select#livingtype').val(),
+                                'rentalunitnumber': $('input#rentalunitnumber').val(),
+                                'streetname': $('input#streetname').val(),
+                                'housenumber': $('input#housenumber').val(),
+                                'addition': $('input#addition').val(),
+                                'zipcode': $('input#zipcode').val(),
+                                'city': $('input#city').val(),
+                                'bagid': $('input#bagid').val(),
+                                'constructionyear': $('select#constructionyear').val(),
+                                'renovationyear': $('select#renovationyear').val(),
+                                'orientation': $('select#orientation').val(),
+                                'deab': $('input#deab').val()
+                            }
+                        ),
+                        beforeSend: function () {
+                            showLoader();
+                            $('#slide-out').sidenav('close');
+                        },
+                        success: function () {
+                            loadBuildingaddressesPage();
+                        },
+                        error: function (jqXHR) {
+                            loadErrorPage(jqXHR);
+                        },
+                        complete: function () {
+                            hideLoader();
+                        },
+                    });
+                });
 
                 hideLoader();
             }
