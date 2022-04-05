@@ -246,6 +246,8 @@ class BuildingAddress extends IdTime
      */
     protected bool $daeb;
 
+    protected Vtw $vtw;
+
     #[Pure]
     public function __construct()
     {
@@ -331,6 +333,11 @@ class BuildingAddress extends IdTime
         return $this->daeb;
     }
 
+    public function getVtw(): Vtw
+    {
+        return $this->vtw;
+    }
+
     public function setHousingStock(HousingStock $housingStock): void
     {
         $this->housingStock = $housingStock;
@@ -409,6 +416,11 @@ class BuildingAddress extends IdTime
     public function setDaeb(bool $daeb): void
     {
         $this->daeb = $daeb;
+    }
+
+    public function setVtw(Vtw $vtw): void
+    {
+        $this->vtw = $vtw;
     }
 
 }
