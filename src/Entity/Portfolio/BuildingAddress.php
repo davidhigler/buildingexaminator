@@ -213,25 +213,6 @@ class BuildingAddress extends IdTime
      */
     protected int $renovationYear;
 
-    /**
-     * @ORM\Column(type="string", length=3, nullable=false)
-     *
-     * @Assert\NotBlank(
-     *      message="The orientation may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The orientation is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      min=1,
-     *      max=3,
-     *      minMessage="The orientation must be at least {{ limit }} character long",
-     *      maxMessage="The orientation can contain a maximum of {{ limit }} characters"
-     * )
-     *
-     * @OA\Property()
-     */
     protected string $orientation;
 
     /**
