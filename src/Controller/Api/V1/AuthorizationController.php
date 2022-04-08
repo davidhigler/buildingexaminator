@@ -4,6 +4,7 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Authorization\Owner;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use OpenApi\Annotations as OA;
 use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
