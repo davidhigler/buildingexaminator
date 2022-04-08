@@ -2,12 +2,13 @@
 
 namespace App\Entity\Portfolio;
 
-use OpenApi\Annotations as OA;
-use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\Pure;
+use App\Entity\Authorization\Owner;
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
+use OpenApi\Annotations as OA;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

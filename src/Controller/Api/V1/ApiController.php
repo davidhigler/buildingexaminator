@@ -2,24 +2,24 @@
 
 namespace App\Controller\Api\V1;
 
-use App\Entity\Portfolio\Owner;
-use Exception;
-use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\BuildingAddress;
 use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
 use App\Entity\Portfolio\ResidentialArea;
+use Exception;
+use JetBrains\PhpStorm\Pure;
+use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerInterface;
 use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -563,7 +563,7 @@ class ApiController extends AbstractController
         $changeOwner = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var Owner $owner */
+        /** @var \App\Entity\Authorization\Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $owner->setName($changeOwner['name']);
@@ -624,7 +624,7 @@ class ApiController extends AbstractController
     public function deleteOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var Owner $owner */
+        /** @var \App\Entity\Authorization\Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -761,7 +761,7 @@ class ApiController extends AbstractController
         $newHousingStock = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var Owner $owner */
+        /** @var \App\Entity\Authorization\Owner $owner */
         $owner = $ownerRepository->find((int) $newHousingStock['owner']);
 
         $housingStock = new HousingStock();
@@ -845,7 +845,7 @@ class ApiController extends AbstractController
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var Owner $owner */
+        /** @var \App\Entity\Authorization\Owner $owner */
         $owner = $ownerRepository->find((int) $changeHousingStock['owner']);
 
         if (!empty($owner)) {

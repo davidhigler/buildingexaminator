@@ -2,18 +2,17 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Authorization\Owner;
+use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\BuildingType;
+use App\Entity\Portfolio\BuildingTypeSelection;
+use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
-use App\Entity\Portfolio\Owner;
+use App\Entity\Portfolio\ResidentialArea;
 use App\Entity\Portfolio\Vtw;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
-use App\Entity\Portfolio\ResidentialArea;
-use App\Entity\Portfolio\BuildingAddress;
-use App\Entity\Portfolio\Block;
-use App\Entity\Portfolio\HousingStock;
-use App\Entity\Portfolio\BuildingType;
-use App\Entity\Portfolio\BuildingTypeSelection;
 
 /**
  * @author Reiny Griemink <rgriemink@gmail.com>

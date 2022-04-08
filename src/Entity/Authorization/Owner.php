@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Entity\Portfolio;
+namespace App\Entity\Authorization;
 
+use App\Entity\Portfolio\HousingStock;
 use App\Entity\SuperClasses\Id;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
