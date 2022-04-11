@@ -25,14 +25,18 @@ class ResidentialArea extends IdTimeIdentification
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/HousingStock")
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="residentialArea", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/buildingAddresses")
      */
     protected Collection $buildingAddresses;
 

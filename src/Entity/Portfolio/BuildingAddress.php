@@ -25,6 +25,12 @@ class BuildingAddress extends IdTime
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/HousingStock")
      */
     protected HousingStock $housingStock;
 
@@ -32,15 +38,35 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
-     * @OA\Property()
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/ResidentialArea")
      */
     protected ResidentialArea $residentialArea;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/Block")
+     */
+    protected Block $block;
 
     /**
      * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      *
-     * @OA\Property()
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/BuildingType")
      */
     protected BuildingType $buildingType;
 
@@ -48,17 +74,13 @@ class BuildingAddress extends IdTime
      * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
      *
-     * @OA\Property()
+     * @Assert\NotBlank(
+     *     message="A residentialarea must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/LivingType")
      */
     protected LivingType $livingType;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
-     *
-     * @OA\Property()
-     */
-    protected Block $block;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
@@ -213,6 +235,22 @@ class BuildingAddress extends IdTime
      */
     protected int $renovationYear;
 
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="The city is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      min=1,
+     *      max=3,
+     *      minMessage="The orientation must be at least {{ limit }} characters long",
+     *      maxMessage="The orientation can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
     protected string $orientation;
 
     /**
@@ -244,6 +282,11 @@ class BuildingAddress extends IdTime
         return $this->residentialArea;
     }
 
+    public function getBlock(): Block
+    {
+        return $this->block;
+    }
+
     public function getBuildingType(): BuildingType
     {
         return $this->buildingType;
@@ -252,11 +295,6 @@ class BuildingAddress extends IdTime
     public function getLivingType(): LivingType
     {
         return $this->livingType;
-    }
-
-    public function getBlock(): Block
-    {
-        return $this->block;
     }
 
     public function getRentalUnitNumber(): string

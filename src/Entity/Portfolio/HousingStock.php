@@ -29,35 +29,35 @@ class HousingStock extends IdTimeIdentification
      *     message="A housingstock must have an owner"
      * )
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/owners")
      */
     protected Owner $owner;
 
     /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/blocks")
      */
     protected Collection $blocks;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingType", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/buildingTypes")
      */
     protected Collection $buildingTypes;
 
     /**
      * @ORM\OneToMany(targetEntity="LivingType", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/livingTypes")
      */
     protected Collection $livingTypes;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/buildingAddresses")
      */    
     protected Collection $buildingAddresses;
 

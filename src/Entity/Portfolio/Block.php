@@ -28,21 +28,21 @@ class Block extends IdTimeIdentification
      *     message="A block must have a housingstock"
      * )
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/HousingStock")
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="block", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/buildingAddresses")
      */
     protected Collection $buildingAddresses;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property()
      */
     protected Collection $buildingTypeSelection;
 

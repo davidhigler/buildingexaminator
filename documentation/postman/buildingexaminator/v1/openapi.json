@@ -14,7 +14,7 @@
         "/owners": {
             "get": {
                 "summary": "Returns details about multiple owners",
-                "operationId": "167e76dc2dac458ed65bbb8d8486cfcf",
+                "operationId": "c89dabc81c665b1833037b53169b2f46",
                 "parameters": [
                     {
                         "name": "page",
@@ -42,7 +42,7 @@
             },
             "post": {
                 "summary": "Add new owner",
-                "operationId": "d92c48c293ec272a20cb0ccc65a80be4",
+                "operationId": "b9225e63245758fedaf8e7a7f2ed35fd",
                 "requestBody": {
                     "description": "Details about new owner",
                     "content": {
@@ -87,7 +87,7 @@
         "/owners/{ownerId}": {
             "get": {
                 "summary": "Returns details about an owner",
-                "operationId": "178ddcfc543c2039054d7e2e6ff67a4f",
+                "operationId": "0743627ed8bab3ded6b25d946dc8b308",
                 "parameters": [
                     {
                         "name": "ownerId",
@@ -115,7 +115,7 @@
             },
             "put": {
                 "summary": "Change owner",
-                "operationId": "111d747e8bf39d3daa97cb1b1b6b66e7",
+                "operationId": "d6675887109f75f69ed195e1d7c4bb16",
                 "parameters": [
                     {
                         "name": "ownerId",
@@ -170,7 +170,7 @@
             },
             "delete": {
                 "summary": "Delete owner",
-                "operationId": "9ffff99ae3cbe208bafb1816d45a3f09",
+                "operationId": "d7712f11fcdb22cce4efe5bce80cb6c8",
                 "parameters": [
                     {
                         "name": "ownerId",
@@ -193,7 +193,7 @@
         "/housingstocks": {
             "get": {
                 "summary": "Returns details about multiple housing stocks",
-                "operationId": "19e582c4a577484d38858cd48abd01ae",
+                "operationId": "fcda73ac9da52b6b1fe4740b2b2e2640",
                 "parameters": [
                     {
                         "name": "page",
@@ -221,7 +221,7 @@
             },
             "post": {
                 "summary": "Add new housing stock",
-                "operationId": "261be0def17efecdb3acf0f51bfe7f3c",
+                "operationId": "db2444af62a5ec7c7fb3c3374ce95745",
                 "requestBody": {
                     "description": "Details about new housing stock",
                     "content": {
@@ -263,7 +263,7 @@
         "/housingstocks/{housingStockId}": {
             "get": {
                 "summary": "Returns details about a housing stock",
-                "operationId": "690081229387f635c736db5dc1b4e69a",
+                "operationId": "cd876caceffccf4a9667f18d6997a658",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -291,7 +291,7 @@
             },
             "put": {
                 "summary": "Change housing stock",
-                "operationId": "714a70f2055f60fc8cbc22d542225397",
+                "operationId": "9e3cb2c669aee97864b2f556b34f7d64",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -343,7 +343,7 @@
             },
             "delete": {
                 "summary": "Delete housing stock",
-                "operationId": "9f931773b03cf2e818325bbe017bd7a0",
+                "operationId": "d103759ec1d7cefada68491278714dd7",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -366,7 +366,7 @@
         "/housingstocks/{housingStockId}/residentialareas": {
             "get": {
                 "summary": "Returns details about multiple residential areas",
-                "operationId": "6d5066b019a4457d9a491b582229f6fd",
+                "operationId": "4076bac7bdb6dd5617c987a5cadad0ad",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -404,7 +404,7 @@
             },
             "post": {
                 "summary": "Add new residential area",
-                "operationId": "4d8f71f385d3d016de5d9f218adfadcc",
+                "operationId": "c126f21c5926fdd6d1388294c737afd6",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -455,7 +455,7 @@
         "/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}": {
             "get": {
                 "summary": "Returns details about a residential area",
-                "operationId": "4038c6d0df87652293222c5193ca0ee3",
+                "operationId": "cb73d9093e1bb1b239d4a201b22031dd",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -493,7 +493,7 @@
             },
             "put": {
                 "summary": "Change residential area",
-                "operationId": "1ec143e3fdcec08c1ff0f677d9754409",
+                "operationId": "9be20da582922423229099f804a8ee9e",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -552,7 +552,7 @@
             },
             "delete": {
                 "summary": "Delete residential area",
-                "operationId": "52f628b97b50b656c452d10d567dceb3",
+                "operationId": "7cd7bdf9120a90d0db1e014e24fb28f6",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -585,7 +585,7 @@
         "/housingstocks/{housingStockId}/blocks": {
             "get": {
                 "summary": "Returns details about multiple blocks",
-                "operationId": "640b4429ebb1462f1d1f14c965a9b2bb",
+                "operationId": "d9cfc5eae6bd3d2489e759a82748ae0b",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -623,7 +623,7 @@
             },
             "post": {
                 "summary": "Add new block",
-                "operationId": "95d09544d0e49813a0e8b3b1f9dc5a0e",
+                "operationId": "0cfc6cf375dc59df07874904b0edb1fe",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -677,7 +677,7 @@
         "/housingstocks/{housingStockId}/blocks/{blockId}": {
             "get": {
                 "summary": "Returns details about a block",
-                "operationId": "7048b6f03a7bb1deb3f4f1cc26c1d2e5",
+                "operationId": "7bdbcfb807a07658822999667e6fe63f",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -715,7 +715,7 @@
             },
             "put": {
                 "summary": "Change block",
-                "operationId": "b911d3b91fd6ff55ad7065370a539b8c",
+                "operationId": "6f7fde4a97d3c7d430625fca04d23075",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -774,7 +774,7 @@
             },
             "delete": {
                 "summary": "Delete block",
-                "operationId": "ef65eb74d273a6a1cab45aaa71f9f6ee",
+                "operationId": "0d44e14218a5c9e00c7abe9af3f16ef2",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -807,7 +807,7 @@
         "/housingstocks/{housingStockId}/buildingtypes": {
             "get": {
                 "summary": "Returns details about multiple building types",
-                "operationId": "f9fd559eca753c13baf0a23e305ff7c0",
+                "operationId": "99e051f4d4b80e3834373dc81d912445",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -845,7 +845,7 @@
             },
             "post": {
                 "summary": "Add new building type",
-                "operationId": "7ef5bfaa598270bc98e77f424b53b983",
+                "operationId": "a885490366e297a782bd34c5428f3036",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -896,7 +896,7 @@
         "/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}": {
             "put": {
                 "summary": "Change building type",
-                "operationId": "71526b9cddcb2908bfe9c801cfbeb014",
+                "operationId": "f87f84db3b143b515a77d7fb5dc0b90b",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -955,7 +955,7 @@
             },
             "delete": {
                 "summary": "Delete building type",
-                "operationId": "4d3058240b243ab3647485c14b7aaee2",
+                "operationId": "6600416eb39764aad6488216d9b8dd79",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -988,7 +988,7 @@
         "/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}": {
             "get": {
                 "summary": "Returns details about an address",
-                "operationId": "7b66fe101abd94e73f0387af90cf7fb3",
+                "operationId": "160c6851aadc8ddd206811edd6cdd27c",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1028,7 +1028,7 @@
         "/housingstocks/{housingStockId}/livingtypes": {
             "get": {
                 "summary": "Returns details about multiple living types",
-                "operationId": "ceac2df803f1be8a2817d11dbf2fe9d3",
+                "operationId": "0e346296972605ac43a31539c363f8f4",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1066,7 +1066,7 @@
             },
             "post": {
                 "summary": "Add new living type",
-                "operationId": "62244203037d4f07e498a0caf8c81685",
+                "operationId": "bd7aa0453d2c860b882d41dcd929fc3c",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1117,7 +1117,7 @@
         "/housingstocks/{housingStockId}/livingtypes/{livingTypeId}": {
             "get": {
                 "summary": "Returns details about a living type",
-                "operationId": "a174d2aa06c5d444fdf479478fa535c5",
+                "operationId": "409b182743a4df80a2de8734c84467b5",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1155,7 +1155,7 @@
             },
             "put": {
                 "summary": "Change living type",
-                "operationId": "d114f7a49b7b4f3438451beda2e2d927",
+                "operationId": "281835dc2d0fec9ff2ec92264f51f9be",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1214,7 +1214,7 @@
             },
             "delete": {
                 "summary": "Delete living type",
-                "operationId": "a82f02f92d030c4de9c753b56c23e347",
+                "operationId": "69389af487621c5f56f960adbc522303",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1247,7 +1247,7 @@
         "/housingstocks/{housingStockId}/addresses": {
             "get": {
                 "summary": "Returns details about multiple addresses",
-                "operationId": "7bdb42033e6379ec7cbd3d69c82246eb",
+                "operationId": "2a7c0754855a36f4cfbad02ce35e0b8b",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1275,7 +1275,7 @@
             },
             "post": {
                 "summary": "Add new address",
-                "operationId": "b88d796e9867d996737ae5a8e8f9c41e",
+                "operationId": "86bdb7104ac1e0a598188a0effefe686",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1294,6 +1294,21 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "residentialarea": {
+                                        "type": "integer"
+                                    },
+                                    "block": {
+                                        "type": "integer"
+                                    },
+                                    "buildingtype": {
+                                        "type": "integer"
+                                    },
+                                    "livingtype": {
+                                        "type": "integer"
+                                    },
+                                    "rentalunitnumber": {
+                                        "type": "string"
+                                    },
                                     "streetname": {
                                         "type": "string"
                                     },
@@ -1308,6 +1323,21 @@
                                     },
                                     "city": {
                                         "type": "string"
+                                    },
+                                    "bagid": {
+                                        "type": "string"
+                                    },
+                                    "constructionyear": {
+                                        "type": "integer"
+                                    },
+                                    "renovationyear": {
+                                        "type": "integer"
+                                    },
+                                    "orientation": {
+                                        "type": "string"
+                                    },
+                                    "deab": {
+                                        "type": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -1332,7 +1362,7 @@
         "/housingstocks/{housingStockId}/addresses/{addressId}": {
             "get": {
                 "summary": "Returns details about an address",
-                "operationId": "07133fa35032ffada708a0acd50e94f7",
+                "operationId": "d57e864df334b277466f6b9ddb2e9267",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1370,7 +1400,7 @@
             },
             "put": {
                 "summary": "Change address",
-                "operationId": "9b6a5f25b3efb8f6c9d3bc28d08308a7",
+                "operationId": "dd0dda6622d9610ee3c33b15a44bfd69",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1440,7 +1470,7 @@
         "/housingstocks/{housingStockId}/blocks/{addressId}": {
             "delete": {
                 "summary": "Delete address",
-                "operationId": "f965a935b6e2b366d015db350d584fd7",
+                "operationId": "49713dd70c1c6e4cb1ed9e950010efdd",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1583,6 +1613,32 @@
                 },
                 "type": "object"
             },
+            "Owner": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "housingStocks": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "kvk": {
+                        "type": "integer"
+                    },
+                    "btw": {
+                        "type": "string"
+                    },
+                    "lnumber": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "Right": {
                 "properties": {
                     "id": {
@@ -1614,14 +1670,12 @@
                         "type": "integer"
                     },
                     "housingStock": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/HousingStock"
                     },
                     "buildingAddresses": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/buildingAddresses"
                     },
-                    "buildingTypeSelection": {
-                        "$ref": "#/components/schemas/ids"
-                    },
+                    "buildingTypeSelection": {},
                     "financialNumber": {
                         "type": "string"
                     }
@@ -1641,20 +1695,20 @@
                     "id": {
                         "type": "integer"
                     },
+                    "housingStock": {
+                        "$ref": "#/components/schemas/HousingStock"
+                    },
                     "residentialArea": {
                         "$ref": "#/components/schemas/ResidentialArea"
+                    },
+                    "block": {
+                        "$ref": "#/components/schemas/Block"
                     },
                     "buildingType": {
                         "$ref": "#/components/schemas/BuildingType"
                     },
                     "livingType": {
                         "$ref": "#/components/schemas/LivingType"
-                    },
-                    "block": {
-                        "$ref": "#/components/schemas/Block"
-                    },
-                    "daeb": {
-                        "type": "boolean"
                     },
                     "rentalUnitNumber": {
                         "type": "string"
@@ -1682,6 +1736,12 @@
                     },
                     "renovationYear": {
                         "type": "integer"
+                    },
+                    "orientation": {
+                        "type": "string"
+                    },
+                    "daeb": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
@@ -1708,12 +1768,13 @@
                     "id": {
                         "type": "integer"
                     },
-                    "buildingAddresses": {
-                        "$ref": "#/components/schemas/ids"
+                    "housingStock": {
+                        "$ref": "#/components/schemas/HousingStock"
                     },
-                    "buildingTypeSelections": {
-                        "$ref": "#/components/schemas/ids"
-                    }
+                    "buildingAddresses": {
+                        "$ref": "#/components/schemas/buildingAddresses"
+                    },
+                    "buildingTypeSelections": {}
                 },
                 "type": "object"
             },
@@ -1740,19 +1801,19 @@
                         "type": "integer"
                     },
                     "owner": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/owners"
                     },
                     "blocks": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/blocks"
                     },
                     "buildingTypes": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/buildingTypes"
                     },
                     "livingTypes": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/livingTypes"
                     },
                     "buildingAddresses": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/buildingAddresses"
                     }
                 },
                 "type": "object"
@@ -1779,34 +1840,11 @@
                     "id": {
                         "type": "integer"
                     },
+                    "housingStock": {
+                        "$ref": "#/components/schemas/HousingStock"
+                    },
                     "buildingAddresses": {
-                        "$ref": "#/components/schemas/ids"
-                    }
-                },
-                "type": "object"
-            },
-            "Owner": {
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "housingStocks": {
-                        "$ref": "#/components/schemas/ids"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "kvk": {
-                        "type": "integer"
-                    },
-                    "btw": {
-                        "type": "string"
-                    },
-                    "lnumber": {
-                        "type": "string"
-                    },
-                    "website": {
-                        "type": "string"
+                        "$ref": "#/components/schemas/buildingAddresses"
                     }
                 },
                 "type": "object"
@@ -1834,10 +1872,10 @@
                         "type": "integer"
                     },
                     "housingStock": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/HousingStock"
                     },
                     "buildingAddresses": {
-                        "$ref": "#/components/schemas/ids"
+                        "$ref": "#/components/schemas/buildingAddresses"
                     }
                 },
                 "type": "object"

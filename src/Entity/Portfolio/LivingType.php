@@ -24,13 +24,19 @@ class LivingType extends IdTimeIdentification
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="livingTypes")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A livingtype must have a housingstock"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/HousingStock")
      */
     protected HousingStock $housingStock;
 
     /**
      * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="livingType", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/ids")
+     * @OA\Property(ref="#/components/schemas/buildingAddresses")
      */
     protected Collection $buildingAddresses;
 
