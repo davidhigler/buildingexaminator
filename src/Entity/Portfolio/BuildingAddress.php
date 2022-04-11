@@ -27,7 +27,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
+     *     message="A buildingaddress must have a housingstock"
      * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
@@ -39,7 +39,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
+     *     message="A buildingaddress must have a residentialarea"
      * )
      *
      * @OA\Property(ref="#/components/schemas/ResidentialArea")
@@ -51,7 +51,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
+     *     message="A buildingaddress must have a block"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Block")
@@ -63,7 +63,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
+     *     message="A buildingaddress must have a buildingtype"
      * )
      *
      * @OA\Property(ref="#/components/schemas/BuildingType")
@@ -75,7 +75,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
+     *     message="A buildingaddress must have a livingtype"
      * )
      *
      * @OA\Property(ref="#/components/schemas/LivingType")
@@ -205,7 +205,7 @@ class BuildingAddress extends IdTime
     protected int $bagId;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=false)
      *
      * @Assert\NotBlank(
      *      message="The construction year may not be empty"
@@ -226,9 +226,13 @@ class BuildingAddress extends IdTime
     /**
      * @ORM\Column(type="integer", nullable=true)
      *
-     * @Assert\Regex(
-     *      pattern="/(|[\d]{4})/",
-     *      message="The renovation year is not a valid year"
+     * @Assert\Type(
+     *      type="integer",
+     *      message="The construction year is not a valid {{ type }}"
+     * )
+     * @Assert\Range(
+     *      min = 1800,
+     *      max = 2100
      * )
      *
      * @OA\Property()

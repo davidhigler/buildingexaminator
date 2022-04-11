@@ -299,6 +299,10 @@ class PortfolioController extends AbstractController
             'id',
             'name',
         ],
+        'block' => [
+            'id',
+            'name',
+        ],
         'buildingType' => [
             'id',
             'name',
@@ -322,6 +326,11 @@ class PortfolioController extends AbstractController
             'code',
             'name',
         ],
+        'block' => [
+            'id',
+            'code',
+            'name',
+        ],
         'buildingType' => [
             'id',
             'code',
@@ -332,16 +341,14 @@ class PortfolioController extends AbstractController
             'code',
             'name',
         ],
-        'blocks' => [
-            'id',
-            'code',
-            'name',
-        ],
         'streetName',
         'houseNumber',
         'addition',
         'zipcode',
         'city',
+        'constructionYear',
+        'renovationYear',
+        'orientation',
         'daeb',
     ];
 
@@ -2088,8 +2095,8 @@ class PortfolioController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'listbuildingaddresses', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses",
-     *     summary="Returns details about multiple addresses",
+     *     path="/housingstocks/{housingStockId}/buildingaddresses",
+     *     summary="Returns details about multiple buildingaddresses",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -2102,7 +2109,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about multiple addresses",
+     *         description="Details about multiple buildingaddresses",
      *         @OA\JsonContent(ref="#/components/schemas/buildingAddresses")
      *     )
      * )
@@ -2151,7 +2158,7 @@ class PortfolioController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'addbuildingaddress', methods: ['POST'])]
     /**
      * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/addresses",
+     *     path="/housingstocks/{housingStockId}/buildingaddresses",
      *     summary="Add new address",
      *     @OA\Parameter(
      *         name="housingStockId",
@@ -2164,7 +2171,7 @@ class PortfolioController extends AbstractController
      *         required=true
      *     ),
      *     @OA\RequestBody(
-     *         description="Details about new address",
+     *         description="Details about new buildingaddress",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
@@ -2231,7 +2238,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about created address",
+     *         description="Details about created buildingaddress",
      *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
      *     )
      * )
@@ -2306,7 +2313,7 @@ class PortfolioController extends AbstractController
         if (!empty($newAddress['orientation'])) {
             $address->setOrientation($newAddress['orientation']);
         }
-        if (!empty($newAddress['daeb'])) {
+        if (is_bool($newAddress['daeb'])) {
             $address->setDaeb($newAddress['daeb']);
         }
         $address->setCreationTime();
@@ -2319,7 +2326,11 @@ class PortfolioController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($address);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json(ErrorExtractor::fromException($exception), 500);
+        }
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -2333,10 +2344,10 @@ class PortfolioController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'changebuildingaddress', methods: ['PUT'])]
     /**
      * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Change address",
+     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
+     *     summary="Change buildingaddress",
      *     @OA\RequestBody(
-     *         description="Details for changing address",
+     *         description="Details for changing buildingaddress",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
@@ -2377,7 +2388,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an address",
+     *         description="The id of an buildingaddress",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2387,7 +2398,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about changed address",
+     *         description="Details about changed buildingaddress",
      *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
      *     )
      * )
@@ -2428,8 +2439,8 @@ class PortfolioController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'deletebuildingaddress', methods: ['DELETE'])]
     /**
      * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/blocks/{addressId}",
-     *     summary="Delete address",
+     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
+     *     summary="Delete buildingaddress",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -2442,7 +2453,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an address",
+     *         description="The id of an buildingaddress",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2452,7 +2463,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successfully deleted an address"
+     *         description="Successfully deleted an buildingaddress"
      *     )
      * )
      */
@@ -2476,8 +2487,8 @@ class PortfolioController extends AbstractController
     #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'getbuildingaddress', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Returns details about an address",
+     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
+     *     summary="Returns details about an buildingaddress",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -2490,7 +2501,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an address",
+     *         description="The id of an buildingaddress",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2500,7 +2511,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about an address",
+     *         description="Details about an buildingaddress",
      *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
      *     )
      * )

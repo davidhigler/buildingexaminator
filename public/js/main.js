@@ -422,36 +422,41 @@ function loadOwnerNewPage() {
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate">\n' +
+        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
         '                <label for="name">Name</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate">\n' +
+        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
         '                <label for="kvk">KVK</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate">\n' +
+        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
         '                <label for="btw">BTW</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">aedes</i>\n' +
-        '                <input id="lnumber" name="lnumber" type="text" class="validate">\n' +
+        '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}">\n' +
         '                <label for="lnumber">L number</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="text" class="validate">\n' +
+        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
         '                <label for="website">Website</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
@@ -540,36 +545,41 @@ function loadOwnerEditPage(id) {
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" value="' + data.data.name + '">\n' +
+                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
                 '                <label for="name" class="active">Name</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" value="' + (data.data.kvk ?? '') + '">\n' +
+                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
                 '                <label for="kvk" class="active">KVK</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" value="' + (data.data.btw ?? '') + '">\n' +
+                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
                 '                <label for="btw" class="active">BTW</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">aedes</i>\n' +
-                '                <input id="lnumber" name="lnumber" type="text" class="validate" value="' + (data.data.lnumber ?? '') + '">\n' +
+                '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}" value="' + (data.data.lnumber ?? '') + '">\n' +
                 '                <label for="lnumber" class="active">L number</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
                 '            <div class="input-field col s12">\n' +
                 '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" value="' + (data.data.website ?? '') + '">\n' +
+                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
                 '                <label for="website" class="active">Website</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
@@ -2497,8 +2507,8 @@ function loadBuildingaddressNewPage() {
                     '                <p>\n' +
                     '                    <i class="material-icons prefix">house_money</i>\n' +
                     '                    <label>\n' +
-                    '                        <input id="deab" name="deab" type="checkbox">\n' +
-                    '                        <span>Deab</span>\n' +
+                    '                        <input id="daeb" name="daeb" type="checkbox">\n' +
+                    '                        <span>Daeb</span>\n' +
                     '                    </label>\n' +
                     '                </p>\n' +
                     '            </div>\n' +
@@ -2539,21 +2549,21 @@ function loadBuildingaddressNewPage() {
                         },
                         data: JSON.stringify(
                             {
-                                'residentialarea': $('select#residentialarea').val(),
-                                'block': $('select#block').val(),
-                                'buildingtype': $('select#buildingtype').val(),
-                                'livingtype': $('select#livingtype').val(),
+                                'residentialarea': parseInt($('select#residentialarea').val()),
+                                'block': parseInt($('select#block').val()),
+                                'buildingtype': parseInt($('select#buildingtype').val()),
+                                'livingtype': parseInt($('select#livingtype').val()),
                                 'rentalunitnumber': $('input#rentalunitnumber').val(),
                                 'streetname': $('input#streetname').val(),
-                                'housenumber': $('input#housenumber').val(),
+                                'housenumber': parseInt($('input#housenumber').val()),
                                 'addition': $('input#addition').val(),
                                 'zipcode': $('input#zipcode').val(),
                                 'city': $('input#city').val(),
                                 'bagid': $('input#bagid').val(),
-                                'constructionyear': $('select#constructionyear').val(),
-                                'renovationyear': $('select#renovationyear').val(),
+                                'constructionyear': parseInt($('select#constructionyear').val()),
+                                'renovationyear': parseInt($('select#renovationyear').val()),
                                 'orientation': $('select#orientation').val(),
-                                'deab': $('input#deab').val()
+                                'daeb': $('input#daeb').prop("checked")
                             }
                         ),
                         beforeSend: function () {

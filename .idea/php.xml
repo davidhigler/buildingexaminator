@@ -149,6 +149,9 @@
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="4c6f9fb8-208f-4aed-845c-95d0d2e040b4" name="Ubuntu" home="\\wsl$\Ubuntu/usr/bin/php" debugger_id="php.debugger.XDebug">
+        <configuration_options>
+          <configuration_option name="xdebug.client_host" value="192.168.178.13" />
+        </configuration_options>
         <remote_data INTERPRETER_PATH="/usr/bin/php" HELPERS_PATH="" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DISTRIBUTION_ID="Ubuntu" />
       </interpreter>
     </interpreters>

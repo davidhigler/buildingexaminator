@@ -3,6 +3,7 @@
 /old/
 /phpunit.xml
 .phpunit.result.cache
+/public/info.php
 
 ###> symfony/framework-bundle ###
 /.env.local

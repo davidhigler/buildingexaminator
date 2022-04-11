@@ -1244,10 +1244,10 @@
                 }
             }
         },
-        "/housingstocks/{housingStockId}/addresses": {
+        "/housingstocks/{housingStockId}/buildingaddresses": {
             "get": {
-                "summary": "Returns details about multiple addresses",
-                "operationId": "2a7c0754855a36f4cfbad02ce35e0b8b",
+                "summary": "Returns details about multiple buildingaddresses",
+                "operationId": "e10e57836b368c2f5652a1976b4a0bb8",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1262,7 +1262,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about multiple addresses",
+                        "description": "Details about multiple buildingaddresses",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1275,7 +1275,7 @@
             },
             "post": {
                 "summary": "Add new address",
-                "operationId": "86bdb7104ac1e0a598188a0effefe686",
+                "operationId": "7a366518a006db88c245df4b15a96d9b",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1289,7 +1289,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Details about new address",
+                    "description": "Details about new buildingaddress",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1347,7 +1347,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about created address",
+                        "description": "Details about created buildingaddress",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1359,10 +1359,10 @@
                 }
             }
         },
-        "/housingstocks/{housingStockId}/addresses/{addressId}": {
+        "/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}": {
             "get": {
-                "summary": "Returns details about an address",
-                "operationId": "d57e864df334b277466f6b9ddb2e9267",
+                "summary": "Returns details about an buildingaddress",
+                "operationId": "bf24144f835e1176447576b74c59ea56",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1377,7 +1377,7 @@
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of an buildingaddress",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -1387,7 +1387,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about an address",
+                        "description": "Details about an buildingaddress",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1399,8 +1399,8 @@
                 }
             },
             "put": {
-                "summary": "Change address",
-                "operationId": "dd0dda6622d9610ee3c33b15a44bfd69",
+                "summary": "Change buildingaddress",
+                "operationId": "ff7b94da5ddd34199fdf303f424c7051",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1415,7 +1415,7 @@
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of an buildingaddress",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -1424,7 +1424,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Details for changing address",
+                    "description": "Details for changing buildingaddress",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1455,7 +1455,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed address",
+                        "description": "Details about changed buildingaddress",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1465,12 +1465,10 @@
                         }
                     }
                 }
-            }
-        },
-        "/housingstocks/{housingStockId}/blocks/{addressId}": {
+            },
             "delete": {
-                "summary": "Delete address",
-                "operationId": "49713dd70c1c6e4cb1ed9e950010efdd",
+                "summary": "Delete buildingaddress",
+                "operationId": "de7548357d803226ada4a9b778378624",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1485,7 +1483,7 @@
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of an buildingaddress",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -1495,7 +1493,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted an address"
+                        "description": "Successfully deleted an buildingaddress"
                     }
                 }
             }
