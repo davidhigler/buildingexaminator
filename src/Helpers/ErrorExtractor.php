@@ -28,7 +28,7 @@ class ErrorExtractor
     }
 
     #[Pure]
-    private static function simplifyException(Exception $exception): stdClass
+    private static function simplifyException(Exception|ConstraintViolationInterface $exception): stdClass
     {
         $error = new stdClass();
         $error->code = $exception->getCode();
