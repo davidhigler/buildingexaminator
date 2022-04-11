@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -9,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-class DocumentationController
+class DocumentationController extends AbstractController
 {
     #[Route('/documentation', name: 'documentation', methods: ['GET'])]
     public function getDocumentation(): Response

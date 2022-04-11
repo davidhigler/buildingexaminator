@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Owner extends Id
 {
     /**
-     * @ORM\OneToMany(targetEntity="HousingStock", mappedBy="owner", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Portfolio\HousingStock", mappedBy="owner", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/ids")
      */

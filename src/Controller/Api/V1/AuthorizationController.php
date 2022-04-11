@@ -3,10 +3,12 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Authorization\Owner;
+use App\Helpers\ApiRenderEngine;
+use App\Helpers\ErrorExtractor;
+use Exception;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Pagerfanta;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,7 +73,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getOwners(Request $request, LoggerInterface $logger): Response
+    public function getOwners(Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -98,7 +100,12 @@ class AuthorizationController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::OWNER_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::OWNER_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/owners', name: 'addowner', methods: ['POST'])]
@@ -139,7 +146,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function addOwner(Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function addOwner(Request $request, ValidatorInterface $validator): Response
     {
         $newOwner = json_decode($request->getContent(), true);
 
@@ -162,14 +169,19 @@ class AuthorizationController extends AbstractController
 
         $violations = $validator->validate($owner);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($owner);
         $entityManager->flush();
 
-        return $this->renderData($owner, self::OWNER_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $owner,
+                self::OWNER_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/owners/{ownerId}', name: 'changeowner', methods: ['PUT'])]
@@ -220,12 +232,12 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function changeOwner(string $ownerId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeOwner(string $ownerId, Request $request, ValidatorInterface $validator): Response
     {
         $changeOwner = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var \App\Entity\Authorization\Owner $owner */
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $owner->setName($changeOwner['name']);
@@ -252,14 +264,19 @@ class AuthorizationController extends AbstractController
 
         $violations = $validator->validate($owner);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($owner);
         $entityManager->flush();
 
-        return $this->renderData($owner, self::OWNER_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $owner,
+                self::OWNER_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/owners/{ownerId}', name: 'deleteowner', methods: ['DELETE'])]
@@ -286,7 +303,7 @@ class AuthorizationController extends AbstractController
     public function deleteOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var \App\Entity\Authorization\Owner $owner */
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -294,7 +311,7 @@ class AuthorizationController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -322,10 +339,17 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getOwner(string $ownerId, LoggerInterface $logger): Response
+    public function getOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        return $this->renderData($ownerRepository->find((int) $ownerId), self::OWNER_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $ownerRepository->find(
+                    (int) $ownerId
+                ),
+                self::OWNER_DETAIL_FIELDS
+            )
+        );
     }
 
 }

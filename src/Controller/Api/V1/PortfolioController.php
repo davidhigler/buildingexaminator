@@ -9,24 +9,16 @@ use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
 use App\Entity\Portfolio\ResidentialArea;
+use App\Helpers\ErrorExtractor;
+use App\Helpers\ApiRenderEngine;
 use Exception;
-use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
-use Psr\Log\LoggerInterface;
-use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Validator\ConstraintViolationInterface;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/v1', name: 'api-v1-')]
@@ -379,7 +371,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getHousingStocks(Request $request, LoggerInterface $logger): Response
+    public function getHousingStocks(Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -406,7 +398,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::HOUSING_STOCK_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::HOUSING_STOCK_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
@@ -443,12 +440,12 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addHousingStock(Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function addHousingStock(Request $request, ValidatorInterface $validator): Response
     {
         $newHousingStock = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var \App\Entity\Authorization\Owner $owner */
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $newHousingStock['owner']);
 
         $housingStock = new HousingStock();
@@ -469,14 +466,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($housingStock);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($housingStock);
         $entityManager->flush();
 
-        return $this->renderData($housingStock, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $housingStock,
+                self::HOUSING_STOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'changehousingstock', methods: ['PUT'])]
@@ -523,7 +525,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator): Response
     {
         $changeHousingStock = json_decode($request->getContent(), true);
 
@@ -532,7 +534,7 @@ class PortfolioController extends AbstractController
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
-        /** @var \App\Entity\Authorization\Owner $owner */
+        /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $changeHousingStock['owner']);
 
         if (!empty($owner)) {
@@ -559,14 +561,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($housingStock);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($housingStock);
         $entityManager->flush();
 
-        return $this->renderData($housingStock, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $housingStock,
+                self::HOUSING_STOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'deletehousingstock', methods: ['DELETE'])]
@@ -601,7 +608,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -629,16 +636,21 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getHousingStock(string $housingStockId, LoggerInterface $logger): Response
+    public function getHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        return $this->renderData($housingStockRepository->find((int) $housingStockId), self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $housingStockRepository->find(
+                    (int)$housingStockId
+                ),
+                self::HOUSING_STOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     /**
      * RESIDENTIALAREAS
-     *
-     * @Todo Define the POST, PUT and DELETE methods
      */
 
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
@@ -673,7 +685,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getResidentialAreas(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getResidentialAreas(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -705,7 +717,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::RESIDENTIALAREA_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::RESIDENTIALAREA_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'addresidentialarea', methods: ['POST'])]
@@ -748,7 +765,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addResidentialArea(string $housingStockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function addResidentialArea(string $housingStockId, Request $request, ValidatorInterface $validator): Response
     {
         $newResidentialArea = json_decode($request->getContent(), true);
 
@@ -774,14 +791,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($residentialArea);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($residentialArea);
         $entityManager->flush();
 
-        return $this->renderData($residentialArea, self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $residentialArea,
+                self::RESIDENTIALAREA_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'changeresidentialarea', methods: ['PUT'])]
@@ -834,7 +856,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeResidentialArea(string $housingStockId, string $residentialAreaId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeResidentialArea(string $housingStockId, string $residentialAreaId, Request $request, ValidatorInterface $validator): Response
     {
         $changeResidentialArea = json_decode($request->getContent(), true);
 
@@ -870,14 +892,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($residentialArea);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($residentialArea);
         $entityManager->flush();
 
-        return $this->renderData($residentialArea, self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $residentialArea,
+                self::RESIDENTIALAREA_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'deleteresidentialarea', methods: ['DELETE'])]
@@ -922,7 +949,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -960,10 +987,20 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getResidentialArea(string $housingStockId, string $residentialAreaId, LoggerInterface $logger): Response
+    public function getResidentialArea(string $housingStockId, string $residentialAreaId): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        return $this->renderData($residentialAreaRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]), self::RESIDENTIALAREA_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $residentialAreaRepository->findOneBy(
+                    [
+                        'housingStock' => (int)$housingStockId,
+                        'id' => (int)$residentialAreaId
+                    ]
+                ),
+                self::RESIDENTIALAREA_DETAIL_FIELDS
+            )
+        );
     }
 
     /**
@@ -1004,7 +1041,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBlocks(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getBlocks(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -1036,7 +1073,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::BLOCK_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::BLOCK_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'addblock', methods: ['POST'])]
@@ -1083,7 +1125,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addBlock(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    public function addBlock(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newBlock = json_decode($request->getContent(), true);
 
@@ -1112,14 +1154,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($block);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($block);
         $entityManager->flush();
 
-        return $this->renderData($block, self::BLOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $block,
+                self::BLOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'changeblock', methods: ['PUT'])]
@@ -1172,7 +1219,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeBlock(string $housingStockId, string $blockId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeBlock(string $housingStockId, string $blockId, Request $request, ValidatorInterface $validator): Response
     {
         $changeBlock = json_decode($request->getContent(), true);
 
@@ -1213,14 +1260,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($block);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($block);
         $entityManager->flush();
 
-        return $this->renderData($block, self::BLOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $block,
+                self::BLOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'deleteblock', methods: ['DELETE'])]
@@ -1265,7 +1317,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -1303,10 +1355,20 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBlock(string $housingStockId, string $blockId, LoggerInterface $logger): Response
+    public function getBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        return $this->renderData($blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]), self::BLOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $blockRepository->findOneBy(
+                    [
+                        'housingStock' => (int)$housingStockId,
+                        'id' => (int)$blockId
+                    ]
+                ),
+                self::BLOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     /**
@@ -1347,7 +1409,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBuildingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getBuildingTypes(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -1379,7 +1441,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::BUILDINGTYPE_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::BUILDINGTYPE_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'addbuildingtype', methods: ['POST'])]
@@ -1422,7 +1489,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addBuildingType(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    public function addBuildingType(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newBuildingType = json_decode($request->getContent(), true);
 
@@ -1448,14 +1515,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($buildingType);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($buildingType);
         $entityManager->flush();
 
-        return $this->renderData($buildingType, self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $buildingType,
+                self::BUILDINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'changebuildingtype', methods: ['PUT'])]
@@ -1508,7 +1580,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeBuildingType(string $housingStockId, string $buildingTypeId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeBuildingType(string $housingStockId, string $buildingTypeId, Request $request, ValidatorInterface $validator): Response
     {
         $changeBuildingType = json_decode($request->getContent(), true);
 
@@ -1544,14 +1616,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($buildingType);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($buildingType);
         $entityManager->flush();
 
-        return $this->renderData($buildingType, self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $buildingType,
+                self::BUILDINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'deletebuildingtype', methods: ['DELETE'])]
@@ -1596,7 +1673,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -1634,16 +1711,24 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBuildingType(string $housingStockId, string $buildingtypeId, LoggerInterface $logger): Response
+    public function getBuildingType(string $housingStockId, string $buildingtypeId): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
-        return $this->renderData($buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingtypeId]), self::BUILDINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $buildingTypeRepository->findOneBy(
+                    [
+                        'housingStock' => (int)$housingStockId,
+                        'id' => (int)$buildingtypeId
+                    ]
+                ),
+                self::BUILDINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     /**
      * LIVINGTYPES
-     *
-     * @Todo Define the POST, PUT and DELETE methods
      */
 
     #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'listlivingtypes', methods: ['GET'])]
@@ -1678,7 +1763,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getLivingTypes(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getLivingTypes(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -1710,7 +1795,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::LIVINGTYPE_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::LIVINGTYPE_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'addlivingtype', methods: ['POST'])]
@@ -1753,7 +1843,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addLivingType(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    public function addLivingType(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newLivingType = json_decode($request->getContent(), true);
 
@@ -1779,14 +1869,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($livingType);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($livingType);
         $entityManager->flush();
 
-        return $this->renderData($livingType, self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $livingType,
+                self::LIVINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'changelivingtype', methods: ['PUT'])]
@@ -1839,7 +1934,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeLivingType(string $housingStockId, string $livingTypeId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeLivingType(string $housingStockId, string $livingTypeId, Request $request, ValidatorInterface $validator): Response
     {
         $changeLivingType = json_decode($request->getContent(), true);
 
@@ -1875,14 +1970,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($livingType);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($livingType);
         $entityManager->flush();
 
-        return $this->renderData($livingType, self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $livingType,
+                self::LIVINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'deletelivingtype', methods: ['DELETE'])]
@@ -1927,7 +2027,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -1965,16 +2065,24 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getLivingType(string $housingStockId, string $livingTypeId, LoggerInterface $logger): Response
+    public function getLivingType(string $housingStockId, string $livingTypeId): Response
     {
         $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->renderData($livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]), self::LIVINGTYPE_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $livingTypeRepository->findOneBy(
+                    [
+                        'housingStock' => (int)$housingStockId,
+                        'id' => (int)$livingTypeId
+                    ]
+                ),
+                self::LIVINGTYPE_DETAIL_FIELDS
+            )
+        );
     }
 
     /**
      * ADDRESSES
-     *
-     * @Todo Define the POST, PUT and DELETE methods
      */
 
     #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'listbuildingaddresses', methods: ['GET'])]
@@ -1999,7 +2107,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBuildingAddresses(string $housingStockId, Request $request, LoggerInterface $logger): Response
+    public function getBuildingAddresses(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -2032,7 +2140,12 @@ class PortfolioController extends AbstractController
             $data->setCurrentPage($page);
         }
 
-        return $this->renderData($data, self::ADDRESS_LIST_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::ADDRESS_LIST_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'addbuildingaddress', methods: ['POST'])]
@@ -2123,7 +2236,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function addBuildingAddress(Request $request, ValidatorInterface $validator, string $housingStockId, LoggerInterface $logger): Response
+    public function addBuildingAddress(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newAddress = json_decode($request->getContent(), true);
 
@@ -2201,14 +2314,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($address);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($address);
         $entityManager->flush();
 
-        return $this->renderData($address, self::ADDRESS_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $address,
+                self::ADDRESS_DETAIL_FIELDS
+            )
+        );
     }
 
     // @ToDo Conform to standards from above
@@ -2274,7 +2392,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeBuildingAddress(string $buildingAddressId, Request $request, ValidatorInterface $validator, LoggerInterface $logger): Response
+    public function changeBuildingAddress(string $buildingAddressId, Request $request, ValidatorInterface $validator): Response
     {
         $changeAddress = json_decode($request->getContent(), true);
 
@@ -2292,14 +2410,19 @@ class PortfolioController extends AbstractController
 
         $violations = $validator->validate($buildingAddress);
         if ($violations->count() > 0) {
-            return $this->json($this->extractErrorsFromViolations($violations), 500);
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($buildingAddress);
         $entityManager->flush();
 
-        return $this->renderData($buildingAddress, self::HOUSING_STOCK_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $buildingAddress,
+                self::HOUSING_STOCK_DETAIL_FIELDS
+            )
+        );
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'deletebuildingaddress', methods: ['DELETE'])]
@@ -2344,7 +2467,7 @@ class PortfolioController extends AbstractController
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
-            return $this->json($this->extractErrorFromException($exception), 500);
+            return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
         return new Response('', 200);
@@ -2382,78 +2505,20 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getBuildingAddress(string $housingStockId, string $buildingAddressId, LoggerInterface $logger): Response
+    public function getBuildingAddress(string $housingStockId, string $buildingAddressId): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        return $this->renderData($addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingAddressId]), self::ADDRESS_DETAIL_FIELDS, $logger);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $addressRepository->findBy(
+                    [
+                        'housingStock' => (int)$housingStockId,
+                        'id' => (int)$buildingAddressId
+                    ]
+                ),
+                self::ADDRESS_DETAIL_FIELDS
+            )
+        );
     }
 
-    /**
-     * EXTRA
-     */
-
-    private function renderData($results, array $fields, LoggerInterface $logger): Response
-    {
-        try {
-            $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
-            $data = $serializer->normalize(
-                $results instanceof Pagerfanta ? $results->getCurrentPageResults() : $results,
-                null,
-                [AbstractNormalizer::ATTRIBUTES => $fields]
-            );
-        } catch (ExceptionInterface $exception) {
-            $logger->error('Something went wrong with normalizing an array',
-                [
-                    'exception' => $exception,
-                    'request' => Request::createFromGlobals(),
-                ]
-            );
-
-            return $this->json(['error' => $exception->getMessage()], 500);
-        }
-
-        if ($results instanceof Pagerfanta) {
-            return $this->json(
-                [
-                    'data' => $data,
-                    'pager' => [
-                        'count' => $results->getNbPages(),
-                        'current' => $results->getCurrentPage(),
-                        'next' => $results->hasNextPage() ? $results->getNextPage() : 0,
-                        'previous' => $results->hasPreviousPage() ? $results->getPreviousPage() : 0,
-                    ],
-                ]
-            );
-        } else {
-            return $this->json(
-                [
-                    'data' => $data
-                ]
-            );
-        }
-    }
-
-    private function extractErrorsFromViolations(ConstraintViolationListInterface $violations): array
-    {
-        $errors = [];
-        /** @var ConstraintViolationInterface $violation */
-        foreach ($violations as $violation) {
-            $error = new stdClass();
-            $error->code = $violation->getCode();
-            $error->message = $violation->getMessage();
-            $errors[] = $error;
-        }
-        return $errors;
-    }
-
-    #[Pure]
-    private function extractErrorFromException(Exception $exception): array
-    {
-        $errors = [];
-        $error = new stdClass();
-        $error->code = $exception->getCode();
-        $error->message = $exception->getMessage();
-        $errors[] = $error;
-        return $errors;
-    }
 }
