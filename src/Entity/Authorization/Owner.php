@@ -114,7 +114,7 @@ class Owner extends Id
      *      maxMessage="The website can contain a maximum of {{ limit }} characters"
      * )
      * @Assert\Url(
-     *      protocols = {"http", "https"},
+     *      protocols = {"https"},
      *      message = "The website '{{ value }}' is not a valid url"
      * )
      *
