@@ -6964,6 +6964,12 @@ class LoadTestHousingStockData extends Fixture
         }
 
         for ($i = 1; $i <= 1000; $i++) {
+            if (isset(${'vtw' . $i})) {
+                $manager->persist(${'vtw' . $i});
+            }
+        }
+
+        for ($i = 1; $i <= 1000; $i++) {
             if (isset(${'buildingAddress' . $i})) {
                 $manager->persist(${'buildingAddress' . $i});
             }
