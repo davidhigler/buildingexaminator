@@ -5,7 +5,7 @@ namespace App\Entity\Portfolio;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\SuperClasses\IdTimeIdentification;
+use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
@@ -15,8 +15,27 @@ use App\Entity\SuperClasses\IdTimeIdentification;
  *
  * @OA\Schema()
  */
-class Vtw extends IdTimeIdentification
+class Vtw extends Id
 {
+    /**
+     * @ORM\Column(type="string", length=32, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The code may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The code is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=32,
+     *      maxMessage="The code can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $code;
+
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
      *
@@ -93,6 +112,11 @@ class Vtw extends IdTimeIdentification
      */
     protected string $roofTypeDescription;
 
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
     public function getTypeDescription(): string
     {
         return $this->typeDescription;
@@ -111,6 +135,11 @@ class Vtw extends IdTimeIdentification
     public function getRoofTypeDescription(): string
     {
         return $this->roofTypeDescription;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
     }
 
     public function setTypeDescription(string $typeDescription): void
