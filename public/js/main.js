@@ -2867,7 +2867,7 @@ function loadBuildingaddressEditPage(id) {
                 $('form#editbuildingaddress').submit(function (event) {
                     event.preventDefault();
                     $.ajax({
-                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
+                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
                         type: 'PUT',
                         dataType: 'json',
                         contentType: 'application/json; charset=UTF-8',
