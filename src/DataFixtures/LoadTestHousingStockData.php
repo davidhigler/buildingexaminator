@@ -2920,8 +2920,8 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress87->setLastChangeTime();
 
         $buildingAddress88 = new BuildingAddress();
-        $buildingAddress88->setConstructionYear(2026);
-        $buildingAddress88->setRenovationYear(2081);
+        $buildingAddress88->setConstructionYear(2000);
+        $buildingAddress88->setRenovationYear(2013);
         $buildingAddress88->setStreetName('Á á Ć ć É é Í í Ó ó Ń ń Ś ś Ú ú Ý ý Ź ź Ǿ ǿ Straatnaam A');
         $buildingAddress88->setHouseNumber(10);
         $buildingAddress88->setAddition('Bis');
