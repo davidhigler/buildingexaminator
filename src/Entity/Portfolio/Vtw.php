@@ -21,86 +21,115 @@ class Vtw extends IdTimeIdentification
      * @ORM\Column(type="string", length=128, nullable=false)
      *
      * @Assert\NotBlank(
-     *      message="The building type may not be empty"
+     *      message="The type description may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="The building type is not a valid {{ type }}"
+     *     message="The type description is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=128,
-     *      maxMessage="The building type can contain a maximum of {{ limit }} characters"
+     *      maxMessage="The type description can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
      */
-    protected string $buildingType;
+    protected string $typeDescription;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
      *
      * @Assert\NotBlank(
-     *      message="The construction year may not be empty"
+     *      message="The building type description may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="The construction year is not a valid {{ type }}"
+     *     message="The building type description is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=128,
-     *      maxMessage="The construction year can contain a maximum of {{ limit }} characters"
+     *      maxMessage="The building type description can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
      */
-    protected string $constructionYear;
+    protected string $buildingTypeDescription;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
      *
      * @Assert\NotBlank(
-     *      message="The roof type may not be empty"
+     *      message="The construction year description may not be empty"
      * )
      * @Assert\Type(
      *     type="string",
-     *     message="The roof type is not a valid {{ type }}"
+     *     message="The construction year description is not a valid {{ type }}"
      * )
      * @Assert\Length(
      *      max=128,
-     *      maxMessage="The roof type can contain a maximum of {{ limit }} characters"
+     *      maxMessage="The construction year description can contain a maximum of {{ limit }} characters"
      * )
      *
      * @OA\Property()
      */
-    protected string $roofType;
+    protected string $constructionYearDescription;
 
-    public function getBuildingType(): string
+    /**
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The roof type description may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The roof type description is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=128,
+     *      maxMessage="The roof type description can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $roofTypeDescription;
+
+    public function getTypeDescription(): string
     {
-        return $this->buildingType;
+        return $this->typeDescription;
     }
 
-    public function getConstructionYear(): string
+    public function getBuildingTypeDescription(): string
     {
-        return $this->constructionYear;
+        return $this->buildingTypeDescription;
     }
 
-    public function getRoofType(): string
+    public function getConstructionYearDescription(): string
     {
-        return $this->roofType;
+        return $this->constructionYearDescription;
     }
 
-    public function setBuildingType(string $buildingType): void
+    public function getRoofTypeDescription(): string
     {
-        $this->buildingType = $buildingType;
+        return $this->roofTypeDescription;
     }
 
-    public function setConstructionYear(string $constructionYear): void
+    public function setTypeDescription(string $typeDescription): void
     {
-        $this->constructionYear = $constructionYear;
+        $this->typeDescription = $typeDescription;
     }
 
-    public function setRoofType(string $roofType): void
+    public function setBuildingTypeDescription(string $buildingTypeDescription): void
     {
-        $this->roofType = $roofType;
+        $this->buildingTypeDescription = $buildingTypeDescription;
+    }
+
+    public function setConstructionYearDescription(string $constructionYearDescription): void
+    {
+        $this->constructionYearDescription = $constructionYearDescription;
+    }
+
+    public function setRoofTypeDescription(string $roofTypeDescription): void
+    {
+        $this->roofTypeDescription = $roofTypeDescription;
     }
 }
