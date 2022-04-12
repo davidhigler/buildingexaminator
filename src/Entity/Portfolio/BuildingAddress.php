@@ -266,6 +266,16 @@ class BuildingAddress extends IdTime
      */
     protected bool $daeb;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Vtw", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="vtw_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A buildingaddress must have a vtw"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/Vtw")
+     */
     protected Vtw $vtw;
 
     #[Pure]
