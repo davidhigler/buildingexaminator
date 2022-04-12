@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Entity\Portfolio;
+namespace App\Entity\Selections;
 
+use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\BuildingType;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-class SelectionBlockBuildingType extends Id
+class SelectionBlockBuildingType
 {
     /**
      * @Assert\Valid()

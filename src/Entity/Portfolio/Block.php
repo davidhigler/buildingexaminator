@@ -2,6 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Entity\Selections\SelectionBlockBuildingType;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
@@ -40,13 +41,6 @@ class Block extends IdTimeIdentification
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="SelectionBlockBuildingType", mappedBy="block", fetch="EXTRA_LAZY")
-     *
-     * @OA\Property()
-     */
-    protected Collection $buildingTypeSelection;
-
-    /**
      * @ORM\Column(type="string", length=128)
      *
      * @Assert\Type(
@@ -66,7 +60,6 @@ class Block extends IdTimeIdentification
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingTypeSelection = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -82,11 +75,6 @@ class Block extends IdTimeIdentification
     public function getNumberOfBuildingAddresses(): int
     {
         return count($this->buildingAddresses);
-    }
-
-    public function getBuildingTypeSelection(): Collection
-    {
-        return $this->buildingTypeSelection;
     }
 
     public function getFinancialNumber(): string
@@ -107,16 +95,6 @@ class Block extends IdTimeIdentification
     public function removeBuildingAddress(BuildingAddress $buildingAddress): void
     {
         $this->buildingAddresses->removeElement($buildingAddress);
-    }
-
-    public function addBuildingSelection(SelectionBlockBuildingType $buildingSelection): void
-    {
-        $this->buildingTypeSelection->add($buildingSelection);
-    }
-
-    public function removeBuildingSelection(SelectionBlockBuildingType $buildingSelection): void
-    {
-        $this->buildingTypeSelection->removeElement($buildingSelection);
     }
 
     public function setFinancialNumber(string $financialNumber): void

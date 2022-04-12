@@ -39,18 +39,10 @@ class BuildingType extends IdTimeIdentification
      */
     protected Collection $buildingAddresses;
 
-    /**
-     * @ORM\OneToMany(targetEntity="SelectionBlockBuildingType", mappedBy="buildingType", fetch="EXTRA_LAZY")
-     *
-     * @OA\Property()
-     */
-    protected Collection $buildingTypeSelections;
-
     #[Pure]
     public function __construct()
     {
         $this->buildingAddresses = new ArrayCollection();
-        $this->buildingTypeSelections = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -61,11 +53,6 @@ class BuildingType extends IdTimeIdentification
     public function getBuildingAddresses(): Collection
     {
         return $this->buildingAddresses;
-    }
-
-    public function getBuildingTypeSelections(): Collection
-    {
-        return $this->buildingTypeSelections;
     }
 
     public function setHousingStock(HousingStock $housingStock): void
@@ -81,16 +68,6 @@ class BuildingType extends IdTimeIdentification
     public function removeBuildingAddress(BuildingAddress $buildingAddress): void
     {
         $this->buildingAddresses->removeElement($buildingAddress);
-    }
-
-    public function addBuildingTypeSelection(SelectionBlockBuildingType $buildingTypeSelection): void
-    {
-        $this->buildingTypeSelections->add($buildingTypeSelection);
-    }
-
-    public function removeBuildingTypeSelection(SelectionBlockBuildingType $buildingTypeSelection): void
-    {
-        $this->buildingTypeSelections->removeElement($buildingTypeSelection);
     }
 
 }
