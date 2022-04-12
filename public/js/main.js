@@ -304,20 +304,20 @@ function loadTestPage() {
                 .off('click')
                 .click(
                     function(event) {
-                        console.log(event);
-                        console.log('event.offsetX: ' + event.offsetX);
-                        console.log('event.target.clientWidth: ' + event.target.clientWidth);
-                        console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
+                        //console.log(event);
+                        //console.log('event.offsetX: ' + event.offsetX);
+                        //console.log('event.target.clientWidth: ' + event.target.clientWidth);
+                        //console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
 
                         let realX = Math.floor((event.offsetX/event.target.clientWidth)*event.target.naturalWidth);
-                        console.log(realX);
+                        //console.log(realX);
 
-                        console.log('event.offsetY: ' + event.offsetY);
-                        console.log('event.target.clientHeight: ' + event.target.clientHeight);
-                        console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
+                        //console.log('event.offsetY: ' + event.offsetY);
+                        //console.log('event.target.clientHeight: ' + event.target.clientHeight);
+                        //console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
 
                         let realY = Math.floor((event.offsetY/event.target.clientHeight)*event.target.naturalHeight);
-                        console.log(realY);
+                        //console.log(realY);
 
                         M.toast({html: 'X:' + realX + ' Y:' + realY});
                     }
@@ -2611,7 +2611,6 @@ function loadBuildingaddressEditPage(id) {
             ) {
 
                 let buildingAddressdata = buildingAddress[0].data[0];
-                console.log(buildingAddressdata);
 
                 let residentialAreaHtmlOptions = '';
                 residentialAreas[0].data.forEach(
