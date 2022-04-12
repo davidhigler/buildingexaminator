@@ -2846,7 +2846,7 @@ function loadBuildingaddressEditPage(id) {
                     '                <p>\n' +
                     '                    <i class="material-icons prefix">house_money</i>\n' +
                     '                    <label>\n' +
-                    '                        <input id="daeb" name="daeb" type="checkbox"' + buildingAddressdata.daeb ? ' checked="checked"' : '' + '>\n' +
+                    '                        <input id="daeb" name="daeb" type="checkbox"' + (buildingAddressdata.daeb ? ' checked="checked"' : '') + '>\n' +
                     '                        <span>Daeb</span>\n' +
                     '                    </label>\n' +
                     '                </p>\n' +
