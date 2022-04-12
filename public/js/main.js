@@ -211,13 +211,13 @@ function loadHomePage() {
                 '        <p>This is the testing application for our app the Building Examinator.</p>\n' +
                 '        <div class="possibleByLogos">\n' +
                 '            <a href="https://www.nginx.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/NGinX.png">\n' +
+                '                <img alt="NGinX" src="/images/logos/NGinX.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://www.php.net" target="_blank" class="possibleByLogo">\n' +
                 '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
                 '            <a href="https://www.mysql.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/MySql.png">\n' +
+                '                <img alt="MySql" src="/images/logos/MySql.png">\n' +
                 '            </a>\n' +
                 '            <br/>\n' +
                 '            <br/>\n' +
@@ -225,10 +225,10 @@ function loadHomePage() {
                 '                <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
                 '            <a href="https://getcomposer.org" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/Composer.png">\n' +
+                '                <img alt="Composer" src="/images/logos/Composer.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/ThePhpLeague.png">\n' +
+                '                <img alt="ThePhpLeague" src="/images/logos/ThePhpLeague.png">\n' +
                 '            </a>\n' +
                 '            <br/>\n' +
                 '            <br/>\n' +
@@ -236,10 +236,10 @@ function loadHomePage() {
                 '                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
                 '            </a>\n' +
                 '            <a href="https://jquery.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/jQuery.png">\n' +
+                '                <img alt="jQuery" src="/images/logos/jQuery.png">\n' +
                 '            </a>\n' +
                 '            <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
-                '                <img src="/images/logos/MomentJS.png">\n' +
+                '                <img alt="MomentJS" src="/images/logos/MomentJS.png">\n' +
                 '            </a>\n' +
                 '        </div>\n'
             );
@@ -2590,19 +2590,350 @@ function loadBuildingaddressNewPage() {
     }
 }
 
-/** ToDo */
 function loadBuildingaddressEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Edit buildingaddress');
+        showLoader();
+        $('#slide-out').sidenav('close');
+
+        $.when(
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id),
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes')
+        ).then(
+            function (
+                buildingAddress,
+                residentialAreas,
+                blocks,
+                buildingTypes,
+                livingTypes
+            ) {
+
+                let buildingAddressdata = buildingAddress[0].data[0];
+                console.log(buildingAddressdata);
+
+                let residentialAreaHtmlOptions = '';
+                residentialAreas[0].data.forEach(
+                    function(item) {
+                        if (buildingAddressdata.residentialArea.id === item.id) {
+                            residentialAreaHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+                        } else {
+                            residentialAreaHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                        }
+                    }
+                );
+
+                let blockHtmlOptions = '';
+                blocks[0].data.forEach(
+                    function(item) {
+                        if (buildingAddressdata.block.id === item.id) {
+                            blockHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+                        } else {
+                            blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                        }
+                    }
+                );
+
+                let buildingTypeHtmlOptions = '';
+                buildingTypes[0].data.forEach(
+                    function(item) {
+                        if (buildingAddressdata.buildingType.id === item.id) {
+                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+                        } else {
+                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                        }
+                    }
+                );
+
+                let livingTypeHtmlOptions = '';
+                livingTypes[0].data.forEach(
+                    function(item) {
+                        if (buildingAddressdata.livingType.id === item.id) {
+                            livingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+                        } else {
+                            livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                        }
+                    }
+                );
+
+                let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
+
+                let constructionYearHtmlOptions = '';
+                let constructionYearIsSelected = false;
+                yearSelectValues.forEach(
+                    function(item) {
+                        if (buildingAddressdata.constructionYear === item) {
+                            constructionYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
+                            constructionYearIsSelected = true;
+                        } else {
+                            constructionYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                        }
+                    }
+                );
+                if (constructionYearIsSelected === false) {
+                    constructionYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + constructionYearHtmlOptions;
+                }
+
+                let renovationYearHtmlOptions = '';
+                let renovationYearIsSelected = false;
+                yearSelectValues.forEach(
+                    function(item) {
+                        if (buildingAddressdata.renovationYear === item) {
+                            renovationYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
+                            renovationYearIsSelected = true;
+                        } else {
+                            renovationYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+                        }
+                    }
+                );
+                if (renovationYearIsSelected === false) {
+                    renovationYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + renovationYearHtmlOptions;
+                }
+
+                let orientationSelectValues = [
+                    {'id': 'n',   'image': '/images/directions/n.png',   'text': 'Noord'},
+                    {'id': 'nne', 'image': '/images/directions/nne.png', 'text': 'Noord Noord Oost'},
+                    {'id': 'ne',  'image': '/images/directions/ne.png',  'text': 'Noord Oost'},
+                    {'id': 'nee', 'image': '/images/directions/nee.png', 'text': 'Noord Oost Oost'},
+                    {'id': 'e',   'image': '/images/directions/e.png',   'text': 'Oost'},
+                    {'id': 'see', 'image': '/images/directions/see.png', 'text': 'Zuid Oost Oost'},
+                    {'id': 'se',  'image': '/images/directions/se.png',  'text': 'Zuid Oost'},
+                    {'id': 'sse', 'image': '/images/directions/sse.png', 'text': 'Zuid Zuid Oost'},
+                    {'id': 's',   'image': '/images/directions/s.png',   'text': 'Zuid'},
+                    {'id': 'ssw', 'image': '/images/directions/ssw.png', 'text': 'Zuid Zuid West'},
+                    {'id': 'sw',  'image': '/images/directions/sw.png',  'text': 'Zuid West'},
+                    {'id': 'sww', 'image': '/images/directions/sww.png', 'text': 'Zuid West West'},
+                    {'id': 'w',   'image': '/images/directions/w.png',   'text': 'West'},
+                    {'id': 'nww', 'image': '/images/directions/nww.png', 'text': 'Noord West West'},
+                    {'id': 'nw',  'image': '/images/directions/nw.png',  'text': 'Noord West'},
+                    {'id': 'nnw', 'image': '/images/directions/nnw.png', 'text': 'Noord Noord West'}
+                ];
+
+                let orientationHtmlOptions = '';
+                let orientationIsSelected = false;
+                orientationSelectValues.forEach(
+                    function(item) {
+                        if (buildingAddressdata.orientation === item.id) {
+                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '" selected>' + item.text + '</option>\n';
+                            orientationIsSelected = true;
+                        } else {
+                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '">' + item.text + '</option>\n';
+                        }
+                    }
+                );
+                if (orientationIsSelected === false) {
+                    orientationHtmlOptions = '                    <option disabled selected>Choose a direction</option>\n' + orientationHtmlOptions;
+                }
+
+                $('div#content').html(
+                    '    <h3 class="header">Edit buildingaddress</h3>\n' +
+                    '    <form id="editbuildingaddress">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">view_quilt</i>\n' +
+                    '                <select id="residentialarea" name="residentialarea">\n' +
+                    residentialAreaHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Residential area</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">view_module</i>\n' +
+                    '                <select id="block" name="block">\n' +
+                    blockHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Block</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">home_work</i>\n' +
+                    '                <select id="buildingtype" name="buildingtype">\n' +
+                    buildingTypeHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Building type</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">villa</i>\n' +
+                    '                <select id="livingtype" name="livingtype">\n' +
+                    livingTypeHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Living type</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + buildingAddressdata.rentalUnitNumber + '">\n' +
+                    '                <label for="rentalunitnumber">Rental unit number</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">road</i>\n' +
+                    '                <input id="streetname" name="streetname" type="text" class="validate" value="' + buildingAddressdata.streetName + '">\n' +
+                    '                <label for="streetname">Street name</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">123</i>\n' +
+                    '                <input id="housenumber" name="housenumber" type="text" class="validate" value="' + buildingAddressdata.houseNumber + '">\n' +
+                    '                <label for="housenumber">House number</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">abc</i>\n' +
+                    '                <input id="addition" name="addition" type="text" class="validate" value="' + buildingAddressdata.addition + '">\n' +
+                    '                <label for="addition">Addition</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">zipcode</i>\n' +
+                    '                <input id="zipcode" name="zipcode" type="text" class="validate" value="' + buildingAddressdata.zipcode + '">\n' +
+                    '                <label for="zipcode">Zipcode</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">location_city</i>\n' +
+                    '                <input id="city" name="city" type="text" class="validate" value="' + buildingAddressdata.city + '">\n' +
+                    '                <label for="city">City</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <input id="bagid" name="bagid" type="text" class="validate" value="' + buildingAddressdata.bagId + '">\n' +
+                    '                <label for="bagid">BAG id</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <select id="constructionyear" name="constructionyear">\n' +
+                    constructionYearHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Construction year</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <select id="renovationyear" name="renovationyear">\n' +
+                    renovationYearHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Renovation year</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">explore</i>\n' +
+                    '                <select id="orientation" name="orientation">\n' +
+                    orientationHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Orientation façade</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <p>\n' +
+                    '                    <i class="material-icons prefix">house_money</i>\n' +
+                    '                    <label>\n' +
+                    '                        <input id="daeb" name="daeb" type="checkbox"' + buildingAddressdata.daeb ? ' checked="checked"' : '' + '>\n' +
+                    '                        <span>Daeb</span>\n' +
+                    '                    </label>\n' +
+                    '                </p>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col s12">\n' +
+                    '                <button type="submit" class="btn" name="save">\n' +
+                    '                    <i class="material-icons left">save</i>Save\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </form>\n'
+                );
+
+                $('form#newbuildingaddress select').formSelect();
+
+                $('form#editbuildingaddress').submit(function (event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
+                        type: 'PUT',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        accepts: {
+                            json: 'application/json'
+                        },
+                        data: JSON.stringify(
+                            {
+                                'residentialarea': parseInt($('select#residentialarea').val()),
+                                'block': parseInt($('select#block').val()),
+                                'buildingtype': parseInt($('select#buildingtype').val()),
+                                'livingtype': parseInt($('select#livingtype').val()),
+                                'rentalunitnumber': $('input#rentalunitnumber').val(),
+                                'streetname': $('input#streetname').val(),
+                                'housenumber': parseInt($('input#housenumber').val()),
+                                'addition': $('input#addition').val(),
+                                'zipcode': $('input#zipcode').val(),
+                                'city': $('input#city').val(),
+                                'bagid': $('input#bagid').val(),
+                                'constructionyear': parseInt($('select#constructionyear').val()),
+                                'renovationyear': parseInt($('select#renovationyear').val()),
+                                'orientation': $('select#orientation').val(),
+                                'daeb': $('input#daeb').prop("checked")
+                            }
+                        ),
+                        beforeSend: function () {
+                            showLoader();
+                            $('#slide-out').sidenav('close');
+                        },
+                        success: function () {
+                            loadBuildingaddressesPage();
+                        },
+                        error: function (jqXHR) {
+                            loadErrorPage(jqXHR);
+                        },
+                        complete: function () {
+                            hideLoader();
+                        },
+                    });
+                });
+
+                hideLoader();
+            }
+        );
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
 }
 
-/** ToDo */
 function deleteBuildingaddress(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        loadUnderConstructionPage('Delete buildingaddress');
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
+            type: 'DELETE',
+            beforeSend: function() {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function() {
+                loadBuildingaddressesPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+                hideLoader();
+            },
+        });
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }

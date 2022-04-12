@@ -346,6 +346,7 @@ class PortfolioController extends AbstractController
         'addition',
         'zipcode',
         'city',
+        'bagId',
         'constructionYear',
         'renovationYear',
         'orientation',
@@ -2247,9 +2248,9 @@ class PortfolioController extends AbstractController
     {
         $newAddress = json_decode($request->getContent(), true);
 
-        $blockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $blockRepository->find((int) $housingStockId);
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         /** @var ResidentialArea $residentialArea */
@@ -2267,65 +2268,65 @@ class PortfolioController extends AbstractController
         /** @var LivingType $livingType */
         $livingType = $livingTypeRepository->find((int) $newAddress['livingtype']);
 
-        $address = new BuildingAddress();
+        $buildingAddress = new BuildingAddress();
         if (!empty($housingStock)) {
-            $address->setHousingStock($housingStock);
+            $buildingAddress->setHousingStock($housingStock);
         }
         if (!empty($residentialArea)) {
-            $address->setResidentialArea($residentialArea);
+            $buildingAddress->setResidentialArea($residentialArea);
         }
         if (!empty($block)) {
-            $address->setBlock($block);
+            $buildingAddress->setBlock($block);
         }
         if (!empty($buildingType)) {
-            $address->setBuildingType($buildingType);
+            $buildingAddress->setBuildingType($buildingType);
         }
         if (!empty($livingType)) {
-            $address->setLivingType($livingType);
+            $buildingAddress->setLivingType($livingType);
         }
         if (!empty($newAddress['rentalunitnumber'])) {
-            $address->setRentalUnitNumber($newAddress['rentalunitnumber']);
+            $buildingAddress->setRentalUnitNumber($newAddress['rentalunitnumber']);
         }
         if (!empty($newAddress['streetname'])) {
-            $address->setStreetName($newAddress['streetname']);
+            $buildingAddress->setStreetName($newAddress['streetname']);
         }
         if (!empty($newAddress['housenumber'])) {
-            $address->setHouseNumber($newAddress['housenumber']);
+            $buildingAddress->setHouseNumber($newAddress['housenumber']);
         }
         if (!empty($newAddress['addition'])) {
-            $address->setAddition($newAddress['addition']);
+            $buildingAddress->setAddition($newAddress['addition']);
         }
         if (!empty($newAddress['zipcode'])) {
-            $address->setZipcode($newAddress['zipcode']);
+            $buildingAddress->setZipcode($newAddress['zipcode']);
         }
         if (!empty($newAddress['city'])) {
-            $address->setCity($newAddress['city']);
+            $buildingAddress->setCity($newAddress['city']);
         }
         if (!empty($newAddress['bagid'])) {
-            $address->setBagId($newAddress['bagid']);
+            $buildingAddress->setBagId($newAddress['bagid']);
         }
         if (!empty($newAddress['constructionyear'])) {
-            $address->setConstructionYear($newAddress['constructionyear']);
+            $buildingAddress->setConstructionYear($newAddress['constructionyear']);
         }
         if (!empty($newAddress['renovationyear'])) {
-            $address->setRenovationYear($newAddress['renovationyear']);
+            $buildingAddress->setRenovationYear($newAddress['renovationyear']);
         }
         if (!empty($newAddress['orientation'])) {
-            $address->setOrientation($newAddress['orientation']);
+            $buildingAddress->setOrientation($newAddress['orientation']);
         }
         if (is_bool($newAddress['daeb'])) {
-            $address->setDaeb($newAddress['daeb']);
+            $buildingAddress->setDaeb($newAddress['daeb']);
         }
-        $address->setCreationTime();
-        $address->setLastChangeTime();
+        $buildingAddress->setCreationTime();
+        $buildingAddress->setLastChangeTime();
 
-        $violations = $validator->validate($address);
+        $violations = $validator->validate($buildingAddress);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($address);
+        $entityManager->persist($buildingAddress);
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
@@ -2334,13 +2335,12 @@ class PortfolioController extends AbstractController
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $address,
+                $buildingAddress,
                 self::ADDRESS_DETAIL_FIELDS
             )
         );
     }
 
-    // @ToDo Conform to standards from above
     #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'changebuildingaddress', methods: ['PUT'])]
     /**
      * @OA\Put(
@@ -2403,7 +2403,7 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function changeBuildingAddress(string $buildingAddressId, Request $request, ValidatorInterface $validator): Response
+    public function changeBuildingAddress(string $housingStockId, string $buildingAddressId, Request $request, ValidatorInterface $validator): Response
     {
         $changeAddress = json_decode($request->getContent(), true);
 
@@ -2411,12 +2411,74 @@ class PortfolioController extends AbstractController
         /** @var BuildingAddress $buildingAddress */
         $buildingAddress = $buildingAddressRepository->find((int) $buildingAddressId);
 
-        $buildingAddress->setStreetName($changeAddress['streetName']);
-        $buildingAddress->setHouseNumber($changeAddress['houseNumber']);
-        $buildingAddress->setAddition($changeAddress['addition']);
-        $buildingAddress->setZipcode($changeAddress['zipcode']);
-        $buildingAddress->setCity($changeAddress['city']);
-        $buildingAddress->setDaeb($changeAddress['daeb']);
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var ResidentialArea $residentialArea */
+        $residentialArea = $residentialAreaRepository->find((int) $changeAddress['residentialarea']);
+
+        $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+        /** @var Block $block */
+        $block = $blockRepository->find((int) $changeAddress['block']);
+
+        $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        /** @var BuildingType $buildingType */
+        $buildingType = $buildingTypeRepository->find((int) $changeAddress['buildingtype']);
+
+        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
+        /** @var LivingType $livingType */
+        $livingType = $livingTypeRepository->find((int) $changeAddress['livingtype']);
+
+        if (!empty($housingStock)) {
+            $buildingAddress->setHousingStock($housingStock);
+        }
+        if (!empty($residentialArea)) {
+            $buildingAddress->setResidentialArea($residentialArea);
+        }
+        if (!empty($block)) {
+            $buildingAddress->setBlock($block);
+        }
+        if (!empty($buildingType)) {
+            $buildingAddress->setBuildingType($buildingType);
+        }
+        if (!empty($livingType)) {
+            $buildingAddress->setLivingType($livingType);
+        }
+        if (!empty($changeAddress['rentalunitnumber'])) {
+            $buildingAddress->setRentalUnitNumber($changeAddress['rentalunitnumber']);
+        }
+        if (!empty($changeAddress['streetname'])) {
+            $buildingAddress->setStreetName($changeAddress['streetname']);
+        }
+        if (!empty($changeAddress['housenumber'])) {
+            $buildingAddress->setHouseNumber($changeAddress['housenumber']);
+        }
+        if (!empty($changeAddress['addition'])) {
+            $buildingAddress->setAddition($changeAddress['addition']);
+        }
+        if (!empty($changeAddress['zipcode'])) {
+            $buildingAddress->setZipcode($changeAddress['zipcode']);
+        }
+        if (!empty($changeAddress['city'])) {
+            $buildingAddress->setCity($changeAddress['city']);
+        }
+        if (!empty($changeAddress['bagid'])) {
+            $buildingAddress->setBagId($changeAddress['bagid']);
+        }
+        if (!empty($changeAddress['constructionyear'])) {
+            $buildingAddress->setConstructionYear($changeAddress['constructionyear']);
+        }
+        if (!empty($changeAddress['renovationyear'])) {
+            $buildingAddress->setRenovationYear($changeAddress['renovationyear']);
+        }
+        if (!empty($changeAddress['orientation'])) {
+            $buildingAddress->setOrientation($changeAddress['orientation']);
+        }
+        if (is_bool($changeAddress['daeb'])) {
+            $buildingAddress->setDaeb($changeAddress['daeb']);
+        }
         $buildingAddress->setLastChangeTime();
 
         $violations = $validator->validate($buildingAddress);

@@ -4,6 +4,18 @@ This is an API that serves as backend for possible multiple frontends.
 
 It provides management of a complete housing portfolio and recording / administrating of building surveys.
 
+# ToDo's
+
+## Backend
+- Make VTW save to database
+
+## Interface
+- Cancel button on all the edit pages
+- Input validation client side for all the forms like the create owner form
+- Try catch the exception from flushing the change item functions
+- Make VTW a chooseble option when creating a building address
+- Make VTW changeble through interface
+
 # Requirements
 - PHP 8.0 of hoger
   - pdo_mysql
