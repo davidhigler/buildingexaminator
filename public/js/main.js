@@ -2768,49 +2768,49 @@ function loadBuildingaddressEditPage(id) {
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + buildingAddressdata.rentalUnitNumber + '">\n' +
+                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + (buildingAddressdata.rentalUnitNumber ?? '') + '">\n' +
                     '                <label for="rentalunitnumber" class="active">Rental unit number</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">road</i>\n' +
-                    '                <input id="streetname" name="streetname" type="text" class="validate" value="' + buildingAddressdata.streetName + '">\n' +
+                    '                <input id="streetname" name="streetname" type="text" class="validate" value="' + (buildingAddressdata.streetName ?? '') + '">\n' +
                     '                <label for="streetname" class="active">Street name</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">123</i>\n' +
-                    '                <input id="housenumber" name="housenumber" type="text" class="validate" value="' + buildingAddressdata.houseNumber + '">\n' +
+                    '                <input id="housenumber" name="housenumber" type="text" class="validate" value="' + (buildingAddressdata.houseNumber ?? '') + '">\n' +
                     '                <label for="housenumber" class="active">House number</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">abc</i>\n' +
-                    '                <input id="addition" name="addition" type="text" class="validate" value="' + buildingAddressdata.addition + '">\n' +
+                    '                <input id="addition" name="addition" type="text" class="validate" value="' + (buildingAddressdata.addition ?? '') + '">\n' +
                     '                <label for="addition" class="active">Addition</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">zipcode</i>\n' +
-                    '                <input id="zipcode" name="zipcode" type="text" class="validate" value="' + buildingAddressdata.zipcode + '">\n' +
+                    '                <input id="zipcode" name="zipcode" type="text" class="validate" value="' + (buildingAddressdata.zipcode ?? '') + '">\n' +
                     '                <label for="zipcode" class="active">Zipcode</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">location_city</i>\n' +
-                    '                <input id="city" name="city" type="text" class="validate" value="' + buildingAddressdata.city + '">\n' +
+                    '                <input id="city" name="city" type="text" class="validate" value="' + (buildingAddressdata.city ?? '') + '">\n' +
                     '                <label for="city" class="active">City</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="bagid" name="bagid" type="text" class="validate" value="' + buildingAddressdata.bagId + '">\n' +
+                    '                <input id="bagid" name="bagid" type="text" class="validate" value="' + (buildingAddressdata.bagId ?? '') + '">\n' +
                     '                <label for="bagid" class="active">BAG id</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
