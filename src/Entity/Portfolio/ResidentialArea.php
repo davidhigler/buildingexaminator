@@ -6,7 +6,6 @@ use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

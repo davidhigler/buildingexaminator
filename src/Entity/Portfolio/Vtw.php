@@ -2,23 +2,134 @@
 
 namespace App\Entity\Portfolio;
 
+use OpenApi\Annotations as OA;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\SuperClasses\IdTimeIdentification;
 
+/**
+ * @author David C. Higler <davidhigler@gmail.com>
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="Vtws")
+ *
+ * @OA\Schema()
+ */
 class Vtw extends IdTimeIdentification
 {
-    public function setType(string $type): void {
+    /**
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The type description may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The type description is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=128,
+     *      maxMessage="The type description can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $typeDescription;
 
+    /**
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The building type description may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The building type description is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=128,
+     *      maxMessage="The building type description can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $buildingTypeDescription;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The construction year description may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The construction year description is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=128,
+     *      maxMessage="The construction year description can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $constructionYearDescription;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The roof type description may not be empty"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="The roof type description is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=128,
+     *      maxMessage="The roof type description can contain a maximum of {{ limit }} characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected string $roofTypeDescription;
+
+    public function getTypeDescription(): string
+    {
+        return $this->typeDescription;
     }
 
-    public function setBuildingType(string $buildingType): void {
-
+    public function getBuildingTypeDescription(): string
+    {
+        return $this->buildingTypeDescription;
     }
 
-    public function setBouwjaar(string $bouwjaar): void {
-
+    public function getConstructionYearDescription(): string
+    {
+        return $this->constructionYearDescription;
     }
 
-    public function setRooftype(string $roofType): void {
+    public function getRoofTypeDescription(): string
+    {
+        return $this->roofTypeDescription;
+    }
 
+    public function setTypeDescription(string $typeDescription): void
+    {
+        $this->typeDescription = $typeDescription;
+    }
+
+    public function setBuildingTypeDescription(string $buildingTypeDescription): void
+    {
+        $this->buildingTypeDescription = $buildingTypeDescription;
+    }
+
+    public function setConstructionYearDescription(string $constructionYearDescription): void
+    {
+        $this->constructionYearDescription = $constructionYearDescription;
+    }
+
+    public function setRoofTypeDescription(string $roofTypeDescription): void
+    {
+        $this->roofTypeDescription = $roofTypeDescription;
     }
 }

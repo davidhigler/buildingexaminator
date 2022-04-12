@@ -40,7 +40,7 @@ class Block extends IdTimeIdentification
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="block", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="SelectionBlockBuildingType", mappedBy="block", fetch="EXTRA_LAZY")
      *
      * @OA\Property()
      */
@@ -109,12 +109,12 @@ class Block extends IdTimeIdentification
         $this->buildingAddresses->removeElement($buildingAddress);
     }
 
-    public function addBuildingSelection(BuildingTypeSelection $buildingSelection): void
+    public function addBuildingSelection(SelectionBlockBuildingType $buildingSelection): void
     {
         $this->buildingTypeSelection->add($buildingSelection);
     }
 
-    public function removeBuildingSelection(BuildingTypeSelection $buildingSelection): void
+    public function removeBuildingSelection(SelectionBlockBuildingType $buildingSelection): void
     {
         $this->buildingTypeSelection->removeElement($buildingSelection);
     }

@@ -2,30 +2,20 @@
 
 namespace App\Entity\Portfolio;
 
-use OpenApi\Annotations as OA;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use App\Entity\SuperClasses\IdTimeIdentification;
+use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="BuildingTypeSelections")
  */
-class BuildingTypeSelection extends IdTimeIdentification
+class SelectionBlockBuildingType extends Id
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingTypeSelection")
-     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected Block $block;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingTypeSelection")
-     * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      * @Assert\Valid()
      */
     protected BuildingType $buildingType;

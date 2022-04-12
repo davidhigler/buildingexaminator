@@ -6,7 +6,6 @@ use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -41,7 +40,7 @@ class BuildingType extends IdTimeIdentification
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingTypeSelection", mappedBy="buildingType", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="SelectionBlockBuildingType", mappedBy="buildingType", fetch="EXTRA_LAZY")
      *
      * @OA\Property()
      */
@@ -84,12 +83,12 @@ class BuildingType extends IdTimeIdentification
         $this->buildingAddresses->removeElement($buildingAddress);
     }
 
-    public function addBuildingTypeSelection(BuildingTypeSelection $buildingTypeSelection): void
+    public function addBuildingTypeSelection(SelectionBlockBuildingType $buildingTypeSelection): void
     {
         $this->buildingTypeSelections->add($buildingTypeSelection);
     }
 
-    public function removeBuildingTypeSelection(BuildingTypeSelection $buildingTypeSelection): void
+    public function removeBuildingTypeSelection(SelectionBlockBuildingType $buildingTypeSelection): void
     {
         $this->buildingTypeSelections->removeElement($buildingTypeSelection);
     }
