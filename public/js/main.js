@@ -734,7 +734,7 @@ function loadHousingstocksPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+            $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
             hideLoader();
         },
     });
@@ -1105,7 +1105,7 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -1402,7 +1402,7 @@ function loadBlocksPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -1715,7 +1715,7 @@ function loadBuildingtypesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -2012,7 +2012,7 @@ function loadLivingtypesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -2255,14 +2255,21 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                 $(data.data).each(function (index, element) {
                     rows +=
                         '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + ' - ' + (element.rentalUnitNumber ?? '') + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">home</i></td>\n' +
+                        '                <td class="hide-on-small-only">\n' +
+                        '                    <a href="javascript:void(0);" onclick="loadBuildingaddressDetailPage(' + element.id + ');">\n' +
+                        '                        <i class="material-icons prefix">home</i>\n' +
+                        '                    </a>\n' +
+                        '                </td>\n' +
                         '                <td class="hide-on-small-only">' + (element.rentalUnitNumber ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.streetName ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.houseNumber ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.addition ?? '') + '</td>\n' +
                         '                <td class="hide-on-med-and-up">' +
-                        '                    ' + element.rentalUnitNumber + '<br />\n' +
-                        '                    ' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />\n' +
+                        '                    <a href="javascript:void(0);" onclick="loadBuildingaddressDetailPage(' + element.id + ');">\n' +
+                        '                        <i class="material-icons small prefix" style="vertical-align:middle;">home</i>\n' +
+                        '                    </a>\n' +
+                        '                    ' + element.id + ' - ' + element.rentalUnitNumber + '<br />\n' +
+                        '                    ' + element.streetName + ' ' + element.houseNumber + element.addition + '<br />\n' +
                         '                    ' + element.zipcode + ' ' + element.city + '\n' +
                         '                </td>\n' +
                         '                <td class="actions">\n' +
@@ -2319,7 +2326,7 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0,});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -2605,6 +2612,219 @@ function loadBuildingaddressNewPage() {
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
+}
+
+function loadBuildingaddressDetailPage(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
+            type: 'GET',
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('.material-tooltip').remove();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let buildingAddressdata = data.data[0];
+                let html = '        <div class="row">\n' +
+                    '            <div class="col s12">\n' +
+                    '                <div class="card blue-grey darken-1">\n' +
+                    '                    <div class="card-content white-text">\n' +
+                    '                        <span class="card-title">Buildingaddress</span>\n' +
+                    '                        <p>\n' +
+                    '                            ' + buildingAddressdata.streetName + ' ' + buildingAddressdata.houseNumber + buildingAddressdata.addition + '<br />\n' +
+                    '                            ' + buildingAddressdata.zipcode + ' ' + buildingAddressdata.city + '\n' +
+                    '                        </p>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <ul class="collapsible popout">\n' +
+                    '                    <li>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">qr_code_2</i>Ids</div>\n' +
+                    '                        <div class="collapsible-body">\n' +
+                    '                            <span>\n' +
+                    '                                <table>\n' +
+                    '                                    <thead>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <th>System</th>\n' +
+                    '                                            <th>Id</th>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </thead>\n' +
+                    '                                    <tbody>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Building examinator</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.id + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Rental unit number</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + (buildingAddressdata.rentalUnitNumber ?? '') + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Bag</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + (buildingAddressdata.bagId ?? '') + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </tbody>\n' +
+                    '                                </table>\n' +
+                    '                            </span>\n' +
+                    '                        </div>\n' +
+                    '                    </li>\n' +
+                    '                    <li>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">place</i>Location</div>\n' +
+                    '                        <div class="collapsible-body">\n' +
+                    '                            <span>\n' +
+                    '                                <table>\n' +
+                    '                                    <thead>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <th>Place</th>\n' +
+                    '                                            <th>Data</th>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </thead>\n' +
+                    '                                    <tbody>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Residential area</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.residentialArea.id + ' - ' + buildingAddressdata.residentialArea.code + '<br />\n' +
+                    '                                                ' + buildingAddressdata.residentialArea.name + '<br />\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Block</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.block.id + ' - ' + buildingAddressdata.block.code + '<br />\n' +
+                    '                                                ' + buildingAddressdata.block.name + '<br />\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </tbody>\n' +
+                    '                                </table>\n' +
+                    '                                <br />\n' +
+                    '                                <br />\n' +
+                    '                                <div id="map"></div>\n' +
+                    '                            </span>\n' +
+                    '                        </div>\n' +
+                    '                    </li>\n' +
+                    '                    <li>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">category</i>Type</div>\n' +
+                    '                        <div class="collapsible-body">\n' +
+                    '                            <span>\n' +
+                    '                                <table>\n' +
+                    '                                    <thead>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <th>Type</th>\n' +
+                    '                                            <th>Data</th>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </thead>\n' +
+                    '                                    <tbody>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Buildingtype</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.buildingType.id + ' - ' + buildingAddressdata.buildingType.code + '<br />\n' +
+                    '                                                ' + buildingAddressdata.buildingType.name + '<br />\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Livingtype</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.livingType.id + ' - ' + buildingAddressdata.livingType.code + '<br />\n' +
+                    '                                                ' + buildingAddressdata.livingType.name + '<br />\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Vtw</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + buildingAddressdata.vtw.id + ' - ' + buildingAddressdata.vtw.code + '<br />\n' +
+                    '                                                ' + buildingAddressdata.vtw.typeDescription + '<br />\n' +
+                    '                                                ' + buildingAddressdata.vtw.buildingTypeDescription + '<br />\n' +
+                    '                                                ' + buildingAddressdata.vtw.constructionYearDescription + '<br />\n' +
+                    '                                                ' + buildingAddressdata.vtw.roofTypeDescription + '<br />\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                    </tbody>\n' +
+                    '                                </table>\n' +
+                    '                            </span>\n' +
+                    '                        </div>\n' +
+                    '                    </li>\n' +
+                    '                    <li>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">access_time</i>Timeline</div>\n' +
+                    '                        <div class="collapsible-body">\n' +
+                    '                            <span>\n' +
+                    '                                <div id="timeline" class="timeline-container">\n' +
+                    '                                    <div class="timeline-wrapper">\n' +
+                    '                                        <h2 class="timeline-time">1976</h2>\n' +
+                    '                                        <dl class="timeline-series">\n' +
+                    '                                            <dt class="timeline-event" id="event01"><a>Event</a></dt>\n' +
+                    '                                            <dd class="timeline-event-content" id="event01EX">\n' +
+                    '                                                <p>Content about the event goes here.</p>\n' +
+                    '                                            </dd>\n' +
+                    '                                            <dt class="timeline-event" id="event02"><a>Another Event</a></dt>\n' +
+                    '                                            <dd class="timeline-event-content" id="event02EX">\n' +
+                    '                                                <p>Content about the other event.</p>\n' +
+                    '                                            </dd>\n' +
+                    '                                        </dl>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="timeline-wrapper">\n' +
+                    '                                        <h2 class="timeline-time">1984</h2>\n' +
+                    '                                       <dl class="timeline-series">\n' +
+                    '                                           <dt class="timeline-event" id="event03"><a>Yet Another Event</a></dt>\n' +
+                    '                                           <dd class="timeline-event-content" id="event03EX">\n' +
+                    '                                               <p>Content about the event goes here.</p>\n' +
+                    '                                           </dd>\n' +
+                    '                                       </dl>\n' +
+                    '                                    </div>\n' +
+                    '                                    <br class="clear">\n' +
+                    '                                </div>\n' +
+                    '                            </span>\n' +
+                    '                        </div>\n' +
+                    '                    </li>\n' +
+                    '                    <li>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">calculate</i>Statistics</div>\n' +
+                    '                        <div class="collapsible-body">\n' +
+                    '                            <span>\n' +
+                    '                            </span>\n' +
+                    '                        </div>\n' +
+                    '                    </li>\n' +
+                    '                </ul>\n' +
+                    '            </div>\n' +
+                    '        </div>\n';
+
+                $('div#content').html(html);
+
+                let mapDiv = document.getElementById('map');
+                mapDiv.style.height = '500px';
+                let mapOptions = {
+                    center: {
+                        lat: 52.5134064342421,
+                        lng: 6.091655946944172
+                    },
+                    zoom: 18
+                };
+
+                new google.maps.Map(mapDiv, mapOptions);
+
+                $.timeliner({});
+
+                $('div#content .collapsible').collapsible();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
+                hideLoader();
+            },
+        });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+
 }
 
 function loadBuildingaddressEditPage(id) {

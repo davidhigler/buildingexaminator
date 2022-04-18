@@ -365,6 +365,7 @@ class PortfolioController extends AbstractController
             'constructionYearDescription',
             'roofTypeDescription',
         ],
+        'rentalUnitNumber',
         'streetName',
         'houseNumber',
         'addition',
