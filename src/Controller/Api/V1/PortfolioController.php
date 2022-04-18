@@ -9,6 +9,7 @@ use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
 use App\Entity\Portfolio\ResidentialArea;
+use App\Entity\Portfolio\Vtw;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
 use Exception;
@@ -122,6 +123,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         property="data",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/BuildingAddress")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="vtws",
+ *     title="Vtws",
+ *     description="An array of vtws",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Vtw")
  *     )
  * )
  */
@@ -353,6 +365,15 @@ class PortfolioController extends AbstractController
         'daeb',
     ];
 
+    private const VTW_LIST_FIELDS = [
+        'id',
+        'code',
+        'typeDescription',
+        'buildingTypeDescription',
+        'constructionYearDescription',
+        'roofTypeDescription',
+    ];
+
     /**
      * HOUSINGSTOCKS
      */
@@ -368,6 +389,15 @@ class PortfolioController extends AbstractController
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
      *         ),
      *         in="query",
      *         required=false
@@ -682,6 +712,15 @@ class PortfolioController extends AbstractController
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
      *         ),
      *         in="query",
      *         required=false
@@ -1038,6 +1077,15 @@ class PortfolioController extends AbstractController
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
      *         ),
      *         in="query",
      *         required=false
@@ -1410,6 +1458,15 @@ class PortfolioController extends AbstractController
      *         in="query",
      *         required=false
      *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple buildingtypes",
@@ -1764,6 +1821,15 @@ class PortfolioController extends AbstractController
      *         in="query",
      *         required=false
      *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple living types",
@@ -2108,6 +2174,25 @@ class PortfolioController extends AbstractController
      *         in="path",
      *         required=true
      *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Details about multiple buildingaddresses",
@@ -2268,6 +2353,10 @@ class PortfolioController extends AbstractController
         /** @var LivingType $livingType */
         $livingType = $livingTypeRepository->find((int) $newAddress['livingtype']);
 
+        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
+        /** @var Vtw $vtw */
+        $vtw = $vtwRepository->find((int) $newAddress['vtw']);
+
         $buildingAddress = new BuildingAddress();
         if (!empty($housingStock)) {
             $buildingAddress->setHousingStock($housingStock);
@@ -2283,6 +2372,9 @@ class PortfolioController extends AbstractController
         }
         if (!empty($livingType)) {
             $buildingAddress->setLivingType($livingType);
+        }
+        if (!empty($vtw)) {
+            $buildingAddress->setVtw($vtw);
         }
         if (!empty($newAddress['rentalunitnumber'])) {
             $buildingAddress->setRentalUnitNumber($newAddress['rentalunitnumber']);
@@ -2431,6 +2523,10 @@ class PortfolioController extends AbstractController
         /** @var LivingType $livingType */
         $livingType = $livingTypeRepository->find((int) $changeAddress['livingtype']);
 
+        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
+        /** @var Vtw $vtw */
+        $vtw = $vtwRepository->find((int) $changeAddress['vtw']);
+
         if (!empty($housingStock)) {
             $buildingAddress->setHousingStock($housingStock);
         }
@@ -2445,6 +2541,9 @@ class PortfolioController extends AbstractController
         }
         if (!empty($livingType)) {
             $buildingAddress->setLivingType($livingType);
+        }
+        if (!empty($vtw)) {
+            $buildingAddress->setVtw($vtw);
         }
         if (!empty($changeAddress['rentalunitnumber'])) {
             $buildingAddress->setRentalUnitNumber($changeAddress['rentalunitnumber']);
@@ -2590,6 +2689,76 @@ class PortfolioController extends AbstractController
                     ]
                 ),
                 self::ADDRESS_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
+     * VTWS
+     */
+
+    #[Route('/vtws', name: 'vtws', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/vtws",
+     *     summary="Returns details about multiple vtws",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple vtws",
+     *         @OA\JsonContent(ref="#/components/schemas/vtws")
+     *     )
+     * )
+     */
+    public function getVtws(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
+        $adapter = $vtwRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.typeDescription', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.typeDescription', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::VTW_LIST_FIELDS
             )
         );
     }

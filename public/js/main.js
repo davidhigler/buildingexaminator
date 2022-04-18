@@ -2337,13 +2337,15 @@ function loadBuildingaddressNewPage() {
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes')
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes'),
+            $.getJSON('/api/v1/vtws')
         ).then(
             function (
                 residentialAreas,
                 blocks,
                 buildingtypes,
-                livingtypes
+                livingtypes,
+                vtws
             ) {
                 let residentialAreaHtmlOptions = '                    <option disabled selected>Choose a residential area</option>\n';
                 residentialAreas[0].data.forEach(function(item) {
@@ -2363,6 +2365,11 @@ function loadBuildingaddressNewPage() {
                 let livingTypeHtmlOptions = '                    <option disabled selected>Choose a living type</option>\n';
                 livingtypes[0].data.forEach(function(item) {
                     livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                });
+
+                let vtwHtmlOptions = '                    <option disabled selected>Choose a vtw</option>\n';
+                vtws[0].data.forEach(function(item) {
+                    vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
                 });
 
                 let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
@@ -2408,6 +2415,15 @@ function loadBuildingaddressNewPage() {
                     livingTypeHtmlOptions +
                     '                </select>\n' +
                     '                <label>Living type</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">vtw</i>\n' +
+                    '                <select id="vtw" name="vtw">\n' +
+                    vtwHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Vtw</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
@@ -2553,6 +2569,7 @@ function loadBuildingaddressNewPage() {
                                 'block': parseInt($('select#block').val()),
                                 'buildingtype': parseInt($('select#buildingtype').val()),
                                 'livingtype': parseInt($('select#livingtype').val()),
+                                'vtw': parseInt($('select#vtw').val()),
                                 'rentalunitnumber': $('input#rentalunitnumber').val(),
                                 'streetname': $('input#streetname').val(),
                                 'housenumber': parseInt($('input#housenumber').val()),
@@ -2600,14 +2617,16 @@ function loadBuildingaddressEditPage(id) {
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes')
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes'),
+            $.getJSON('/api/v1/vtws')
         ).then(
             function (
                 buildingAddress,
                 residentialAreas,
                 blocks,
                 buildingTypes,
-                livingTypes
+                livingTypes,
+                vtws
             ) {
 
                 let buildingAddressdata = buildingAddress[0].data[0];
@@ -2652,6 +2671,17 @@ function loadBuildingaddressEditPage(id) {
                             livingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
                         } else {
                             livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+                        }
+                    }
+                );
+
+                let vtwHtmlOptions = '';
+                vtws[0].data.forEach(
+                    function(item) {
+                        if (buildingAddressdata.vtw.id === item.id) {
+                            vtwHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.code + ' - ' + item.typeDescription + '</option>\n';
+                        } else {
+                            vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
                         }
                     }
                 );
@@ -2762,6 +2792,15 @@ function loadBuildingaddressEditPage(id) {
                     livingTypeHtmlOptions +
                     '                </select>\n' +
                     '                <label>Living type</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">vtw</i>\n' +
+                    '                <select id="vtw" name="vtw">\n' +
+                    vtwHtmlOptions +
+                    '                </select>\n' +
+                    '                <label>Vtw</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
@@ -2879,6 +2918,7 @@ function loadBuildingaddressEditPage(id) {
                                 'block': parseInt($('select#block').val()),
                                 'buildingtype': parseInt($('select#buildingtype').val()),
                                 'livingtype': parseInt($('select#livingtype').val()),
+                                'vtw': parseInt($('select#vtw').val()),
                                 'rentalunitnumber': $('input#rentalunitnumber').val(),
                                 'streetname': $('input#streetname').val(),
                                 'housenumber': parseInt($('input#housenumber').val()),

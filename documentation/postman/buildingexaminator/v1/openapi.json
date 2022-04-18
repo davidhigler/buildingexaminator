@@ -204,6 +204,15 @@
                             "type": "integer",
                             "format": "int64"
                         }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -386,6 +395,15 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -605,6 +623,15 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -828,6 +855,15 @@
                             "type": "integer",
                             "format": "int64"
                         }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -1049,6 +1085,15 @@
                             "type": "integer",
                             "format": "int64"
                         }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -1257,6 +1302,25 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -1497,6 +1561,45 @@
                     }
                 }
             }
+        },
+        "/vtws": {
+            "get": {
+                "summary": "Returns details about multiple vtws",
+                "operationId": "41d311d7c4b03c08c84e7959c06e08e4",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple vtws",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/vtws"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1603,6 +1706,19 @@
                 },
                 "type": "object"
             },
+            "vtws": {
+                "title": "Vtws",
+                "description": "An array of vtws",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Vtw"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "Group": {
                 "properties": {
                     "id": {
@@ -1673,7 +1789,6 @@
                     "buildingAddresses": {
                         "$ref": "#/components/schemas/buildingAddresses"
                     },
-                    "buildingTypeSelection": {},
                     "financialNumber": {
                         "type": "string"
                     }
@@ -1740,6 +1855,9 @@
                     },
                     "daeb": {
                         "type": "boolean"
+                    },
+                    "vtw": {
+                        "$ref": "#/components/schemas/Vtw"
                     }
                 },
                 "type": "object"
@@ -1771,8 +1889,7 @@
                     },
                     "buildingAddresses": {
                         "$ref": "#/components/schemas/buildingAddresses"
-                    },
-                    "buildingTypeSelections": {}
+                    }
                 },
                 "type": "object"
             },
@@ -1874,6 +1991,29 @@
                     },
                     "buildingAddresses": {
                         "$ref": "#/components/schemas/buildingAddresses"
+                    }
+                },
+                "type": "object"
+            },
+            "Vtw": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "typeDescription": {
+                        "type": "string"
+                    },
+                    "buildingTypeDescription": {
+                        "type": "string"
+                    },
+                    "constructionYearDescription": {
+                        "type": "string"
+                    },
+                    "roofTypeDescription": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
