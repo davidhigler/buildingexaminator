@@ -2477,14 +2477,14 @@ function loadBuildingaddressNewPage() {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <i class="material-icons prefix">kadaster</i>\n' +
                     '                <input id="bagid" name="bagid" type="text" class="validate">\n' +
                     '                <label for="bagid">BAG id</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <i class="material-icons prefix">construction_year</i>\n' +
                     '                <select id="constructionyear" name="constructionyear">\n' +
                     yearHtmlOptions +
                     '                </select>\n' +
@@ -2493,7 +2493,7 @@ function loadBuildingaddressNewPage() {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <i class="material-icons prefix">renovation_year</i>\n' +
                     '                <select id="renovationyear" name="renovationyear">\n' +
                     yearHtmlOptions +
                     '                </select>\n' +
@@ -2678,7 +2678,7 @@ function loadBuildingaddressDetailPage(id) {
                     '                        </div>\n' +
                     '                    </li>\n' +
                     '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">place</i>Location</div>\n' +
+                    '                        <div class="collapsible-header"><i class="material-icons">location_groundplan</i>Location</div>\n' +
                     '                        <div class="collapsible-body">\n' +
                     '                            <span>\n' +
                     '                                <table>\n' +
@@ -3067,14 +3067,14 @@ function loadBuildingaddressEditPage(id) {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <i class="material-icons prefix">kadaster</i>\n' +
                     '                <input id="bagid" name="bagid" type="text" class="validate" value="' + (buildingAddressdata.bagId ?? '') + '">\n' +
                     '                <label for="bagid" class="active">BAG id</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <i class="material-icons prefix">construction_year</i>\n' +
                     '                <select id="constructionyear" name="constructionyear">\n' +
                     constructionYearHtmlOptions +
                     '                </select>\n' +
@@ -3083,7 +3083,7 @@ function loadBuildingaddressEditPage(id) {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">calendar_today</i>\n' +
+                    '                <i class="material-icons prefix">renovation_year</i>\n' +
                     '                <select id="renovationyear" name="renovationyear">\n' +
                     renovationYearHtmlOptions +
                     '                </select>\n' +
