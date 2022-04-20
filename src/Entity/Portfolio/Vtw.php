@@ -11,7 +11,7 @@ use App\Entity\SuperClasses\Id;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="Vtws")
+ * @ORM\Table(name="PortfolioVtws")
  *
  * @OA\Schema()
  */

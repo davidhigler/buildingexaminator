@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="HousingStocks")
+ * @ORM\Table(name="PortfolioHousingStocks")
  *
  * @OA\Schema()
  */

@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Entity\Authorization;
+namespace App\Entity\Images;
 
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\SuperClasses\Id;
+use App\Entity\SuperClasses\IdTime;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="AuthorizationRights")
+ * @ORM\Table(name="ImagesDetails")
  *
  * @OA\Schema()
  */
-class Right extends Id
+class Detail extends IdTime
 {
 
 }

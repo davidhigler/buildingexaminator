@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\Collection;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="Buildingtypes")
+ * @ORM\Table(name="PortfolioBuildingtypes")
  *
  * @OA\Schema()
  */

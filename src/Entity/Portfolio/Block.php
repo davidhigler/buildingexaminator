@@ -2,7 +2,6 @@
 
 namespace App\Entity\Portfolio;
 
-use App\Entity\Selections\SelectionBlockBuildingType;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
@@ -15,7 +14,7 @@ use Doctrine\Common\Collections\Collection;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="Blocks")
+ * @ORM\Table(name="PortfolioBlocks")
  *
  * @OA\Schema()
  */

@@ -13,7 +13,7 @@ use App\Entity\SuperClasses\IdTime;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="BuildingAddresses")
+ * @ORM\Table(name="PortfolioBuildingAddresses")
  *
  * @OA\Schema()
  */
@@ -237,18 +237,9 @@ class BuildingAddress extends IdTime
     protected int $renovationYear;
 
     /**
-     * @ORM\Column(type="string", length=3, nullable=true)
+     * @ORM\Column(type="enumorientation", nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The city is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      min=1,
-     *      max=3,
-     *      minMessage="The orientation must be at least {{ limit }} characters long",
-     *      maxMessage="The orientation can contain a maximum of {{ limit }} characters"
-     * )
+     * @Assert\Choice(choices=App\Dbal\EnumOrientationType::ALLOWED_VALUES, message="Choose a valid orientation.")
      *
      * @OA\Property()
      */
