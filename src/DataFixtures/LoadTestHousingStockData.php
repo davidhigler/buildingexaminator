@@ -140,200 +140,211 @@ class LoadTestHousingStockData extends Fixture
         $buildingType1 = new BuildingType();
         $buildingType1->setId(1);
         $buildingType1->setCode('BT1');
-        $buildingType1->setName('1.Woonfunctie ');
-        $buildingType1->setDescription('Woongebouwen');
+        $buildingType1->setName('Vrijstaande woning');
+        $buildingType1->setDescription('');
         $buildingType1->setCreationTime();
         $buildingType1->setLastChangeTime();
 
         $buildingType2 = new BuildingType();
         $buildingType2->setId(2);
         $buildingType2->setCode('BT2');
-        $buildingType2->setName('2.Bijeenkomstfunctie ');
-        $buildingType2->setDescription('restaurants ontmoetingsgebouwen');
+        $buildingType2->setName('Rijwoning twee onder één kap');
+        $buildingType2->setDescription('');
         $buildingType2->setCreationTime();
         $buildingType2->setLastChangeTime();
 
         $buildingType3 = new BuildingType();
         $buildingType3->setId(3);
         $buildingType3->setCode('BT3');
-        $buildingType3->setName('3.Celfunctie');
-        $buildingType3->setDescription('Gevangenissen');
+        $buildingType3->setName('Rijwoning ééngezins');
+        $buildingType3->setDescription('');
         $buildingType3->setCreationTime();
         $buildingType3->setLastChangeTime();
 
         $buildingType4 = new BuildingType();
         $buildingType4->setId(4);
         $buildingType4->setCode('BT4');
-        $buildingType4->setName('4.Gezondheidszorgfunctie ');
-        $buildingType4->setDescription('Ziekenhuizen');
+        $buildingType4->setName('Rijwoning senioren');
+        $buildingType4->setDescription('');
         $buildingType4->setCreationTime();
         $buildingType4->setLastChangeTime();
 
         $buildingType5 = new BuildingType();
         $buildingType5->setId(5);
         $buildingType5->setCode('BT5');
-        $buildingType5->setName('5.Industriefunctie');
-        $buildingType5->setDescription('Productie gebouwen');
+        $buildingType5->setName('Rijwoning duplex kleine gezinnen');
+        $buildingType5->setDescription('woningen gesplitst is in twee deelwoningen');
         $buildingType5->setCreationTime();
         $buildingType5->setLastChangeTime();
 
         $buildingType6 = new BuildingType();
         $buildingType6->setId(6);
         $buildingType6->setCode('BT6');
-        $buildingType6->setName('6.Kantoorfunctie');
-        $buildingType6->setDescription('Werkplek');
+        $buildingType6->setName('Etagewoning galerijflat');
+        $buildingType6->setDescription('Woningen bereikbaar door lange galerij voor de woning');
         $buildingType6->setCreationTime();
         $buildingType6->setLastChangeTime();
 
         $buildingType7 = new BuildingType();
         $buildingType7->setId(7);
         $buildingType7->setCode('BT7');
-        $buildingType7->setName('7.Logiesfunctie');
-        $buildingType7->setDescription('Hotels, Motel');
+        $buildingType7->setName('Etagewoning portiekflat');
+        $buildingType7->setDescription('Elke stramien eigen trapopgang');
         $buildingType7->setCreationTime();
         $buildingType7->setLastChangeTime();
 
         $buildingType8 = new BuildingType();
         $buildingType8->setId(8);
         $buildingType8->setCode('BT8');
-        $buildingType8->setName('8.Onderwijsfunctie');
-        $buildingType8->setDescription('schoolgebouwen');
+        $buildingType8->setName('Etagewoning maisonette');
+        $buildingType8->setDescription('2 woonlagen');
         $buildingType8->setCreationTime();
         $buildingType8->setLastChangeTime();
 
         $buildingType9 = new BuildingType();
         $buildingType9->setId(9);
         $buildingType9->setCode('BT9');
-        $buildingType9->setName('9.Sportfunctie');
-        $buildingType9->setDescription('Sporthallen');
+        $buildingType9->setName('Etagewoning penthouse');
+        $buildingType9->setDescription('Bovenste woning van een flat');
         $buildingType9->setCreationTime();
         $buildingType9->setLastChangeTime();
 
         $buildingType10 = new BuildingType();
         $buildingType10->setId(10);
         $buildingType10->setCode('BT10');
-        $buildingType10->setName('10.Winkelfunctie');
-        $buildingType10->setDescription('Waar je spullen en materialen kunt halen');
+        $buildingType10->setName('Woonwagen');
+        $buildingType10->setDescription('woning op wielen en campingplekken');
         $buildingType10->setCreationTime();
         $buildingType10->setLastChangeTime();
 
         $buildingType11 = new BuildingType();
         $buildingType11->setId(11);
         $buildingType11->setCode('BT11');
-        $buildingType11->setName('11.Overige');
-        $buildingType11->setDescription('Alle gebouwen zonder duidelijkebestemming');
+        $buildingType11->setName('Aanbouw');
+        $buildingType11->setDescription('Later aangebouwde bebouwing aan de woning');
         $buildingType11->setCreationTime();
         $buildingType11->setLastChangeTime();
 
         $buildingType12 = new BuildingType();
         $buildingType12->setId(12);
         $buildingType12->setCode('BT12');
-        $buildingType12->setName('12.Geen gebouw');
-        $buildingType12->setDescription('omschrijving van het gebouwtype binnen de voorraad');
+        $buildingType12->setName('Bedrijfsgebouw met woning(en)');
+        $buildingType12->setDescription('kantoor en woning in 1');
         $buildingType12->setCreationTime();
         $buildingType12->setLastChangeTime();
-
-        $buildingType13 = new BuildingType();
-        $buildingType13->setId(13);
-        $buildingType13->setCode('BT13');
-        $buildingType13->setName('13.Kelderfunctie');
-        $buildingType13->setDescription('Gebouw onder de grond');
-        $buildingType13->setCreationTime();
-        $buildingType13->setLastChangeTime();
-
-        $buildingType14 = new BuildingType();
-        $buildingType14->setId(14);
-        $buildingType14->setCode('BT14');
-        $buildingType14->setName('14.Woonwagen');
-        $buildingType14->setDescription('Huis op wielen en camping plekken');
-        $buildingType14->setCreationTime();
-        $buildingType14->setLastChangeTime();
 
 
         $livingType1 = new LivingType();
         $livingType1->setId(1);
         $livingType1->setCode('lt1');
-        $livingType1->setName('Vrijstaande woning');
+        $livingType1->setName('Woonfunctie');
+        $livingType1->setDescription('Woongebouwen');
         $livingType1->setCreationTime();
         $livingType1->setLastChangeTime();
 
         $livingType2 = new LivingType();
         $livingType2->setId(2);
         $livingType2->setCode('lt2');
-        $livingType2->setName('Rijwoning twee onder één kap');
+        $livingType2->setName('Bijeenkomstfunctie');
+        $livingType2->setDescription('Restaurants ontmoetingsgebouwen');
         $livingType2->setCreationTime();
         $livingType2->setLastChangeTime();
 
         $livingType3 = new LivingType();
         $livingType3->setId(3);
         $livingType3->setCode('lt3');
-        $livingType3->setName('Rijwoning ééngezins ');
+        $livingType3->setName('Celfunctie');
+        $livingType3->setDescription('Gevangenissen kluizen');
         $livingType3->setCreationTime();
         $livingType3->setLastChangeTime();
 
         $livingType4 = new LivingType();
         $livingType4->setId(4);
         $livingType4->setCode('lt4');
-        $livingType4->setName('Rijwoning senioren');
+        $livingType4->setName('Gezondheidszorgfunctie');
+        $livingType4->setDescription('Ziekenhuizen en Medische Klinieken');
         $livingType4->setCreationTime();
         $livingType4->setLastChangeTime();
 
         $livingType5 = new LivingType();
         $livingType5->setId(5);
         $livingType5->setCode('lt5');
-        $livingType5->setName('Rijwoning duplex kleine gezinnen');
+        $livingType5->setName('Industriefunctie');
+        $livingType5->setDescription('Productie gebouwen');
         $livingType5->setCreationTime();
         $livingType5->setLastChangeTime();
 
         $livingType6 = new LivingType();
         $livingType6->setId(6);
         $livingType6->setCode('lt6');
-        $livingType6->setName('Etagewoning galerijflat');
+        $livingType6->setName('Kantoorfunctie');
+        $livingType6->setDescription('Bedrijfs werkplekken');
         $livingType6->setCreationTime();
         $livingType6->setLastChangeTime();
 
         $livingType7 = new LivingType();
         $livingType7->setId(7);
         $livingType7->setCode('lt7');
-        $livingType7->setName('Etagewoning portiekflat');
+        $livingType7->setName('Logiesfunctie');
+        $livingType7->setDescription('Hotels, Motel');
         $livingType7->setCreationTime();
         $livingType7->setLastChangeTime();
 
         $livingType8 = new LivingType();
         $livingType8->setId(8);
         $livingType8->setCode('lt8');
-        $livingType8->setName('Etagewoning maisonette');
+        $livingType8->setName('Onderwijsfunctie');
+        $livingType8->setDescription('schoolgebouwen');
         $livingType8->setCreationTime();
         $livingType8->setLastChangeTime();
 
         $livingType9 = new LivingType();
         $livingType9->setId(9);
         $livingType9->setCode('lt9');
-        $livingType9->setName('Etagewoning penthouse');
+        $livingType9->setName('Sportfunctie');
+        $livingType9->setDescription('Sporthallen');
         $livingType9->setCreationTime();
         $livingType9->setLastChangeTime();
 
         $livingType10 = new LivingType();
         $livingType10->setId(10);
         $livingType10->setCode('lt10');
-        $livingType10->setName('Woonwagen');
+        $livingType10->setName('Winkelfunctie');
+        $livingType10->setDescription('Waar je spullen en materialen kunt halen');
         $livingType10->setCreationTime();
         $livingType10->setLastChangeTime();
 
         $livingType11 = new LivingType();
         $livingType11->setId(11);
         $livingType11->setCode('lt11');
-        $livingType11->setName('Aanbouw');
+        $livingType11->setName('Overige');
+        $livingType11->setDescription('Alle gebouwen zonder duidelijkebestemming');
         $livingType11->setCreationTime();
         $livingType11->setLastChangeTime();
 
         $livingType12 = new LivingType();
         $livingType12->setId(12);
         $livingType12->setCode('lt12');
-        $livingType12->setName('Bedrijfsgebouw met woning(en)');
+        $livingType12->setName('Geen gebouw');
+        $livingType12->setDescription('Omschrijving van het gebouwtype binnen de voorraad');
         $livingType12->setCreationTime();
         $livingType12->setLastChangeTime();
 
+        $livingType13 = new LivingType();
+        $livingType13->setId(13);
+        $livingType13->setCode('lt13');
+        $livingType13->setName('Kelderfunctie');
+        $livingType13->setDescription('Gebouw onder de grond');
+        $livingType13->setCreationTime();
+        $livingType13->setLastChangeTime();
+
+        $livingType14 = new LivingType();
+        $livingType14->setId(14);
+        $livingType14->setCode('lt14');
+        $livingType14->setName('Woonwagen');
+        $livingType14->setDescription('Huis op wielen en camping plekken');
+        $livingType14->setCreationTime();
+        $livingType14->setLastChangeTime();
 
         $vtw1 = new Vtw();
         $vtw1->setCode('WT 1');
