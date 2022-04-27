@@ -6920,8 +6920,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingType10->setHousingStock($housingStock2);
         $buildingType11->setHousingStock($housingStock2);
         $buildingType12->setHousingStock($housingStock3);
-        $buildingType13->setHousingStock($housingStock3);
-
+       
         $livingType1->setHousingStock($housingStock1);
         $livingType2->setHousingStock($housingStock1);
         $livingType3->setHousingStock($housingStock1);
