@@ -290,8 +290,145 @@ function loadTestPage() {
         '        <div class="col s12">\n' +
         '            <img id="photoPreview" src="#" alt="Image preview" style="display: none; width: 100%;" />\n' +
         '        </div>\n' +
+        '    </div>\n' +
+        '    <h4 class="header">Map with BAG information</h4>\n' +
+        '    <div class="row">\n' +
+        '        <div class="col s12">\n' +
+        '            <div id="viewDiv"></div>\n' +
+        '        </div>\n' +
         '    </div>\n'
     );
+
+    $('div#content div#viewDiv').height(700);
+
+    require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/layers/support/LabelClass"
+    ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+        esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+        const bagPandenLayerLabel = new LabelClass({
+            labelExpressionInfo: { expression: "$feature.objectid" },
+            allowOverrun: true,
+            deconflictionStrategy: "none",
+            minScale: 2500,
+            symbol: {
+                type: "text",
+                color: "black",
+                font: {
+                    family: "Ubuntu Mono",
+                    size: 6
+                }
+            }
+        });
+        const bagPandenLayer = new FeatureLayer({
+            url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+            definitionExpression:
+                "identificatie IN (" +
+                    "'0193100000017808', " +
+                    "'0193100000004644', " +
+                    "'0193100000058461', " +
+                    "'0193100000058462', " +
+                    "'0193100000018103', " +
+                    "'0193100000018102', " +
+                    "'0193100000018100', " +
+                    "'0193100000018075', " +
+                    "'0193100000018074', " +
+                    "'0193100000018073', " +
+                    "'0193100000018072', " +
+                    "'0193100000018071', " +
+                    "'0193100000018070'" +
+                ")",
+            minScale: 25000,
+            outFields: ['objectid'],
+            labelingInfo: bagPandenLayerLabel
+        });
+        const map = new Map({
+            basemap: "osm-light-gray",
+            layers: [
+                bagPandenLayer
+            ]
+        });
+        const view = new MapView({
+            map: map,
+            center: [6.0909033, 52.5129319],
+            zoom: 17,
+            container: "viewDiv",
+            constraints: {
+                snapToZoom: false
+            }
+        });
+        bagPandenLayer.when(() => {
+            return bagPandenLayer.queryExtent();
+        })
+        .then((response) => {
+            view.goTo(response.extent);
+        });
+    });
+
+    // require([
+    //     "esri/config",
+    //     "esri/Map",
+    //     "esri/views/MapView",
+    //     "esri/layers/FeatureLayer",
+    //     "esri/layers/support/LabelClass"
+    // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+    //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+    //     const bagPandenLayerLabel = new LabelClass({
+    //         labelExpressionInfo: { expression: "$feature.objectid" },
+    //         allowOverrun: true,
+    //         deconflictionStrategy: "none",
+    //         symbol: {
+    //             type: "text",
+    //             color: "black"
+    //         }
+    //     });
+    //     const bagPandenLayer = new FeatureLayer({
+    //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+    //         definitionExpression:
+    //             "identificatie IN (" +
+    //                 "'0193100000017808', " +
+    //                 "'0193100000004644', " +
+    //                 "'0193100000058461', " +
+    //                 "'0193100000058462', " +
+    //                 "'0193100000018103', " +
+    //                 "'0193100000018102', " +
+    //                 "'0193100000018100', " +
+    //                 "'0193100000018075', " +
+    //                 "'0193100000018074', " +
+    //                 "'0193100000018073', " +
+    //                 "'0193100000018072', " +
+    //                 "'0193100000018071', " +
+    //                 "'0193100000018070'" +
+    //             ")",
+    //         minScale: 50000,
+    //         outFields: ['objectid'],
+    //         labelingInfo: bagPandenLayerLabel
+    //     });
+    //     const map = new Map({
+    //         basemap: "osm-light-gray",
+    //         layers: [
+    //             bagPandenLayer
+    //         ]
+    //     });
+    //     const view = new MapView({
+    //         map: map,
+    //         center: [6.0909033, 52.5129319],
+    //         zoom: 17,
+    //         container: "viewDiv",
+    //         constraints: {
+    //             snapToZoom: false
+    //         }
+    //     });
+    //     bagPandenLayer.when(() => {
+    //         return bagPandenLayer.queryExtent();
+    //     })
+    //     .then((response) => {
+    //         view.goTo(response.extent);
+    //     });
+    // });
 
     $('input#photoUpload').change(
         function(event) {
@@ -2707,7 +2844,7 @@ function loadBuildingaddressDetailPage(id) {
                     '                                </table>\n' +
                     '                                <br />\n' +
                     '                                <br />\n' +
-                    '                                <div id="map"></div>\n' +
+                    '                                <div id="viewDiv"></div>\n' +
                     '                            </span>\n' +
                     '                        </div>\n' +
                     '                    </li>\n' +
@@ -2797,17 +2934,72 @@ function loadBuildingaddressDetailPage(id) {
 
                 $('div#content').html(html);
 
-                let mapDiv = document.getElementById('map');
-                mapDiv.style.height = '500px';
-                let mapOptions = {
-                    center: {
-                        lat: 52.5134064342421,
-                        lng: 6.091655946944172
-                    },
-                    zoom: 18
-                };
+                $('div#content div#viewDiv').height(500);
 
-                new google.maps.Map(mapDiv, mapOptions);
+                require([
+                    "esri/config",
+                    "esri/Map",
+                    "esri/views/MapView",
+                    "esri/layers/FeatureLayer"
+                ], function (esriConfig, Map, MapView, FeatureLayer) {
+                    esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+                    const popupBagPand = {
+                        "title": "Bag ({objectid})",
+                        "content": "<b>Pand id:</b> {identificatie}<br />"
+                            + "<b>Bouwjaar:</b> {bouwjaar}<br />"
+                            + "<b>Status:</b> {status}"
+                    }
+                    const bagPandenLayer = new FeatureLayer({
+                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+                        outFields: [
+                            "objectid",
+                            "identificatie",
+                            "bouwjaar",
+                            "status"
+                        ],
+                        popupTemplate: popupBagPand
+                    });
+                    const popupBagAdres = {
+                        "title": "Bag ({objectid})",
+                        "content": "<b>Adres id:</b> {identificatie}<br />"
+                            + "<b>Adrestype:</b> {adrestype}<br />"
+                            + "<b>Huisnummer:</b> {huisnummer}{huisletter}<br />"
+                            + "<b>Huisnummertoevoeging:</b> {huisnummertoevoeging}<br />"
+                            + "<b>Postcode:</b> {postcode}<br />"
+                            + "<b>Woonplaats naam:</b> {woonplaatsnaam}"
+                    }
+                    const bagAdresLayer = new FeatureLayer({
+                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/0",
+                        outFields: [
+                            "objectid",
+                            "identificatie",
+                            "huisnummer",
+                            "huisletter",
+                            "huisnummertoevoeging",
+                            "postcode",
+                            "woonplaatsnaam",
+                            "adrestype",
+                            "woonplaatsid"
+                        ],
+                        popupTemplate: popupBagAdres
+                    });
+                    const map = new Map({
+                        basemap: "osm-light-gray",
+                        layers: [
+                            bagPandenLayer,
+                            bagAdresLayer
+                        ]
+                    });
+                    const view = new MapView({
+                        map: map,
+                        center: [6.091655946944172, 52.5134064342421],
+                        zoom: 18,
+                        container: "viewDiv",
+                        constraints: {
+                            snapToZoom: false
+                        }
+                    });
+                });
 
                 $.timeliner({});
 
@@ -2824,7 +3016,6 @@ function loadBuildingaddressDetailPage(id) {
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
-
 }
 
 function loadBuildingaddressEditPage(id) {

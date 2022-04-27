@@ -4,6 +4,7 @@
 /phpunit.xml
 .phpunit.result.cache
 /public/info.php
+/node_modules/
 
 ###> symfony/framework-bundle ###
 /.env.local

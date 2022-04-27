@@ -3,7 +3,7 @@
 namespace App\Entity\Measurements;
 
 use App\Entity\Portfolio\BuildingAddress;
-use App\Entity\SuperClasses\IdTime;
+use App\Entity\SuperClasses\IdTimeScore;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,11 +16,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="MeasurementsGloss")
+ * @ORM\Table(name="MeasurementsGlossIso2813")
  *
  * @OA\Schema()
  */
-class GlossIso2813 extends IdTime
+class GlossIso2813 extends IdTimeScore
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\BuildingAddress", fetch="EXTRA_LAZY")

@@ -1,0 +1,11 @@
+div.esri-attribution__sources {
+    display: none;
+}
+
+div.esri-attribution__powered-by {
+    display: none;
+}
+
+div#viewDiv {
+    border: solid 1px black;
+}

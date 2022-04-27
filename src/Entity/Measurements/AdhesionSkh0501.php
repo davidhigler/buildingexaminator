@@ -11,16 +11,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  *
- * This object holds an adhesion measurement according to ISO 2409
- * https://www.nen.nl/nen-en-iso-2409-2020-en-275977
+ * This object holds an adhesion measurement according to SKH 05-01 publication
+ * https://www.skh.nl/downloads/05-01-nl-bepaling-van-de-hechting-van-verf-op-hout-2018.pdf
  *
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="MeasurementsAdhesionIso2409")
+ * @ORM\Table(name="MeasurementsAdhesionSkh0501")
  *
  * @OA\Schema()
  */
-class AdhesionIso2409 extends IdTimeScore
+class AdhesionSkh0501 extends IdTimeScore
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\BuildingAddress", fetch="EXTRA_LAZY")
