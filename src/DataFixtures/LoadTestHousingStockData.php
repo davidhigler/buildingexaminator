@@ -4866,8 +4866,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress200->setLastChangeTime();
         
         $buildingAddress201 = new BuildingAddress();
-        $buildingAddress201->setConstructionYear(1950);
-        $buildingAddress201->setRenovationYear();
+        $buildingAddress201->setConstructionYear(1950)
         $buildingAddress201->setStreetName('Ferdinand Bolstraat');
         $buildingAddress201->setHouseNumber(1);
         $buildingAddress201->setAddition('');
@@ -4885,7 +4884,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress202 = new BuildingAddress();
         $buildingAddress202->setConstructionYear(1950);
-        $buildingAddress202->setRenovationYear();
         $buildingAddress202->setStreetName('Ferdinand Bolstraat');
         $buildingAddress202->setHouseNumber(7);
         $buildingAddress202->setAddition('');
@@ -4903,7 +4901,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress203 = new BuildingAddress();
         $buildingAddress203->setConstructionYear(1950);
-        $buildingAddress203->setRenovationYear();
         $buildingAddress203->setStreetName('Ferdinand Bolstraat');
         $buildingAddress203->setHouseNumber(13);
         $buildingAddress203->setAddition('');
@@ -4921,7 +4918,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress204 = new BuildingAddress();
         $buildingAddress204->setConstructionYear(1950);
-        $buildingAddress204->setRenovationYear();
         $buildingAddress204->setStreetName('Ferdinand Bolstraat');
         $buildingAddress204->setHouseNumber(15);
         $buildingAddress204->setAddition('');
@@ -4939,7 +4935,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress205 = new BuildingAddress();
         $buildingAddress205->setConstructionYear(1950);
-        $buildingAddress205->setRenovationYear();
         $buildingAddress205->setStreetName('Ferdinand Bolstraat');
         $buildingAddress205->setHouseNumber(17);
         $buildingAddress205->setAddition('');
@@ -4957,7 +4952,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress206 = new BuildingAddress();
         $buildingAddress206->setConstructionYear(1950);
-        $buildingAddress206->setRenovationYear();
         $buildingAddress206->setStreetName('Ferdinand Bolstraat');
         $buildingAddress206->setHouseNumber(21);
         $buildingAddress206->setAddition('');
@@ -4975,7 +4969,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress207 = new BuildingAddress();
         $buildingAddress207->setConstructionYear(1950);
-        $buildingAddress207->setRenovationYear();
         $buildingAddress207->setStreetName('Govert Flinckstraat');
         $buildingAddress207->setHouseNumber(8);
         $buildingAddress207->setAddition('');
@@ -4994,7 +4987,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress208 = new BuildingAddress();
         $buildingAddress208->setConstructionYear(1950);
-        $buildingAddress208->setRenovationYear();
         $buildingAddress208->setStreetName('Van Miereveltstraat');
         $buildingAddress208->setHouseNumber(4);
         $buildingAddress208->setAddition('');
@@ -5012,7 +5004,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress209 = new BuildingAddress();
         $buildingAddress209->setConstructionYear(1950);
-        $buildingAddress209->setRenovationYear();
         $buildingAddress209->setStreetName('Van Miereveltstraat');
         $buildingAddress209->setHouseNumber(10);
         $buildingAddress209->setAddition('');
@@ -5030,7 +5021,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress210 = new BuildingAddress();
         $buildingAddress210->setConstructionYear(1950);
-        $buildingAddress210->setRenovationYear();
         $buildingAddress210->setStreetName('Van Miereveltstraat');
         $buildingAddress210->setHouseNumber(16);
         $buildingAddress210->setAddition('');
@@ -5048,7 +5038,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress211 = new BuildingAddress();
         $buildingAddress211->setConstructionYear(1950);
-        $buildingAddress211->setRenovationYear();
         $buildingAddress211->setStreetName('Van Miereveltstraat');
         $buildingAddress211->setHouseNumber(18);
         $buildingAddress211->setAddition('');
@@ -5066,7 +5055,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress212 = new BuildingAddress();
         $buildingAddress212->setConstructionYear(1950);
-        $buildingAddress212->setRenovationYear();
         $buildingAddress212->setStreetName('Van Miereveltstraat');
         $buildingAddress212->setHouseNumber(20);
         $buildingAddress212->setAddition('');
@@ -5084,7 +5072,6 @@ class LoadTestHousingStockData extends Fixture
 
         $buildingAddress213 = new BuildingAddress();
         $buildingAddress213->setConstructionYear(1950);
-        $buildingAddress213->setRenovationYear();
         $buildingAddress213->setStreetName('Van Miereveltstraat');
         $buildingAddress213->setHouseNumber(24);
         $buildingAddress213->setAddition('');
