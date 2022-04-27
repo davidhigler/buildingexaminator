@@ -4875,7 +4875,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress201->setBagId('0193200000008586');
         $buildingAddress201->setRentalUnitNumber('ALG1010');
         $buildingAddress201->setDaeb(true);
-        $buildingAddress201->setVtw($vtw2R);
+        $buildingAddress201->setVtw($vtw4);
         $buildingAddress201->setResidentialArea($residentialArea2);
         $buildingAddress201->setBuildingType($buildingType14);
         $buildingAddress201->setLivingType($livingType1);
@@ -4892,7 +4892,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress202->setBagId('0193200000031259');
         $buildingAddress202->setRentalUnitNumber('ALG1010');
         $buildingAddress202->setDaeb(true);
-        $buildingAddress202->setVtw($vtw2R);
+        $buildingAddress202->setVtw($vtw4);
         $buildingAddress202->setResidentialArea($residentialArea2);
         $buildingAddress202->setBuildingType($buildingType13);
         $buildingAddress202->setLivingType($livingType1);
@@ -4909,7 +4909,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress203->setBagId('0193200000042469');
         $buildingAddress203->setRentalUnitNumber('ALG1010');
         $buildingAddress203->setDaeb(true);
-        $buildingAddress203->setVtw($vtw2R);
+        $buildingAddress203->setVtw($vtw4);
         $buildingAddress203->setResidentialArea($residentialArea2);
         $buildingAddress203->setBuildingType($buildingType14);
         $buildingAddress203->setLivingType($livingType1);
@@ -4926,7 +4926,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress204->setBagId('0193200000008587');
         $buildingAddress204->setRentalUnitNumber('ALG1010');
         $buildingAddress204->setDaeb(true);
-        $buildingAddress204->setVtw($vtw2R);
+        $buildingAddress204->setVtw($vtw4);
         $buildingAddress204->setResidentialArea($residentialArea2);
         $buildingAddress204->setBuildingType($buildingType14);
         $buildingAddress204->setLivingType($livingType1);
@@ -4943,7 +4943,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress205->setBagId('0193200000042470');
         $buildingAddress205->setRentalUnitNumber('ALG1010');
         $buildingAddress205->setDaeb(true);
-        $buildingAddress205->setVtw($vtw2R);
+        $buildingAddress205->setVtw($vtw4);
         $buildingAddress205->setResidentialArea($residentialArea2);
         $buildingAddress205->setBuildingType($buildingType14);
         $buildingAddress205->setLivingType($livingType1);
@@ -4960,7 +4960,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress206->setBagId('0193200000019892');
         $buildingAddress206->setRentalUnitNumber('ALG1010');
         $buildingAddress206->setDaeb(true);
-        $buildingAddress206->setVtw($vtw2R);
+        $buildingAddress206->setVtw($vtw4);
         $buildingAddress206->setResidentialArea($residentialArea2);
         $buildingAddress206->setBuildingType($buildingType14);
         $buildingAddress206->setLivingType($livingType1);
@@ -4977,7 +4977,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress207->setBagId('0193200000008721');
         $buildingAddress207->setRentalUnitNumber('ALG1010');
         $buildingAddress207->setDaeb(true);
-        $buildingAddress207->setVtw($vtw2R);
+        $buildingAddress207->setVtw($vtw4);
         $buildingAddress207->setResidentialArea($residentialArea2);
         $buildingAddress207->setBuildingType($buildingType13);
         $buildingAddress207->setLivingType($livingType1);
@@ -4995,7 +4995,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress208->setBagId('0193200000007151');
         $buildingAddress208->setRentalUnitNumber('ALG1010');
         $buildingAddress208->setDaeb(true);
-        $buildingAddress208->setVtw($vtw2R);
+        $buildingAddress208->setVtw($vtw4);
         $buildingAddress208->setResidentialArea($residentialArea2);
         $buildingAddress208->setBuildingType($buildingType14);
         $buildingAddress208->setLivingType($livingType1);
@@ -5012,7 +5012,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress209->setBagId('0193200000014782');
         $buildingAddress209->setRentalUnitNumber('ALG1010');
         $buildingAddress209->setDaeb(true);
-        $buildingAddress209->setVtw($vtw2R);
+        $buildingAddress209->setVtw($vtw4);
         $buildingAddress209->setResidentialArea($residentialArea2);
         $buildingAddress209->setBuildingType($buildingType14);
         $buildingAddress209->setLivingType($livingType1);
@@ -5029,7 +5029,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress210->setBagId('0193200000037358');
         $buildingAddress210->setRentalUnitNumber('ALG1010');
         $buildingAddress210->setDaeb(true);
-        $buildingAddress210->setVtw($vtw2R);
+        $buildingAddress210->setVtw($vtw4);
         $buildingAddress210->setResidentialArea($residentialArea2);
         $buildingAddress210->setBuildingType($buildingType14);
         $buildingAddress210->setLivingType($livingType1);
@@ -5046,7 +5046,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress211->setBagId('0193200000014785');
         $buildingAddress211->setRentalUnitNumber('ALG1010');
         $buildingAddress211->setDaeb(true);
-        $buildingAddress211->setVtw($vtw2R);
+        $buildingAddress211->setVtw($vtw4);
         $buildingAddress211->setResidentialArea($residentialArea2);
         $buildingAddress211->setBuildingType($buildingType14);
         $buildingAddress211->setLivingType($livingType1);
@@ -5063,7 +5063,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress212->setBagId('0193200000033623');
         $buildingAddress212->setRentalUnitNumber('ALG1010');
         $buildingAddress212->setDaeb(true);
-        $buildingAddress212->setVtw($vtw2R);
+        $buildingAddress212->setVtw($vtw4);
         $buildingAddress212->setResidentialArea($residentialArea2);
         $buildingAddress212->setBuildingType($buildingType14);
         $buildingAddress212->setLivingType($livingType1);
@@ -5080,7 +5080,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress213->setBagId('0193200000052584');
         $buildingAddress213->setRentalUnitNumber('ALG1010');
         $buildingAddress213->setDaeb(true);
-        $buildingAddress213->setVtw($vtw2R);
+        $buildingAddress213->setVtw($vtw4);
         $buildingAddress213->setResidentialArea($residentialArea2);
         $buildingAddress213->setBuildingType($buildingType14);
         $buildingAddress213->setLivingType($livingType1);
