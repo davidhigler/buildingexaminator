@@ -232,7 +232,22 @@ class LoadTestHousingStockData extends Fixture
         $buildingType12->setDescription('kantoor en woning in 1');
         $buildingType12->setCreationTime();
         $buildingType12->setLastChangeTime();
+        
+        $buildingType13 = new BuildingType();
+        $buildingType13->setId(13);
+        $buildingType13->setCode('1010A');
+        $buildingType13->setName('Rijwoning ééngezins');
+        $buildingType13->setDescription('');
+        $buildingType13->setCreationTime();
+        $buildingType13->setLastChangeTime();
 
+        $buildingType14 = new BuildingType();
+        $buildingType14->setId(14);
+        $buildingType14->setCode('1010B');
+        $buildingType14->setName('Rijwoning senioren');
+        $buildingType14->setDescription('');
+        $buildingType14->setCreationTime();
+        $buildingType14->setLastChangeTime();
 
         $livingType1 = new LivingType();
         $livingType1->setId(1);
@@ -4849,6 +4864,242 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress200->setLivingType($livingType2);
         $buildingAddress200->setCreationTime();
         $buildingAddress200->setLastChangeTime();
+        
+        $buildingAddress201 = new BuildingAddress();
+        $buildingAddress201->setConstructionYear(1950);
+        $buildingAddress201->setRenovationYear();
+        $buildingAddress201->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress201->setHouseNumber(1);
+        $buildingAddress201->setAddition('');
+        $buildingAddress201->setZipcode('8021ES');
+        $buildingAddress201->setCity('Zwolle');
+        $buildingAddress201->setBagId('0193200000008586');
+        $buildingAddress201->setRentalUnitNumber('ALG1010');
+        $buildingAddress201->setDaeb(true);
+        $buildingAddress201->setVtw($vtw2R);
+        $buildingAddress201->setResidentialArea($residentialArea2);
+        $buildingAddress201->setBuildingType($buildingType14);
+        $buildingAddress201->setLivingType($livingType1);
+        $buildingAddress201->setCreationTime();
+        $buildingAddress201->setLastChangeTime();
+
+        $buildingAddress202 = new BuildingAddress();
+        $buildingAddress202->setConstructionYear(1950);
+        $buildingAddress202->setRenovationYear();
+        $buildingAddress202->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress202->setHouseNumber(7);
+        $buildingAddress202->setAddition('');
+        $buildingAddress202->setZipcode('8021ES');
+        $buildingAddress202->setCity('Zwolle');
+        $buildingAddress202->setBagId('0193200000031259');
+        $buildingAddress202->setRentalUnitNumber('ALG1010');
+        $buildingAddress202->setDaeb(true);
+        $buildingAddress202->setVtw($vtw2R);
+        $buildingAddress202->setResidentialArea($residentialArea2);
+        $buildingAddress202->setBuildingType($buildingType13);
+        $buildingAddress202->setLivingType($livingType1);
+        $buildingAddress202->setCreationTime();
+        $buildingAddress202->setLastChangeTime();
+
+        $buildingAddress203 = new BuildingAddress();
+        $buildingAddress203->setConstructionYear(1950);
+        $buildingAddress203->setRenovationYear();
+        $buildingAddress203->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress203->setHouseNumber(13);
+        $buildingAddress203->setAddition('');
+        $buildingAddress203->setZipcode('8021ES');
+        $buildingAddress203->setCity('Zwolle');
+        $buildingAddress203->setBagId('0193200000042469');
+        $buildingAddress203->setRentalUnitNumber('ALG1010');
+        $buildingAddress203->setDaeb(true);
+        $buildingAddress203->setVtw($vtw2R);
+        $buildingAddress203->setResidentialArea($residentialArea2);
+        $buildingAddress203->setBuildingType($buildingType14);
+        $buildingAddress203->setLivingType($livingType1);
+        $buildingAddress203->setCreationTime();
+        $buildingAddress203->setLastChangeTime();
+
+        $buildingAddress204 = new BuildingAddress();
+        $buildingAddress204->setConstructionYear(1950);
+        $buildingAddress204->setRenovationYear();
+        $buildingAddress204->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress204->setHouseNumber(15);
+        $buildingAddress204->setAddition('');
+        $buildingAddress204->setZipcode('8021ES');
+        $buildingAddress204->setCity('Zwolle');
+        $buildingAddress204->setBagId('0193200000008587');
+        $buildingAddress204->setRentalUnitNumber('ALG1010');
+        $buildingAddress204->setDaeb(true);
+        $buildingAddress204->setVtw($vtw2R);
+        $buildingAddress204->setResidentialArea($residentialArea2);
+        $buildingAddress204->setBuildingType($buildingType14);
+        $buildingAddress204->setLivingType($livingType1);
+        $buildingAddress204->setCreationTime();
+        $buildingAddress204->setLastChangeTime();
+
+        $buildingAddress205 = new BuildingAddress();
+        $buildingAddress205->setConstructionYear(1950);
+        $buildingAddress205->setRenovationYear();
+        $buildingAddress205->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress205->setHouseNumber(17);
+        $buildingAddress205->setAddition('');
+        $buildingAddress205->setZipcode('8021ES');
+        $buildingAddress205->setCity('Zwolle');
+        $buildingAddress205->setBagId('0193200000042470');
+        $buildingAddress205->setRentalUnitNumber('ALG1010');
+        $buildingAddress205->setDaeb(true);
+        $buildingAddress205->setVtw($vtw2R);
+        $buildingAddress205->setResidentialArea($residentialArea2);
+        $buildingAddress205->setBuildingType($buildingType14);
+        $buildingAddress205->setLivingType($livingType1);
+        $buildingAddress205->setCreationTime();
+        $buildingAddress205->setLastChangeTime();
+
+        $buildingAddress206 = new BuildingAddress();
+        $buildingAddress206->setConstructionYear(1950);
+        $buildingAddress206->setRenovationYear();
+        $buildingAddress206->setStreetName('Ferdinand Bolstraat');
+        $buildingAddress206->setHouseNumber(21);
+        $buildingAddress206->setAddition('');
+        $buildingAddress206->setZipcode('8021ES');
+        $buildingAddress206->setCity('Zwolle');
+        $buildingAddress206->setBagId('0193200000019892');
+        $buildingAddress206->setRentalUnitNumber('ALG1010');
+        $buildingAddress206->setDaeb(true);
+        $buildingAddress206->setVtw($vtw2R);
+        $buildingAddress206->setResidentialArea($residentialArea2);
+        $buildingAddress206->setBuildingType($buildingType14);
+        $buildingAddress206->setLivingType($livingType1);
+        $buildingAddress206->setCreationTime();
+        $buildingAddress206->setLastChangeTime();
+
+        $buildingAddress207 = new BuildingAddress();
+        $buildingAddress207->setConstructionYear(1950);
+        $buildingAddress207->setRenovationYear();
+        $buildingAddress207->setStreetName('Govert Flinckstraat');
+        $buildingAddress207->setHouseNumber(8);
+        $buildingAddress207->setAddition('');
+        $buildingAddress207->setZipcode('8021ET');
+        $buildingAddress207->setCity('Zwolle');
+        $buildingAddress207->setBagId('0193200000008721');
+        $buildingAddress207->setRentalUnitNumber('ALG1010');
+        $buildingAddress207->setDaeb(true);
+        $buildingAddress207->setVtw($vtw2R);
+        $buildingAddress207->setResidentialArea($residentialArea2);
+        $buildingAddress207->setBuildingType($buildingType13);
+        $buildingAddress207->setLivingType($livingType1);
+        $buildingAddress207->setCreationTime();
+        $buildingAddress207->setLastChangeTime();
+
+
+        $buildingAddress208 = new BuildingAddress();
+        $buildingAddress208->setConstructionYear(1950);
+        $buildingAddress208->setRenovationYear();
+        $buildingAddress208->setStreetName('Van Miereveltstraat');
+        $buildingAddress208->setHouseNumber(4);
+        $buildingAddress208->setAddition('');
+        $buildingAddress208->setZipcode('8021ER');
+        $buildingAddress208->setCity('Zwolle');
+        $buildingAddress208->setBagId('0193200000007151');
+        $buildingAddress208->setRentalUnitNumber('ALG1010');
+        $buildingAddress208->setDaeb(true);
+        $buildingAddress208->setVtw($vtw2R);
+        $buildingAddress208->setResidentialArea($residentialArea2);
+        $buildingAddress208->setBuildingType($buildingType14);
+        $buildingAddress208->setLivingType($livingType1);
+        $buildingAddress208->setCreationTime();
+        $buildingAddress208->setLastChangeTime();
+
+        $buildingAddress209 = new BuildingAddress();
+        $buildingAddress209->setConstructionYear(1950);
+        $buildingAddress209->setRenovationYear();
+        $buildingAddress209->setStreetName('Van Miereveltstraat');
+        $buildingAddress209->setHouseNumber(10);
+        $buildingAddress209->setAddition('');
+        $buildingAddress209->setZipcode('8021ER');
+        $buildingAddress209->setCity('Zwolle');
+        $buildingAddress209->setBagId('0193200000014782');
+        $buildingAddress209->setRentalUnitNumber('ALG1010');
+        $buildingAddress209->setDaeb(true);
+        $buildingAddress209->setVtw($vtw2R);
+        $buildingAddress209->setResidentialArea($residentialArea2);
+        $buildingAddress209->setBuildingType($buildingType14);
+        $buildingAddress209->setLivingType($livingType1);
+        $buildingAddress209->setCreationTime();
+        $buildingAddress209->setLastChangeTime();
+
+        $buildingAddress210 = new BuildingAddress();
+        $buildingAddress210->setConstructionYear(1950);
+        $buildingAddress210->setRenovationYear();
+        $buildingAddress210->setStreetName('Van Miereveltstraat');
+        $buildingAddress210->setHouseNumber(16);
+        $buildingAddress210->setAddition('');
+        $buildingAddress210->setZipcode('8021ER');
+        $buildingAddress210->setCity('Zwolle');
+        $buildingAddress210->setBagId('0193200000037358');
+        $buildingAddress210->setRentalUnitNumber('ALG1010');
+        $buildingAddress210->setDaeb(true);
+        $buildingAddress210->setVtw($vtw2R);
+        $buildingAddress210->setResidentialArea($residentialArea2);
+        $buildingAddress210->setBuildingType($buildingType14);
+        $buildingAddress210->setLivingType($livingType1);
+        $buildingAddress210->setCreationTime();
+        $buildingAddress210->setLastChangeTime();
+
+        $buildingAddress211 = new BuildingAddress();
+        $buildingAddress211->setConstructionYear(1950);
+        $buildingAddress211->setRenovationYear();
+        $buildingAddress211->setStreetName('Van Miereveltstraat');
+        $buildingAddress211->setHouseNumber(18);
+        $buildingAddress211->setAddition('');
+        $buildingAddress211->setZipcode('8021ER');
+        $buildingAddress211->setCity('Zwolle');
+        $buildingAddress211->setBagId('0193200000014785');
+        $buildingAddress211->setRentalUnitNumber('ALG1010');
+        $buildingAddress211->setDaeb(true);
+        $buildingAddress211->setVtw($vtw2R);
+        $buildingAddress211->setResidentialArea($residentialArea2);
+        $buildingAddress211->setBuildingType($buildingType14);
+        $buildingAddress211->setLivingType($livingType1);
+        $buildingAddress211->setCreationTime();
+        $buildingAddress211->setLastChangeTime();
+
+        $buildingAddress212 = new BuildingAddress();
+        $buildingAddress212->setConstructionYear(1950);
+        $buildingAddress212->setRenovationYear();
+        $buildingAddress212->setStreetName('Van Miereveltstraat');
+        $buildingAddress212->setHouseNumber(20);
+        $buildingAddress212->setAddition('');
+        $buildingAddress212->setZipcode('8021ER');
+        $buildingAddress212->setCity('Zwolle');
+        $buildingAddress212->setBagId('0193200000033623');
+        $buildingAddress212->setRentalUnitNumber('ALG1010');
+        $buildingAddress212->setDaeb(true);
+        $buildingAddress212->setVtw($vtw2R);
+        $buildingAddress212->setResidentialArea($residentialArea2);
+        $buildingAddress212->setBuildingType($buildingType14);
+        $buildingAddress212->setLivingType($livingType1);
+        $buildingAddress212->setCreationTime();
+        $buildingAddress212->setLastChangeTime();
+
+        $buildingAddress213 = new BuildingAddress();
+        $buildingAddress213->setConstructionYear(1950);
+        $buildingAddress213->setRenovationYear();
+        $buildingAddress213->setStreetName('Van Miereveltstraat');
+        $buildingAddress213->setHouseNumber(24);
+        $buildingAddress213->setAddition('');
+        $buildingAddress213->setZipcode('8021ER');
+        $buildingAddress213->setCity('Zwolle');
+        $buildingAddress213->setBagId('0193200000052584');
+        $buildingAddress213->setRentalUnitNumber('ALG1010');
+        $buildingAddress213->setDaeb(true);
+        $buildingAddress213->setVtw($vtw2R);
+        $buildingAddress213->setResidentialArea($residentialArea2);
+        $buildingAddress213->setBuildingType($buildingType14);
+        $buildingAddress213->setLivingType($livingType1);
+        $buildingAddress213->setCreationTime();
+        $buildingAddress213->setLastChangeTime();
+
 
         
         $block1 = new Block();
@@ -6456,12 +6707,12 @@ class LoadTestHousingStockData extends Fixture
         $housingStock3->setOwner($owner1);
 
         $housingStock4 = new HousingStock();
-        $housingStock4->setCode('HS-ACT-01');
-        $housingStock4->setName('Main houses of Actium');
-        $housingStock4->setDescription('This is the main set of houses of the company Actium');
+        $housingStock4->setCode('ALG1010');
+        $housingStock4->setName('Verkoop complex');
+        $housingStock4->setDescription('Testcomplex');
         $housingStock4->setCreationTime();
         $housingStock4->setLastChangeTime();
-        $housingStock4->setOwner($owner244);
+        $housingStock4->setOwner($owner158);
 
         $housingStock5 = new HousingStock();
         $housingStock5->setCode('HS-ACT-02');
@@ -6533,7 +6784,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock12->setDescription('The sixth set of houses of the company Baston Wonen');
         $housingStock12->setCreationTime();
         $housingStock12->setLastChangeTime();
-        $housingStock12->setOwner($owner169);
+        $housingStock12->setOwner($owner169)
 
         $buildingAddress1->setHousingStock($housingStock1);
         $buildingAddress2->setHousingStock($housingStock1);
@@ -6736,7 +6987,22 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress197->setHousingStock($housingStock3);
         $buildingAddress198->setHousingStock($housingStock3);
         $buildingAddress199->setHousingStock($housingStock3);
-
+        
+        $buildingAddress201->setHousingStock($housingStock4);
+        $buildingAddress202->setHousingStock($housingStock4);
+        $buildingAddress203->setHousingStock($housingStock4);
+        $buildingAddress204->setHousingStock($housingStock4);
+        $buildingAddress205->setHousingStock($housingStock4);
+        $buildingAddress206->setHousingStock($housingStock4);
+        $buildingAddress207->setHousingStock($housingStock4);
+        $buildingAddress208->setHousingStock($housingStock4);
+        $buildingAddress209->setHousingStock($housingStock4);
+        $buildingAddress210->setHousingStock($housingStock4);
+        $buildingAddress211->setHousingStock($housingStock4);
+        $buildingAddress212->setHousingStock($housingStock4);
+        $buildingAddress213->setHousingStock($housingStock4);
+        
+        
         $buildingAddress1->setBlock($block1);
         $buildingAddress2->setBlock($block1);
         $buildingAddress3->setBlock($block1);
@@ -6907,6 +7173,20 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress168->setBlock($block9);
         $buildingAddress169->setBlock($block9);
         $buildingAddress170->setBlock($block9);
+           
+        $buildingAddress201->setBlock($block1010);
+        $buildingAddress202->setBlock($block1010);
+        $buildingAddress203->setBlock($block1010);
+        $buildingAddress204->setBlock($block1010);
+        $buildingAddress205->setBlock($block1010);
+        $buildingAddress206->setBlock($block1010);
+        $buildingAddress207->setBlock($block1010);
+        $buildingAddress208->setBlock($block1010);
+        $buildingAddress209->setBlock($block1010);
+        $buildingAddress210->setBlock($block1010);
+        $buildingAddress211->setBlock($block1010);
+        $buildingAddress212->setBlock($block1010);
+        $buildingAddress213->setBlock($block1010);
         
         $buildingType1->setHousingStock($housingStock1);
         $buildingType2->setHousingStock($housingStock1);
