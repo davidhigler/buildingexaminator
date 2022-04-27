@@ -5310,6 +5310,27 @@ class LoadTestHousingStockData extends Fixture
         $block9->addBuildingAddress($buildingAddress130);
         $block9->setCreationTime();
         $block9->setLastChangeTime();
+        
+        $block10 = new Block();
+        $block10->setCode('ID 123');
+        $block10->setName('ALG1010');
+        $block10->setFinancialNumber('5154');
+        $block10->setDescription('ALG1010');
+        $block10->addBuildingAddress($buildingAddress201);
+        $block10->addBuildingAddress($buildingAddress202);
+        $block10->addBuildingAddress($buildingAddress203);
+        $block10->addBuildingAddress($buildingAddress204);
+        $block10->addBuildingAddress($buildingAddress205);
+        $block10->addBuildingAddress($buildingAddress206);
+        $block10->addBuildingAddress($buildingAddress207);
+        $block10->addBuildingAddress($buildingAddress208);
+        $block10->addBuildingAddress($buildingAddress209);
+        $block10->addBuildingAddress($buildingAddress210);
+        $block10->addBuildingAddress($buildingAddress211);
+        $block10->addBuildingAddress($buildingAddress212);
+        $block10->addBuildingAddress($buildingAddress213);
+        $block10->setCreationTime();
+        $block10->setLastChangeTime();
 
         $owner1 = new Owner();
         $owner1->setName('Dobro BV');
@@ -7161,19 +7182,19 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress169->setBlock($block9);
         $buildingAddress170->setBlock($block9);
            
-        $buildingAddress201->setBlock($block1010);
-        $buildingAddress202->setBlock($block1010);
-        $buildingAddress203->setBlock($block1010);
-        $buildingAddress204->setBlock($block1010);
-        $buildingAddress205->setBlock($block1010);
-        $buildingAddress206->setBlock($block1010);
-        $buildingAddress207->setBlock($block1010);
-        $buildingAddress208->setBlock($block1010);
-        $buildingAddress209->setBlock($block1010);
-        $buildingAddress210->setBlock($block1010);
-        $buildingAddress211->setBlock($block1010);
-        $buildingAddress212->setBlock($block1010);
-        $buildingAddress213->setBlock($block1010);
+        $buildingAddress201->setBlock($block10);
+        $buildingAddress202->setBlock($block10);
+        $buildingAddress203->setBlock($block10);
+        $buildingAddress204->setBlock($block10);
+        $buildingAddress205->setBlock($block10);
+        $buildingAddress206->setBlock($block10);
+        $buildingAddress207->setBlock($block10);
+        $buildingAddress208->setBlock($block10);
+        $buildingAddress209->setBlock($block10);
+        $buildingAddress210->setBlock($block10);
+        $buildingAddress211->setBlock($block10);
+        $buildingAddress212->setBlock($block10);
+        $buildingAddress213->setBlock($block10);
         
         $buildingType1->setHousingStock($housingStock1);
         $buildingType2->setHousingStock($housingStock1);
