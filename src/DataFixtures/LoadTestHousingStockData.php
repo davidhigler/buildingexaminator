@@ -4866,7 +4866,7 @@ class LoadTestHousingStockData extends Fixture
         $buildingAddress200->setLastChangeTime();
         
         $buildingAddress201 = new BuildingAddress();
-        $buildingAddress201->setConstructionYear(1950)
+        $buildingAddress201->setConstructionYear(1950);
         $buildingAddress201->setStreetName('Ferdinand Bolstraat');
         $buildingAddress201->setHouseNumber(1);
         $buildingAddress201->setAddition('');
