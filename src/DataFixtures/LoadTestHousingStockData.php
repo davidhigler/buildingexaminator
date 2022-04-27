@@ -6784,7 +6784,7 @@ class LoadTestHousingStockData extends Fixture
         $housingStock12->setDescription('The sixth set of houses of the company Baston Wonen');
         $housingStock12->setCreationTime();
         $housingStock12->setLastChangeTime();
-        $housingStock12->setOwner($owner169)
+        $housingStock12->setOwner($owner169);
 
         $buildingAddress1->setHousingStock($housingStock1);
         $buildingAddress2->setHousingStock($housingStock1);
