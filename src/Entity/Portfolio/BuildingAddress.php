@@ -190,7 +190,7 @@ class BuildingAddress extends IdTime
     protected string $city;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\Type(
      *      type="integer",
@@ -199,7 +199,7 @@ class BuildingAddress extends IdTime
      *
      * @OA\Property()
      */
-    protected int $bagId;
+    protected string $bagId;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
@@ -414,7 +414,7 @@ class BuildingAddress extends IdTime
         $this->city = $city;
     }
 
-    public function setBagId(int $bagId): void
+    public function setBagId(string $bagId): void
     {
         $this->bagId = $bagId;
     }
