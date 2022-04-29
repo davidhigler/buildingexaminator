@@ -20,6 +20,9 @@ class LoadBlocksData extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $blocks = [
+            /**
+             * Blocks for housing stock DobroTest01
+             */
             [
                 'code' => 'NAP A1',
                 'name' => 'Napoleoncomplex',
@@ -89,6 +92,244 @@ class LoadBlocksData extends Fixture implements DependentFixtureInterface
                 'financialNumber' => '5154',
                 'description' => 'ALG1010',
                 'housingstock' => 'DobroTest01'
+            ],
+            /**
+             * Blocks for housing stock DobroTest02
+             */
+            [
+                'code' => 'ALG1003',
+                'name' => 'Algemeen 1003',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1006',
+                'name' => 'Algemeen 1006',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1018',
+                'name' => 'Algemeen 1018',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1019',
+                'name' => 'Algemeen 1019',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1017',
+                'name' => 'Algemeen 1017',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1014',
+                'name' => 'Algemeen 1014',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1010',
+                'name' => 'Algemeen 1010',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1011',
+                'name' => 'Algemeen 1011',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1013',
+                'name' => 'Algemeen 1013',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1020',
+                'name' => 'Algemeen 1020',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1022',
+                'name' => 'Algemeen 1022',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1402',
+                'name' => 'Algemeen 1402',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1028',
+                'name' => 'Algemeen 1028',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1024',
+                'name' => 'Algemeen 1024',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1025',
+                'name' => 'Algemeen 1025',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1027',
+                'name' => 'Algemeen 1027',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1023',
+                'name' => 'Algemeen 1023',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1034',
+                'name' => 'Algemeen 1034',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1036',
+                'name' => 'Algemeen 1036',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1037',
+                'name' => 'Algemeen 1037',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1039',
+                'name' => 'Algemeen 1039',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1030',
+                'name' => 'Algemeen 1030',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1031',
+                'name' => 'Algemeen 1031',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1032',
+                'name' => 'Algemeen 1032',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1035',
+                'name' => 'Algemeen 1035',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1033',
+                'name' => 'Algemeen 1033',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1042',
+                'name' => 'Algemeen 1042',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1041',
+                'name' => 'Algemeen 1041',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1046',
+                'name' => 'Algemeen 1046',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1040',
+                'name' => 'Algemeen 1040',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1045',
+                'name' => 'Algemeen 1045',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1048',
+                'name' => 'Algemeen 1048',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1049',
+                'name' => 'Algemeen 1049',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1058',
+                'name' => 'Algemeen 1058',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1528',
+                'name' => 'Algemeen 1528',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1051',
+                'name' => 'Algemeen 1051',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1580',
+                'name' => 'Algemeen 1580',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1529',
+                'name' => 'Algemeen 1529',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1062',
+                'name' => 'Algemeen 1062',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1061',
+                'name' => 'Algemeen 1061',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1064',
+                'name' => 'Algemeen 1064',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1069',
+                'name' => 'Algemeen 1069',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1066',
+                'name' => 'Algemeen 1066',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1068',
+                'name' => 'Algemeen 1068',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1079',
+                'name' => 'Algemeen 1079',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1070',
+                'name' => 'Algemeen 1070',
+                'housingstock' => 'DobroTest02'
+            ],
+            [
+                'code' => 'ALG1073',
+                'name' => 'Algemeen 1073',
+                'housingstock' => 'DobroTest02'
             ]
         ];
 

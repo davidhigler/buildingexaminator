@@ -40,7 +40,7 @@ class Block extends IdTimeIdentification
     protected Collection $buildingAddresses;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      *
      * @Assert\Type(
      *     type="string",
