@@ -55,7 +55,7 @@ class HousingStock extends IdTimeIdentification
     protected Collection $livingTypes;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/buildingAddresses")
      */    
@@ -140,12 +140,12 @@ class HousingStock extends IdTimeIdentification
         $this->livingTypes->removeElement($livingType);
     }
     
-    public function addBuildingAddress(BuildingAddress $buildingAddress): void
+    public function addBuildingAddress(Address $buildingAddress): void
     {
         $this->buildingAddresses->add($buildingAddress);
     }
     
-    public function removeBuildingAddress(BuildingAddress $buildingAddress): void
+    public function removeBuildingAddress(Address $buildingAddress): void
     {
         $this->buildingAddresses->removeElement($buildingAddress);
     }

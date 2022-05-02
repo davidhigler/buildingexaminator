@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Portfolio\Block;
-use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
@@ -28,6 +28,9 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
     public function load(ObjectManager $manager): void
     {
         $buildingAddresses = [
+            /**
+             * BuildingAddresses for housing stock DobroTest01
+             */
             [
                 'constructionyear' => 1944,
                 'renovationyear' => 1986,
@@ -3659,12 +3662,32 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
                 'livingtype' => 'lt1',
-            ]
+            ],
+            /**
+             * BuildingAddresses for housing stock DobroTest02
+             */
+//            [
+//                'constructionyear' => ,
+//                'renovationyear' => ,
+//                'streetname' => '',
+//                'housenumber' => ,
+//                'addition' => '',
+//                'zipcode' => '',
+//                'city' => '',
+//                'rentalunitnumber' => '',
+//                'daeb' => ,
+//                'vtw' => '',
+//                'housingstock' => 'DobroTest02',
+//                'residentialarea' => '',
+//                'block' => '',
+//                'buildingtype' => '',
+//                'livingtype' => '',
+//            ],
         ];
 
         foreach ($buildingAddresses as $buildingAddress) {
 
-            $buildingAddressObject = new BuildingAddress();
+            $buildingAddressObject = new Address();
 
             if (!empty($buildingAddress['constructionyear'])) {
                 $buildingAddressObject->setConstructionYear($buildingAddress['constructionyear']);

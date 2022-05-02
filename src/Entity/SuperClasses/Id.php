@@ -46,5 +46,4 @@ class Id
     {
         return str_replace($separator, '', ucwords($input, $separator));
     }
-
 }

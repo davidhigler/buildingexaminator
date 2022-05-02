@@ -91,5 +91,4 @@ class IdTimeIdentification extends IdTime
     {
         $this->description = $description;
     }
-
 }

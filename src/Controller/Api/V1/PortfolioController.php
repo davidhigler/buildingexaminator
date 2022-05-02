@@ -4,7 +4,7 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
-use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\LivingType;
@@ -115,14 +115,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
- *     schema="buildingAddresses",
+ *     schema="addresses",
  *     title="Addresses",
  *     description="An array of addresses",
  *     type="object",
  *     @OA\Property(
  *         property="data",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/BuildingAddress")
+ *         @OA\Items(ref="#/components/schemas/Address")
  *     )
  * )
  * @OA\Schema(
@@ -147,7 +147,7 @@ class PortfolioController extends AbstractController
         'name',
         'description',
         'numberOfBlocks',
-        'numberOfBuildingAddresses',
+        'numberOfAddresses',
     ];
 
     private const HOUSING_STOCK_DETAIL_FIELDS = [
@@ -174,15 +174,12 @@ class PortfolioController extends AbstractController
             'code',
             'name',
         ],
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
             'rentalUnitNumber',
             'zipcode',
             'houseNumber',
             'addition',
-        ],
-        'housingStockOptionSet' => [
-            'id',
         ],
         'creationTime' => [
             'timestamp',
@@ -191,7 +188,7 @@ class PortfolioController extends AbstractController
             'timestamp',
         ],
         'numberOfBlocks',
-        'numberOfBuildingAddresses',
+        'numberOfAddresses',
     ];
 
     private const RESIDENTIALAREA_LIST_FIELDS = [
@@ -199,7 +196,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
         ],
     ];
@@ -209,7 +206,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
             'streetName',
             'houseNumber',
@@ -224,13 +221,10 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
         ],
-        'numberOfBuildingAddresses',
-        'buildingSelection' => [
-            'id',
-        ],
+        'numberOfAddresses',
         'financialNumber',
     ];
 
@@ -239,19 +233,14 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
             'rentalUnitNumber',
             'zipcode',
             'houseNumber',
             'addition',
         ],
-        'numberOfBuildingAddresses',
-        'buildingSelection' => [
-            'id',
-            'code',
-            'name',
-        ],
+        'numberOfAddresses',
         'financialNumber',
     ];
 
@@ -260,7 +249,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
         ],
     ];
@@ -270,7 +259,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
             'streetName',
             'houseNumber',
@@ -285,7 +274,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
         ],
     ];
@@ -295,7 +284,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'buildingAddresses' => [
+        'addresses' => [
             'id',
             'streetName',
             'houseNumber',
@@ -316,10 +305,6 @@ class PortfolioController extends AbstractController
             'name',
         ],
         'buildingType' => [
-            'id',
-            'name',
-        ],
-        'livingType' => [
             'id',
             'name',
         ],
@@ -352,11 +337,6 @@ class PortfolioController extends AbstractController
             'code',
             'name',
         ],
-        'livingType' => [
-            'id',
-            'code',
-            'name',
-        ],
         'vtw' => [
             'id',
             'code',
@@ -366,14 +346,10 @@ class PortfolioController extends AbstractController
             'roofTypeDescription',
         ],
         'rentalUnitNumber',
-        'streetName',
         'houseNumber',
         'addition',
         'zipcode',
         'city',
-        'bagId',
-        'constructionYear',
-        'renovationYear',
         'orientation',
         'daeb',
     ];
@@ -2222,7 +2198,7 @@ class PortfolioController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
         $adapter = $buildingAddressRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
@@ -2370,7 +2346,7 @@ class PortfolioController extends AbstractController
         /** @var Vtw $vtw */
         $vtw = $vtwRepository->find((int) $newAddress['vtw']);
 
-        $buildingAddress = new BuildingAddress();
+        $buildingAddress = new Address();
         if (!empty($housingStock)) {
             $buildingAddress->setHousingStock($housingStock);
         }
@@ -2512,8 +2488,8 @@ class PortfolioController extends AbstractController
     {
         $changeAddress = json_decode($request->getContent(), true);
 
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        /** @var BuildingAddress $buildingAddress */
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
+        /** @var Address $buildingAddress */
         $buildingAddress = $buildingAddressRepository->find((int) $buildingAddressId);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -2643,8 +2619,8 @@ class PortfolioController extends AbstractController
      */
     public function deleteBuildingAddress(string $housingStockId, string $buildingAddressId): Response
     {
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
-        /** @var BuildingAddress $buildingAddress */
+        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
+        /** @var Address $buildingAddress */
         $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingAddressId], null, 1);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -2692,7 +2668,7 @@ class PortfolioController extends AbstractController
      */
     public function getBuildingAddress(string $housingStockId, string $buildingAddressId): Response
     {
-        $addressRepository = $this->getDoctrine()->getRepository(BuildingAddress::class);
+        $addressRepository = $this->getDoctrine()->getRepository(Address::class);
         return $this->json(
             ApiRenderEngine::renderData(
                 $addressRepository->findBy(

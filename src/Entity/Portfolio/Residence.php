@@ -1,0 +1,117 @@
+<?php
+
+namespace App\Entity\Portfolio;
+
+use App\Entity\SuperClasses\IdBagIds;
+use JetBrains\PhpStorm\Pure;
+use OpenApi\Annotations as OA;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+class Residence extends IdBagIds
+{
+    /**
+     * @ORM\Column(type="integer", length=5, nullable=false)
+     *
+     * @Assert\NotBlank(
+     *      message="The surface area number may not be empty"
+     * )
+     * @Assert\Type(
+     *      type="integer",
+     *      message="The surface area is not a valid {{ type }}"
+     * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 99999
+     * )
+     *
+     * @OA\Property()
+     */
+    private int $surfaceArea;
+
+    /**
+     * @ORM\Column(type="string", length=80, nullable=false)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="The status is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=80,
+     *      maxMessage="The status can contain a maximum of %limit% characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    private string $status;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="The intended use is not a valid {{ type }}"
+     * )
+     * @Assert\Length(
+     *      max=255,
+     *      maxMessage="The intended use can contain a maximum of %limit% characters"
+     * )
+     *
+     * @OA\Property()
+     */
+    private string $intendedUse;
+
+    /**
+     * @ORM\Column(type="enumintendedusebasic", nullable=true)
+     *
+     * @Assert\Choice(choices=App\Dbal\EnumIntendedUseBasicType::ALLOWED_VALUES, message="Choose a valid intended use basic type.")
+     *
+     * @OA\Property()
+     */
+    private string $intendedUseBasic;
+
+    #[Pure]
+    public function __construct()
+    {
+    }
+
+    public function getSurfaceArea(): int
+    {
+        return $this->surfaceArea;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function getIntendedUse(): string
+    {
+        return $this->intendedUse;
+    }
+
+    public function getIntendedUseBasic(): string
+    {
+        return $this->intendedUseBasic;
+    }
+
+    public function setSurfaceArea(int $surfaceArea): void
+    {
+        $this->surfaceArea = $surfaceArea;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function setIntendedUse(string $intendedUse): void
+    {
+        $this->intendedUse = $intendedUse;
+    }
+
+    public function setIntendedUseBasic(string $intendedUseBasic): void
+    {
+        $this->intendedUseBasic = $intendedUseBasic;
+    }
+}

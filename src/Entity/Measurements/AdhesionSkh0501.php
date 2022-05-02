@@ -2,7 +2,7 @@
 
 namespace App\Entity\Measurements;
 
-use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\Address;
 use App\Entity\SuperClasses\IdTimeScore;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class AdhesionSkh0501 extends IdTimeScore
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\BuildingAddress", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Address", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingaddress_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -32,7 +32,7 @@ class AdhesionSkh0501 extends IdTimeScore
      *
      * @OA\Property(ref="#/components/schemas/BuildingAddress")
      */
-    protected BuildingAddress $address;
+    protected Address $address;
 
     /**
      * @ORM\Column(type="integer", length=3, nullable=false)
@@ -53,12 +53,12 @@ class AdhesionSkh0501 extends IdTimeScore
      */
     protected int $procentDetachment;
 
-    public function getAddress(): BuildingAddress
+    public function getAddress(): Address
     {
         return $this->address;
     }
 
-    public function setAddress(BuildingAddress $address): void
+    public function setAddress(Address $address): void
     {
         $this->address = $address;
     }

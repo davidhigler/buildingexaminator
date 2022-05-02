@@ -33,11 +33,11 @@ class Block extends IdTimeIdentification
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingAddress", mappedBy="block", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="block", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/buildingAddresses")
+     * @OA\Property(ref="#/components/schemas/Addresses")
      */
-    protected Collection $buildingAddresses;
+    protected Collection $addresses;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
@@ -58,7 +58,7 @@ class Block extends IdTimeIdentification
     #[Pure]
     public function __construct()
     {
-        $this->buildingAddresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -66,14 +66,14 @@ class Block extends IdTimeIdentification
         return $this->housingStock;
     }
 
-    public function getBuildingAddresses(): Collection
+    public function getAddresses(): Collection
     {
-        return $this->buildingAddresses;
+        return $this->addresses;
     }
 
-    public function getNumberOfBuildingAddresses(): int
+    public function getNumberOfAddresses(): int
     {
-        return count($this->buildingAddresses);
+        return count($this->addresses);
     }
 
     public function getFinancialNumber(): string
@@ -86,14 +86,14 @@ class Block extends IdTimeIdentification
         $this->housingStock = $housingStock;
     }
 
-    public function addBuildingAddress(BuildingAddress $buildingAddress): void
+    public function addBuildingAddress(Address $address): void
     {
-        $this->buildingAddresses->add($buildingAddress);
+        $this->addresses->add($address);
     }
 
-    public function removeBuildingAddress(BuildingAddress $buildingAddress): void
+    public function removeBuildingAddress(Address $address): void
     {
-        $this->buildingAddresses->removeElement($buildingAddress);
+        $this->addresses->removeElement($address);
     }
 
     public function setFinancialNumber(string $financialNumber): void

@@ -2,7 +2,7 @@
 
 namespace App\Entity\Measurements;
 
-use App\Entity\Portfolio\BuildingAddress;
+use App\Entity\Portfolio\Address;
 use App\Entity\SuperClasses\IdTimeScore;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class GlossIso2813 extends IdTimeScore
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\BuildingAddress", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Address", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingaddress_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -32,7 +32,7 @@ class GlossIso2813 extends IdTimeScore
      *
      * @OA\Property(ref="#/components/schemas/BuildingAddress")
      */
-    protected BuildingAddress $buildingAddress;
+    protected Address $buildingAddress;
 
     /**
      * @ORM\Column(type="integer", length=3, nullable=false)
@@ -67,12 +67,12 @@ class GlossIso2813 extends IdTimeScore
         $this->glossUnits = $glossUnits;
     }
 
-    public function getBuildingAddress(): BuildingAddress
+    public function getBuildingAddress(): Address
     {
         return $this->buildingAddress;
     }
 
-    public function setBuildingAddress(BuildingAddress $buildingAddress): void
+    public function setBuildingAddress(Address $buildingAddress): void
     {
         $this->buildingAddress = $buildingAddress;
     }

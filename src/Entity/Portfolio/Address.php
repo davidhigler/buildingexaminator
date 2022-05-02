@@ -2,29 +2,28 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Entity\SuperClasses\IdBagIdsTime;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use App\Entity\SuperClasses\IdTime;
-
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioBuildingAddresses")
+ * @ORM\Table(name="PortfolioAddresses")
  *
  * @OA\Schema()
  */
-class BuildingAddress extends IdTime
+class Address extends IdBagIdsTime
 {
     /**
      * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a housingstock"
+     *     message="A address must have a housingstock"
      * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
@@ -36,7 +35,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a residentialarea"
+     *     message="A address must have a residentialarea"
      * )
      *
      * @OA\Property(ref="#/components/schemas/ResidentialArea")
@@ -44,11 +43,23 @@ class BuildingAddress extends IdTime
     protected ResidentialArea $residentialArea;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Block", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Neighbourhood", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="neighbourhood_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A address must have a neighbourhood"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/Neighbourhood")
+     */
+    protected Neighbourhood $neighbourhood;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Block", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a block"
+     *     message="A address must have a block"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Block")
@@ -60,24 +71,12 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a buildingtype"
+     *     message="A address must have a buildingtype"
      * )
      *
      * @OA\Property(ref="#/components/schemas/BuildingType")
      */
     protected BuildingType $buildingType;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="LivingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="livingtype_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A buildingaddress must have a livingtype"
-     * )
-     *
-     * @OA\Property(ref="#/components/schemas/LivingType")
-     */
-    protected LivingType $livingType;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
@@ -98,25 +97,33 @@ class BuildingAddress extends IdTime
     protected string $rentalUnitNumber;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Residence", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="residence_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *      message="The street name may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The street name is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      min=3,
-     *      max=128,
-     *      minMessage="The street name must be at least {{ limit }} characters long",
-     *      maxMessage="The street name can contain a maximum of {{ limit }} characters"
+     *     message="A address must have a residence"
      * )
      *
      * @OA\Property()
      */
-    protected string $streetName;
+    protected Residence $residence;
+
+    /**
+     * @OA\Property()
+     */
+    protected Building $building;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PublicSpace", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="publicspace_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A buildingaddress must have a public space"
+     * )
+     *
+     * @OA\Property()
+     */
+    protected PublicSpace $publicSpace;
 
     /**
      * @ORM\Column(type="integer", length=5, nullable=false)
@@ -169,72 +176,15 @@ class BuildingAddress extends IdTime
     protected string $zipcode;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
+     * @ORM\ManyToOne(targetEntity="City", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *      message="The city may not be empty"
+     *     message="A address must have a city"
      * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The city is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      min=3,
-     *      max=128,
-     *      minMessage="The city must be at least {{ limit }} characters long",
-     *      maxMessage="The city can contain a maximum of {{ limit }} characters"
-     * )
-     *
      * @OA\Property()
      */
-    protected string $city;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     *
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The BAG id is not a valid {{ type }}"
-     * )
-     *
-     * @OA\Property()
-     */
-    protected string $bagId;
-
-    /**
-     * @ORM\Column(type="integer", nullable=false)
-     *
-     * @Assert\NotBlank(
-     *      message="The construction year may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The construction year is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1800,
-     *      max = 2100
-     * )
-     *
-     * @OA\Property()
-     */
-    protected int $constructionYear;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     *
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The construction year is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1800,
-     *      max = 2100
-     * )
-     *
-     * @OA\Property()
-     */
-    protected int $renovationYear;
+    protected City $city;
 
     /**
      * @ORM\Column(type="enumorientation", nullable=true)
@@ -262,7 +212,7 @@ class BuildingAddress extends IdTime
      * @ORM\JoinColumn(name="vtw_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a vtw"
+     *     message="A address must have a vtw"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Vtw")
@@ -284,6 +234,11 @@ class BuildingAddress extends IdTime
         return $this->residentialArea;
     }
 
+    public function getNeighbourhood(): Neighbourhood
+    {
+        return $this->neighbourhood;
+    }
+
     public function getBlock(): Block
     {
         return $this->block;
@@ -294,19 +249,9 @@ class BuildingAddress extends IdTime
         return $this->buildingType;
     }
 
-    public function getLivingType(): LivingType
-    {
-        return $this->livingType;
-    }
-
     public function getRentalUnitNumber(): string
     {
         return $this->rentalUnitNumber;
-    }
-
-    public function getStreetName(): string
-    {
-        return $this->streetName;
     }
 
     public function getHouseNumber(): int
@@ -324,24 +269,9 @@ class BuildingAddress extends IdTime
         return $this->zipcode;
     }
 
-    public function getCity(): string
+    public function getCity(): City
     {
         return $this->city;
-    }
-
-    public function getBagId(): string
-    {
-        return $this->bagId;
-    }
-
-    public function getConstructionYear(): int
-    {
-        return $this->constructionYear;
-    }
-
-    public function getRenovationYear(): int
-    {
-        return $this->renovationYear;
     }
 
     public function getOrientation(): string
@@ -369,6 +299,11 @@ class BuildingAddress extends IdTime
         $this->residentialArea = $residentialArea;
     }
 
+    public function setNeighbourhood(Neighbourhood $neighbourhood): void
+    {
+        $this->neighbourhood = $neighbourhood;
+    }
+
     public function setBlock(Block $block): void
     {
         $this->block = $block;
@@ -379,19 +314,9 @@ class BuildingAddress extends IdTime
         $this->buildingType = $buildingType;
     }
 
-    public function setLivingType(LivingType $livingType): void
-    {
-        $this->livingType = $livingType;
-    }
-
     public function setRentalUnitNumber(string $rentalUnitNumber): void
     {
         $this->rentalUnitNumber = $rentalUnitNumber;
-    }
-
-    public function setStreetName(string $streetName): void
-    {
-        $this->streetName = $streetName;
     }
 
     public function setHouseNumber(int $houseNumber): void
@@ -409,24 +334,9 @@ class BuildingAddress extends IdTime
         $this->zipcode = $zipcode;
     }
 
-    public function setCity(string $city): void
+    public function setCity(City $city): void
     {
         $this->city = $city;
-    }
-
-    public function setBagId(string $bagId): void
-    {
-        $this->bagId = $bagId;
-    }
-
-    public function setConstructionYear(int $constructionYear): void
-    {
-        $this->constructionYear = $constructionYear;
-    }
-
-    public function setRenovationYear(int $renovationYear): void
-    {
-        $this->renovationYear = $renovationYear;
     }
 
     public function setOrientation(string $orientation): void

@@ -7,11 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 
-/**
- * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\MappedSuperclass
- */
-class IdTime extends Id
+class IdBagIdsTime extends IdBagIds
 {
     /**
      * @ORM\Column(type="datetimetz")
