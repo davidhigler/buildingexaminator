@@ -31,6 +31,18 @@ class Address extends IdBagIdsTime
     protected HousingStock $housingStock;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A address must have a municipality"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/Municipality")
+     */
+    protected Municipality $municipality;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
@@ -229,6 +241,11 @@ class Address extends IdBagIdsTime
         return $this->housingStock;
     }
 
+    public function getMunicipality(): Municipality
+    {
+        return $this->municipality;
+    }
+
     public function getResidentialArea(): ResidentialArea
     {
         return $this->residentialArea;
@@ -292,6 +309,11 @@ class Address extends IdBagIdsTime
     public function setHousingStock(HousingStock $housingStock): void
     {
         $this->housingStock = $housingStock;
+    }
+
+    public function setMunicipality(Municipality $municipality): void
+    {
+        $this->municipality = $municipality;
     }
 
     public function setResidentialArea(ResidentialArea $residentialArea): void

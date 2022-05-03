@@ -6,7 +6,7 @@ use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
-use App\Entity\Portfolio\LivingType;
+use App\Entity\Portfolio\Neighbourhood;
 use App\Entity\Portfolio\ResidentialArea;
 use App\Entity\Portfolio\Vtw;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validation;
 /**
  * @author Reiny Griemink <rgriemink@gmail.com>
  */
-class LoadBuildingAddressesData extends Fixture implements DependentFixtureInterface
+class LoadAddressesData extends Fixture implements DependentFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -46,7 +46,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt1'
             ],
             [
                 'constructionyear' => 1944,
@@ -63,7 +62,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -80,7 +78,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -97,7 +94,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -114,7 +110,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -131,7 +126,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -148,7 +142,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -165,7 +158,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -182,7 +174,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -199,7 +190,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -216,7 +206,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -233,7 +222,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -250,7 +238,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -267,7 +254,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -284,7 +270,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -301,7 +286,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -318,7 +302,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -335,7 +318,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -352,7 +334,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -369,7 +350,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -386,7 +366,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -403,7 +382,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -420,7 +398,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -436,7 +413,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -452,7 +428,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1944,
@@ -468,7 +443,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'NAP A1',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt6',
             ],
             [
                 'constructionyear' => 1956,
@@ -485,7 +459,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'C001',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -502,7 +475,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'C001',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2020,
@@ -518,7 +490,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'C001',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -535,7 +506,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'C001',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1986,
@@ -552,7 +522,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'C001',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1954,
@@ -569,7 +538,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'C001',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1998,
@@ -586,7 +554,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'C001',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -603,7 +570,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'C001',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -620,7 +586,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'C001',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1888,
@@ -637,7 +602,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'C001',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1908,
@@ -654,7 +618,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'C001',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -671,7 +634,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'C001',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2026,
@@ -688,7 +650,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'C001',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -705,7 +666,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'C001',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -722,7 +682,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'C001',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -739,7 +698,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'C001',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1998,
@@ -756,7 +714,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => '4567894645',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -773,7 +730,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => '4567894645',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -790,7 +746,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => '4567894645',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -807,7 +762,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => '4567894645',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -824,7 +778,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => '4567894645',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -841,7 +794,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => '4567894645',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2026,
@@ -858,7 +810,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => '4567894645',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -875,7 +826,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => '4567894645',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -892,7 +842,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => '4567894645',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -909,7 +858,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => '4567894645',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -926,7 +874,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => '4567894645',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -943,7 +890,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => '4567894645',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -960,7 +906,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => '4567894645',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1888,
@@ -977,7 +922,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => '4567894645',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -994,7 +938,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => '4567894645',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1011,7 +954,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => '4567894645',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2020,
@@ -1027,7 +969,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'C-20',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1044,7 +985,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'C-20',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1061,7 +1001,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'C-20',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1078,7 +1017,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'C-20',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1095,7 +1033,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'C-20',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1112,7 +1049,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'C-20',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1129,7 +1065,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'C-20',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1888,
@@ -1146,7 +1081,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'C-20',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -1163,7 +1097,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'C-20',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1180,7 +1113,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'C-20',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -1197,7 +1129,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'C-20',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1214,7 +1145,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'C-20',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1231,7 +1161,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'C-20',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1248,7 +1177,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'C-20',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1265,7 +1193,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'C-20',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1282,7 +1209,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'C-20',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1299,7 +1225,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'C-20',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1888,
@@ -1316,7 +1241,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'C-20',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -1333,7 +1257,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'C-20',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1350,7 +1273,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'C-20',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -1367,7 +1289,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'C-20',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1384,7 +1305,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'C-20',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1401,7 +1321,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'C-20',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1418,7 +1337,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'C-20',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1435,7 +1353,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'C-20',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1452,7 +1369,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'C-20',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1469,7 +1385,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'C-20',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -1486,7 +1401,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'C-20',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -1503,7 +1417,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'C-20',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1520,7 +1433,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'C-20',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -1537,7 +1449,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1554,7 +1465,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1571,7 +1481,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1588,7 +1497,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1605,7 +1513,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1622,7 +1529,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1639,7 +1545,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -1656,7 +1561,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -1673,7 +1577,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1690,7 +1593,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'ID 899',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -1707,7 +1609,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1724,7 +1625,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1741,7 +1641,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1758,7 +1657,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1775,7 +1673,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1792,7 +1689,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1809,7 +1705,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -1826,7 +1721,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -1843,7 +1737,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -1860,7 +1753,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'ID 123',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -1877,7 +1769,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -1894,7 +1785,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -1911,7 +1801,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -1928,7 +1817,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -1945,7 +1833,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -1962,7 +1849,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -1979,7 +1865,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -1996,7 +1881,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -2013,7 +1897,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'ʈɖɟɢʔɱɳɲŋɴʙʀɽɸβθðʃʒʂʐ',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -2030,7 +1913,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -2047,7 +1929,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -2064,7 +1945,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2081,7 +1961,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1954,
@@ -2098,7 +1977,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019310',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT1',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1998,
@@ -2115,7 +1993,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT2',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1984,
@@ -2132,7 +2009,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019312',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT3',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -2149,7 +2025,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1988,
@@ -2166,7 +2041,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1958,
@@ -2183,7 +2057,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2006,
@@ -2200,7 +2073,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'ɨʉɯɪʏʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒɚ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2000,
@@ -2217,7 +2089,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1976,
@@ -2234,7 +2105,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2251,7 +2121,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2268,7 +2137,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2285,7 +2153,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2302,7 +2169,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2319,7 +2185,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2336,7 +2201,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2353,7 +2217,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2370,7 +2233,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2387,7 +2249,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 1986,
@@ -2404,7 +2265,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019331',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT10',
-                'livingtype' => 'lt3',
             ],
             [
                 'constructionyear' => 2010,
@@ -2421,7 +2281,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2438,7 +2297,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2455,7 +2313,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2472,7 +2329,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2489,7 +2345,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2506,7 +2361,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2523,7 +2377,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2540,7 +2393,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2557,7 +2409,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 2010,
@@ -2574,7 +2425,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019313',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT4',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1988,
@@ -2591,7 +2441,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2608,7 +2457,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2625,7 +2473,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2642,7 +2489,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2659,7 +2505,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2676,7 +2521,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2693,7 +2537,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2709,7 +2552,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2726,7 +2568,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1988,
@@ -2743,7 +2584,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019314',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT5',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1958,
@@ -2760,7 +2600,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2777,7 +2616,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2794,7 +2632,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1958,
@@ -2811,7 +2648,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2828,7 +2664,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2845,7 +2680,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2862,7 +2696,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2879,7 +2712,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2896,7 +2728,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019320',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT6',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2913,7 +2744,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2930,7 +2760,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'mobilisatiecomplex',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2947,7 +2776,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2964,7 +2792,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2981,7 +2808,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -2998,7 +2824,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -3015,7 +2840,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1978,
@@ -3032,7 +2856,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt4',
             ],
             [
                 'constructionyear' => 2006,
@@ -3049,7 +2872,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt4',
             ],
             [
                 'constructionyear' => 2006,
@@ -3066,7 +2888,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019321',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT7',
-                'livingtype' => 'lt4',
             ],
             [
                 'constructionyear' => 2006,
@@ -3083,7 +2904,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3100,7 +2920,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3117,7 +2936,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3134,7 +2952,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3151,7 +2968,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3168,7 +2984,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3185,7 +3000,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3202,7 +3016,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3219,7 +3032,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 2006,
@@ -3236,7 +3048,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3253,7 +3064,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019322',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT8',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3270,7 +3080,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3287,7 +3096,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3304,7 +3112,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3321,7 +3128,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3338,7 +3144,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3355,7 +3160,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3372,7 +3176,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3389,7 +3192,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3406,7 +3208,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3423,7 +3224,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1976,
@@ -3440,7 +3240,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019330',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => 'BT9',
-                'livingtype' => 'lt2',
             ],
             [
                 'constructionyear' => 1950,
@@ -3457,7 +3256,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3474,7 +3272,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010A',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3491,7 +3288,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3508,7 +3304,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3525,7 +3320,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3542,7 +3336,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3559,7 +3352,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010A',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3576,7 +3368,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3593,7 +3384,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3610,7 +3400,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3627,7 +3416,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3644,7 +3432,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             [
                 'constructionyear' => 1950,
@@ -3661,7 +3448,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 'residentialarea' => '019311',
                 'block' => 'Æ æ Œ œ ',
                 'buildingtype' => '1010B',
-                'livingtype' => 'lt1',
             ],
             /**
              * BuildingAddresses for housing stock DobroTest02
@@ -3681,7 +3467,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
 //                'residentialarea' => '',
 //                'block' => '',
 //                'buildingtype' => '',
-//                'livingtype' => '',
 //            ],
         ];
 
@@ -3689,17 +3474,35 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
 
             $buildingAddressObject = new Address();
 
-            if (!empty($buildingAddress['constructionyear'])) {
-                $buildingAddressObject->setConstructionYear($buildingAddress['constructionyear']);
+            if (!empty($buildingAddress['housingstock'])) {
+                /** @var HousingStock $housingStock */
+                $housingStock = $this->getReference($buildingAddress['housingstock']);
+                $buildingAddressObject->setHousingStock($housingStock);
             }
 
-            if (!empty($buildingAddress['renovationyear'])) {
-                $buildingAddressObject->setRenovationYear($buildingAddress['renovationyear']);
+            if (!empty($buildingAddress['residentialarea'])) {
+                /** @var ResidentialArea $residentialarea */
+                $residentialarea = $this->getReference($buildingAddress['residentialarea']);
+                $buildingAddressObject->setResidentialArea($residentialarea);
             }
+
+            if (!empty($buildingAddress['neighbourhood'])) {
+                /** @var Neighbourhood $neighbourhood */
+                $neighbourhood = $this->getReference($buildingAddress['neighbourhood']);
+                $buildingAddressObject->setNeighbourhood($neighbourhood);
+            }
+
+//            if (!empty($buildingAddress['constructionyear'])) {
+//                $buildingAddressObject->setConstructionYear($buildingAddress['constructionyear']);
+//            }
+
+//            if (!empty($buildingAddress['renovationyear'])) {
+//                $buildingAddressObject->setRenovationYear($buildingAddress['renovationyear']);
+//            }
             
-            if (!empty($buildingAddress['streetname'])) {
-                $buildingAddressObject->setStreetName($buildingAddress['streetname']);
-            }
+//            if (!empty($buildingAddress['streetname'])) {
+//                $buildingAddressObject->setStreetName($buildingAddress['streetname']);
+//            }
 
             if (!empty($buildingAddress['housenumber'])) {
                 $buildingAddressObject->setHouseNumber($buildingAddress['housenumber']);
@@ -3713,13 +3516,13 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 $buildingAddressObject->setZipcode($buildingAddress['zipcode']);
             }
 
-            if (!empty($buildingAddress['city'])) {
-                $buildingAddressObject->setCity($buildingAddress['city']);
-            }
+//            if (!empty($buildingAddress['city'])) {
+//                $buildingAddressObject->setCity($buildingAddress['city']);
+//            }
 
-            if (!empty($buildingAddress['bagid'])) {
-                $buildingAddressObject->setBagId($buildingAddress['bagid']);
-            }
+//            if (!empty($buildingAddress['bagid'])) {
+//                $buildingAddressObject->setBagId($buildingAddress['bagid']);
+//            }
 
             if (!empty($buildingAddress['rentalunitnumber'])) {
                 $buildingAddressObject->setRentalUnitNumber($buildingAddress['rentalunitnumber']);
@@ -3735,18 +3538,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 $buildingAddressObject->setVtw($vtw);
             }
 
-            if (!empty($buildingAddress['housingstock'])) {
-                /** @var HousingStock $housingStock */
-                $housingStock = $this->getReference($buildingAddress['housingstock']);
-                $buildingAddressObject->setHousingStock($housingStock);
-            }
-
-            if (!empty($buildingAddress['residentialarea'])) {
-                /** @var ResidentialArea $residentialarea */
-                $residentialarea = $this->getReference($buildingAddress['residentialarea']);
-                $buildingAddressObject->setResidentialArea($residentialarea);
-            }
-
             if (!empty($buildingAddress['block'])) {
                 /** @var Block $block */
                 $block = $this->getReference($buildingAddress['block']);
@@ -3757,12 +3548,6 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
                 /** @var BuildingType $buildingtype */
                 $buildingtype = $this->getReference($buildingAddress['buildingtype']);
                 $buildingAddressObject->setBuildingType($buildingtype);
-            }
-
-            if (!empty($buildingAddress['livingtype'])) {
-                /** @var LivingType $livingtype */
-                $livingtype = $this->getReference($buildingAddress['livingtype']);
-                $buildingAddressObject->setLivingType($livingtype);
             }
 
             $buildingAddressObject->setCreationTime();
@@ -3788,12 +3573,12 @@ class LoadBuildingAddressesData extends Fixture implements DependentFixtureInter
     public function getDependencies(): array
     {
         return [
-            LoadVtwsData::class,
             LoadHousingStocksData::class,
             LoadResidentialAreasData::class,
+            LoadNeighbourhoodData::class,
             LoadBlocksData::class,
-            LoadBuildingTypesData::class,
-            LoadLivingTypesData::class
+            LoadVtwsData::class,
+            LoadBuildingTypesData::class
         ];
     }
 }

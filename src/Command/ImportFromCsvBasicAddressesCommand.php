@@ -3,6 +3,9 @@
 namespace App\Command;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use JetBrains\PhpStorm\ArrayShape;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,30 +31,37 @@ class ImportFromCsvBasicAddressesCommand extends Command
 
         $addresses = [];
         foreach ($csvLines as $csvLine) {
-            $vhe = $csvLine[0];
+            //$vhe = $csvLine[0];
             $zipcode = strtoupper($csvLine[1]);
             //$streetname = $csvLine[2];
             $housenumber = (int) $csvLine[3];
             $addition = strtoupper($csvLine[4]);
-            $block = $csvLine[5];
+            //$block = $csvLine[5];
 
             if (empty($zipcode) || preg_match("/[1-9][0-9]{3}[A-Z]{2}/i", $zipcode) === 0) {
-                throw new \RuntimeException('Zipcode is empty or is not in the form of 4 numbers and 2 uppercase letters without a space in bewtween');
+                throw new RuntimeException('Zipcode is empty or is not in the form of 4 numbers and 2 uppercase letters without a space in bewtween');
             }
 
             if (!($housenumber > 0)) {
-                throw new \RuntimeException('Housenumber is not a number or is not as positive integer');
+                throw new RuntimeException('Housenumber is not a number or is not as positive integer');
             }
 
             if (empty($addition)) {
                 $addition = null;
             }
 
-            $address['address'] = $this->getAddress($zipcode, $housenumber, $addition);
-            $address['residence'] = $this->getResidence($address['address']['objectid']);
-            $address['publicspace'] = $this->getPublicSpace($address['address']['objectid']);
-            $address['building'] = $this->getBuilding($address['address']['objectid']);
-            $address['city'] = $this->getCity($address['address']['objectid']);
+            $address = [];
+
+            try {
+                $address['address'] = $this->getAddress($zipcode, $housenumber, $addition);
+                $address['residence'] = $this->getResidence($address['address']['objectid']);
+                $address['publicspace'] = $this->getPublicSpace($address['address']['objectid']);
+                $address['building'] = $this->getBuilding($address['address']['objectid']);
+                $address['city'] = $this->getCity($address['address']['objectid']);
+            } catch (GuzzleException $exception) {
+                $io->error($exception->getMessage());
+                continue;
+            }
 
             $addresses[] = $address;
         }
@@ -70,6 +80,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @throws GuzzleException
+     */
+    #[ArrayShape(['objectid' => "mixed", 'identification' => "mixed", 'housenumber' => "mixed", 'addition' => "mixed", 'zipcode' => "mixed"])]
     private function getAddress(string $zipcode, int $housenumber, ?string $houseletter): array
     {
         $huisletterWhere = ' and huisletter';
@@ -107,6 +121,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         ];
     }
 
+    /**
+     * @throws GuzzleException
+     */
+    #[ArrayShape(['objectid' => "mixed", 'identificatie' => "mixed", 'surfacearea' => "mixed", 'status' => "mixed", 'intendeduse' => "mixed", 'intendedusebasic' => "mixed"])]
     private function getResidence(string $addressobjectid): array
     {
         $response = $this->client->request(
@@ -129,6 +147,8 @@ class ImportFromCsvBasicAddressesCommand extends Command
 
         $data = json_decode($response->getBody(), true);
 
+        //var_dump($data);
+
         return [
             'objectid' => $data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
             'identificatie' => $data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['identificatie'],
@@ -139,6 +159,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         ];
     }
 
+    /**
+     * @throws GuzzleException
+     */
+    #[ArrayShape(['objectid' => "mixed", 'identificatie' => "mixed", 'name' => "mixed", 'type' => "mixed"])]
     private function getPublicSpace(string $addressobjectid): array
     {
         $response = $this->client->request(
@@ -169,6 +193,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         ];
     }
 
+    /**
+     * @throws GuzzleException
+     */
+    #[ArrayShape(['objectid' => "mixed", 'identificatie' => "mixed", 'constructionyear' => "mixed", 'status' => "mixed", 'residencecount' => "mixed", 'surfacearea' => "mixed"])]
     private function getBuilding(string $addressobjectid): array
     {
         $response = $this->client->request(
@@ -201,6 +229,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         ];
     }
 
+    /**
+     * @throws GuzzleException
+     */
+    #[ArrayShape(['objectid' => "mixed", 'identificatie' => "mixed", 'name' => "mixed"])]
     private function getCity(string $addressobjectid): array
     {
         $response = $this->client->request(
