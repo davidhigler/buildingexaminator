@@ -95,7 +95,6 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
             ],
             /**
              * Blocks for housing stock DobroTest02
-             */
             [
                 'code' => 'ALG1003',
                 'name' => 'Algemeen 1003',
@@ -331,6 +330,7 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
                 'name' => 'Algemeen 1073',
                 'housingstock' => 'DobroTest02'
             ]
+             */
         ];
 
         foreach ($blocks as $block) {

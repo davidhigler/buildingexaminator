@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class GlossIso2813 extends IdTimeScore
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Address", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\Address", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingaddress_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(

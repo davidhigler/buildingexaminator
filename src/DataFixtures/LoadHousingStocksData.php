@@ -29,12 +29,14 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
                 'description' => 'This is the standard test environment of Dobro Building Examinator 1',
                 'owner' => 'L0000'
             ],
+            /**
             [
                 'code' => 'DobroTest02',
                 'name' => 'Dobro Building Examinator Test 02',
                 'description' => 'This is the standard test environment of Dobro Building Examinator 2',
                 'owner' => 'L0000'
             ]
+             */
         ];
 
         foreach ($housingStocks as $housingStock) {

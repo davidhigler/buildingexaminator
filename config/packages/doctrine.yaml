@@ -8,6 +8,8 @@ doctrine:
             enumorientation: 'App\Dbal\EnumOrientationType'
             enumglossangle: 'App\Dbal\EnumGlossAngle'
             enumconditionscore: 'App\Dbal\EnumConditionScoreType'
+            enumbuildingstatus: 'App\Dbal\EnumBuildingStatusType'
+            enumintendedusebasic: 'App\Dbal\EnumIntendedUseBasicType'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
