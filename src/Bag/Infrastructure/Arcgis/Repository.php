@@ -286,7 +286,7 @@ class Repository
         return [
             'objectid' => (int)$data['features'][0]['attributes']['objectid'],
             'identification' => $data['features'][0]['attributes']['identificatie'],
-            'name' => $data['features'][0]['attributes']['identificatie']['naam'],
+            'name' => $data['features'][0]['attributes']['naam'],
         ];
     }
 }
