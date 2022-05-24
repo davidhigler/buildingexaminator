@@ -27,7 +27,16 @@ class ImportFromCsvBasicAddressesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $this->client = new Client();
 
-        $csvLines = array_map('str_getcsv', file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'downloads' . DIRECTORY_SEPARATOR . 'DobroTest02_small.csv'));
+        $csvLines = array_map(
+            'str_getcsv',
+            file(
+                __DIR__ . DIRECTORY_SEPARATOR .
+                '..' . DIRECTORY_SEPARATOR .
+                '..' . DIRECTORY_SEPARATOR .
+                'downloads' . DIRECTORY_SEPARATOR .
+                'DobroTest02_small.csv'
+            )
+        );
 
         $addresses = [];
         foreach ($csvLines as $csvLine) {

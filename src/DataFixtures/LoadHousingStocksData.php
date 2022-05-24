@@ -84,7 +84,7 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            LoadOwnersData::class,
+            LoadOwnerData::class,
         ];
     }
 }

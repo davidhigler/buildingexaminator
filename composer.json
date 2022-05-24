@@ -26,6 +26,7 @@
         "ext-xml": "*",
         "ext-zip": "*",
         "ext-curl": "*",
+        "ext-sqlite3": "*",
         "composer/package-versions-deprecated": "1.11.99.4",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.4",

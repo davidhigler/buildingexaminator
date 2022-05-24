@@ -121,6 +121,13 @@ class Address extends IdBagIdsTime
     protected Residence $residence;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Building", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="building_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A address must have a building"
+     * )
+     *
      * @OA\Property()
      */
     protected Building $building;
@@ -271,6 +278,21 @@ class Address extends IdBagIdsTime
         return $this->rentalUnitNumber;
     }
 
+    public function getResidence(): Residence
+    {
+        return $this->residence;
+    }
+
+    public function getBuilding(): Building
+    {
+        return $this->building;
+    }
+
+    public function getPublicSpace(): PublicSpace
+    {
+        return $this->publicSpace;
+    }
+
     public function getHouseNumber(): int
     {
         return $this->houseNumber;
@@ -341,6 +363,21 @@ class Address extends IdBagIdsTime
         $this->rentalUnitNumber = $rentalUnitNumber;
     }
 
+    public function setResidence(Residence $residence): void
+    {
+        $this->residence = $residence;
+    }
+
+    public function setBuilding(Building $building): void
+    {
+        $this->building = $building;
+    }
+
+    public function setPublicSpace(PublicSpace $publicSpace): void
+    {
+        $this->publicSpace = $publicSpace;
+    }
+
     public function setHouseNumber(int $houseNumber): void
     {
         $this->houseNumber = $houseNumber;
@@ -375,5 +412,4 @@ class Address extends IdBagIdsTime
     {
         $this->vtw = $vtw;
     }
-
 }

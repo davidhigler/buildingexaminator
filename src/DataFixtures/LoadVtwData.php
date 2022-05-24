@@ -10,7 +10,7 @@ use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
-class LoadVtwsData extends Fixture implements DependentFixtureInterface
+class LoadVtwData extends Fixture implements DependentFixtureInterface
 {
     /**
      * @param ObjectManager $manager

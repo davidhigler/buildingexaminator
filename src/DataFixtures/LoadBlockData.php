@@ -11,7 +11,7 @@ use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
-class LoadBlocksData extends Fixture implements DependentFixtureInterface
+class LoadBlockData extends Fixture implements DependentFixtureInterface
 {
     /**
      * @param ObjectManager $manager

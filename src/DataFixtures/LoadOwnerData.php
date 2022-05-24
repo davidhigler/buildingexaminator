@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validation;
 /**
  * @author Reiny Griemink <rgriemink@gmail.com>
  */
-class LoadOwnersData extends Fixture
+class LoadOwnerData extends Fixture
 {
     /**
      * @param ObjectManager $manager

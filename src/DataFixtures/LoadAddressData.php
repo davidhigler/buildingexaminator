@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validation;
 /**
  * @author Reiny Griemink <rgriemink@gmail.com>
  */
-class LoadAddressesData extends Fixture implements DependentFixtureInterface
+class LoadAddressData extends Fixture implements DependentFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -3492,18 +3492,6 @@ class LoadAddressesData extends Fixture implements DependentFixtureInterface
                 $buildingAddressObject->setNeighbourhood($neighbourhood);
             }
 
-//            if (!empty($buildingAddress['constructionyear'])) {
-//                $buildingAddressObject->setConstructionYear($buildingAddress['constructionyear']);
-//            }
-
-//            if (!empty($buildingAddress['renovationyear'])) {
-//                $buildingAddressObject->setRenovationYear($buildingAddress['renovationyear']);
-//            }
-            
-//            if (!empty($buildingAddress['streetname'])) {
-//                $buildingAddressObject->setStreetName($buildingAddress['streetname']);
-//            }
-
             if (!empty($buildingAddress['housenumber'])) {
                 $buildingAddressObject->setHouseNumber($buildingAddress['housenumber']);
             }
@@ -3515,14 +3503,6 @@ class LoadAddressesData extends Fixture implements DependentFixtureInterface
             if (!empty($buildingAddress['zipcode'])) {
                 $buildingAddressObject->setZipcode($buildingAddress['zipcode']);
             }
-
-//            if (!empty($buildingAddress['city'])) {
-//                $buildingAddressObject->setCity($buildingAddress['city']);
-//            }
-
-//            if (!empty($buildingAddress['bagid'])) {
-//                $buildingAddressObject->setBagId($buildingAddress['bagid']);
-//            }
 
             if (!empty($buildingAddress['rentalunitnumber'])) {
                 $buildingAddressObject->setRentalUnitNumber($buildingAddress['rentalunitnumber']);
@@ -3574,11 +3554,11 @@ class LoadAddressesData extends Fixture implements DependentFixtureInterface
     {
         return [
             LoadHousingStocksData::class,
-            LoadResidentialAreasData::class,
+            LoadResidentialAreaData::class,
             LoadNeighbourhoodData::class,
-            LoadBlocksData::class,
-            LoadVtwsData::class,
-            LoadBuildingTypesData::class
+            LoadBlockData::class,
+            LoadVtwData::class,
+            LoadBuildingTypeData::class
         ];
     }
 }

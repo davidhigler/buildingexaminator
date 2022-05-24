@@ -9,7 +9,7 @@ use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
-class LoadResidentialAreasData extends Fixture
+class LoadResidentialAreaData extends Fixture
 {
     /**
      * @param ObjectManager $manager
