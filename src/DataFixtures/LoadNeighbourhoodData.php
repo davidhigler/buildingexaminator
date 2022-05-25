@@ -14208,13 +14208,6 @@ class LoadNeighbourhoodData extends Fixture
                 $neighbourhoodObject->setName($neighbourhood['name']);
             }
 
-            if (!empty($neighbourhood['description'])) {
-                $neighbourhoodObject->setDescription($neighbourhood['description']);
-            }
-
-            $neighbourhoodObject->setCreationTime();
-            $neighbourhoodObject->setLastChangeTime();
-
             $validator = Validation::createValidator();
             $errors = $validator->validate($neighbourhoodObject);
             if (count($errors) > 0) {

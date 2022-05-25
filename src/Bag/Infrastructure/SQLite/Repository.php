@@ -3,6 +3,7 @@
 namespace App\Bag\Infrastructure\SQLite;
 
 use SQLite3;
+use App\Bag\Application\SQLite\CbsException;
 
 class Repository
 {
@@ -23,6 +24,22 @@ class Repository
 
     public function getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber(string $zipcodeHousenumber): array
     {
-        return $this->sqliteDb->querySingle('SELECT neighbourhood, residentialarea, municipality FROM cbs WHERE zipcodehousenumber="' . $zipcodeHousenumber . '"', true);
+        $result = $this->sqliteDb->querySingle('SELECT neighbourhood, residentialarea, municipality FROM cbs WHERE zipcodehousenumber="' . $zipcodeHousenumber . '"', true);
+
+        if (
+            !array_key_exists('municipality', $result)
+            || !array_key_exists('residentialarea', $result)
+            || !array_key_exists('neighbourhood', $result)
+        ) {
+            $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
+            $cbsException->addContext([
+                'cbs' => [
+                    'missing' => 'municipality or residentialarea or neighbourhood',
+                ]
+            ]);
+            throw $cbsException;
+        }
+
+        return $result;
     }
 }

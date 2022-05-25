@@ -386,13 +386,6 @@ class LoadMunicipalityData extends Fixture
                 $municipalityObject->setName($municipality['name']);
             }
 
-            if (!empty($municipality['description'])) {
-                $municipalityObject->setDescription($municipality['description']);
-            }
-
-            $municipalityObject->setCreationTime();
-            $municipalityObject->setLastChangeTime();
-
             $validator = Validation::createValidator();
             $errors = $validator->validate($municipalityObject);
             if (count($errors) > 0) {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Bag\Application\Arcgis;
+namespace App\Bag\Application\SQLite;
 
 use Exception;
 use Throwable;
 
-class ArcgisException extends Exception
+class CbsException extends Exception
 {
     private array $context;
 

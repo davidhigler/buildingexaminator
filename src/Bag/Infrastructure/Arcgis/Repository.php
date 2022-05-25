@@ -83,17 +83,38 @@ class Repository
                 ]
             );
         } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed a guzzle exception', 0, $exception);
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'where' => $where,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         $data = json_decode($response->getBody(), true);
 
         if (empty($data['features'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with where: ' . $where, 0);
+            $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'where' => $where,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         if (count($data['features']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with where: ' . $where, 0);
+            $arcgisException = new ArcgisException('response from arcgis has more than one result', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'where' => $where,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         return [
@@ -139,17 +160,41 @@ class Repository
                 ]
             );
         } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed an guzzle exception', 0, $exception);
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 5,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         $data = json_decode($response->getBody(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 5,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis has more than one result', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 5,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         return [
@@ -190,17 +235,41 @@ class Repository
                 ]
             );
         } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed an guzzle exception', 0, $exception);
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 2,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         $data = json_decode($response->getBody(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 2,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis has more than one result', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 2,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         return [
@@ -241,17 +310,41 @@ class Repository
                 ]
             );
         } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed an guzzle exception', 0, $exception);
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 0,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         $data = json_decode($response->getBody(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 0,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis has more than one result', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 0,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         return [
@@ -291,70 +384,47 @@ class Repository
                 ]
             );
         } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed an guzzle exception', 0, $exception);
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 7,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         $data = json_decode($response->getBody(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 7,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with addressobjectid: ' . $addressobjectid, 0);
+            $arcgisException = new ArcgisException('response from arcgis has more than one result', 0);
+            $arcgisException->addContext([
+                'arcgis' => [
+                    'url' => $url,
+                    'objectids' => $addressobjectid,
+                    'relationshipid' => 7,
+                ]
+            ]);
+            throw $arcgisException;
         }
 
         return [
             'objectid' => (int)$data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
             'identification' => $data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['identificatie'],
             'name' => $data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['naam'],
-        ];
-    }
-
-    /**
-     * @throws ArcgisException
-     */
-    #[ArrayShape([
-        'objectid' => "int",
-        'identification' => "string",
-        'name' => "string"
-    ])]
-    public function getCityByName(string $name): array
-    {
-        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/5/query';
-        $where = "naam='" . $name . "'";
-
-        try {
-            $response = $this->client->request(
-                'POST',
-                $url,
-                [
-                    'form_params' => [
-                        'where' => $where,
-                        'outFields' => 'objectid,identificatie,naam',
-                        'f' => 'pjson'
-                    ],
-                    'headers' => self::GUZZLE_HEADERS
-                ]
-            );
-        } catch (GuzzleException $exception) {
-            throw new ArcgisException('post request to ' . $url . ' throwed an guzzle exception', 0, $exception);
-        }
-
-        $data = json_decode($response->getBody(), true);
-
-        if (empty($data['features'][0]['attributes']['objectid'])) {
-            throw new ArcgisException('response from arcgis does not have the expected response body with where: ' . $where, 0);
-        }
-
-        if (count($data['features']) > 1) {
-            throw new ArcgisException('response from arcgis has more than one result with where: ' . $where, 0);
-        }
-
-        return [
-            'objectid' => (int)$data['features'][0]['attributes']['objectid'],
-            'identification' => $data['features'][0]['attributes']['identificatie'],
-            'name' => $data['features'][0]['attributes']['naam'],
         ];
     }
 }
