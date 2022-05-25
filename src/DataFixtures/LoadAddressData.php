@@ -76,6 +76,8 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
         $citys = [];
 
         $progressBar = new ProgressBar($this->output, count($buildingAddresses));
+        $progressBar->setFormat('debug');
+        $progressBar->setBarWidth(100);
         $progressBar->start();
 
         foreach ($buildingAddresses as $buildingAddress) {
@@ -104,7 +106,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                 || !array_key_exists('residentialarea', $cbsResults)
                 || !array_key_exists('neighbourhood', $cbsResults)
             ) {
-                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . "Missinbg data in the cbs SQLite database");
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . "Missing data in the cbs SQLite database");
                 continue;
             }
 
