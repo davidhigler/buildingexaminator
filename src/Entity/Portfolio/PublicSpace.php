@@ -50,22 +50,6 @@ class PublicSpace extends IdBagIds
      */
     private string $type;
 
-    /**
-     * @ORM\Column(type="string", length=80, nullable=true)
-     *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The status is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=80,
-     *      maxMessage="The status can contain a maximum of %limit% characters"
-     * )
-     *
-     * @OA\Property()
-     */
-    private string $status;
-
     #[Pure]
     public function __construct()
     {
@@ -81,11 +65,6 @@ class PublicSpace extends IdBagIds
         return $this->type;
     }
 
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
     public function setType(string $type): void
     {
         $this->type = $type;
@@ -94,10 +73,5 @@ class PublicSpace extends IdBagIds
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    public function setStatus(string $status): void
-    {
-        $this->status = $status;
     }
 }

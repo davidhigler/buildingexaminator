@@ -3364,13 +3364,6 @@ class LoadResidentialAreaData extends Fixture
                 $residentialAreaObject->setName($residentialArea['name']);
             }
 
-            if (!empty($residentialArea['description'])) {
-                $residentialAreaObject->setDescription($residentialArea['description']);
-            }
-
-            $residentialAreaObject->setCreationTime();
-            $residentialAreaObject->setLastChangeTime();
-
             $validator = Validation::createValidator();
             $errors = $validator->validate($residentialAreaObject);
             if (count($errors) > 0) {

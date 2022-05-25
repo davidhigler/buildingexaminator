@@ -3,14 +3,12 @@
 namespace App\Helpers;
 
 use Exception;
-use JetBrains\PhpStorm\Pure;
 use stdClass;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class ErrorExtractor
 {
-    #[Pure]
     public static function fromViolations(ConstraintViolationListInterface $violations): array
     {
         $errors = [];
@@ -21,13 +19,11 @@ class ErrorExtractor
         return $errors;
     }
 
-    #[Pure]
     public static function fromException(Exception $exception): array
     {
         return [self::simplifyException($exception)];
     }
 
-    #[Pure]
     private static function simplifyException(Exception|ConstraintViolationInterface $exception): stdClass
     {
         $error = new stdClass();

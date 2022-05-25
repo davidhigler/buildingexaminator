@@ -2,12 +2,12 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Entity\SuperClasses\IdCodeName;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use App\Entity\SuperClasses\IdTimeIdentification;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
@@ -17,7 +17,7 @@ use App\Entity\SuperClasses\IdTimeIdentification;
  *
  * @OA\Schema()
  */
-class Municipality extends IdTimeIdentification
+class Municipality extends IdCodeName
 {
     /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="municipality", fetch="EXTRA_LAZY")

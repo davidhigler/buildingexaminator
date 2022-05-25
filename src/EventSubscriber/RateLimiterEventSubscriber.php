@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
@@ -9,15 +10,8 @@ use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 class RateLimiterEventSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var RateLimiterFactory
-     */
-    private $anonymousApiLimiter;
-
-    /**
-     * @var RateLimiterFactory
-     */
-    private $authenticatedApiLimiter;
+    private RateLimiterFactory $anonymousApiLimiter;
+    private RateLimiterFactory $authenticatedApiLimiter;
 
     public function __construct(RateLimiterFactory $anonymousApiLimiter, RateLimiterFactory $authenticatedApiLimiter)
     {
@@ -28,7 +22,8 @@ class RateLimiterEventSubscriber implements EventSubscriberInterface
     /**
      * @inheritDoc
      */
-    public static function getSubscribedEvents()
+    #[ArrayShape([RequestEvent::class => "string"])]
+    public static function getSubscribedEvents(): array
     {
         return [
             RequestEvent::class => 'onKernelRequest',

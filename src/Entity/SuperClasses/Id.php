@@ -29,21 +29,4 @@ class Id
     {
         $this->id = $id;
     }
-
-    public function objectValuesToArray(): array
-    {
-        $result = array();
-        foreach ($this as $property => $value) {
-            $getter = 'get' . $this->camelize($property);
-            if (method_exists($this, $getter)) {
-                $result[$property] = $this->$getter();
-            }
-        }
-        return $result;
-    }
-
-    public function camelize(string $input, string $separator = '_'): string
-    {
-        return str_replace($separator, '', ucwords($input, $separator));
-    }
 }
