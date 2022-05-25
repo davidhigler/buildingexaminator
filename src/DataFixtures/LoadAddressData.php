@@ -20,6 +20,7 @@ use App\Entity\Portfolio\Vtw;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use OutOfBoundsException;
 use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
@@ -35,7 +36,13 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $buildingAddresses = require_once 'AddressData.php';
+        $buildingAddresses = require_once
+            __DIR__ . DIRECTORY_SEPARATOR .
+            '..' . DIRECTORY_SEPARATOR .
+            '..' . DIRECTORY_SEPARATOR .
+            'data' . DIRECTORY_SEPARATOR .
+            'addresses' . DIRECTORY_SEPARATOR .
+            'AddressData.php';
 
         $cbsRepository = new cbsRepository();
         $arcgisRepository = new arcgisRepository();
@@ -44,8 +51,13 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
 
             $buildingAddressObject = new Address();
 
-            /** @var HousingStock $housingStock */
-            $housingStock = $this->getReference($buildingAddress['housingstock']);
+            try {
+                /** @var HousingStock $housingStock */
+                $housingStock = $this->getReference($buildingAddress['housingstock']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setHousingStock($housingStock);
 
             $buildingAddressObject->setZipcode($buildingAddress['zipcode']);
@@ -54,24 +66,49 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
 
             $cbsResults = $cbsRepository->getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber($buildingAddress['zipcode'] . $buildingAddress['housenumber']);
 
-            /** @var Municipality $municipality */
-            $municipality = $this->getReference($cbsResults['municipality']);
+            try {
+                /** @var Municipality $municipality */
+                $municipality = $this->getReference($cbsResults['municipality']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setMunicipality($municipality);
 
-            /** @var ResidentialArea $residentialarea */
-            $residentialarea = $this->getReference($cbsResults['residentialarea']);
+            try {
+                /** @var ResidentialArea $residentialarea */
+                $residentialarea = $this->getReference($cbsResults['residentialarea']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setResidentialArea($residentialarea);
 
-            /** @var Neighbourhood $neighbourhood */
-            $neighbourhood = $this->getReference($cbsResults['neighbourhood']);
+            try {
+                /** @var Neighbourhood $neighbourhood */
+                $neighbourhood = $this->getReference($cbsResults['neighbourhood']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setNeighbourhood($neighbourhood);
 
-            /** @var Block $block */
-            $block = $this->getReference($buildingAddress['block']);
+            try {
+                /** @var Block $block */
+                $block = $this->getReference($buildingAddress['block']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setBlock($block);
 
-            /** @var BuildingType $buildingtype */
-            $buildingtype = $this->getReference($buildingAddress['buildingtype']);
+            try {
+                /** @var BuildingType $buildingtype */
+                $buildingtype = $this->getReference($buildingAddress['buildingtype']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setBuildingType($buildingtype);
 
             $buildingAddressObject->setRentalUnitNumber($buildingAddress['rentalunitnumber']);
@@ -145,8 +182,13 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
 
             $buildingAddressObject->setDaeb($buildingAddress['daeb']);
 
-            /** @var Vtw $vtw */
-            $vtw = $this->getReference($buildingAddress['vtw']);
+            try {
+                /** @var Vtw $vtw */
+                $vtw = $this->getReference($buildingAddress['vtw']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                echo $outOfBoundsException->getMessage() . "\n";
+                continue;
+            }
             $buildingAddressObject->setVtw($vtw);
 
             $buildingAddressObject->setCreationTime();
