@@ -20,16 +20,39 @@ use App\Entity\Portfolio\Vtw;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use JetBrains\PhpStorm\ArrayShape;
 use OutOfBoundsException;
-use RuntimeException;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
 /**
  * @author Reiny Griemink <rgriemink@gmail.com>
  */
-class LoadAddressData extends Fixture implements DependentFixtureInterface
+class LoadAddressData extends Fixture implements DependentFixtureInterface, EventSubscriberInterface, LoggerAwareInterface
 {
+    private OutputInterface $output;
+    private LoggerInterface $logger;
+
+    #[ArrayShape([ConsoleEvents::COMMAND => "string"])]
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ConsoleEvents::COMMAND => 'init',
+        ];
+    }
+
+    public function init(ConsoleCommandEvent $event): void
+    {
+        $this->output = $event->getOutput();
+    }
+
     /**
      * @param ObjectManager $manager
      * @return void
@@ -47,19 +70,25 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
         $cbsRepository = new cbsRepository();
         $arcgisRepository = new arcgisRepository();
 
-        echo "\n\n";
+        $buildings = [];
+        $residences = [];
+        $publicspaces = [];
+        $citys = [];
+
+        $progressBar = new ProgressBar($this->output, count($buildingAddresses));
+        $progressBar->start();
 
         foreach ($buildingAddresses as $buildingAddress) {
 
-            $buildingAddressObject = new Address();
+            $progressBar->advance();
 
-            echo '.';
+            $buildingAddressObject = new Address();
 
             try {
                 /** @var HousingStock $housingStock */
                 $housingStock = $this->getReference($buildingAddress['housingstock']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setHousingStock($housingStock);
@@ -75,7 +104,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 || !array_key_exists('residentialarea', $cbsResults)
                 || !array_key_exists('neighbourhood', $cbsResults)
             ) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . "Missinbg data in the cbs SQLite database\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . "Missinbg data in the cbs SQLite database");
                 continue;
             }
 
@@ -83,7 +112,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Municipality $municipality */
                 $municipality = $this->getReference($cbsResults['municipality']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setMunicipality($municipality);
@@ -92,7 +121,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var ResidentialArea $residentialarea */
                 $residentialarea = $this->getReference($cbsResults['residentialarea']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setResidentialArea($residentialarea);
@@ -101,7 +130,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Neighbourhood $neighbourhood */
                 $neighbourhood = $this->getReference($cbsResults['neighbourhood']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setNeighbourhood($neighbourhood);
@@ -110,7 +139,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Block $block */
                 $block = $this->getReference($buildingAddress['block']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setBlock($block);
@@ -119,7 +148,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var BuildingType $buildingtype */
                 $buildingtype = $this->getReference($buildingAddress['buildingtype']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setBuildingType($buildingtype);
@@ -133,16 +162,14 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
             try {
                 $arcgisResults = $arcgisRepository->getAddressByZipcodeAndHousenumber($buildingAddress['zipcode'], $buildingAddress['housenumber'], $buildingAddress['addition']);
             } catch (ArcgisException $arcgisException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $arcgisException;
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $arcgisException);
                 continue;
             }
 
             $buildingAddressObject->setObjectId($arcgisResults['objectid']);
             $buildingAddressObject->setIdentification($arcgisResults['identification']);
 
-            $buildingRepository = $manager->getRepository(Building::class);
-            $building = $buildingRepository->findOneBy(['objectId' => $arcgisResults['building']['objectid']]);
-            if (empty($building)) {
+            if (!array_key_exists($arcgisResults['building']['objectid'], $buildings)) {
                 $building = new Building();
                 $building->setObjectId($arcgisResults['building']['objectid']);
                 $building->setIdentification($arcgisResults['building']['identification']);
@@ -151,12 +178,11 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 $building->setResidenceCount($arcgisResults['building']['residencecount']);
                 $building->setSurfaceArea($arcgisResults['building']['surfacearea']);
                 $manager->persist($building);
+                $buildings[$arcgisResults['building']['objectid']] = $building;
             }
-            $buildingAddressObject->setBuilding($building);
+            $buildingAddressObject->setBuilding($buildings[$arcgisResults['building']['objectid']]);
 
-            $residenceRepository = $manager->getRepository(Residence::class);
-            $residence = $residenceRepository->findOneBy(['objectId' => $arcgisResults['residence']['objectid']]);
-            if (empty($residence)) {
+            if (!array_key_exists($arcgisResults['residence']['objectid'], $residences)) {
                 $residence = new Residence();
                 $residence->setObjectId($arcgisResults['residence']['objectid']);
                 $residence->setIdentification($arcgisResults['residence']['identification']);
@@ -165,31 +191,30 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 $residence->setIntendedUse($arcgisResults['residence']['intendeduse']);
                 $residence->setIntendedUseBasic($arcgisResults['residence']['intendedusebasic']);
                 $manager->persist($residence);
+                $residences[$arcgisResults['residence']['objectid']] = $residence;
             }
-            $buildingAddressObject->setResidence($residence);
+            $buildingAddressObject->setResidence($buildings[$arcgisResults['residence']['objectid']]);
 
-            $publicSpaceRepository = $manager->getRepository(PublicSpace::class);
-            $publicSpace = $publicSpaceRepository->findOneBy(['objectId' => $arcgisResults['publicspace']['objectid']]);
-            if (empty($publicSpace)) {
+            if (!array_key_exists($arcgisResults['publicspace']['objectid'], $publicspaces)) {
                 $publicSpace = new PublicSpace();
                 $publicSpace->setObjectId($arcgisResults['publicspace']['objectid']);
                 $publicSpace->setIdentification($arcgisResults['publicspace']['identification']);
                 $publicSpace->setName($arcgisResults['publicspace']['name']);
                 $publicSpace->setType($arcgisResults['publicspace']['type']);
                 $manager->persist($publicSpace);
+                $publicspaces[$arcgisResults['publicspace']['objectid']] = $publicSpace;
             }
-            $buildingAddressObject->setPublicSpace($publicSpace);
+            $buildingAddressObject->setPublicSpace($publicspaces[$arcgisResults['publicspace']['objectid']]);
 
-            $cityRepository = $manager->getRepository(City::class);
-            $city = $cityRepository->findOneBy(['objectId' => $arcgisResults['city']['objectid']]);
-            if (empty($city)) {
+            if (!array_key_exists($arcgisResults['city']['objectid'], $citys)) {
                 $city = new City();
                 $city->setObjectId($arcgisResults['city']['objectid']);
                 $city->setIdentification($arcgisResults['city']['identification']);
                 $city->setName($arcgisResults['city']['name']);
                 $manager->persist($city);
+                $citys[$arcgisResults['city']['objectid']] = $city;
             }
-            $buildingAddressObject->setCity($city);
+            $buildingAddressObject->setCity($citys[$arcgisResults['city']['objectid']]);
 
             $buildingAddressObject->setOrientation($buildingAddress['orientation']);
 
@@ -199,7 +224,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Vtw $vtw */
                 $vtw = $this->getReference($buildingAddress['vtw']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
+                $this->logger->debug($this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage());
                 continue;
             }
             $buildingAddressObject->setVtw($vtw);
@@ -215,13 +240,14 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
-                throw new RuntimeException(implode(', ', $messages));
+                $this->logger->error(implode(', ', $messages));
+                continue;
             }
 
             $manager->persist($buildingAddressObject);
         }
 
-        echo "\n\n";
+        $progressBar->finish();
 
         $manager->flush();
     }
@@ -242,5 +268,10 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
             LoadVtwData::class,
             LoadBuildingTypeData::class
         ];
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 }
