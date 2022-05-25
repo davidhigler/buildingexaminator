@@ -22,6 +22,9 @@ class Repository
             'cbs.db');
     }
 
+    /**
+     * @throws CbsException
+     */
     public function getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber(string $zipcodeHousenumber): array
     {
         $result = $this->sqliteDb->querySingle('SELECT neighbourhood, residentialarea, municipality FROM cbs WHERE zipcodehousenumber="' . $zipcodeHousenumber . '"', true);
