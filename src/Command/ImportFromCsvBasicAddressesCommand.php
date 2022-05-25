@@ -32,7 +32,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
                 '..' . DIRECTORY_SEPARATOR .
                 '..' . DIRECTORY_SEPARATOR .
                 'downloads' . DIRECTORY_SEPARATOR .
-                'DobroTest02_small.csv'
+                'DobroTest01_small.csv'
             )
         );
 

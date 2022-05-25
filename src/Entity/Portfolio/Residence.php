@@ -38,7 +38,7 @@ class Residence extends IdBagIds
     private int $surfaceArea;
 
     /**
-     * @ORM\Column(type="string", length=80, nullable=false)
+     * @ORM\Column(type="string", length=80, nullable=true)
      *
      * @Assert\Type(
      *     type="string",
