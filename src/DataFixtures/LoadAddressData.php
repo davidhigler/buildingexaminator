@@ -47,9 +47,13 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
         $cbsRepository = new cbsRepository();
         $arcgisRepository = new arcgisRepository();
 
+        echo "\n\n";
+
         foreach ($buildingAddresses as $buildingAddress) {
 
             $buildingAddressObject = new Address();
+
+            echo '.';
 
             try {
                 /** @var HousingStock $housingStock */
@@ -65,6 +69,15 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
             $buildingAddressObject->setHouseNumber($buildingAddress['housenumber']);
 
             $cbsResults = $cbsRepository->getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber($buildingAddress['zipcode'] . $buildingAddress['housenumber']);
+
+            if (
+                !array_key_exists('municipality', $cbsResults)
+                || !array_key_exists('residentialarea', $cbsResults)
+                || !array_key_exists('neighbourhood', $cbsResults)
+            ) {
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . "Missinbg data in the cbs SQLite database\n";
+                continue;
+            }
 
             try {
                 /** @var Municipality $municipality */
@@ -207,6 +220,8 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
 
             $manager->persist($buildingAddressObject);
         }
+
+        echo "\n\n";
 
         $manager->flush();
     }
