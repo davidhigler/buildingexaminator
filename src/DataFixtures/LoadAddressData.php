@@ -55,7 +55,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var HousingStock $housingStock */
                 $housingStock = $this->getReference($buildingAddress['housingstock']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setHousingStock($housingStock);
@@ -70,7 +70,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Municipality $municipality */
                 $municipality = $this->getReference($cbsResults['municipality']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setMunicipality($municipality);
@@ -79,7 +79,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var ResidentialArea $residentialarea */
                 $residentialarea = $this->getReference($cbsResults['residentialarea']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setResidentialArea($residentialarea);
@@ -88,7 +88,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Neighbourhood $neighbourhood */
                 $neighbourhood = $this->getReference($cbsResults['neighbourhood']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setNeighbourhood($neighbourhood);
@@ -97,7 +97,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Block $block */
                 $block = $this->getReference($buildingAddress['block']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setBlock($block);
@@ -106,7 +106,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var BuildingType $buildingtype */
                 $buildingtype = $this->getReference($buildingAddress['buildingtype']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setBuildingType($buildingtype);
@@ -120,7 +120,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
             try {
                 $arcgisResults = $arcgisRepository->getAddressByZipcodeAndHousenumber($buildingAddress['zipcode'], $buildingAddress['housenumber'], $buildingAddress['addition']);
             } catch (ArcgisException $arcgisException) {
-                echo $arcgisException;
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $arcgisException;
                 continue;
             }
 
@@ -186,7 +186,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
                 /** @var Vtw $vtw */
                 $vtw = $this->getReference($buildingAddress['vtw']);
             } catch (OutOfBoundsException $outOfBoundsException) {
-                echo $outOfBoundsException->getMessage() . "\n";
+                echo $this->getBeginErrorMessageFromBuildingAddress($buildingAddress) . $outOfBoundsException->getMessage() . "\n";
                 continue;
             }
             $buildingAddressObject->setVtw($vtw);
@@ -209,6 +209,11 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface
         }
 
         $manager->flush();
+    }
+
+    private function getBeginErrorMessageFromBuildingAddress($buildingAddress): string
+    {
+        return $buildingAddress['zipcode'] . ' ' . $buildingAddress['housenumber'] . (empty($buildingAddress['addition']) ? '' : ' ' . $buildingAddress['addition']) . ": ";
     }
 
     public function getDependencies(): array
