@@ -193,7 +193,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                 $manager->persist($residence);
                 $residences[$arcgisResults['residence']['objectid']] = $residence;
             }
-            $buildingAddressObject->setResidence($buildings[$arcgisResults['residence']['objectid']]);
+            $buildingAddressObject->setResidence($residences[$arcgisResults['residence']['objectid']]);
 
             if (!array_key_exists($arcgisResults['publicspace']['objectid'], $publicspaces)) {
                 $publicSpace = new PublicSpace();
