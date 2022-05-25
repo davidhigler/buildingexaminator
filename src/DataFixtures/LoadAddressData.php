@@ -79,6 +79,9 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
         $progressBar = new ProgressBar($this->output, count($buildingAddresses));
         $progressBar->setFormat('debug');
         $progressBar->setBarWidth(100);
+
+        $this->output->writeln('');
+
         $progressBar->start();
 
         foreach ($buildingAddresses as $buildingAddress) {
@@ -348,6 +351,8 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
         }
 
         $progressBar->finish();
+
+        $this->output->writeln('');
 
         $manager->flush();
     }
