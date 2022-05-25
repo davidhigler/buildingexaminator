@@ -18,6 +18,8 @@ class ArcgisException extends Exception
         if ($this->getPrevious() !== null) {
             $message .= " {" . $this->getPrevious()->getMessage() . "}";
         }
+        $message .= "\n";
+
         return $message;
     }
 }
