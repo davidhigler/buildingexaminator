@@ -2,6 +2,7 @@
 
 namespace App\Bag\Infrastructure\Arcgis;
 
+use App\Bag\Application\Arcgis\ArcgisException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use JetBrains\PhpStorm\ArrayShape;
@@ -15,7 +16,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -60,24 +61,38 @@ class Repository
             $huisletterWhere .= "='" . $houseletter . "'";
         }
 
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/query',
-            [
-                'form_params' => [
-                    'where' => "postcode='" . $zipcode . "' and huisnummer=" . $housenumber . $huisletterWhere,
-                    'outFields' => 'objectid,identificatie,huisnummer,huisletter,postcode',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/query';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'where' => "postcode='" . $zipcode . "' and huisnummer=" . $housenumber . $huisletterWhere,
+                        'outFields' => 'objectid,identificatie,huisnummer,huisletter,postcode',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('post request to ' . $url . ' throwed a guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['features'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['features']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['features'][0]['attributes']['objectid'],
@@ -93,7 +108,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -105,25 +120,39 @@ class Repository
     ])]
     private function getResidenceByAddressObjectId(string $addressobjectid): array
     {
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords',
-            [
-                'form_params' => [
-                    'objectIds' => $addressobjectid,
-                    'relationshipId' => 5,
-                    'outFields' => 'objectid,identificatie,oppervlakte,status,gebruiksdoel,gebruiksdoel1',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'objectIds' => $addressobjectid,
+                        'relationshipId' => 5,
+                        'outFields' => 'objectid,identificatie,oppervlakte,status,gebruiksdoel,gebruiksdoel1',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('Call to ' . $url . ' throwed an guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
@@ -136,7 +165,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -146,25 +175,39 @@ class Repository
     ])]
     private function getPublicSpaceByAddressObjectId(string $addressobjectid): array
     {
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords',
-            [
-                'form_params' => [
-                    'objectIds' => $addressobjectid,
-                    'relationshipId' => 2,
-                    'outFields' => 'objectid,identificatie,voorkomenidentificatie,naam,type',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'objectIds' => $addressobjectid,
+                        'relationshipId' => 2,
+                        'outFields' => 'objectid,identificatie,voorkomenidentificatie,naam,type',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('Call to ' . $url . ' throwed an guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
@@ -175,7 +218,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -187,25 +230,39 @@ class Repository
     ])]
     private function getBuildingByAddressObjectId(string $addressobjectid): array
     {
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords',
-            [
-                'form_params' => [
-                    'objectIds' => $addressobjectid,
-                    'relationshipId' => 0,
-                    'outFields' => 'objectid,identificatie,bouwjaar,status,aantal_verblijfsobjecten,oppervlakte',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'objectIds' => $addressobjectid,
+                        'relationshipId' => 0,
+                        'outFields' => 'objectid,identificatie,bouwjaar,status,aantal_verblijfsobjecten,oppervlakte',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('Call to ' . $url . ' throwed an guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
@@ -218,7 +275,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -227,25 +284,39 @@ class Repository
     ])]
     private function getCityByAddressObjectId(string $addressobjectid): array
     {
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords',
-            [
-                'form_params' => [
-                    'objectIds' => $addressobjectid,
-                    'relationshipId' => 7,
-                    'outFields' => 'objectid,identificatie,naam',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/queryRelatedRecords';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'objectIds' => $addressobjectid,
+                        'relationshipId' => 7,
+                        'outFields' => 'objectid,identificatie,naam',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('Call to ' . $url . ' throwed an guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['relatedRecordGroups'][0]['relatedRecords']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'],
@@ -255,7 +326,7 @@ class Repository
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ArcgisException
      */
     #[ArrayShape([
         'objectid' => "int",
@@ -264,24 +335,38 @@ class Repository
     ])]
     public function getCityByName(string $name): array
     {
-        $response = $this->client->request(
-            'POST',
-            'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/5/query',
-            [
-                'form_params' => [
-                    'where' => "naam='" . $name . "'",
-                    'outFields' => 'objectid,identificatie,naam',
-                    'f' => 'pjson'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
-                    'Content-Type' => 'application/x-www-form-urlencoded'
+        $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/5/query';
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                $url,
+                [
+                    'form_params' => [
+                        'where' => "naam='" . $name . "'",
+                        'outFields' => 'objectid,identificatie,naam',
+                        'f' => 'pjson'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ]
                 ]
-            ]
-        );
+            );
+        } catch (GuzzleException $exception) {
+            throw new ArcgisException('Call to ' . $url . ' throwed an guzzle exception', 0, $exception);
+        }
 
         $data = json_decode($response->getBody(), true);
+
+        if (empty($data['features'][0]['attributes']['objectid'])) {
+            throw new ArcgisException('response from arcgis does not have the expected response', 0);
+        }
+
+        if (count($data['features']) > 1) {
+            throw new ArcgisException('response from arcgis have more than one result', 0);
+        }
 
         return [
             'objectid' => (int)$data['features'][0]['attributes']['objectid'],
