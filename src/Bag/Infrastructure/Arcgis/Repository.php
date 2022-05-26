@@ -59,11 +59,11 @@ class Repository
     ])]
     public function getAddressByZipcodeAndHousenumber(string $zipcode, int $housenumber, ?string $houseletter): array
     {
-        $huisletterWhere = ' and huisletter';
+        $huisletterWhere = ' and ';
         if (empty($houseletter)) {
-            $huisletterWhere .= ' IS NULL';
+            $huisletterWhere .= '(huisletter IS NULL and huisnummertoevoeging IS NULL)';
         } else {
-            $huisletterWhere .= "='" . $houseletter . "'";
+            $huisletterWhere .= "(huisletter='" . $houseletter . "' or huisnummertoevoeging='" . $houseletter . "')";
         }
 
         $url = 'https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/MapServer/0/query';
