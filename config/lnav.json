@@ -17,11 +17,13 @@
       " ",
       {"field": "__level__", "min-width": 8, "max-width": 8},
       " ",
-      {"field": "context/function", "min-width": 64, "max-width": 64, "overflow": "dot-dot"},
+      {"field": "context/class", "min-width": 40, "max-width": 40, "overflow": "dot-dot"},
       " ",
-      {"field": "context/line", "min-width": 4, "max-width": 4},
+      {"field": "context/function", "min-width": 16, "max-width": 16, "overflow": "dot-dot"},
       " ",
-      {"field": "context/subject", "min-width": 70, "max-width": 70, "overflow": "dot-dot"},
+      {"field": "context/line", "min-width": 5, "max-width": 5},
+      " ",
+      {"field": "context/subject", "min-width": 40, "max-width": 40, "overflow": "dot-dot"},
       " ",
       {"field": "message", "min-width": 70, "max-width": 70, "overflow": "dot-dot"}
     ],
@@ -29,6 +31,9 @@
       "message": {
         "kind": "string",
         "identifier": true
+      },
+      "context/class": {
+        "kind": "string"
       },
       "context/function": {
         "kind": "string"
