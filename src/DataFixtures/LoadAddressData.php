@@ -101,7 +101,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a housingstock',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -125,7 +125,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'missing data from sqlite cbs database',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -144,7 +144,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a municipality',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -164,7 +164,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a residentialarea',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -184,7 +184,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a neighbourhood',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -204,7 +204,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a block',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -224,7 +224,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a buildingtype',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -250,7 +250,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'error with request to arcgis api',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -323,7 +323,7 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                         [
                             'subject' => 'reference to a vtw',
                             'class' => __CLASS__,
-                            'methode' => __METHOD__,
+                            'function' => __FUNCTION__,
                             'line' => __LINE__,
                         ]
                     )
@@ -343,7 +343,18 @@ class LoadAddressData extends Fixture implements DependentFixtureInterface, Even
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
-                $this->logger->error(implode(', ', $messages), $this->getLoggingContext($buildingAddress));
+                $this->logger->error(
+                    implode(', ', $messages),
+                    array_merge(
+                        $this->getLoggingContext($buildingAddress),
+                        [
+                            'subject' => 'constraint violation',
+                            'class' => __CLASS__,
+                            'function' => __FUNCTION__,
+                            'line' => __LINE__,
+                        ]
+                    )
+                );
                 continue;
             }
 

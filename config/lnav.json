@@ -1,0 +1,76 @@
+{
+  "be" : {
+    "title": "BuildingExaminator",
+    "description": "Log format used by Building Examinator logs.",
+    "json": true,
+    "hide-extra": true,
+    "timestamp-field": "datetime",
+    "level-field": "level_name",
+    "level": {
+      "error": "ERROR",
+      "debug": "DEBUG",
+      "info": "INFO",
+      "warning": "WARNING"
+    },
+    "line-format": [
+      {"field": "__timestamp__", "timestamp-format": "%Y-%m-%d %H:%M:%S"},
+      " ",
+      {"field": "__level__", "min-width": 8, "max-width": 8},
+      " ",
+      {"field": "context/function", "min-width": 64, "max-width": 64, "overflow": "dot-dot"},
+      " ",
+      {"field": "context/line", "min-width": 4, "max-width": 4},
+      " ",
+      {"field": "context/subject", "min-width": 70, "max-width": 70, "overflow": "dot-dot"},
+      " ",
+      {"field": "message", "min-width": 70, "max-width": 70, "overflow": "dot-dot"}
+    ],
+    "value": {
+      "message": {
+        "kind": "string",
+        "identifier": true
+      },
+      "context/function": {
+        "kind": "string"
+      },
+      "context/line": {
+        "kind": "string"
+      },
+      "context/subject": {
+        "kind": "string"
+      },
+      "context/housingstock": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/address/zipcode": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/address/housenumber": {
+        "kind": "integer",
+        "hidden": true
+      },
+      "context/address/addition": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/arcgis/url": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/arcgis/where": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/arcgis/objectids": {
+        "kind": "string",
+        "hidden": true
+      },
+      "context/arcgis/relationshipid": {
+        "kind": "integer",
+        "hidden": true
+      }
+    }
+  }
+}

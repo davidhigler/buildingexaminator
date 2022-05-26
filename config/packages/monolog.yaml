@@ -8,6 +8,7 @@ when@dev:
             main:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
+                formatter: monolog.formatter.json
                 level: debug
                 channels: ["!event", "!doctrine"]
             # uncomment to get logging in your browser
@@ -35,6 +36,7 @@ when@test:
             nested:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
+                formatter: monolog.formatter.json
                 level: debug
 
 when@prod:
