@@ -26,10 +26,7 @@ class AuthorizationController extends AbstractController
     private const OWNER_LIST_FIELDS = [
         'id',
         'name',
-        'kvk',
-        'btw',
         'lnumber',
-        'website',
     ];
 
     private const OWNER_DETAIL_FIELDS = [
@@ -39,7 +36,7 @@ class AuthorizationController extends AbstractController
         'btw',
         'lnumber',
         'website',
-        'housingstocks' => [
+        'housingStocks' => [
             'id',
             'code',
             'name',

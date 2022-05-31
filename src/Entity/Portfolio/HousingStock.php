@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class HousingStock extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Owner", inversedBy="housingStocks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Owner", inversedBy="housingStocks", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
