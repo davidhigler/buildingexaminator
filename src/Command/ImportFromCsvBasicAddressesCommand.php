@@ -45,7 +45,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
             $addition = strtoupper($csvLine[4]);
             //$block = $csvLine[5];
 
-            if (empty($zipcode) || preg_match("/[1-9][0-9]{3}[A-Z]{2}/i", $zipcode) === 0) {
+            if (empty($zipcode) || preg_match("/[1-9]\d{3}[A-Z]{2}/i", $zipcode) === 0) {
                 throw new RuntimeException('Zipcode is empty or is not in the form of 4 numbers and 2 uppercase letters without a space in bewtween');
             }
 
