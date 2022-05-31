@@ -1147,11 +1147,6 @@ class PortfolioController extends AbstractController
         );
     }
 
-
-
-
-
-
     /**
      * BLOCKS
      *
