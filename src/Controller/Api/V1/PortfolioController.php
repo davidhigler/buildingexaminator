@@ -7,11 +7,14 @@ use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\BuildingType;
 use App\Entity\Portfolio\HousingStock;
-use App\Entity\Portfolio\LivingType;
+use App\Entity\Portfolio\Municipality;
+use App\Entity\Portfolio\Neighbourhood;
+use App\Entity\Portfolio\PublicSpace;
 use App\Entity\Portfolio\ResidentialArea;
 use App\Entity\Portfolio\Vtw;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
+use Doctrine\ORM\QueryBuilder;
 use Exception;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -71,6 +74,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
+ *     schema="municipalities",
+ *     title="Municipalities",
+ *     description="An array of municipalities",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/municipality")
+ *     )
+ * )
+ * @OA\Schema(
  *     schema="residentialAreas",
  *     title="Residential areas",
  *     description="An array of residential areas",
@@ -79,6 +93,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         property="data",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/ResidentialArea")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="neighbourhoods",
+ *     title="Neighbourhoods",
+ *     description="An array of neighbourhoods",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Neighbourhood")
  *     )
  * )
  * @OA\Schema(
@@ -93,6 +118,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
+ *     schema="publicspaces",
+ *     title="Publicspaces",
+ *     description="An array of public spaces",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/PublicSpace")
+ *     )
+ * )
+ * @OA\Schema(
  *     schema="buildingTypes",
  *     title="Building types",
  *     description="An array of building types",
@@ -101,17 +137,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         property="data",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/BuildingType")
- *     )
- * )
- * @OA\Schema(
- *     schema="livingTypes",
- *     title="Living types",
- *     description="An array of living types",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/LivingType")
  *     )
  * )
  * @OA\Schema(
@@ -145,7 +170,6 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
-        'description',
         'numberOfBlocks',
         'numberOfAddresses',
     ];
@@ -191,29 +215,68 @@ class PortfolioController extends AbstractController
         'numberOfAddresses',
     ];
 
+    private const MUNICIPALITY_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+    ];
+
+    private const MUNICIPALITY_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+    ];
+
     private const RESIDENTIALAREA_LIST_FIELDS = [
         'id',
         'code',
         'name',
-        'description',
-        'addresses' => [
-            'id',
-        ],
     ];
 
     private const RESIDENTIALAREA_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
+    ];
+
+    private const NEIGHBOURHOOD_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+    ];
+
+    private const NEIGHBOURHOOD_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+    ];
+
+    private const PUBLICSPACE_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
         'description',
         'addresses' => [
             'id',
-            'streetName',
+        ],
+        'numberOfAddresses',
+        'financialNumber',
+    ];
+
+    private const PUBLICSPACE_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'description',
+        'addresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
             'houseNumber',
             'addition',
-            'zipcode',
-            'city',
         ],
+        'numberOfAddresses',
+        'financialNumber',
     ];
 
     private const BLOCK_LIST_FIELDS = [
@@ -255,31 +318,6 @@ class PortfolioController extends AbstractController
     ];
 
     private const BUILDINGTYPE_DETAIL_FIELDS = [
-        'id',
-        'code',
-        'name',
-        'description',
-        'addresses' => [
-            'id',
-            'streetName',
-            'houseNumber',
-            'addition',
-            'zipcode',
-            'city',
-        ],
-    ];
-
-    private const LIVINGTYPE_LIST_FIELDS = [
-        'id',
-        'code',
-        'name',
-        'description',
-        'addresses' => [
-            'id',
-        ],
-    ];
-
-    private const LIVINGTYPE_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -677,17 +715,84 @@ class PortfolioController extends AbstractController
     }
 
     /**
-     * RESIDENTIALAREAS
+     * MUNICIPALITIES
      */
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
+    #[Route('/municipalities', name: 'listmunicipalities', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residentialareas",
-     *     summary="Returns details about multiple residential areas",
+     *     path="/municipalities",
+     *     summary="Returns details about multiple municipalities",
      *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple municipalities",
+     *         @OA\JsonContent(ref="#/components/schemas/municipalities")
+     *     )
+     * )
+     */
+    public function getMunicipalities(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $municipalityRepository = $this->getDoctrine()->getRepository(Municipality::class);
+        /** @var QueryBuilder $adapter */
+        $adapter = $municipalityRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::MUNICIPALITY_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/municipalities/{municipalityId}', name: 'getmunicipality', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/municipalities/{municipalityId}",
+     *     summary="Returns details about a municipality",
+     *     @OA\Parameter(
+     *         name="municipalityId",
+     *         description="The id of a municipality",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -695,6 +800,33 @@ class PortfolioController extends AbstractController
      *         in="path",
      *         required=true
      *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a municipality",
+     *         @OA\JsonContent(ref="#/components/schemas/Municipality")
+     *     )
+     * )
+     */
+    public function getMunicipality(string $municipalityId): Response
+    {
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $residentialAreaRepository->find((int)$municipalityId),
+                self::MUNICIPALITY_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
+     * RESIDENTIALAREAS
+     */
+
+    #[Route('/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/residentialareas",
+     *     summary="Returns details about multiple residential areas",
      *     @OA\Parameter(
      *         name="page",
      *         description="The page number to get",
@@ -721,18 +853,14 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getResidentialAreas(string $housingStockId, Request $request): Response
+    public function getResidentialAreas(Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var QueryBuilder $adapter */
         $adapter = $residentialAreaRepository->createQueryBuilder('o');
-        $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
                 ->andWhere(
@@ -761,251 +889,11 @@ class PortfolioController extends AbstractController
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/residentialareas', name: 'addresidentialarea', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/residentialareas",
-     *     summary="Add new residential area",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new residential area",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created residential area",
-     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
-     *     )
-     * )
-     */
-    public function addResidentialArea(string $housingStockId, Request $request, ValidatorInterface $validator): Response
-    {
-        $newResidentialArea = json_decode($request->getContent(), true);
-
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $residentialArea = new ResidentialArea();
-        if (!empty($housingStock)) {
-            $residentialArea->setHousingStock($housingStock);
-        }
-        if (!empty($newResidentialArea['name'])) {
-            $residentialArea->setName($newResidentialArea['name']);
-        }
-        if (!empty($newResidentialArea['code'])) {
-            $residentialArea->setCode($newResidentialArea['code']);
-        }
-        if (!empty($newResidentialArea['description'])) {
-            $residentialArea->setDescription($newResidentialArea['description']);
-        }
-        $residentialArea->setCreationTime();
-        $residentialArea->setLastChangeTime();
-
-        $violations = $validator->validate($residentialArea);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
-        }
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($residentialArea);
-        $entityManager->flush();
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $residentialArea,
-                self::RESIDENTIALAREA_DETAIL_FIELDS
-            )
-        );
-    }
-
-    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'changeresidentialarea', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
-     *     summary="Change residential area",
-     *     @OA\RequestBody(
-     *         description="Details for changing residential area",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="residentialAreaId",
-     *         description="The id of the residential area",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed residential area",
-     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
-     *     )
-     * )
-     */
-    public function changeResidentialArea(string $housingStockId, string $residentialAreaId, Request $request, ValidatorInterface $validator): Response
-    {
-        $changeResidentialArea = json_decode($request->getContent(), true);
-
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        /** @var ResidentialArea $residentialArea */
-        $residentialArea = $residentialAreaRepository->find((int) $residentialAreaId);
-
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        if (!empty($housingStock)) {
-            $residentialArea->setHousingStock($housingStock);
-        } else {
-            $residentialArea->setHousingStock(null);
-        }
-        if (!empty($changeResidentialArea['name'])) {
-            $residentialArea->setName($changeResidentialArea['name']);
-        } else {
-            $residentialArea->setName(null);
-        }
-        if (!empty($changeResidentialArea['code'])) {
-            $residentialArea->setCode($changeResidentialArea['code']);
-        } else {
-            $residentialArea->setCode(null);
-        }
-        if (!empty($changeResidentialArea['description'])) {
-            $residentialArea->setDescription($changeResidentialArea['description']);
-        } else {
-            $residentialArea->setDescription(null);
-        }
-        $residentialArea->setLastChangeTime();
-
-        $violations = $validator->validate($residentialArea);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
-        }
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($residentialArea);
-        $entityManager->flush();
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $residentialArea,
-                self::RESIDENTIALAREA_DETAIL_FIELDS
-            )
-        );
-    }
-
-    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'deleteresidentialarea', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
-     *     summary="Delete residential area",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="residentialAreaId",
-     *         description="The id of the residential area",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a residential area"
-     *     )
-     * )
-     */
-    public function deleteResidentialArea(string $housingStockId, string $residentialAreaId): Response
-    {
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        /** @var ResidentialArea $residentialArea */
-        $residentialArea = $residentialAreaRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $residentialAreaId]);
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($residentialArea);
-        try {
-            $entityManager->flush();
-        } catch (Exception $exception) {
-            return $this->json(ErrorExtractor::fromException($exception), 500);
-        }
-
-        return new Response('', 200);
-    }
-
-    #[Route('/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
+    #[Route('/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residentialareas/{residentialAreaId}",
+     *     path="/residentialareas/{residentialAreaId}",
      *     summary="Returns details about a residential area",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
      *     @OA\Parameter(
      *         name="residentialAreaId",
      *         description="The id of a residential area",
@@ -1023,21 +911,246 @@ class PortfolioController extends AbstractController
      *     )
      * )
      */
-    public function getResidentialArea(string $housingStockId, string $residentialAreaId): Response
+    public function getResidentialArea(string $residentialAreaId): Response
     {
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $residentialAreaRepository->findOneBy(
-                    [
-                        'housingStock' => (int)$housingStockId,
-                        'id' => (int)$residentialAreaId
-                    ]
-                ),
+                $residentialAreaRepository->find((int)$residentialAreaId),
                 self::RESIDENTIALAREA_DETAIL_FIELDS
             )
         );
     }
+
+    /**
+     * NEIGHBOURHOODS
+     */
+
+    #[Route('/neighbourhoods', name: 'listneighbourhoods', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/neighbourhoods",
+     *     summary="Returns details about multiple neighbourhoods",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple neighbourhoods",
+     *         @OA\JsonContent(ref="#/components/schemas/neighbourhoods")
+     *     )
+     * )
+     */
+    public function getNeighbourhoods(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
+        /** @var QueryBuilder $adapter */
+        $adapter = $neighbourhoodRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('0.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::NEIGHBOURHOOD_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/neighbourhoods/{neighbourhoodId}', name: 'getneighbourhood', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/neighbourhoods/{neighbourhoodId}",
+     *     summary="Returns details about a neighbourhood",
+     *     @OA\Parameter(
+     *         name="neighbourhoodId",
+     *         description="The id of a neighbourhood",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a neighbourhood",
+     *         @OA\JsonContent(ref="#/components/schemas/Neighbourhood")
+     *     )
+     * )
+     */
+    public function getNeighbourhood(string $neighbourhoodId): Response
+    {
+        $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $neighbourhoodRepository->find((int)$neighbourhoodId),
+                self::NEIGHBOURHOOD_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
+     * PUBLICSPACES
+     */
+
+    #[Route('/housingstocks/{housingStockId}/publicspaces', name: 'listpublicspaces', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/publicspaces",
+     *     summary="Returns details about multiple publicspaces",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the public space",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple publicspaces",
+     *         @OA\JsonContent(ref="#/components/schemas/publicspaces")
+     *     )
+     * )
+     */
+    public function getPublicSpaces(string $housingStockId, Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $publicSpaceRepository = $this->getDoctrine()->getRepository(PublicSpace::class);
+        /** @var QueryBuilder $adapter */
+        $adapter = $publicSpaceRepository->createQueryBuilder('o');
+        $adapter->join('o.addresses', 'a');
+        $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->groupBy('o.id');
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::PUBLICSPACE_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}', name: 'getpublicspace', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}",
+     *     summary="Returns details about a public space",
+     *     @OA\Parameter(
+     *         name="neighbourhoodId",
+     *         description="The id of a public space",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a public space",
+     *         @OA\JsonContent(ref="#/components/schemas/Publicspace")
+     *     )
+     * )
+     */
+    public function getPublicSpace(string $publicSpaceId): Response
+    {
+        $publicSpaceRepository = $this->getDoctrine()->getRepository(PublicSpace::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $publicSpaceRepository->find((int)$publicSpaceId),
+                self::PUBLICSPACE_DETAIL_FIELDS
+            )
+        );
+    }
+
+
+
+
+
 
     /**
      * BLOCKS
@@ -1782,369 +1895,6 @@ class PortfolioController extends AbstractController
     }
 
     /**
-     * LIVINGTYPES
-     */
-
-    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'listlivingtypes', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/livingtypes",
-     *     summary="Returns details about multiple living types",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple living types",
-     *         @OA\JsonContent(ref="#/components/schemas/livingTypes")
-     *     )
-     * )
-     */
-    public function getLivingTypes(string $housingStockId, Request $request): Response
-    {
-        $page = $request->query->get('page');
-        $searchTerm = $request->query->get('searchterm');
-
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        $adapter = $livingTypeRepository->createQueryBuilder('o');
-        $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
-            $adapter
-                ->andWhere(
-                    $adapter->expr()->orX(
-                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
-                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
-                    )
-                );
-        }
-        $adapter->orderBy('o.name', 'ASC');
-
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
-        }
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $data,
-                self::LIVINGTYPE_LIST_FIELDS
-            )
-        );
-    }
-
-    #[Route('/housingstocks/{housingStockId}/livingtypes', name: 'addlivingtype', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/livingtypes",
-     *     summary="Add new living type",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new living type",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created living type",
-     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
-     *     )
-     * )
-     */
-    public function addLivingType(Request $request, ValidatorInterface $validator, string $housingStockId): Response
-    {
-        $newLivingType = json_decode($request->getContent(), true);
-
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        $livingType = new LivingType();
-        if (!empty($housingStock)) {
-            $livingType->setHousingStock($housingStock);
-        }
-        if (!empty($newLivingType['name'])) {
-            $livingType->setName($newLivingType['name']);
-        }
-        if (!empty($newLivingType['code'])) {
-            $livingType->setCode($newLivingType['code']);
-        }
-        if (!empty($newLivingType['description'])) {
-            $livingType->setDescription($newLivingType['description']);
-        }
-        $livingType->setCreationTime();
-        $livingType->setLastChangeTime();
-
-        $violations = $validator->validate($livingType);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
-        }
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($livingType);
-        $entityManager->flush();
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $livingType,
-                self::LIVINGTYPE_DETAIL_FIELDS
-            )
-        );
-    }
-
-    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'changelivingtype', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
-     *     summary="Change living type",
-     *     @OA\RequestBody(
-     *         description="Details for changing living type",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of a housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="buildingTypeId",
-     *         description="The id of a living type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed living type",
-     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
-     *     )
-     * )
-     */
-    public function changeLivingType(string $housingStockId, string $livingTypeId, Request $request, ValidatorInterface $validator): Response
-    {
-        $changeLivingType = json_decode($request->getContent(), true);
-
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        /** @var LivingType $livingType */
-        $livingType = $livingTypeRepository->find((int) $livingTypeId);
-
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
-        /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-        if (!empty($housingStock)) {
-            $livingType->setHousingStock($housingStock);
-        } else {
-            $livingType->setHousingStock(null);
-        }
-        if (!empty($changeLivingType['name'])) {
-            $livingType->setName($changeLivingType['name']);
-        } else {
-            $livingType->setName(null);
-        }
-        if (!empty($changeLivingType['code'])) {
-            $livingType->setCode($changeLivingType['code']);
-        } else {
-            $livingType->setCode(null);
-        }
-        if (!empty($changeLivingType['description'])) {
-            $livingType->setDescription($changeLivingType['description']);
-        } else {
-            $livingType->setDescription(null);
-        }
-        $livingType->setLastChangeTime();
-
-        $violations = $validator->validate($livingType);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
-        }
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($livingType);
-        $entityManager->flush();
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $livingType,
-                self::LIVINGTYPE_DETAIL_FIELDS
-            )
-        );
-    }
-
-    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'deletelivingtype', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
-     *     summary="Delete living type",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="livingTypeId",
-     *         description="The id of a living type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a living type"
-     *     )
-     * )
-     */
-    public function deleteLivingType(string $housingStockId, string $livingTypeId): Response
-    {
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        /** @var LivingType $livingType */
-        $livingType = $livingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $livingTypeId]);
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($livingType);
-        try {
-            $entityManager->flush();
-        } catch (Exception $exception) {
-            return $this->json(ErrorExtractor::fromException($exception), 500);
-        }
-
-        return new Response('', 200);
-    }
-
-    #[Route('/housingstocks/{housingStockId}/livingtypes/{livingTypeId}', name: 'getlivingtype', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/livingtypes/{livingTypeId}",
-     *     summary="Returns details about a living type",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Parameter(
-     *         name="livingTypeId",
-     *         description="The id of a living type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a living type",
-     *         @OA\JsonContent(ref="#/components/schemas/LivingType")
-     *     )
-     * )
-     */
-    public function getLivingType(string $housingStockId, string $livingTypeId): Response
-    {
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $livingTypeRepository->findOneBy(
-                    [
-                        'housingStock' => (int)$housingStockId,
-                        'id' => (int)$livingTypeId
-                    ]
-                ),
-                self::LIVINGTYPE_DETAIL_FIELDS
-            )
-        );
-    }
-
-    /**
      * ADDRESSES
      */
 
@@ -2338,10 +2088,6 @@ class PortfolioController extends AbstractController
         /** @var BuildingType $buildingType */
         $buildingType = $buildingTypeRepository->find((int) $newAddress['buildingtype']);
 
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        /** @var LivingType $livingType */
-        $livingType = $livingTypeRepository->find((int) $newAddress['livingtype']);
-
         $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
         /** @var Vtw $vtw */
         $vtw = $vtwRepository->find((int) $newAddress['vtw']);
@@ -2359,17 +2105,11 @@ class PortfolioController extends AbstractController
         if (!empty($buildingType)) {
             $buildingAddress->setBuildingType($buildingType);
         }
-        if (!empty($livingType)) {
-            $buildingAddress->setLivingType($livingType);
-        }
         if (!empty($vtw)) {
             $buildingAddress->setVtw($vtw);
         }
         if (!empty($newAddress['rentalunitnumber'])) {
             $buildingAddress->setRentalUnitNumber($newAddress['rentalunitnumber']);
-        }
-        if (!empty($newAddress['streetname'])) {
-            $buildingAddress->setStreetName($newAddress['streetname']);
         }
         if (!empty($newAddress['housenumber'])) {
             $buildingAddress->setHouseNumber($newAddress['housenumber']);
@@ -2382,15 +2122,6 @@ class PortfolioController extends AbstractController
         }
         if (!empty($newAddress['city'])) {
             $buildingAddress->setCity($newAddress['city']);
-        }
-        if (!empty($newAddress['bagid'])) {
-            $buildingAddress->setBagId($newAddress['bagid']);
-        }
-        if (!empty($newAddress['constructionyear'])) {
-            $buildingAddress->setConstructionYear($newAddress['constructionyear']);
-        }
-        if (!empty($newAddress['renovationyear'])) {
-            $buildingAddress->setRenovationYear($newAddress['renovationyear']);
         }
         if (!empty($newAddress['orientation'])) {
             $buildingAddress->setOrientation($newAddress['orientation']);
@@ -2508,10 +2239,6 @@ class PortfolioController extends AbstractController
         /** @var BuildingType $buildingType */
         $buildingType = $buildingTypeRepository->find((int) $changeAddress['buildingtype']);
 
-        $livingTypeRepository = $this->getDoctrine()->getRepository(LivingType::class);
-        /** @var LivingType $livingType */
-        $livingType = $livingTypeRepository->find((int) $changeAddress['livingtype']);
-
         $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
         /** @var Vtw $vtw */
         $vtw = $vtwRepository->find((int) $changeAddress['vtw']);
@@ -2528,17 +2255,11 @@ class PortfolioController extends AbstractController
         if (!empty($buildingType)) {
             $buildingAddress->setBuildingType($buildingType);
         }
-        if (!empty($livingType)) {
-            $buildingAddress->setLivingType($livingType);
-        }
         if (!empty($vtw)) {
             $buildingAddress->setVtw($vtw);
         }
         if (!empty($changeAddress['rentalunitnumber'])) {
             $buildingAddress->setRentalUnitNumber($changeAddress['rentalunitnumber']);
-        }
-        if (!empty($changeAddress['streetname'])) {
-            $buildingAddress->setStreetName($changeAddress['streetname']);
         }
         if (!empty($changeAddress['housenumber'])) {
             $buildingAddress->setHouseNumber($changeAddress['housenumber']);
@@ -2551,15 +2272,6 @@ class PortfolioController extends AbstractController
         }
         if (!empty($changeAddress['city'])) {
             $buildingAddress->setCity($changeAddress['city']);
-        }
-        if (!empty($changeAddress['bagid'])) {
-            $buildingAddress->setBagId($changeAddress['bagid']);
-        }
-        if (!empty($changeAddress['constructionyear'])) {
-            $buildingAddress->setConstructionYear($changeAddress['constructionyear']);
-        }
-        if (!empty($changeAddress['renovationyear'])) {
-            $buildingAddress->setRenovationYear($changeAddress['renovationyear']);
         }
         if (!empty($changeAddress['orientation'])) {
             $buildingAddress->setOrientation($changeAddress['orientation']);

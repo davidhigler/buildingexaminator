@@ -3,6 +3,8 @@
 namespace App\Entity\Portfolio;
 
 use App\Entity\SuperClasses\IdBagIds;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
@@ -50,9 +52,17 @@ class PublicSpace extends IdBagIds
      */
     private string $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="housingStock", fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/addresses")
+     */
+    protected Collection $addresses;
+
     #[Pure]
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
     }
 
     public function getName(): string
@@ -65,6 +75,11 @@ class PublicSpace extends IdBagIds
         return $this->type;
     }
 
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
     public function setType(string $type): void
     {
         $this->type = $type;
@@ -73,5 +88,15 @@ class PublicSpace extends IdBagIds
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function addAddress(Address $address): void
+    {
+        $this->addresses->add($address);
+    }
+
+    public function removeAddress(Address $address): void
+    {
+        $this->addresses->removeElement($address);
     }
 }

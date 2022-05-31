@@ -50,17 +50,16 @@ class HousingStock extends IdTimeIdentification
     /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/buildingAddresses")
+     * @OA\Property(ref="#/components/schemas/addresses")
      */    
-    protected Collection $buildingAddresses;
+    protected Collection $addresses;
 
     #[Pure]
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
         $this->buildingTypes = new ArrayCollection();
-        $this->livingTypes = new ArrayCollection();
-        $this->buildingAddresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
     public function getOwner(): Owner
@@ -83,14 +82,14 @@ class HousingStock extends IdTimeIdentification
         return $this->buildingTypes;
     }
     
-    public function getBuildingAddresses(): Collection
+    public function getAddresses(): Collection
     {
-        return $this->buildingAddresses;
+        return $this->addresses;
     }
 
-    public function getNumberOfBuildingAddresses(): int
+    public function getNumberOfAddresses(): int
     {
-        return count($this->buildingAddresses);
+        return count($this->addresses);
     }
 
     public function setOwner(Owner $owner): void
@@ -118,14 +117,14 @@ class HousingStock extends IdTimeIdentification
         $this->buildingTypes->removeElement($buildingType);
     }
     
-    public function addBuildingAddress(Address $buildingAddress): void
+    public function addAddress(Address $address): void
     {
-        $this->buildingAddresses->add($buildingAddress);
+        $this->addresses->add($address);
     }
     
-    public function removeBuildingAddress(Address $buildingAddress): void
+    public function removeAddress(Address $address): void
     {
-        $this->buildingAddresses->removeElement($buildingAddress);
+        $this->addresses->removeElement($address);
     }
 
 }

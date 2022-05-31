@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Address extends IdBagIdsTime
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -43,7 +43,7 @@ class Address extends IdBagIdsTime
     protected Municipality $municipality;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -133,7 +133,7 @@ class Address extends IdBagIdsTime
     protected Building $building;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PublicSpace", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="PublicSpace", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="publicspace_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
