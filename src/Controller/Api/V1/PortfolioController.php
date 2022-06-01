@@ -418,7 +418,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -427,7 +428,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -581,7 +583,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -654,7 +657,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -731,7 +735,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -740,7 +745,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -835,7 +841,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -844,7 +851,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -902,7 +910,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -939,7 +948,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -948,7 +958,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1043,7 +1054,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="page",
@@ -1053,7 +1065,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -1062,7 +1075,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1127,7 +1141,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1166,7 +1181,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="page",
@@ -1176,7 +1192,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -1185,7 +1202,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1247,7 +1265,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\RequestBody(
      *         description="Details about new block",
@@ -1353,7 +1372,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="blockId",
@@ -1363,7 +1383,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1441,7 +1462,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="blockId",
@@ -1451,7 +1473,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1489,7 +1512,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="blockId",
@@ -1499,7 +1523,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1543,7 +1568,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="page",
@@ -1553,7 +1579,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -1562,7 +1589,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1624,7 +1652,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\RequestBody(
      *         description="Details about new building type",
@@ -1723,7 +1752,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="buildingTypeId",
@@ -1733,7 +1763,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1806,7 +1837,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="buildingTypeId",
@@ -1816,7 +1848,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1854,7 +1887,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="buildingtypeId",
@@ -1864,7 +1898,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1906,7 +1941,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="page",
@@ -1916,7 +1952,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -1925,7 +1962,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1988,7 +2026,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\RequestBody(
      *         description="Details about new buildingaddress",
@@ -2191,7 +2230,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
@@ -2201,7 +2241,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -2306,7 +2347,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
@@ -2316,7 +2358,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -2354,7 +2397,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
@@ -2364,7 +2408,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -2406,7 +2451,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example=1
      *     ),
      *     @OA\Parameter(
      *         name="searchterm",
@@ -2415,7 +2461,8 @@ class PortfolioController extends AbstractController
      *             type="string",
      *         ),
      *         in="query",
-     *         required=false
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
