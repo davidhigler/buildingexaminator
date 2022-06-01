@@ -81,7 +81,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     @OA\Property(
  *         property="data",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/municipality")
+ *         @OA\Items(ref="#/components/schemas/Municipality")
  *     )
  * )
  * @OA\Schema(
@@ -1147,7 +1147,7 @@ class PortfolioController extends AbstractController
      *     @OA\Response(
      *         response=200,
      *         description="Details about a public space",
-     *         @OA\JsonContent(ref="#/components/schemas/Publicspace")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicSpace")
      *     )
      * )
      */
@@ -1928,11 +1928,11 @@ class PortfolioController extends AbstractController
      * ADDRESSES
      */
 
-    #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'listbuildingaddresses', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddresses', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildingaddresses",
-     *     summary="Returns details about multiple buildingaddresses",
+     *     path="/housingstocks/{housingStockId}/addresses",
+     *     summary="Returns details about multiple addresses",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -1967,12 +1967,12 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about multiple buildingaddresses",
-     *         @OA\JsonContent(ref="#/components/schemas/buildingAddresses")
+     *         description="Details about multiple addresses",
+     *         @OA\JsonContent(ref="#/components/schemas/addresses")
      *     )
      * )
      */
-    public function getBuildingAddresses(string $housingStockId, Request $request): Response
+    public function getAddresses(string $housingStockId, Request $request): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -1981,8 +1981,8 @@ class PortfolioController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
-        $adapter = $buildingAddressRepository->createQueryBuilder('o');
+        $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+        $adapter = $addressRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
         if ($searchTerm !== null) {
             $adapter
@@ -2013,10 +2013,10 @@ class PortfolioController extends AbstractController
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingaddresses', name: 'addbuildingaddress', methods: ['POST'])]
+    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
     /**
      * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/buildingaddresses",
+     *     path="/housingstocks/{housingStockId}/addresses",
      *     summary="Add new address",
      *     @OA\Parameter(
      *         name="housingStockId",
@@ -2030,7 +2030,7 @@ class PortfolioController extends AbstractController
      *         example=1
      *     ),
      *     @OA\RequestBody(
-     *         description="Details about new buildingaddress",
+     *         description="Details about new address",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
@@ -2097,12 +2097,12 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about created buildingaddress",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *         description="Details about created address",
+     *         @OA\JsonContent(ref="#/components/schemas/Address")
      *     )
      * )
      */
-    public function addBuildingAddress(Request $request, ValidatorInterface $validator, string $housingStockId): Response
+    public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newAddress = json_decode($request->getContent(), true);
 
@@ -2126,53 +2126,53 @@ class PortfolioController extends AbstractController
         /** @var Vtw $vtw */
         $vtw = $vtwRepository->find((int) $newAddress['vtw']);
 
-        $buildingAddress = new Address();
+        $address = new Address();
         if (!empty($housingStock)) {
-            $buildingAddress->setHousingStock($housingStock);
+            $address->setHousingStock($housingStock);
         }
         if (!empty($residentialArea)) {
-            $buildingAddress->setResidentialArea($residentialArea);
+            $address->setResidentialArea($residentialArea);
         }
         if (!empty($block)) {
-            $buildingAddress->setBlock($block);
+            $address->setBlock($block);
         }
         if (!empty($buildingType)) {
-            $buildingAddress->setBuildingType($buildingType);
+            $address->setBuildingType($buildingType);
         }
         if (!empty($vtw)) {
-            $buildingAddress->setVtw($vtw);
+            $address->setVtw($vtw);
         }
         if (!empty($newAddress['rentalunitnumber'])) {
-            $buildingAddress->setRentalUnitNumber($newAddress['rentalunitnumber']);
+            $address->setRentalUnitNumber($newAddress['rentalunitnumber']);
         }
         if (!empty($newAddress['housenumber'])) {
-            $buildingAddress->setHouseNumber($newAddress['housenumber']);
+            $address->setHouseNumber($newAddress['housenumber']);
         }
         if (!empty($newAddress['addition'])) {
-            $buildingAddress->setAddition($newAddress['addition']);
+            $address->setAddition($newAddress['addition']);
         }
         if (!empty($newAddress['zipcode'])) {
-            $buildingAddress->setZipcode($newAddress['zipcode']);
+            $address->setZipcode($newAddress['zipcode']);
         }
         if (!empty($newAddress['city'])) {
-            $buildingAddress->setCity($newAddress['city']);
+            $address->setCity($newAddress['city']);
         }
         if (!empty($newAddress['orientation'])) {
-            $buildingAddress->setOrientation($newAddress['orientation']);
+            $address->setOrientation($newAddress['orientation']);
         }
         if (is_bool($newAddress['daeb'])) {
-            $buildingAddress->setDaeb($newAddress['daeb']);
+            $address->setDaeb($newAddress['daeb']);
         }
-        $buildingAddress->setCreationTime();
-        $buildingAddress->setLastChangeTime();
+        $address->setCreationTime();
+        $address->setLastChangeTime();
 
-        $violations = $validator->validate($buildingAddress);
+        $violations = $validator->validate($address);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($buildingAddress);
+        $entityManager->persist($address);
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
@@ -2181,19 +2181,19 @@ class PortfolioController extends AbstractController
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $buildingAddress,
+                $address,
                 self::ADDRESS_DETAIL_FIELDS
             )
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'changebuildingaddress', methods: ['PUT'])]
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
     /**
      * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
-     *     summary="Change buildingaddress",
+     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
+     *     summary="Change address",
      *     @OA\RequestBody(
-     *         description="Details for changing buildingaddress",
+     *         description="Details for changing address",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
@@ -2235,7 +2235,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an buildingaddress",
+     *         description="The id of an address",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2246,18 +2246,18 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about changed buildingaddress",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *         description="Details about changed address",
+     *         @OA\JsonContent(ref="#/components/schemas/Address")
      *     )
      * )
      */
-    public function changeBuildingAddress(string $housingStockId, string $buildingAddressId, Request $request, ValidatorInterface $validator): Response
+    public function changeAddress(string $housingStockId, string $addressId, Request $request, ValidatorInterface $validator): Response
     {
         $changeAddress = json_decode($request->getContent(), true);
 
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
-        /** @var Address $buildingAddress */
-        $buildingAddress = $buildingAddressRepository->find((int) $buildingAddressId);
+        $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+        /** @var Address $address */
+        $address = $addressRepository->find((int) $addressId);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
@@ -2280,65 +2280,65 @@ class PortfolioController extends AbstractController
         $vtw = $vtwRepository->find((int) $changeAddress['vtw']);
 
         if (!empty($housingStock)) {
-            $buildingAddress->setHousingStock($housingStock);
+            $address->setHousingStock($housingStock);
         }
         if (!empty($residentialArea)) {
-            $buildingAddress->setResidentialArea($residentialArea);
+            $address->setResidentialArea($residentialArea);
         }
         if (!empty($block)) {
-            $buildingAddress->setBlock($block);
+            $address->setBlock($block);
         }
         if (!empty($buildingType)) {
-            $buildingAddress->setBuildingType($buildingType);
+            $address->setBuildingType($buildingType);
         }
         if (!empty($vtw)) {
-            $buildingAddress->setVtw($vtw);
+            $address->setVtw($vtw);
         }
         if (!empty($changeAddress['rentalunitnumber'])) {
-            $buildingAddress->setRentalUnitNumber($changeAddress['rentalunitnumber']);
+            $address->setRentalUnitNumber($changeAddress['rentalunitnumber']);
         }
         if (!empty($changeAddress['housenumber'])) {
-            $buildingAddress->setHouseNumber($changeAddress['housenumber']);
+            $address->setHouseNumber($changeAddress['housenumber']);
         }
         if (!empty($changeAddress['addition'])) {
-            $buildingAddress->setAddition($changeAddress['addition']);
+            $address->setAddition($changeAddress['addition']);
         }
         if (!empty($changeAddress['zipcode'])) {
-            $buildingAddress->setZipcode($changeAddress['zipcode']);
+            $address->setZipcode($changeAddress['zipcode']);
         }
         if (!empty($changeAddress['city'])) {
-            $buildingAddress->setCity($changeAddress['city']);
+            $address->setCity($changeAddress['city']);
         }
         if (!empty($changeAddress['orientation'])) {
-            $buildingAddress->setOrientation($changeAddress['orientation']);
+            $address->setOrientation($changeAddress['orientation']);
         }
         if (is_bool($changeAddress['daeb'])) {
-            $buildingAddress->setDaeb($changeAddress['daeb']);
+            $address->setDaeb($changeAddress['daeb']);
         }
-        $buildingAddress->setLastChangeTime();
+        $address->setLastChangeTime();
 
-        $violations = $validator->validate($buildingAddress);
+        $violations = $validator->validate($address);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($buildingAddress);
+        $entityManager->persist($address);
         $entityManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $buildingAddress,
+                $address,
                 self::HOUSING_STOCK_DETAIL_FIELDS
             )
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'deletebuildingaddress', methods: ['DELETE'])]
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
     /**
      * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
-     *     summary="Delete buildingaddress",
+     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
+     *     summary="Delete address",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -2352,7 +2352,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an buildingaddress",
+     *         description="The id of an address",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2363,18 +2363,18 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successfully deleted an buildingaddress"
+     *         description="Successfully deleted an address"
      *     )
      * )
      */
-    public function deleteBuildingAddress(string $housingStockId, string $buildingAddressId): Response
+    public function deleteAddress(string $housingStockId, string $addressId): Response
     {
-        $buildingAddressRepository = $this->getDoctrine()->getRepository(Address::class);
-        /** @var Address $buildingAddress */
-        $buildingAddress = (object)$buildingAddressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingAddressId], null, 1);
+        $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+        /** @var Address $address */
+        $address = (object)$addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($buildingAddress);
+        $entityManager->remove($address);
         try {
             $entityManager->flush();
         } catch (Exception $exception) {
@@ -2384,11 +2384,11 @@ class PortfolioController extends AbstractController
         return new Response('', 200);
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}', name: 'getbuildingaddress', methods: ['GET'])]
+    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
     /**
      * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}",
-     *     summary="Returns details about an buildingaddress",
+     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
+     *     summary="Returns details about an address",
      *     @OA\Parameter(
      *         name="housingStockId",
      *         description="The id of the housing stock",
@@ -2402,7 +2402,7 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Parameter(
      *         name="addressId",
-     *         description="The id of an buildingaddress",
+     *         description="The id of an address",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -2413,12 +2413,12 @@ class PortfolioController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about an buildingaddress",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingAddress")
+     *         description="Details about an address",
+     *         @OA\JsonContent(ref="#/components/schemas/Address")
      *     )
      * )
      */
-    public function getBuildingAddress(string $housingStockId, string $buildingAddressId): Response
+    public function getAddress(string $housingStockId, string $addressId): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(Address::class);
         return $this->json(
@@ -2426,7 +2426,7 @@ class PortfolioController extends AbstractController
                 $addressRepository->findBy(
                     [
                         'housingStock' => (int)$housingStockId,
-                        'id' => (int)$buildingAddressId
+                        'id' => (int)$addressId
                     ]
                 ),
                 self::ADDRESS_DETAIL_FIELDS

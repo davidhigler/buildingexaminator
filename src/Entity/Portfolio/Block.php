@@ -35,7 +35,7 @@ class Block extends IdTimeIdentification
     /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="block", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/Addresses")
+     * @OA\Property(ref="#/components/schemas/addresses")
      */
     protected Collection $addresses;
 
@@ -86,12 +86,12 @@ class Block extends IdTimeIdentification
         $this->housingStock = $housingStock;
     }
 
-    public function addBuildingAddress(Address $address): void
+    public function addAddress(Address $address): void
     {
         $this->addresses->add($address);
     }
 
-    public function removeBuildingAddress(Address $address): void
+    public function removeAddress(Address $address): void
     {
         $this->addresses->removeElement($address);
     }

@@ -203,7 +203,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -212,7 +213,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -310,7 +312,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
@@ -362,7 +365,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -385,7 +389,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -394,7 +399,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -454,7 +460,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -463,7 +470,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -493,7 +501,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -523,7 +532,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -532,7 +542,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -592,7 +603,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "page",
@@ -602,7 +614,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -611,7 +624,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -641,7 +655,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -650,7 +665,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Publicspace"
+                                    "$ref": "#/components/schemas/PublicSpace"
                                 }
                             }
                         }
@@ -671,7 +686,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "page",
@@ -681,7 +697,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -690,7 +707,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -718,7 +736,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
@@ -772,7 +791,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "blockId",
@@ -782,7 +802,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -810,7 +831,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "blockId",
@@ -820,7 +842,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
@@ -869,7 +892,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "blockId",
@@ -879,7 +903,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -902,7 +927,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "page",
@@ -912,7 +938,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -921,7 +948,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -949,7 +977,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
@@ -1000,7 +1029,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "buildingTypeId",
@@ -1010,7 +1040,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
@@ -1059,7 +1090,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "buildingTypeId",
@@ -1069,7 +1101,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -1092,7 +1125,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "buildingtypeId",
@@ -1102,7 +1136,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -1119,10 +1154,10 @@
                 }
             }
         },
-        "/housingstocks/{housingStockId}/buildingaddresses": {
+        "/housingstocks/{housingStockId}/addresses": {
             "get": {
-                "summary": "Returns details about multiple buildingaddresses",
-                "operationId": "e10e57836b368c2f5652a1976b4a0bb8",
+                "summary": "Returns details about multiple addresses",
+                "operationId": "de341e3a585fe57715df7c1ed9c8b8b7",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1132,7 +1167,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "page",
@@ -1142,7 +1178,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -1151,16 +1188,17 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about multiple buildingaddresses",
+                        "description": "Details about multiple addresses",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/buildingAddresses"
+                                    "$ref": "#/components/schemas/addresses"
                                 }
                             }
                         }
@@ -1169,7 +1207,7 @@
             },
             "post": {
                 "summary": "Add new address",
-                "operationId": "7a366518a006db88c245df4b15a96d9b",
+                "operationId": "7842fe632fc12045797d62196572f036",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1179,11 +1217,12 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
-                    "description": "Details about new buildingaddress",
+                    "description": "Details about new address",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1241,11 +1280,11 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about created buildingaddress",
+                        "description": "Details about created address",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BuildingAddress"
+                                    "$ref": "#/components/schemas/Address"
                                 }
                             }
                         }
@@ -1253,10 +1292,10 @@
                 }
             }
         },
-        "/housingstocks/{housingStockId}/buildingaddresses/{buildingAddressId}": {
+        "/housingstocks/{housingStockId}/addresses/{addressId}": {
             "get": {
-                "summary": "Returns details about an buildingaddress",
-                "operationId": "bf24144f835e1176447576b74c59ea56",
+                "summary": "Returns details about an address",
+                "operationId": "a269197cad59bf86febf37e90eab840a",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1266,26 +1305,28 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an buildingaddress",
+                        "description": "The id of an address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about an buildingaddress",
+                        "description": "Details about an address",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BuildingAddress"
+                                    "$ref": "#/components/schemas/Address"
                                 }
                             }
                         }
@@ -1293,8 +1334,8 @@
                 }
             },
             "put": {
-                "summary": "Change buildingaddress",
-                "operationId": "ff7b94da5ddd34199fdf303f424c7051",
+                "summary": "Change address",
+                "operationId": "c961965929bf04a1a66b026bbd849714",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1304,21 +1345,23 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an buildingaddress",
+                        "description": "The id of an address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "requestBody": {
-                    "description": "Details for changing buildingaddress",
+                    "description": "Details for changing address",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1349,11 +1392,11 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed buildingaddress",
+                        "description": "Details about changed address",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BuildingAddress"
+                                    "$ref": "#/components/schemas/Address"
                                 }
                             }
                         }
@@ -1361,8 +1404,8 @@
                 }
             },
             "delete": {
-                "summary": "Delete buildingaddress",
-                "operationId": "de7548357d803226ada4a9b778378624",
+                "summary": "Delete address",
+                "operationId": "67360e2ce9712eb957853339903bed5a",
                 "parameters": [
                     {
                         "name": "housingStockId",
@@ -1372,22 +1415,24 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an buildingaddress",
+                        "description": "The id of an address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted an buildingaddress"
+                        "description": "Successfully deleted an address"
                     }
                 }
             }
@@ -1405,7 +1450,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     },
                     {
                         "name": "searchterm",
@@ -1414,7 +1460,8 @@
                         "required": false,
                         "schema": {
                             "type": "string"
-                        }
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -1478,7 +1525,7 @@
                     "data": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/municipality"
+                            "$ref": "#/components/schemas/Municipality"
                         }
                     }
                 },
@@ -1699,7 +1746,7 @@
                         "type": "integer"
                     },
                     "address": {
-                        "$ref": "#/components/schemas/BuildingAddress"
+                        "$ref": "#/components/schemas/Address"
                     },
                     "procentDetachment": {
                         "type": "integer"
@@ -1724,7 +1771,7 @@
                         "type": "integer"
                     },
                     "address": {
-                        "$ref": "#/components/schemas/BuildingAddress"
+                        "$ref": "#/components/schemas/Address"
                     },
                     "procentDetachment": {
                         "type": "integer"
@@ -1748,8 +1795,8 @@
                     "id": {
                         "type": "integer"
                     },
-                    "buildingAddress": {
-                        "$ref": "#/components/schemas/BuildingAddress"
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
                     },
                     "glossUnits": {
                         "type": "integer"
@@ -1859,7 +1906,7 @@
                         "$ref": "#/components/schemas/HousingStock"
                     },
                     "addresses": {
-                        "$ref": "#/components/schemas/Addresses"
+                        "$ref": "#/components/schemas/addresses"
                     },
                     "financialNumber": {
                         "type": "string"
@@ -1918,8 +1965,8 @@
                     "housingStock": {
                         "$ref": "#/components/schemas/HousingStock"
                     },
-                    "buildingAddresses": {
-                        "$ref": "#/components/schemas/buildingAddresses"
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"
@@ -1989,8 +2036,8 @@
                     "id": {
                         "type": "integer"
                     },
-                    "buildingAddresses": {
-                        "$ref": "#/components/schemas/buildingAddresses"
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"
@@ -2006,8 +2053,8 @@
                     "id": {
                         "type": "integer"
                     },
-                    "buildingAddresses": {
-                        "$ref": "#/components/schemas/buildingAddresses"
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"

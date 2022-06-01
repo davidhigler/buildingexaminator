@@ -24,15 +24,15 @@ class GlossIso2813 extends IdTimeScore
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\Address", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="buildingaddress_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A gloss measurement must have a buildingaddress"
+     *     message="A gloss measurement must have an address"
      * )
      *
-     * @OA\Property(ref="#/components/schemas/BuildingAddress")
+     * @OA\Property(ref="#/components/schemas/Address")
      */
-    protected Address $buildingAddress;
+    protected Address $address;
 
     /**
      * @ORM\Column(type="integer", length=3, nullable=false)
@@ -67,14 +67,14 @@ class GlossIso2813 extends IdTimeScore
         $this->glossUnits = $glossUnits;
     }
 
-    public function getBuildingAddress(): Address
+    public function getAddress(): Address
     {
-        return $this->buildingAddress;
+        return $this->address;
     }
 
-    public function setBuildingAddress(Address $buildingAddress): void
+    public function setAddress(Address $address): void
     {
-        $this->buildingAddress = $buildingAddress;
+        $this->address = $address;
     }
 
     public function getGlossUnits(): int

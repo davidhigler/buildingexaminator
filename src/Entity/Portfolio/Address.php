@@ -31,7 +31,7 @@ class Address extends IdBagIdsTime
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -55,7 +55,7 @@ class Address extends IdBagIdsTime
     protected ResidentialArea $residentialArea;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Neighbourhood", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Neighbourhood", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="neighbourhood_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -79,7 +79,7 @@ class Address extends IdBagIdsTime
     protected Block $block;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="buildingAddresses", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="BuildingType", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -137,7 +137,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="publicspace_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A buildingaddress must have a public space"
+     *     message="An address must have a public space"
      * )
      *
      * @OA\Property()

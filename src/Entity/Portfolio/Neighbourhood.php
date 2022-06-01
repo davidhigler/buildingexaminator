@@ -22,28 +22,28 @@ class Neighbourhood extends IdCodeName
     /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="neighbourhood", fetch="EXTRA_LAZY")
      *
-     * @OA\Property(ref="#/components/schemas/buildingAddresses")
+     * @OA\Property(ref="#/components/schemas/addresses")
      */
-    protected Collection $buildingAddresses;
+    protected Collection $addresses;
 
     #[Pure]
     public function __construct()
     {
-        $this->buildingAddresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
-    public function getBuildingAddresses(): Collection
+    public function getAddresses(): Collection
     {
-        return $this->buildingAddresses;
+        return $this->addresses;
     }
 
-    public function addBuildingAddress(Address $buildingAddress): void
+    public function addAddress(Address $address): void
     {
-        $this->buildingAddresses->add($buildingAddress);
+        $this->addresses->add($address);
     }
 
-    public function removeBuildingAddress(Address $buildingAddress): void
+    public function removeAddress(Address $address): void
     {
-        $this->buildingAddresses->removeElement($buildingAddress);
+        $this->addresses->removeElement($address);
     }
 }

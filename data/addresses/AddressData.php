@@ -1,5 +1,5 @@
 <?php
-$buildingAddresses = [
+$addresses = [
     ['housingstock' => 'DobroTest01', 'zipcode' => '8032VM', 'housenumber' => '115', 'block' => 'ALG1009', 'buildingtype' => '1009A', 'rentalunitnumber' => '1000', 'addition' => '', 'orientation' => 'n', 'daeb' => true, 'vtw' => 'WT35R'],
     ['housingstock' => 'DobroTest01', 'zipcode' => '8265WG', 'housenumber' => '224', 'block' => 'ALG3612', 'buildingtype' => '3612E', 'rentalunitnumber' => '10000', 'addition' => '', 'orientation' => 'n', 'daeb' => true, 'vtw' => 'WT35'],
     ['housingstock' => 'DobroTest01', 'zipcode' => '8265WG', 'housenumber' => '226', 'block' => 'ALG3612', 'buildingtype' => '3612C', 'rentalunitnumber' => '10001', 'addition' => '', 'orientation' => 'n', 'daeb' => true, 'vtw' => 'WT35'],
@@ -13428,4 +13428,4 @@ $buildingAddresses = [
     ['housingstock' => 'DobroTest01', 'zipcode' => '8265WG', 'housenumber' => '222', 'block' => 'ALG3612', 'buildingtype' => '3612C', 'rentalunitnumber' => '9999', 'addition' => '', 'orientation' => 'n', 'daeb' => true, 'vtw' => 'WT35'],
 ];
 
-return $buildingAddresses;
+return $addresses;

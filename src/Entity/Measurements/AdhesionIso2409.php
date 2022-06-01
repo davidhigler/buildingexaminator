@@ -24,13 +24,13 @@ class AdhesionIso2409 extends IdTimeScore
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\Address", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="buildingaddress_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="An adhesion measurement must have a buildingaddress"
+     *     message="An adhesion measurement must have an address"
      * )
      *
-     * @OA\Property(ref="#/components/schemas/BuildingAddress")
+     * @OA\Property(ref="#/components/schemas/Address")
      */
     protected Address $address;
 
