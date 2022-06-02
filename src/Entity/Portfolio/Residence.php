@@ -3,6 +3,8 @@
 namespace App\Entity\Portfolio;
 
 use App\Entity\SuperClasses\IdBagIds;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
@@ -78,9 +80,17 @@ class Residence extends IdBagIds
      */
     private string $intendedUseBasic;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="residence", fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/addresses")
+     */
+    protected Collection $addresses;
+
     #[Pure]
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
     }
 
     public function getSurfaceArea(): int
@@ -103,6 +113,11 @@ class Residence extends IdBagIds
         return $this->intendedUseBasic;
     }
 
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
     public function setSurfaceArea(int $surfaceArea): void
     {
         $this->surfaceArea = $surfaceArea;
@@ -121,5 +136,15 @@ class Residence extends IdBagIds
     public function setIntendedUseBasic(string $intendedUseBasic): void
     {
         $this->intendedUseBasic = $intendedUseBasic;
+    }
+
+    public function addAddress(Address $address): void
+    {
+        $this->addresses->add($address);
+    }
+
+    public function removeAddress(Address $address): void
+    {
+        $this->addresses->removeElement($address);
     }
 }

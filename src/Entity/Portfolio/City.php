@@ -37,7 +37,7 @@ class City extends IdBagIds
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="publicSpace", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="city", fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/addresses")
      */

@@ -2,6 +2,9 @@
 
 namespace App\Entity\Portfolio;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -112,6 +115,19 @@ class Vtw extends Id
      */
     protected string $roofTypeDescription;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="vtw", fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/addresses")
+     */
+    protected Collection $addresses;
+
+    #[Pure]
+    public function __construct()
+    {
+        $this->addresses = new ArrayCollection();
+    }
+
     public function getCode(): string
     {
         return $this->code;
@@ -137,6 +153,11 @@ class Vtw extends Id
         return $this->roofTypeDescription;
     }
 
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
     public function setCode(string $code): void
     {
         $this->code = $code;
@@ -160,5 +181,15 @@ class Vtw extends Id
     public function setRoofTypeDescription(string $roofTypeDescription): void
     {
         $this->roofTypeDescription = $roofTypeDescription;
+    }
+
+    public function addAddress(Address $address): void
+    {
+        $this->addresses->add($address);
+    }
+
+    public function removeAddress(Address $address): void
+    {
+        $this->addresses->removeElement($address);
     }
 }

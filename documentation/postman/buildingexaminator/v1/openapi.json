@@ -592,6 +592,172 @@
                 }
             }
         },
+        "/vtws": {
+            "get": {
+                "summary": "Returns details about multiple vtws",
+                "operationId": "41d311d7c4b03c08c84e7959c06e08e4",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple vtws",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/vtws"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vtws/{vtwId}": {
+            "get": {
+                "summary": "Returns details about a vtw",
+                "operationId": "d8b4280d6e2eeddedcb4af55344ef37c",
+                "parameters": [
+                    {
+                        "name": "neighbourhoodId",
+                        "in": "path",
+                        "description": "The id of a vtw",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a vtw",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Vtw"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/cities": {
+            "get": {
+                "summary": "Returns details about multiple cities",
+                "operationId": "e0fbc1fd71e9d69d6a3fc5fa57a7b059",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple cities",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/cities"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/cities/{cityId}": {
+            "get": {
+                "summary": "Returns details about a city",
+                "operationId": "19da95b2cafdeb628393b4283fd07a65",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "cityId",
+                        "in": "path",
+                        "description": "The id of a city",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a city",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/City"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/housingstocks/{housingStockId}/publicspaces": {
             "get": {
                 "summary": "Returns details about multiple publicspaces",
@@ -650,7 +816,18 @@
                 "operationId": "cf9c46f7c4a575b2451c7ec449b60280",
                 "parameters": [
                     {
-                        "name": "neighbourhoodId",
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "publicSpaceId",
                         "in": "path",
                         "description": "The id of a public space",
                         "required": true,
@@ -668,6 +845,194 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PublicSpace"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/buildings": {
+            "get": {
+                "summary": "Returns details about multiple buildings",
+                "operationId": "1ce207135e00c824fad7ddde36cb5077",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple buildings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/buildings"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/buildings/{buildingId}": {
+            "get": {
+                "summary": "Returns details about a building",
+                "operationId": "433f02cb1e17aad4cb88e71bfdba326c",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "publicSpaceId",
+                        "in": "path",
+                        "description": "The id of a building",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a building",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Building"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/residences": {
+            "get": {
+                "summary": "Returns details about multiple residences",
+                "operationId": "018e331070aef74f562bb535f8b3d063",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple residences",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/residences"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/residences/{residenceId}": {
+            "get": {
+                "summary": "Returns details about a residence",
+                "operationId": "cef46c61df3cee1b0f487094e720c04b",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housingstock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "publicSpaceId",
+                        "in": "path",
+                        "description": "The id of a residence",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a residence",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Residence"
                                 }
                             }
                         }
@@ -1438,47 +1803,6 @@
                     }
                 }
             }
-        },
-        "/vtws": {
-            "get": {
-                "summary": "Returns details about multiple vtws",
-                "operationId": "41d311d7c4b03c08c84e7959c06e08e4",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "The page number to get",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        },
-                        "example": 1
-                    },
-                    {
-                        "name": "searchterm",
-                        "in": "query",
-                        "description": "The searchterm",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "test"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Details about multiple vtws",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/vtws"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "components": {
@@ -1559,14 +1883,14 @@
                 },
                 "type": "object"
             },
-            "blocks": {
-                "title": "Blocks",
-                "description": "An array of blocks",
+            "cities": {
+                "title": "Cities",
+                "description": "An array of cities",
                 "properties": {
                     "data": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/Block"
+                            "$ref": "#/components/schemas/City"
                         }
                     }
                 },
@@ -1580,6 +1904,45 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/PublicSpace"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "buildings": {
+                "title": "Buildings",
+                "description": "An array of buildings",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Building"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "residences": {
+                "title": "Residences",
+                "description": "An array of residences",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Residence"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "blocks": {
+                "title": "Blocks",
+                "description": "An array of blocks",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Block"
                         }
                     }
                 },
@@ -1891,7 +2254,8 @@
                         "type": "string"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "creationTime": {
                         "type": "string",
@@ -1911,7 +2275,8 @@
                         "$ref": "#/components/schemas/addresses"
                     },
                     "financialNumber": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -1938,6 +2303,9 @@
                     },
                     "surfaceArea": {
                         "type": "integer"
+                    },
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"
@@ -1951,7 +2319,8 @@
                         "type": "string"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "creationTime": {
                         "type": "string",
@@ -1986,6 +2355,9 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"
@@ -1999,7 +2371,8 @@
                         "type": "string"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "creationTime": {
                         "type": "string",
@@ -2106,6 +2479,9 @@
                     },
                     "intendedUseBasic": {
                         "type": "string"
+                    },
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"
@@ -2146,6 +2522,9 @@
                     },
                     "roofTypeDescription": {
                         "type": "string"
+                    },
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
                     }
                 },
                 "type": "object"

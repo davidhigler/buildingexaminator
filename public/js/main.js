@@ -1697,6 +1697,85 @@ function loadBuildingsPage(page = 1, searchterm = '') {
 }
 
 /**
+ * Buildings
+ */
+
+function loadResidencesPage(page = 1, searchterm = '') {
+    if(localStorage.getItem('activeHousingstockId')) {
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residences',
+            type: 'GET',
+            data: {
+                page: page,
+                searchterm: searchterm
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('.material-tooltip').remove();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">cottage</i></td>\n' +
+                        '                <td>' + (element.identification ?? '') + '</td>\n' +
+                        '                <td>' + (element.intendedUse ?? '') + '</td>\n' +
+                        '                <td>' + (element.status ?? '') + '</td>\n' +
+                        '                <td>' + (element.surfaceArea ?? '') + '</td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Buildings</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s9">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadResidencesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Bag code</th>\n' +
+                    '                <th>Use</th>\n' +
+                    '                <th>Status</th>\n' +
+                    '                <th>Surface</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, searchterm, 'loadResidencesPage');
+
+                $('div#content').html(html);
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                hideLoader();
+            },
+        });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
  * Blocks
  */
 
@@ -2307,13 +2386,13 @@ function deleteBuildingType(id) {
 }
 
 /**
- * Buildingaddresses
+ * Addresses
  */
 
-function loadBuildingaddressesPage(page = 1, searchterm = '') {
+function loadAddressesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
             type: 'GET',
             data: {
                 page: page,
@@ -2332,29 +2411,31 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                 let rows = '';
                 $(data.data).each(function (index, element) {
                     rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + ' - ' + (element.rentalUnitNumber ?? '') + '<br />' + element.streetName + ' ' + element.houseNumber + ' ' + element.addition + '<br />' + element.zipcode + ' ' + element.city + '">\n' +
+                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + ' - ' + (element.rentalUnitNumber ?? '') + '<br />' + element.publicSpace.name + ' ' + element.houseNumber + (element.addition ? ' ' + element.addition : '') + '<br />' + element.zipcode + ' ' + element.city.name + '">\n' +
                         '                <td class="hide-on-small-only">\n' +
-                        '                    <a href="javascript:void(0);" onclick="loadBuildingaddressDetailPage(' + element.id + ');">\n' +
+                        '                    <a href="javascript:void(0);" onclick="loadAddressDetailPage(' + element.id + ');">\n' +
                         '                        <i class="material-icons prefix">home</i>\n' +
                         '                    </a>\n' +
                         '                </td>\n' +
                         '                <td class="hide-on-small-only">' + (element.rentalUnitNumber ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.streetName ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.publicSpace.name ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.houseNumber ?? '') + '</td>\n' +
                         '                <td class="hide-on-small-only">' + (element.addition ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.zipcode ?? '') + '</td>\n' +
+                        '                <td class="hide-on-small-only">' + (element.city.name ?? '') + '</td>\n' +
                         '                <td class="hide-on-med-and-up">' +
-                        '                    <a href="javascript:void(0);" onclick="loadBuildingaddressDetailPage(' + element.id + ');">\n' +
+                        '                    <a href="javascript:void(0);" onclick="loadAddressDetailPage(' + element.id + ');">\n' +
                         '                        <i class="material-icons small prefix" style="vertical-align:middle;">home</i>\n' +
                         '                    </a>\n' +
                         '                    ' + element.id + ' - ' + element.rentalUnitNumber + '<br />\n' +
-                        '                    ' + element.streetName + ' ' + element.houseNumber + element.addition + '<br />\n' +
-                        '                    ' + element.zipcode + ' ' + element.city + '\n' +
+                        '                    ' + element.publicSpace.name + ' ' + element.houseNumber + (element.addition ? ' ' + element.addition : '') + '<br />\n' +
+                        '                    ' + element.zipcode + ' ' + element.city.name + '\n' +
                         '                </td>\n' +
                         '                <td class="actions">\n' +
-                        '                    <button class="btn" name="edit" onclick="loadBuildingaddressEditPage(' + element.id + ');">\n' +
+                        '                    <button class="btn" name="edit" onclick="loadAddressEditPage(' + element.id + ');">\n' +
                         '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                         '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteBuildingaddress\');">\n' +
+                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.rentalUnitNumber + '\', \'deleteAddress\');">\n' +
                         '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
                         '                    </button>\n' +
                         '                </td>\n' +
@@ -2362,19 +2443,19 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                 });
 
                 let html =
-                    '    <h3 class="header">Buildingaddresses</h3>\n' +
+                    '    <h3 class="header">Addresses</h3>\n' +
                     '    <div class="row">\n' +
                     '        <div class="input-field col s6">\n' +
                     '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
                     '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
                     '        </div>\n' +
                     '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadBuildingaddressesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '            <button class="btn" onclick="loadAddressesPage(1, $(\'input#searchterm\').val());">\n' +
                     '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
                     '        <div class="input-field col s3">\n' +
-                    '            <button class="btn right" onclick="loadBuildingaddressNewPage();">\n' +
+                    '            <button class="btn right" onclick="loadAddressNewPage();">\n' +
                     '                <i class="material-icons">house_add</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
@@ -2387,6 +2468,8 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                     '                <th class="hide-on-small-only">Street name</th>\n' +
                     '                <th class="hide-on-small-only">House number</th>\n' +
                     '                <th class="hide-on-small-only">Addition</th>\n' +
+                    '                <th class="hide-on-small-only">Zipcode</th>\n' +
+                    '                <th class="hide-on-small-only">City</th>\n' +
                     '                <th class="hide-on-med-and-up">Address</th>\n' +
                     '                <th class="actions">Actions</th>\n' +
                     '            </tr>\n' +
@@ -2396,7 +2479,7 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, searchterm, 'loadBuildingaddressesPage');
+                html += addPagination(data.pager, searchterm, 'loadAddressesPage');
 
                 $('div#content').html(html);
             },
@@ -2413,7 +2496,7 @@ function loadBuildingaddressesPage(page = 1, searchterm = '') {
     }
 }
 
-function loadBuildingaddressNewPage() {
+function loadAddressNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
         $('#slide-out').sidenav('close');
@@ -2464,7 +2547,7 @@ function loadBuildingaddressNewPage() {
                 });
 
                 $('div#content').html(
-                    '    <h3 class="header">New buildingaddress</h3>\n' +
+                    '    <h3 class="header">New address</h3>\n' +
                     '    <form id="newbuildingaddress">\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
@@ -2634,7 +2717,7 @@ function loadBuildingaddressNewPage() {
                 $("form#newbuildingaddress button[name='cancel']").click(
                     function(event) {
                         event.preventDefault();
-                        loadBuildingaddressesPage();
+                        loadAddressesPage();
                     }
                 );
 
@@ -2673,7 +2756,7 @@ function loadBuildingaddressNewPage() {
                             $('#slide-out').sidenav('close');
                         },
                         success: function () {
-                            loadBuildingaddressesPage();
+                            loadAddressesPage();
                         },
                         error: function (jqXHR) {
                             loadErrorPage(jqXHR);
@@ -2692,10 +2775,10 @@ function loadBuildingaddressNewPage() {
     }
 }
 
-function loadBuildingaddressDetailPage(id) {
+function loadAddressDetailPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses/' + id,
             type: 'GET',
             dataType: 'json',
             accepts: {
@@ -2959,7 +3042,7 @@ function loadBuildingaddressDetailPage(id) {
     }
 }
 
-function loadBuildingaddressEditPage(id) {
+function loadAddressEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
         $('#slide-out').sidenav('close');
@@ -3289,7 +3372,7 @@ function loadBuildingaddressEditPage(id) {
                             $('#slide-out').sidenav('close');
                         },
                         success: function () {
-                            loadBuildingaddressesPage();
+                            loadAddressesPage();
                         },
                         error: function (jqXHR) {
                             loadErrorPage(jqXHR);
@@ -3308,17 +3391,17 @@ function loadBuildingaddressEditPage(id) {
     }
 }
 
-function deleteBuildingaddress(id) {
+function deleteAddress(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses/' + id,
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
                 $('#slide-out').sidenav('close');
             },
             success: function() {
-                loadBuildingaddressesPage();
+                loadAddressesPage();
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);

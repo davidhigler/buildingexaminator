@@ -12,6 +12,7 @@ use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\Municipality;
 use App\Entity\Portfolio\Neighbourhood;
 use App\Entity\Portfolio\PublicSpace;
+use App\Entity\Portfolio\Residence;
 use App\Entity\Portfolio\ResidentialArea;
 use App\Entity\Portfolio\Vtw;
 use App\Helpers\ErrorExtractor;
@@ -139,6 +140,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         property="data",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/Building")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="residences",
+ *     title="Residences",
+ *     description="An array of residences",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Residence")
  *     )
  * )
  * @OA\Schema(
@@ -364,6 +376,34 @@ class PortfolioController extends AbstractController
         ],
     ];
 
+    private const RESIDENCE_LIST_FIELDS =[
+        'id',
+        'identification',
+        'surfaceArea',
+        'status',
+        'intendedUse',
+        'intendedUseBasic',
+        'addresses' => [
+            'id',
+        ],
+    ];
+
+    private const RESIDENCE_DETAIL_FIELDS =[
+        'id',
+        'identification',
+        'surfaceArea',
+        'status',
+        'intendedUse',
+        'intendedUseBasic',
+        'addresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
+            'houseNumber',
+            'addition',
+        ],
+    ];
+
     private const BLOCK_LIST_FIELDS = [
         'id',
         'code',
@@ -419,28 +459,16 @@ class PortfolioController extends AbstractController
 
     private const ADDRESS_LIST_FIELDS = [
         'id',
-        'residentialArea' => [
-            'id',
-            'name',
-        ],
-        'block' => [
-            'id',
-            'name',
-        ],
-        'buildingType' => [
-            'id',
-            'name',
-        ],
-        'vtw' => [
-            'id',
-            'code',
-        ],
         'rentalUnitNumber',
-        'streetName',
+        'publicSpace' => [
+            'name'
+        ],
         'houseNumber',
         'addition',
         'zipcode',
-        'city',
+        'city' => [
+            'name'
+        ],
     ];
 
     private const ADDRESS_DETAIL_FIELDS = [
@@ -521,7 +549,7 @@ class PortfolioController extends AbstractController
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $adapter = $housingStockRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -839,7 +867,7 @@ class PortfolioController extends AbstractController
         $municipalityRepository = $this->getDoctrine()->getRepository(Municipality::class);
         /** @var QueryBuilder $adapter */
         $adapter = $municipalityRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -946,7 +974,7 @@ class PortfolioController extends AbstractController
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         /** @var QueryBuilder $adapter */
         $adapter = $residentialAreaRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1053,7 +1081,7 @@ class PortfolioController extends AbstractController
         $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
         /** @var QueryBuilder $adapter */
         $adapter = $neighbourhoodRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1159,7 +1187,7 @@ class PortfolioController extends AbstractController
 
         $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
         $adapter = $vtwRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1282,7 +1310,7 @@ class PortfolioController extends AbstractController
         $adapter = $cityRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1417,7 +1445,7 @@ class PortfolioController extends AbstractController
         $adapter = $publicSpaceRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1552,7 +1580,7 @@ class PortfolioController extends AbstractController
         $adapter = $buildingRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1626,9 +1654,142 @@ class PortfolioController extends AbstractController
     }
 
     /**
+     * RESIDENCES
+     */
+
+    #[Route('/housingstocks/{housingStockId}/residences', name: 'listresidences', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/residences",
+     *     summary="Returns details about multiple residences",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple residences",
+     *         @OA\JsonContent(ref="#/components/schemas/residences")
+     *     )
+     * )
+     */
+    public function getResidences(string $housingStockId, Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $residenceRepository = $this->getDoctrine()->getRepository(Residence::class);
+        /** @var QueryBuilder $adapter */
+        $adapter = $residenceRepository->createQueryBuilder('o');
+        $adapter->join('o.addresses', 'a');
+        $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        if (!empty($searchTerm)) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.identification', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->groupBy('o.id');
+        $adapter->orderBy('o.identification', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::RESIDENCE_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/residences/{residenceId}', name: 'getresidence', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/residences/{residenceId}",
+     *     summary="Returns details about a residence",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="publicSpaceId",
+     *         description="The id of a residence",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a residence",
+     *         @OA\JsonContent(ref="#/components/schemas/Residence")
+     *     )
+     * )
+     */
+    public function getResidence(string $residenceId): Response
+    {
+        $residenceRepository = $this->getDoctrine()->getRepository(Residence::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $residenceRepository->find((int)$residenceId),
+                self::RESIDENCE_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
      * BLOCKS
-     *
-     * @Todo Define the DELETE
      */
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'listblocks', methods: ['GET'])]
@@ -1687,7 +1848,7 @@ class PortfolioController extends AbstractController
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         $adapter = $blockRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -2014,8 +2175,6 @@ class PortfolioController extends AbstractController
 
     /**
      * BUILDINGTYPES
-     *
-     * @Todo Define the POST, PUT and DELETE methods
      */
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['GET'])]
@@ -2074,7 +2233,7 @@ class PortfolioController extends AbstractController
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
         $adapter = $buildingTypeRepository->createQueryBuilder('o');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -2445,20 +2604,21 @@ class PortfolioController extends AbstractController
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+        /** @var QueryBuilder $adapter */
         $adapter = $addressRepository->createQueryBuilder('o');
+        $adapter->join('o.city', 'c');
+        $adapter->join('o.publicSpace', 'p');
         $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
-                        $adapter->expr()->like('o.streetName', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('o.city', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.rentalUnitNumber', $adapter->expr()->literal($searchTerm . '%')),
                         $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
                     )
                 );
         }
-        $adapter->orderBy('o.city', 'ASC')->orderBy('o.streetName', 'ASC')->orderBy('o.houseNumber', 'ASC');
+        $adapter->orderBy('c.name', 'ASC')->addOrderBy('p.name', 'ASC')->addOrderBy('o.houseNumber', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
