@@ -55,6 +55,11 @@ class BuildingType extends IdTimeIdentification
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function setHousingStock(HousingStock $housingStock): void
     {
         $this->housingStock = $housingStock;

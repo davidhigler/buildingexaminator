@@ -37,6 +37,11 @@ class Neighbourhood extends IdCodeName
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function addAddress(Address $address): void
     {
         $this->addresses->add($address);

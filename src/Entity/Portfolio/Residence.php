@@ -118,6 +118,11 @@ class Residence extends IdBagIds
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function setSurfaceArea(int $surfaceArea): void
     {
         $this->surfaceArea = $surfaceArea;

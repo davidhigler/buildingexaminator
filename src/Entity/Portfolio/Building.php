@@ -124,6 +124,11 @@ class Building extends IdBagIds
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function setConstructionYear(int $constructionYear): void
     {
         $this->constructionYear = $constructionYear;

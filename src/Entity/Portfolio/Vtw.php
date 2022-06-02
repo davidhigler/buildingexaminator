@@ -158,6 +158,11 @@ class Vtw extends Id
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function setCode(string $code): void
     {
         $this->code = $code;

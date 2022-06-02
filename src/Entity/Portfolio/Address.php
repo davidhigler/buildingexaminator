@@ -227,7 +227,7 @@ class Address extends IdBagIdsTime
     protected bool $daeb;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vtw", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Vtw", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="vtw_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(

@@ -255,6 +255,7 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'numberOfAddresses',
     ];
 
     private const MUNICIPALITY_DETAIL_FIELDS = [
@@ -267,6 +268,7 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'numberOfAddresses',
     ];
 
     private const RESIDENTIALAREA_DETAIL_FIELDS = [
@@ -279,6 +281,7 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'numberOfAddresses',
     ];
 
     private const NEIGHBOURHOOD_DETAIL_FIELDS = [
@@ -293,6 +296,7 @@ class PortfolioController extends AbstractController
         'typeDescription',
         'constructionYearDescription',
         'roofTypeDescription',
+        'numberOfAddresses',
     ];
 
     private const VTW_DETAIL_FIELDS = [
@@ -308,6 +312,7 @@ class PortfolioController extends AbstractController
         'id',
         'identification',
         'name',
+        'numberOfAddresses',
     ];
 
     private const CITY_DETAIL_FIELDS =[
@@ -325,9 +330,6 @@ class PortfolioController extends AbstractController
         'identification',
         'name',
         'type',
-        'addresses' => [
-            'id',
-        ],
         'numberOfAddresses',
     ];
 
@@ -354,9 +356,7 @@ class PortfolioController extends AbstractController
         'status',
         'residenceCount',
         'surfaceArea',
-        'addresses' => [
-            'id',
-        ],
+        'numberOfAddresses',
     ];
 
     private const BUILDING_DETAIL_FIELDS =[
@@ -383,9 +383,7 @@ class PortfolioController extends AbstractController
         'status',
         'intendedUse',
         'intendedUseBasic',
-        'addresses' => [
-            'id',
-        ],
+        'numberOfAddresses',
     ];
 
     private const RESIDENCE_DETAIL_FIELDS =[
@@ -409,11 +407,8 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'addresses' => [
-            'id',
-        ],
-        'numberOfAddresses',
         'financialNumber',
+        'numberOfAddresses',
     ];
 
     private const BLOCK_DETAIL_FIELDS = [
@@ -437,9 +432,7 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'description',
-        'addresses' => [
-            'id',
-        ],
+        'numberOfAddresses',
     ];
 
     private const BUILDINGTYPE_DETAIL_FIELDS = [
@@ -473,34 +466,21 @@ class PortfolioController extends AbstractController
 
     private const ADDRESS_DETAIL_FIELDS = [
         'id',
-        'residentialArea' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'block' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'buildingType' => [
-            'id',
-            'code',
-            'name',
-        ],
-        'vtw' => [
-            'id',
-            'code',
-            'typeDescription',
-            'buildingTypeDescription',
-            'constructionYearDescription',
-            'roofTypeDescription',
-        ],
+        'housingStock' => self::HOUSING_STOCK_LIST_FIELDS,
+        'municipality' => self::MUNICIPALITY_LIST_FIELDS,
+        'residentialArea' => self::RESIDENTIALAREA_LIST_FIELDS,
+        'neighbourhood' => self::NEIGHBOURHOOD_LIST_FIELDS,
+        'vtw' => self::VTW_LIST_FIELDS,
+        'city' => self::CITY_LIST_FIELDS,
+        'publicSpace' => self::PUBLICSPACE_LIST_FIELDS,
+        'building' => self::BUILDING_LIST_FIELDS,
+        'residence' => self::RESIDENCE_LIST_FIELDS,
+        'block' => self::BLOCK_LIST_FIELDS,
+        'buildingType' => self::BUILDING_LIST_FIELDS,
         'rentalUnitNumber',
         'houseNumber',
         'addition',
         'zipcode',
-        'city',
         'orientation',
         'daeb',
     ];

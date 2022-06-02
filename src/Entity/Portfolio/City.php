@@ -59,6 +59,11 @@ class City extends IdBagIds
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function setName(string $name): void
     {
         $this->name = $name;
