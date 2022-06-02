@@ -5,7 +5,9 @@ namespace App\Controller\Api\V1;
 use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
+use App\Entity\Portfolio\Building;
 use App\Entity\Portfolio\BuildingType;
+use App\Entity\Portfolio\City;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Portfolio\Municipality;
 use App\Entity\Portfolio\Neighbourhood;
@@ -107,14 +109,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
- *     schema="blocks",
- *     title="Blocks",
- *     description="An array of blocks",
+ *     schema="cities",
+ *     title="Cities",
+ *     description="An array of cities",
  *     type="object",
  *     @OA\Property(
  *         property="data",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/Block")
+ *         @OA\Items(ref="#/components/schemas/City")
  *     )
  * )
  * @OA\Schema(
@@ -126,6 +128,28 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         property="data",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/PublicSpace")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="buildings",
+ *     title="Buildings",
+ *     description="An array of buildings",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Building")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="blocks",
+ *     title="Blocks",
+ *     description="An array of blocks",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Block")
  *     )
  * )
  * @OA\Schema(
@@ -251,23 +275,56 @@ class PortfolioController extends AbstractController
         'name',
     ];
 
-    private const PUBLICSPACE_LIST_FIELDS = [
+    private const VTW_LIST_FIELDS = [
         'id',
         'code',
+        'typeDescription',
+        'constructionYearDescription',
+        'roofTypeDescription',
+    ];
+
+    private const VTW_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'typeDescription',
+        'buildingTypeDescription',
+        'constructionYearDescription',
+        'roofTypeDescription',
+    ];
+
+    private const CITY_LIST_FIELDS =[
+        'id',
+        'identification',
         'name',
-        'description',
+    ];
+
+    private const CITY_DETAIL_FIELDS =[
+        'id',
+        'objectId',
+        'identification',
+        'name',
+        'addresses' => [
+            'id',
+        ],
+    ];
+
+    private const PUBLICSPACE_LIST_FIELDS = [
+        'id',
+        'identification',
+        'name',
+        'type',
         'addresses' => [
             'id',
         ],
         'numberOfAddresses',
-        'financialNumber',
     ];
 
     private const PUBLICSPACE_DETAIL_FIELDS = [
         'id',
-        'code',
+        'objectId',
+        'identification',
         'name',
-        'description',
+        'type',
         'addresses' => [
             'id',
             'rentalUnitNumber',
@@ -276,7 +333,35 @@ class PortfolioController extends AbstractController
             'addition',
         ],
         'numberOfAddresses',
-        'financialNumber',
+    ];
+
+    private const BUILDING_LIST_FIELDS =[
+        'id',
+        'identification',
+        'constructionYear',
+        'status',
+        'residenceCount',
+        'surfaceArea',
+        'addresses' => [
+            'id',
+        ],
+    ];
+
+    private const BUILDING_DETAIL_FIELDS =[
+        'id',
+        'objectId',
+        'identification',
+        'constructionYear',
+        'status',
+        'residenceCount',
+        'surfaceArea',
+        'addresses' => [
+            'id',
+            'rentalUnitNumber',
+            'zipcode',
+            'houseNumber',
+            'addition',
+        ],
     ];
 
     private const BLOCK_LIST_FIELDS = [
@@ -390,15 +475,6 @@ class PortfolioController extends AbstractController
         'city',
         'orientation',
         'daeb',
-    ];
-
-    private const VTW_LIST_FIELDS = [
-        'id',
-        'code',
-        'typeDescription',
-        'buildingTypeDescription',
-        'constructionYearDescription',
-        'roofTypeDescription',
     ];
 
     /**
@@ -804,7 +880,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -982,7 +1059,7 @@ class PortfolioController extends AbstractController
                     $adapter->expr()->orX(
                         $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
                         $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
-                        $adapter->expr()->eq('0.id', $adapter->expr()->literal($searchTerm))
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
                     )
                 );
         }
@@ -1017,7 +1094,8 @@ class PortfolioController extends AbstractController
      *             format="int64",
      *         ),
      *         in="path",
-     *         required=true
+     *         required=true,
+     *         example=1
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -1038,6 +1116,246 @@ class PortfolioController extends AbstractController
     }
 
     /**
+     * VTWS
+     */
+
+    #[Route('/vtws', name: 'listvtws', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/vtws",
+     *     summary="Returns details about multiple vtws",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple vtws",
+     *         @OA\JsonContent(ref="#/components/schemas/vtws")
+     *     )
+     * )
+     */
+    public function getVtws(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
+        $adapter = $vtwRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.typeDescription', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.id', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::VTW_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/vtws/{vtwId}', name: 'getvtw', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/vtws/{vtwId}",
+     *     summary="Returns details about a vtw",
+     *     @OA\Parameter(
+     *         name="neighbourhoodId",
+     *         description="The id of a vtw",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a vtw",
+     *         @OA\JsonContent(ref="#/components/schemas/Vtw")
+     *     )
+     * )
+     */
+    public function getVtw(string $vtwId): Response
+    {
+        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $vtwRepository->find((int)$vtwId),
+                self::VTW_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
+     * CITIES
+     */
+
+    #[Route('/housingstocks/{housingStockId}/cities', name: 'listcities', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/cities",
+     *     summary="Returns details about multiple cities",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple cities",
+     *         @OA\JsonContent(ref="#/components/schemas/cities")
+     *     )
+     * )
+     */
+    public function getCities(string $housingStockId, Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $cityRepository = $this->getDoctrine()->getRepository(City::class);
+        $adapter = $cityRepository->createQueryBuilder('o');
+        $adapter->join('o.addresses', 'a');
+        $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->groupBy('o.id');
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::CITY_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/cities/{cityId}', name: 'getcity', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/cities/{cityId}",
+     *     summary="Returns details about a city",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="cityId",
+     *         description="The id of a city",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a city",
+     *         @OA\JsonContent(ref="#/components/schemas/City")
+     *     )
+     * )
+     */
+    public function getCity(string $cityId): Response
+    {
+        $cityRepository = $this->getDoctrine()->getRepository(City::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $cityRepository->find((int)$cityId),
+                self::CITY_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
      * PUBLICSPACES
      */
 
@@ -1048,7 +1366,7 @@ class PortfolioController extends AbstractController
      *     summary="Returns details about multiple publicspaces",
      *     @OA\Parameter(
      *         name="housingStockId",
-     *         description="The id of the public space",
+     *         description="The id of the housingstock",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -1104,7 +1422,6 @@ class PortfolioController extends AbstractController
                 ->andWhere(
                     $adapter->expr()->orX(
                         $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
                         $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
                     )
                 );
@@ -1134,7 +1451,18 @@ class PortfolioController extends AbstractController
      *     path="/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}",
      *     summary="Returns details about a public space",
      *     @OA\Parameter(
-     *         name="neighbourhoodId",
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="publicSpaceId",
      *         description="The id of a public space",
      *         @OA\Schema(
      *             type="integer",
@@ -1158,6 +1486,141 @@ class PortfolioController extends AbstractController
             ApiRenderEngine::renderData(
                 $publicSpaceRepository->find((int)$publicSpaceId),
                 self::PUBLICSPACE_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /**
+     * BUILDINGS
+     */
+
+    #[Route('/housingstocks/{housingStockId}/buildings', name: 'listbuildings', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/buildings",
+     *     summary="Returns details about multiple buildings",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple buildings",
+     *         @OA\JsonContent(ref="#/components/schemas/buildings")
+     *     )
+     * )
+     */
+    public function getBuildings(string $housingStockId, Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $buildingRepository = $this->getDoctrine()->getRepository(Building::class);
+        /** @var QueryBuilder $adapter */
+        $adapter = $buildingRepository->createQueryBuilder('o');
+        $adapter->join('o.addresses', 'a');
+        $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.identification', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->groupBy('o.id');
+        $adapter->orderBy('o.identification', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::BUILDING_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/buildings/{buildingId}', name: 'getbuilding', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/buildings/{buildingId}",
+     *     summary="Returns details about a building",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housingstock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="publicSpaceId",
+     *         description="The id of a building",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a building",
+     *         @OA\JsonContent(ref="#/components/schemas/Building")
+     *     )
+     * )
+     */
+    public function getBuilding(string $buildingId): Response
+    {
+        $buildingRepository = $this->getDoctrine()->getRepository(Building::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $buildingRepository->find((int)$buildingId),
+                self::BUILDING_DETAIL_FIELDS
             )
         );
     }
@@ -2430,78 +2893,6 @@ class PortfolioController extends AbstractController
                     ]
                 ),
                 self::ADDRESS_DETAIL_FIELDS
-            )
-        );
-    }
-
-    /**
-     * VTWS
-     */
-
-    #[Route('/vtws', name: 'vtws', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/vtws",
-     *     summary="Returns details about multiple vtws",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple vtws",
-     *         @OA\JsonContent(ref="#/components/schemas/vtws")
-     *     )
-     * )
-     */
-    public function getVtws(Request $request): Response
-    {
-        $page = $request->query->get('page');
-        $searchTerm = $request->query->get('searchterm');
-
-        $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
-        $adapter = $vtwRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
-            $adapter
-                ->andWhere(
-                    $adapter->expr()->orX(
-                        $adapter->expr()->like('o.typeDescription', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
-                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
-                    )
-                );
-        }
-        $adapter->orderBy('o.typeDescription', 'ASC');
-
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
-        }
-
-        return $this->json(
-            ApiRenderEngine::renderData(
-                $data,
-                self::VTW_LIST_FIELDS
             )
         );
     }

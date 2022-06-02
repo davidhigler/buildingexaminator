@@ -53,7 +53,7 @@ class PublicSpace extends IdBagIds
     private string $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="housingStock", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="publicSpace", fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
@@ -80,14 +80,19 @@ class PublicSpace extends IdBagIds
         return $this->addresses;
     }
 
-    public function setType(string $type): void
+    public function getNumberOfAddresses(): int
     {
-        $this->type = $type;
+        return count($this->addresses);
     }
 
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
     public function addAddress(Address $address): void

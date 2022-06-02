@@ -3,6 +3,8 @@
 namespace App\Entity\Portfolio;
 
 use App\Entity\SuperClasses\IdBagIds;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
@@ -84,9 +86,17 @@ class Building extends IdBagIds
      */
     private int $surfaceArea;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="building", fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/addresses")
+     */
+    protected Collection $addresses;
+
     #[Pure]
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
     }
 
     public function getConstructionYear(): int
@@ -109,6 +119,11 @@ class Building extends IdBagIds
         return $this->surfaceArea;
     }
 
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
     public function setConstructionYear(int $constructionYear): void
     {
         $this->constructionYear = $constructionYear;
@@ -127,5 +142,15 @@ class Building extends IdBagIds
     public function setSurfaceArea(int $surfaceArea): void
     {
         $this->surfaceArea = $surfaceArea;
+    }
+
+    public function addAddress(Address $address): void
+    {
+        $this->addresses->add($address);
+    }
+
+    public function removeAddress(Address $address): void
+    {
+        $this->addresses->removeElement($address);
     }
 }

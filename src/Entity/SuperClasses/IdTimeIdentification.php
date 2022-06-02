@@ -60,7 +60,7 @@ class IdTimeIdentification extends IdTime
      *
      * @OA\Property()
      */
-    protected string $description;
+    protected ?string $description;
 
     public function getCode(): string
     {
@@ -72,7 +72,7 @@ class IdTimeIdentification extends IdTime
         return $this->name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -87,7 +87,7 @@ class IdTimeIdentification extends IdTime
         $this->name = $name;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

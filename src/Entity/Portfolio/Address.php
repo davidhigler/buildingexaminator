@@ -109,7 +109,7 @@ class Address extends IdBagIdsTime
     protected string $rentalUnitNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Residence", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Residence", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="residence_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -121,7 +121,7 @@ class Address extends IdBagIdsTime
     protected Residence $residence;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Building", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Building", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="building_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -195,7 +195,7 @@ class Address extends IdBagIdsTime
     protected string $zipcode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="addresses", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(

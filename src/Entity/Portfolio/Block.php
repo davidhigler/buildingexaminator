@@ -53,7 +53,7 @@ class Block extends IdTimeIdentification
      *
      * @OA\Property()
      */
-    protected string $financialNumber;
+    protected ?string $financialNumber;
 
     #[Pure]
     public function __construct()
@@ -76,7 +76,7 @@ class Block extends IdTimeIdentification
         return count($this->addresses);
     }
 
-    public function getFinancialNumber(): string
+    public function getFinancialNumber(): ?string
     {
         return $this->financialNumber;
     }
@@ -96,7 +96,7 @@ class Block extends IdTimeIdentification
         $this->addresses->removeElement($address);
     }
 
-    public function setFinancialNumber(string $financialNumber): void
+    public function setFinancialNumber(?string $financialNumber): void
     {
         $this->financialNumber = $financialNumber;
     }

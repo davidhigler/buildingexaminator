@@ -7,6 +7,10 @@ $(document).ready(function(){
 });
 
 /**
+ * #################################################
+ */
+
+/**
  * Support functions
  */
 
@@ -464,6 +468,10 @@ function loadTestPage() {
 
     hideLoader();
 }
+
+/**
+ * #################################################
+ */
 
 /**
  * Owners
@@ -1162,13 +1170,309 @@ function deleteHousingstock(id) {
 }
 
 /**
+ * #################################################
+ */
+
+/**
+ * Municipalities
+ */
+
+function loadMunicipalitiesPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/municipalities',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('.material-tooltip').remove();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data.data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_compact</i></td>\n' +
+                    '                <td>' + (element.code ?? '') + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
+                    '            </tr>\n';
+            });
+
+            let html =
+                '    <h3 class="header">Municipalities</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s9">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadMunicipalitiesPage(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Code</th>\n' +
+                '                <th>Name</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n';
+
+            html += addPagination(data.pager, searchterm, 'loadMunicipalitiesPage');
+
+            $('div#content').html(html);
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+/**
  * ResidentialAreas
  */
 
 function loadResidentialAreasPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/residentialareas',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('.material-tooltip').remove();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data.data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_quilt</i></td>\n' +
+                    '                <td>' + (element.code ?? '') + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
+                    '            </tr>\n';
+            });
+
+            let html =
+                '    <h3 class="header">Residential areas</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s9">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadResidentialAreasPage(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Code</th>\n' +
+                '                <th>Name</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n';
+
+            html += addPagination(data.pager, searchterm, 'loadResidentialAreasPage');
+
+            $('div#content').html(html);
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+/**
+ * Neighbourhoods
+ */
+
+function loadNeighbourhoodsPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/neighbourhoods',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('.material-tooltip').remove();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data.data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_module</i></td>\n' +
+                    '                <td>' + (element.code ?? '') + '</td>\n' +
+                    '                <td>' + (element.name ?? '') + '</td>\n' +
+                    '            </tr>\n';
+            });
+
+            let html =
+                '    <h3 class="header">Neighbourhoods</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s9">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadNeighbourhoodsPage(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Code</th>\n' +
+                '                <th>Name</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n';
+
+            html += addPagination(data.pager, searchterm, 'loadNeighbourhoodsPage');
+
+            $('div#content').html(html);
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+/**
+ * Vtws
+ */
+
+function loadVtws(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/vtws',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('.material-tooltip').remove();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data.data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">villa</i></td>\n' +
+                    '                <td>' + (element.code ?? '') + '</td>\n' +
+                    '                <td>' + (element.typeDescription ?? '') + '</td>\n' +
+                    '                <td class="hide-on-small-only" style="white-space: nowrap;">' + (element.constructionYearDescription ?? '') + '</td>\n' +
+                    '                <td class="hide-on-small-only" style="white-space: nowrap;">' + (element.roofTypeDescription ?? '') + '</td>\n' +
+                    '            </tr>\n';
+            });
+
+            let html =
+                '    <h3 class="header">VTWs</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s9">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadVtws(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Code</th>\n' +
+                '                <th>Description</th>\n' +
+                '                <th class="hide-on-small-only">Year</th>\n' +
+                '                <th class="hide-on-small-only">Roof</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n';
+
+            html += addPagination(data.pager, searchterm, 'loadVtws');
+
+            $('div#content').html(html);
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+/**
+ * #################################################
+ */
+
+/**
+ * Cities
+ */
+
+function loadCitiesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/cities',
             type: 'GET',
             data: {
                 page: page,
@@ -1187,36 +1491,23 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                 let rows = '';
                 $(data.data).each(function (index, element) {
                     rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">view_quilt</i></td>\n' +
-                        '                <td>' + (element.code ?? '') + '</td>\n' +
+                        '            <tr>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">location_city</i></td>\n' +
+                        '                <td>' + (element.identification ?? '') + '</td>\n' +
                         '                <td>' + (element.name ?? '') + '</td>\n' +
-                        '                <td class="actions">\n' +
-                        '                    <button class="btn" name="edit" onclick="loadResidentialAreaEditPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                        '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteResidentialArea\');">\n' +
-                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                        '                    </button>\n' +
-                        '                </td>\n' +
                         '            </tr>\n';
                 });
 
                 let html =
-                    '    <h3 class="header">Residential areas</h3>\n' +
+                    '    <h3 class="header">Cities</h3>\n' +
                     '    <div class="row">\n' +
-                    '        <div class="input-field col s6">\n' +
+                    '        <div class="input-field col s9">\n' +
                     '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
                     '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
                     '        </div>\n' +
                     '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadResidentialAreasPage(1, $(\'input#searchterm\').val());">\n' +
+                    '            <button class="btn" onclick="loadCitiesPage(1, $(\'input#searchterm\').val());">\n' +
                     '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn right" onclick="loadResidentialAreaNewPage();">\n' +
-                    '                <i class="material-icons">add_view_quilt</i><span class="button-content hide-on-small-only">New</span>\n' +
                     '            </button>\n' +
                     '        </div>\n' +
                     '    </div>\n' +
@@ -1224,9 +1515,8 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                     '        <thead>\n' +
                     '            <tr>\n' +
                     '                <th class="hide-on-small-only"></th>\n' +
-                    '                <th>Code</th>\n' +
+                    '                <th>Bag code</th>\n' +
                     '                <th>Name</th>\n' +
-                    '                <th class="actions">Actions</th>\n' +
                     '            </tr>\n' +
                     '        </thead>\n' +
                     '        <tbody>\n' +
@@ -1234,7 +1524,7 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                     '        </tbody>\n' +
                     '    </table>\n';
 
-                html += addPagination(data.pager, searchterm, 'loadResidentialAreasPage');
+                html += addPagination(data.pager, searchterm, 'loadCitiesPage');
 
                 $('div#content').html(html);
             },
@@ -1242,7 +1532,6 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 hideLoader();
             },
         });
@@ -1251,181 +1540,73 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
     }
 }
 
-function loadResidentialAreaNewPage() {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $('div#content').html(
-            '    <h3 class="header">New residential area</h3>\n' +
-            '    <form id="newresidentialarea">\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">qr_code_2</i>\n' +
-            '                <input id="code" name="code" type="text" class="validate">\n' +
-            '                <label for="code">Code</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">short_text</i>\n' +
-            '                <input id="name" name="name" type="text" class="validate">\n' +
-            '                <label for="name">Name</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">description</i>\n' +
-            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-            '                <label for="description">Description</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn" name="create" type="submit">\n' +
-            '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn right" name="cancel">\n' +
-            '                    <i class="material-icons left">cancel</i>Cancel\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '    </form>\n'
-        );
+/**
+ * Public spaces
+ */
 
-        $("form#newresidentialarea button[name='cancel']").click(
-            function(event) {
-                event.preventDefault();
-                loadResidentialAreasPage();
-            }
-        );
-
-        $('form#newresidentialarea').submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=UTF-8',
-                accepts: {
-                    json: 'application/json'
-                },
-                data: JSON.stringify(
-                    {
-                        'code': $('input#code').val(),
-                        'name': $('input#name').val(),
-                        'description': $('textarea#description').val(),
-                    }
-                ),
-                beforeSend: function () {
-                    showLoader();
-                    $('#slide-out').sidenav('close');
-                },
-                success: function () {
-                    loadResidentialAreasPage();
-                },
-                error: function (jqXHR) {
-                    loadErrorPage(jqXHR);
-                },
-                complete: function () {
-                    hideLoader();
-                },
-            });
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
-
-function loadResidentialAreaEditPage(id) {
+function loadPublicSpacesPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/publicspaces',
             type: 'GET',
+            data: {
+                page: page,
+                searchterm: searchterm
+            },
             dataType: 'json',
             accepts: {
                 json: 'application/json'
             },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
-                $('div#content').html(
-                    '    <h3 class="header">Edit residential area</h3>\n' +
-                    '    <form id="editresidentialarea">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                    '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                    '                <label for="id" class="active">Id</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                    '                <label for="code" class="active">Code</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">short_text</i>\n' +
-                    '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                    '                <label for="name" class="active">Name</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">description</i>\n' +
-                    '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                    '                <label for="description" class="active">Description</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <button type="submit" class="btn" name="save">\n' +
-                    '                    <i class="material-icons left">save</i>Save\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
-                );
-
-                $('form#editresidentialarea').submit(function(event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
-                        type: 'PUT',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=UTF-8',
-                        accepts: {
-                            json: 'application/json'
-                        },
-                        data: JSON.stringify(
-                            {
-                                'code': $('input#code').val(),
-                                'name': $('input#name').val(),
-                                'description': $('textarea#description').val(),
-                            }
-                        ),
-                        beforeSend: function() {
-                            showLoader();
-                            $('#slide-out').sidenav('close');
-                        },
-                        success: function() {
-                            loadResidentialAreasPage();
-                        },
-                        error: function(jqXHR) {
-                            loadErrorPage(jqXHR);
-                        },
-                        complete: function() {
-                            hideLoader();
-                        },
-                    });
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">road</i></td>\n' +
+                        '                <td>' + (element.identification ?? '') + '</td>\n' +
+                        '                <td>' + (element.name ?? '') + '</td>\n' +
+                        '                <td>' + (element.type ?? '') + '</td>\n' +
+                        '            </tr>\n';
                 });
+
+                let html =
+                    '    <h3 class="header">Public spaces</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s9">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadPublicSpacesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Bag code</th>\n' +
+                    '                <th>Name</th>\n' +
+                    '                <th>Type</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, searchterm, 'loadPublicSpacesPage');
+
+                $('div#content').html(html);
             },
-            error: function (jqXHR) {
-                loadErrorPage(jqXHR)
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
             },
             complete: function() {
                 hideLoader();
@@ -1436,20 +1617,77 @@ function loadResidentialAreaEditPage(id) {
     }
 }
 
-function deleteResidentialArea(id) {
+/**
+ * Buildings
+ */
+
+function loadBuildingsPage(page = 1, searchterm = '') {
     if(localStorage.getItem('activeHousingstockId')) {
         $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas/' + id,
-            type: 'DELETE',
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildings',
+            type: 'GET',
+            data: {
+                page: page,
+                searchterm: searchterm
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
             beforeSend: function() {
                 showLoader();
+                $('.material-tooltip').remove();
                 $('#slide-out').sidenav('close');
             },
-            success: function() {
-                loadResidentialAreasPage();
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">home_filled</i></td>\n' +
+                        '                <td>' + (element.identification ?? '') + '</td>\n' +
+                        '                <td>' + (element.constructionYear ?? '') + '</td>\n' +
+                        '                <td>' + (element.residenceCount ?? '') + '</td>\n' +
+                        '                <td>' + (element.surfaceArea ?? '') + '</td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Buildings</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s9">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadBuildingsPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Bag code</th>\n' +
+                    '                <th>Year</th>\n' +
+                    '                <th>Residences</th>\n' +
+                    '                <th>Surface</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, searchterm, 'loadBuildingsPage');
+
+                $('div#content').html(html);
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
+            },
+            complete: function() {
                 hideLoader();
             },
         });
@@ -1485,7 +1723,7 @@ function loadBlocksPage(page = 1, searchterm = '') {
                 $(data.data).each(function (index, element) {
                     rows +=
                         '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">view_module</i></td>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">view_comfortable</i></td>\n' +
                         '                <td>' + (element.code ?? '') + '</td>\n' +
                         '                <td>' + (element.name ?? '') + '</td>\n' +
                         '                <td class="actions">\n' +
@@ -2069,303 +2307,6 @@ function deleteBuildingType(id) {
 }
 
 /**
- * Livingtypes
- */
-
-function loadLivingtypesPage(page = 1, searchterm = '') {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes',
-            type: 'GET',
-            data: {
-                page: page,
-                searchterm: searchterm
-            },
-            dataType: 'json',
-            accepts: {
-                json: 'application/json'
-            },
-            beforeSend: function() {
-                showLoader();
-                $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
-            },
-            success: function(data) {
-                let rows = '';
-                $(data.data).each(function (index, element) {
-                    rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">villa</i></td>\n' +
-                        '                <td>' + (element.code ?? '') + '</td>\n' +
-                        '                <td>' + (element.name ?? '') + '</td>\n' +
-                        '                <td class="actions">\n' +
-                        '                    <button class="btn" name="edit" onclick="loadLivingTypeEditPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                        '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteLivingType\');">\n' +
-                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                        '                    </button>\n' +
-                        '                </td>\n' +
-                        '            </tr>\n';
-                });
-
-                let html =
-                    '    <h3 class="header">Living types</h3>\n' +
-                    '    <div class="row">\n' +
-                    '        <div class="input-field col s6">\n' +
-                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadLivingtypesPage(1, $(\'input#searchterm\').val());">\n' +
-                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn right" onclick="loadLivingTypeNewPage();">\n' +
-                    '                <i class="material-icons">add_villa</i><span class="button-content hide-on-small-only">New</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '    <table>\n' +
-                    '        <thead>\n' +
-                    '            <tr>\n' +
-                    '                <th class="hide-on-small-only"></th>\n' +
-                    '                <th>Code</th>\n' +
-                    '                <th>Name</th>\n' +
-                    '                <th class="actions">Actions</th>\n' +
-                    '            </tr>\n' +
-                    '        </thead>\n' +
-                    '        <tbody>\n' +
-                    rows +
-                    '        </tbody>\n' +
-                    '    </table>\n';
-
-                html += addPagination(data.pager, searchterm, 'loadLivingtypesPage');
-
-                $('div#content').html(html);
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-                hideLoader();
-            },
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
-
-function loadLivingTypeNewPage() {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $('div#content').html(
-            '    <h3 class="header">New living type</h3>\n' +
-            '    <form id="newlivingtype">\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">qr_code_2</i>\n' +
-            '                <input id="code" name="code" type="text" class="validate">\n' +
-            '                <label for="code">Code</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">short_text</i>\n' +
-            '                <input id="name" name="name" type="text" class="validate">\n' +
-            '                <label for="name">Name</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">description</i>\n' +
-            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-            '                <label for="description">Description</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn" name="create" type="submit">\n' +
-            '                    <i class="material-icons left">add_villa</i>Create\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn right" name="cancel">\n' +
-            '                    <i class="material-icons left">cancel</i>Cancel\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '    </form>\n'
-        );
-
-        $("form#newlivingtype button[name='cancel']").click(
-            function(event) {
-                event.preventDefault();
-                loadLivingtypesPage();
-            }
-        );
-
-        $('form#newlivingtype').submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=UTF-8',
-                accepts: {
-                    json: 'application/json'
-                },
-                data: JSON.stringify(
-                    {
-                        'code': $('input#code').val(),
-                        'name': $('input#name').val(),
-                        'description': $('textarea#description').val(),
-                    }
-                ),
-                beforeSend: function () {
-                    showLoader();
-                    $('#slide-out').sidenav('close');
-                },
-                success: function () {
-                    loadLivingtypesPage();
-                },
-                error: function (jqXHR) {
-                    loadErrorPage(jqXHR);
-                },
-                complete: function () {
-                    hideLoader();
-                },
-            });
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
-
-function loadLivingTypeEditPage(id) {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $.ajax({
-            url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/livingtypes/' + id,
-            type: 'GET',
-            dataType: 'json',
-            accepts: {
-                json: 'application/json'
-            },
-            beforeSend: function() {
-                showLoader();
-                $('#slide-out').sidenav('close');
-            },
-            success: function(data) {
-                $('div#content').html(
-                    '    <h3 class="header">Edit living type</h3>\n' +
-                    '    <form id="editlivingtype">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                    '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                    '                <label for="id" class="active">Id</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                    '                <label for="code" class="active">Code</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">short_text</i>\n' +
-                    '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                    '                <label for="name" class="active">Name</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">description</i>\n' +
-                    '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                    '                <label for="description" class="active">Description</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <button type="submit" class="btn" name="save">\n' +
-                    '                    <i class="material-icons left">save</i>Save\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
-                );
-
-                $('form#editlivingtype').submit(function(event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: '/api/v1/housingstocks/' +localStorage.getItem('activeHousingstockId') + '/livingtypes/' + id,
-                        type: 'PUT',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=UTF-8',
-                        accepts: {
-                            json: 'application/json'
-                        },
-                        data: JSON.stringify(
-                            {
-                                'code': $('input#code').val(),
-                                'name': $('input#name').val(),
-                                'description': $('textarea#description').val(),
-                            }
-                        ),
-                        beforeSend: function() {
-                            showLoader();
-                            $('#slide-out').sidenav('close');
-                        },
-                        success: function() {
-                            loadLivingtypesPage();
-                        },
-                        error: function(jqXHR) {
-                            loadErrorPage(jqXHR);
-                        },
-                        complete: function() {
-                            hideLoader();
-                        },
-                    });
-                });
-            },
-            error: function (jqXHR) {
-                loadErrorPage(jqXHR)
-            },
-            complete: function() {
-                hideLoader();
-            },
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
-
-function deleteLivingType(id) {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes/' + id,
-            type: 'DELETE',
-            beforeSend: function() {
-                showLoader();
-                $('#slide-out').sidenav('close');
-            },
-            success: function() {
-                loadLivingtypesPage();
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-                hideLoader();
-            },
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
-
-/**
  * Buildingaddresses
  */
 
@@ -2536,7 +2477,7 @@ function loadBuildingaddressNewPage() {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_module</i>\n' +
+                    '                <i class="material-icons prefix">view_comfortable</i>\n' +
                     '                <select id="block" name="block">\n' +
                     blockHtmlOptions +
                     '                </select>\n' +
@@ -3180,7 +3121,7 @@ function loadBuildingaddressEditPage(id) {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_module</i>\n' +
+                    '                <i class="material-icons prefix">view_comfortable</i>\n' +
                     '                <select id="block" name="block">\n' +
                     blockHtmlOptions +
                     '                </select>\n' +
@@ -3388,3 +3329,7 @@ function deleteBuildingaddress(id) {
         loadInformationPage('You need to first choose an active housingstock');
     }
 }
+
+/**
+ * #################################################
+ */

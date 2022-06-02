@@ -430,7 +430,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -573,7 +574,8 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        }
+                        },
+                        "example": 1
                     }
                 ],
                 "responses": {
@@ -598,7 +600,7 @@
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the public space",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
