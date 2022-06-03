@@ -310,6 +310,7 @@ class PortfolioController extends AbstractController
 
     private const CITY_LIST_FIELDS =[
         'id',
+        'objectId',
         'identification',
         'name',
         'numberOfAddresses',
@@ -327,6 +328,7 @@ class PortfolioController extends AbstractController
 
     private const PUBLICSPACE_LIST_FIELDS = [
         'id',
+        'objectId',
         'identification',
         'name',
         'type',
@@ -351,6 +353,7 @@ class PortfolioController extends AbstractController
 
     private const BUILDING_LIST_FIELDS =[
         'id',
+        'objectId',
         'identification',
         'constructionYear',
         'status',
@@ -378,6 +381,7 @@ class PortfolioController extends AbstractController
 
     private const RESIDENCE_LIST_FIELDS =[
         'id',
+        'objectId',
         'identification',
         'surfaceArea',
         'status',
@@ -466,6 +470,8 @@ class PortfolioController extends AbstractController
 
     private const ADDRESS_DETAIL_FIELDS = [
         'id',
+        'objectId',
+        'identification',
         'housingStock' => self::HOUSING_STOCK_LIST_FIELDS,
         'municipality' => self::MUNICIPALITY_LIST_FIELDS,
         'residentialArea' => self::RESIDENTIALAREA_LIST_FIELDS,
@@ -476,7 +482,7 @@ class PortfolioController extends AbstractController
         'building' => self::BUILDING_LIST_FIELDS,
         'residence' => self::RESIDENCE_LIST_FIELDS,
         'block' => self::BLOCK_LIST_FIELDS,
-        'buildingType' => self::BUILDING_LIST_FIELDS,
+        'buildingType' => self::BUILDINGTYPE_LIST_FIELDS,
         'rentalUnitNumber',
         'houseNumber',
         'addition',
@@ -2712,6 +2718,11 @@ class PortfolioController extends AbstractController
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+
+
+
+
 
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         /** @var ResidentialArea $residentialArea */

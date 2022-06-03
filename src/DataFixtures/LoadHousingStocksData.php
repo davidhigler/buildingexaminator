@@ -24,8 +24,8 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
     {
         $housingStocks = [
             [
-                'code' => 'DobroTest01',
-                'name' => 'Dobro Building Examinator Test 01',
+                'code' => 'DT01',
+                'name' => 'Test 01',
                 'description' => 'This is the standard test environment of Dobro Building Examinator 1',
                 'owner' => 'L0000'
             ],

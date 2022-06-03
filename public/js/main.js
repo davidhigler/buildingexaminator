@@ -372,68 +372,6 @@ function loadTestPage() {
         });
     });
 
-    // require([
-    //     "esri/config",
-    //     "esri/Map",
-    //     "esri/views/MapView",
-    //     "esri/layers/FeatureLayer",
-    //     "esri/layers/support/LabelClass"
-    // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
-    //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-    //     const bagPandenLayerLabel = new LabelClass({
-    //         labelExpressionInfo: { expression: "$feature.objectid" },
-    //         allowOverrun: true,
-    //         deconflictionStrategy: "none",
-    //         symbol: {
-    //             type: "text",
-    //             color: "black"
-    //         }
-    //     });
-    //     const bagPandenLayer = new FeatureLayer({
-    //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-    //         definitionExpression:
-    //             "identificatie IN (" +
-    //                 "'0193100000017808', " +
-    //                 "'0193100000004644', " +
-    //                 "'0193100000058461', " +
-    //                 "'0193100000058462', " +
-    //                 "'0193100000018103', " +
-    //                 "'0193100000018102', " +
-    //                 "'0193100000018100', " +
-    //                 "'0193100000018075', " +
-    //                 "'0193100000018074', " +
-    //                 "'0193100000018073', " +
-    //                 "'0193100000018072', " +
-    //                 "'0193100000018071', " +
-    //                 "'0193100000018070'" +
-    //             ")",
-    //         minScale: 50000,
-    //         outFields: ['objectid'],
-    //         labelingInfo: bagPandenLayerLabel
-    //     });
-    //     const map = new Map({
-    //         basemap: "osm-light-gray",
-    //         layers: [
-    //             bagPandenLayer
-    //         ]
-    //     });
-    //     const view = new MapView({
-    //         map: map,
-    //         center: [6.0909033, 52.5129319],
-    //         zoom: 17,
-    //         container: "viewDiv",
-    //         constraints: {
-    //             snapToZoom: false
-    //         }
-    //     });
-    //     bagPandenLayer.when(() => {
-    //         return bagPandenLayer.queryExtent();
-    //     })
-    //     .then((response) => {
-    //         view.goTo(response.extent);
-    //     });
-    // });
-
     $('input#photoUpload').change(
         function(event) {
             $('img#photoPreview')
@@ -2502,24 +2440,15 @@ function loadAddressNewPage() {
         $('#slide-out').sidenav('close');
 
         $.when(
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
+            $.getJSON('/api/v1/vtws'),
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes'),
-            $.getJSON('/api/v1/vtws')
+            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes')
         ).then(
             function (
-                residentialAreas,
+                vtws,
                 blocks,
-                buildingtypes,
-                livingtypes,
-                vtws
+                buildingtypes
             ) {
-                let residentialAreaHtmlOptions = '                    <option disabled selected>Choose a residential area</option>\n';
-                residentialAreas[0].data.forEach(function(item) {
-                    residentialAreaHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                });
-
                 let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
                 blocks[0].data.forEach(function(item) {
                     blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
@@ -2528,11 +2457,6 @@ function loadAddressNewPage() {
                 let buildingTypeHtmlOptions = '                    <option disabled selected>Choose a building type</option>\n';
                 buildingtypes[0].data.forEach(function(item) {
                     buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                });
-
-                let livingTypeHtmlOptions = '                    <option disabled selected>Choose a living type</option>\n';
-                livingtypes[0].data.forEach(function(item) {
-                    livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
                 });
 
                 let vtwHtmlOptions = '                    <option disabled selected>Choose a vtw</option>\n';
@@ -2550,12 +2474,36 @@ function loadAddressNewPage() {
                     '    <h3 class="header">New address</h3>\n' +
                     '    <form id="newbuildingaddress">\n' +
                     '        <div class="row">\n' +
+                    '            <div class="col s12">\n' +
+                    '                <p>By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate API\'s.</p>' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_quilt</i>\n' +
-                    '                <select id="residentialarea" name="residentialarea">\n' +
-                    residentialAreaHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Residential area</label>\n' +
+                    '                <i class="material-icons prefix">zipcode</i>\n' +
+                    '                <input id="zipcode" name="zipcode" type="text" class="validate">\n' +
+                    '                <label for="zipcode">Zipcode</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">123</i>\n' +
+                    '                <input id="housenumber" name="housenumber" type="text" class="validate">\n' +
+                    '                <label for="housenumber">House number</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">abc</i>\n' +
+                    '                <input id="addition" name="addition" type="text" class="validate">\n' +
+                    '                <label for="addition">Addition</label>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="input-field col s12">\n' +
+                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate">\n' +
+                    '                <label for="rentalunitnumber">Rental unit number</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
@@ -2578,69 +2526,11 @@ function loadAddressNewPage() {
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">villa</i>\n' +
-                    '                <select id="livingtype" name="livingtype">\n' +
-                    livingTypeHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Living type</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
                     '                <i class="material-icons prefix">vtw</i>\n' +
                     '                <select id="vtw" name="vtw">\n' +
                     vtwHtmlOptions +
                     '                </select>\n' +
                     '                <label>Vtw</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate">\n' +
-                    '                <label for="rentalunitnumber">Rental unit number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">road</i>\n' +
-                    '                <input id="streetname" name="streetname" type="text" class="validate">\n' +
-                    '                <label for="streetname">Street name</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">123</i>\n' +
-                    '                <input id="housenumber" name="housenumber" type="text" class="validate">\n' +
-                    '                <label for="housenumber">House number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">abc</i>\n' +
-                    '                <input id="addition" name="addition" type="text" class="validate">\n' +
-                    '                <label for="addition">Addition</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">zipcode</i>\n' +
-                    '                <input id="zipcode" name="zipcode" type="text" class="validate">\n' +
-                    '                <label for="zipcode">Zipcode</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">location_city</i>\n' +
-                    '                <input id="city" name="city" type="text" class="validate">\n' +
-                    '                <label for="city">City</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">kadaster</i>\n' +
-                    '                <input id="bagid" name="bagid" type="text" class="validate">\n' +
-                    '                <label for="bagid">BAG id</label>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
@@ -2724,7 +2614,7 @@ function loadAddressNewPage() {
                 $('form#newbuildingaddress').submit(function (event) {
                     event.preventDefault();
                     $.ajax({
-                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses',
+                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses',
                         type: 'POST',
                         dataType: 'json',
                         contentType: 'application/json; charset=UTF-8',
@@ -2733,18 +2623,13 @@ function loadAddressNewPage() {
                         },
                         data: JSON.stringify(
                             {
-                                'residentialarea': parseInt($('select#residentialarea').val()),
-                                'block': parseInt($('select#block').val()),
-                                'buildingtype': parseInt($('select#buildingtype').val()),
-                                'livingtype': parseInt($('select#livingtype').val()),
-                                'vtw': parseInt($('select#vtw').val()),
-                                'rentalunitnumber': $('input#rentalunitnumber').val(),
-                                'streetname': $('input#streetname').val(),
+                                'zipcode': $('input#zipcode').val(),
                                 'housenumber': parseInt($('input#housenumber').val()),
                                 'addition': $('input#addition').val(),
-                                'zipcode': $('input#zipcode').val(),
-                                'city': $('input#city').val(),
-                                'bagid': $('input#bagid').val(),
+                                'rentalunitnumber': $('input#rentalunitnumber').val(),
+                                'block': parseInt($('select#block').val()),
+                                'buildingtype': parseInt($('select#buildingtype').val()),
+                                'vtw': parseInt($('select#vtw').val()),
                                 'constructionyear': parseInt($('select#constructionyear').val()),
                                 'renovationyear': parseInt($('select#renovationyear').val()),
                                 'orientation': $('select#orientation').val(),
@@ -2777,6 +2662,7 @@ function loadAddressNewPage() {
 
 function loadAddressDetailPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
+        let buildingIdentification;
         $.ajax({
             url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses/' + id,
             type: 'GET',
@@ -2790,15 +2676,16 @@ function loadAddressDetailPage(id) {
                 $('#slide-out').sidenav('close');
             },
             success: function(data) {
-                let buildingAddressdata = data.data[0];
+                let addressdata = data.data[0];
+                buildingIdentification = addressdata.building.identification;
                 let html = '        <div class="row">\n' +
                     '            <div class="col s12">\n' +
                     '                <div class="card blue-grey darken-1">\n' +
                     '                    <div class="card-content white-text">\n' +
-                    '                        <span class="card-title">Buildingaddress</span>\n' +
+                    '                        <span class="card-title">Address</span>\n' +
                     '                        <p>\n' +
-                    '                            ' + buildingAddressdata.streetName + ' ' + buildingAddressdata.houseNumber + buildingAddressdata.addition + '<br />\n' +
-                    '                            ' + buildingAddressdata.zipcode + ' ' + buildingAddressdata.city + '\n' +
+                    '                            ' + addressdata.publicSpace.name + ' ' + addressdata.houseNumber + (addressdata.addition ? ' ' + addressdata.addition : '') + '<br />\n' +
+                    '                            ' + addressdata.zipcode + ' ' + addressdata.city.name + '\n' +
                     '                        </p>\n' +
                     '                    </div>\n' +
                     '                </div>\n' +
@@ -2818,19 +2705,37 @@ function loadAddressDetailPage(id) {
                     '                                        <tr>\n' +
                     '                                            <td style="vertical-align: top;">Building examinator</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.id + '\n' +
+                    '                                                ' + addressdata.id + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                        <tr>\n' +
                     '                                            <td style="vertical-align: top;">Rental unit number</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + (buildingAddressdata.rentalUnitNumber ?? '') + '\n' +
+                    '                                                ' + (addressdata.rentalUnitNumber ?? '') + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Bag</td>\n' +
+                    '                                            <td style="vertical-align: top;">Bag address</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + (buildingAddressdata.bagId ?? '') + '\n' +
+                    '                                                ' + (addressdata.identification ?? '') + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Bag public space</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + (addressdata.publicSpace.identification?? '') + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Bag building</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + (addressdata.building.identification?? '') + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Bag residence</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + (addressdata.residence.identification?? '') + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                    </tbody>\n' +
@@ -2851,17 +2756,45 @@ function loadAddressDetailPage(id) {
                     '                                    </thead>\n' +
                     '                                    <tbody>\n' +
                     '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Housingstock</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + addressdata.housingStock.name + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Municipality</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + addressdata.municipality.name + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
                     '                                            <td style="vertical-align: top;">Residential area</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.residentialArea.id + ' - ' + buildingAddressdata.residentialArea.code + '<br />\n' +
-                    '                                                ' + buildingAddressdata.residentialArea.name + '<br />\n' +
+                    '                                                ' + addressdata.residentialArea.name + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Neighbourhood</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + addressdata.neighbourhood.name + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">City</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + addressdata.city.name + '\n' +
+                    '                                            </td>\n' +
+                    '                                        </tr>\n' +
+                    '                                        <tr>\n' +
+                    '                                            <td style="vertical-align: top;">Public space</td>\n' +
+                    '                                            <td>\n' +
+                    '                                                ' + addressdata.publicSpace.name + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                        <tr>\n' +
                     '                                            <td style="vertical-align: top;">Block</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.block.id + ' - ' + buildingAddressdata.block.code + '<br />\n' +
-                    '                                                ' + buildingAddressdata.block.name + '<br />\n' +
+                    '                                                ' + addressdata.block.name + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                    </tbody>\n' +
@@ -2885,27 +2818,17 @@ function loadAddressDetailPage(id) {
                     '                                    </thead>\n' +
                     '                                    <tbody>\n' +
                     '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Buildingtype</td>\n' +
+                    '                                            <td style="vertical-align: top;">Building type</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.buildingType.id + ' - ' + buildingAddressdata.buildingType.code + '<br />\n' +
-                    '                                                ' + buildingAddressdata.buildingType.name + '<br />\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Livingtype</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.livingType.id + ' - ' + buildingAddressdata.livingType.code + '<br />\n' +
-                    '                                                ' + buildingAddressdata.livingType.name + '<br />\n' +
+                    '                                                ' + addressdata.buildingType.name + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                        <tr>\n' +
                     '                                            <td style="vertical-align: top;">Vtw</td>\n' +
                     '                                            <td>\n' +
-                    '                                                ' + buildingAddressdata.vtw.id + ' - ' + buildingAddressdata.vtw.code + '<br />\n' +
-                    '                                                ' + buildingAddressdata.vtw.typeDescription + '<br />\n' +
-                    '                                                ' + buildingAddressdata.vtw.buildingTypeDescription + '<br />\n' +
-                    '                                                ' + buildingAddressdata.vtw.constructionYearDescription + '<br />\n' +
-                    '                                                ' + buildingAddressdata.vtw.roofTypeDescription + '<br />\n' +
+                    '                                                ' + addressdata.vtw.code + '<br />\n' +
+                    '                                                ' + addressdata.vtw.typeDescription + '<br />\n' +
+                    '                                                ' + addressdata.vtw.roofTypeDescription + '\n' +
                     '                                            </td>\n' +
                     '                                        </tr>\n' +
                     '                                    </tbody>\n' +
@@ -2964,64 +2887,52 @@ function loadAddressDetailPage(id) {
                     "esri/config",
                     "esri/Map",
                     "esri/views/MapView",
-                    "esri/layers/FeatureLayer"
-                ], function (esriConfig, Map, MapView, FeatureLayer) {
+                    "esri/layers/FeatureLayer",
+                    "esri/layers/support/LabelClass"
+                ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
                     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-                    const popupBagPand = {
-                        "title": "Bag ({objectid})",
-                        "content": "<b>Pand id:</b> {identificatie}<br />"
-                            + "<b>Bouwjaar:</b> {bouwjaar}<br />"
-                            + "<b>Status:</b> {status}"
-                    }
+                    const bagPandenLayerLabel = new LabelClass({
+                        labelExpressionInfo: { expression: "$feature.objectid" },
+                        allowOverrun: true,
+                        deconflictionStrategy: "none",
+                        minScale: 2500,
+                        symbol: {
+                            type: "text",
+                            color: "black",
+                            font: {
+                                family: "Ubuntu Mono",
+                                size: 6
+                            }
+                        }
+                    });
                     const bagPandenLayer = new FeatureLayer({
                         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-                        outFields: [
-                            "objectid",
-                            "identificatie",
-                            "bouwjaar",
-                            "status"
-                        ],
-                        popupTemplate: popupBagPand
-                    });
-                    const popupBagAdres = {
-                        "title": "Bag ({objectid})",
-                        "content": "<b>Adres id:</b> {identificatie}<br />"
-                            + "<b>Adrestype:</b> {adrestype}<br />"
-                            + "<b>Huisnummer:</b> {huisnummer}{huisletter}<br />"
-                            + "<b>Huisnummertoevoeging:</b> {huisnummertoevoeging}<br />"
-                            + "<b>Postcode:</b> {postcode}<br />"
-                            + "<b>Woonplaats naam:</b> {woonplaatsnaam}"
-                    }
-                    const bagAdresLayer = new FeatureLayer({
-                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/0",
-                        outFields: [
-                            "objectid",
-                            "identificatie",
-                            "huisnummer",
-                            "huisletter",
-                            "huisnummertoevoeging",
-                            "postcode",
-                            "woonplaatsnaam",
-                            "adrestype",
-                            "woonplaatsid"
-                        ],
-                        popupTemplate: popupBagAdres
+                        definitionExpression:
+                            "identificatie IN (" +buildingIdentification + ")",
+                        minScale: 25000,
+                        outFields: ['objectid'],
+                        labelingInfo: bagPandenLayerLabel
                     });
                     const map = new Map({
                         basemap: "osm-light-gray",
                         layers: [
-                            bagPandenLayer,
-                            bagAdresLayer
+                            bagPandenLayer
                         ]
                     });
                     const view = new MapView({
                         map: map,
-                        center: [6.091655946944172, 52.5134064342421],
-                        zoom: 18,
+                        center: [6.0909033, 52.5129319],
+                        zoom: 17,
                         container: "viewDiv",
                         constraints: {
                             snapToZoom: false
                         }
+                    });
+                    bagPandenLayer.when(() => {
+                        return bagPandenLayer.queryExtent();
+                    })
+                    .then((response) => {
+                        view.goTo(response.extent);
                     });
                 });
 
@@ -3044,348 +2955,348 @@ function loadAddressDetailPage(id) {
 
 function loadAddressEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
-        showLoader();
-        $('#slide-out').sidenav('close');
-
-        $.when(
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
-            $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes'),
-            $.getJSON('/api/v1/vtws')
-        ).then(
-            function (
-                buildingAddress,
-                residentialAreas,
-                blocks,
-                buildingTypes,
-                livingTypes,
-                vtws
-            ) {
-
-                let buildingAddressdata = buildingAddress[0].data[0];
-
-                let residentialAreaHtmlOptions = '';
-                residentialAreas[0].data.forEach(
-                    function(item) {
-                        if (buildingAddressdata.residentialArea.id === item.id) {
-                            residentialAreaHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            residentialAreaHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let blockHtmlOptions = '';
-                blocks[0].data.forEach(
-                    function(item) {
-                        if (buildingAddressdata.block.id === item.id) {
-                            blockHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let buildingTypeHtmlOptions = '';
-                buildingTypes[0].data.forEach(
-                    function(item) {
-                        if (buildingAddressdata.buildingType.id === item.id) {
-                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let livingTypeHtmlOptions = '';
-                livingTypes[0].data.forEach(
-                    function(item) {
-                        if (buildingAddressdata.livingType.id === item.id) {
-                            livingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let vtwHtmlOptions = '';
-                vtws[0].data.forEach(
-                    function(item) {
-                        if (buildingAddressdata.vtw.id === item.id) {
-                            vtwHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.code + ' - ' + item.typeDescription + '</option>\n';
-                        } else {
-                            vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
-                        }
-                    }
-                );
-
-                let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
-
-                let constructionYearHtmlOptions = '';
-                let constructionYearIsSelected = false;
-                yearSelectValues.forEach(
-                    function(item) {
-                        if (buildingAddressdata.constructionYear === item) {
-                            constructionYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
-                            constructionYearIsSelected = true;
-                        } else {
-                            constructionYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
-                        }
-                    }
-                );
-                if (constructionYearIsSelected === false) {
-                    constructionYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + constructionYearHtmlOptions;
-                }
-
-                let renovationYearHtmlOptions = '';
-                let renovationYearIsSelected = false;
-                yearSelectValues.forEach(
-                    function(item) {
-                        if (buildingAddressdata.renovationYear === item) {
-                            renovationYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
-                            renovationYearIsSelected = true;
-                        } else {
-                            renovationYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
-                        }
-                    }
-                );
-                if (renovationYearIsSelected === false) {
-                    renovationYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + renovationYearHtmlOptions;
-                }
-
-                let orientationSelectValues = [
-                    {'id': 'n',   'image': '/images/directions/n.png',   'text': 'Noord'},
-                    {'id': 'nne', 'image': '/images/directions/nne.png', 'text': 'Noord Noord Oost'},
-                    {'id': 'ne',  'image': '/images/directions/ne.png',  'text': 'Noord Oost'},
-                    {'id': 'nee', 'image': '/images/directions/nee.png', 'text': 'Noord Oost Oost'},
-                    {'id': 'e',   'image': '/images/directions/e.png',   'text': 'Oost'},
-                    {'id': 'see', 'image': '/images/directions/see.png', 'text': 'Zuid Oost Oost'},
-                    {'id': 'se',  'image': '/images/directions/se.png',  'text': 'Zuid Oost'},
-                    {'id': 'sse', 'image': '/images/directions/sse.png', 'text': 'Zuid Zuid Oost'},
-                    {'id': 's',   'image': '/images/directions/s.png',   'text': 'Zuid'},
-                    {'id': 'ssw', 'image': '/images/directions/ssw.png', 'text': 'Zuid Zuid West'},
-                    {'id': 'sw',  'image': '/images/directions/sw.png',  'text': 'Zuid West'},
-                    {'id': 'sww', 'image': '/images/directions/sww.png', 'text': 'Zuid West West'},
-                    {'id': 'w',   'image': '/images/directions/w.png',   'text': 'West'},
-                    {'id': 'nww', 'image': '/images/directions/nww.png', 'text': 'Noord West West'},
-                    {'id': 'nw',  'image': '/images/directions/nw.png',  'text': 'Noord West'},
-                    {'id': 'nnw', 'image': '/images/directions/nnw.png', 'text': 'Noord Noord West'}
-                ];
-
-                let orientationHtmlOptions = '';
-                let orientationIsSelected = false;
-                orientationSelectValues.forEach(
-                    function(item) {
-                        if (buildingAddressdata.orientation === item.id) {
-                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '" selected>' + item.text + '</option>\n';
-                            orientationIsSelected = true;
-                        } else {
-                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '">' + item.text + '</option>\n';
-                        }
-                    }
-                );
-                if (orientationIsSelected === false) {
-                    orientationHtmlOptions = '                    <option disabled selected>Choose a direction</option>\n' + orientationHtmlOptions;
-                }
-
-                $('div#content').html(
-                    '    <h3 class="header">Edit buildingaddress</h3>\n' +
-                    '    <form id="editbuildingaddress">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_quilt</i>\n' +
-                    '                <select id="residentialarea" name="residentialarea">\n' +
-                    residentialAreaHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Residential area</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_comfortable</i>\n' +
-                    '                <select id="block" name="block">\n' +
-                    blockHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Block</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">home_work</i>\n' +
-                    '                <select id="buildingtype" name="buildingtype">\n' +
-                    buildingTypeHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Building type</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">villa</i>\n' +
-                    '                <select id="livingtype" name="livingtype">\n' +
-                    livingTypeHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Living type</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">vtw</i>\n' +
-                    '                <select id="vtw" name="vtw">\n' +
-                    vtwHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Vtw</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + (buildingAddressdata.rentalUnitNumber ?? '') + '">\n' +
-                    '                <label for="rentalunitnumber" class="active">Rental unit number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">road</i>\n' +
-                    '                <input id="streetname" name="streetname" type="text" class="validate" value="' + (buildingAddressdata.streetName ?? '') + '">\n' +
-                    '                <label for="streetname" class="active">Street name</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">123</i>\n' +
-                    '                <input id="housenumber" name="housenumber" type="text" class="validate" value="' + (buildingAddressdata.houseNumber ?? '') + '">\n' +
-                    '                <label for="housenumber" class="active">House number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">abc</i>\n' +
-                    '                <input id="addition" name="addition" type="text" class="validate" value="' + (buildingAddressdata.addition ?? '') + '">\n' +
-                    '                <label for="addition" class="active">Addition</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">zipcode</i>\n' +
-                    '                <input id="zipcode" name="zipcode" type="text" class="validate" value="' + (buildingAddressdata.zipcode ?? '') + '">\n' +
-                    '                <label for="zipcode" class="active">Zipcode</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">location_city</i>\n' +
-                    '                <input id="city" name="city" type="text" class="validate" value="' + (buildingAddressdata.city ?? '') + '">\n' +
-                    '                <label for="city" class="active">City</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">kadaster</i>\n' +
-                    '                <input id="bagid" name="bagid" type="text" class="validate" value="' + (buildingAddressdata.bagId ?? '') + '">\n' +
-                    '                <label for="bagid" class="active">BAG id</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">construction_year</i>\n' +
-                    '                <select id="constructionyear" name="constructionyear">\n' +
-                    constructionYearHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Construction year</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">renovation_year</i>\n' +
-                    '                <select id="renovationyear" name="renovationyear">\n' +
-                    renovationYearHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Renovation year</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">explore</i>\n' +
-                    '                <select id="orientation" name="orientation">\n' +
-                    orientationHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Orientation façade</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <p>\n' +
-                    '                    <i class="material-icons prefix">house_money</i>\n' +
-                    '                    <label>\n' +
-                    '                        <input id="daeb" name="daeb" type="checkbox"' + (buildingAddressdata.daeb ? ' checked="checked"' : '') + '>\n' +
-                    '                        <span>Daeb</span>\n' +
-                    '                    </label>\n' +
-                    '                </p>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <button type="submit" class="btn" name="save">\n' +
-                    '                    <i class="material-icons left">save</i>Save\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
-                );
-
-                $('form#editbuildingaddress select').formSelect();
-
-                $('form#editbuildingaddress').submit(function (event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
-                        type: 'PUT',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=UTF-8',
-                        accepts: {
-                            json: 'application/json'
-                        },
-                        data: JSON.stringify(
-                            {
-                                'residentialarea': parseInt($('select#residentialarea').val()),
-                                'block': parseInt($('select#block').val()),
-                                'buildingtype': parseInt($('select#buildingtype').val()),
-                                'livingtype': parseInt($('select#livingtype').val()),
-                                'vtw': parseInt($('select#vtw').val()),
-                                'rentalunitnumber': $('input#rentalunitnumber').val(),
-                                'streetname': $('input#streetname').val(),
-                                'housenumber': parseInt($('input#housenumber').val()),
-                                'addition': $('input#addition').val(),
-                                'zipcode': $('input#zipcode').val(),
-                                'city': $('input#city').val(),
-                                'bagid': $('input#bagid').val(),
-                                'constructionyear': parseInt($('select#constructionyear').val()),
-                                'renovationyear': parseInt($('select#renovationyear').val()),
-                                'orientation': $('select#orientation').val(),
-                                'daeb': $('input#daeb').prop("checked")
-                            }
-                        ),
-                        beforeSend: function () {
-                            showLoader();
-                            $('#slide-out').sidenav('close');
-                        },
-                        success: function () {
-                            loadAddressesPage();
-                        },
-                        error: function (jqXHR) {
-                            loadErrorPage(jqXHR);
-                        },
-                        complete: function () {
-                            hideLoader();
-                        },
-                    });
-                });
-
-                hideLoader();
-            }
-        );
+        // showLoader();
+        // $('#slide-out').sidenav('close');
+        //
+        // $.when(
+        //     $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id),
+        //     $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/residentialareas'),
+        //     $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
+        //     $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingtypes'),
+        //     $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/livingtypes'),
+        //     $.getJSON('/api/v1/vtws')
+        // ).then(
+        //     function (
+        //         buildingAddress,
+        //         residentialAreas,
+        //         blocks,
+        //         buildingTypes,
+        //         livingTypes,
+        //         vtws
+        //     ) {
+        //
+        //         let buildingAddressdata = buildingAddress[0].data[0];
+        //
+        //         let residentialAreaHtmlOptions = '';
+        //         residentialAreas[0].data.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.residentialArea.id === item.id) {
+        //                     residentialAreaHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+        //                 } else {
+        //                     residentialAreaHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //
+        //         let blockHtmlOptions = '';
+        //         blocks[0].data.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.block.id === item.id) {
+        //                     blockHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+        //                 } else {
+        //                     blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //
+        //         let buildingTypeHtmlOptions = '';
+        //         buildingTypes[0].data.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.buildingType.id === item.id) {
+        //                     buildingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+        //                 } else {
+        //                     buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //
+        //         let livingTypeHtmlOptions = '';
+        //         livingTypes[0].data.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.livingType.id === item.id) {
+        //                     livingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
+        //                 } else {
+        //                     livingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //
+        //         let vtwHtmlOptions = '';
+        //         vtws[0].data.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.vtw.id === item.id) {
+        //                     vtwHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.code + ' - ' + item.typeDescription + '</option>\n';
+        //                 } else {
+        //                     vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //
+        //         let yearSelectValues = Array(100).fill(0).map((element, index) => index + moment().year() - 98);
+        //
+        //         let constructionYearHtmlOptions = '';
+        //         let constructionYearIsSelected = false;
+        //         yearSelectValues.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.constructionYear === item) {
+        //                     constructionYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
+        //                     constructionYearIsSelected = true;
+        //                 } else {
+        //                     constructionYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //         if (constructionYearIsSelected === false) {
+        //             constructionYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + constructionYearHtmlOptions;
+        //         }
+        //
+        //         let renovationYearHtmlOptions = '';
+        //         let renovationYearIsSelected = false;
+        //         yearSelectValues.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.renovationYear === item) {
+        //                     renovationYearHtmlOptions += '                    <option value="' + item + '" selected>' + item + '</option>\n';
+        //                     renovationYearIsSelected = true;
+        //                 } else {
+        //                     renovationYearHtmlOptions += '                    <option value="' + item + '">' + item + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //         if (renovationYearIsSelected === false) {
+        //             renovationYearHtmlOptions = '                    <option disabled selected>Choose a year</option>\n' + renovationYearHtmlOptions;
+        //         }
+        //
+        //         let orientationSelectValues = [
+        //             {'id': 'n',   'image': '/images/directions/n.png',   'text': 'Noord'},
+        //             {'id': 'nne', 'image': '/images/directions/nne.png', 'text': 'Noord Noord Oost'},
+        //             {'id': 'ne',  'image': '/images/directions/ne.png',  'text': 'Noord Oost'},
+        //             {'id': 'nee', 'image': '/images/directions/nee.png', 'text': 'Noord Oost Oost'},
+        //             {'id': 'e',   'image': '/images/directions/e.png',   'text': 'Oost'},
+        //             {'id': 'see', 'image': '/images/directions/see.png', 'text': 'Zuid Oost Oost'},
+        //             {'id': 'se',  'image': '/images/directions/se.png',  'text': 'Zuid Oost'},
+        //             {'id': 'sse', 'image': '/images/directions/sse.png', 'text': 'Zuid Zuid Oost'},
+        //             {'id': 's',   'image': '/images/directions/s.png',   'text': 'Zuid'},
+        //             {'id': 'ssw', 'image': '/images/directions/ssw.png', 'text': 'Zuid Zuid West'},
+        //             {'id': 'sw',  'image': '/images/directions/sw.png',  'text': 'Zuid West'},
+        //             {'id': 'sww', 'image': '/images/directions/sww.png', 'text': 'Zuid West West'},
+        //             {'id': 'w',   'image': '/images/directions/w.png',   'text': 'West'},
+        //             {'id': 'nww', 'image': '/images/directions/nww.png', 'text': 'Noord West West'},
+        //             {'id': 'nw',  'image': '/images/directions/nw.png',  'text': 'Noord West'},
+        //             {'id': 'nnw', 'image': '/images/directions/nnw.png', 'text': 'Noord Noord West'}
+        //         ];
+        //
+        //         let orientationHtmlOptions = '';
+        //         let orientationIsSelected = false;
+        //         orientationSelectValues.forEach(
+        //             function(item) {
+        //                 if (buildingAddressdata.orientation === item.id) {
+        //                     orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '" selected>' + item.text + '</option>\n';
+        //                     orientationIsSelected = true;
+        //                 } else {
+        //                     orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '">' + item.text + '</option>\n';
+        //                 }
+        //             }
+        //         );
+        //         if (orientationIsSelected === false) {
+        //             orientationHtmlOptions = '                    <option disabled selected>Choose a direction</option>\n' + orientationHtmlOptions;
+        //         }
+        //
+        //         $('div#content').html(
+        //             '    <h3 class="header">Edit buildingaddress</h3>\n' +
+        //             '    <form id="editbuildingaddress">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">view_quilt</i>\n' +
+        //             '                <select id="residentialarea" name="residentialarea">\n' +
+        //             residentialAreaHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Residential area</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">view_comfortable</i>\n' +
+        //             '                <select id="block" name="block">\n' +
+        //             blockHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Block</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">home_work</i>\n' +
+        //             '                <select id="buildingtype" name="buildingtype">\n' +
+        //             buildingTypeHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Building type</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">villa</i>\n' +
+        //             '                <select id="livingtype" name="livingtype">\n' +
+        //             livingTypeHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Living type</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">vtw</i>\n' +
+        //             '                <select id="vtw" name="vtw">\n' +
+        //             vtwHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Vtw</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">qr_code_2</i>\n' +
+        //             '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + (buildingAddressdata.rentalUnitNumber ?? '') + '">\n' +
+        //             '                <label for="rentalunitnumber" class="active">Rental unit number</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">road</i>\n' +
+        //             '                <input id="streetname" name="streetname" type="text" class="validate" value="' + (buildingAddressdata.streetName ?? '') + '">\n' +
+        //             '                <label for="streetname" class="active">Street name</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">123</i>\n' +
+        //             '                <input id="housenumber" name="housenumber" type="text" class="validate" value="' + (buildingAddressdata.houseNumber ?? '') + '">\n' +
+        //             '                <label for="housenumber" class="active">House number</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">abc</i>\n' +
+        //             '                <input id="addition" name="addition" type="text" class="validate" value="' + (buildingAddressdata.addition ?? '') + '">\n' +
+        //             '                <label for="addition" class="active">Addition</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">zipcode</i>\n' +
+        //             '                <input id="zipcode" name="zipcode" type="text" class="validate" value="' + (buildingAddressdata.zipcode ?? '') + '">\n' +
+        //             '                <label for="zipcode" class="active">Zipcode</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">location_city</i>\n' +
+        //             '                <input id="city" name="city" type="text" class="validate" value="' + (buildingAddressdata.city ?? '') + '">\n' +
+        //             '                <label for="city" class="active">City</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">kadaster</i>\n' +
+        //             '                <input id="bagid" name="bagid" type="text" class="validate" value="' + (buildingAddressdata.bagId ?? '') + '">\n' +
+        //             '                <label for="bagid" class="active">BAG id</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">construction_year</i>\n' +
+        //             '                <select id="constructionyear" name="constructionyear">\n' +
+        //             constructionYearHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Construction year</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">renovation_year</i>\n' +
+        //             '                <select id="renovationyear" name="renovationyear">\n' +
+        //             renovationYearHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Renovation year</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <i class="material-icons prefix">explore</i>\n' +
+        //             '                <select id="orientation" name="orientation">\n' +
+        //             orientationHtmlOptions +
+        //             '                </select>\n' +
+        //             '                <label>Orientation façade</label>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="input-field col s12">\n' +
+        //             '                <p>\n' +
+        //             '                    <i class="material-icons prefix">house_money</i>\n' +
+        //             '                    <label>\n' +
+        //             '                        <input id="daeb" name="daeb" type="checkbox"' + (buildingAddressdata.daeb ? ' checked="checked"' : '') + '>\n' +
+        //             '                        <span>Daeb</span>\n' +
+        //             '                    </label>\n' +
+        //             '                </p>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col s12">\n' +
+        //             '                <button type="submit" class="btn" name="save">\n' +
+        //             '                    <i class="material-icons left">save</i>Save\n' +
+        //             '                </button>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '    </form>\n'
+        //         );
+        //
+        //         $('form#editbuildingaddress select').formSelect();
+        //
+        //         $('form#editbuildingaddress').submit(function (event) {
+        //             event.preventDefault();
+        //             $.ajax({
+        //                 url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/buildingaddresses/' + id,
+        //                 type: 'PUT',
+        //                 dataType: 'json',
+        //                 contentType: 'application/json; charset=UTF-8',
+        //                 accepts: {
+        //                     json: 'application/json'
+        //                 },
+        //                 data: JSON.stringify(
+        //                     {
+        //                         'residentialarea': parseInt($('select#residentialarea').val()),
+        //                         'block': parseInt($('select#block').val()),
+        //                         'buildingtype': parseInt($('select#buildingtype').val()),
+        //                         'livingtype': parseInt($('select#livingtype').val()),
+        //                         'vtw': parseInt($('select#vtw').val()),
+        //                         'rentalunitnumber': $('input#rentalunitnumber').val(),
+        //                         'streetname': $('input#streetname').val(),
+        //                         'housenumber': parseInt($('input#housenumber').val()),
+        //                         'addition': $('input#addition').val(),
+        //                         'zipcode': $('input#zipcode').val(),
+        //                         'city': $('input#city').val(),
+        //                         'bagid': $('input#bagid').val(),
+        //                         'constructionyear': parseInt($('select#constructionyear').val()),
+        //                         'renovationyear': parseInt($('select#renovationyear').val()),
+        //                         'orientation': $('select#orientation').val(),
+        //                         'daeb': $('input#daeb').prop("checked")
+        //                     }
+        //                 ),
+        //                 beforeSend: function () {
+        //                     showLoader();
+        //                     $('#slide-out').sidenav('close');
+        //                 },
+        //                 success: function () {
+        //                     loadAddressesPage();
+        //                 },
+        //                 error: function (jqXHR) {
+        //                     loadErrorPage(jqXHR);
+        //                 },
+        //                 complete: function () {
+        //                     hideLoader();
+        //                 },
+        //             });
+        //         });
+        //
+        //         hideLoader();
+        //     }
+        // );
     } else {
         loadInformationPage('You need to first choose an active housingstock');
     }
