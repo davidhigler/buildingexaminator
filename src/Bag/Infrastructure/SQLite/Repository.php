@@ -85,4 +85,24 @@ class Repository
 
         return $result;
     }
+
+    /**
+     * @throws CbsException
+     */
+    public function getResidentialAreaByBNeighbourhood(string $neighbourhoodCode): array
+    {
+        $result = $this->sqliteDb->querySingle('SELECT residentialarea FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY residentialarea', true);
+
+        if (!array_key_exists('residentialarea', $result)) {
+            $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
+            $cbsException->addContext([
+                'cbs' => [
+                    'missing' => 'residentialarea',
+                ]
+            ]);
+            throw $cbsException;
+        }
+
+        return $result;
+    }
 }

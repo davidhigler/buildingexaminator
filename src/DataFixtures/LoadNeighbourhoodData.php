@@ -6,6 +6,7 @@ use App\Bag\Application\SQLite\CbsException;
 use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Entity\Portfolio\Municipality;
 use App\Entity\Portfolio\Neighbourhood;
+use App\Entity\Portfolio\ResidentialArea;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -14247,7 +14248,7 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
             }
 
             try {
-                $cbsResults = $cbsRepository->getMunicipalityByBNeighbourhood($neighbourhood['code']);
+                $cbsResultsMunicipality = $cbsRepository->getMunicipalityByBNeighbourhood($neighbourhood['code']);
             } catch (CbsException $cbsException) {
                 $this->logger->debug(
                     $cbsException->getMessage(),
@@ -14266,7 +14267,7 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
 
             try {
                 /** @var Municipality $municipality */
-                $municipality = $this->getReference($cbsResults['municipality']);
+                $municipality = $this->getReference($cbsResultsMunicipality['municipality']);
             } catch (OutOfBoundsException $outOfBoundsException) {
                 $this->logger->debug(
                     $outOfBoundsException->getMessage(),
@@ -14280,6 +14281,41 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
                 continue;
             }
             $neighbourhoodObject->setMunicipality($municipality);
+
+            try {
+                $cbsResultsResidentialArea = $cbsRepository->getResidentialAreaByBNeighbourhood($neighbourhood['code']);
+            } catch (CbsException $cbsException) {
+                $this->logger->debug(
+                    $cbsException->getMessage(),
+                    array_merge(
+                        $cbsException->getContext(),
+                        [
+                            'subject' => 'missing data from sqlite cbs database',
+                            'class' => __CLASS__,
+                            'function' => __FUNCTION__,
+                            'line' => __LINE__,
+                        ]
+                    )
+                );
+                continue;
+            }
+
+            try {
+                /** @var ResidentialArea $residentialArea */
+                $residentialArea = $this->getReference($cbsResultsResidentialArea['residentialarea']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                $this->logger->debug(
+                    $outOfBoundsException->getMessage(),
+                    [
+                        'subject' => 'reference to a municipality',
+                        'class' => __CLASS__,
+                        'function' => __FUNCTION__,
+                        'line' => __LINE__,
+                    ]
+                );
+                continue;
+            }
+            $neighbourhoodObject->setResidentialArea($residentialArea);
 
             if (!empty($neighbourhood['name'])) {
                 $neighbourhoodObject->setName($neighbourhood['name']);

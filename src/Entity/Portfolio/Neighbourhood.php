@@ -32,12 +32,24 @@ class Neighbourhood extends IdCodeName
      * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a municipality"
+     *     message="A neighbourhood must have a municipality"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Municipality")
      */
     protected Municipality $municipality;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="residentialAreas", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A neighbourhood must have a residential area"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/ResidentialArea")
+     */
+    protected ResidentialArea $residentialArea;
 
     #[Pure]
     public function __construct()
@@ -53,6 +65,11 @@ class Neighbourhood extends IdCodeName
     public function getMunicipality(): Municipality
     {
         return $this->municipality;
+    }
+
+    public function getResidentialArea(): ResidentialArea
+    {
+        return $this->residentialArea;
     }
 
     public function getNumberOfAddresses(): int
@@ -73,5 +90,10 @@ class Neighbourhood extends IdCodeName
     public function setMunicipality(Municipality $municipality): void
     {
         $this->municipality = $municipality;
+    }
+
+    public function setResidentialArea(ResidentialArea $residentialArea): void
+    {
+        $this->residentialArea = $residentialArea;
     }
 }

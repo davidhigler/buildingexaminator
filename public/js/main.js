@@ -1359,6 +1359,7 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
                     '                <td class="hide-on-small-only"><i class="material-icons prefix">neighbourhood</i></td>\n' +
                     '                <td>' + (element.code ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
+                    '                <td>' + (element.residentialArea.name ?? '') + '</td>\n' +
                     '                <td>' + (element.municipality.name ?? '') + '</td>\n' +
                     '            </tr>\n';
             });
@@ -1382,6 +1383,7 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
                 '                <th class="hide-on-small-only"></th>\n' +
                 '                <th>Code</th>\n' +
                 '                <th>Name</th>\n' +
+                '                <th>Residential Area</th>\n' +
                 '                <th>Municipality</th>\n' +
                 '            </tr>\n' +
                 '        </thead>\n' +

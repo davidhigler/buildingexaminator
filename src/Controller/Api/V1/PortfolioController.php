@@ -291,6 +291,9 @@ class PortfolioController extends AbstractController
         'municipality' => [
             'name'
         ],
+        'residentialArea' => [
+            'name'
+        ],
         'numberOfAddresses',
     ];
 
@@ -299,6 +302,9 @@ class PortfolioController extends AbstractController
         'code',
         'name',
         'municipality' => [
+            'name'
+        ],
+        'residentialArea' => [
             'name'
         ],
         'numberOfAddresses',
@@ -984,7 +990,8 @@ class PortfolioController extends AbstractController
                     )
                 );
         }
-        $adapter->orderBy('o.name', 'ASC');
+        $adapter->orderBy('o.municipality.name', 'ASC');
+        $adapter->addOrderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
@@ -1091,7 +1098,9 @@ class PortfolioController extends AbstractController
                     )
                 );
         }
-        $adapter->orderBy('o.name', 'ASC');
+        $adapter->orderBy('o.municipality.name', 'ASC');
+        $adapter->addOrderBy('o.residentialArea.name', 'ASC');
+        $adapter->addOrderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
