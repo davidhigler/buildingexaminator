@@ -3387,8 +3387,6 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
         $progressBar->setBarWidth(100);
 
         $this->output->writeln('');
-        $this->output->writeln('Count: ' . count($residentialAreas));
-        $this->output->writeln('');
 
         $progressBar->start();
 

@@ -14231,8 +14231,6 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
         $progressBar->setBarWidth(100);
 
         $this->output->writeln('');
-        $this->output->writeln('Count: ' . count($neighbourhoods));
-        $this->output->writeln('');
 
         $progressBar->start();
 
