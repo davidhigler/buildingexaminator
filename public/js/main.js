@@ -2451,9 +2451,9 @@ function loadAddressNewPage() {
             $.getJSON('/api/v1/vtws')
         ).then(
             function (
-                vtws,
                 blocks,
-                buildingtypes
+                buildingtypes,
+                vtws
             ) {
                 let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
                 blocks[0].data.forEach(function(item) {
