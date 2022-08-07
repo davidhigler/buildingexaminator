@@ -472,11 +472,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'description',
         'addresses' => [
             'id',
-            'streetName',
             'houseNumber',
             'addition',
             'zipcode',
-            'city',
         ],
     ];
 
