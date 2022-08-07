@@ -9,16 +9,36 @@ use App\Entity\Portfolio\ResidentialArea;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use JetBrains\PhpStorm\ArrayShape;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 use OutOfBoundsException;
 
-class LoadResidentialAreaData extends Fixture implements DependentFixtureInterface, LoggerAwareInterface
+class LoadResidentialAreaData extends Fixture implements DependentFixtureInterface, EventSubscriberInterface, LoggerAwareInterface
 {
+    private OutputInterface $output;
     private LoggerInterface $logger;
+
+    #[ArrayShape([ConsoleEvents::COMMAND => "string"])]
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ConsoleEvents::COMMAND => 'init',
+        ];
+    }
+
+    public function init(ConsoleCommandEvent $event): void
+    {
+        $this->output = $event->getOutput();
+    }
 
     /**
      * @param ObjectManager $manager
@@ -3362,7 +3382,20 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
 
         $cbsRepository = new cbsRepository();
 
+        $progressBar = new ProgressBar($this->output, count($residentialAreas));
+        $progressBar->setFormat('debug');
+        $progressBar->setBarWidth(100);
+
+        $this->output->writeln('');
+        $this->output->writeln('Count: ' . count($residentialAreas));
+        $this->output->writeln('');
+
+        $progressBar->start();
+
         foreach ($residentialAreas as $residentialArea) {
+
+            $progressBar->advance();
+
             $residentialAreaObject = new ResidentialArea();
 
             if (empty($residentialArea['code'])) {
@@ -3424,6 +3457,10 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
             $manager->persist($residentialAreaObject);
             $this->addReference($residentialArea['code'], $residentialAreaObject);
         }
+
+        $progressBar->finish();
+
+        $this->output->writeln('');
 
         $manager->flush();
     }

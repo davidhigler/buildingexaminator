@@ -9,16 +9,36 @@ use App\Entity\Portfolio\Neighbourhood;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use JetBrains\PhpStorm\ArrayShape;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 use OutOfBoundsException;
 
-class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface, LoggerAwareInterface
+class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface, EventSubscriberInterface, LoggerAwareInterface
 {
+    private OutputInterface $output;
     private LoggerInterface $logger;
+
+    #[ArrayShape([ConsoleEvents::COMMAND => "string"])]
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ConsoleEvents::COMMAND => 'init',
+        ];
+    }
+
+    public function init(ConsoleCommandEvent $event): void
+    {
+        $this->output = $event->getOutput();
+    }
 
     /**
      * @param ObjectManager $manager
@@ -14206,7 +14226,20 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
 
         $cbsRepository = new cbsRepository();
 
+        $progressBar = new ProgressBar($this->output, count($neighbourhoods));
+        $progressBar->setFormat('debug');
+        $progressBar->setBarWidth(100);
+
+        $this->output->writeln('');
+        $this->output->writeln('Count: ' . count($neighbourhoods));
+        $this->output->writeln('');
+
+        $progressBar->start();
+
         foreach ($neighbourhoods as $neighbourhood) {
+
+            $progressBar->advance();
+
             $neighbourhoodObject = new Neighbourhood();
 
             if (empty($neighbourhood['code'])) {
@@ -14268,6 +14301,10 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
             $manager->persist($neighbourhoodObject);
             $this->addReference($neighbourhood['code'], $neighbourhoodObject);
         }
+
+        $progressBar->finish();
+
+        $this->output->writeln('');
 
         $manager->flush();
     }
