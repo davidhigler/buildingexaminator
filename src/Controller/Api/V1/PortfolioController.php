@@ -990,8 +990,7 @@ class PortfolioController extends AbstractController
                     )
                 );
         }
-        $adapter->orderBy('o.municipality.name', 'ASC');
-        $adapter->addOrderBy('o.name', 'ASC');
+        $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
@@ -1098,9 +1097,7 @@ class PortfolioController extends AbstractController
                     )
                 );
         }
-        $adapter->orderBy('o.municipality.name', 'ASC');
-        $adapter->addOrderBy('o.residentialArea.name', 'ASC');
-        $adapter->addOrderBy('o.name', 'ASC');
+        $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
