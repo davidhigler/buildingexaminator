@@ -45,4 +45,44 @@ class Repository
 
         return $result;
     }
+
+    /**
+     * @throws CbsException
+     */
+    public function getMunicipalityByResidentialarea(string $residentialAreaCode): array
+    {
+        $result = $this->sqliteDb->querySingle('SELECT municipality FROM cbs WHERE residentialarea="' . $residentialAreaCode . '" GROUP BY municipality', true);
+
+        if (!array_key_exists('municipality', $result)) {
+            $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
+            $cbsException->addContext([
+                'cbs' => [
+                    'missing' => 'municipality',
+                ]
+            ]);
+            throw $cbsException;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @throws CbsException
+     */
+    public function getMunicipalityByBNeighbourhood(string $neighbourhoodCode): array
+    {
+        $result = $this->sqliteDb->querySingle('SELECT municipality FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY municipality', true);
+
+        if (!array_key_exists('municipality', $result)) {
+            $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
+            $cbsException->addContext([
+                'cbs' => [
+                    'missing' => 'municipality',
+                ]
+            ]);
+            throw $cbsException;
+        }
+
+        return $result;
+    }
 }

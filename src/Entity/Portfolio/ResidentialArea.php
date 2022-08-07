@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
@@ -26,6 +27,18 @@ class ResidentialArea extends IdCodeName
      */
     protected Collection $addresses;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="residentialareas", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank(
+     *     message="A address must have a municipality"
+     * )
+     *
+     * @OA\Property(ref="#/components/schemas/Municipality")
+     */
+    protected Municipality $municipality;
+
     #[Pure]
     public function __construct()
     {
@@ -35,6 +48,11 @@ class ResidentialArea extends IdCodeName
     public function getAddresses(): Collection
     {
         return $this->addresses;
+    }
+
+    public function getMunicipality(): Municipality
+    {
+        return $this->municipality;
     }
 
     public function getNumberOfAddresses(): int
@@ -50,5 +68,10 @@ class ResidentialArea extends IdCodeName
     public function removeAddress(Address $address): void
     {
         $this->addresses->removeElement($address);
+    }
+
+    public function setMunicipality(Municipality $municipality): void
+    {
+        $this->municipality = $municipality;
     }
 }

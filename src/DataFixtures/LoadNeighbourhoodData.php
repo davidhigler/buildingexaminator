@@ -2,15 +2,24 @@
 
 namespace App\DataFixtures;
 
+use App\Bag\Application\SQLite\CbsException;
+use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
+use App\Entity\Portfolio\Municipality;
 use App\Entity\Portfolio\Neighbourhood;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
+use OutOfBoundsException;
 
-class LoadNeighbourhoodData extends Fixture
+class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface, LoggerAwareInterface
 {
+    private LoggerInterface $logger;
+
     /**
      * @param ObjectManager $manager
      * @return void
@@ -14195,6 +14204,8 @@ class LoadNeighbourhoodData extends Fixture
             ['code' => '19799998', 'name' => "Buitenwater"],
         ];
 
+        $cbsRepository = new cbsRepository();
+
         foreach ($neighbourhoods as $neighbourhood) {
             $neighbourhoodObject = new Neighbourhood();
 
@@ -14203,6 +14214,41 @@ class LoadNeighbourhoodData extends Fixture
             } else {
                 $neighbourhoodObject->setCode($neighbourhood['code']);
             }
+
+            try {
+                $cbsResults = $cbsRepository->getMunicipalityByBNeighbourhood($neighbourhood['code']);
+            } catch (CbsException $cbsException) {
+                $this->logger->debug(
+                    $cbsException->getMessage(),
+                    array_merge(
+                        $cbsException->getContext(),
+                        [
+                            'subject' => 'missing data from sqlite cbs database',
+                            'class' => __CLASS__,
+                            'function' => __FUNCTION__,
+                            'line' => __LINE__,
+                        ]
+                    )
+                );
+                continue;
+            }
+
+            try {
+                /** @var Municipality $municipality */
+                $municipality = $this->getReference($cbsResults['municipality']);
+            } catch (OutOfBoundsException $outOfBoundsException) {
+                $this->logger->debug(
+                    $outOfBoundsException->getMessage(),
+                    [
+                        'subject' => 'reference to a municipality',
+                        'class' => __CLASS__,
+                        'function' => __FUNCTION__,
+                        'line' => __LINE__,
+                    ]
+                );
+                continue;
+            }
+            $neighbourhoodObject->setMunicipality($municipality);
 
             if (!empty($neighbourhood['name'])) {
                 $neighbourhoodObject->setName($neighbourhood['name']);
@@ -14224,5 +14270,17 @@ class LoadNeighbourhoodData extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            LoadMunicipalityData::class,
+        ];
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 }

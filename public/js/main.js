@@ -1137,7 +1137,7 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
             $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_compact</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">municipality</i></td>\n' +
                     '                <td>' + (element.code ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
                     '            </tr>\n';
@@ -1183,6 +1183,81 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
 }
 
 /**
+ * Cities
+ */
+
+function loadCitiesPage(page = 1, searchterm = '') {
+    if(localStorage.getItem('activeHousingstockId')) {
+        $.ajax({
+            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/cities',
+            type: 'GET',
+            data: {
+                page: page,
+                searchterm: searchterm
+            },
+            dataType: 'json',
+            accepts: {
+                json: 'application/json'
+            },
+            beforeSend: function() {
+                showLoader();
+                $('.material-tooltip').remove();
+                $('#slide-out').sidenav('close');
+            },
+            success: function(data) {
+                let rows = '';
+                $(data.data).each(function (index, element) {
+                    rows +=
+                        '            <tr>\n' +
+                        '                <td class="hide-on-small-only"><i class="material-icons prefix">city</i></td>\n' +
+                        '                <td>' + (element.identification ?? '') + '</td>\n' +
+                        '                <td>' + (element.name ?? '') + '</td>\n' +
+                        '            </tr>\n';
+                });
+
+                let html =
+                    '    <h3 class="header">Cities</h3>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="input-field col s9">\n' +
+                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                    '        </div>\n' +
+                    '        <div class="input-field col s3">\n' +
+                    '            <button class="btn" onclick="loadCitiesPage(1, $(\'input#searchterm\').val());">\n' +
+                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                    '            </button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <table>\n' +
+                    '        <thead>\n' +
+                    '            <tr>\n' +
+                    '                <th class="hide-on-small-only"></th>\n' +
+                    '                <th>Bag code</th>\n' +
+                    '                <th>Name</th>\n' +
+                    '            </tr>\n' +
+                    '        </thead>\n' +
+                    '        <tbody>\n' +
+                    rows +
+                    '        </tbody>\n' +
+                    '    </table>\n';
+
+                html += addPagination(data.pager, searchterm, 'loadCitiesPage');
+
+                $('div#content').html(html);
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                hideLoader();
+            },
+        });
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
  * ResidentialAreas
  */
 
@@ -1208,7 +1283,7 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
             $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_quilt</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">residentialarea</i></td>\n' +
                     '                <td>' + (element.code ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
                     '            </tr>\n';
@@ -1279,7 +1354,7 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
             $(data.data).each(function (index, element) {
                 rows +=
                     '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">view_module</i></td>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">neighbourhood</i></td>\n' +
                     '                <td>' + (element.code ?? '') + '</td>\n' +
                     '                <td>' + (element.name ?? '') + '</td>\n' +
                     '            </tr>\n';
@@ -1402,81 +1477,6 @@ function loadVtws(page = 1, searchterm = '') {
 /**
  * #################################################
  */
-
-/**
- * Cities
- */
-
-function loadCitiesPage(page = 1, searchterm = '') {
-    if(localStorage.getItem('activeHousingstockId')) {
-        $.ajax({
-            url: '/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/cities',
-            type: 'GET',
-            data: {
-                page: page,
-                searchterm: searchterm
-            },
-            dataType: 'json',
-            accepts: {
-                json: 'application/json'
-            },
-            beforeSend: function() {
-                showLoader();
-                $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
-            },
-            success: function(data) {
-                let rows = '';
-                $(data.data).each(function (index, element) {
-                    rows +=
-                        '            <tr>\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">location_city</i></td>\n' +
-                        '                <td>' + (element.identification ?? '') + '</td>\n' +
-                        '                <td>' + (element.name ?? '') + '</td>\n' +
-                        '            </tr>\n';
-                });
-
-                let html =
-                    '    <h3 class="header">Cities</h3>\n' +
-                    '    <div class="row">\n' +
-                    '        <div class="input-field col s9">\n' +
-                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadCitiesPage(1, $(\'input#searchterm\').val());">\n' +
-                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '    <table>\n' +
-                    '        <thead>\n' +
-                    '            <tr>\n' +
-                    '                <th class="hide-on-small-only"></th>\n' +
-                    '                <th>Bag code</th>\n' +
-                    '                <th>Name</th>\n' +
-                    '            </tr>\n' +
-                    '        </thead>\n' +
-                    '        <tbody>\n' +
-                    rows +
-                    '        </tbody>\n' +
-                    '    </table>\n';
-
-                html += addPagination(data.pager, searchterm, 'loadCitiesPage');
-
-                $('div#content').html(html);
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                hideLoader();
-            },
-        });
-    } else {
-        loadInformationPage('You need to first choose an active housingstock');
-    }
-}
 
 /**
  * Public spaces
@@ -1670,7 +1670,7 @@ function loadResidencesPage(page = 1, searchterm = '') {
                 });
 
                 let html =
-                    '    <h3 class="header">Buildings</h3>\n' +
+                    '    <h3 class="header">Residences</h3>\n' +
                     '    <div class="row">\n' +
                     '        <div class="input-field col s9">\n' +
                     '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
@@ -1794,7 +1794,7 @@ function loadBlocksPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
+                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0}); // @ToDo Only show if not empty
                 hideLoader();
             },
         });
