@@ -7,6 +7,7 @@
 /node_modules/
 /data/cbs/cbs.csv
 /data/cbs/cbs.db
+/data/database/buildingexaminator.sql
 
 ###> symfony/framework-bundle ###
 /.env.local

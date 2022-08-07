@@ -268,6 +268,9 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'municipality' => [
+            'name'
+        ],
         'numberOfAddresses',
     ];
 
@@ -275,12 +278,19 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'municipality' => [
+            'name'
+        ],
+        'numberOfAddresses',
     ];
 
     private const NEIGHBOURHOOD_LIST_FIELDS = [
         'id',
         'code',
         'name',
+        'municipality' => [
+            'name'
+        ],
         'numberOfAddresses',
     ];
 
@@ -288,6 +298,10 @@ class PortfolioController extends AbstractController
         'id',
         'code',
         'name',
+        'municipality' => [
+            'name'
+        ],
+        'numberOfAddresses',
     ];
 
     private const VTW_LIST_FIELDS = [
