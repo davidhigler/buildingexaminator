@@ -14,4 +14,7 @@ while ($row = fgetcsv($f, 0, ';')) {
     $zipcodehousenumber = $zipcode . $housenumber;
     $stmt->execute();
 }
+$db->exec('CREATE INDEX idx_cbs_zipcodehousenumber ON cbs("zipcodehousenumber");');
+$db->exec('CREATE INDEX idx_cbs_neighbourhood ON cbs("neighbourhood");');
+$db->exec('CREATE INDEX idx_cbs_residentialarea ON cbs("residentialarea");');
 $db->exec('COMMIT');
