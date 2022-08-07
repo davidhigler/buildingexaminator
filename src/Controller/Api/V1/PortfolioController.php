@@ -2,6 +2,8 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Bag\Application\Arcgis\ArcgisException;
+use App\Bag\Application\SQLite\CbsException;
 use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
@@ -15,6 +17,8 @@ use App\Entity\Portfolio\PublicSpace;
 use App\Entity\Portfolio\Residence;
 use App\Entity\Portfolio\ResidentialArea;
 use App\Entity\Portfolio\Vtw;
+use App\Bag\Infrastructure\Arcgis\Repository as arcgisRepository;
+use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
 use Doctrine\ORM\QueryBuilder;
@@ -22,6 +26,8 @@ use Exception;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -198,7 +204,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  */
-class PortfolioController extends AbstractController
+class PortfolioController extends AbstractController implements LoggerAwareInterface
 {
     private const DEFAULT_PAGE_LIMIT = 10;
 
@@ -510,6 +516,8 @@ class PortfolioController extends AbstractController
         'orientation',
         'daeb',
     ];
+
+    private LoggerInterface $logger;
 
     /**
      * HOUSINGSTOCKS
@@ -2735,18 +2743,49 @@ class PortfolioController extends AbstractController
     {
         $newAddress = json_decode($request->getContent(), true);
 
+        $arcgisRepository = new arcgisRepository();
+
+        try {
+            $arcgisAddress = $arcgisRepository->getAddressByZipcodeAndHousenumber($newAddress['zipcode'], $newAddress['housenumber'], !empty($newAddress['addition']) ? $newAddress['addition'] : null);
+        } catch (ArcgisException $arcgisException) {
+            $this->logger->debug(
+                $arcgisException->getMessage(),
+                array_merge(
+                    $arcgisException->getContext(),
+                    [
+                        'subject' => 'error with request to arcgis api',
+                        'class' => __CLASS__,
+                        'function' => __FUNCTION__,
+                        'line' => __LINE__,
+                    ]
+                )
+            );
+            throw $arcgisException;
+        }
+
+        $cbsRepository = new cbsRepository();
+
+        try {
+            $cbsResults = $cbsRepository->getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber($newAddress['zipcode'] . $newAddress['housenumber']);
+        } catch (CbsException $cbsException) {
+            $this->logger->debug(
+                $cbsException->getMessage(),
+                array_merge(
+                    $cbsException->getContext(),
+                    [
+                        'subject' => 'missing data from sqlite cbs database',
+                        'class' => __CLASS__,
+                        'function' => __FUNCTION__,
+                        'line' => __LINE__,
+                    ]
+                )
+            );
+            throw $cbsException;
+        }
+
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
-
-
-
-
-
-
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        /** @var ResidentialArea $residentialArea */
-        $residentialArea = $residentialAreaRepository->find((int) $newAddress['residentialarea']);
 
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         /** @var Block $block */
@@ -2760,12 +2799,76 @@ class PortfolioController extends AbstractController
         /** @var Vtw $vtw */
         $vtw = $vtwRepository->find((int) $newAddress['vtw']);
 
+        $municipalityRepository = $this->getDoctrine()->getRepository(Municipality::class);
+        /** @var Municipality $municipality */
+        $municipality = $municipalityRepository->findOneBy(['code' => $cbsResults['municipality']]);
+
+        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
+        /** @var ResidentialArea $residentialArea */
+        $residentialArea = $residentialAreaRepository->findOneBy(['code' => $cbsResults['residentialarea']]);
+
+        $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
+        /** @var Neighbourhood $neighbourhood */
+        $neighbourhood = $neighbourhoodRepository->findOneBy(['code' => $cbsResults['neighbourhood']]);
+
+        $cityRepository = $this->getDoctrine()->getRepository(City::class);
+        /** @var City $city */
+        $city = $cityRepository->findOneBy(['identification' => $arcgisAddress['city']['identification']]);
+        if ($city === null) {
+            $city = new City();
+            $city->setObjectId($arcgisAddress['city']['objectid']);
+            $city->setIdentification($arcgisAddress['city']['identification']);
+            $city->setName($arcgisAddress['city']['name']);
+            $cityManager = $this->getDoctrine()->getManager(City::class);
+            $cityManager->persist($city);
+        }
+
+        $buildingRepository = $this->getDoctrine()->getRepository(Building::class);
+        /** @var Building $building */
+        $building = $buildingRepository->findOneBy(['identification' => $arcgisAddress['building']['identification']]);
+        if ($building === null) {
+            $building = new Building();
+            $building->setObjectId($arcgisAddress['building']['objectid']);
+            $building->setIdentification($arcgisAddress['building']['identification']);
+            $building->setConstructionYear($arcgisAddress['building']['constructionyear']);
+            $building->setStatus($arcgisAddress['building']['status']);
+            $building->setResidenceCount($arcgisAddress['building']['residencecount']);
+            $building->setSurfaceArea($arcgisAddress['building']['surfacearea']);
+            $buildingManager = $this->getDoctrine()->getManager(Building::class);
+            $buildingManager->persist($building);
+        }
+
+        $residenceRepository = $this->getDoctrine()->getRepository(Residence::class);
+        /** @var Residence $residence */
+        $residence = $residenceRepository->findOneBy(['identification' => $arcgisAddress['residence']['identification']]);
+        if ($residence === null) {
+            $residence = new Residence();
+            $residence->setObjectId($arcgisAddress['residence']['objectid']);
+            $residence->setIdentification($arcgisAddress['residence']['identification']);
+            $residence->setSurfaceArea($arcgisAddress['residence']['surfacearea']);
+            $residence->setStatus($arcgisAddress['residence']['status']);
+            $residence->setIntendedUse($arcgisAddress['residence']['intendeduse']);
+            $residence->setIntendedUseBasic($arcgisAddress['residence']['intendedusebasic']);
+            $residenceManager = $this->getDoctrine()->getManager(Residence::class);
+            $residenceManager->persist($residence);
+        }
+
+        $publicSpaceRepository = $this->getDoctrine()->getRepository(PublicSpace::class);
+        /** @var PublicSpace $publicSpace */
+        $publicSpace = $publicSpaceRepository->findOneBy(['identification' => $arcgisAddress['publicspace']['identification']]);
+        if ($publicSpace === null) {
+            $publicSpace = new PublicSpace();
+            $publicSpace->setObjectId($arcgisAddress['publicspace']['objectid']);
+            $publicSpace->setIdentification($arcgisAddress['publicspace']['identification']);
+            $publicSpace->setName($arcgisAddress['publicspace']['name']);
+            $publicSpace->setType($arcgisAddress['publicspace']['type']);
+            $publicSpaceManager = $this->getDoctrine()->getManager(PublicSpace::class);
+            $publicSpaceManager->persist($publicSpace);
+        }
+
         $address = new Address();
         if (!empty($housingStock)) {
             $address->setHousingStock($housingStock);
-        }
-        if (!empty($residentialArea)) {
-            $address->setResidentialArea($residentialArea);
         }
         if (!empty($block)) {
             $address->setBlock($block);
@@ -2779,24 +2882,29 @@ class PortfolioController extends AbstractController
         if (!empty($newAddress['rentalunitnumber'])) {
             $address->setRentalUnitNumber($newAddress['rentalunitnumber']);
         }
-        if (!empty($newAddress['housenumber'])) {
-            $address->setHouseNumber($newAddress['housenumber']);
-        }
-        if (!empty($newAddress['addition'])) {
-            $address->setAddition($newAddress['addition']);
-        }
-        if (!empty($newAddress['zipcode'])) {
-            $address->setZipcode($newAddress['zipcode']);
-        }
-        if (!empty($newAddress['city'])) {
-            $address->setCity($newAddress['city']);
-        }
         if (!empty($newAddress['orientation'])) {
             $address->setOrientation($newAddress['orientation']);
         }
         if (is_bool($newAddress['daeb'])) {
             $address->setDaeb($newAddress['daeb']);
         }
+
+        $address->setHouseNumber($arcgisAddress['housenumber']);
+        $address->setAddition($arcgisAddress['addition']);
+        $address->setZipcode($arcgisAddress['zipcode']);
+
+        $address->setMunicipality($municipality);
+        $address->setResidentialArea($residentialArea);
+        $address->setNeighbourhood($neighbourhood);
+
+        $address->setCity($city);
+        $address->setBuilding($building);
+        $address->setResidence($residence);
+        $address->setPublicSpace($publicSpace);
+
+        $address->setObjectId($arcgisAddress['objectid']);
+        $address->setIdentification($arcgisAddress['identification']);
+
         $address->setCreationTime();
         $address->setLastChangeTime();
 
@@ -2897,10 +3005,6 @@ class PortfolioController extends AbstractController
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        /** @var ResidentialArea $residentialArea */
-        $residentialArea = $residentialAreaRepository->find((int) $changeAddress['residentialarea']);
-
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
         /** @var Block $block */
         $block = $blockRepository->find((int) $changeAddress['block']);
@@ -2916,9 +3020,6 @@ class PortfolioController extends AbstractController
         if (!empty($housingStock)) {
             $address->setHousingStock($housingStock);
         }
-        if (!empty($residentialArea)) {
-            $address->setResidentialArea($residentialArea);
-        }
         if (!empty($block)) {
             $address->setBlock($block);
         }
@@ -2930,18 +3031,6 @@ class PortfolioController extends AbstractController
         }
         if (!empty($changeAddress['rentalunitnumber'])) {
             $address->setRentalUnitNumber($changeAddress['rentalunitnumber']);
-        }
-        if (!empty($changeAddress['housenumber'])) {
-            $address->setHouseNumber($changeAddress['housenumber']);
-        }
-        if (!empty($changeAddress['addition'])) {
-            $address->setAddition($changeAddress['addition']);
-        }
-        if (!empty($changeAddress['zipcode'])) {
-            $address->setZipcode($changeAddress['zipcode']);
-        }
-        if (!empty($changeAddress['city'])) {
-            $address->setCity($changeAddress['city']);
         }
         if (!empty($changeAddress['orientation'])) {
             $address->setOrientation($changeAddress['orientation']);
@@ -3068,4 +3157,8 @@ class PortfolioController extends AbstractController
         );
     }
 
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 }
