@@ -124,3 +124,26 @@ And for specific routes adhering to specific rate limits look at:
 ```shell
 src/EventSubscriber/RateLimiterEventSubscriber.php
 ```
+
+#### Database
+To dump on VPS
+```
+mysqldump --user=root --password=<password> --add-drop-table buildingexaminator > ~/www/data/database/buildingexaminator.sql
+```
+and get it to local
+```
+scp buildingexaminator@5.157.83.198:~/www/data/database/buildingexaminator.sql ~/dobro/buildingexaminator/data/database/buildingexaminator.sql
+mysql --user=buildingexaminator --password=buildingexaminator --database=test
+source ~/dobro/buildingexaminator/data/database/buildingexaminator.sql;
+```
+
+#### SSL cert
+SCP the needed check file to the VPS
+```
+scp ZnY941Yap2WijAIiVhc-kTg6Lx-g869xMmw9T3uIxVk buildingexaminator@5.157.83.198:~/www/public/.well-known/acme-challenge/ZnY941Yap2WijAIiVhc-kTg6Lx-g869xMmw9T3uIxVk
+```
+Changing the certificates
+```
+nano /etc/ssl/private/buildingexaminator.nl.crt
+nano /etc/ssl/private/buildingexaminator.nl.key
+```

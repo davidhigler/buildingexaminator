@@ -14347,6 +14347,7 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
     {
         return [
             LoadMunicipalityData::class,
+            LoadResidentialAreaData::class
         ];
     }
 
