@@ -23,7 +23,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a housingstock"
+     *     message="An address must have a housingstock"
      * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
@@ -35,7 +35,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a municipality"
+     *     message="An address must have a municipality"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Municipality")
@@ -47,7 +47,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a residentialarea"
+     *     message="An address must have a residentialarea"
      * )
      *
      * @OA\Property(ref="#/components/schemas/ResidentialArea")
@@ -59,7 +59,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="neighbourhood_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a neighbourhood"
+     *     message="An address must have a neighbourhood"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Neighbourhood")
@@ -71,7 +71,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a block"
+     *     message="An address must have a block"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Block")
@@ -83,7 +83,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="buildingtype_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a buildingtype"
+     *     message="An address must have a buildingtype"
      * )
      *
      * @OA\Property(ref="#/components/schemas/BuildingType")
@@ -113,7 +113,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="residence_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a residence"
+     *     message="An address must have a residence"
      * )
      *
      * @OA\Property()
@@ -125,7 +125,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="building_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a building"
+     *     message="An address must have a building"
      * )
      *
      * @OA\Property()
@@ -199,7 +199,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a city"
+     *     message="An address must have a city"
      * )
      * @OA\Property()
      */
@@ -231,7 +231,7 @@ class Address extends IdBagIdsTime
      * @ORM\JoinColumn(name="vtw_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
-     *     message="A address must have a vtw"
+     *     message="An address must have a vtw"
      * )
      *
      * @OA\Property(ref="#/components/schemas/Vtw")
