@@ -1264,7 +1264,7 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
 
             if (!empty($buildingType['housingstock'])) {
                 /** @var HousingStock $housingStock */
-                $housingStock = $this->getReference($buildingType['housingstock']);
+                $housingStock = $this->getReference('housingstock_' . $buildingType['housingstock']);
                 $buildingTypeObject->setHousingStock($housingStock);
             }
 
@@ -1283,7 +1283,7 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
             }
 
             $manager->persist($buildingTypeObject);
-            $this->addReference($buildingType['code'], $buildingTypeObject);
+            $this->addReference('buildingtype_' . $buildingType['code'], $buildingTypeObject);
         }
 
         $manager->flush();

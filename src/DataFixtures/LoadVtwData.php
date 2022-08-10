@@ -1150,7 +1150,7 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
             }
 
             $manager->persist($vtwObject);
-            $this->addReference($vtw['code'], $vtwObject);
+            $this->addReference('vtw_' . $vtw['code'], $vtwObject);
         }
 
         $manager->flush();

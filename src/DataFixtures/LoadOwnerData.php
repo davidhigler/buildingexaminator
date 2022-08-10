@@ -1415,7 +1415,7 @@ class LoadOwnerData extends Fixture
             }
 
             $manager->persist($ownerObject);
-            $this->addReference($owner['lnumber'], $ownerObject);
+            $this->addReference('owner_' . $owner['lnumber'], $ownerObject);
         }
 
         $manager->flush();

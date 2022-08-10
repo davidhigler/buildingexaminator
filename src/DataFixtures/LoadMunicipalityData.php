@@ -398,7 +398,7 @@ class LoadMunicipalityData extends Fixture
             }
 
             $manager->persist($municipalityObject);
-            $this->addReference($municipality['code'], $municipalityObject);
+            $this->addReference('municipality_' . $municipality['code'], $municipalityObject);
         }
 
         $manager->flush();
