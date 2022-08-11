@@ -3,6 +3,9 @@ let logo_y = 0, logo_up = true;
 $(document).ready(function(){
     $('.sidenav').sidenav();
     setInterval(diaOfLogo, 80);
+    $('.fixed-action-btn').floatingActionButton({
+        direction: 'bottom'
+    });
     loadHomePage();
 });
 

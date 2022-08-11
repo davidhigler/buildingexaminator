@@ -313,3 +313,12 @@ div.login-error-messages {
     margin-top: 40px;
     margin-bottom: 40px;
 }
+
+div.fixed-action-btn.user-profile {
+    top: 24px !important;
+    bottom: auto !important;
+}
+
+div.fixed-action-btn.user-profile > a {
+    background-color: #ee6e73;
+}
