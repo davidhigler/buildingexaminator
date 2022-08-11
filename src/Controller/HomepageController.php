@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomepageController extends AbstractController
 {
-    #[Route('/', name: 'homepage', methods: ['GET'])]
+    #[Route('/home', name: 'homepage', methods: ['GET'])]
     public function Homepage(): Response
     {
         return $this->render('index.twig');

@@ -3,11 +3,20 @@
 {% block body %}
     <div class="row">
         <form class="col s12 offset-m3 m6 offset-l4 l4" method="post">
-            <h1>Login form</h1>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <h2>Buildingexaminator</h2>
+            {% if error %}
+            <div class="card error red lighten-2 login-error-messages">
+                <div class="card-content white-text valign-wrapper">
+                    <i class="medium material-icons">error</i>
+                    <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                </div>
+            </div>
+            {% endif %}
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="email" name="email" type="email" class="validate">
+                    <input id="email" name="email" type="email" class="validate" value="{{ lastUsername }}">
                     <label for="email">Email</label>
                 </div>
             </div>
