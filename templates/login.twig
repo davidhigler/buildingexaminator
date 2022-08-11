@@ -1,0 +1,28 @@
+{% extends "main.twig" %}
+
+{% block body %}
+    <div class="row">
+        <form class="col s12 offset-m3 m6 offset-l4 l4" method="post">
+            <h1>Login form</h1>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="email" name="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">fingerprint</i>
+                    <input id="password" name="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn" id="login" name="login" type="submit">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

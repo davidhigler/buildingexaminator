@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="nl_NL">
-    <head>
-        <title>Dobro</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link type="text/css" rel="stylesheet" href="/assets/materialize/css/materialize.min.css" media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/assets/select2/css/select2.min.css"/>
-        <link type="text/css" rel="stylesheet" href="/assets/timeliner/css/timeliner.min.css"/>
-        <link type="text/css" rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
-        <link type="text/css" rel="stylesheet" href="/css/main.css"/>
-        <link type="text/css" rel="stylesheet" href="/css/esri.css"/>
-        <script type="text/javascript" src="/assets/jquery/js/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="/assets/materialize/js/materialize.min.js"></script>
-        <script type="text/javascript" src="/assets/moment/js/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/assets/select2/js/select2.min.js"></script>
-        <script type="text/javascript" src="/assets/timeliner/js/timeliner.min.js"></script>
-        <script type="text/javascript" src="https://js.arcgis.com/4.23/"></script>
-        <script type="text/javascript" src="/js/main.js"></script>
-    </head>
-    <body>
+{% extends "main.twig" %}
+
+{% block body %}
         <ul class="sidenav sidenav-fixed">
             <li id="menu-logo">
                 <div id="logo-dia"></div>
@@ -278,5 +261,4 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+{% endblock %}
