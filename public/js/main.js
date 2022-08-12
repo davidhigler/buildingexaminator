@@ -3108,11 +3108,23 @@ function loadAddressEditPage(id) {
                     '                    <i class="material-icons left">save</i>Save\n' +
                     '                </button>\n' +
                     '            </div>\n' +
+                    '            <div class="col s6">\n' +
+                    '                <button class="btn right" name="cancel">\n' +
+                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
                     '        </div>\n' +
                     '    </form>\n'
                 );
 
                 $('form#editbuildingaddress select').formSelect();
+
+                $("form#editbuildingaddress button[name='cancel']").click(
+                    function(event) {
+                        event.preventDefault();
+                        loadAddressesPage();
+                    }
+                );
 
                 $('form#editbuildingaddress').submit(function (event) {
                     event.preventDefault();
@@ -3209,6 +3221,7 @@ function loadUsersPage(page = 1, searchterm = '') {
                     '                <td>' + (element.email ?? '') + '</td>\n' +
                     '                <td>' + element.roles.toString() + '</td>\n' +
                     '                <td class="actions">\n' +
+                    //'                    <button class="btn disabled" name="edit" onclick="void(0);">\n' +
                     '                    <button class="btn" name="edit" onclick="loadUserEditPage(' + element.id + ');">\n' +
                     '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
                     '                    </button>\n' +
@@ -3291,7 +3304,7 @@ function loadUserNewPage() {
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">refresh</i>\n' +
         '                <input id="confirmpassword" name="confirmpassword" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="password">Confirm password</label>\n' +
+        '                <label for="confirmpassword">Confirm password</label>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
@@ -3393,11 +3406,148 @@ function loadUserNewPage() {
 }
 
 function loadUserEditPage(id) {
+    $.ajax({
+        url: '/api/v1/users/' + id,
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            $('div#content').html(
+                '    <h3 class="header">Edit user</h3>\n' +
+                '    <form id="edituser">\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                '                <label for="id" class="active">Id</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">email</i>\n' +
+                '                <input id="email" name="email" type="email" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.email + '">\n' +
+                '                <label for="name" class="active">Email</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">fingerprint</i>\n' +
+                '                <input id="password" name="password" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+                '                <label for="password" class="active">New password</label>\n' +
+                '                <span class="helper-text" id="errors" style="color: #F44336;"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">refresh</i>\n' +
+                '                <input id="confirmpassword" name="confirmpassword" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+                '                <label for="confirmpassword" class="active">Confirm new password</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '               <div class="switch">\n' +
+                '                   <label>\n' +
+                '                       Admin\n' +
+                '                       <input type="checkbox" id="adminrole"' + (data.data.roles.includes("ROLE_ADMIN") ? ' checked="checked"' : '') + '>\n' +
+                '                       <span class="lever"></span>\n' +
+                '                   </label>\n' +
+                '               </div>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn" name="create" type="submit">\n' +
+                '                    <i class="material-icons">person_add</i>Create\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
 
+            $("form#edituser button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadAddressesPage();
+                }
+            );
+
+            $('form#edituser').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/v1/users/' + id,
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'email': $('input#email').val(),
+                            'password': $('input#password').val(),
+                            'confirmpassword': $('input#confirmpassword').val(),
+                            'adminrole': $('input#adminrole').prop("checked")
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                        $('#slide-out').sidenav('close');
+                    },
+                    success: function() {
+                        loadUsersPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        hideLoader();
+                    },
+                });
+            });
+        },
+        error: function (jqXHR) {
+            loadErrorPage(jqXHR)
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
 }
 
 function deleteUser(id) {
-
+    $.ajax({
+        url: '/api/v1/users/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function() {
+            loadUsersPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            hideLoader();
+        },
+    });
 }
 /**
  * #################################################

@@ -249,8 +249,8 @@ class AuthorizationController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Details about changed housing stock",
-     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
+     *         description="Details about changed owner",
+     *         @OA\JsonContent(ref="#/components/schemas/Owner")
      *     )
      * )
      */
@@ -518,6 +518,170 @@ class AuthorizationController extends AbstractController
         return $this->json(
             ApiRenderEngine::renderData(
                 $user,
+                self::USER_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/users/{userId}', name: 'changeuser', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/users/{userId}",
+     *     summary="Change user",
+     *     @OA\RequestBody(
+     *         description="Details for changing user",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="password",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="confirmpassword",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="adminrole",
+     *                 type="bool"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="userId",
+     *         description="The id of the user",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed user",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     )
+     * )
+     */
+    public function changeUser(string $userId, Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
+    {
+        $changeUser = json_decode($request->getContent(), true);
+
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        /** @var User $user */
+        $user = $userRepository->find((int) $userId);
+
+        if ($changeUser['password'] !== $changeUser['confirmpassword']) {
+            $error = new stdClass();
+            $error->code = 0;
+            $error->message = 'Password and the confirm password are not the same';
+            return $this->json([$error], 500);
+        }
+        if (!empty($changeUser['email'])) {
+            $user->setEmail($changeUser['email']);
+        }
+        if (!empty($changeUser['password'])) {
+            $user->setRawPassword($changeUser['password']);
+            $user->setPassword($hasher->hashPassword($user, $changeUser['password']));
+        }
+        if (
+            is_bool($changeUser['adminrole'])
+            || $changeUser['adminrole'] === true
+        ) {
+            $user->setRoles(['ROLE_ADMIN']);
+        } else {
+            $user->setRoles([]);
+        }
+
+        $violations = $validator->validate($user);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $user,
+                self::USER_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/users/{userId}', name: 'deleteuser', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/users/{userId}",
+     *     summary="Delete user",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         description="The id of the user",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted a user"
+     *     )
+     * )
+     */
+    public function deleteUser(string $userId): Response
+    {
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        /** @var User $user */
+        $user = $userRepository->find((int) $userId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json(ErrorExtractor::fromException($exception), 500);
+        }
+
+        return new Response('', 200);
+    }
+
+    #[Route('/users/{userId}', name: 'getuser', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/users/{userId}",
+     *     summary="Returns details about a user",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         description="The id of the user",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a user",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     )
+     * )
+     */
+    public function getUserInfo(string $userId): Response
+    {
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $userRepository->find(
+                    (int) $userId
+                ),
                 self::USER_DETAIL_FIELDS
             )
         );
