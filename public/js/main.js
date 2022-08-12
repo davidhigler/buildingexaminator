@@ -681,13 +681,25 @@ function loadOwnerEditPage(id) {
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <div class="row">\n' +
-                '            <div class="col s12">\n' +
+                '            <div class="col s6">\n' +
                 '                <button type="submit" class="btn" name="save">\n' +
                 '                    <i class="material-icons left">save</i>Save\n' +
                 '                </button>\n' +
                 '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
                 '        </div>\n' +
                 '    </form>\n'
+            );
+
+            $("form#editowner button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadOwnersPage();
+                }
             );
 
             $('form#editowner').submit(function(event) {
@@ -1044,13 +1056,25 @@ function loadHousingstockEditPage(id) {
                         '            </div>\n' +
                         '        </div>\n' +
                         '        <div class="row">\n' +
-                        '            <div class="col s12">\n' +
+                        '            <div class="col s6">\n' +
                         '                <button type="submit" class="btn" name="save">\n' +
                         '                    <i class="material-icons left">save</i>Save\n' +
                         '                </button>\n' +
                         '            </div>\n' +
+                        '            <div class="col s6">\n' +
+                        '                <button class="btn right" name="cancel">\n' +
+                        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
                         '        </div>\n' +
                         '    </form>\n'
+                    );
+
+                    $("form#edithousingstock button[name='cancel']").click(
+                        function(event) {
+                            event.preventDefault();
+                            loadHousingstocksPage();
+                        }
                     );
 
                     $('form#edithousingstock').submit(function(event) {
@@ -1970,13 +1994,25 @@ function loadBlockEditPage(id) {
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
+                    '            <div class="col s6">\n' +
                     '                <button type="submit" class="btn" name="save">\n' +
                     '                    <i class="material-icons left">save</i>Save\n' +
                     '                </button>\n' +
                     '            </div>\n' +
+                    '            <div class="col s6">\n' +
+                    '                <button class="btn right" name="cancel">\n' +
+                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
                     '        </div>\n' +
                     '    </form>\n'
+                );
+
+                $("form#editblock button[name='cancel']").click(
+                    function(event) {
+                        event.preventDefault();
+                        loadBlocksPage();
+                    }
                 );
 
                 $('form#editblock').submit(function(event) {
@@ -2268,13 +2304,25 @@ function loadBuildingTypeEditPage(id) {
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
+                    '            <div class="col s6">\n' +
                     '                <button type="submit" class="btn" name="save">\n' +
                     '                    <i class="material-icons left">save</i>Save\n' +
                     '                </button>\n' +
                     '            </div>\n' +
+                    '            <div class="col s6">\n' +
+                    '                <button class="btn right" name="cancel">\n' +
+                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                    '                </button>\n' +
+                    '            </div>\n' +
                     '        </div>\n' +
                     '    </form>\n'
+                );
+
+                $("form#editbuildingtype button[name='cancel']").click(
+                    function(event) {
+                        event.preventDefault();
+                        loadBuildingtypesPage();
+                    }
                 );
 
                 $('form#editbuildingtype').submit(function(event) {
@@ -3103,7 +3151,7 @@ function loadAddressEditPage(id) {
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
+                    '            <div class="col s6">\n' +
                     '                <button type="submit" class="btn" name="save">\n' +
                     '                    <i class="material-icons left">save</i>Save\n' +
                     '                </button>\n' +
