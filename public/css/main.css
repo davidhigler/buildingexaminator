@@ -95,12 +95,27 @@ li#menu-logo {
     margin-bottom: 25px;
 }
 
-li#menu-logo > div#logo-dia {
-    background-image: url('/images/logo_dia.png');
+div#logo {
     margin: auto;
+    width: 242px;
+    height: 120px;
+}
+
+div#logo-dia {
+    float: left;
+    background-image: url('/images/logo_dia.png');
     width: 121px;
     height: 120px;
     overflow: hidden;
+}
+
+div#logo-letter {
+    float: left;
+    padding-left: 25px;
+    width: 121px;
+    height: 120px;
+    overflow: hidden;
+    color: #ee6e73;
 }
 
 /* All round CSS for the Dobro based on https://materializecss.com */
@@ -269,7 +284,7 @@ ul.pagination {
 }
 
 div.possibleByLogos {
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
 }
 
@@ -281,6 +296,19 @@ a.possibleByLogo {
 a.possibleByLogo object {
     pointer-events: none;
     height: 57px;
+}
+
+div.makers {
+    height: 150px;
+    width: 320px;
+    margin: auto;
+}
+
+div.makers > img.profile-image  {
+    float: left;
+    height: 150px;
+    margin: 0px 20px;
+    border-radius: 50%;
 }
 
 label.custom-file-upload input[type="file"] {
@@ -315,10 +343,21 @@ div.login-error-messages {
 }
 
 div.fixed-action-btn.user-profile {
-    top: 24px !important;
+    top: 8px !important;
+    right: 8px !important;
     bottom: auto !important;
 }
 
 div.fixed-action-btn.user-profile > a {
     background-color: #ee6e73;
+}
+
+div.slide-out-nav-menu-button {
+    position: fixed;
+    top: 8px !important;
+    left: 8px !important;
+}
+
+a.sidenav-trigger.top-nav {
+    top: auto !important;
 }

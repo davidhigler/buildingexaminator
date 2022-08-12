@@ -3,7 +3,10 @@
 {% block body %}
         <ul class="sidenav sidenav-fixed">
             <li id="menu-logo">
-                <div id="logo-dia"></div>
+                <div id="logo">
+                    <div id="logo-dia"></div>
+                    <div id="logo-letter" class="valign-wrapper center-align"><h1><i class="material-icons ddd">d_d_d</i></h1></div>
+                <div>
             </li>
             <li>
                 <a href="javascript:void(0);" onclick="loadHomePage();">
@@ -218,18 +221,9 @@
                 </a>
             </li>
         </ul>
-        <nav class="top-nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col s10 m10 l9 offset-s2 offset-m2 offset-l3 header">
-                        <h1><i class="material-icons ddd">d_d_d</i>obro</h1>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
+        <div class="slide-out-nav-menu-button">
             <a href="#" data-target="slide-out" class="top-nav sidenav-trigger hide-on-large-only">
-                <i class="material-icons">menu</i>
+                <i class="material-icons medium">menu</i>
             </a>
         </div>
         <div class="fixed-action-btn user-profile">
@@ -242,7 +236,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col s12 m12 l9 offset-l3" id="activeHousingstockSelector">
+                <div class="col s8 offset-s2 m10 offset-m1 l9 offset-l3" id="activeHousingstockSelector">
                 </div>
             </div>
             <div class="row">
