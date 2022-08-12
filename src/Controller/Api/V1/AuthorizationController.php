@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\Authentication\User;
 use App\Entity\Authorization\Owner;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
@@ -9,9 +10,11 @@ use Exception;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Pagerfanta;
+use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -44,6 +47,18 @@ class AuthorizationController extends AbstractController
         ],
     ];
 
+    private const USER_LIST_FIELDS = [
+        'id',
+        'email',
+        'roles',
+    ];
+
+    private const USER_DETAIL_FIELDS = [
+        'id',
+        'email',
+        'roles',
+    ];
+
     /**
      * OWNERS
      */
@@ -62,6 +77,16 @@ class AuthorizationController extends AbstractController
      *         ),
      *         in="query",
      *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -349,4 +374,152 @@ class AuthorizationController extends AbstractController
         );
     }
 
+    /**
+     * USERS
+     */
+
+    #[Route('/users', name: 'listusers', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/users",
+     *     summary="Returns details about multiple users",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple users",
+     *         @OA\JsonContent(ref="#/components/schemas/users")
+     *     )
+     * )
+     */
+    public function getUsers(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $adapter = $userRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.email', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.email', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::USER_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/users', name: 'adduser', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/users",
+     *     summary="Add new user",
+     *     @OA\RequestBody(
+     *         description="Details about new user",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="password",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="confirmpassword",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="adminrole",
+     *                 type="bool"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created user",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     )
+     * )
+     */
+    public function addUser(Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
+    {
+        $newUser = json_decode($request->getContent(), true);
+
+        if ($newUser['password'] !== $newUser['confirmpassword']) {
+            $error = new stdClass();
+            $error->code = 0;
+            $error->message = 'Password and the confirm password are not the same';
+            return $this->json([$error], 500);
+        }
+
+        $user = new User();
+        if (!empty($newUser['email'])) {
+            $user->setEmail($newUser['email']);
+        }
+        if (!empty($newUser['password'])) {
+            $user->setRawPassword($newUser['password']);
+            $user->setPassword($hasher->hashPassword($user, $newUser['password']));
+        }
+        if (
+            is_bool($newUser['adminrole'])
+            || $newUser['adminrole'] === true
+        ) {
+            $user->setRoles(['ROLE_ADMIN']);
+        } else {
+            $user->setRoles([]);
+        }
+
+        $violations = $validator->validate($user);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $user,
+                self::USER_DETAIL_FIELDS
+            )
+        );
+    }
 }

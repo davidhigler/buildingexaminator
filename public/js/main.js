@@ -3181,5 +3181,224 @@ function deleteAddress(id) {
 }
 
 /**
+ * Users
+ */
+
+function loadUsersPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/users',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('#slide-out').sidenav('close');
+        },
+        success: function(data) {
+            let rows = '';
+            $(data.data).each(function (index, element) {
+                rows +=
+                    '            <tr>\n' +
+                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
+                    '                <td>' + (element.email ?? '') + '</td>\n' +
+                    '                <td>' + element.roles.toString() + '</td>\n' +
+                    '                <td class="actions">\n' +
+                    '                    <button class="btn" name="edit" onclick="loadUserEditPage(' + element.id + ');">\n' +
+                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
+                    '                    </button>\n' +
+                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteUser\');">\n' +
+                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
+                    '                    </button>\n' +
+                    '                </td>\n' +
+                    '            </tr>\n';
+            });
+
+            let html =
+                '    <h3 class="header">Users</h3>\n' +
+                '    <div class="row">\n' +
+                '        <div class="input-field col s6">\n' +
+                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn" onclick="loadUsersPage(1, $(\'input#searchterm\').val());">\n' +
+                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '        <div class="input-field col s3">\n' +
+                '            <button class="btn right" onclick="loadUserNewPage();">\n' +
+                '                <i class="material-icons">person_add</i><span class="button-content hide-on-small-only">New</span>\n' +
+                '            </button>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <table>\n' +
+                '        <thead>\n' +
+                '            <tr>\n' +
+                '                <th class="hide-on-small-only"></th>\n' +
+                '                <th>Email</th>\n' +
+                '                <th>Roles</th>\n' +
+                '                <th class="actions">Actions</th>\n' +
+                '            </tr>\n' +
+                '        </thead>\n' +
+                '        <tbody>\n' +
+                rows +
+                '        </tbody>\n' +
+                '    </table>\n';
+
+            html += addPagination(data.pager, searchterm, 'loadUsersPage');
+
+            $('div#content').html(html);
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            hideLoader();
+        },
+    });
+}
+
+function loadUserNewPage() {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
+    $('div#content').html(
+        '    <h3 class="header">New user</h3>\n' +
+        '    <form id="newuser">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">email</i>\n' +
+        '                <input id="email" name="email" type="email" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="name">Email</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">fingerprint</i>\n' +
+        '                <input id="password" name="password" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="password">Password</label>\n' +
+        '                <span class="helper-text" id="errors" style="color: #F44336;"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">refresh</i>\n' +
+        '                <input id="confirmpassword" name="confirmpassword" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="password">Confirm password</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '               <div class="switch">\n' +
+        '                   <label>\n' +
+        '                       Admin\n' +
+        '                       <input type="checkbox" id="adminrole">\n' +
+        '                       <span class="lever"></span>\n' +
+        '                   </label>\n' +
+        '               </div>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn" name="create" type="submit">\n' +
+        '                    <i class="material-icons">person_add</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn right" name="cancel">\n' +
+        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    $("#password").passwordValidation(
+        {
+            confirmField: "#confirmpassword",
+            minLength: 8,
+            minUpperCase: 1,
+            minLowerCase: 1,
+            minDigits: 1,
+            minSpecial: 1,
+            maxRepeats: 5,
+            maxConsecutive: 3,
+        },
+        function(element, valid, match, failedCases) {
+            $("#errors").html(failedCases.join("<br/>"));
+            if(valid) {
+                $(element).addClass('valid');
+            }
+            if(!valid) {
+                $(element).addClass('invalid');
+            }
+            if(valid && match) {
+                $("#confirmpassword").addClass('valid');
+            }
+            if(!valid || !match) {
+                $("#confirmpassword").addClass('invalid');
+            }
+        }
+    );
+
+    $("form#newuser button[name='cancel']").click(
+        function(event) {
+            event.preventDefault();
+            loadUsersPage();
+        }
+    );
+
+    $('form#newuser').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/v1/users',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'email': $('input#email').val(),
+                    'password': $('input#password').val(),
+                    'confirmpassword': $('input#confirmpassword').val(),
+                    'adminrole': $('input#adminrole').prop("checked")
+                }
+            ),
+            beforeSend: function () {
+                showLoader();
+                $('#slide-out').sidenav('close');
+            },
+            success: function () {
+                loadUsersPage();
+            },
+            error: function (jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function () {
+                hideLoader();
+            },
+        });
+    });
+
+    hideLoader();
+}
+
+function loadUserEditPage(id) {
+
+}
+
+function deleteUser(id) {
+
+}
+/**
  * #################################################
  */

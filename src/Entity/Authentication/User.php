@@ -7,6 +7,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use OpenApi\Annotations as OA;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as CustomAssert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
@@ -27,6 +29,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
+     * @Assert\NotBlank(
+     *     message="A user must have a email"
+     * )
+     *
+     * @Assert\Email(
+     *     message="The email '{{ value }}' is not a valid email.",
+     *     mode="strict"
+     * )
      */
     private string $email;
 
@@ -36,8 +47,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
+     * @Assert\NotCompromisedPassword
+     * @Assert\NotBlank(
+     *     message="A user must have a password"
+     * )
+     * @Assert\Length(
+     *      min=8,
+     *      max=32,
+     *      minMessage="The password must be at least {{ limit }} characters long",
+     *      maxMessage="The password can contain a maximum of {{ limit }} characters"
+     * )
+     * @CustomAssert\PasswordConstraints
+     */
+    private string $rawPassword;
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(
+     *     message="A user must have a password"
+     * )
      */
     private string $password;
 
@@ -102,6 +132,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
+    }
+
+    public function setRawPassword(string $rawPassword): void
+    {
+        $this->rawPassword = $rawPassword;
     }
 
     public function setPassword(string $password): void
