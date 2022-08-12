@@ -242,8 +242,13 @@ function loadHomePage() {
 
 function loadCreditsPage() {
     $('div#content').html(
-        '        <h3 class="header">Credits</h3>\n' +
-        '        <p>Below a list of used frameworks and libraries.</p>\n' +
+        '        <h3 class="header center-align">Credits</h3>\n' +
+        '        <h4 class="header center-align">Makers</h4>\n' +
+        '        <div class="makers center-align">\n' +
+        '           <img class="profile-image" src="/images/developers/david.higler.png">' +
+        '           <img class="profile-image" src="/images/developers/reiny.griemink.png">' +
+        '        </div>\n' +
+        '        <h4 class="header center-align">Used frameworks and libraries</h4>\n' +
         '        <div class="possibleByLogos">\n' +
         '            <a href="https://www.nginx.com" target="_blank" class="possibleByLogo">\n' +
         '                <img alt="NGinX" src="/images/logos/NGinX.png">\n' +
