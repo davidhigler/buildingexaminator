@@ -21,6 +21,29 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
+ *
+ * @OA\Schema(
+ *     schema="owners",
+ *     title="Owners",
+ *     description="An array of owners",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Owner")
+ *     )
+ * )
+ * @OA\Schema(
+ *     schema="users",
+ *     title="Users",
+ *     description="An array of users",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Users")
+ *     )
+ * )
  */
 class AuthorizationController extends AbstractController
 {
@@ -575,18 +598,20 @@ class AuthorizationController extends AbstractController
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
-        if ($changeUser['password'] !== $changeUser['confirmpassword']) {
-            $error = new stdClass();
-            $error->code = 0;
-            $error->message = 'Password and the confirm password are not the same';
-            return $this->json([$error], 500);
+        if (!empty($changeUser['password'])) {
+            if ($changeUser['password'] !== $changeUser['confirmpassword']) {
+                $error = new stdClass();
+                $error->code = 0;
+                $error->message = 'Password and the confirm password are not the same';
+                return $this->json([$error], 500);
+            }
+            $user->setRawPassword($changeUser['password']);
+            $user->setPassword($hasher->hashPassword($user, $changeUser['password']));
+        } else {
+            $user->setRawPassword('Ab1#cdefgh');
         }
         if (!empty($changeUser['email'])) {
             $user->setEmail($changeUser['email']);
-        }
-        if (!empty($changeUser['password'])) {
-            $user->setRawPassword($changeUser['password']);
-            $user->setPassword($hasher->hashPassword($user, $changeUser['password']));
         }
         if (
             is_bool($changeUser['adminrole'])

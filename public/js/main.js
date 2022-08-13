@@ -188,21 +188,20 @@ function loadUnderConstructionPage(title) {
 }
 
 function loadHomePage() {
-    $.ajax({
-        url: '/api/v1/housingstocks',
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-            $('#slide-out').sidenav('close');
-        },
-        success: function(data) {
+    showLoader();
+    $('#slide-out').sidenav('close');
+
+    $.when(
+        $.getJSON('/api/v1/housingstocks'),
+        $.getJSON('/api/v1/statistics'),
+    ).then(
+        function (
+            housingstocks,
+            statistics,
+        ) {
             let select2Html = '            <select id="active_housingstock_select" style="width: 100%;">\n' +
                 '                <option></option>\n';
-            $(data.data).each(function (index, element) {
+            $(housingstocks.data).each(function (index, element) {
                 if (parseInt(localStorage.getItem('activeHousingstockId')) === parseInt(element.id)) {
                     select2Html += '                <option value="' + element.id + '" selected="selected">' + element.code + ' ' + element.name + '</option>\n';
                 } else {
@@ -215,7 +214,26 @@ function loadHomePage() {
 
             $('div#content').html(
                 '        <h3 class="header">Building Examinator</h3>\n' +
-                '        <p>This is the testing application for our app the Building Examinator.</p>\n'
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <div class="card">\n' +
+                '                    <div class="card-content">\n' +
+                '                        <span class="card-title activator grey-text text-darken-4">Housingstocks</span>\n' +
+                '                        <p><span class="badge">' + statistics[0].HousingStocks.Count + '</span>Count</p>\n' +
+                '                        <p><span class="badge">' + statistics[0].HousingStocks.LatestCreate + '</span>Latest creation</p>\n' +
+                '                        <p><span class="badge">' + statistics[0].HousingStocks.LatestChange + '</span>Latest change</p>\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <div class="card">\n' +
+                '                    <div class="card-content">\n' +
+                '                        <span class="card-title activator grey-text text-darken-4">Addresses</span>\n' +
+                '                        <p><span class="badge">' + statistics[0].Addresses.Count + '</span>Count</p>\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '        </div>\n'
             );
 
             $('select#active_housingstock_select').select2({
@@ -230,14 +248,10 @@ function loadHomePage() {
                     localStorage.setItem('activeHousingstockId', selectedActiveHousingstock.id);
                 }
             });
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            hideLoader();
-        },
-    });
+        }
+    );
+
+    hideLoader();
 }
 
 function loadCreditsPage() {
