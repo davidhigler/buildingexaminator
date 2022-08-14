@@ -3281,7 +3281,8 @@ function loadUsersPage(page = 1, searchterm = '') {
                     '            <tr>\n' +
                     '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
                     '                <td>' + (element.email ?? '') + '</td>\n' +
-                    '                <td>' + element.roles.toString() + '</td>\n' +
+                    '                <td>' + (element.type ?? '') + '</td>\n' +
+                    '                <td>' + (element.admin ? 'Yes' : 'No' ) + '</td>\n' +
                     '                <td class="actions">\n' +
                     //'                    <button class="btn disabled" name="edit" onclick="void(0);">\n' +
                     '                    <button class="btn" name="edit" onclick="loadUserEditPage(' + element.id + ');">\n' +
@@ -3317,7 +3318,8 @@ function loadUsersPage(page = 1, searchterm = '') {
                 '            <tr>\n' +
                 '                <th class="hide-on-small-only"></th>\n' +
                 '                <th>Email</th>\n' +
-                '                <th>Roles</th>\n' +
+                '                <th>Type</th>\n' +
+                '                <th>Admin</th>\n' +
                 '                <th class="actions">Actions</th>\n' +
                 '            </tr>\n' +
                 '        </thead>\n' +
@@ -3346,6 +3348,18 @@ function loadUserNewPage() {
     $('div#content').html(
         '    <h3 class="header">New user</h3>\n' +
         '    <form id="newuser">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">man</i>\n' +
+        '                <select id="user_type_select">\n' +
+        '                    <option value="Dobro">Dobro</option>\n' +
+        '                    <option value="Owner">Owner</option>\n' +
+        '                    <option value="Contractor">Contractor</option>\n' +
+        '                    <option value="Subcontractor">Subcontractor</option>\n' +
+        '                </select>\n' +
+        '                <label>Type</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
         '        <div class="row">\n' +
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">email</i>\n' +
@@ -3395,6 +3409,8 @@ function loadUserNewPage() {
         '    </form>\n'
     );
 
+    $("#user_type_select").formSelect();
+
     $("#password").passwordValidation(
         {
             confirmField: "#confirmpassword",
@@ -3442,6 +3458,7 @@ function loadUserNewPage() {
             },
             data: JSON.stringify(
                 {
+                    'type': $('select#user_type_select').val(),
                     'email': $('input#email').val(),
                     'password': $('input#password').val(),
                     'confirmpassword': $('input#confirmpassword').val(),
@@ -3518,7 +3535,7 @@ function loadUserEditPage(id) {
                 '               <div class="switch">\n' +
                 '                   <label>\n' +
                 '                       Admin\n' +
-                '                       <input type="checkbox" id="adminrole"' + (data.data.roles.includes("ROLE_ADMIN") ? ' checked="checked"' : '') + '>\n' +
+                '                       <input type="checkbox" id="adminrole"' + (data.data.admin ? ' checked="checked"' : '') + '>\n' +
                 '                       <span class="lever"></span>\n' +
                 '                   </label>\n' +
                 '               </div>\n' +
@@ -3528,11 +3545,6 @@ function loadUserEditPage(id) {
                 '            <div class="col s6">\n' +
                 '                <button class="btn" name="create" type="submit">\n' +
                 '                    <i class="material-icons">person_add</i>Create\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
                 '                </button>\n' +
                 '            </div>\n' +
                 '            <div class="col s6">\n' +

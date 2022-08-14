@@ -2,6 +2,9 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\Authentication\ContractorUser;
+use App\Entity\Authentication\OwnerUser;
+use App\Entity\Authentication\SubcontractorUser;
 use App\Entity\Authentication\User;
 use App\Entity\Authorization\Owner;
 use App\Helpers\ApiRenderEngine;
@@ -73,13 +76,15 @@ class AuthorizationController extends AbstractController
     private const USER_LIST_FIELDS = [
         'id',
         'email',
-        'roles',
+        'admin',
+        'type',
     ];
 
     private const USER_DETAIL_FIELDS = [
         'id',
         'email',
-        'roles',
+        'admin',
+        'type',
     ];
 
     /**
@@ -512,7 +517,13 @@ class AuthorizationController extends AbstractController
             return $this->json([$error], 500);
         }
 
-        $user = new User();
+        $user = match ($newUser['type']) {
+            'Dobro' => new User(),
+            'Owner' => new OwnerUser(),
+            'Contractor' => new ContractorUser(),
+            'Subcontractor' => new SubcontractorUser(),
+        };
+
         if (!empty($newUser['email'])) {
             $user->setEmail($newUser['email']);
         }

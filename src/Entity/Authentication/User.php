@@ -14,6 +14,8 @@ use App\Validator as CustomAssert;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\Table(name="AuthenticationUsers")
  *
  * @OA\Schema()
@@ -117,6 +119,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->email;
+    }
+
+    public function getType(): string
+    {
+        return match (get_class($this)) {
+            User::class => 'Dobro',
+            OwnerUser::class => 'Owner',
+            ContractorUser::class => 'Constractor',
+            SubcontractorUser::class => 'Subcontractor',
+        };
+    }
+
+    public function getAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->roles);
     }
 
     public function setId(int $id): void
