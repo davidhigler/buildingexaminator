@@ -6,7 +6,9 @@ use App\Entity\Authentication\ContractorUser;
 use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\SubcontractorUser;
 use App\Entity\Authentication\User;
+use App\Entity\Authorization\Contractor;
 use App\Entity\Authorization\Owner;
+use App\Entity\Authorization\Subcontractor;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
 use Exception;
@@ -71,6 +73,38 @@ class AuthorizationController extends AbstractController
             'name',
             'description',
         ],
+    ];
+
+    private const CONTRACTOR_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'website',
+    ];
+
+    private const CONTRACTOR_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'kvk',
+        'btw',
+        'website',
+    ];
+
+    private const SUBCONTRACTOR_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'website',
+    ];
+
+    private const SUBCONTRACTOR_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'kvk',
+        'btw',
+        'website',
     ];
 
     private const USER_LIST_FIELDS = [
@@ -398,6 +432,620 @@ class AuthorizationController extends AbstractController
                     (int) $ownerId
                 ),
                 self::OWNER_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /** CONTRACTORS */
+
+    #[Route('/contractors', name: 'listcontractors', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/contractors",
+     *     summary="Returns details about multiple contractors",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple contractors",
+     *         @OA\JsonContent(ref="#/components/schemas/contractors")
+     *     )
+     * )
+     */
+    public function getContractors(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $adapter = $contractorRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::CONTRACTOR_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/contractors', name: 'addcontractor', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/contractors",
+     *     summary="Add new contractor",
+     *     @OA\RequestBody(
+     *         description="Details about new contractor",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created contractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
+     *     )
+     * )
+     */
+    public function addContractor(Request $request, ValidatorInterface $validator): Response
+    {
+        $newContractor = json_decode($request->getContent(), true);
+
+        $contractor = new Contractor();
+        if (!empty($newContractor['code'])) {
+            $contractor->setCode($newContractor['code']);
+        }
+        if (!empty($newContractor['name'])) {
+            $contractor->setName($newContractor['name']);
+        }
+        if (!empty($newContractor['kvk'])) {
+            $contractor->setKvk($newContractor['kvk']);
+        }
+        if (!empty($newContractor['btw'])) {
+            $contractor->setBtw($newContractor['btw']);
+        }
+        if (!empty($newContractor['website'])) {
+            $contractor->setWebsite($newContractor['website']);
+        }
+
+        $violations = $validator->validate($contractor);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($contractor);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $contractor,
+                self::CONTRACTOR_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/contractors/{contractorId}', name: 'changecontractor', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/contractors/{contractorId}",
+     *     summary="Change contractor",
+     *     @OA\RequestBody(
+     *         description="Details for changing contractor",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the contractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed contractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
+     *     )
+     * )
+     */
+    public function changeContractor(string $contractorId, Request $request, ValidatorInterface $validator): Response
+    {
+        $changeContractor = json_decode($request->getContent(), true);
+
+        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        /** @var Contractor $contractor */
+        $contractor = $contractorRepository->find((int) $contractorId);
+
+        if (!empty($changeContractor['code'])) {
+            $contractor->setCode($changeContractor['code']);
+        }
+        if (!empty($changeContractor['name'])) {
+            $contractor->setName($changeContractor['name']);
+        }
+        if (!empty($changeContractor['kvk'])) {
+            $contractor->setKvk($changeContractor['kvk']);
+        }
+        if (!empty($changeContractor['btw'])) {
+            $contractor->setBtw($changeContractor['btw']);
+        }
+        if (!empty($changeContractor['website'])) {
+            $contractor->setWebsite($changeContractor['website']);
+        }
+
+        $violations = $validator->validate($contractor);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($contractor);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $contractor,
+                self::CONTRACTOR_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/contractors/{contractorId}', name: 'deletecontractor', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/contractors/{contractorId}",
+     *     summary="Delete contractor",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the contractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted an contractor"
+     *     )
+     * )
+     */
+    public function deleteContractor(string $contractorId): Response
+    {
+        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        /** @var Contractor $contractor */
+        $contractor = $contractorRepository->find((int) $contractorId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($contractor);
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json(ErrorExtractor::fromException($exception), 500);
+        }
+
+        return new Response('', 200);
+    }
+
+    #[Route('/contractors/{contractorId}', name: 'getcontractor', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/contractors/{contractorId}",
+     *     summary="Returns details about a contractor",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the contractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a contractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
+     *     )
+     * )
+     */
+    public function getContractor(string $contractorId): Response
+    {
+        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $contractorRepository->find(
+                    (int) $contractorId
+                ),
+                self::CONTRACTOR_DETAIL_FIELDS
+            )
+        );
+    }
+
+    /** SUBCONTRACTORS */
+
+    #[Route('/subcontractors', name: 'listsubcontractors', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/subcontractors",
+     *     summary="Returns details about multiple subcontractors",
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple subcontractors",
+     *         @OA\JsonContent(ref="#/components/schemas/subcontractors")
+     *     )
+     * )
+     */
+    public function getSubcontractors(Request $request): Response
+    {
+        $page = $request->query->get('page');
+        $searchTerm = $request->query->get('searchterm');
+
+        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $adapter = $subcontractorRepository->createQueryBuilder('o');
+        if ($searchTerm !== null) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.code', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
+
+        if ($page === null) {
+            $data = $adapter->getQuery()->getResult();
+        } else {
+            $data = new Pagerfanta(new QueryAdapter($adapter));
+            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $data->setCurrentPage($page);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::SUBCONTRACTOR_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/subcontractors', name: 'addsubcontractor', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/subcontractors",
+     *     summary="Add new subcontractor",
+     *     @OA\RequestBody(
+     *         description="Details about new subcontractor",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created subcontractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
+     *     )
+     * )
+     */
+    public function addSubcontractor(Request $request, ValidatorInterface $validator): Response
+    {
+        $newSubcontractor = json_decode($request->getContent(), true);
+
+        $subcontractor = new Subcontractor();
+        if (!empty($newSubcontractor['code'])) {
+            $subcontractor->setCode($newSubcontractor['code']);
+        }
+        if (!empty($newSubcontractor['name'])) {
+            $subcontractor->setName($newSubcontractor['name']);
+        }
+        if (!empty($newSubcontractor['kvk'])) {
+            $subcontractor->setKvk($newSubcontractor['kvk']);
+        }
+        if (!empty($newSubcontractor['btw'])) {
+            $subcontractor->setBtw($newSubcontractor['btw']);
+        }
+        if (!empty($newSubcontractor['website'])) {
+            $subcontractor->setWebsite($newSubcontractor['website']);
+        }
+
+        $violations = $validator->validate($subcontractor);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($subcontractor);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $subcontractor,
+                self::SUBCONTRACTOR_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/subcontractors/{subcontractorId}', name: 'changesubcontractor', methods: ['PUT'])]
+    /**
+     * @OA\Put(
+     *     path="/subcontractors/{subcontractorId}",
+     *     summary="Change subcontractor",
+     *     @OA\RequestBody(
+     *         description="Details for changing subcontractor",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="kvk",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="btw",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="website",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the subcontractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about changed subcontractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
+     *     )
+     * )
+     */
+    public function changeSubcontractor(string $subcontractorId, Request $request, ValidatorInterface $validator): Response
+    {
+        $changeSubcontractor = json_decode($request->getContent(), true);
+
+        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        /** @var Subcontractor $subcontractor */
+        $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
+
+        if (!empty($changeSubcontractor['code'])) {
+            $subcontractor->setCode($changeSubcontractor['code']);
+        }
+        if (!empty($changeSubcontractor['name'])) {
+            $subcontractor->setName($changeSubcontractor['name']);
+        }
+        if (!empty($changeSubcontractor['kvk'])) {
+            $subcontractor->setKvk($changeSubcontractor['kvk']);
+        }
+        if (!empty($changeSubcontractor['btw'])) {
+            $subcontractor->setBtw($changeSubcontractor['btw']);
+        }
+        if (!empty($changeSubcontractor['website'])) {
+            $subcontractor->setWebsite($changeSubcontractor['website']);
+        }
+
+        $violations = $validator->validate($subcontractor);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($subcontractor);
+        $entityManager->flush();
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $subcontractor,
+                self::SUBCONTRACTOR_DETAIL_FIELDS
+            )
+        );
+    }
+
+    #[Route('/subcontractors/{subcontractorId}', name: 'deletesubcontractor', methods: ['DELETE'])]
+    /**
+     * @OA\Delete(
+     *     path="/contractors/{contractorId}",
+     *     summary="Delete contractor",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the contractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted an contractor"
+     *     )
+     * )
+     */
+    public function deleteSubcontractor(string $subcontractorId): Response
+    {
+        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        /** @var Subcontractor $subcontractor */
+        $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($subcontractor);
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json(ErrorExtractor::fromException($exception), 500);
+        }
+
+        return new Response('', 200);
+    }
+
+    #[Route('/subcontractors/{subcontractorId}', name: 'getsubcontractor', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/subcontractors/{subcontractorId}",
+     *     summary="Returns details about a subcontractor",
+     *     @OA\Parameter(
+     *         name="ownerId",
+     *         description="The id of the subcontractor",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a subcontractor",
+     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
+     *     )
+     * )
+     */
+    public function getSubcontractor(string $subcontractorId): Response
+    {
+        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $subcontractorRepository->find(
+                    (int) $subcontractorId
+                ),
+                self::SUBCONTRACTOR_DETAIL_FIELDS
             )
         );
     }
