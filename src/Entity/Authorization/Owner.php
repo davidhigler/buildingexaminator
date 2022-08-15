@@ -2,6 +2,7 @@
 
 namespace App\Entity\Authorization;
 
+use App\Entity\Authentication\OwnerUser;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\SuperClasses\Id;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -27,6 +28,13 @@ class Owner extends Id
      * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $housingStocks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Authentication\OwnerUser", mappedBy="owner", cascade={"remove"})
+     *
+     * @OA\Property(ref="#/components/schemas/ids")
+     */
+    protected Collection $ownerUsers;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
@@ -126,11 +134,17 @@ class Owner extends Id
     public function __construct()
     {
         $this->housingStocks = new ArrayCollection();
+        $this->ownerUsers = new ArrayCollection();
     }
 
     public function getHousingStocks(): Collection
     {
         return $this->housingStocks;
+    }
+
+    public function getOwnerUsers(): Collection
+    {
+        return $this->ownerUsers;
     }
 
     public function getName(): string
@@ -166,6 +180,16 @@ class Owner extends Id
     public function removeHousingStock(HousingStock $housingStock): void
     {
         $this->housingStocks->removeElement($housingStock);
+    }
+
+    public function addOwnerUser(OwnerUser $ownerUser): void
+    {
+        $this->ownerUsers->add($ownerUser);
+    }
+
+    public function removeOwnerUser(OwnerUser $ownerUsers): void
+    {
+        $this->ownerUsers->removeElement($ownerUsers);
     }
 
     public function setName(string $name): void

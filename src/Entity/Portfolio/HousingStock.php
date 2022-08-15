@@ -29,7 +29,7 @@ class HousingStock extends IdTimeIdentification
      *     message="A housingstock must have an owner"
      * )
      *
-     * @OA\Property(ref="#/components/schemas/owners")
+     * @OA\Property(ref="#/components/schemas/Owner")
      */
     protected Owner $owner;
 
