@@ -1200,7 +1200,7 @@ function loadContractorsPage(page = 1, searchterm = '') {
             });
 
             let html =
-                '    <h3 class="header">Contractor</h3>\n' +
+                '    <h3 class="header">Contractors</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s6">\n' +
                 '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
@@ -1536,7 +1536,7 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
             });
 
             let html =
-                '    <h3 class="header">Subcontractor</h3>\n' +
+                '    <h3 class="header">Subcontractors</h3>\n' +
                 '    <div class="row">\n' +
                 '        <div class="input-field col s6">\n' +
                 '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
