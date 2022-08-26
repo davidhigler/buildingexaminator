@@ -201,7 +201,7 @@ function loadHomePage() {
         ) {
             let select2Html = '            <select id="active_housingstock_select" style="width: 100%;">\n' +
                 '                <option></option>\n';
-            $(housingstocks.data).each(function (index, element) {
+            $(housingstocks[0].data).each(function (index, element) {
                 if (parseInt(localStorage.getItem('activeHousingstockId')) === parseInt(element.id)) {
                     select2Html += '                <option value="' + element.id + '" selected="selected">' + element.code + ' ' + element.name + '</option>\n';
                 } else {
@@ -259,8 +259,8 @@ function loadCreditsPage() {
         '        <h3 class="header center-align">Credits</h3>\n' +
         '        <h4 class="header center-align">Makers</h4>\n' +
         '        <div class="makers center-align">\n' +
-        '           <img class="profile-image" src="/images/developers/david.higler.png">' +
-        '           <img class="profile-image" src="/images/developers/reiny.griemink.png">' +
+        '           <img alt="Profile picture David C. Higler" class="profile-image" src="/images/developers/david.higler.png">' +
+        '           <img alt="Profile picture Reiny Griemink" class="profile-image" src="/images/developers/reiny.griemink.png">' +
         '        </div>\n' +
         '        <h4 class="header center-align">Used frameworks and libraries</h4>\n' +
         '        <div class="possibleByLogos">\n' +
