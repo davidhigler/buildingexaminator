@@ -1,0 +1,7 @@
+  #Add below to your app armor config.
+
+  # local web applications
+  /var/www/** rwixlk,
+
+  # Sessions for PHP
+  /tmp/** rw,
