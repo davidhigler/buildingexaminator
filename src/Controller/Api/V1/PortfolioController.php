@@ -61,17 +61,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
- *     schema="owners",
- *     title="Owners",
- *     description="An array of owners",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Owner")
- *     )
- * )
- * @OA\Schema(
  *     schema="housingStocks",
  *     title="Housing stocks",
  *     description="An array of housing stocks",
@@ -723,23 +712,15 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         if (!empty($owner)) {
             $housingStock->setOwner($owner);
-        } else {
-            $housingStock->setOwner(null);
         }
         if (!empty($changeHousingStock['name'])) {
             $housingStock->setName($changeHousingStock['name']);
-        } else {
-            $housingStock->setName(null);
         }
         if (!empty($changeHousingStock['code'])) {
             $housingStock->setCode($changeHousingStock['code']);
-        } else {
-            $housingStock->setCode(null);
         }
         if (!empty($changeHousingStock['description'])) {
             $housingStock->setDescription($changeHousingStock['description']);
-        } else {
-            $housingStock->setDescription(null);
         }
         $housingStock->setLastChangeTime();
 
@@ -2043,28 +2024,18 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         if (!empty($housingStock)) {
             $block->setHousingStock($housingStock);
-        } else {
-            $block->setHousingStock(null);
         }
         if (!empty($changeBlock['name'])) {
             $block->setName($changeBlock['name']);
-        } else {
-            $block->setName(null);
         }
         if (!empty($changeBlock['code'])) {
             $block->setCode($changeBlock['code']);
-        } else {
-            $block->setCode(null);
         }
         if (!empty($changeBlock['financialNumber'])) {
             $block->setFinancialNumber($changeBlock['financialNumber']);
-        } else {
-            $block->setFinancialNumber(null);
         }
         if (!empty($changeBlock['description'])) {
             $block->setDescription($changeBlock['description']);
-        } else {
-            $block->setDescription(null);
         }
         $block->setLastChangeTime();
 
@@ -2421,23 +2392,15 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         if (!empty($housingStock)) {
             $buildingType->setHousingStock($housingStock);
-        } else {
-            $buildingType->setHousingStock(null);
         }
         if (!empty($changeBuildingType['name'])) {
             $buildingType->setName($changeBuildingType['name']);
-        } else {
-            $buildingType->setName(null);
         }
         if (!empty($changeBuildingType['code'])) {
             $buildingType->setCode($changeBuildingType['code']);
-        } else {
-            $buildingType->setCode(null);
         }
         if (!empty($changeBuildingType['description'])) {
             $buildingType->setDescription($changeBuildingType['description']);
-        } else {
-            $buildingType->setDescription(null);
         }
         $buildingType->setLastChangeTime();
 

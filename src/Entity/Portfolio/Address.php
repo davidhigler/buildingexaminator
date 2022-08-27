@@ -2,7 +2,10 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Entity\Strategies\Project;
 use App\Entity\SuperClasses\IdBagIdsTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OpenApi\Annotations as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
@@ -65,6 +68,13 @@ class Address extends IdBagIdsTime
      * @OA\Property(ref="#/components/schemas/Neighbourhood")
      */
     protected Neighbourhood $neighbourhood;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="addresses", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/projects")
+     */
+    protected Collection $projects;
 
     /**
      * @ORM\ManyToOne(targetEntity="Block", inversedBy="addresses", fetch="EXTRA_LAZY")
@@ -241,6 +251,7 @@ class Address extends IdBagIdsTime
     #[Pure]
     public function __construct()
     {
+        $this->projects = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
@@ -261,6 +272,11 @@ class Address extends IdBagIdsTime
     public function getNeighbourhood(): Neighbourhood
     {
         return $this->neighbourhood;
+    }
+
+    public function getProjects(): Collection
+    {
+        return $this->projects;
     }
 
     public function getBlock(): Block
@@ -346,6 +362,16 @@ class Address extends IdBagIdsTime
     public function setNeighbourhood(Neighbourhood $neighbourhood): void
     {
         $this->neighbourhood = $neighbourhood;
+    }
+
+    public function addProject(Project $project): void
+    {
+        $this->projects->add($project);
+    }
+
+    public function removeProject(Project $project): void
+    {
+        $this->projects->removeElement($project);
     }
 
     public function setBlock(Block $block): void

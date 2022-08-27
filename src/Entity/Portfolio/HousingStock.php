@@ -3,6 +3,7 @@
 namespace App\Entity\Portfolio;
 
 use App\Entity\Authorization\Owner;
+use App\Entity\Strategies\Project;
 use App\Entity\SuperClasses\IdTimeIdentification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,6 +35,13 @@ class HousingStock extends IdTimeIdentification
     protected Owner $owner;
 
     /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/projects")
+     */
+    protected Collection $projects;
+
+    /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/blocks")
@@ -57,6 +65,7 @@ class HousingStock extends IdTimeIdentification
     #[Pure]
     public function __construct()
     {
+        $this->projects = new ArrayCollection();
         $this->blocks = new ArrayCollection();
         $this->buildingTypes = new ArrayCollection();
         $this->addresses = new ArrayCollection();
@@ -65,6 +74,11 @@ class HousingStock extends IdTimeIdentification
     public function getOwner(): Owner
     {
         return $this->owner;
+    }
+
+    public function getProjects(): Collection
+    {
+        return $this->projects;
     }
 
     public function getBlocks(): Collection
@@ -95,6 +109,16 @@ class HousingStock extends IdTimeIdentification
     public function setOwner(Owner $owner): void
     {
         $this->owner = $owner;
+    }
+
+    public function addProject(Project $project): void
+    {
+        $this->projects->add($project);
+    }
+
+    public function removeProject(Project $project): void
+    {
+        $this->projects->removeElement($project);
     }
 
     public function addBlock(Block $block): void
