@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Project extends IdCodeName
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="projects", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\HousingStock", inversedBy="projects", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
      *
      * @Assert\NotBlank(
@@ -36,7 +36,7 @@ class Project extends IdCodeName
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Address", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Portfolio\Address", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="StrategiesProjectsAddresses")
      *
      * @OA\Property(ref="#/components/schemas/addresses")

@@ -35,7 +35,7 @@ class HousingStock extends IdTimeIdentification
     protected Owner $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Strategies\Project", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/projects")
      */

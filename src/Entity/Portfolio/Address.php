@@ -70,7 +70,7 @@ class Address extends IdBagIdsTime
     protected Neighbourhood $neighbourhood;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Project", mappedBy="addresses", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Strategies\Project", mappedBy="addresses", cascade={"remove"}, fetch="EXTRA_LAZY")
      *
      * @OA\Property(ref="#/components/schemas/projects")
      */
