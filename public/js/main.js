@@ -273,6 +273,9 @@ function loadCreditsPage() {
         '            <a href="https://www.mysql.com" target="_blank" class="possibleByLogo">\n' +
         '                <img alt="MySql" src="/images/logos/MySql.png">\n' +
         '            </a>\n' +
+        '            <a href="https://mariadb.org" target="_blank" class="possibleByLogo">\n' +
+        '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/c/ca/MariaDB_colour_logo.svg">Your browser does not support SVG</object>\n' +
+        '            </a>\n' +
         '            <br/>\n' +
         '            <br/>\n' +
         '            <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +

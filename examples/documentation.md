@@ -3,6 +3,13 @@ zypper in nginx mariadb php8 php8-cli php8-ctype php8-curl php8-dom php8-fileinf
 ```
 
 ```
+CREATE DATABASE buildingexaminator;
+CREATE USER 'buildingexaminator'@localhost IDENTIFIED BY 'buildingexaminator';
+GRANT ALL PRIVILEGES ON buildingexaminator.* TO 'buildingexaminator'@localhost;
+FLUSH PRIVILEGES;
+```
+
+```
 S  | Name           | Summary                                                | Type
 ---+----------------+--------------------------------------------------------+--------
 i+ | php8           | Interpreter for the PHP scripting language version 8   | package
@@ -30,11 +37,11 @@ i  | php8-zlib      | Zlib compression support for PHP                       | p
 ```
 
 ```
-/etc/php8/fpm/php-fpm.d/buildingexaminator.conf
+cp examples/php/buildingexaminator.conf /etc/php8/fpm/php-fpm.d/buildingexaminator.conf
 ```
 
 ```
-/etc/nginx/vhosts.d/buildingexaminator.conf
+cp examples/nginx/buildingexaminator.conf /etc/nginx/vhosts.d/buildingexaminator.conf
 ```
 
 ```
