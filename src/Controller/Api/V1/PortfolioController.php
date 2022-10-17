@@ -548,20 +548,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getHousingStocks(Request $request): Response
     {
-        $page = $request->query->get('page');
-        $searchTerm = $request->query->get('searchterm');
-
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $adapter = $housingStockRepository->createQueryBuilder('o');
 
         $user = $this->getUser();
         switch(get_class($user)) {
-            case User::class:
-                break;
-            case OwnerUser::class:
+            case SubContractorUser::class:
+                $adapter->join('o.projects', 'p');
                 $adapter
-                    ->andWhere('o.owner = :owner')
-                    ->setParameter('owner', $user->getOwner());
+                    ->andWhere(':subcontractor MEMBER OF p.subcontractors')
+                    ->setParameter('subcontractor', $user->getSubcontractor());
                 break;
             case ContractorUser::class:
                 $adapter->join('o.projects', 'p');
@@ -569,14 +565,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     ->andWhere(':contractor MEMBER OF p.contractors')
                     ->setParameter('contractor', $user->getContractor());
                 break;
-            case SubContractorUser::class:
-                $adapter->join('o.projects', 'p');
+            case OwnerUser::class:
                 $adapter
-                    ->andWhere(':subcontractor MEMBER OF p.subcontractors')
-                    ->setParameter('subcontractor', $user->getSubcontractor());
+                    ->andWhere('o.owner = :owner')
+                    ->setParameter('owner', $user->getOwner());
+                break;
+            case User::class:
                 break;
         }
 
+        $searchTerm = $request->query->get('searchterm');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -590,6 +588,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $adapter->orderBy('o.name', 'ASC');
 
+        $page = $request->query->get('page');
         if ($page === null) {
             $data = $adapter->getQuery()->getResult();
         } else {
@@ -642,6 +641,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function addHousingStock(Request $request, ValidatorInterface $validator): Response
     {
+        $user = $this->getUser();
+        if (!($user instanceof User)) {
+            throw $this->createAccessDeniedException('No access for you!');
+        }
+
         $newHousingStock = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
@@ -728,6 +732,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator): Response
     {
+        $user = $this->getUser();
+        if (!($user instanceof User)) {
+            throw $this->createAccessDeniedException('No access for you!');
+        }
+
         $changeHousingStock = json_decode($request->getContent(), true);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -793,6 +802,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function deleteHousingStock(string $housingStockId): Response
     {
+        $user = $this->getUser();
+        if (!($user instanceof User)) {
+            throw $this->createAccessDeniedException('No access for you!');
+        }
+
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
