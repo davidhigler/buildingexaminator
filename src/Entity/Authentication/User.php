@@ -126,7 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return match (get_class($this)) {
             User::class => 'Dobro',
             OwnerUser::class => 'Owner',
-            ContractorUser::class => 'Constractor',
+            ContractorUser::class => 'Contractor',
             SubcontractorUser::class => 'Subcontractor',
         };
     }

@@ -2,6 +2,8 @@
 
 namespace App\Entity\Strategies;
 
+use App\Entity\Authorization\Contractor;
+use App\Entity\Authorization\Subcontractor;
 use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\SuperClasses\IdCodeName;
@@ -34,6 +36,22 @@ class Project extends IdCodeName
      * @OA\Property(ref="#/components/schemas/HousingStock")
      */
     protected HousingStock $housingStock;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\Contractor", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="StrategiesProjectsContractors")
+     *
+     * @OA\Property(ref="#/components/schemas/contractors")
+     */
+    protected Collection $contractors;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\Subcontractor", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="StrategiesProjectsSubcontractors")
+     *
+     * @OA\Property(ref="#/components/schemas/subcontractors")
+     */
+    protected Collection $subcontractors;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Portfolio\Address", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
@@ -93,12 +111,24 @@ class Project extends IdCodeName
     #[Pure]
     public function __construct()
     {
+        $this->contractors = new ArrayCollection();
+        $this->subcontractors = new ArrayCollection();
         $this->addresses = new ArrayCollection();
     }
 
     public function getHousingStock(): HousingStock
     {
         return $this->housingStock;
+    }
+
+    public function getContractors(): Collection
+    {
+        return $this->contractors;
+    }
+
+    public function getSubcontractors(): Collection
+    {
+        return $this->subcontractors;
     }
 
     public function getAddresses(): Collection
@@ -129,6 +159,26 @@ class Project extends IdCodeName
     public function setHousingStock(HousingStock $housingStock): void
     {
         $this->housingStock = $housingStock;
+    }
+
+    public function addContractor(Contractor $contractor): void
+    {
+        $this->contractors->add($contractor);
+    }
+
+    public function removeContractor(Contractor $contractor): void
+    {
+        $this->contractors->removeElement($contractor);
+    }
+
+    public function addSubcontractor(Subcontractor $subcontractor): void
+    {
+        $this->subcontractors->add($subcontractor);
+    }
+
+    public function removeSubcontractor(Subcontractor $subcontractor): void
+    {
+        $this->subcontractors->removeElement($subcontractor);
     }
 
     public function addAddress(Address $address): void

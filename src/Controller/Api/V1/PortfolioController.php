@@ -4,6 +4,10 @@ namespace App\Controller\Api\V1;
 
 use App\Bag\Application\Arcgis\ArcgisException;
 use App\Bag\Application\SQLite\CbsException;
+use App\Entity\Authentication\ContractorUser;
+use App\Entity\Authentication\OwnerUser;
+use App\Entity\Authentication\SubcontractorUser;
+use App\Entity\Authentication\User;
 use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
@@ -21,7 +25,6 @@ use App\Bag\Infrastructure\Arcgis\Repository as arcgisRepository;
 use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
-use Doctrine\ORM\QueryBuilder;
 use Exception;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -550,6 +553,30 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $adapter = $housingStockRepository->createQueryBuilder('o');
+
+        $user = $this->getUser();
+        switch(get_class($user)) {
+            case User::class:
+                break;
+            case OwnerUser::class:
+                $adapter
+                    ->andWhere('o.owner = :owner')
+                    ->setParameter('owner', $user->getOwner());
+                break;
+            case ContractorUser::class:
+                $adapter->join('o.projects', 'p');
+                $adapter
+                    ->andWhere(':contractor MEMBER OF p.contractors')
+                    ->setParameter('contractor', $user->getContractor());
+                break;
+            case SubContractorUser::class:
+                $adapter->join('o.projects', 'p');
+                $adapter
+                    ->andWhere(':subcontractor MEMBER OF p.subcontractors')
+                    ->setParameter('subcontractor', $user->getSubcontractor());
+                break;
+        }
+
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -560,6 +587,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         if ($page === null) {
@@ -858,7 +886,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $searchTerm = $request->query->get('searchterm');
 
         $municipalityRepository = $this->getDoctrine()->getRepository(Municipality::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $municipalityRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -965,7 +992,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $searchTerm = $request->query->get('searchterm');
 
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $residentialAreaRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -1072,7 +1098,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $searchTerm = $request->query->get('searchterm');
 
         $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $neighbourhoodRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -1434,7 +1459,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $publicSpaceRepository = $this->getDoctrine()->getRepository(PublicSpace::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $publicSpaceRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
@@ -1569,7 +1593,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $buildingRepository = $this->getDoctrine()->getRepository(Building::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $buildingRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
@@ -1704,7 +1727,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $residenceRepository = $this->getDoctrine()->getRepository(Residence::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $residenceRepository->createQueryBuilder('o');
         $adapter->join('o.addresses', 'a');
         $adapter->andWhere($adapter->expr()->eq('a.housingStock', $adapter->expr()->literal($housingStock->getId())));
@@ -2579,7 +2601,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $addressRepository = $this->getDoctrine()->getRepository(Address::class);
-        /** @var QueryBuilder $adapter */
         $adapter = $addressRepository->createQueryBuilder('o');
         $adapter->join('o.city', 'c');
         $adapter->join('o.publicSpace', 'p');

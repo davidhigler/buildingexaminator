@@ -49,6 +49,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         @OA\Items(ref="#/components/schemas/Users")
  *     )
  * )
+ * @OA\Schema(
+ *     schema="contractors"
+ *     title="Contractors",
+ *     description="An array of contractors",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Contractor")
+ *     )
+ * )
  */
 class AuthorizationController extends AbstractController
 {

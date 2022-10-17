@@ -22,8 +22,18 @@ class LoadOwnerData extends Fixture
     {
         $owners = [
             [
-                'name' => 'Dobro BV',
-                'lnumber' => 'L0000',
+                'name' => 'Dobro BV a',
+                'lnumber' => 'L9999',
+                'website' => 'https://www.buildingexaminator.nl'
+            ],
+            [
+                'name' => 'Dobro BV b',
+                'lnumber' => 'L9998',
+                'website' => 'https://www.buildingexaminator.nl'
+            ],
+            [
+                'name' => 'Dobro BV c',
+                'lnumber' => 'L9997',
                 'website' => 'https://www.buildingexaminator.nl'
             ],
             [

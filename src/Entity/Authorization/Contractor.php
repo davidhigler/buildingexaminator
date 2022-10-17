@@ -3,6 +3,7 @@
 namespace App\Entity\Authorization;
 
 use App\Entity\Authentication\ContractorUser;
+use App\Entity\Strategies\Project;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
@@ -27,6 +28,13 @@ class Contractor extends IdCodeName
      * @OA\Property(ref="#/components/schemas/ids")
      */
     protected Collection $contractorUsers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Strategies\Project", mappedBy="contractors", cascade={"remove"}, fetch="EXTRA_LAZY")
+     *
+     * @OA\Property(ref="#/components/schemas/projects")
+     */
+    protected Collection $projects;
 
     /**
      * @ORM\Column(type="integer", length=8, nullable=true)
@@ -88,11 +96,17 @@ class Contractor extends IdCodeName
     public function __construct()
     {
         $this->contractorUsers = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getContractorUsers(): Collection
     {
         return $this->contractorUsers;
+    }
+
+    public function getProjects(): Collection
+    {
+        return $this->projects;
     }
 
     public function getKvk(): int
@@ -118,6 +132,16 @@ class Contractor extends IdCodeName
     public function removeContractorUser(ContractorUser $contractorUser): void
     {
         $this->contractorUsers->removeElement($contractorUser);
+    }
+
+    public function addProject(Project $project): void
+    {
+        $this->projects->add($project);
+    }
+
+    public function removeProject(Project $project): void
+    {
+        $this->projects->removeElement($project);
     }
 
     public function setKvk(int $kvk): void

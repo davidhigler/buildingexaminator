@@ -26,8 +26,20 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
             [
                 'code' => 'DobroTest01',
                 'name' => 'Test 01',
-                'description' => 'This is the standard test environment of Dobro Building Examinator 1',
-                'owner' => 'L0000'
+                'description' => 'This is the standard housing stock on the test environment of Dobro Building Examinator',
+                'owner' => 'L9999'
+            ],
+            [
+                'code' => 'DobroTest02',
+                'name' => 'Test 02',
+                'description' => 'This is the second housing stock on the test environment of Dobro Building Examinator',
+                'owner' => 'L9998'
+            ],
+            [
+                'code' => 'DobroTest03',
+                'name' => 'Test 03',
+                'description' => 'This is the third housing stock on the test environment of Dobro Building Examinator',
+                'owner' => 'L9997'
             ],
         ];
 

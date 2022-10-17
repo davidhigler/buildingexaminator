@@ -161,13 +161,17 @@
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="OpenSuse">
-        <phpinfo binary_type="PHP" php_cli="/usr/bin/php" path_separator=":" version="8.1.9">
-          <additional_php_ini>/etc/php8/conf.d/_mysqlnd.ini, /etc/php8/conf.d/ctype.ini, /etc/php8/conf.d/dom.ini, /etc/php8/conf.d/fileinfo.ini, /etc/php8/conf.d/iconv.ini, /etc/php8/conf.d/intl.ini, /etc/php8/conf.d/mysqli.ini, /etc/php8/conf.d/openssl.ini, /etc/php8/conf.d/pdo.ini, /etc/php8/conf.d/pdo_mysql.ini, /etc/php8/conf.d/pdo_sqlite.ini, /etc/php8/conf.d/phar.ini, /etc/php8/conf.d/redis.ini, /etc/php8/conf.d/sqlite3.ini, /etc/php8/conf.d/sysvsem.ini, /etc/php8/conf.d/tokenizer.ini, /etc/php8/conf.d/xmlreader.ini, /etc/php8/conf.d/xmlwriter.ini, /etc/php8/conf.d/zip.ini, /etc/php8/conf.d/zlib.ini</additional_php_ini>
+        <phpinfo binary_type="PHP" php_cli="/usr/bin/php" path_separator=":" version="8.1.11">
+          <additional_php_ini>/etc/php8/conf.d/_mysqlnd.ini, /etc/php8/conf.d/ctype.ini, /etc/php8/conf.d/dom.ini, /etc/php8/conf.d/fileinfo.ini, /etc/php8/conf.d/iconv.ini, /etc/php8/conf.d/intl.ini, /etc/php8/conf.d/mysqli.ini, /etc/php8/conf.d/openssl.ini, /etc/php8/conf.d/pdo.ini, /etc/php8/conf.d/pdo_mysql.ini, /etc/php8/conf.d/pdo_sqlite.ini, /etc/php8/conf.d/phar.ini, /etc/php8/conf.d/redis.ini, /etc/php8/conf.d/sqlite3.ini, /etc/php8/conf.d/sysvsem.ini, /etc/php8/conf.d/tokenizer.ini, /etc/php8/conf.d/xdebug.ini, /etc/php8/conf.d/xmlreader.ini, /etc/php8/conf.d/xmlwriter.ini, /etc/php8/conf.d/zip.ini, /etc/php8/conf.d/zlib.ini</additional_php_ini>
           <configuration_file>/etc/php8/cli/php.ini</configuration_file>
           <configuration_options>
             <configuration_option name="include_path" value=".:/usr/share/php8:/usr/share/php/PEAR" />
           </configuration_options>
-          <debuggers />
+          <debuggers>
+            <debugger_info debugger="xdebug" debugger_version="3.1.5">
+              <debug_extensions />
+            </debugger_info>
+          </debuggers>
           <loaded_extensions>
             <extension name="Core" />
             <extension name="PDO" />
@@ -197,6 +201,7 @@
             <extension name="standard" />
             <extension name="sysvsem" />
             <extension name="tokenizer" />
+            <extension name="xdebug" />
             <extension name="xml" />
             <extension name="xmlreader" />
             <extension name="xmlwriter" />
