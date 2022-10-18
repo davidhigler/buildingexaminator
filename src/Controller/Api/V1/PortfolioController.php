@@ -25,6 +25,7 @@ use App\Bag\Infrastructure\Arcgis\Repository as arcgisRepository;
 use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
+use App\Security\Voters\HousingStockVoter;
 use Exception;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -588,18 +589,22 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $adapter->orderBy('o.name', 'ASC');
 
+        $housingStocks = $adapter->getQuery()->getResult();
+
+        foreach ($housingStocks as $housingStock) {
+            $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
+        }
+
         $page = $request->query->get('page');
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        if ($page !== null) {
+            $housingStocks = new Pagerfanta(new QueryAdapter($adapter));
+            $housingStocks->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
+            $housingStocks->setCurrentPage($page);
         }
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $data,
+                $housingStocks,
                 self::HOUSING_STOCK_LIST_FIELDS
             )
         );
@@ -641,11 +646,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function addHousingStock(Request $request, ValidatorInterface $validator): Response
     {
-        $user = $this->getUser();
-        if (!($user instanceof User)) {
-            throw $this->createAccessDeniedException('No access for you!');
-        }
-
         $newHousingStock = json_decode($request->getContent(), true);
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
@@ -667,6 +667,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $housingStock->setCreationTime();
         $housingStock->setLastChangeTime();
+
+        $this->denyAccessUnlessGranted(HousingStockVoter::CREATE, $housingStock);
 
         $violations = $validator->validate($housingStock);
         if ($violations->count() > 0) {
@@ -732,11 +734,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator): Response
     {
-        $user = $this->getUser();
-        if (!($user instanceof User)) {
-            throw $this->createAccessDeniedException('No access for you!');
-        }
-
         $changeHousingStock = json_decode($request->getContent(), true);
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -765,6 +762,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
+
+        $this->denyAccessUnlessGranted(HousingStockVoter::EDIT, $housingStock);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($housingStock);
@@ -802,14 +801,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function deleteHousingStock(string $housingStockId): Response
     {
-        $user = $this->getUser();
-        if (!($user instanceof User)) {
-            throw $this->createAccessDeniedException('No access for you!');
-        }
-
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $this->denyAccessUnlessGranted(HousingStockVoter::DELETE, $housingStock);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($housingStock);
@@ -847,11 +843,14 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     public function getHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+
+        $housingStock = $housingStockRepository->find((int)$housingStockId);
+
+        $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $housingStockRepository->find(
-                    (int)$housingStockId
-                ),
+                $housingStock,
                 self::HOUSING_STOCK_DETAIL_FIELDS
             )
         );
@@ -896,6 +895,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getMunicipalities(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -954,6 +955,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getMunicipality(string $municipalityId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1002,6 +1005,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getResidentialAreas(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1060,6 +1065,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getResidentialArea(string $residentialAreaId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1108,6 +1115,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getNeighbourhoods(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1166,6 +1175,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getNeighbourhood(string $neighbourhoodId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1214,6 +1225,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getVtws(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1272,6 +1285,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getVtw(string $vtwId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1331,6 +1346,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getCities(string $housingStockId, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1406,6 +1423,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getCity(string $cityId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $cityRepository = $this->getDoctrine()->getRepository(City::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1465,6 +1484,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getPublicSpaces(string $housingStockId, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1540,6 +1561,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getPublicSpace(string $publicSpaceId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $publicSpaceRepository = $this->getDoctrine()->getRepository(PublicSpace::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1599,6 +1622,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getBuildings(string $housingStockId, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1674,6 +1699,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getBuilding(string $buildingId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $buildingRepository = $this->getDoctrine()->getRepository(Building::class);
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1733,6 +1760,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getResidences(string $housingStockId, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
@@ -1808,6 +1837,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getResidence(string $residenceId): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $residenceRepository = $this->getDoctrine()->getRepository(Residence::class);
         return $this->json(
             ApiRenderEngine::renderData(

@@ -216,4 +216,9 @@ class Owner extends Id
     {
         $this->website = $website;
     }
+
+    public function equals(self $owner): bool
+    {
+        return $this->getId() === $owner->getId();
+    }
 }

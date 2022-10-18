@@ -210,4 +210,9 @@ class Project extends IdCodeName
     {
         $this->actualEndDate = $actualEndDate;
     }
+
+    public function equals(self $project): bool
+    {
+        return $this->getId() === $project->getId();
+    }
 }
