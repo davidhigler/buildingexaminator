@@ -25,8 +25,10 @@ use App\Bag\Infrastructure\Arcgis\Repository as arcgisRepository;
 use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
+use App\Security\Voters\BlockVoter;
 use App\Security\Voters\HousingStockVoter;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Annotations as OA;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
@@ -36,6 +38,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/v1', name: 'api-v1-')]
@@ -547,33 +550,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getHousingStocks(Request $request): Response
+    public function getHousingStocks(Request $request, PaginatorInterface $paginator): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         $adapter = $housingStockRepository->createQueryBuilder('o');
-
-        $user = $this->getUser();
-        switch(get_class($user)) {
-            case SubContractorUser::class:
-                $adapter->join('o.projects', 'p');
-                $adapter
-                    ->andWhere(':subcontractor MEMBER OF p.subcontractors')
-                    ->setParameter('subcontractor', $user->getSubcontractor());
-                break;
-            case ContractorUser::class:
-                $adapter->join('o.projects', 'p');
-                $adapter
-                    ->andWhere(':contractor MEMBER OF p.contractors')
-                    ->setParameter('contractor', $user->getContractor());
-                break;
-            case OwnerUser::class:
-                $adapter
-                    ->andWhere('o.owner = :owner')
-                    ->setParameter('owner', $user->getOwner());
-                break;
-            case User::class:
-                break;
-        }
 
         $searchTerm = $request->query->get('searchterm');
         if (!empty($searchTerm)) {
@@ -591,15 +571,17 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $housingStocks = $adapter->getQuery()->getResult();
 
-        foreach ($housingStocks as $housingStock) {
-            $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
+        foreach ($housingStocks as $index => $housingStock) {
+            try {
+                $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
+            } catch (AccessDeniedException $exception) {
+                unset($housingStocks[$index]);
+            }
         }
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $housingStocks = new Pagerfanta(new QueryAdapter($adapter));
-            $housingStocks->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $housingStocks->setCurrentPage($page);
+            $housingStocks = $paginator->paginate($housingStocks, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1896,41 +1878,47 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getBlocks(string $housingStockId, Request $request): Response
+    public function getBlocks(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
-        $searchTerm = $request->query->get('searchterm');
-
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
-        $adapter = $blockRepository->createQueryBuilder('o');
-        $adapter->andWhere($adapter->expr()->eq('o.housingStock', $adapter->expr()->literal($housingStock->getId())));
+        $adapter = $blockRepository->createQueryBuilder('b');
+        $adapter->andWhere($adapter->expr()->eq('b.housingStock', $adapter->expr()->literal($housingStock->getId())));
+
+        $searchTerm = $request->query->get('searchterm');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
-                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
-                        $adapter->expr()->like('o.code', $adapter->expr()->literal($searchTerm . '%')),
-                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                        $adapter->expr()->like('b.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('b.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('b.id', $adapter->expr()->literal($searchTerm))
                     )
                 );
         }
-        $adapter->orderBy('o.name', 'ASC');
+        $adapter->orderBy('b.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $blocks = $adapter->getQuery()->getResult();
+
+        foreach ($blocks as $index => $block) {
+            try {
+                $this->denyAccessUnlessGranted(BlockVoter::VIEW, $block);
+            } catch (AccessDeniedException $exception) {
+                unset($blocks[$index]);
+            }
+        }
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $blocks = $paginator->paginate($blocks, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $data,
+                $blocks,
                 self::BLOCK_LIST_FIELDS
             )
         );
@@ -2007,6 +1995,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $block->setCreationTime();
         $block->setLastChangeTime();
+
+        $this->denyAccessUnlessGranted(BlockVoter::CREATE, $block);
 
         $violations = $validator->validate($block);
         if ($violations->count() > 0) {
@@ -2106,6 +2096,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $block->setLastChangeTime();
 
+        $this->denyAccessUnlessGranted(BlockVoter::EDIT, $block);
+
         $violations = $validator->validate($block);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -2162,6 +2154,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         /** @var Block $block */
         $block = $blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]);
 
+        $this->denyAccessUnlessGranted(BlockVoter::DELETE, $block);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($block);
         try {
@@ -2210,14 +2204,19 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     public function getBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->getDoctrine()->getRepository(Block::class);
+
+        $block = $blockRepository->findOneBy(
+            [
+                'housingStock' => (int)$housingStockId,
+                'id' => (int)$blockId
+            ]
+        );
+
+        $this->denyAccessUnlessGranted(BlockVoter::VIEW, $block);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $blockRepository->findOneBy(
-                    [
-                        'housingStock' => (int)$housingStockId,
-                        'id' => (int)$blockId
-                    ]
-                ),
+                $block,
                 self::BLOCK_DETAIL_FIELDS
             )
         );

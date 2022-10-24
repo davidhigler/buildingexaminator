@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -27,6 +28,16 @@ class ApiRenderEngine
                     'current' => $results->getCurrentPage(),
                     'next' => $results->hasNextPage() ? $results->getNextPage() : 0,
                     'previous' => $results->hasPreviousPage() ? $results->getPreviousPage() : 0,
+                ],
+            ];
+        } elseif ($results instanceof SlidingPagination) {
+            return [
+                'data' => $data,
+                'pager' => [
+                    'count' => $results->getPageCount(),
+                    'current' => $results->getPage(),
+                    'next' => $results->getPageCount() === $results->getPage() ? 0 : $results->getPage() + 1,
+                    'previous' => $results->getPage() === 1 ? 0 : $results->getPage() - 1,
                 ],
             ];
         } else {
