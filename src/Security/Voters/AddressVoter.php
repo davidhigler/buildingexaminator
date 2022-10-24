@@ -6,14 +6,15 @@ use App\Entity\Authentication\ContractorUser;
 use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\SubcontractorUser;
 use App\Entity\Authentication\User;
-use App\Entity\Portfolio\Block;
+use App\Entity\Portfolio\Address;
+use App\Entity\Portfolio\HousingStock;
 use App\Entity\Strategies\Project;
 use Doctrine\Common\Collections\ArrayCollection;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class BlockVoter extends Voter
+class AddressVoter extends Voter
 {
     const CREATE = 'create';
     const VIEW = 'view';
@@ -36,7 +37,7 @@ class BlockVoter extends Voter
             return false;
         }
 
-        if (!$subject instanceof Block) {
+        if (!$subject instanceof Address) {
             return false;
         }
 
@@ -51,19 +52,19 @@ class BlockVoter extends Voter
             return false;
         }
 
-        /** @var Block $block */
-        $block = $subject;
+        /** @var Address $address */
+        $address = $subject;
 
         return match($attribute) {
-            self::CREATE => $this->canCreate($block, $user),
-            self::VIEW => $this->canView($block, $user),
-            self::EDIT => $this->canEdit($block, $user),
-            self::DELETE => $this->canDelete($block, $user),
+            self::CREATE => $this->canCreate($address, $user),
+            self::VIEW => $this->canView($address, $user),
+            self::EDIT => $this->canEdit($address, $user),
+            self::DELETE => $this->canDelete($address, $user),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
-    private function canCreate(Block $block, User $user): bool
+    private function canCreate(Address $address, User $user): bool
     {
         if (get_class($user) === User::class) {
             return true;
@@ -72,7 +73,7 @@ class BlockVoter extends Voter
         if (get_class($user) === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
-            if ($accessibleHousingStocks->contains($block->getHousingStock())) {
+            if ($accessibleHousingStocks->contains($address->getHousingStock())) {
                 return true;
             }
         }
@@ -80,18 +81,18 @@ class BlockVoter extends Voter
         return false;
     }
 
-    private function canView(Block $block, User $user): bool
+    private function canView(Address $address, User $user): bool
     {
         return match (get_class($user)) {
-            SubContractorUser::class => $this->canSubContractorView($block, $user),
-            ContractorUser::class => $this->canContractorView($block, $user),
-            OwnerUser::class => $this->canOwnerView($block, $user),
+            SubContractorUser::class => $this->canSubContractorView($address, $user),
+            ContractorUser::class => $this->canContractorView($address, $user),
+            OwnerUser::class => $this->canOwnerView($address, $user),
             User::class => true,
             default => false,
         };
     }
 
-    private function canSubContractorView(Block $block, SubcontractorUser $user): bool
+    private function canSubContractorView(Address $address, SubcontractorUser $user): bool
     {
         $projects = $user->getSubcontractor()->getProjects();
 
@@ -105,16 +106,14 @@ class BlockVoter extends Voter
             }
         }
 
-        foreach ($block->getAddresses() as $address) {
-            if ($userAccessibleAddresses->contains($address)) {
-                return true;
-            }
+        if ($userAccessibleAddresses->contains($address)) {
+            return true;
         }
 
         return false;
     }
 
-    private function canContractorView(Block $block, ContractorUser $user): bool
+    private function canContractorView(Address $address, ContractorUser $user): bool
     {
         $projects = $user->getContractor()->getProjects();
 
@@ -128,8 +127,20 @@ class BlockVoter extends Voter
             }
         }
 
-        foreach ($block->getAddresses() as $address) {
-            if ($userAccessibleAddresses->contains($address)) {
+        if ($userAccessibleAddresses->contains($address)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function canOwnerView(Address $address, OwnerUser $user): bool
+    {
+        $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+
+        /** @var HousingStock $accessibleHousingStock */
+        foreach ($accessibleHousingStocks as $accessibleHousingStock) {
+            if ($accessibleHousingStock->getAddresses()->contains($address)) {
                 return true;
             }
         }
@@ -137,16 +148,7 @@ class BlockVoter extends Voter
         return false;
     }
 
-    private function canOwnerView(Block $block, OwnerUser $user): bool
-    {
-        if ($block->getHousingStock()->getOwner()->equals($user->getOwner())) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private function canEdit(Block $block, User $user): bool
+    private function canEdit(Address $address, User $user): bool
     {
         if (get_class($user) === User::class) {
             return true;
@@ -155,7 +157,7 @@ class BlockVoter extends Voter
         if (get_class($user) === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
-            if ($accessibleHousingStocks->contains($block->getHousingStock())) {
+            if ($accessibleHousingStocks->contains($address->getHousingStock())) {
                 return true;
             }
         }
@@ -163,7 +165,7 @@ class BlockVoter extends Voter
         return false;
     }
 
-    private function canDelete(Block $block, User $user): bool
+    private function canDelete(Address $address, User $user): bool
     {
         if (get_class($user) === User::class) {
             return true;
@@ -172,7 +174,7 @@ class BlockVoter extends Voter
         if (get_class($user) === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
-            if ($accessibleHousingStocks->contains($block->getHousingStock())) {
+            if ($accessibleHousingStocks->contains($address->getHousingStock())) {
                 return true;
             }
         }

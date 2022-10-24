@@ -64,10 +64,6 @@ class HousingStockVoter extends Voter
 
     private function canCreate(User $user): bool
     {
-        /**
-         * Only a Dobro user can create a HousingStock
-         */
-
         if (get_class($user) === User::class) {
             return true;
         }
@@ -131,10 +127,6 @@ class HousingStockVoter extends Voter
 
     private function canEdit(User $user): bool
     {
-        /**
-         * Only a Dobro user can edit a HousingStock
-         */
-
         if (get_class($user) === User::class) {
             return true;
         }
@@ -144,10 +136,6 @@ class HousingStockVoter extends Voter
 
     private function canDelete(User $user): bool
     {
-        /**
-         * Only a Dobro user can delete a HousingStock
-         */
-
         if (get_class($user) === User::class) {
             return true;
         }

@@ -4,10 +4,6 @@ namespace App\Controller\Api\V1;
 
 use App\Bag\Application\Arcgis\ArcgisException;
 use App\Bag\Application\SQLite\CbsException;
-use App\Entity\Authentication\ContractorUser;
-use App\Entity\Authentication\OwnerUser;
-use App\Entity\Authentication\SubcontractorUser;
-use App\Entity\Authentication\User;
 use App\Entity\Authorization\Owner;
 use App\Entity\Portfolio\Block;
 use App\Entity\Portfolio\Address;
@@ -25,7 +21,9 @@ use App\Bag\Infrastructure\Arcgis\Repository as arcgisRepository;
 use App\Bag\Infrastructure\SQLite\Repository as cbsRepository;
 use App\Helpers\ErrorExtractor;
 use App\Helpers\ApiRenderEngine;
+use App\Security\Voters\AddressVoter;
 use App\Security\Voters\BlockVoter;
+use App\Security\Voters\BuildingTypeVoter;
 use App\Security\Voters\HousingStockVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -567,24 +565,24 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $adapter->orderBy('o.name', 'ASC');
 
-        $housingStocks = $adapter->getQuery()->getResult();
+        $data = $adapter->getQuery()->getResult();
 
-        foreach ($housingStocks as $index => $housingStock) {
+        foreach ($data as $index => $item) {
             try {
-                $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
+                $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $item);
             } catch (AccessDeniedException $exception) {
-                unset($housingStocks[$index]);
+                unset($data[$index]);
             }
         }
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $housingStocks = $paginator->paginate($housingStocks, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $housingStocks,
+                $data,
                 self::HOUSING_STOCK_LIST_FIELDS
             )
         );
@@ -1891,24 +1889,24 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('b.name', 'ASC');
 
-        $blocks = $adapter->getQuery()->getResult();
+        $data = $adapter->getQuery()->getResult();
 
-        foreach ($blocks as $index => $block) {
+        foreach ($data as $index => $item) {
             try {
-                $this->denyAccessUnlessGranted(BlockVoter::VIEW, $block);
+                $this->denyAccessUnlessGranted(BlockVoter::VIEW, $item);
             } catch (AccessDeniedException $exception) {
-                unset($blocks[$index]);
+                unset($data[$index]);
             }
         }
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $blocks = $paginator->paginate($blocks, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
             ApiRenderEngine::renderData(
-                $blocks,
+                $data,
                 self::BLOCK_LIST_FIELDS
             )
         );
@@ -2286,6 +2284,14 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $data = $adapter->getQuery()->getResult();
 
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(BuildingTypeVoter::VIEW, $item);
+            } catch (AccessDeniedException $exception) {
+                unset($data[$index]);
+            }
+        }
+
         $page = $request->query->get('page');
         if ($page !== null) {
             $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
@@ -2363,6 +2369,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $buildingType->setCreationTime();
         $buildingType->setLastChangeTime();
+
+        $this->denyAccessUnlessGranted(BuildingTypeVoter::CREATE, $buildingType);
 
         $violations = $validator->validate($buildingType);
         if ($violations->count() > 0) {
@@ -2459,6 +2467,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $buildingType->setLastChangeTime();
 
+        $this->denyAccessUnlessGranted(BuildingTypeVoter::EDIT, $buildingType);
+
         $violations = $validator->validate($buildingType);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -2515,6 +2525,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         /** @var BuildingType $buildingType */
         $buildingType = $buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId]);
 
+        $this->denyAccessUnlessGranted(BuildingTypeVoter::DELETE, $buildingType);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($buildingType);
         try {
@@ -2563,14 +2575,18 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     public function getBuildingType(string $housingStockId, string $buildingtypeId): Response
     {
         $buildingTypeRepository = $this->getDoctrine()->getRepository(BuildingType::class);
+        $buildingType = $buildingTypeRepository->findOneBy(
+            [
+                'housingStock' => (int)$housingStockId,
+                'id' => (int)$buildingtypeId
+            ]
+        );
+
+        $this->denyAccessUnlessGranted(BuildingTypeVoter::VIEW, $buildingType);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $buildingTypeRepository->findOneBy(
-                    [
-                        'housingStock' => (int)$housingStockId,
-                        'id' => (int)$buildingtypeId
-                    ]
-                ),
+                $buildingType,
                 self::BUILDINGTYPE_DETAIL_FIELDS
             )
         );
@@ -2650,6 +2666,14 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $adapter->orderBy('c.name', 'ASC')->addOrderBy('p.name', 'ASC')->addOrderBy('o.houseNumber', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
+
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(AddressVoter::VIEW, $item);
+            } catch (AccessDeniedException $exception) {
+                unset($data[$index]);
+            }
+        }
 
         $page = $request->query->get('page');
         if ($page !== null) {
@@ -2922,6 +2946,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $address->setCreationTime();
         $address->setLastChangeTime();
 
+        $this->denyAccessUnlessGranted(AddressVoter::VIEW, $address);
+
         $violations = $validator->validate($address);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -3054,6 +3080,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $address->setLastChangeTime();
 
+        $this->denyAccessUnlessGranted(AddressVoter::EDIT, $address);
+
         $violations = $validator->validate($address);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -3110,6 +3138,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         /** @var Address $address */
         $address = (object)$addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
 
+        $this->denyAccessUnlessGranted(AddressVoter::DELETE, $address);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($address);
         try {
@@ -3158,14 +3188,18 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     public function getAddress(string $housingStockId, string $addressId): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+        $address = $addressRepository->findBy(
+            [
+                'housingStock' => (int)$housingStockId,
+                'id' => (int)$addressId
+            ]
+        );
+
+        $this->denyAccessUnlessGranted(AddressVoter::VIEW, $address);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $addressRepository->findBy(
-                    [
-                        'housingStock' => (int)$housingStockId,
-                        'id' => (int)$addressId
-                    ]
-                ),
+                $address,
                 self::ADDRESS_DETAIL_FIELDS
             )
         );
