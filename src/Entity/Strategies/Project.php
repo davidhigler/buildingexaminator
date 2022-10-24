@@ -136,6 +136,11 @@ class Project extends IdCodeName
         return $this->addresses;
     }
 
+    public function getNumberOfAddresses(): int
+    {
+        return count($this->addresses);
+    }
+
     public function getPreferredStartDate(): DateTime
     {
         return $this->preferredStartDate;

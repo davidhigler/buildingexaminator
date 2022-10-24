@@ -873,7 +873,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $municipalityRepository = $this->getDoctrine()->getRepository(Municipality::class);
@@ -982,7 +981,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $residentialAreaRepository = $this->getDoctrine()->getRepository(ResidentialArea::class);
@@ -1091,7 +1089,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $neighbourhoodRepository = $this->getDoctrine()->getRepository(Neighbourhood::class);
@@ -1200,7 +1197,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $vtwRepository = $this->getDoctrine()->getRepository(Vtw::class);
@@ -1320,7 +1316,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -1457,7 +1452,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -1594,7 +1588,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -1731,7 +1724,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -2258,7 +2250,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getBuildingTypes(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -2640,7 +2631,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function getAddresses(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);

@@ -2,8 +2,19 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\Portfolio\HousingStock;
+use App\Entity\Strategies\Project;
+use App\Security\Voters\ProjectVoter;
+use Knp\Component\Pager\PaginatorInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Annotations as OA;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use App\Helpers\ApiRenderEngine;
 
 #[Route('/api/v1', name: 'api-v1-')]
 /**
@@ -21,7 +32,189 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class StrategyController
+class StrategyController extends AbstractController implements LoggerAwareInterface
 {
+    private const PROJECT_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'numberOfAddresses'
+    ];
 
+    private const PROJECT_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'housingStock' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'numberOfAddresses',
+        'preferredStartDate',
+        'actualStartDate',
+        'preferredEndDat',
+        'actualEndDate',
+        'contractors' => [
+            'id',
+            'code',
+            'name',
+        ],
+        'subContractors' => [
+            'id',
+            'code',
+            'name',
+        ],
+    ];
+
+    private LoggerInterface $logger;
+
+    #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/projects",
+     *     summary="Returns details about multiple projects",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         description="The page number to get",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="searchterm",
+     *         description="The searchterm",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query",
+     *         required=false,
+     *         example="test"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about multiple projects",
+     *         @OA\JsonContent(ref="#/components/schemas/projects")
+     *     )
+     * )
+     */
+    public function getProjects(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
+    {
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $projectRepository = $this->getDoctrine()->getRepository(Project::class);
+        $adapter = $projectRepository->createQueryBuilder('p');
+        $adapter->andWhere($adapter->expr()->eq('p.housingStock', $adapter->expr()->literal($housingStock->getId())));
+
+        $searchTerm = $request->query->get('searchterm');
+        if (!empty($searchTerm)) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('p.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->like('p.code', $adapter->expr()->literal($searchTerm . '%')),
+                        $adapter->expr()->eq('p.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('p.name', 'ASC');
+
+        $data = $adapter->getQuery()->getResult();
+
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(ProjectVoter::VIEW, $item);
+            } catch (AccessDeniedException $exception) {
+                unset($data[$index]);
+            }
+        }
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::PROJECT_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/projects/{projectId}', name: 'getproject', methods: ['GET'])]
+    /**
+     * @OA\Get(
+     *     path="/housingstocks/{housingStockId}/projects/{projectId}",
+     *     summary="Returns details about a project",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Parameter(
+     *         name="projectId",
+     *         description="The id of a project",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about a project",
+     *         @OA\JsonContent(ref="#/components/schemas/Project")
+     *     )
+     * )
+     */
+    public function getProject(string $housingStockId, string $projectId): Response
+    {
+        $projectRepository = $this->getDoctrine()->getRepository(Project::class);
+        $project = $projectRepository->findOneBy(
+            [
+                'housingStock' => (int)$housingStockId,
+                'id' => (int)$projectId
+            ]
+        );
+
+        $this->denyAccessUnlessGranted(ProjectVoter::VIEW, $project);
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $project,
+                self::PROJECT_DETAIL_FIELDS
+            )
+        );
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 }

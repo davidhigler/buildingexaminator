@@ -167,7 +167,6 @@ class AuthorizationController extends AbstractController
      */
     public function getOwners(Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
@@ -471,7 +470,6 @@ class AuthorizationController extends AbstractController
      */
     public function getContractors(Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
@@ -777,7 +775,6 @@ class AuthorizationController extends AbstractController
      */
     public function getSubcontractors(Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
@@ -1085,7 +1082,6 @@ class AuthorizationController extends AbstractController
      */
     public function getUsers(Request $request, PaginatorInterface $paginator): Response
     {
-        $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
 
         $userRepository = $this->getDoctrine()->getRepository(User::class);

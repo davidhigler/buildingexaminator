@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class PasswordConstraints extends Constraint
 {
-    public string $message = 'The password does not conform to the minimum strenght requirements.';
+    public string $message = 'The password does not conform to the minimum strength requirements.';
 }
