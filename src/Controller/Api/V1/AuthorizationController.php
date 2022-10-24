@@ -62,8 +62,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class AuthorizationController extends AbstractController
 {
-    private const DEFAULT_PAGE_LIMIT = 10;
-
     private const OWNER_LIST_FIELDS = [
         'id',
         'name',
@@ -190,7 +188,7 @@ class AuthorizationController extends AbstractController
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -494,7 +492,7 @@ class AuthorizationController extends AbstractController
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -800,7 +798,7 @@ class AuthorizationController extends AbstractController
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1107,7 +1105,7 @@ class AuthorizationController extends AbstractController
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
