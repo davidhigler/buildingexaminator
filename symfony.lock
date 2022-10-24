@@ -137,9 +137,6 @@
     "nikic/php-parser": {
         "version": "v4.10.5"
     },
-    "pagerfanta/pagerfanta": {
-        "version": "v3.5.2"
-    },
     "phar-io/manifest": {
         "version": "2.0.3"
     },

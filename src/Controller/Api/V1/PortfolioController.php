@@ -30,8 +30,6 @@ use App\Security\Voters\HousingStockVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Annotations as OA;
-use Pagerfanta\Doctrine\ORM\QueryAdapter;
-use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -875,7 +873,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getMunicipalities(Request $request): Response
+    public function getMunicipalities(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -896,12 +894,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -985,7 +982,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getResidentialAreas(Request $request): Response
+    public function getResidentialAreas(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1006,12 +1003,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1095,7 +1091,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getNeighbourhoods(Request $request): Response
+    public function getNeighbourhoods(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1116,12 +1112,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1205,7 +1200,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getVtws(Request $request): Response
+    public function getVtws(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1226,12 +1221,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('o.id', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1326,7 +1320,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getCities(string $housingStockId, Request $request): Response
+    public function getCities(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1353,12 +1347,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1464,7 +1457,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getPublicSpaces(string $housingStockId, Request $request): Response
+    public function getPublicSpaces(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1491,12 +1484,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1602,7 +1594,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getBuildings(string $housingStockId, Request $request): Response
+    public function getBuildings(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1629,12 +1621,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.identification', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1740,7 +1731,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getResidences(string $housingStockId, Request $request): Response
+    public function getResidences(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -1767,12 +1758,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.identification', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -2270,7 +2260,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getBuildingTypes(string $housingStockId, Request $request): Response
+    public function getBuildingTypes(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -2294,12 +2284,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -2635,7 +2624,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      *     )
      * )
      */
-    public function getAddresses(string $housingStockId, Request $request): Response
+    public function getAddresses(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -2660,12 +2649,11 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         }
         $adapter->orderBy('c.name', 'ASC')->addOrderBy('p.name', 'ASC')->addOrderBy('o.houseNumber', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(

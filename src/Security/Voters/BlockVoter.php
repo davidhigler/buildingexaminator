@@ -2,6 +2,7 @@
 
 namespace App\Security\Voters;
 
+use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\User;
 use App\Entity\Portfolio\Block;
 use LogicException;
@@ -60,6 +61,13 @@ class BlockVoter extends Voter
 
     private function canCreate(Block $block, User $user): bool
     {
+        if (
+            get_class($user) === User::class
+            || get_class($user) === OwnerUser::class
+        ) {
+            return true;
+        }
+
         return false;
     }
 
@@ -70,11 +78,25 @@ class BlockVoter extends Voter
 
     private function canEdit(Block $block, User $user): bool
     {
+        if (
+            get_class($user) === User::class
+            || get_class($user) === OwnerUser::class
+        ) {
+            return true;
+        }
+
         return false;
     }
 
     private function canDelete(Block $block, User $user): bool
     {
+        if (
+            get_class($user) === User::class
+            || get_class($user) === OwnerUser::class
+        ) {
+            return true;
+        }
+
         return false;
     }
 }

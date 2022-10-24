@@ -12,9 +12,8 @@ use App\Entity\Authorization\Subcontractor;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
 use Exception;
-use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Annotations as OA;
-use Pagerfanta\Pagerfanta;
 use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -168,7 +167,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getOwners(Request $request): Response
+    public function getOwners(Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -187,12 +186,11 @@ class AuthorizationController extends AbstractController
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -338,23 +336,15 @@ class AuthorizationController extends AbstractController
         $owner->setName($changeOwner['name']);
         if (!empty($changeOwner['kvk'])) {
             $owner->setKvk($changeOwner['kvk']);
-        } else {
-            $owner->setKvk(null);
         }
         if (!empty($changeOwner['btw'])) {
             $owner->setBtw($changeOwner['btw']);
-        } else {
-            $owner->setBtw(null);
         }
         if (!empty($changeOwner['lnumber'])) {
             $owner->setLnumber($changeOwner['lnumber']);
-        } else {
-            $owner->setLnumber(null);
         }
         if (!empty($changeOwner['website'])) {
             $owner->setWebsite($changeOwner['website']);
-        } else {
-            $owner->setWebsite(null);
         }
 
         $violations = $validator->validate($owner);
@@ -481,7 +471,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getContractors(Request $request): Response
+    public function getContractors(Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -500,12 +490,11 @@ class AuthorizationController extends AbstractController
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -788,7 +777,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getSubcontractors(Request $request): Response
+    public function getSubcontractors(Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -807,12 +796,11 @@ class AuthorizationController extends AbstractController
         }
         $adapter->orderBy('o.name', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1097,7 +1085,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getUsers(Request $request): Response
+    public function getUsers(Request $request, PaginatorInterface $paginator): Response
     {
         $page = $request->query->get('page');
         $searchTerm = $request->query->get('searchterm');
@@ -1115,12 +1103,11 @@ class AuthorizationController extends AbstractController
         }
         $adapter->orderBy('o.email', 'ASC');
 
-        if ($page === null) {
-            $data = $adapter->getQuery()->getResult();
-        } else {
-            $data = new Pagerfanta(new QueryAdapter($adapter));
-            $data->setMaxPerPage($request->query->get('limit') ?? self::DEFAULT_PAGE_LIMIT);
-            $data->setCurrentPage($page);
+        $data = $adapter->getQuery()->getResult();
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, self::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
