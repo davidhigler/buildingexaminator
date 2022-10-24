@@ -2,9 +2,12 @@
 
 namespace App\Controller\Api\V1;
 
+use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\HousingStock;
 use App\Entity\Strategies\Project;
+use App\Helpers\ErrorExtractor;
 use App\Security\Voters\ProjectVoter;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -15,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Annotations as OA;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Helpers\ApiRenderEngine;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/v1', name: 'api-v1-')]
 /**
@@ -155,6 +159,99 @@ class StrategyController extends AbstractController implements LoggerAwareInterf
             ApiRenderEngine::renderData(
                 $data,
                 self::PROJECT_LIST_FIELDS
+            )
+        );
+    }
+
+    #[Route('/housingstocks/{housingStockId}/projects', name: 'addproject', methods: ['POST'])]
+    /**
+     * @OA\Post(
+     *     path="/housingstocks/{housingStockId}/projects",
+     *     summary="Add new project",
+     *     @OA\Parameter(
+     *         name="housingStockId",
+     *         description="The id of the housing stock",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         ),
+     *         in="path",
+     *         required=true,
+     *         example=1
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Details about new project",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="code",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Details about created project",
+     *         @OA\JsonContent(ref="#/components/schemas/Project")
+     *     )
+     * )
+     */
+    public function addProject(Request $request, ValidatorInterface $validator, string $housingStockId): Response
+    {
+        $newProject = json_decode($request->getContent(), true);
+
+        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        /** @var HousingStock $housingStock */
+        $housingStock = $housingStockRepository->find((int) $housingStockId);
+
+        $project = new Project();
+        if (!empty($housingStock)) {
+            $project->setHousingStock($housingStock);
+        }
+        if (!empty($newProject['name'])) {
+            $project->setName($newProject['name']);
+        }
+        if (!empty($newProject['code'])) {
+            $project->setCode($newProject['code']);
+        }
+        if (!empty($newProject['preferredStartDate'])) {
+            $project->setPreferredStartDate($newProject['preferredStartDate']);
+        }
+        if (!empty($newProject['preferredEndDate'])) {
+            $project->setPreferredEndDate($newProject['preferredEndDate']);
+        }
+        if (!empty($newProject['addresses'])) {
+            $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+
+            foreach ($newProject['addresses'] as $newAddress) {
+                $address = $addressRepository->find((int)$newAddress);
+                $project->addAddress($address);
+            }
+        }
+
+        $this->denyAccessUnlessGranted(ProjectVoter::CREATE, $project);
+
+        $violations = $validator->validate($project);
+        if ($violations->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($project);
+        try {
+            $entityManager->flush();
+        } catch (Exception $exception) {
+            return $this->json(ErrorExtractor::fromException($exception), 500);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $project,
+                self::PROJECT_DETAIL_FIELDS
             )
         );
     }
