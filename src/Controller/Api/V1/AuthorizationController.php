@@ -11,6 +11,9 @@ use App\Entity\Authorization\Owner;
 use App\Entity\Authorization\Subcontractor;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
+use App\Security\Voters\ContractorVoter;
+use App\Security\Voters\OwnerVoter;
+use App\Security\Voters\SubcontractorVoter;
 use App\Security\Voters\UserVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -187,6 +190,14 @@ class AuthorizationController extends AbstractController
 
         $data = $adapter->getQuery()->getResult();
 
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(OwnerVoter::VIEW, $item);
+            } catch (AccessDeniedException) {
+                unset($data[$index]);
+            }
+        }
+
         $page = $request->query->get('page');
         if ($page !== null) {
             $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
@@ -258,6 +269,8 @@ class AuthorizationController extends AbstractController
         if (!empty($newOwner['website'])) {
             $owner->setWebsite($newOwner['website']);
         }
+
+        $this->denyAccessUnlessGranted(OwnerVoter::CREATE, $owner);
 
         $violations = $validator->validate($owner);
         if ($violations->count() > 0) {
@@ -346,6 +359,8 @@ class AuthorizationController extends AbstractController
             $owner->setWebsite($changeOwner['website']);
         }
 
+        $this->denyAccessUnlessGranted(OwnerVoter::EDIT, $owner);
+
         $violations = $validator->validate($owner);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -390,6 +405,8 @@ class AuthorizationController extends AbstractController
         /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
+        $this->denyAccessUnlessGranted(OwnerVoter::DELETE, $owner);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($owner);
         try {
@@ -426,11 +443,15 @@ class AuthorizationController extends AbstractController
     public function getOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $owner = $ownerRepository->find(
+            (int)$ownerId
+        );
+
+        $this->denyAccessUnlessGranted(OwnerVoter::VIEW, $owner);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $ownerRepository->find(
-                    (int) $ownerId
-                ),
+                $owner,
                 self::OWNER_DETAIL_FIELDS
             )
         );
@@ -489,6 +510,14 @@ class AuthorizationController extends AbstractController
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
+
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(ContractorVoter::VIEW, $item);
+            } catch (AccessDeniedException) {
+                unset($data[$index]);
+            }
+        }
 
         $page = $request->query->get('page');
         if ($page !== null) {
@@ -561,6 +590,8 @@ class AuthorizationController extends AbstractController
         if (!empty($newContractor['website'])) {
             $contractor->setWebsite($newContractor['website']);
         }
+
+        $this->denyAccessUnlessGranted(ContractorVoter::CREATE, $contractor);
 
         $violations = $validator->validate($contractor);
         if ($violations->count() > 0) {
@@ -651,6 +682,8 @@ class AuthorizationController extends AbstractController
             $contractor->setWebsite($changeContractor['website']);
         }
 
+        $this->denyAccessUnlessGranted(ContractorVoter::EDIT, $contractor);
+
         $violations = $validator->validate($contractor);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -695,6 +728,8 @@ class AuthorizationController extends AbstractController
         /** @var Contractor $contractor */
         $contractor = $contractorRepository->find((int) $contractorId);
 
+        $this->denyAccessUnlessGranted(ContractorVoter::DELETE, $contractor);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($contractor);
         try {
@@ -731,11 +766,15 @@ class AuthorizationController extends AbstractController
     public function getContractor(string $contractorId): Response
     {
         $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $contractor = $contractorRepository->find(
+            (int)$contractorId
+        );
+
+        $this->denyAccessUnlessGranted(ContractorVoter::VIEW, $contractor);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $contractorRepository->find(
-                    (int) $contractorId
-                ),
+                $contractor,
                 self::CONTRACTOR_DETAIL_FIELDS
             )
         );
@@ -794,6 +833,14 @@ class AuthorizationController extends AbstractController
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
+
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(SubcontractorVoter::VIEW, $item);
+            } catch (AccessDeniedException) {
+                unset($data[$index]);
+            }
+        }
 
         $page = $request->query->get('page');
         if ($page !== null) {
@@ -866,6 +913,8 @@ class AuthorizationController extends AbstractController
         if (!empty($newSubcontractor['website'])) {
             $subcontractor->setWebsite($newSubcontractor['website']);
         }
+
+        $this->denyAccessUnlessGranted(SubcontractorVoter::CREATE, $subcontractor);
 
         $violations = $validator->validate($subcontractor);
         if ($violations->count() > 0) {
@@ -956,6 +1005,8 @@ class AuthorizationController extends AbstractController
             $subcontractor->setWebsite($changeSubcontractor['website']);
         }
 
+        $this->denyAccessUnlessGranted(SubcontractorVoter::EDIT, $subcontractor);
+
         $violations = $validator->validate($subcontractor);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -1000,6 +1051,8 @@ class AuthorizationController extends AbstractController
         /** @var Subcontractor $subcontractor */
         $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
 
+        $this->denyAccessUnlessGranted(SubcontractorVoter::DELETE, $subcontractor);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($subcontractor);
         try {
@@ -1036,11 +1089,15 @@ class AuthorizationController extends AbstractController
     public function getSubcontractor(string $subcontractorId): Response
     {
         $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $subcontractor = $subcontractorRepository->find(
+            (int)$subcontractorId
+        );
+
+        $this->denyAccessUnlessGranted(SubcontractorVoter::VIEW, $subcontractor);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $subcontractorRepository->find(
-                    (int) $subcontractorId
-                ),
+                $subcontractor,
                 self::SUBCONTRACTOR_DETAIL_FIELDS
             )
         );
