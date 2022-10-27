@@ -3,10 +3,12 @@
 namespace App\Security\Voters;
 
 use App\Entity\Authentication\User;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use App\Entity\Authorization\Owner;
 use LogicException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class UserVoter
+class OwnerVoter extends Voter
 {
     const CREATE = 'create';
     const VIEW = 'view';
@@ -29,7 +31,7 @@ class UserVoter
             return false;
         }
 
-        if (!$subject instanceof User) {
+        if (!$subject instanceof Owner) {
             return false;
         }
 
@@ -44,40 +46,39 @@ class UserVoter
             return false;
         }
 
-        /** @var User $subjectUser */
-        $subjectUser = $subject;
+        /** @var Owner $owner */
+        $owner = $subject;
 
         return match($attribute) {
-            self::CREATE => $this->canCreate($subjectUser, $user),
-            self::VIEW => $this->canView($subjectUser, $user),
-            self::EDIT => $this->canEdit($subjectUser, $user),
-            self::DELETE => $this->canDelete($subjectUser, $user),
+            self::CREATE => $this->canCreate($owner, $user),
+            self::VIEW => $this->canView($owner, $user),
+            self::EDIT => $this->canEdit($owner, $user),
+            self::DELETE => $this->canDelete($owner, $user),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
     /** @TODO Fill in this function */
-    private function canCreate(User $subjectUser, User $user): bool
+    private function canCreate(Owner $owner, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canView(User $subjectUser, User $user): bool
+    private function canView(Owner $owner, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canEdit(User $subjectUser, User $user): bool
+    private function canEdit(Owner $owner, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canDelete(User $subjectUser, User $user): bool
+    private function canDelete(Owner $owner, User $user): bool
     {
         return false;
     }
-
 }

@@ -3,10 +3,13 @@
 namespace App\Security\Voters;
 
 use App\Entity\Authentication\User;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use App\Entity\Authorization\Contractor;
+use App\Entity\Authorization\Owner;
 use LogicException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class UserVoter
+class ContractorVoter extends Voter
 {
     const CREATE = 'create';
     const VIEW = 'view';
@@ -29,7 +32,7 @@ class UserVoter
             return false;
         }
 
-        if (!$subject instanceof User) {
+        if (!$subject instanceof Contractor) {
             return false;
         }
 
@@ -44,40 +47,39 @@ class UserVoter
             return false;
         }
 
-        /** @var User $subjectUser */
-        $subjectUser = $subject;
+        /** @var Contractor $contractor */
+        $contractor = $subject;
 
         return match($attribute) {
-            self::CREATE => $this->canCreate($subjectUser, $user),
-            self::VIEW => $this->canView($subjectUser, $user),
-            self::EDIT => $this->canEdit($subjectUser, $user),
-            self::DELETE => $this->canDelete($subjectUser, $user),
+            self::CREATE => $this->canCreate($contractor, $user),
+            self::VIEW => $this->canView($contractor, $user),
+            self::EDIT => $this->canEdit($contractor, $user),
+            self::DELETE => $this->canDelete($contractor, $user),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
     /** @TODO Fill in this function */
-    private function canCreate(User $subjectUser, User $user): bool
+    private function canCreate(Contractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canView(User $subjectUser, User $user): bool
+    private function canView(Contractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canEdit(User $subjectUser, User $user): bool
+    private function canEdit(Contractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canDelete(User $subjectUser, User $user): bool
+    private function canDelete(Contractor $contractor, User $user): bool
     {
         return false;
     }
-
 }

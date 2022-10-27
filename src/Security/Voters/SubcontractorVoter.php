@@ -3,10 +3,14 @@
 namespace App\Security\Voters;
 
 use App\Entity\Authentication\User;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use App\Entity\Authorization\Contractor;
+use App\Entity\Authorization\Owner;
+use App\Entity\Authorization\Subcontractor;
 use LogicException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class UserVoter
+class SubcontractorVoter extends Voter
 {
     const CREATE = 'create';
     const VIEW = 'view';
@@ -29,7 +33,7 @@ class UserVoter
             return false;
         }
 
-        if (!$subject instanceof User) {
+        if (!$subject instanceof Subcontractor) {
             return false;
         }
 
@@ -44,40 +48,39 @@ class UserVoter
             return false;
         }
 
-        /** @var User $subjectUser */
-        $subjectUser = $subject;
+        /** @var Subcontractor $subcontractor */
+        $subcontractor = $subject;
 
         return match($attribute) {
-            self::CREATE => $this->canCreate($subjectUser, $user),
-            self::VIEW => $this->canView($subjectUser, $user),
-            self::EDIT => $this->canEdit($subjectUser, $user),
-            self::DELETE => $this->canDelete($subjectUser, $user),
+            self::CREATE => $this->canCreate($subcontractor, $user),
+            self::VIEW => $this->canView($subcontractor, $user),
+            self::EDIT => $this->canEdit($subcontractor, $user),
+            self::DELETE => $this->canDelete($subcontractor, $user),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
     /** @TODO Fill in this function */
-    private function canCreate(User $subjectUser, User $user): bool
+    private function canCreate(Subcontractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canView(User $subjectUser, User $user): bool
+    private function canView(Subcontractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canEdit(User $subjectUser, User $user): bool
+    private function canEdit(Subcontractor $contractor, User $user): bool
     {
         return false;
     }
 
     /** @TODO Fill in this function */
-    private function canDelete(User $subjectUser, User $user): bool
+    private function canDelete(Subcontractor $contractor, User $user): bool
     {
         return false;
     }
-
 }
