@@ -54,7 +54,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  * @OA\Schema(
- *     schema="contractors"
+ *     schema="contractors",
  *     title="Contractors",
  *     description="An array of contractors",
  *     type="object",
