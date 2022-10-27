@@ -9,8 +9,6 @@ use App\Helpers\ErrorExtractor;
 use App\Security\Voters\ProjectVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +34,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     )
  * )
  */
-class StrategyController extends AbstractController implements LoggerAwareInterface
+class StrategyController extends AbstractController
 {
     private const PROJECT_LIST_FIELDS = [
         'id',
@@ -70,8 +68,6 @@ class StrategyController extends AbstractController implements LoggerAwareInterf
             'name',
         ],
     ];
-
-    private LoggerInterface $logger;
 
     #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
     /**
@@ -145,7 +141,7 @@ class StrategyController extends AbstractController implements LoggerAwareInterf
         foreach ($data as $index => $item) {
             try {
                 $this->denyAccessUnlessGranted(ProjectVoter::VIEW, $item);
-            } catch (AccessDeniedException $exception) {
+            } catch (AccessDeniedException) {
                 unset($data[$index]);
             }
         }
@@ -308,10 +304,5 @@ class StrategyController extends AbstractController implements LoggerAwareInterf
                 self::PROJECT_DETAIL_FIELDS
             )
         );
-    }
-
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
     }
 }

@@ -11,6 +11,7 @@ use App\Entity\Authorization\Owner;
 use App\Entity\Authorization\Subcontractor;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
+use App\Security\Voters\UserVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Annotations as OA;
@@ -20,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/v1', name: 'api-v1-')]
@@ -1099,6 +1101,14 @@ class AuthorizationController extends AbstractController
 
         $data = $adapter->getQuery()->getResult();
 
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(UserVoter::VIEW, $item);
+            } catch (AccessDeniedException) {
+                unset($data[$index]);
+            }
+        }
+
         $page = $request->query->get('page');
         if ($page !== null) {
             $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
@@ -1179,6 +1189,8 @@ class AuthorizationController extends AbstractController
         } else {
             $user->setRoles([]);
         }
+
+        $this->denyAccessUnlessGranted(UserVoter::CREATE, $user);
 
         $violations = $validator->validate($user);
         if ($violations->count() > 0) {
@@ -1273,6 +1285,8 @@ class AuthorizationController extends AbstractController
             $user->setRoles([]);
         }
 
+        $this->denyAccessUnlessGranted(UserVoter::EDIT, $user);
+
         $violations = $validator->validate($user);
         if ($violations->count() > 0) {
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
@@ -1317,6 +1331,8 @@ class AuthorizationController extends AbstractController
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
+        $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($user);
         try {
@@ -1353,11 +1369,15 @@ class AuthorizationController extends AbstractController
     public function getUserInfo(string $userId): Response
     {
         $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $user = $userRepository->find(
+            (int)$userId
+        );
+
+        $this->denyAccessUnlessGranted(UserVoter::VIEW, $user);
+
         return $this->json(
             ApiRenderEngine::renderData(
-                $userRepository->find(
-                    (int) $userId
-                ),
+                $user,
                 self::USER_DETAIL_FIELDS
             )
         );

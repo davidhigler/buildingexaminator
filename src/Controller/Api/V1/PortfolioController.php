@@ -568,7 +568,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         foreach ($data as $index => $item) {
             try {
                 $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $item);
-            } catch (AccessDeniedException $exception) {
+            } catch (AccessDeniedException) {
                 unset($data[$index]);
             }
         }
@@ -1884,7 +1884,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         foreach ($data as $index => $item) {
             try {
                 $this->denyAccessUnlessGranted(BlockVoter::VIEW, $item);
-            } catch (AccessDeniedException $exception) {
+            } catch (AccessDeniedException) {
                 unset($data[$index]);
             }
         }
@@ -2276,7 +2276,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         foreach ($data as $index => $item) {
             try {
                 $this->denyAccessUnlessGranted(BuildingTypeVoter::VIEW, $item);
-            } catch (AccessDeniedException $exception) {
+            } catch (AccessDeniedException) {
                 unset($data[$index]);
             }
         }
@@ -2658,7 +2658,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         foreach ($data as $index => $item) {
             try {
                 $this->denyAccessUnlessGranted(AddressVoter::VIEW, $item);
-            } catch (AccessDeniedException $exception) {
+            } catch (AccessDeniedException) {
                 unset($data[$index]);
             }
         }
@@ -2786,7 +2786,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     ]
                 )
             );
-            throw $arcgisException;
+            return new Response('Arcgis error, see logs.', 500);
         }
 
         $cbsRepository = new cbsRepository();
@@ -2806,7 +2806,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     ]
                 )
             );
-            throw $cbsException;
+            return new Response('CBS error, see logs.', 500);
         }
 
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
