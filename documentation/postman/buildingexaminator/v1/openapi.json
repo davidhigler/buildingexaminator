@@ -25,6 +25,16 @@
                             "type": "integer",
                             "format": "int64"
                         }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
                     }
                 ],
                 "responses": {
@@ -157,11 +167,11 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed housing stock",
+                        "description": "Details about changed owner",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HousingStock"
+                                    "$ref": "#/components/schemas/Owner"
                                 }
                             }
                         }
@@ -186,6 +196,567 @@
                 "responses": {
                     "200": {
                         "description": "Successfully deleted an owner"
+                    }
+                }
+            }
+        },
+        "/contractors": {
+            "get": {
+                "summary": "Returns details about multiple contractors",
+                "operationId": "a4ab8e7b34b854296fa56a11418ab4a3",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple contractors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/contractors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new contractor",
+                "operationId": "dff3e750bd5104de077fef0c8c51a47d",
+                "requestBody": {
+                    "description": "Details about new contractor",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "kvk": {
+                                        "type": "string"
+                                    },
+                                    "btw": {
+                                        "type": "string"
+                                    },
+                                    "website": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created contractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/contractors/{contractorId}": {
+            "get": {
+                "summary": "Returns details about a contractor",
+                "operationId": "c2f6711a0466b6cdddec150a00e458c5",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the contractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a contractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change contractor",
+                "operationId": "fe0322267f63928ca36309e8ba3660d3",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the contractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details for changing contractor",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "kvk": {
+                                        "type": "string"
+                                    },
+                                    "btw": {
+                                        "type": "string"
+                                    },
+                                    "website": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about changed contractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete contractor",
+                "operationId": "94788d622a58a27c2e55db603b2f8e50",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the contractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted an contractor"
+                    }
+                }
+            }
+        },
+        "/subcontractors": {
+            "get": {
+                "summary": "Returns details about multiple subcontractors",
+                "operationId": "f8cfdaf32e8cc3e5f1bc957de9ce7aaf",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple subcontractors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/subcontractors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new subcontractor",
+                "operationId": "7cf7b55797273c72b4b6e23bd567a424",
+                "requestBody": {
+                    "description": "Details about new subcontractor",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "kvk": {
+                                        "type": "string"
+                                    },
+                                    "btw": {
+                                        "type": "string"
+                                    },
+                                    "website": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created subcontractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subcontractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subcontractors/{subcontractorId}": {
+            "get": {
+                "summary": "Returns details about a subcontractor",
+                "operationId": "fbc603f623f96985e3f04b83a3f2116f",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the subcontractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a subcontractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subcontractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change subcontractor",
+                "operationId": "624ced2848e29bbfe765dca01126edda",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the subcontractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details for changing subcontractor",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "kvk": {
+                                        "type": "string"
+                                    },
+                                    "btw": {
+                                        "type": "string"
+                                    },
+                                    "website": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about changed subcontractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subcontractor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete contractor",
+                "operationId": "cf3be70a5d46092a121f0a25799a1ea0",
+                "parameters": [
+                    {
+                        "name": "ownerId",
+                        "in": "path",
+                        "description": "The id of the subcontractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted an subcontractor"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "Returns details about multiple users",
+                "operationId": "df9f5a328d81727e3ccc340d756837b0",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new user",
+                "operationId": "a8e89ffa6a51aa952c4ded8de145b515",
+                "requestBody": {
+                    "description": "Details about new user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "confirmpassword": {
+                                        "type": "string"
+                                    },
+                                    "adminrole": {
+                                        "type": "bool"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "summary": "Returns details about a user",
+                "operationId": "4d924b1808722d429dcc4471ff11a299",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change user",
+                "operationId": "644b28a34633803d6622c25664295b86",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details for changing user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "confirmpassword": {
+                                        "type": "string"
+                                    },
+                                    "adminrole": {
+                                        "type": "bool"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about changed user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete user",
+                "operationId": "a16d65f6a82350ae5df3d109a685785f",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted a user"
                     }
                 }
             }
@@ -1803,6 +2374,147 @@
                     }
                 }
             }
+        },
+        "/housingstocks/{housingStockId}/projects": {
+            "get": {
+                "summary": "Returns details about multiple projects",
+                "operationId": "124ad955b8e83876878b70580ec2e000",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to get",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "searchterm",
+                        "in": "query",
+                        "description": "The searchterm",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about multiple projects",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/projects"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new project",
+                "operationId": "ac2205204752d7efa8a87e081a6431b3",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "description": "Details about new project",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details about created project",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housingstocks/{housingStockId}/projects/{projectId}": {
+            "get": {
+                "summary": "Returns details about a project",
+                "operationId": "44e615d96e504c0e68f610c5be22b57f",
+                "parameters": [
+                    {
+                        "name": "housingStockId",
+                        "in": "path",
+                        "description": "The id of the housing stock",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "The id of a project",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a project",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1817,19 +2529,6 @@
                     },
                     "type": "object"
                 }
-            },
-            "owners": {
-                "title": "Owners",
-                "description": "An array of owners",
-                "properties": {
-                    "data": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Owner"
-                        }
-                    }
-                },
-                "type": "object"
             },
             "housingStocks": {
                 "title": "Housing stocks",
@@ -1987,19 +2686,113 @@
                 },
                 "type": "object"
             },
-            "User": {},
-            "Contractor": {
+            "projects": {
+                "title": "Projects",
+                "description": "An array of projects",
                 "properties": {
-                    "id": {
-                        "type": "integer"
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Project"
+                        }
                     }
                 },
                 "type": "object"
             },
-            "Group": {
+            "ContractorUser": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "contractor": {
+                                "$ref": "#/components/schemas/Contractor"
+                            },
+                            "contractorGroups": {
+                                "$ref": "#/components/schemas/contractorGroups"
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/User"
+                    }
+                ]
+            },
+            "OwnerUser": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "owner": {
+                                "$ref": "#/components/schemas/Owner"
+                            },
+                            "ownerGroups": {
+                                "$ref": "#/components/schemas/ownerGroups"
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/User"
+                    }
+                ]
+            },
+            "SubcontractorUser": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "subcontractor": {
+                                "$ref": "#/components/schemas/Subcontractor"
+                            },
+                            "subcontractorGroups": {
+                                "$ref": "#/components/schemas/subcontractorGroups"
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/User"
+                    }
+                ]
+            },
+            "User": {},
+            "Contractor": {
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "contractorUsers": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "projects": {
+                        "$ref": "#/components/schemas/projects"
+                    },
+                    "kvk": {
+                        "type": "integer"
+                    },
+                    "btw": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ContractorGroup": {
                 "properties": {
                     "id": {
                         "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "contractor": {
+                        "$ref": "#/components/schemas/Contractor"
+                    },
+                    "contractorUsers": {
+                        "$ref": "#/components/schemas/contractorGroups"
                     }
                 },
                 "type": "object"
@@ -2010,6 +2803,9 @@
                         "type": "integer"
                     },
                     "housingStocks": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "ownerUsers": {
                         "$ref": "#/components/schemas/ids"
                     },
                     "name": {
@@ -2030,6 +2826,23 @@
                 },
                 "type": "object"
             },
+            "OwnerGroup": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "$ref": "#/components/schemas/Owner"
+                    },
+                    "ownerUsers": {
+                        "$ref": "#/components/schemas/ownerUsers"
+                    }
+                },
+                "type": "object"
+            },
             "Right": {
                 "properties": {
                     "id": {
@@ -2040,8 +2853,46 @@
             },
             "Subcontractor": {
                 "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer"
+                    },
+                    "subcontractorUsers": {
+                        "$ref": "#/components/schemas/ids"
+                    },
+                    "projects": {
+                        "$ref": "#/components/schemas/projects"
+                    },
+                    "kvk": {
+                        "type": "integer"
+                    },
+                    "btw": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "SubcontractorGroup": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subcontractor": {
+                        "$ref": "#/components/schemas/Subcontractor"
+                    },
+                    "subcontractorUsers": {
+                        "$ref": "#/components/schemas/subcontractorUsers"
                     }
                 },
                 "type": "object"
@@ -2202,6 +3053,9 @@
                     },
                     "neighbourhood": {
                         "$ref": "#/components/schemas/Neighbourhood"
+                    },
+                    "projects": {
+                        "$ref": "#/components/schemas/projects"
                     },
                     "block": {
                         "$ref": "#/components/schemas/Block"
@@ -2386,7 +3240,10 @@
                         "type": "integer"
                     },
                     "owner": {
-                        "$ref": "#/components/schemas/owners"
+                        "$ref": "#/components/schemas/Owner"
+                    },
+                    "projects": {
+                        "$ref": "#/components/schemas/projects"
                     },
                     "blocks": {
                         "$ref": "#/components/schemas/blocks"
@@ -2430,6 +3287,12 @@
                     },
                     "addresses": {
                         "$ref": "#/components/schemas/addresses"
+                    },
+                    "municipality": {
+                        "$ref": "#/components/schemas/Municipality"
+                    },
+                    "residentialArea": {
+                        "$ref": "#/components/schemas/ResidentialArea"
                     }
                 },
                 "type": "object"
@@ -2499,6 +3362,9 @@
                     },
                     "addresses": {
                         "$ref": "#/components/schemas/addresses"
+                    },
+                    "municipality": {
+                        "$ref": "#/components/schemas/Municipality"
                     }
                 },
                 "type": "object"
@@ -2525,6 +3391,48 @@
                     },
                     "addresses": {
                         "$ref": "#/components/schemas/addresses"
+                    }
+                },
+                "type": "object"
+            },
+            "Project": {
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "housingStock": {
+                        "$ref": "#/components/schemas/HousingStock"
+                    },
+                    "contractors": {
+                        "$ref": "#/components/schemas/contractors"
+                    },
+                    "subcontractors": {
+                        "$ref": "#/components/schemas/subcontractors"
+                    },
+                    "addresses": {
+                        "$ref": "#/components/schemas/addresses"
+                    },
+                    "preferredStartDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "actualStartDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "preferredEndDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "actualEndDate": {
+                        "type": "string",
+                        "format": "date-time"
                     }
                 },
                 "type": "object"

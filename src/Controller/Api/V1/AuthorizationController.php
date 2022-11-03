@@ -64,6 +64,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *         @OA\Items(ref="#/components/schemas/Contractor")
  *     )
  * )
+ * @OA\Schema(
+ *     schema="subcontractors",
+ *     title="Subcontractors",
+ *     description="An array of subcontractors",
+ *     type="object",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/Subcontractor")
+ *     )
+ * )
  */
 class AuthorizationController extends AbstractController
 {
@@ -1027,11 +1038,11 @@ class AuthorizationController extends AbstractController
     #[Route('/subcontractors/{subcontractorId}', name: 'deletesubcontractor', methods: ['DELETE'])]
     /**
      * @OA\Delete(
-     *     path="/contractors/{contractorId}",
+     *     path="/subcontractors/{subcontractorId}",
      *     summary="Delete contractor",
      *     @OA\Parameter(
      *         name="ownerId",
-     *         description="The id of the contractor",
+     *         description="The id of the subcontractor",
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
@@ -1041,7 +1052,7 @@ class AuthorizationController extends AbstractController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successfully deleted an contractor"
+     *         description="Successfully deleted an subcontractor"
      *     )
      * )
      */
