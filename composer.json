@@ -38,6 +38,7 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^4.3",
+        "scheb/2fa-google-authenticator": "*",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",

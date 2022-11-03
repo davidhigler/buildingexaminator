@@ -1,4 +1,7 @@
 {
+    "beberlei/assert": {
+        "version": "v3.3.2"
+    },
     "brick/math": {
         "version": "0.9.3"
     },
@@ -137,6 +140,9 @@
     "nikic/php-parser": {
         "version": "v4.10.5"
     },
+    "paragonie/constant_time_encoding": {
+        "version": "v2.6.3"
+    },
     "phar-io/manifest": {
         "version": "2.0.3"
     },
@@ -220,6 +226,22 @@
     "ramsey/uuid": {
         "version": "4.3.1"
     },
+    "scheb/2fa-bundle": {
+        "version": "5.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "0a83961ef50ff91812b229a6f0caf28431d94aec"
+        },
+        "files": [
+            "config/packages/scheb_2fa.yaml",
+            "config/routes/scheb_2fa.yaml"
+        ]
+    },
+    "scheb/2fa-google-authenticator": {
+        "version": "v5.13.2"
+    },
     "sebastian/cli-parser": {
         "version": "1.0.1"
     },
@@ -279,6 +301,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "spomky-labs/otphp": {
+        "version": "v10.0.3"
     },
     "symfony/asset": {
         "version": "v5.2.7"
@@ -647,6 +672,9 @@
     },
     "symfony/yaml": {
         "version": "v5.2.9"
+    },
+    "thecodingmachine/safe": {
+        "version": "v2.4.0"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
