@@ -33,6 +33,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
         "guzzlehttp/guzzle": "^7.4",
+        "jms/translation-bundle": "*",
         "knplabs/knp-paginator-bundle": "*",
         "league/flysystem": "^3.0",
         "phpdocumentor/reflection-docblock": "^5.3",

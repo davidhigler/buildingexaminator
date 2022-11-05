@@ -116,6 +116,9 @@
     "guzzlehttp/psr7": {
         "version": "2.2.1"
     },
+    "jms/translation-bundle": {
+        "version": "1.6.2"
+    },
     "knplabs/knp-components": {
         "version": "v3.3.0"
     },
