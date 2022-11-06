@@ -12,3 +12,8 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+    jms_translation.dumper.xlf_dumper:
+        class: "%jms_translation.dumper.xliff_dumper.class%"
+        calls:
+            - [setSourceLanguage, ["%jms_translation.source_language%"]]
+            - [setAddDate, [false]]

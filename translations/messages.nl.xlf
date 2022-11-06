@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="nl" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="dS9X60V" resname="VTW's">
+        <source>VTW's</source>
+        <target>VTW's</target>
+      </trans-unit>
+      <trans-unit id=".nnX1Pc" resname="addresses">
+        <source>addresses</source>
+        <target state="translated">adressen</target>
+      </trans-unit>
+      <trans-unit id="KhLaF9J" resname="blocks">
+        <source>blocks</source>
+        <target state="translated">complexen</target>
+      </trans-unit>
+      <trans-unit id="eqWL8rp" resname="building types">
+        <source>building types</source>
+        <target state="translated">gebouw typen</target>
+      </trans-unit>
+      <trans-unit id="qGHQX5i" resname="buildings">
+        <source>buildings</source>
+        <target>buildings</target>
+      </trans-unit>
+      <trans-unit id="U.JRSIA" resname="cities">
+        <source>cities</source>
+        <target state="translated">woonplaatsen</target>
+      </trans-unit>
+      <trans-unit id="8E7ngih" resname="contractors">
+        <source>contractors</source>
+        <target state="translated">aannemers</target>
+      </trans-unit>
+      <trans-unit id="vjeaMPG" resname="credits">
+        <source>credits</source>
+        <target>credits</target>
+      </trans-unit>
+      <trans-unit id="TtN51Bi" resname="groups">
+        <source>groups</source>
+        <target state="translated">groepen</target>
+      </trans-unit>
+      <trans-unit id="TqFAWIF" resname="home">
+        <source>home</source>
+        <target>home</target>
+      </trans-unit>
+      <trans-unit id="fCcfNGP" resname="housingstocks">
+        <source>housingstocks</source>
+        <target state="translated">woningvoorraden</target>
+      </trans-unit>
+      <trans-unit id="VCofsEw" resname="municipalities">
+        <source>municipalities</source>
+        <target state="translated">gemeenten</target>
+      </trans-unit>
+      <trans-unit id="Uh38EEQ" resname="neighbourhoods">
+        <source>neighbourhoods</source>
+        <target state="translated">wijken</target>
+      </trans-unit>
+      <trans-unit id="bw46jA6" resname="owners">
+        <source>owners</source>
+        <target state="translated">eigennaren</target>
+      </trans-unit>
+      <trans-unit id="MToHP98" resname="public spaces">
+        <source>public spaces</source>
+        <target state="translated">publieke ruimtes</target>
+      </trans-unit>
+      <trans-unit id="fYo03bI" resname="residences">
+        <source>residences</source>
+        <target state="translated">residenties</target>
+      </trans-unit>
+      <trans-unit id="4zsbfrs" resname="residential areas">
+        <source>residential areas</source>
+        <target state="translated">buurten</target>
+      </trans-unit>
+      <trans-unit id="OjhmYWt" resname="subcontractors">
+        <source>subcontractors</source>
+        <target state="translated">onderaannemers</target>
+      </trans-unit>
+      <trans-unit id="n4bQgYh" resname="test">
+        <source>test</source>
+        <target>test</target>
+      </trans-unit>
+      <trans-unit id="fftM9nd" resname="users">
+        <source>users</source>
+        <target state="translated">gebruikers</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

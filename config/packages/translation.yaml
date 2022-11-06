@@ -1,6 +1,12 @@
 framework:
-    default_locale: en
+    default_locale: nl
     translator:
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
             - en
+jms_translation:
+    configs:
+        app:
+            dirs: ["%kernel.project_dir%/templates", "%kernel.project_dir%/src"]
+            output_dir: "%kernel.project_dir%/translations"
+            excluded_dirs: [cache, data, logs, DataFixtures]
