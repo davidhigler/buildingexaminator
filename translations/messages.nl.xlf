@@ -23,7 +23,7 @@
       </trans-unit>
       <trans-unit id="qGHQX5i" resname="buildings">
         <source>buildings</source>
-        <target>buildings</target>
+        <target state="translated">gebouwen</target>
       </trans-unit>
       <trans-unit id="U.JRSIA" resname="cities">
         <source>cities</source>
@@ -67,7 +67,7 @@
       </trans-unit>
       <trans-unit id="fYo03bI" resname="residences">
         <source>residences</source>
-        <target state="translated">residenties</target>
+        <target state="translated">verblijven</target>
       </trans-unit>
       <trans-unit id="4zsbfrs" resname="residential areas">
         <source>residential areas</source>
