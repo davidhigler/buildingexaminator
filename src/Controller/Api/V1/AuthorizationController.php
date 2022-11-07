@@ -187,7 +187,7 @@ class AuthorizationController extends AbstractController
 
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
         $adapter = $ownerRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -508,7 +508,7 @@ class AuthorizationController extends AbstractController
 
         $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
         $adapter = $contractorRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -831,7 +831,7 @@ class AuthorizationController extends AbstractController
 
         $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
         $adapter = $subcontractorRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
@@ -1156,7 +1156,7 @@ class AuthorizationController extends AbstractController
 
         $userRepository = $this->getDoctrine()->getRepository(User::class);
         $adapter = $userRepository->createQueryBuilder('o');
-        if ($searchTerm !== null) {
+        if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
                     $adapter->expr()->orX(
