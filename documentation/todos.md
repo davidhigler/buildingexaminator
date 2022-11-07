@@ -1,6 +1,5 @@
 # ToDo's
 
-* Finish voters
 * Groups functionality
     * Create, edit, delete groups
     * Add users to groups
