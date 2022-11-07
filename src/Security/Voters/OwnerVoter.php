@@ -51,15 +51,15 @@ class OwnerVoter extends Voter
         $owner = $subject;
 
         return match($attribute) {
-            self::CREATE => $this->canCreate($owner, $user),
+            self::CREATE => $this->canCreate($user),
             self::VIEW => $this->canView($owner, $user),
             self::EDIT => $this->canEdit($owner, $user),
-            self::DELETE => $this->canDelete($owner, $user),
+            self::DELETE => $this->canDelete($user),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
-    private function canCreate(Owner $owner, User $user): bool
+    private function canCreate(User $user): bool
     {
         if (get_class($user) === User::class) {
             return true;
@@ -101,7 +101,7 @@ class OwnerVoter extends Voter
         return false;
     }
 
-    private function canDelete(Owner $owner, User $user): bool
+    private function canDelete(User $user): bool
     {
         if (get_class($user) === User::class) {
             return true;
