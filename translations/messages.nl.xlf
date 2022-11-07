@@ -39,7 +39,7 @@
       </trans-unit>
       <trans-unit id="yvn5BrF" resname="documentation">
         <source>documentation</source>
-        <target>documentation</target>
+        <target>documentatie</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
@@ -79,7 +79,7 @@
       </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
-        <target>password</target>
+        <target>wachtwoord</target>
       </trans-unit>
       <trans-unit id="MToHP98" resname="public spaces">
         <source>public spaces</source>
