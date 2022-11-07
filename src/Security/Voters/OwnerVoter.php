@@ -2,6 +2,7 @@
 
 namespace App\Security\Voters;
 
+use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\User;
 use App\Entity\Authorization\Owner;
 use LogicException;
@@ -58,27 +59,54 @@ class OwnerVoter extends Voter
         };
     }
 
-    /** @TODO Fill in this function */
     private function canCreate(Owner $owner, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canView(Owner $owner, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (
+            get_class($user) === OwnerUser::class
+            && $user->getOwner()->getId() === $owner->getId()
+        ) {
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canEdit(Owner $owner, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (
+            get_class($user) === OwnerUser::class
+            && $user->getOwner()->getId() === $owner->getId()
+            && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        ) {
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canDelete(Owner $owner, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
         return false;
     }
 }
