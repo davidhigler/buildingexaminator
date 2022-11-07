@@ -10,16 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author David C. Higler <davidhigler@gmail.com>
  * @ORM\MappedSuperclass
  */
-class IdName
+class IdName extends Id
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     *
-     * @OA\Property()
-     */
-    protected int $id;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=false)
@@ -40,19 +32,9 @@ class IdName
      */
     protected string $name;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     public function setName(string $name): void

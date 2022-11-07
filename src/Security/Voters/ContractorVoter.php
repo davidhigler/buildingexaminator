@@ -2,9 +2,12 @@
 
 namespace App\Security\Voters;
 
+use App\Entity\Authentication\ContractorUser;
+use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\User;
 use App\Entity\Authorization\Contractor;
 use App\Entity\Authorization\Owner;
+use App\Entity\Strategies\Project;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -59,27 +62,100 @@ class ContractorVoter extends Voter
         };
     }
 
-    /** @TODO Fill in this function */
     private function canCreate(Contractor $contractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (get_class($user) === OwnerUser::class) {
+            $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+
+            /** @var Project $project */
+            foreach ($contractor->getProjects() as $project) {
+                if (!$accessibleHousingStocks->contains($project->getHousingStock())) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canView(Contractor $contractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (get_class($user) === OwnerUser::class) {
+            $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+
+            /** @var Project $project */
+            foreach ($contractor->getProjects() as $project) {
+                if ($accessibleHousingStocks->contains($project->getHousingStock())) {
+                    return true;
+                }
+            }
+        }
+
+        if (
+            get_class($user) === ContractorUser::class
+            && $user->getContractor()->getId() === $contractor->getId()
+        ) {
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canEdit(Contractor $contractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (get_class($user) === OwnerUser::class) {
+            $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+
+            /** @var Project $project */
+            foreach ($contractor->getProjects() as $project) {
+                if ($accessibleHousingStocks->contains($project->getHousingStock())) {
+                    return true;
+                }
+            }
+        }
+
+        if (
+            get_class($user) === ContractorUser::class
+            && $user->getContractor()->getId() === $contractor->getId()
+            && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        ) {
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
     private function canDelete(Contractor $contractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (get_class($user) === OwnerUser::class) {
+            $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+
+            /** @var Project $project */
+            foreach ($contractor->getProjects() as $project) {
+                if ($accessibleHousingStocks->contains($project->getHousingStock())) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }
