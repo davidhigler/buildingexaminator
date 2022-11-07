@@ -17,19 +17,19 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
                     <input id="email" name="email" type="email" class="validate" value="{{ lastUsername }}">
-                    <label for="email">Email</label>
+                    <label for="email">{{ 'email'|trans|capitalize }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">fingerprint</i>
                     <input id="password" name="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                    <label for="password">{{ 'password'|trans|capitalize }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <button class="btn" id="login" name="login" type="submit">Login</button>
+                    <button class="btn" id="login" name="login" type="submit">{{ 'login'|trans|capitalize }}</button>
                 </div>
             </div>
         </form>
