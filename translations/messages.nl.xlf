@@ -11,35 +11,43 @@
       </trans-unit>
       <trans-unit id=".nnX1Pc" resname="addresses">
         <source>addresses</source>
-        <target state="translated">adressen</target>
+        <target>adressen</target>
       </trans-unit>
       <trans-unit id="KhLaF9J" resname="blocks">
         <source>blocks</source>
-        <target state="translated">complexen</target>
+        <target>complexen</target>
       </trans-unit>
       <trans-unit id="eqWL8rp" resname="building types">
         <source>building types</source>
-        <target state="translated">gebouw typen</target>
+        <target>gebouw typen</target>
       </trans-unit>
       <trans-unit id="qGHQX5i" resname="buildings">
         <source>buildings</source>
-        <target state="translated">gebouwen</target>
+        <target>gebouwen</target>
       </trans-unit>
       <trans-unit id="U.JRSIA" resname="cities">
         <source>cities</source>
-        <target state="translated">woonplaatsen</target>
+        <target>woonplaatsen</target>
       </trans-unit>
       <trans-unit id="8E7ngih" resname="contractors">
         <source>contractors</source>
-        <target state="translated">aannemers</target>
+        <target>aannemers</target>
       </trans-unit>
       <trans-unit id="vjeaMPG" resname="credits">
         <source>credits</source>
         <target>credits</target>
       </trans-unit>
+      <trans-unit id="yvn5BrF" resname="documentation">
+        <source>documentation</source>
+        <target>documentation</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>email</target>
+      </trans-unit>
       <trans-unit id="TtN51Bi" resname="groups">
         <source>groups</source>
-        <target state="translated">groepen</target>
+        <target>groepen</target>
       </trans-unit>
       <trans-unit id="TqFAWIF" resname="home">
         <source>home</source>
@@ -47,35 +55,47 @@
       </trans-unit>
       <trans-unit id="fCcfNGP" resname="housingstocks">
         <source>housingstocks</source>
-        <target state="translated">woningvoorraden</target>
+        <target>woningvoorraden</target>
+      </trans-unit>
+      <trans-unit id="QoghNQ6" resname="login">
+        <source>login</source>
+        <target>login</target>
+      </trans-unit>
+      <trans-unit id="OYmRAJ2" resname="menu">
+        <source>menu</source>
+        <target>menu</target>
       </trans-unit>
       <trans-unit id="VCofsEw" resname="municipalities">
         <source>municipalities</source>
-        <target state="translated">gemeenten</target>
+        <target>gemeenten</target>
       </trans-unit>
       <trans-unit id="Uh38EEQ" resname="neighbourhoods">
         <source>neighbourhoods</source>
-        <target state="translated">wijken</target>
+        <target>wijken</target>
       </trans-unit>
       <trans-unit id="bw46jA6" resname="owners">
         <source>owners</source>
-        <target state="translated">eigennaren</target>
+        <target>eigennaren</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>password</source>
+        <target>password</target>
       </trans-unit>
       <trans-unit id="MToHP98" resname="public spaces">
         <source>public spaces</source>
-        <target state="translated">publieke ruimtes</target>
+        <target>publieke ruimtes</target>
       </trans-unit>
       <trans-unit id="fYo03bI" resname="residences">
         <source>residences</source>
-        <target state="translated">verblijven</target>
+        <target>verblijven</target>
       </trans-unit>
       <trans-unit id="4zsbfrs" resname="residential areas">
         <source>residential areas</source>
-        <target state="translated">buurten</target>
+        <target>buurten</target>
       </trans-unit>
       <trans-unit id="OjhmYWt" resname="subcontractors">
         <source>subcontractors</source>
-        <target state="translated">onderaannemers</target>
+        <target>onderaannemers</target>
       </trans-unit>
       <trans-unit id="n4bQgYh" resname="test">
         <source>test</source>
@@ -83,7 +103,7 @@
       </trans-unit>
       <trans-unit id="fftM9nd" resname="users">
         <source>users</source>
-        <target state="translated">gebruikers</target>
+        <target>gebruikers</target>
       </trans-unit>
     </body>
   </file>
