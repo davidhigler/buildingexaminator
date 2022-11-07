@@ -2,9 +2,8 @@
 
 namespace App\Security\Voters;
 
+use App\Entity\Authentication\ContractorUser;
 use App\Entity\Authentication\User;
-use App\Entity\Authorization\Contractor;
-use App\Entity\Authorization\Owner;
 use App\Entity\Authorization\Subcontractor;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -60,27 +59,88 @@ class SubcontractorVoter extends Voter
         };
     }
 
-    /** @TODO Fill in this function */
-    private function canCreate(Subcontractor $contractor, User $user): bool
+    private function canCreate(Subcontractor $subcontractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (
+            get_class($user) === ContractorUser::class
+            && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        ) {
+            $accesibleProjects = $user->getContractor()->getProjects();
+            foreach ($subcontractor->getProjects() as $project) {
+                if (!$accesibleProjects->contains($project)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
-    private function canView(Subcontractor $contractor, User $user): bool
+    private function canView(Subcontractor $subcontractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (get_class($user) === ContractorUser::class) {
+            $accesibleProjects = $user->getContractor()->getProjects();
+            foreach ($subcontractor->getProjects() as $project) {
+                if ($accesibleProjects->contains($project)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
-    private function canEdit(Subcontractor $contractor, User $user): bool
+    private function canEdit(Subcontractor $subcontractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (
+            get_class($user) === ContractorUser::class
+            && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        ) {
+            $accesibleProjects = $user->getContractor()->getProjects();
+            foreach ($subcontractor->getProjects() as $project) {
+                if ($accesibleProjects->contains($project)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
-    /** @TODO Fill in this function */
-    private function canDelete(Subcontractor $contractor, User $user): bool
+    private function canDelete(Subcontractor $subcontractor, User $user): bool
     {
+        if (get_class($user) === User::class) {
+            return true;
+        }
+
+        if (
+            get_class($user) === ContractorUser::class
+            && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        ) {
+            $accesibleProjects = $user->getContractor()->getProjects();
+            foreach ($subcontractor->getProjects() as $project) {
+                if (!$accesibleProjects->contains($project)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         return false;
     }
 }

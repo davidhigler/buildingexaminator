@@ -6,7 +6,6 @@ use App\Entity\Authentication\ContractorUser;
 use App\Entity\Authentication\OwnerUser;
 use App\Entity\Authentication\User;
 use App\Entity\Authorization\Contractor;
-use App\Entity\Authorization\Owner;
 use App\Entity\Strategies\Project;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
