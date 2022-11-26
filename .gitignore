@@ -3,7 +3,7 @@
 /phpunit.xml
 .phpunit.result.cache
 /public/info.php
-/node_modules/
+/public/node_modules/
 /data/cbs/cbs.csv
 /data/cbs/cbs.db
 /data/database/buildingexaminator.sql
