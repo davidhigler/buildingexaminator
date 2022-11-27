@@ -1,0 +1,6 @@
+<select id="active_housingstock_select">
+    <option></option>
+    {% for HousingStock in HousingStocks %}
+        <option value="{{ HousingStock.id }}"{% if HousingStock.id == ActiveHousingStock %} selected="selected"{% endif %}>{{ HousingStock.code }} {{ HousingStock.name }}</option>
+    {% endfor %}
+</select>

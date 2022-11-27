@@ -90,25 +90,6 @@
 
 /* Dynamic logo CSS */
 
-li#menu-logo {
-    height: 120px;
-    margin-bottom: 25px;
-}
-
-div#logo {
-    margin: auto;
-    width: 242px;
-    height: 120px;
-}
-
-div#logo-dia {
-    float: left;
-    background-image: url('/images/logo_dia.png');
-    width: 121px;
-    height: 120px;
-    overflow: hidden;
-}
-
 div#logo-letter {
     float: left;
     padding-left: 25px;
@@ -119,30 +100,6 @@ div#logo-letter {
 }
 
 /* All round CSS for the Dobro based on https://materializecss.com */
-
-.header, .footer {
-    color: #ee6e73;
-}
-
-nav.top-nav {
-    height: 110px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-bottom: 1px solid rgba(0,0,0,0.14);
-    background-color: transparent;
-}
-
-nav.bottom-nav{
-    margin-top: 100px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-top: 1px solid rgba(0,0,0,0.14);
-    background-color: transparent;
-}
-
-nav.top-nav div.header h1 {
-    margin: 20px 0 0 0;
-}
 
 a.sidenav-trigger.top-nav {
     position: absolute;

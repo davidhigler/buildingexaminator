@@ -1,0 +1,40 @@
+    <ul class="pagination">
+        {% if Pager.previous > 0 %}
+            <li>
+                <a href="javascript:{{ Callback }}({{ Pager.previous }}, {{ SeachTerm }});"><i class="material-icons">chevron_left</i></a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>
+            </li>
+        {% endif %}
+        {% for i in 4..1 %}
+            {% set previousIndex = Pager.current - i %}
+            {% if previousIndex > 0 %}
+                <li>
+                    <a href="javascript:{{ Callback }}({{ previousIndex }}, {{ SeachTerm }});">{{ previousIndex }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="active">
+            <a href="javascript:{{ Callback }}({{ Pager.current }}, {{ SeachTerm }});">{{ Pager.current }}</a>
+        </li>
+        {% for i in 1..4 %}
+            {% set nextIndex = Pager.current + i %}
+            {% if nextIndex <= Pager.count %}
+                <li>
+                    <a href="javascript:{{ Callback }}({{ nextIndex }}, {{ SeachTerm }});">{{ nextIndex }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if Pager.next > 0 %}
+            <li>
+                <a href="javascript:{{ Callback }}({{ nextIndex }}, {{ SeachTerm }});"><i class="material-icons">chevron_right</i></a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>
+            </li>
+        {% endif %}
+    </ul>

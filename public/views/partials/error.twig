@@ -1,0 +1,13 @@
+    <h3 class="header">Error</h3>
+    <div class="card error red lighten-2">
+        <div class="card-content white-text valign-wrapper">
+            <i class="medium material-icons">error</i>
+            <p>
+                <ul>
+                    {% for Message in Messages %}
+                        <li>{{ Message }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
+        </div>
+    </div>

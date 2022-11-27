@@ -1,8 +1,17 @@
-let logo_y = 0, logo_up = true;
+Twig.twig({id: 'homePage', method: 'ajax', async: false, href: '/views/pages/home.twig' });
+Twig.twig({id: 'creditsPage', method: 'ajax', async: false, href: '/views/pages/credits.twig' });
+Twig.twig({id: 'underconstructionPage', method: 'ajax', async: false, href: '/views/pages/underconstruction.twig' });
+
+Twig.twig({id: 'errorPartial', method: 'ajax', async: false, href: '/views/partials/error.twig' });
+Twig.twig({id: 'informationPartial', method: 'ajax', async: false, href: '/views/partials/information.twig' });
+
+Twig.twig({id: 'deleteModal', method: 'ajax', async: false, href: '/views/modals/delete.twig' });
+
+Twig.twig({id: 'activeHousingStockSelect', method: 'ajax', async: false, href: '/views/others/activehousingstockselect.twig' });
+Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 
 $(document).ready(function(){
     $('.sidenav').sidenav();
-    setInterval(diaOfLogo, 80);
     $('.fixed-action-btn').floatingActionButton({
         direction: 'bottom'
     });
@@ -17,17 +26,6 @@ $(document).ready(function(){
  * Support functions
  */
 
-function diaOfLogo() {
-    if (logo_up) {
-        ++logo_y;
-        if (logo_y >= 292) { logo_up = false; }
-    } else {
-        --logo_y;
-        if (logo_y <= 0) { logo_up = true; }
-    }
-    $('#logo-dia').css('backgroundPosition', '0px ' + (logo_y * -125) + 'px');
-}
-
 function showLoader() {
     $('div.overlay').show();
 }
@@ -37,68 +35,15 @@ function hideLoader() {
 }
 
 function addPagination(pager, searchterm, callback) {
-    let html = '    <ul class="pagination">\n';
-    if (pager.previous > 0) {
-        html +=
-            '        <li>' +
-            '            <a href="javascript:' + callback + '(' + pager.previous + ', \'' + searchterm + '\');"><i class="material-icons">chevron_left</i></a>' +
-            '        </li>\n';
-    } else {
-        html +=
-            '        <li class="disabled">' +
-            '            <a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>' +
-            '        </li>\n';
-    }
-    for (let i = 4; i > 0; i--) {
-        let previousIndex = pager.current - i;
-        if (previousIndex > 0) {
-            html +=
-                '        <li>' +
-                '            <a href="javascript:' + callback + '(' + previousIndex + ', \'' + searchterm + '\');">' + previousIndex + '</a>' +
-                '        </li>\n';
-        }
-    }
-    html +=
-        '        <li class="active">' +
-        '            <a href="javascript:' + callback + '(' + pager.current + ', \'' + searchterm + '\');">' + pager.current + '</a>' +
-        '        </li>\n';
-    for (let i = 1; i < 5; i++) {
-        let nextIndex = pager.current + i;
-        if (nextIndex <= pager.count) {
-            html +=
-                '        <li>' +
-                '            <a href="javascript:' + callback + '(' + nextIndex + ', \'' + searchterm + '\');">' + nextIndex + '</a>' +
-                '        </li>\n';
-        }
-    }
-    if (pager.next > 0) {
-        html +=
-            '        <li>' +
-            '            <a href="javascript:' + callback + '(' + pager.next + ', \'' + searchterm + '\');"><i class="material-icons">chevron_right</i></a>' +
-            '        </li>\n';
-    } else {
-        html +=
-            '        <li class="disabled">' +
-            '            <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>' +
-            '        </li>\n';
-    }
-    html += '    </ul>';
-
-    return html;
+    return Twig.twig({ref: 'pagination'}).render({
+        Pager: pager,
+        SeachTerm: searchterm,
+        Callback: callback
+    });
 }
 
 function showDeleteModal(id, name, callback) {
-    let modal = $('<div/>', {'id': 'modal-delete', 'class': 'modal'})
-        .append(
-            $('<div/>', {'class': 'modal-content'})
-                .append($('<h4/>').text('Delete ' + name))
-                .append($('<p/>').text('Are you sure?'))
-        )
-        .append(
-            $('<div/>', {'class': 'modal-footer'})
-                .append($('<a/>', {'class': 'modal-close btn-flat'}).text('No'))
-                .append($('<a/>', {'onclick': callback + '(' + id + ');', 'class': 'modal-close btn-flat'}).text('Yes'))
-        )
+    let modal = $(Twig.twig({ref: 'deleteModal'}).render({Id: id, Name: name, Callback: callback}))
         .appendTo('body')
         .modal(
             {
@@ -127,69 +72,36 @@ function loadErrorPage(jqXHR) {
         IS_JSON = false;
     }
 
+    const messages = [];
+
     if(IS_JSON) {
         if(
             typeof response.class !== "undefined"
             && typeof response.detail !== "undefined"
         ) {
-            message = response.class + ': ' + response.detail;
+            messages.push(response.class + ': ' + response.detail);
         } else if(Array.isArray(response)) {
-            message = '<ul>';
             for (let i = 0; i < response.length; i++) {
-                message += "<li>" + response[i].message + "</li>";
+                messages.push(response[i].message);
             }
-            message += '</ul>';
-        } else {
-            message = '';
         }
     } else {
-        message = jqXHR.status + ': ' + jqXHR.statusText;
+        messages.push(jqXHR.status + ': ' + jqXHR.statusText);
     }
 
-    $('div#content').html(
-        '    <h3 class="header">Error</h3>\n' +
-        '    <div class="card error red lighten-2">\n' +
-        '        <div class="card-content white-text valign-wrapper">\n' +
-        '            <i class="medium material-icons">error</i>\n' +
-        '            <p>' + message + '</p>\n' +
-        '        </div>\n' +
-        '    </div>\n'
-    );
-
-    $('#slide-out').sidenav('close');
+    $('div#content').html(Twig.twig({ref: 'errorPartial'}).render({Messages: messages}));
 }
 
 function loadInformationPage(message) {
-    $('div#content').html(
-        '    <h3 class="header">Information</h3>\n' +
-        '    <div class="card error yellow darken-2">\n' +
-        '        <div class="card-content white-text valign-wrapper">\n' +
-        '            <i class="medium material-icons">info</i>\n' +
-        '            <p>' + message + '</p>\n' +
-        '        </div>\n' +
-        '    </div>\n'
-    );
-
-    $('#slide-out').sidenav('close');
+    $('div#content').html(Twig.twig({ref: 'informationPartial'}).render({Message: message}));
 }
 
 function loadUnderConstructionPage(title) {
-    $('div#content').html(
-        '    <h3 class="header">' + title + '</h3>\n' +
-        '    <div class="card error blue-grey darken-2">\n' +
-        '        <div class="card-content white-text valign-wrapper">\n' +
-        '            <i class="medium material-icons">construction</i>\n' +
-        '            <p>Under construction</p>\n' +
-        '        </div>\n' +
-        '    </div>\n'
-    );
-
-    $('#slide-out').sidenav('close');
+    $('div#content').html(Twig.twig({ref: 'underconstructionPage'}).render({Title: title}));
 }
 
 function loadHomePage() {
     showLoader();
-    $('#slide-out').sidenav('close');
 
     $.when(
         $.getJSON('/api/v1/housingstocks'),
@@ -199,42 +111,10 @@ function loadHomePage() {
             housingstocks,
             statistics,
         ) {
-            let select2Html = '            <select id="active_housingstock_select" style="width: 100%;">\n' +
-                '                <option></option>\n';
-            $(housingstocks[0].data).each(function (index, element) {
-                if (parseInt(localStorage.getItem('activeHousingstockId')) === parseInt(element.id)) {
-                    select2Html += '                <option value="' + element.id + '" selected="selected">' + element.code + ' ' + element.name + '</option>\n';
-                } else {
-                    select2Html += '                <option value="' + element.id + '">' + element.code + ' ' + element.name + '</option>\n';
-                }
-            });
-            select2Html += '</select>\n';
-
-            $('div#activeHousingstockSelector').html(select2Html);
-
-            $('div#content').html(
-                '        <h3 class="header">Building Examinator</h3>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <div class="card">\n' +
-                '                    <div class="card-content">\n' +
-                '                        <span class="card-title activator grey-text text-darken-4">Housingstocks</span>\n' +
-                '                        <p><span class="badge">' + statistics[0].HousingStocks.Count + '</span>Count</p>\n' +
-                '                        <p><span class="badge">' + statistics[0].HousingStocks.LatestCreate + '</span>Latest creation</p>\n' +
-                '                        <p><span class="badge">' + statistics[0].HousingStocks.LatestChange + '</span>Latest change</p>\n' +
-                '                    </div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <div class="card">\n' +
-                '                    <div class="card-content">\n' +
-                '                        <span class="card-title activator grey-text text-darken-4">Addresses</span>\n' +
-                '                        <p><span class="badge">' + statistics[0].Addresses.Count + '</span>Count</p>\n' +
-                '                    </div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '        </div>\n'
-            );
+            $('div#activeHousingstockSelector').html(Twig.twig({ref: 'activeHousingStockSelect'}).render({
+                HousingStocks: housingstocks[0].data,
+                ActiveHousingStock: parseInt(localStorage.getItem('activeHousingstockId'))
+            }));
 
             $('select#active_housingstock_select').select2({
                 maximumInputLength: 20,
@@ -248,6 +128,11 @@ function loadHomePage() {
                     localStorage.setItem('activeHousingstockId', selectedActiveHousingstock.id);
                 }
             });
+
+            $('div#content').html(Twig.twig({ref: 'homePage'}).render({
+                HousingStocks: statistics[0].HousingStocks,
+                Addresses: statistics[0].Addresses
+            }));
         }
     );
 
@@ -255,56 +140,10 @@ function loadHomePage() {
 }
 
 function loadCreditsPage() {
-    $('div#content').html(
-        '        <h3 class="header center-align">Credits</h3>\n' +
-        '        <h4 class="header center-align">Makers</h4>\n' +
-        '        <div class="makers center-align">\n' +
-        '           <img alt="Profile picture David C. Higler" class="profile-image" src="/images/developers/david.higler.png">' +
-        '           <img alt="Profile picture Reiny Griemink" class="profile-image" src="/images/developers/reiny.griemink.png">' +
-        '        </div>\n' +
-        '        <h4 class="header center-align">Used frameworks and libraries</h4>\n' +
-        '        <div class="possibleByLogos">\n' +
-        '            <a href="https://www.nginx.com" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="NGinX" src="/images/logos/NGinX.png">\n' +
-        '            </a>\n' +
-        '            <a href="https://www.php.net" target="_blank" class="possibleByLogo">\n' +
-        '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg">Your browser does not support SVG</object>\n' +
-        '            </a>\n' +
-        '            <a href="https://www.mysql.com" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="MySql" src="/images/logos/MySql.png">\n' +
-        '            </a>\n' +
-        '            <a href="https://mariadb.org" target="_blank" class="possibleByLogo">\n' +
-        '                <object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/c/ca/MariaDB_colour_logo.svg">Your browser does not support SVG</object>\n' +
-        '            </a>\n' +
-        '            <br/>\n' +
-        '            <br/>\n' +
-        '            <a href="https://symfony.com" target="_blank" class="possibleByLogo">\n' +
-        '                <object type="image/svg+xml" data="https://symfony.com/images/logos/header-logo.svg">Your browser does not support SVG</object>\n' +
-        '            </a>\n' +
-        '            <a href="https://getcomposer.org" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="Composer" src="/images/logos/Composer.png">\n' +
-        '            </a>\n' +
-        '            <a href="https://thephpleague.com" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="ThePhpLeague" src="/images/logos/ThePhpLeague.png">\n' +
-        '            </a>\n' +
-        '            <br/>\n' +
-        '            <br/>\n' +
-        '            <a href="https://materializecss.com" target="_blank" class="possibleByLogo">\n' +
-        '                <object type="image/svg+xml" data="https://materializecss.com/res/materialize.svg">Your browser does not support SVG</object>\n' +
-        '            </a>\n' +
-        '            <a href="https://jquery.com" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="jQuery" src="/images/logos/jQuery.png">\n' +
-        '            </a>\n' +
-        '            <a href="https://momentjs.com" target="_blank" class="possibleByLogo">\n' +
-        '                <img alt="MomentJS" src="/images/logos/MomentJS.png">\n' +
-        '            </a>\n' +
-        '        </div>\n'
-    );
+    $('div#content').html(Twig.twig({ref: 'creditsPage'}).render());
 }
 
 function loadTestPage() {
-    showLoader();
-    $('#slide-out').sidenav('close');
 
     $('div#content').html(
         '    <h3 class="header">Test page</h3>\n' +
@@ -337,72 +176,72 @@ function loadTestPage() {
 
     $('div#content div#viewDiv').height(700);
 
-    require([
-        "esri/config",
-        "esri/Map",
-        "esri/views/MapView",
-        "esri/layers/FeatureLayer",
-        "esri/layers/support/LabelClass"
-    ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
-        esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-        const bagPandenLayerLabel = new LabelClass({
-            labelExpressionInfo: { expression: "$feature.objectid" },
-            allowOverrun: true,
-            deconflictionStrategy: "none",
-            minScale: 2500,
-            symbol: {
-                type: "text",
-                color: "black",
-                font: {
-                    family: "Ubuntu Mono",
-                    size: 6
-                }
-            }
-        });
-        const bagPandenLayer = new FeatureLayer({
-            url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-            definitionExpression:
-                "identificatie IN (" +
-                    "'0193100000017808', " +
-                    "'0193100000004644', " +
-                    "'0193100000058461', " +
-                    "'0193100000058462', " +
-                    "'0193100000018103', " +
-                    "'0193100000018102', " +
-                    "'0193100000018100', " +
-                    "'0193100000018075', " +
-                    "'0193100000018074', " +
-                    "'0193100000018073', " +
-                    "'0193100000018072', " +
-                    "'0193100000018071', " +
-                    "'0193100000018070'" +
-                ")",
-            minScale: 25000,
-            outFields: ['objectid'],
-            labelingInfo: bagPandenLayerLabel
-        });
-        const map = new Map({
-            basemap: "osm-light-gray",
-            layers: [
-                bagPandenLayer
-            ]
-        });
-        const view = new MapView({
-            map: map,
-            center: [6.0909033, 52.5129319],
-            zoom: 17,
-            container: "viewDiv",
-            constraints: {
-                snapToZoom: false
-            }
-        });
-        bagPandenLayer.when(() => {
-            return bagPandenLayer.queryExtent();
-        })
-        .then((response) => {
-            view.goTo(response.extent);
-        });
-    });
+    // require([
+    //     "esri/config",
+    //     "esri/Map",
+    //     "esri/views/MapView",
+    //     "esri/layers/FeatureLayer",
+    //     "esri/layers/support/LabelClass"
+    // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+    //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+    //     const bagPandenLayerLabel = new LabelClass({
+    //         labelExpressionInfo: { expression: "$feature.objectid" },
+    //         allowOverrun: true,
+    //         deconflictionStrategy: "none",
+    //         minScale: 2500,
+    //         symbol: {
+    //             type: "text",
+    //             color: "black",
+    //             font: {
+    //                 family: "Ubuntu Mono",
+    //                 size: 6
+    //             }
+    //         }
+    //     });
+    //     const bagPandenLayer = new FeatureLayer({
+    //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+    //         definitionExpression:
+    //             "identificatie IN (" +
+    //                 "'0193100000017808', " +
+    //                 "'0193100000004644', " +
+    //                 "'0193100000058461', " +
+    //                 "'0193100000058462', " +
+    //                 "'0193100000018103', " +
+    //                 "'0193100000018102', " +
+    //                 "'0193100000018100', " +
+    //                 "'0193100000018075', " +
+    //                 "'0193100000018074', " +
+    //                 "'0193100000018073', " +
+    //                 "'0193100000018072', " +
+    //                 "'0193100000018071', " +
+    //                 "'0193100000018070'" +
+    //             ")",
+    //         minScale: 25000,
+    //         outFields: ['objectid'],
+    //         labelingInfo: bagPandenLayerLabel
+    //     });
+    //     const map = new Map({
+    //         basemap: "osm-light-gray",
+    //         layers: [
+    //             bagPandenLayer
+    //         ]
+    //     });
+    //     const view = new MapView({
+    //         map: map,
+    //         center: [6.0909033, 52.5129319],
+    //         zoom: 17,
+    //         container: "viewDiv",
+    //         constraints: {
+    //             snapToZoom: false
+    //         }
+    //     });
+    //     bagPandenLayer.when(() => {
+    //         return bagPandenLayer.queryExtent();
+    //     })
+    //     .then((response) => {
+    //         view.goTo(response.extent);
+    //     });
+    // });
 
     $('input#photoUpload').change(
         function(event) {
@@ -461,7 +300,6 @@ function loadOwnersPage(page = 1, searchterm = '') {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -529,7 +367,6 @@ function loadOwnersPage(page = 1, searchterm = '') {
 
 function loadOwnerNewPage() {
     showLoader();
-    $('#slide-out').sidenav('close');
 
     $('div#content').html(
         '    <h3 class="header">New owner</h3>\n' +
@@ -619,7 +456,6 @@ function loadOwnerNewPage() {
             ),
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadOwnersPage();
@@ -644,7 +480,6 @@ function loadOwnerEditPage(id) {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             $('div#content').html(
@@ -740,7 +575,6 @@ function loadOwnerEditPage(id) {
                     ),
                     beforeSend: function() {
                         showLoader();
-                        $('#slide-out').sidenav('close');
                     },
                     success: function() {
                         loadOwnersPage();
@@ -769,7 +603,6 @@ function deleteOwner(id) {
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function() {
             loadOwnersPage();
@@ -800,7 +633,6 @@ function loadHousingstocksPage(page = 1, searchterm = '') {
         beforeSend: function() {
             showLoader();
             $('.material-tooltip').remove();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -877,7 +709,6 @@ function loadHousingstockNewPage() {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let ownerSelectHtml =
@@ -964,7 +795,6 @@ function loadHousingstockNewPage() {
                     ),
                     beforeSend: function() {
                         showLoader();
-                        $('#slide-out').sidenav('close');
                     },
                     success: function() {
                         loadHousingstocksPage();
@@ -997,7 +827,6 @@ function loadHousingstockEditPage(id) {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(dataOwners) {
             $.ajax({
@@ -1114,7 +943,6 @@ function loadHousingstockEditPage(id) {
                             ),
                             beforeSend: function() {
                                 showLoader();
-                                $('#slide-out').sidenav('close');
                             },
                             success: function() {
                                 loadHousingstocksPage();
@@ -1151,7 +979,6 @@ function deleteHousingstock(id) {
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function() {
             loadHousingstocksPage();
@@ -1181,7 +1008,6 @@ function loadContractorsPage(page = 1, searchterm = '') {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -1249,7 +1075,6 @@ function loadContractorsPage(page = 1, searchterm = '') {
 
 function loadContractorNewPage() {
     showLoader();
-    $('#slide-out').sidenav('close');
 
     $('div#content').html(
         '    <h3 class="header">New contractor</h3>\n' +
@@ -1338,7 +1163,6 @@ function loadContractorNewPage() {
             ),
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadContractorsPage();
@@ -1363,7 +1187,6 @@ function loadContractorEditPage(id) {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             $('div#content').html(
@@ -1458,7 +1281,6 @@ function loadContractorEditPage(id) {
                     ),
                     beforeSend: function() {
                         showLoader();
-                        $('#slide-out').sidenav('close');
                     },
                     success: function() {
                         loadContractorsPage();
@@ -1487,7 +1309,6 @@ function deleteContractor(id) {
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function() {
             loadContractorsPage();
@@ -1517,7 +1338,6 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -1585,7 +1405,6 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
 
 function loadSubcontractorNewPage() {
     showLoader();
-    $('#slide-out').sidenav('close');
 
     $('div#content').html(
         '    <h3 class="header">New subcontractor</h3>\n' +
@@ -1674,7 +1493,6 @@ function loadSubcontractorNewPage() {
             ),
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadSubcontractorsPage();
@@ -1699,7 +1517,6 @@ function loadSubcontractorEditPage(id) {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             $('div#content').html(
@@ -1794,7 +1611,6 @@ function loadSubcontractorEditPage(id) {
                     ),
                     beforeSend: function() {
                         showLoader();
-                        $('#slide-out').sidenav('close');
                     },
                     success: function() {
                         loadSubcontractorsPage();
@@ -1823,7 +1639,6 @@ function deleteSubcontractor(id) {
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function() {
             loadSubcontractorsPage();
@@ -1858,7 +1673,6 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
         beforeSend: function() {
             showLoader();
             $('.material-tooltip').remove();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -1930,7 +1744,6 @@ function loadCitiesPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2004,7 +1817,6 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
         beforeSend: function() {
             showLoader();
             $('.material-tooltip').remove();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -2077,7 +1889,6 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
         beforeSend: function() {
             showLoader();
             $('.material-tooltip').remove();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -2152,7 +1963,6 @@ function loadVtws(page = 1, searchterm = '') {
         beforeSend: function() {
             showLoader();
             $('.material-tooltip').remove();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -2232,7 +2042,6 @@ function loadPublicSpacesPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2309,7 +2118,6 @@ function loadBuildingsPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2388,7 +2196,6 @@ function loadResidencesPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2467,7 +2274,6 @@ function loadBlocksPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2612,7 +2418,6 @@ function loadBlockNewPage() {
                 ),
                 beforeSend: function () {
                     showLoader();
-                    $('#slide-out').sidenav('close');
                 },
                 success: function () {
                     loadBlocksPage();
@@ -2641,7 +2446,6 @@ function loadBlockEditPage(id) {
             },
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 $('div#content').html(
@@ -2724,7 +2528,6 @@ function loadBlockEditPage(id) {
                         ),
                         beforeSend: function() {
                             showLoader();
-                            $('#slide-out').sidenav('close');
                         },
                         success: function() {
                             loadBlocksPage();
@@ -2757,7 +2560,6 @@ function deleteBlock(id) {
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadBlocksPage();
@@ -2792,7 +2594,6 @@ function loadBuildingtypesPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -2929,7 +2730,6 @@ function loadBuildingtypeNewPage() {
                 ),
                 beforeSend: function () {
                     showLoader();
-                    $('#slide-out').sidenav('close');
                 },
                 success: function () {
                     loadBuildingtypesPage();
@@ -2958,7 +2758,6 @@ function loadBuildingTypeEditPage(id) {
             },
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 $('div#content').html(
@@ -3033,7 +2832,6 @@ function loadBuildingTypeEditPage(id) {
                         ),
                         beforeSend: function() {
                             showLoader();
-                            $('#slide-out').sidenav('close');
                         },
                         success: function() {
                             loadBuildingtypesPage();
@@ -3066,7 +2864,6 @@ function deleteBuildingType(id) {
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadBuildingtypesPage();
@@ -3101,7 +2898,6 @@ function loadAddressesPage(page = 1, searchterm = '') {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let rows = '';
@@ -3195,7 +2991,6 @@ function loadAddressesPage(page = 1, searchterm = '') {
 function loadAddressNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
-        $('#slide-out').sidenav('close');
 
         $.when(
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/blocks'),
@@ -3370,7 +3165,6 @@ function loadAddressNewPage() {
                         ),
                         beforeSend: function () {
                             showLoader();
-                            $('#slide-out').sidenav('close');
                         },
                         success: function () {
                             loadAddressesPage();
@@ -3405,7 +3199,6 @@ function loadAddressDetailPage(id) {
             beforeSend: function() {
                 showLoader();
                 $('.material-tooltip').remove();
-                $('#slide-out').sidenav('close');
             },
             success: function(data) {
                 let addressdata = data.data[0];
@@ -3572,31 +3365,6 @@ function loadAddressDetailPage(id) {
                     '                        <div class="collapsible-header"><i class="material-icons">access_time</i>Timeline</div>\n' +
                     '                        <div class="collapsible-body">\n' +
                     '                            <span>\n' +
-                    '                                <div id="timeline" class="timeline-container">\n' +
-                    '                                    <div class="timeline-wrapper">\n' +
-                    '                                        <h2 class="timeline-time">1976</h2>\n' +
-                    '                                        <dl class="timeline-series">\n' +
-                    '                                            <dt class="timeline-event" id="event01"><a>Event</a></dt>\n' +
-                    '                                            <dd class="timeline-event-content" id="event01EX">\n' +
-                    '                                                <p>Content about the event goes here.</p>\n' +
-                    '                                            </dd>\n' +
-                    '                                            <dt class="timeline-event" id="event02"><a>Another Event</a></dt>\n' +
-                    '                                            <dd class="timeline-event-content" id="event02EX">\n' +
-                    '                                                <p>Content about the other event.</p>\n' +
-                    '                                            </dd>\n' +
-                    '                                        </dl>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="timeline-wrapper">\n' +
-                    '                                        <h2 class="timeline-time">1984</h2>\n' +
-                    '                                       <dl class="timeline-series">\n' +
-                    '                                           <dt class="timeline-event" id="event03"><a>Yet Another Event</a></dt>\n' +
-                    '                                           <dd class="timeline-event-content" id="event03EX">\n' +
-                    '                                               <p>Content about the event goes here.</p>\n' +
-                    '                                           </dd>\n' +
-                    '                                       </dl>\n' +
-                    '                                    </div>\n' +
-                    '                                    <br class="clear">\n' +
-                    '                                </div>\n' +
                     '                            </span>\n' +
                     '                        </div>\n' +
                     '                    </li>\n' +
@@ -3615,60 +3383,58 @@ function loadAddressDetailPage(id) {
 
                 $('div#content div#viewDiv').height(500);
 
-                require([
-                    "esri/config",
-                    "esri/Map",
-                    "esri/views/MapView",
-                    "esri/layers/FeatureLayer",
-                    "esri/layers/support/LabelClass"
-                ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
-                    esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-                    const bagPandenLayerLabel = new LabelClass({
-                        labelExpressionInfo: { expression: "$feature.objectid" },
-                        allowOverrun: true,
-                        deconflictionStrategy: "none",
-                        minScale: 2500,
-                        symbol: {
-                            type: "text",
-                            color: "black",
-                            font: {
-                                family: "Ubuntu Mono",
-                                size: 6
-                            }
-                        }
-                    });
-                    const bagPandenLayer = new FeatureLayer({
-                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-                        definitionExpression:
-                            "identificatie IN (" +buildingIdentification + ")",
-                        minScale: 25000,
-                        outFields: ['objectid'],
-                        labelingInfo: bagPandenLayerLabel
-                    });
-                    const map = new Map({
-                        basemap: "osm-light-gray",
-                        layers: [
-                            bagPandenLayer
-                        ]
-                    });
-                    const view = new MapView({
-                        map: map,
-                        center: [6.0909033, 52.5129319],
-                        zoom: 17,
-                        container: "viewDiv",
-                        constraints: {
-                            snapToZoom: false
-                        }
-                    });
-                    bagPandenLayer.when(() => {
-                        return bagPandenLayer.queryExtent();
-                    })
-                    .then((response) => {
-                        view.goTo(response.extent);
-                    });
-                });
-
-                $.timeliner({});
+                // require([
+                //     "esri/config",
+                //     "esri/Map",
+                //     "esri/views/MapView",
+                //     "esri/layers/FeatureLayer",
+                //     "esri/layers/support/LabelClass"
+                // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+                //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+                //     const bagPandenLayerLabel = new LabelClass({
+                //         labelExpressionInfo: { expression: "$feature.objectid" },
+                //         allowOverrun: true,
+                //         deconflictionStrategy: "none",
+                //         minScale: 2500,
+                //         symbol: {
+                //             type: "text",
+                //             color: "black",
+                //             font: {
+                //                 family: "Ubuntu Mono",
+                //                 size: 6
+                //             }
+                //         }
+                //     });
+                //     const bagPandenLayer = new FeatureLayer({
+                //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+                //         definitionExpression:
+                //             "identificatie IN (" +buildingIdentification + ")",
+                //         minScale: 25000,
+                //         outFields: ['objectid'],
+                //         labelingInfo: bagPandenLayerLabel
+                //     });
+                //     const map = new Map({
+                //         basemap: "osm-light-gray",
+                //         layers: [
+                //             bagPandenLayer
+                //         ]
+                //     });
+                //     const view = new MapView({
+                //         map: map,
+                //         center: [6.0909033, 52.5129319],
+                //         zoom: 17,
+                //         container: "viewDiv",
+                //         constraints: {
+                //             snapToZoom: false
+                //         }
+                //     });
+                //     bagPandenLayer.when(() => {
+                //         return bagPandenLayer.queryExtent();
+                //     })
+                //     .then((response) => {
+                //         view.goTo(response.extent);
+                //     });
+                // });
 
                 $('div#content .collapsible').collapsible();
             },
@@ -3688,7 +3454,6 @@ function loadAddressDetailPage(id) {
 function loadAddressEditPage(id) {
     if(localStorage.getItem('activeHousingstockId')) {
         showLoader();
-        $('#slide-out').sidenav('close');
 
         $.when(
             $.getJSON('/api/v1/housingstocks/' + localStorage.getItem('activeHousingstockId') + '/addresses/' + id),
@@ -3885,7 +3650,6 @@ function loadAddressEditPage(id) {
                         ),
                         beforeSend: function () {
                             showLoader();
-                            $('#slide-out').sidenav('close');
                         },
                         success: function () {
                             loadAddressesPage();
@@ -3914,7 +3678,6 @@ function deleteAddress(id) {
             type: 'DELETE',
             beforeSend: function() {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function() {
                 loadAddressesPage();
@@ -3947,7 +3710,6 @@ function loadUsersPage(page = 1, searchterm = '') {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             let rows = '';
@@ -4018,7 +3780,6 @@ function loadUsersPage(page = 1, searchterm = '') {
 
 function loadUserNewPage() {
     showLoader();
-    $('#slide-out').sidenav('close');
 
     $('div#content').html(
         '    <h3 class="header">New user</h3>\n' +
@@ -4039,7 +3800,7 @@ function loadUserNewPage() {
         '            <div class="input-field col s12">\n' +
         '                <i class="material-icons prefix">email</i>\n' +
         '                <input id="email" name="email" type="email" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Email</label>\n' +
+        '                <label for="email">Email</label>\n' +
         '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
@@ -4048,7 +3809,7 @@ function loadUserNewPage() {
         '                <i class="material-icons prefix">fingerprint</i>\n' +
         '                <input id="password" name="password" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
         '                <label for="password">Password</label>\n' +
-        '                <span class="helper-text" id="errors" style="color: #F44336;"></span>\n' +
+        '                <span class="helper-text" id="password_errors" style="color: #F44336;"></span>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '        <div class="row">\n' +
@@ -4086,34 +3847,6 @@ function loadUserNewPage() {
 
     $("#user_type_select").formSelect();
 
-    $("#password").passwordValidation(
-        {
-            confirmField: "#confirmpassword",
-            minLength: 8,
-            minUpperCase: 1,
-            minLowerCase: 1,
-            minDigits: 1,
-            minSpecial: 1,
-            maxRepeats: 5,
-            maxConsecutive: 3,
-        },
-        function(element, valid, match, failedCases) {
-            $("#errors").html(failedCases.join("<br/>"));
-            if(valid) {
-                $(element).addClass('valid');
-            }
-            if(!valid) {
-                $(element).addClass('invalid');
-            }
-            if(valid && match) {
-                $("#confirmpassword").addClass('valid');
-            }
-            if(!valid || !match) {
-                $("#confirmpassword").addClass('invalid');
-            }
-        }
-    );
-
     $("form#newuser button[name='cancel']").click(
         function(event) {
             event.preventDefault();
@@ -4142,7 +3875,6 @@ function loadUserNewPage() {
             ),
             beforeSend: function () {
                 showLoader();
-                $('#slide-out').sidenav('close');
             },
             success: function () {
                 loadUsersPage();
@@ -4169,7 +3901,6 @@ function loadUserEditPage(id) {
         },
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function(data) {
             $('div#content').html(
@@ -4258,7 +3989,6 @@ function loadUserEditPage(id) {
                     ),
                     beforeSend: function() {
                         showLoader();
-                        $('#slide-out').sidenav('close');
                     },
                     success: function() {
                         loadUsersPage();
@@ -4287,7 +4017,6 @@ function deleteUser(id) {
         type: 'DELETE',
         beforeSend: function() {
             showLoader();
-            $('#slide-out').sidenav('close');
         },
         success: function() {
             loadUsersPage();
