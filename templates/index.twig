@@ -1,128 +1,23 @@
 {% extends "main.twig" %}
 
 {% block body %}
-    <ul class="sidenav sidenav-fixed">
-        <li>
-            <a href="javascript:void(0);" onclick="loadHomePage();">
-                <i class="material-icons">start</i>{{ 'home'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadTestPage();">
-                <i class="material-icons">contact_support</i>{{ 'test'|trans|capitalize }}
-            </a>
-        </li>
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadMunicipalitiesPage();">
-                <i class="material-icons">municipality</i>{{ 'municipalities'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadCitiesPage();">
-                <i class="material-icons">city</i>{{ 'cities'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadResidentialAreasPage();">
-                <i class="material-icons">residentialarea</i>{{ 'residential areas'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadNeighbourhoodsPage();">
-                <i class="material-icons">neighbourhood</i>{{ 'neighbourhoods'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadVtws();">
-                <i class="material-icons">villa</i>{{ 'VTW\'s'|trans|capitalize }}
-            </a>
-        </li>
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadPublicSpacesPage();">
-                <i class="material-icons">road</i>{{ 'public spaces'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadBuildingsPage();">
-                <i class="material-icons">home_filled</i>{{ 'buildings'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadResidencesPage();">
-                <i class="material-icons">cottage</i>{{ 'residences'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadBlocksPage();">
-                <i class="material-icons">view_comfortable</i>{{ 'blocks'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadBuildingtypesPage();">
-                <i class="material-icons">home_work</i>{{ 'building types'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadAddressesPage();">
-                <i class="material-icons">home</i>{{ 'addresses'|trans|capitalize }}
-            </a>
-        </li>
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadOwnersPage();">
-                <i class="material-icons">owner</i>{{ 'owners'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadHousingstocksPage();">
-                <i class="material-icons">domain</i>{{ 'housingstocks'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadContractorsPage();">
-                <i class="material-icons">contractor</i>{{ 'contractors'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadSubcontractorsPage();">
-                <i class="material-icons">subcontractor</i>{{ 'subcontractors'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="void(0);" class="subheader">
-                <i class="material-icons">group</i>{{ 'groups'|trans|capitalize }}
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadUsersPage();">
-                <i class="material-icons">person</i>{{ 'users'|trans|capitalize }}
-            </a>
-        </li>
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="javascript:void(0);" onclick="loadCreditsPage();">
-                <i class="material-icons">workspace_premium</i>{{ 'credits'|trans|capitalize }}
-            </a>
-        </li>
-    </ul>
     <nav>
         <div class="nav-wrapper">
             <div class="row">
-                <div class="col l4">
+                <div class="col s4 m3 l2">
                     <div class="slide-out-nav-menu-button">
                         <a href="#" data-target="slide-out" class="top-nav sidenav-trigger hide-on-large-only">
                             <i class="material-icons medium">menu</i>
                         </a>
+                        <div id="logo-letter" class="hide-on-med-and-down"><a href="{{ path('homepage') }}"><i class="material-icons ddd">d_d_d</i>ob<span style="color: #ff0000;">r</span>o</a></div>
                     </div>
                 </div>
-                <div class="col l4">
-                    <div style="width: 50%;" id="activeHousingstockSelector"></div>
+                <div class="col s4 m6 l8">
+                    <div id="activeHousingstockSelector" class="right-align"></div>
                 </div>
-                <div class="col l4">
+                <div class="col s4 m3 l2">
                     <div class="fixed-action-btn user-profile">
-                        <a class="btn-floating btn-large">
+                        <a class="btn-floating">
                             <i class="material-icons prefix">account_circle</i>
                         </a>
                         <ul>
@@ -133,6 +28,108 @@
             </div>
         </div>
     </nav>
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li class="active">
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadHomePage();">
+                <i class="material-icons">start</i>{{ 'home'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadTestPage();">
+                <i class="material-icons">contact_support</i>{{ 'test'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadMunicipalitiesPage();">
+                <i class="material-icons">municipality</i>{{ 'municipalities'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadCitiesPage();">
+                <i class="material-icons">city</i>{{ 'cities'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadResidentialAreasPage();">
+                <i class="material-icons">residentialarea</i>{{ 'residential areas'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadNeighbourhoodsPage();">
+                <i class="material-icons">neighbourhood</i>{{ 'neighbourhoods'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadVtws();">
+                <i class="material-icons">villa</i>{{ 'VTW\'s'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadPublicSpacesPage();">
+                <i class="material-icons">road</i>{{ 'public spaces'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadBuildingsPage();">
+                <i class="material-icons">home_filled</i>{{ 'buildings'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadResidencesPage();">
+                <i class="material-icons">cottage</i>{{ 'residences'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadBlocksPage();">
+                <i class="material-icons">view_comfortable</i>{{ 'blocks'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadBuildingtypesPage();">
+                <i class="material-icons">home_work</i>{{ 'building types'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadAddressesPage();">
+                <i class="material-icons">home</i>{{ 'addresses'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadOwnersPage();">
+                <i class="material-icons">owner</i>{{ 'owners'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadHousingstocksPage();">
+                <i class="material-icons">domain</i>{{ 'housingstocks'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadContractorsPage();">
+                <i class="material-icons">contractor</i>{{ 'contractors'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadSubcontractorsPage();">
+                <i class="material-icons">subcontractor</i>{{ 'subcontractors'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="void(0);" class="subheader">
+                <i class="material-icons">group</i>{{ 'groups'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadUsersPage();">
+                <i class="material-icons">person</i>{{ 'users'|trans|capitalize }}
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadCreditsPage();">
+                <i class="material-icons">workspace_premium</i>{{ 'credits'|trans|capitalize }}
+            </a>
+        </li>
+    </ul>
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l9 offset-l3" id="content">

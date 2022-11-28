@@ -59,6 +59,12 @@ function showDeleteModal(id, name, callback) {
     modalInstance.open();
 }
 
+function checkMenu(element) {
+    $liElement = $(element).parent();
+    $liElement.parent().children().removeClass('active')
+    $liElement.addClass('active');
+}
+
 /**
  * Support pages
  */

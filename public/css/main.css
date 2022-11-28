@@ -26,80 +26,152 @@
     font-feature-settings: 'liga';
 }
 
+/* Defaults */
+
+html, body {
+    color: #051a89;
+}
+
+div.container {
+    padding-top: 64px;
+}
+
+.slide-out-nav-menu-button a.sidenav-trigger.top-nav {
+    color: #ffffff;
+}
+
 /* Extra css for the select2 library */
 
-.select2-dropdown {
-    border-radius: 0 !important;
+#activeHousingstockSelector .select2-container {
+    text-align: left;
 }
 
-.select2-container--default .select2-selection--single,
-.select2-container--focus .select2-selection--single {
-    border-radius: 0 !important;
-    border-top: 0;
-    border-bottom: 1px solid #aaa;
-    border-left: 1px solid #aaa;
-    border-right: 1px solid #aaa;
+#activeHousingstockSelector .select2-container .select2-selection {
+    border: 0;
+    background-color: #a0aae1;
 }
 
-.select2-search--dropdown {
-    border: 0 !important;
-    padding: 0 10px !important;
+#activeHousingstockSelector .select2-container .select2-selection .select2-selection__arrow {
+    background-color: #5466c8;
+    height: 28px;
+    top: 0px;
+    right: 0px;
+    width: 24px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
-.select2-search--dropdown:after {
-    font-family: 'Material Icons Custom';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    text-rendering: optimizeLegibility;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    -moz-font-feature-settings: 'liga';
-    font-feature-settings: 'liga';
-    color: rgb(119, 119, 119);
-    content: "search";
-    position: absolute;
-    top: 10px;
-    right: 5px;
-    z-index: -1;
+#activeHousingstockSelector .select2-container--open .select2-selection .select2-selection__arrow {
+    border-bottom-right-radius: 0px;
 }
 
-.select2-search__field,
-.select2-search__field:focus {
-    border: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    outline: none !important;
+#activeHousingstockSelector .select2-container .select2-selection .select2-selection__arrow b {
+    border-color: #ffffff transparent transparent transparent;
 }
 
-.select2-selection__clear {
-    color: rgba(0, 0, 0, 0.87);
+#activeHousingstockSelector .select2-container--open .select2-selection .select2-selection__arrow b {
+    border-width: 0 4px 5px 4px;
+    border-color: transparent transparent #ffffff transparent;
 }
 
-.select2-results {
-    border-top: 1px solid #aaa;
+#activeHousingstockSelector .select2-container .select2-selection .select2-selection__clear {
+    color: #ffffff;
+    height: 24px;
+    margin-top: 3px;
+    margin-right: 32px;
+}
+
+#activeHousingstockSelector .select2-container .select2-selection__rendered {
+    color: #ffffff;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #a0aae1;
+}
+
+#activeHousingstockSelector .select2-container .select2-selection__rendered .select2-selection__placeholder {
+    color: #ffffff;
+}
+
+.select2-container .select2-dropdown {
+    border: 0;
+    color: #ffffff;
+    background-color: #a0aae1;
+}
+
+.select2-container .select2-dropdown .select2-search {
+    border: 0;
+}
+
+.select2-container .select2-dropdown .select2-search input {
+    border: 0;
+    color: #ffffff;
 }
 
 /* Dynamic logo CSS */
 
 div#logo-letter {
     float: left;
-    padding-left: 25px;
-    width: 121px;
-    height: 120px;
+    height: 64px;
     overflow: hidden;
-    color: #ee6e73;
+    color: #ffffff;
+    line-height: 82px;
+    font-size: 32px;
+    font-weight: bolder;
 }
 
 /* All round CSS for the Dobro based on https://materializecss.com */
+
+nav,
+.sidenav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+nav {
+    position: fixed;
+    z-index: 998;
+    background-color: #051a89;
+}
+
+.sidenav {
+    z-index: 997;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidenav::-webkit-scrollbar {
+    display: none;
+}
+
+.sidenav.sidenav-fixed {
+    background-color: #a0aae1;
+}
+
+.sidenav .subheader {
+    color: #ffffff;
+}
+
+ul.sidenav > li.active > a,
+ul.sidenav > li.active > a > i.material-icons {
+    color: #051a89;
+    background-color: #ffffff;
+}
+
+ul.sidenav > li > a,
+ul.sidenav > li > a > i.material-icons {
+    color: #ffffff;
+}
+
+ul.sidenav > li > a:hover,
+ul.sidenav > li > a:hover > i.material-icons {
+    color: #5466c8;
+    background-color: #ffffff;
+}
+
+ul.sidenav.sidenav-fixed {
+    padding-top: 64px;
+}
 
 a.sidenav-trigger.top-nav {
     position: absolute;
@@ -118,14 +190,19 @@ div.card.error div.card-content i {
     margin-right: 20px;
 }
 
+div.sidenav-overlay {
+    z-index: 996;
+}
+
 div.overlay {
     display: none;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    z-index: 999;
     position: fixed;
-    background-color: rgba(200,200,200,0.5);
+    background-color: rgba(200, 200, 200, 0.5);
 }
 
 div.overlay__inner {
@@ -147,53 +224,6 @@ div.overlay__content {
     background-color: rgb(200, 200, 200);
 }
 
-/* Active stock OLD css */
-
-li.active-stock {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 130px;
-    margin-top: 1px;
-    padding: 1px 0 0 0;
-    z-index: 2;
-}
-
-li.active-stock .active-stock-wrapper {
-    color: #777;
-    margin-top: -1px;
-    border-top: 1px solid rgba(0,0,0,0.14);
-    -webkit-transition: margin .25s ease;
-    transition: margin .25s ease;
-}
-
-li.active-stock .active-stock-wrapper input.active-stock-input {
-    color: #777;
-    display: block;
-    font-size: 16px;
-    font-weight: 300;
-    width: 100%;
-    height: 62px;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0 45px 0 30px;
-    border: 0;
-}
-
-li.active-stock .active-stock-wrapper i.material-icons {
-    position: absolute;
-    top: 21px;
-    right: 10px;
-    cursor: pointer;
-}
-
-li.active-stock .active-stock-results {
-    margin: 0;
-    border-top: 1px solid rgba(0,0,0,0.14);
-    background-color: #fff;
-}
-
 i.material-icons.disabled {
     color: rgba(0, 0, 0, 0.42);
 }
@@ -202,9 +232,8 @@ i.material-icons.disabled {
 
 i.material-icons.ddd {
     float: left;
-    font-size: 65px;
-    line-height: 65px;
-    text-shadow: 1px 1px 2px #999999;
+    font-size: 48px;
+    line-height: 64px;
 }
 
 /* Default extra css */
@@ -261,7 +290,7 @@ div.makers {
     margin: auto;
 }
 
-div.makers > img.profile-image  {
+div.makers > img.profile-image {
     float: left;
     height: 150px;
     margin: 0px 20px;
@@ -299,19 +328,31 @@ div.login-error-messages {
     margin-bottom: 40px;
 }
 
+#active_housingstock_select {
+    width: 250px;
+}
+
 div.fixed-action-btn.user-profile {
-    top: 8px !important;
-    right: 8px !important;
+    right: 16px !important;
     bottom: auto !important;
 }
 
 div.fixed-action-btn.user-profile > a {
-    background-color: #ee6e73;
+    background-color: #5466c8;
+}
+
+div.fixed-action-btn.user-profile > a > i {
+    height: 41px;
+    line-height: 41px;
+}
+
+div.fixed-action-btn.user-profile ul a.btn-floating {
+    margin-left: 0px;
+    background-color: #5466c8;
 }
 
 div.slide-out-nav-menu-button {
     position: fixed;
-    top: 8px !important;
     left: 8px !important;
 }
 
