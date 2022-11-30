@@ -229,6 +229,33 @@ div.card.error div.card-content i {
     margin-right: 20px;
 }
 
+h3 {
+    padding: 0 0.75rem;
+}
+
+.card,
+.card .card-content {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    padding: 0px;
+}
+
+.card .card-content .card-title {
+    color: #ffffff !important;
+    background-color: #051a89;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.card .card-content p {
+    padding: 0px 10px;
+}
+
+span.badge {
+    text-align: right;
+    color: #5466c8;
+}
+
 div.sidenav-overlay {
     z-index: 996;
 }
