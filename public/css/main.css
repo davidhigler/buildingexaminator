@@ -33,7 +33,7 @@ html, body {
 }
 
 div.container {
-    padding-top: 64px;
+    padding-top: 82px;
 }
 
 .slide-out-nav-menu-button a.sidenav-trigger.top-nav {
@@ -41,6 +41,10 @@ div.container {
 }
 
 /* Extra css for the select2 library */
+#activeHousingstockSelector {
+    height: 82px;
+    line-height: 82px;
+}
 
 #activeHousingstockSelector .select2-container {
     text-align: left;
@@ -97,6 +101,8 @@ div.container {
     border: 0;
     color: #ffffff;
     background-color: #a0aae1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .select2-container .select2-dropdown .select2-search {
@@ -108,16 +114,28 @@ div.container {
     color: #ffffff;
 }
 
+ul.select2-results__options {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
 /* Dynamic logo CSS */
 
 div#logo-letter {
     float: left;
-    height: 64px;
+    height: 82px;
     overflow: hidden;
     color: #ffffff;
     line-height: 82px;
     font-size: 32px;
     font-weight: bolder;
+    padding-left:  21px;
+}
+
+i.material-icons.ddd {
+    float: left;
+    font-size: 48px;
+    line-height: 82px;
 }
 
 /* All round CSS for the Dobro based on https://materializecss.com */
@@ -130,6 +148,7 @@ nav,
 
 nav {
     position: fixed;
+    height: 82px;
     z-index: 998;
     background-color: #051a89;
 }
@@ -138,6 +157,16 @@ nav {
     z-index: 997;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+nav a.sidenav-trigger {
+    padding-left:  21px;
+}
+
+nav a.sidenav-trigger i {
+    font-size: 32px;
+    height: 82px;
+    line-height: 82px;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -170,7 +199,7 @@ ul.sidenav > li > a:hover > i.material-icons {
 }
 
 ul.sidenav.sidenav-fixed {
-    padding-top: 64px;
+    padding-top: 82px;
 }
 
 a.sidenav-trigger.top-nav {
@@ -226,14 +255,6 @@ div.overlay__content {
 
 i.material-icons.disabled {
     color: rgba(0, 0, 0, 0.42);
-}
-
-/* DDD logo */
-
-i.material-icons.ddd {
-    float: left;
-    font-size: 48px;
-    line-height: 64px;
 }
 
 /* Default extra css */
@@ -333,8 +354,10 @@ div.login-error-messages {
 }
 
 div.fixed-action-btn.user-profile {
-    right: 16px !important;
+    right: 32px !important;
     bottom: auto !important;
+    height: 82px;
+    line-height: 82px;
 }
 
 div.fixed-action-btn.user-profile > a {
