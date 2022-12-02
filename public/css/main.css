@@ -38,6 +38,7 @@ div.container {
     max-width: 100%;
     margin-left: 25px;
     padding-right: 50px;
+    padding-bottom: 20px;
 }
 
 @media only screen and (min-width: 992px) {
@@ -129,6 +130,37 @@ ul.select2-results__options {
     border-bottom-right-radius: 4px;
 }
 
+table > thead > tr > th {
+    white-space: nowrap;
+}
+
+table > tbody > tr > td {
+    white-space: nowrap;
+}
+
+@media only screen and (max-width: 992px) {
+    table > tbody > tr > td {
+        white-space: break-spaces;
+    }
+}
+
+div.card.error {
+    color: #ffffff;
+    background-color: #5466c8;
+}
+
+.spinner-green, .spinner-green-only {
+    border-color: #051a89;
+}
+
+div.card.error div.card-content i {
+    margin: 20px;
+}
+
+.card {
+    border-radius: 4px;
+}
+
 /* Dynamic logo CSS */
 
 div#logo-letter {
@@ -212,6 +244,26 @@ ul.sidenav.sidenav-fixed {
     padding-top: 82px;
 }
 
+.input-field > label {
+    color: #051a89;
+}
+
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
+    border-bottom: 1px solid #051a89;
+}
+
 a.sidenav-trigger.top-nav {
     position: absolute;
     text-align: center;
@@ -256,6 +308,41 @@ span.badge {
     color: #5466c8;
 }
 
+.btn {
+    border-radius: 4px;
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: #051a89;
+}
+
+z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-floating, .dropdown-content, .collapsible, .sidenav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.z-depth-1-half, .btn:hover, .btn-large:hover, .btn-small:hover, .btn-floating:hover {
+    background-color: #5466c8;
+    -webkit-box-shadow: none;
+    ox-shadow: none;
+}
+
+.pagination li a {
+    color: #051a89;
+}
+
+.pagination li.active a {
+    color: #fff;
+}
+
+.pagination li.active {
+    background-color: #051a89;
+}
+
+.pagination li.disabled a {
+    color: #a0aae1;
+}
+
 div.sidenav-overlay {
     z-index: 996;
 }
@@ -291,7 +378,65 @@ div.overlay__content {
 }
 
 i.material-icons.disabled {
-    color: rgba(0, 0, 0, 0.42);
+    color: #a0aae1;
+}
+
+input:not([type]):disabled,
+input:not([type])[readonly="readonly"],
+input[type=text]:not(.browser-default):disabled,
+input[type=text]:not(.browser-default)[readonly="readonly"],
+input[type=password]:not(.browser-default):disabled,
+input[type=password]:not(.browser-default)[readonly="readonly"],
+input[type=email]:not(.browser-default):disabled,
+input[type=email]:not(.browser-default)[readonly="readonly"],
+input[type=url]:not(.browser-default):disabled,
+input[type=url]:not(.browser-default)[readonly="readonly"],
+input[type=time]:not(.browser-default):disabled,
+input[type=time]:not(.browser-default)[readonly="readonly"],
+input[type=date]:not(.browser-default):disabled,
+input[type=date]:not(.browser-default)[readonly="readonly"],
+input[type=datetime]:not(.browser-default):disabled,
+input[type=datetime]:not(.browser-default)[readonly="readonly"],
+input[type=datetime-local]:not(.browser-default):disabled,
+input[type=datetime-local]:not(.browser-default)[readonly="readonly"],
+input[type=tel]:not(.browser-default):disabled,
+input[type=tel]:not(.browser-default)[readonly="readonly"],
+input[type=number]:not(.browser-default):disabled,
+input[type=number]:not(.browser-default)[readonly="readonly"],
+input[type=search]:not(.browser-default):disabled,
+input[type=search]:not(.browser-default)[readonly="readonly"],
+textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
+    color: #a0aae1;
+    border-bottom: 1px solid #051a89;
+}
+
+input:not([type]):disabled+label,
+input:not([type])[readonly="readonly"]+label,
+input[type=text]:not(.browser-default):disabled+label,
+input[type=text]:not(.browser-default)[readonly="readonly"]+label,
+input[type=password]:not(.browser-default):disabled+label,
+input[type=password]:not(.browser-default)[readonly="readonly"]+label,
+input[type=email]:not(.browser-default):disabled+label,
+input[type=email]:not(.browser-default)[readonly="readonly"]+label,
+input[type=url]:not(.browser-default):disabled+label,
+input[type=url]:not(.browser-default)[readonly="readonly"]+label,
+input[type=time]:not(.browser-default):disabled+label,
+input[type=time]:not(.browser-default)[readonly="readonly"]+label,
+input[type=date]:not(.browser-default):disabled+label,
+input[type=date]:not(.browser-default)[readonly="readonly"]+label,
+input[type=datetime]:not(.browser-default):disabled+label,
+input[type=datetime]:not(.browser-default)[readonly="readonly"]+label,
+input[type=datetime-local]:not(.browser-default):disabled+label,
+input[type=datetime-local]:not(.browser-default)[readonly="readonly"]+label,
+input[type=tel]:not(.browser-default):disabled+label,
+input[type=tel]:not(.browser-default)[readonly="readonly"]+label,
+input[type=number]:not(.browser-default):disabled+label,
+input[type=number]:not(.browser-default)[readonly="readonly"]+label,
+input[type=search]:not(.browser-default):disabled+label,
+input[type=search]:not(.browser-default)[readonly="readonly"]+label,
+textarea.materialize-textarea:disabled+label,
+textarea.materialize-textarea[readonly="readonly"]+label {
+    color: #a0aae1;
 }
 
 /* Default extra css */

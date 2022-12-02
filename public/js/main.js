@@ -10,8 +10,12 @@ Twig.twig({id: 'deleteModal', method: 'ajax', async: false, href: '/views/modals
 Twig.twig({id: 'activeHousingStockSelect', method: 'ajax', async: false, href: '/views/others/activehousingstockselect.twig' });
 Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 
+let sideNavInstance;
+
 $(document).ready(function(){
-    $('.sidenav').sidenav();
+    const $sideNavElem = $('.sidenav');
+    $sideNavElem.sidenav();
+    sideNavInstance = M.Sidenav.getInstance($sideNavElem);
     $('.fixed-action-btn').floatingActionButton({
         direction: 'bottom'
     });
@@ -63,6 +67,14 @@ function checkMenu(element) {
     $liElement = $(element).parent();
     $liElement.parent().children().removeClass('active')
     $liElement.addClass('active');
+}
+
+function checkScreen() {
+    if ($(window).width() < 992) {
+        sideNavInstance.close();
+    }
+
+    hideLoader();
 }
 
 /**
@@ -139,10 +151,10 @@ function loadHomePage() {
                 HousingStocks: statistics[0].HousingStocks,
                 Addresses: statistics[0].Addresses
             }));
+
+            checkScreen();
         }
     );
-
-    hideLoader();
 }
 
 function loadCreditsPage() {
@@ -281,7 +293,7 @@ function loadTestPage() {
         }
     );
 
-    hideLoader();
+    checkScreen();
 }
 
 /**
@@ -366,7 +378,7 @@ function loadOwnersPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -432,7 +444,7 @@ function loadOwnerNewPage() {
         '    </form>\n'
     );
 
-    hideLoader();
+    checkScreen();
 
     $("form#newowner button[name='cancel']").click(
         function(event) {
@@ -470,7 +482,7 @@ function loadOwnerNewPage() {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     });
@@ -589,7 +601,7 @@ function loadOwnerEditPage(id) {
                         loadErrorPage(jqXHR);
                     },
                     complete: function() {
-                        hideLoader();
+                        checkScreen();
                     },
                 });
             });
@@ -598,7 +610,7 @@ function loadOwnerEditPage(id) {
             loadErrorPage(jqXHR)
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -615,7 +627,7 @@ function deleteOwner(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -700,7 +712,7 @@ function loadHousingstocksPage(page = 1, searchterm = '') {
         },
         complete: function() {
             $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -809,7 +821,7 @@ function loadHousingstockNewPage() {
                         loadErrorPage(jqXHR);
                     },
                     complete: function() {
-                        hideLoader();
+                        checkScreen();
                     },
                 });
             });
@@ -818,7 +830,7 @@ function loadHousingstockNewPage() {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -957,7 +969,7 @@ function loadHousingstockEditPage(id) {
                                 loadErrorPage(jqXHR);
                             },
                             complete: function() {
-                                hideLoader();
+                                checkScreen();
                             },
                         });
                     });
@@ -966,7 +978,7 @@ function loadHousingstockEditPage(id) {
                     loadErrorPage(jqXHR)
                 },
                 complete: function () {
-                    hideLoader();
+                    checkScreen();
                 },
             });
         },
@@ -974,7 +986,7 @@ function loadHousingstockEditPage(id) {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -991,7 +1003,7 @@ function deleteHousingstock(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1074,7 +1086,7 @@ function loadContractorsPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1139,7 +1151,7 @@ function loadContractorNewPage() {
         '    </form>\n'
     );
 
-    hideLoader();
+    checkScreen();
 
     $("form#newcontractor button[name='cancel']").click(
         function(event) {
@@ -1177,7 +1189,7 @@ function loadContractorNewPage() {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     });
@@ -1295,7 +1307,7 @@ function loadContractorEditPage(id) {
                         loadErrorPage(jqXHR);
                     },
                     complete: function() {
-                        hideLoader();
+                        checkScreen();
                     },
                 });
             });
@@ -1304,7 +1316,7 @@ function loadContractorEditPage(id) {
             loadErrorPage(jqXHR)
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1321,7 +1333,7 @@ function deleteContractor(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1404,7 +1416,7 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1469,7 +1481,7 @@ function loadSubcontractorNewPage() {
         '    </form>\n'
     );
 
-    hideLoader();
+    checkScreen();
 
     $("form#newsubcontractor button[name='cancel']").click(
         function(event) {
@@ -1507,7 +1519,7 @@ function loadSubcontractorNewPage() {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     });
@@ -1625,7 +1637,7 @@ function loadSubcontractorEditPage(id) {
                         loadErrorPage(jqXHR);
                     },
                     complete: function() {
-                        hideLoader();
+                        checkScreen();
                     },
                 });
             });
@@ -1634,7 +1646,7 @@ function loadSubcontractorEditPage(id) {
             loadErrorPage(jqXHR)
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1651,7 +1663,7 @@ function deleteSubcontractor(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1725,7 +1737,7 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1796,7 +1808,7 @@ function loadCitiesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -1871,7 +1883,7 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -1945,7 +1957,7 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -2019,7 +2031,7 @@ function loadVtws(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -2096,7 +2108,7 @@ function loadPublicSpacesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2174,7 +2186,7 @@ function loadBuildingsPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2252,7 +2264,7 @@ function loadResidencesPage(page = 1, searchterm = '') {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2341,7 +2353,7 @@ function loadBlocksPage(page = 1, searchterm = '') {
             },
             complete: function() {
                 $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0}); // @ToDo Only show if not empty
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2432,7 +2444,7 @@ function loadBlockNewPage() {
                     loadErrorPage(jqXHR);
                 },
                 complete: function () {
-                    hideLoader();
+                    checkScreen();
                 },
             });
         });
@@ -2542,7 +2554,7 @@ function loadBlockEditPage(id) {
                             loadErrorPage(jqXHR);
                         },
                         complete: function() {
-                            hideLoader();
+                            checkScreen();
                         },
                     });
                 });
@@ -2551,7 +2563,7 @@ function loadBlockEditPage(id) {
                 loadErrorPage(jqXHR)
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2572,7 +2584,7 @@ function deleteBlock(id) {
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2661,7 +2673,7 @@ function loadBuildingtypesPage(page = 1, searchterm = '') {
             },
             complete: function() {
                 $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2744,7 +2756,7 @@ function loadBuildingtypeNewPage() {
                     loadErrorPage(jqXHR);
                 },
                 complete: function () {
-                    hideLoader();
+                    checkScreen();
                 },
             });
         });
@@ -2846,7 +2858,7 @@ function loadBuildingTypeEditPage(id) {
                             loadErrorPage(jqXHR);
                         },
                         complete: function() {
-                            hideLoader();
+                            checkScreen();
                         },
                     });
                 });
@@ -2855,7 +2867,7 @@ function loadBuildingTypeEditPage(id) {
                 loadErrorPage(jqXHR)
             },
             complete: function() {
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2876,7 +2888,7 @@ function deleteBuildingType(id) {
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -2986,7 +2998,7 @@ function loadAddressesPage(page = 1, searchterm = '') {
             },
             complete: function() {
                 $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -3179,12 +3191,12 @@ function loadAddressNewPage() {
                             loadErrorPage(jqXHR);
                         },
                         complete: function () {
-                            hideLoader();
+                            checkScreen();
                         },
                     });
                 });
 
-                hideLoader();
+                checkScreen();
             }
         );
     } else {
@@ -3449,7 +3461,7 @@ function loadAddressDetailPage(id) {
             },
             complete: function() {
                 $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -3664,12 +3676,12 @@ function loadAddressEditPage(id) {
                             loadErrorPage(jqXHR);
                         },
                         complete: function () {
-                            hideLoader();
+                            checkScreen();
                         },
                     });
                 });
 
-                hideLoader();
+                checkScreen();
             }
         );
     } else {
@@ -3690,7 +3702,7 @@ function deleteAddress(id) {
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
-                hideLoader();
+                checkScreen();
             },
         });
     } else {
@@ -3779,7 +3791,7 @@ function loadUsersPage(page = 1, searchterm = '') {
             loadErrorPage(jqXHR);
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -3889,12 +3901,12 @@ function loadUserNewPage() {
                 loadErrorPage(jqXHR);
             },
             complete: function () {
-                hideLoader();
+                checkScreen();
             },
         });
     });
 
-    hideLoader();
+    checkScreen();
 }
 
 function loadUserEditPage(id) {
@@ -4003,7 +4015,7 @@ function loadUserEditPage(id) {
                         loadErrorPage(jqXHR);
                     },
                     complete: function() {
-                        hideLoader();
+                        checkScreen();
                     },
                 });
             });
@@ -4012,7 +4024,7 @@ function loadUserEditPage(id) {
             loadErrorPage(jqXHR)
         },
         complete: function() {
-            hideLoader();
+            checkScreen();
         },
     });
 }
@@ -4029,7 +4041,7 @@ function deleteUser(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-            hideLoader();
+            checkScreen();
         },
     });
 }
