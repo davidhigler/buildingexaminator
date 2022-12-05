@@ -43,6 +43,8 @@
   * Through the Google authenticator app
   * And through the push notifications of a coupled Andriod to Google
 * Symfony pre-registration and invite system
+  * When inviting a party to access a project you can limit the maximum set of rights that party can have
+  * At a later moment this limit can be changed
 * A privately owned address in a housingstock of an owner
   * The owner of a housingstock can only view the information of this address
   * The real private owner does not have access to the application but legaly still owner of the data
@@ -68,4 +70,10 @@ Styling
 * Zoekopdracht ook higlighten in het overzicht
 * Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
 * Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)
-* 
+
+
+* Project
+** Projectnummer (Lnummer, jaartal, maand, volgnummer)
+** Owner projectnummer
+** Contractor projectnummer
+** Subcontractor projectnummer
