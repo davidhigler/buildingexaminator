@@ -51,3 +51,19 @@
   * Frontend template engine
   * Translations in frontend templates
 * New frontend theme (See our old BLUE theme)
+
+
+Zoeken ook met enter
+Zoeken op eind en begin van identificerende nummers
+padding / marging op div container vereenvoudigd zodat er geen horizontale scroller meer is
+Edit adres geeft 403
+Prod DB opnieuw opbouwen
+Create button is verkeerd uitgelijnd
+Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
+Bij een foutmelding moet er een terug knopje zijn
+Zoekbalk naar rechts en naast de titel en new knop naar links
+Zoekbalk en titel moeten op de pagina zichtbaar blijven scroll alleen de tabel
+Paginatie is het midden van de pagina
+Pagination, toon ook het aantal pagina's en knoppen voor, ga naar de eerste en laatste pagina
+Zoekopdracht ook higlighten in het overzicht
+Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
