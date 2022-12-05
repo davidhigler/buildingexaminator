@@ -73,7 +73,7 @@ Styling
 
 
 * Project
-** Projectnummer (Lnummer, jaartal, maand, volgnummer)
-** Owner projectnummer
-** Contractor projectnummer
-** Subcontractor projectnummer
+  * Projectnummer (Lnummer, jaartal, maand, volgnummer)
+  * Owner projectnummer
+  * Contractor projectnummer
+  * Subcontractor projectnummer
