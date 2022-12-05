@@ -67,3 +67,5 @@ Styling
 * Pagination, toon ook het aantal pagina's en knoppen voor, ga naar de eerste en laatste pagina
 * Zoekopdracht ook higlighten in het overzicht
 * Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
+* Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)
+* 
