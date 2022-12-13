@@ -403,9 +403,6 @@ textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid > input.sel
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-+
-
-
 
 .input-field .prefix.active {
     color: #5466c8;
