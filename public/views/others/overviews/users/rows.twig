@@ -1,0 +1,16 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>
+        <td>{{ Item.email }}</td>
+        <td>{{ Item.type }}</td>
+        <td>{% if Item.admin %}Yes{% else %}No{% endif %}</td>
+        <td class="actions">
+            <button class="btn" name="edit" onclick="loadUserEditPage({{ Item.id }});">
+                <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>
+            </button>
+            <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, '{{ Item.name }}', 'deleteUser');">
+                <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}

@@ -1,0 +1,18 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">home_work</i></td>
+        <td>{{ Item.code }}</td>
+        <td>{{ Item.name }}</td>
+        <td class="actions">
+            <button class="btn" name="edit" onclick="loadBuildingTypeEditPage({{ Item.id }};">
+                <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>
+            </button>
+            <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, '{{ Item.name }}', 'deleteBuildingType');">
+                <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+
+
+

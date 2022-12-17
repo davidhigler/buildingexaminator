@@ -32,6 +32,16 @@ Twig.twig({id: 'residencesHeader', method: 'ajax', async: false, href: '/views/o
 Twig.twig({id: 'residencesRows', method: 'ajax', async: false, href: '/views/others/overviews/residences/rows.twig' });
 Twig.twig({id: 'blocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/blocks/header.twig' });
 Twig.twig({id: 'blocksRows', method: 'ajax', async: false, href: '/views/others/overviews/blocks/rows.twig' });
+Twig.twig({id: 'buildingtypesHeader', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/header.twig' });
+Twig.twig({id: 'buildingtypesRows', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/rows.twig' });
+Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
+Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
+Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
+Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
+Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
+Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
+Twig.twig({id: 'subcontractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/header.twig' });
+Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/rows.twig' });
 
 Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 
@@ -279,1343 +289,6 @@ function loadTestPage() {
     );
 
     checkScreen();
-}
-
-/**
- * #################################################
- */
-
-/**
- * Owners
- */
-
-function loadOwnersPage(page = 1, searchterm = '') {
-    $.ajax({
-        url: '/api/v1/owners',
-        type: 'GET',
-        data: {
-            page: page,
-            searchterm: searchterm
-        },
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            $('div#content').html(
-                Twig.twig(
-                    {ref: 'overviewPage'}
-                ).render(
-                    {
-                        Title: 'Owners',
-                        Search: {
-                            Term: searchterm,
-                            Loader: 'loadOwnersPage'
-                        },
-                        Header: Twig.twig({ref: 'ownersHeader'}).render(),
-                        Rows: Twig.twig({ref: 'ownersRows'}).render({Items: data.data}),
-                        Pager: data.pager,
-                        SeachTerm: searchterm,
-                        Callback: 'loadOwnersPage'
-                    }
-                )
-            );
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function loadOwnerNewPage() {
-    showLoader();
-
-    $('div#content').html(
-        '    <h3 class="header">New owner</h3>\n' +
-        '    <form id="newowner">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">aedes</i>\n' +
-        '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}">\n' +
-        '                <label for="lnumber">L number</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_owner</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
-
-    checkScreen();
-
-    $("form#newowner button[name='cancel']").click(
-        function(event) {
-            event.preventDefault();
-            loadOwnersPage();
-        }
-    );
-
-    $('form#newowner').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/api/v1/owners',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-            accepts: {
-                json: 'application/json'
-            },
-            data: JSON.stringify(
-                {
-                    'name': $('input#name').val(),
-                    'kvk': $('input#kvk').val(),
-                    'btw': $('input#btw').val(),
-                    'lnumber': $('input#lnumber').val(),
-                    'website': $('input#website').val(),
-                }
-            ),
-            beforeSend: function() {
-                showLoader();
-            },
-            success: function() {
-                loadOwnersPage();
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                checkScreen();
-            },
-        });
-    });
-}
-
-function loadOwnerEditPage(id) {
-    $.ajax({
-        url: '/api/v1/owners/' + id,
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            $('div#content').html(
-                '    <h3 class="header">Edit owner</h3>\n' +
-                '    <form id="editowner">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
-                '                <label for="kvk" class="active">KVK</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
-                '                <label for="btw" class="active">BTW</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">aedes</i>\n' +
-                '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}" value="' + (data.data.lnumber ?? '') + '">\n' +
-                '                <label for="lnumber" class="active">L number</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
-                '                <label for="website" class="active">Website</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
-            );
-
-            $("form#editowner button[name='cancel']").click(
-                function(event) {
-                    event.preventDefault();
-                    loadOwnersPage();
-                }
-            );
-
-            $('form#editowner').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/api/v1/owners/' + $('input#id').val(),
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    accepts: {
-                        json: 'application/json'
-                    },
-                    data: JSON.stringify(
-                        {
-                            'name': $('input#name').val(),
-                            'kvk': $('input#kvk').val(),
-                            'btw': $('input#btw').val(),
-                            'lnumber': $('input#lnumber').val(),
-                            'website': $('input#website').val(),
-                        }
-                    ),
-                    beforeSend: function() {
-                        showLoader();
-                    },
-                    success: function() {
-                        loadOwnersPage();
-                    },
-                    error: function(jqXHR) {
-                        loadErrorPage(jqXHR);
-                    },
-                    complete: function() {
-                        checkScreen();
-                    },
-                });
-            });
-        },
-        error: function (jqXHR) {
-            loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function deleteOwner(id) {
-    $.ajax({
-        url: '/api/v1/owners/' + id,
-        type: 'DELETE',
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function() {
-            loadOwnersPage();
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-            checkScreen();
-        },
-    });
-}
-
-/**
- * Housingstocks
- */
-
-function loadHousingstocksPage(page = 1, searchterm = '') {
-    $.ajax({
-        url: '/api/v1/housingstocks',
-        type: 'GET',
-        data: {
-            page: page,
-            searchterm: searchterm
-        },
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-            $('.material-tooltip').remove();
-        },
-        success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">domain</i></td>\n' +
-                    '                <td>' + (element.code ?? '') + '</td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
-                    '                <td class="actions">\n' +
-                    '                    <button class="btn" name="edit" onclick="loadHousingstockEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                    '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteHousingstock\');">\n' +
-                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                    '                    </button>\n' +
-                    '                </td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Housingstocks</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadHousingstocksPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" onclick="loadHousingstockNewPage();">\n' +
-                '                <i class="material-icons">domain_add</i><span class="button-content hide-on-small-only">New</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Code</th>\n' +
-                '                <th>Name</th>\n' +
-                '                <th class="actions">Actions</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadHousingstocksPage');
-
-            $('div#content').html(html);
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
-            checkScreen();
-        },
-    });
-}
-
-function loadHousingstockNewPage() {
-    $.ajax({
-        url: '/api/v1/owners',
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            let ownerSelectHtml =
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">person</i>\n' +
-                '                <select name="owner">\n' +
-                '                    <option disabled selected>Choose an owner</option>\n';
-            $(data.data).each(function (index, element) {
-                ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
-            });
-            ownerSelectHtml +=
-                '                </select>\n' +
-                '                <label>Owner</label>\n' +
-                '            </div>\n' +
-                '        </div>\n';
-
-            $('div#content').html(
-                '    <h3 class="header">New housingstock</h3>\n' +
-                '    <form id="newhousingstock">\n' +
-                ownerSelectHtml +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate">\n' +
-                '                <label for="code">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate">\n' +
-                '                <label for="name">Name</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">description</i>\n' +
-                '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-                '                <label for="description">Description</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn" name="create" type="submit">\n' +
-                '                    <i class="material-icons left">domain_add</i>Create\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
-            );
-
-            $('form#newhousingstock select').formSelect();
-
-            $("form#newhousingstock button[name='cancel']").click(
-                function(event) {
-                    event.preventDefault();
-                    loadHousingstocksPage();
-                }
-            );
-
-            $('form#newhousingstock').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/api/v1/housingstocks',
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    accepts: {
-                        json: 'application/json'
-                    },
-                    data: JSON.stringify(
-                        {
-                            'owner': $('select#owner').val(),
-                            'code': $('input#code').val(),
-                            'name': $('input#name').val(),
-                            'description': $('textarea#description').val(),
-                        }
-                    ),
-                    beforeSend: function() {
-                        showLoader();
-                    },
-                    success: function() {
-                        loadHousingstocksPage();
-                    },
-                    error: function(jqXHR) {
-                        loadErrorPage(jqXHR);
-                    },
-                    complete: function() {
-                        checkScreen();
-                    },
-                });
-            });
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function loadHousingstockEditPage(id) {
-    $.ajax({
-        url: '/api/v1/owners',
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(dataOwners) {
-            $.ajax({
-                url: '/api/v1/housingstocks/' + id,
-                type: 'GET',
-                dataType: 'json',
-                accepts: {
-                    json: 'application/json'
-                },
-                success: function(data) {
-                    let ownerSelectHtml =
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">person</i>\n' +
-                        '                <select id="owner" name="owner">\n';
-                    $(dataOwners.data).each(function (index, element) {
-                        if (element.id === data.data.owner.id) {
-                            ownerSelectHtml += '                    <option value="' + element.id + '" selected>' + element.name + '</option>\n';
-                        } else {
-                            ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
-                        }
-                    });
-                    ownerSelectHtml +=
-                        '                </select>\n' +
-                        '                <label>Owner</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n';
-
-                    $('div#content').html(
-                        '    <h3 class="header">Edit housingstock</h3>\n' +
-                        '    <form id="edithousingstock">\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                        '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                        '                <label for="id" class="active">Id</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        ownerSelectHtml +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                        '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                        '                <label for="code" class="active">Code</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">short_text</i>\n' +
-                        '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                        '                <label for="name" class="active">Name</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">description</i>\n' +
-                        '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                        '                <label for="description" class="active">Description</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">schedule</i>\n' +
-                        '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                        '                <label for="created" class="active">Created</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">update</i>\n' +
-                        '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                        '                <label for="lastchange" class="active">Last change</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="col s6">\n' +
-                        '                <button type="submit" class="btn" name="save">\n' +
-                        '                    <i class="material-icons left">save</i>Save\n' +
-                        '                </button>\n' +
-                        '            </div>\n' +
-                        '            <div class="col s6">\n' +
-                        '                <button class="btn right" name="cancel">\n' +
-                        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                        '                </button>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '    </form>\n'
-                    );
-
-                    $("form#edithousingstock button[name='cancel']").click(
-                        function(event) {
-                            event.preventDefault();
-                            loadHousingstocksPage();
-                        }
-                    );
-
-                    $('form#edithousingstock').submit(function(event) {
-                        event.preventDefault();
-                        $.ajax({
-                            url: '/api/v1/housingstocks/' + $('input#id').val(),
-                            type: 'PUT',
-                            dataType: 'json',
-                            contentType: 'application/json; charset=UTF-8',
-                            accepts: {
-                                json: 'application/json'
-                            },
-                            data: JSON.stringify(
-                                {
-                                    'owner': $('select#owner').val(),
-                                    'code': $('input#code').val(),
-                                    'name': $('input#name').val(),
-                                    'description': $('textarea#description').val(),
-                                }
-                            ),
-                            beforeSend: function() {
-                                showLoader();
-                            },
-                            success: function() {
-                                loadHousingstocksPage();
-                            },
-                            error: function(jqXHR) {
-                                loadErrorPage(jqXHR);
-                            },
-                            complete: function() {
-                                checkScreen();
-                            },
-                        });
-                    });
-                },
-                error: function (jqXHR) {
-                    loadErrorPage(jqXHR)
-                },
-                complete: function () {
-                    checkScreen();
-                },
-            });
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function deleteHousingstock(id) {
-    $.ajax({
-        url: '/api/v1/housingstocks/' + id,
-        type: 'DELETE',
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function() {
-            loadHousingstocksPage();
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-            checkScreen();
-        },
-    });
-}
-
-/**
- * Contractors
- */
-
-function loadContractorsPage(page = 1, searchterm = '') {
-    $.ajax({
-        url: '/api/v1/contractors',
-        type: 'GET',
-        data: {
-            page: page,
-            searchterm: searchterm
-        },
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">contractor</i></td>\n' +
-                    '                <td>' + (element.code ?? '') + '</td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
-                    '                <td class="actions">\n' +
-                    '                    <button class="btn" name="edit" onclick="loadContractorEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                    '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteContractor\');">\n' +
-                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                    '                    </button>\n' +
-                    '                </td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Contractors</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadContractorsPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" onclick="loadContractorNewPage();">\n' +
-                '                <i class="material-icons">add_contractor</i><span class="button-content hide-on-small-only">New</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Code</th>\n' +
-                '                <th>Name</th>\n' +
-                '                <th class="actions">Actions</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadContractorsPage');
-
-            $('div#content').html(html);
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function loadContractorNewPage() {
-    showLoader();
-
-    $('div#content').html(
-        '    <h3 class="header">New contractor</h3>\n' +
-        '    <form id="newcontractor">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_contractor</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
-
-    checkScreen();
-
-    $("form#newcontractor button[name='cancel']").click(
-        function(event) {
-            event.preventDefault();
-            loadContractorsPage();
-        }
-    );
-
-    $('form#newcontractor').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/api/v1/contractors',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-            accepts: {
-                json: 'application/json'
-            },
-            data: JSON.stringify(
-                {
-                    'code': $('input#code').val(),
-                    'name': $('input#name').val(),
-                    'kvk': $('input#kvk').val(),
-                    'btw': $('input#btw').val(),
-                    'website': $('input#website').val(),
-                }
-            ),
-            beforeSend: function() {
-                showLoader();
-            },
-            success: function() {
-                loadContractorsPage();
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                checkScreen();
-            },
-        });
-    });
-}
-
-function loadContractorEditPage(id) {
-    $.ajax({
-        url: '/api/v1/contractors/' + id,
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            $('div#content').html(
-                '    <h3 class="header">Edit contractor</h3>\n' +
-                '    <form id="editcontractor">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                '                <label for="code" class="active">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
-                '                <label for="kvk" class="active">KVK</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
-                '                <label for="btw" class="active">BTW</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
-                '                <label for="website" class="active">Website</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
-            );
-
-            $("form#editcontractor button[name='cancel']").click(
-                function(event) {
-                    event.preventDefault();
-                    loadContractorsPage();
-                }
-            );
-
-            $('form#editcontractor').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/api/v1/contractors/' + $('input#id').val(),
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    accepts: {
-                        json: 'application/json'
-                    },
-                    data: JSON.stringify(
-                        {
-                            'code': $('input#code').val(),
-                            'name': $('input#name').val(),
-                            'kvk': $('input#kvk').val(),
-                            'btw': $('input#btw').val(),
-                            'website': $('input#website').val(),
-                        }
-                    ),
-                    beforeSend: function() {
-                        showLoader();
-                    },
-                    success: function() {
-                        loadContractorsPage();
-                    },
-                    error: function(jqXHR) {
-                        loadErrorPage(jqXHR);
-                    },
-                    complete: function() {
-                        checkScreen();
-                    },
-                });
-            });
-        },
-        error: function (jqXHR) {
-            loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function deleteContractor(id) {
-    $.ajax({
-        url: '/api/v1/contractors/' + id,
-        type: 'DELETE',
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function() {
-            loadContractorsPage();
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-            checkScreen();
-        },
-    });
-}
-
-/**
- * Subcontractors
- */
-
-function loadSubcontractorsPage(page = 1, searchterm = '') {
-    $.ajax({
-        url: '/api/v1/subcontractors',
-        type: 'GET',
-        data: {
-            page: page,
-            searchterm: searchterm
-        },
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">subcontractor</i></td>\n' +
-                    '                <td>' + (element.code ?? '') + '</td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
-                    '                <td class="actions">\n' +
-                    '                    <button class="btn" name="edit" onclick="loadSubcontractorEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                    '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteSubcontractor\');">\n' +
-                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                    '                    </button>\n' +
-                    '                </td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Subcontractors</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadSubcontractorsPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" onclick="loadSubcontractorNewPage();">\n' +
-                '                <i class="material-icons">add_subcontractor</i><span class="button-content hide-on-small-only">New</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Code</th>\n' +
-                '                <th>Name</th>\n' +
-                '                <th class="actions">Actions</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadSubcontractorsPage');
-
-            $('div#content').html(html);
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function loadSubcontractorNewPage() {
-    showLoader();
-
-    $('div#content').html(
-        '    <h3 class="header">New subcontractor</h3>\n' +
-        '    <form id="newsubcontractor">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_subcontractor</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
-    );
-
-    checkScreen();
-
-    $("form#newsubcontractor button[name='cancel']").click(
-        function(event) {
-            event.preventDefault();
-            loadSubcontractorsPage();
-        }
-    );
-
-    $('form#newsubcontractor').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/api/v1/subcontractors',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-            accepts: {
-                json: 'application/json'
-            },
-            data: JSON.stringify(
-                {
-                    'code': $('input#code').val(),
-                    'name': $('input#name').val(),
-                    'kvk': $('input#kvk').val(),
-                    'btw': $('input#btw').val(),
-                    'website': $('input#website').val(),
-                }
-            ),
-            beforeSend: function() {
-                showLoader();
-            },
-            success: function() {
-                loadSubcontractorsPage();
-            },
-            error: function(jqXHR) {
-                loadErrorPage(jqXHR);
-            },
-            complete: function() {
-                checkScreen();
-            },
-        });
-    });
-}
-
-function loadSubcontractorEditPage(id) {
-    $.ajax({
-        url: '/api/v1/subcontractors/' + id,
-        type: 'GET',
-        dataType: 'json',
-        accepts: {
-            json: 'application/json'
-        },
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function(data) {
-            $('div#content').html(
-                '    <h3 class="header">Edit subcontractor</h3>\n' +
-                '    <form id="editsubcontractor">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                '                <label for="code" class="active">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
-                '                <label for="kvk" class="active">KVK</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
-                '                <label for="btw" class="active">BTW</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
-                '                <label for="website" class="active">Website</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
-            );
-
-            $("form#editsubcontractor button[name='cancel']").click(
-                function(event) {
-                    event.preventDefault();
-                    loadSubcontractorsPage();
-                }
-            );
-
-            $('form#editsubcontractor').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/api/v1/subcontractors/' + $('input#id').val(),
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    accepts: {
-                        json: 'application/json'
-                    },
-                    data: JSON.stringify(
-                        {
-                            'code': $('input#code').val(),
-                            'name': $('input#name').val(),
-                            'kvk': $('input#kvk').val(),
-                            'btw': $('input#btw').val(),
-                            'website': $('input#website').val(),
-                        }
-                    ),
-                    beforeSend: function() {
-                        showLoader();
-                    },
-                    success: function() {
-                        loadSubcontractorsPage();
-                    },
-                    error: function(jqXHR) {
-                        loadErrorPage(jqXHR);
-                    },
-                    complete: function() {
-                        checkScreen();
-                    },
-                });
-            });
-        },
-        error: function (jqXHR) {
-            loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
-        },
-    });
-}
-
-function deleteSubcontractor(id) {
-    $.ajax({
-        url: '/api/v1/subcontractors/' + id,
-        type: 'DELETE',
-        beforeSend: function() {
-            showLoader();
-        },
-        success: function() {
-            loadSubcontractorsPage();
-        },
-        error: function(jqXHR) {
-            loadErrorPage(jqXHR);
-            checkScreen();
-        },
-    });
 }
 
 /**
@@ -2345,59 +1018,28 @@ function loadBuildingtypesPage(page = 1, searchterm = '') {
                 $('.material-tooltip').remove();
             },
             success: function(data) {
-                let rows = '';
-                $(data.data).each(function (index, element) {
-                    rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + (element.description ?? '') + '">\n' +
-                        '                <td class="hide-on-small-only"><i class="material-icons prefix">home_work</i></td>\n' +
-                        '                <td>' + (element.code ?? '') + '</td>\n' +
-                        '                <td>' + (element.name ?? '') + '</td>\n' +
-                        '                <td class="actions">\n' +
-                        '                    <button class="btn" name="edit" onclick="loadBuildingTypeEditPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                        '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteBuildingType\');">\n' +
-                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                        '                    </button>\n' +
-                        '                </td>\n' +
-                        '            </tr>\n';
-                });
-
-                let html =
-                    '    <h3 class="header">Building types</h3>\n' +
-                    '    <div class="row">\n' +
-                    '        <div class="input-field col s6">\n' +
-                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadBuildingtypesPage(1, $(\'input#searchterm\').val());">\n' +
-                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn right" onclick="loadBuildingtypeNewPage();">\n' +
-                    '                <i class="material-icons">add_home_work</i><span class="button-content hide-on-small-only">New</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '    <table>\n' +
-                    '        <thead>\n' +
-                    '            <tr>\n' +
-                    '                <th class="hide-on-small-only"></th>\n' +
-                    '                <th>Code</th>\n' +
-                    '                <th>Name</th>\n' +
-                    '                <th class="actions">Actions</th>\n' +
-                    '            </tr>\n' +
-                    '        </thead>\n' +
-                    '        <tbody>\n' +
-                    rows +
-                    '        </tbody>\n' +
-                    '    </table>\n';
-
-                html += addPagination(data.pager, searchterm, 'loadBuildingtypesPage');
-
-                $('div#content').html(html);
+                $('div#content').html(
+                    Twig.twig(
+                        {ref: 'overviewPage'}
+                    ).render(
+                        {
+                            Title: 'Building types',
+                            New: {
+                                Loader: 'loadBuildingtypeNewPage',
+                                Icon: 'add_home_work'
+                            },
+                            Search: {
+                                Term: searchterm,
+                                Loader: 'loadBuildingtypesPage'
+                            },
+                            Header: Twig.twig({ref: 'buildingtypesHeader'}).render(),
+                            Rows: Twig.twig({ref: 'buildingtypesRows'}).render({Items: data.data}),
+                            Pager: data.pager,
+                            SeachTerm: searchterm,
+                            Callback: 'loadBuildingtypesPage'
+                        }
+                    )
+                );
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
@@ -3388,6 +2030,1250 @@ function deleteAddress(id) {
 }
 
 /**
+ * #################################################
+ */
+
+/**
+ * Owners
+ */
+
+function loadOwnersPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/owners',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Owners',
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadOwnersPage'
+                        },
+                        Header: Twig.twig({ref: 'ownersHeader'}).render(),
+                        Rows: Twig.twig({ref: 'ownersRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadOwnersPage'
+                    }
+                )
+            );
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function loadOwnerNewPage() {
+    showLoader();
+
+    $('div#content').html(
+        '    <h3 class="header">New owner</h3>\n' +
+        '    <form id="newowner">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="name">Name</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">kvk</i>\n' +
+        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
+        '                <label for="kvk">KVK</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">belastingdienst</i>\n' +
+        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
+        '                <label for="btw">BTW</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">aedes</i>\n' +
+        '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}">\n' +
+        '                <label for="lnumber">L number</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">http</i>\n' +
+        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
+        '                <label for="website">Website</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn" name="create" type="submit">\n' +
+        '                    <i class="material-icons left">add_owner</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn right" name="cancel">\n' +
+        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    checkScreen();
+
+    $("form#newowner button[name='cancel']").click(
+        function(event) {
+            event.preventDefault();
+            loadOwnersPage();
+        }
+    );
+
+    $('form#newowner').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/v1/owners',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'name': $('input#name').val(),
+                    'kvk': $('input#kvk').val(),
+                    'btw': $('input#btw').val(),
+                    'lnumber': $('input#lnumber').val(),
+                    'website': $('input#website').val(),
+                }
+            ),
+            beforeSend: function() {
+                showLoader();
+            },
+            success: function() {
+                loadOwnersPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                checkScreen();
+            },
+        });
+    });
+}
+
+function loadOwnerEditPage(id) {
+    $.ajax({
+        url: '/api/v1/owners/' + id,
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                '    <h3 class="header">Edit owner</h3>\n' +
+                '    <form id="editowner">\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                '                <label for="id" class="active">Id</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
+                '                <label for="name" class="active">Name</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">kvk</i>\n' +
+                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
+                '                <label for="kvk" class="active">KVK</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">belastingdienst</i>\n' +
+                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
+                '                <label for="btw" class="active">BTW</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">aedes</i>\n' +
+                '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}" value="' + (data.data.lnumber ?? '') + '">\n' +
+                '                <label for="lnumber" class="active">L number</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">http</i>\n' +
+                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
+                '                <label for="website" class="active">Website</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <button type="submit" class="btn" name="save">\n' +
+                '                    <i class="material-icons left">save</i>Save\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
+
+            $("form#editowner button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadOwnersPage();
+                }
+            );
+
+            $('form#editowner').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/v1/owners/' + $('input#id').val(),
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'name': $('input#name').val(),
+                            'kvk': $('input#kvk').val(),
+                            'btw': $('input#btw').val(),
+                            'lnumber': $('input#lnumber').val(),
+                            'website': $('input#website').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function() {
+                        loadOwnersPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        checkScreen();
+                    },
+                });
+            });
+        },
+        error: function (jqXHR) {
+            loadErrorPage(jqXHR)
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function deleteOwner(id) {
+    $.ajax({
+        url: '/api/v1/owners/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function() {
+            loadOwnersPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            checkScreen();
+        },
+    });
+}
+
+/**
+ * Housingstocks
+ */
+
+function loadHousingstocksPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/housingstocks',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+            $('.material-tooltip').remove();
+        },
+        success: function(data) {
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Housingstocks',
+                        New: {
+                            Loader: 'loadHousingstockNewPages',
+                            Icon: 'domain_add'
+                        },
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadHousingstocksPage'
+                        },
+                        Header: Twig.twig({ref: 'housingstocksHeader'}).render(),
+                        Rows: Twig.twig({ref: 'housingstocksRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadHousingstocksPage'
+                    }
+                )
+            );
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
+            checkScreen();
+        },
+    });
+}
+
+function loadHousingstockNewPage() {
+    $.ajax({
+        url: '/api/v1/owners',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            let ownerSelectHtml =
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">person</i>\n' +
+                '                <select name="owner">\n' +
+                '                    <option disabled selected>Choose an owner</option>\n';
+            $(data.data).each(function (index, element) {
+                ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
+            });
+            ownerSelectHtml +=
+                '                </select>\n' +
+                '                <label>Owner</label>\n' +
+                '            </div>\n' +
+                '        </div>\n';
+
+            $('div#content').html(
+                '    <h3 class="header">New housingstock</h3>\n' +
+                '    <form id="newhousingstock">\n' +
+                ownerSelectHtml +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                '                <input id="code" name="code" type="text" class="validate">\n' +
+                '                <label for="code">Code</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate">\n' +
+                '                <label for="name">Name</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">description</i>\n' +
+                '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
+                '                <label for="description">Description</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn" name="create" type="submit">\n' +
+                '                    <i class="material-icons left">domain_add</i>Create\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
+
+            $('form#newhousingstock select').formSelect();
+
+            $("form#newhousingstock button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadHousingstocksPage();
+                }
+            );
+
+            $('form#newhousingstock').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/v1/housingstocks',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'owner': $('select#owner').val(),
+                            'code': $('input#code').val(),
+                            'name': $('input#name').val(),
+                            'description': $('textarea#description').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function() {
+                        loadHousingstocksPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        checkScreen();
+                    },
+                });
+            });
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function loadHousingstockEditPage(id) {
+    $.ajax({
+        url: '/api/v1/owners',
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(dataOwners) {
+            $.ajax({
+                url: '/api/v1/housingstocks/' + id,
+                type: 'GET',
+                dataType: 'json',
+                accepts: {
+                    json: 'application/json'
+                },
+                success: function(data) {
+                    let ownerSelectHtml =
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">person</i>\n' +
+                        '                <select id="owner" name="owner">\n';
+                    $(dataOwners.data).each(function (index, element) {
+                        if (element.id === data.data.owner.id) {
+                            ownerSelectHtml += '                    <option value="' + element.id + '" selected>' + element.name + '</option>\n';
+                        } else {
+                            ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
+                        }
+                    });
+                    ownerSelectHtml +=
+                        '                </select>\n' +
+                        '                <label>Owner</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n';
+
+                    $('div#content').html(
+                        '    <h3 class="header">Edit housingstock</h3>\n' +
+                        '    <form id="edithousingstock">\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                        '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                        '                <label for="id" class="active">Id</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        ownerSelectHtml +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                        '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                        '                <label for="code" class="active">Code</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">short_text</i>\n' +
+                        '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
+                        '                <label for="name" class="active">Name</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix">description</i>\n' +
+                        '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
+                        '                <label for="description" class="active">Description</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">schedule</i>\n' +
+                        '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                        '                <label for="created" class="active">Created</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="input-field col s12">\n' +
+                        '                <i class="material-icons prefix disabled">update</i>\n' +
+                        '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
+                        '                <label for="lastchange" class="active">Last change</label>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="row">\n' +
+                        '            <div class="col s6">\n' +
+                        '                <button type="submit" class="btn" name="save">\n' +
+                        '                    <i class="material-icons left">save</i>Save\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '            <div class="col s6">\n' +
+                        '                <button class="btn right" name="cancel">\n' +
+                        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '    </form>\n'
+                    );
+
+                    $("form#edithousingstock button[name='cancel']").click(
+                        function(event) {
+                            event.preventDefault();
+                            loadHousingstocksPage();
+                        }
+                    );
+
+                    $('form#edithousingstock').submit(function(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            url: '/api/v1/housingstocks/' + $('input#id').val(),
+                            type: 'PUT',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=UTF-8',
+                            accepts: {
+                                json: 'application/json'
+                            },
+                            data: JSON.stringify(
+                                {
+                                    'owner': $('select#owner').val(),
+                                    'code': $('input#code').val(),
+                                    'name': $('input#name').val(),
+                                    'description': $('textarea#description').val(),
+                                }
+                            ),
+                            beforeSend: function() {
+                                showLoader();
+                            },
+                            success: function() {
+                                loadHousingstocksPage();
+                            },
+                            error: function(jqXHR) {
+                                loadErrorPage(jqXHR);
+                            },
+                            complete: function() {
+                                checkScreen();
+                            },
+                        });
+                    });
+                },
+                error: function (jqXHR) {
+                    loadErrorPage(jqXHR)
+                },
+                complete: function () {
+                    checkScreen();
+                },
+            });
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function deleteHousingstock(id) {
+    $.ajax({
+        url: '/api/v1/housingstocks/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function() {
+            loadHousingstocksPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            checkScreen();
+        },
+    });
+}
+
+/**
+ * Contractors
+ */
+
+function loadContractorsPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/contractors',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Contractors',
+                        New: {
+                            Loader: 'loadContractorNewPage',
+                            Icon: 'add_contractor'
+                        },
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadContractorsPage'
+                        },
+                        Header: Twig.twig({ref: 'contractorsHeader'}).render(),
+                        Rows: Twig.twig({ref: 'contractorsRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadContractorsPage'
+                    }
+                )
+            );
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function loadContractorNewPage() {
+    showLoader();
+
+    $('div#content').html(
+        '    <h3 class="header">New contractor</h3>\n' +
+        '    <form id="newcontractor">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">qr_code_2</i>\n' +
+        '                <input id="code" name="code" type="text" class="validate">\n' +
+        '                <label for="code">Code</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="name">Name</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">kvk</i>\n' +
+        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
+        '                <label for="kvk">KVK</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">belastingdienst</i>\n' +
+        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
+        '                <label for="btw">BTW</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">http</i>\n' +
+        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
+        '                <label for="website">Website</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn" name="create" type="submit">\n' +
+        '                    <i class="material-icons left">add_contractor</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn right" name="cancel">\n' +
+        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    checkScreen();
+
+    $("form#newcontractor button[name='cancel']").click(
+        function(event) {
+            event.preventDefault();
+            loadContractorsPage();
+        }
+    );
+
+    $('form#newcontractor').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/v1/contractors',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'code': $('input#code').val(),
+                    'name': $('input#name').val(),
+                    'kvk': $('input#kvk').val(),
+                    'btw': $('input#btw').val(),
+                    'website': $('input#website').val(),
+                }
+            ),
+            beforeSend: function() {
+                showLoader();
+            },
+            success: function() {
+                loadContractorsPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                checkScreen();
+            },
+        });
+    });
+}
+
+function loadContractorEditPage(id) {
+    $.ajax({
+        url: '/api/v1/contractors/' + id,
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                '    <h3 class="header">Edit contractor</h3>\n' +
+                '    <form id="editcontractor">\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                '                <label for="id" class="active">Id</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                '                <label for="code" class="active">Code</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
+                '                <label for="name" class="active">Name</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">kvk</i>\n' +
+                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
+                '                <label for="kvk" class="active">KVK</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">belastingdienst</i>\n' +
+                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
+                '                <label for="btw" class="active">BTW</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">http</i>\n' +
+                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
+                '                <label for="website" class="active">Website</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <button type="submit" class="btn" name="save">\n' +
+                '                    <i class="material-icons left">save</i>Save\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
+
+            $("form#editcontractor button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadContractorsPage();
+                }
+            );
+
+            $('form#editcontractor').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/v1/contractors/' + $('input#id').val(),
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'code': $('input#code').val(),
+                            'name': $('input#name').val(),
+                            'kvk': $('input#kvk').val(),
+                            'btw': $('input#btw').val(),
+                            'website': $('input#website').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function() {
+                        loadContractorsPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        checkScreen();
+                    },
+                });
+            });
+        },
+        error: function (jqXHR) {
+            loadErrorPage(jqXHR)
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function deleteContractor(id) {
+    $.ajax({
+        url: '/api/v1/contractors/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function() {
+            loadContractorsPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            checkScreen();
+        },
+    });
+}
+
+/**
+ * Subcontractors
+ */
+
+function loadSubcontractorsPage(page = 1, searchterm = '') {
+    $.ajax({
+        url: '/api/v1/subcontractors',
+        type: 'GET',
+        data: {
+            page: page,
+            searchterm: searchterm
+        },
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Subcontractors',
+                        New: {
+                            Loader: 'loadSubcontractorNewPage',
+                            Icon: 'add_subcontractor'
+                        },
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadSubcontractorsPage'
+                        },
+                        Header: Twig.twig({ref: 'subcontractorsHeader'}).render(),
+                        Rows: Twig.twig({ref: 'subcontractorsRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadSubcontractorsPage'
+                    }
+                )
+            );
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function loadSubcontractorNewPage() {
+    showLoader();
+
+    $('div#content').html(
+        '    <h3 class="header">New subcontractor</h3>\n' +
+        '    <form id="newsubcontractor">\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">qr_code_2</i>\n' +
+        '                <input id="code" name="code" type="text" class="validate">\n' +
+        '                <label for="code">Code</label>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">short_text</i>\n' +
+        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
+        '                <label for="name">Name</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">kvk</i>\n' +
+        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
+        '                <label for="kvk">KVK</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">belastingdienst</i>\n' +
+        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
+        '                <label for="btw">BTW</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="input-field col s12">\n' +
+        '                <i class="material-icons prefix">http</i>\n' +
+        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
+        '                <label for="website">Website</label>\n' +
+        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="row">\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn" name="create" type="submit">\n' +
+        '                    <i class="material-icons left">add_subcontractor</i>Create\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '            <div class="col s6">\n' +
+        '                <button class="btn right" name="cancel">\n' +
+        '                    <i class="material-icons left">cancel</i>Cancel\n' +
+        '                </button>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </form>\n'
+    );
+
+    checkScreen();
+
+    $("form#newsubcontractor button[name='cancel']").click(
+        function(event) {
+            event.preventDefault();
+            loadSubcontractorsPage();
+        }
+    );
+
+    $('form#newsubcontractor').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/api/v1/subcontractors',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            accepts: {
+                json: 'application/json'
+            },
+            data: JSON.stringify(
+                {
+                    'code': $('input#code').val(),
+                    'name': $('input#name').val(),
+                    'kvk': $('input#kvk').val(),
+                    'btw': $('input#btw').val(),
+                    'website': $('input#website').val(),
+                }
+            ),
+            beforeSend: function() {
+                showLoader();
+            },
+            success: function() {
+                loadSubcontractorsPage();
+            },
+            error: function(jqXHR) {
+                loadErrorPage(jqXHR);
+            },
+            complete: function() {
+                checkScreen();
+            },
+        });
+    });
+}
+
+function loadSubcontractorEditPage(id) {
+    $.ajax({
+        url: '/api/v1/subcontractors/' + id,
+        type: 'GET',
+        dataType: 'json',
+        accepts: {
+            json: 'application/json'
+        },
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function(data) {
+            $('div#content').html(
+                '    <h3 class="header">Edit subcontractor</h3>\n' +
+                '    <form id="editsubcontractor">\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix disabled">numbers</i>\n' +
+                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
+                '                <label for="id" class="active">Id</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">qr_code_2</i>\n' +
+                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
+                '                <label for="code" class="active">Code</label>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">short_text</i>\n' +
+                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
+                '                <label for="name" class="active">Name</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">kvk</i>\n' +
+                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
+                '                <label for="kvk" class="active">KVK</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">belastingdienst</i>\n' +
+                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
+                '                <label for="btw" class="active">BTW</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="input-field col s12">\n' +
+                '                <i class="material-icons prefix">http</i>\n' +
+                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
+                '                <label for="website" class="active">Website</label>\n' +
+                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <div class="row">\n' +
+                '            <div class="col s6">\n' +
+                '                <button type="submit" class="btn" name="save">\n' +
+                '                    <i class="material-icons left">save</i>Save\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '            <div class="col s6">\n' +
+                '                <button class="btn right" name="cancel">\n' +
+                '                    <i class="material-icons left">cancel</i>Cancel\n' +
+                '                </button>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </form>\n'
+            );
+
+            $("form#editsubcontractor button[name='cancel']").click(
+                function(event) {
+                    event.preventDefault();
+                    loadSubcontractorsPage();
+                }
+            );
+
+            $('form#editsubcontractor').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/api/v1/subcontractors/' + $('input#id').val(),
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    accepts: {
+                        json: 'application/json'
+                    },
+                    data: JSON.stringify(
+                        {
+                            'code': $('input#code').val(),
+                            'name': $('input#name').val(),
+                            'kvk': $('input#kvk').val(),
+                            'btw': $('input#btw').val(),
+                            'website': $('input#website').val(),
+                        }
+                    ),
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function() {
+                        loadSubcontractorsPage();
+                    },
+                    error: function(jqXHR) {
+                        loadErrorPage(jqXHR);
+                    },
+                    complete: function() {
+                        checkScreen();
+                    },
+                });
+            });
+        },
+        error: function (jqXHR) {
+            loadErrorPage(jqXHR)
+        },
+        complete: function() {
+            checkScreen();
+        },
+    });
+}
+
+function deleteSubcontractor(id) {
+    $.ajax({
+        url: '/api/v1/subcontractors/' + id,
+        type: 'DELETE',
+        beforeSend: function() {
+            showLoader();
+        },
+        success: function() {
+            loadSubcontractorsPage();
+        },
+        error: function(jqXHR) {
+            loadErrorPage(jqXHR);
+            checkScreen();
+        },
+    });
+}
+
+/**
  * Users
  */
 
@@ -3407,62 +3293,28 @@ function loadUsersPage(page = 1, searchterm = '') {
             showLoader();
         },
         success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">person</i></td>\n' +
-                    '                <td>' + (element.email ?? '') + '</td>\n' +
-                    '                <td>' + (element.type ?? '') + '</td>\n' +
-                    '                <td>' + (element.admin ? 'Yes' : 'No' ) + '</td>\n' +
-                    '                <td class="actions">\n' +
-                    //'                    <button class="btn disabled" name="edit" onclick="void(0);">\n' +
-                    '                    <button class="btn" name="edit" onclick="loadUserEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                    '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteUser\');">\n' +
-                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                    '                    </button>\n' +
-                    '                </td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Users</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadUsersPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" onclick="loadUserNewPage();">\n' +
-                '                <i class="material-icons">person_add</i><span class="button-content hide-on-small-only">New</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Email</th>\n' +
-                '                <th>Type</th>\n' +
-                '                <th>Admin</th>\n' +
-                '                <th class="actions">Actions</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadUsersPage');
-
-            $('div#content').html(html);
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Users',
+                        New: {
+                            Loader: 'loadUserNewPage',
+                            Icon: 'person_add'
+                        },
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadUsersPage'
+                        },
+                        Header: Twig.twig({ref: 'usersHeader'}).render(),
+                        Rows: Twig.twig({ref: 'usersRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadUsersPage'
+                    }
+                )
+            );
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
