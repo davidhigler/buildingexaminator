@@ -35,7 +35,7 @@
       </trans-unit>
       <trans-unit id="vjeaMPG" resname="credits">
         <source>credits</source>
-        <target>credits</target>
+        <target>medewerking</target>
       </trans-unit>
       <trans-unit id="yvn5BrF" resname="documentation">
         <source>documentation</source>
@@ -59,7 +59,7 @@
       </trans-unit>
       <trans-unit id="QoghNQ6" resname="login">
         <source>login</source>
-        <target>login</target>
+        <target>aanmelden</target>
       </trans-unit>
       <trans-unit id="OYmRAJ2" resname="menu">
         <source>menu</source>
@@ -75,7 +75,7 @@
       </trans-unit>
       <trans-unit id="bw46jA6" resname="owners">
         <source>owners</source>
-        <target>eigennaren</target>
+        <target>eigenaren</target>
       </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
