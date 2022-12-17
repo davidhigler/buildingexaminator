@@ -1,0 +1,9 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">cottage</i></td>
+        <td>{{ Item.identification }}</td>
+        <td>{{ Item.intendedUse }}</td>
+        <td>{{ Item.status }}</td>
+        <td>{{ Item.surfaceArea }}</td>
+    </tr>
+    {% endfor %}

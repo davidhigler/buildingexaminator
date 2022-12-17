@@ -1,0 +1,8 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">road</i></td>
+        <td>{{ Item.identification }}</td>
+        <td>{{ Item.name }}</td>
+        <td>{{ Item.type }}</td>
+    </tr>
+    {% endfor %}

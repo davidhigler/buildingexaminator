@@ -1,0 +1,9 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">villa</i></td>
+        <td>{{ Item.code }}</td>
+        <td>{{ Item.typeDescription }}</td>
+        <td class="hide-on-small-only" style="white-space: nowrap;">{{ Item.constructionYearDescription }}</td>
+        <td class="hide-on-small-only" style="white-space: nowrap;">{{ Item.roofTypeDescription }}</td>
+    </tr>
+    {% endfor %}
