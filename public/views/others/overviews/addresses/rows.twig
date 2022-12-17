@@ -1,0 +1,32 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-med-and-down">
+            <a href="javascript:void(0);" onclick="loadAddressDetailPage({{ Item.id }});">
+                <i class="material-icons prefix">home</i>
+            </a>
+        </td>
+        <td class="hide-on-med-and-down">{{ Item.rentalUnitNumber }}</td>
+        <td class="hide-on-med-and-down">{{ Item.publicSpace.name }}</td>
+        <td class="hide-on-med-and-down">{{ Item.houseNumber }}</td>
+        <td class="hide-on-med-and-down">{{ Item.addition }}</td>
+        <td class="hide-on-med-and-down">{{ Item.zipcode }}</td>
+        <td class="hide-on-med-and-down">{{ Item.city.name }}</td>
+        <td class="hide-on-large-only" style="width: 100%;">
+            <a href="javascript:void(0);" onclick="loadAddressDetailPage({{ Item.id }});">
+                <i class="material-icons small prefix" style="vertical-align:middle;">home</i>
+            </a>{{ Item.id }} - {{ Item.rentalUnitNumber }}<br>
+            {{ Item.publicSpace.name }} {{ Item.houseNumber }}{{ Item.addition }}<br>
+            {{ Item.zipcode }} {{ Item.city.name }}
+        </td>
+        <td class="actions">
+            <button class="btn" name="edit" onclick="loadAddressEditPage({{ Item.id }});">
+                <i class="material-icons">edit</i>
+                <span class="button-content hide-on-small-only">Edit</span>
+            </button>
+            <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, {{ Item.rentalUnitNumber }}, 'deleteAddress');">
+                <i class="material-icons">delete</i>
+                <span class="button-content hide-on-small-only">Delete</span>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}

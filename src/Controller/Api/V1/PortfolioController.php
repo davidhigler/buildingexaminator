@@ -3176,7 +3176,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     public function getAddress(string $housingStockId, string $addressId): Response
     {
         $addressRepository = $this->getDoctrine()->getRepository(Address::class);
-        $address = $addressRepository->findBy(
+        $address = $addressRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,
                 'id' => (int)$addressId

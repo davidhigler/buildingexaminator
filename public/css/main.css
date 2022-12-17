@@ -36,14 +36,13 @@ div.container {
     padding-top: 82px;
     width: 100%;
     max-width: 100%;
-    margin-left: 25px;
-    padding-right: 50px;
+    padding-right: 25px;
     padding-bottom: 20px;
 }
 
 @media only screen and (min-width: 992px) {
     div.container {
-        padding-left: 300px;
+        padding-left: 325px;
     }
 }
 
@@ -131,34 +130,72 @@ ul.select2-results__options {
 }
 
 table > thead > tr > th {
-    white-space: nowrap;
+    vertical-align: bottom;
+    color: #ffffff;
+    background-color: #051a89;
+    border: 0;
+    border-radius: 0;
+}
+
+table > thead > tr > th:nth-child(1) {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+table > thead > tr > th:nth-last-child(1) {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 table > tbody > tr > td {
     white-space: nowrap;
+    border: 0;
+    border-radius: 0;
 }
 
-@media only screen and (max-width: 992px) {
-    table > tbody > tr > td {
-        white-space: break-spaces;
-    }
+th, td {
+    padding: 4px 6px;
+}
+
+table > tbody > tr:nth-child(1n) {
+color: #051a89;
+background-color: #ffffff;
+}
+
+table > tbody > tr:nth-child(2n) {
+color: #ffffff;
+background-color: #a0aae1;
+}
+
+table > tbody > tr:nth-child(2n) > td:nth-child(1) {
+border-top-left-radius: 4px;
+border-bottom-left-radius: 4px;
+}
+
+table > tbody > tr:nth-child(2n) > td:nth-last-child(1) {
+border-top-right-radius: 4px;
+border-bottom-right-radius: 4px;
+}
+
+table > tbody > tr:nth-child(2n) .material-icons {
+color: #ffffff;
 }
 
 div.card.error {
-    color: #ffffff;
-    background-color: #5466c8;
+color: #ffffff;
+background-color: #5466c8;
 }
 
 .spinner-green, .spinner-green-only {
-    border-color: #051a89;
+border-color: #051a89;
 }
 
 div.card.error div.card-content i {
-    margin: 20px;
+margin: 20px;
 }
 
 .card {
-    border-radius: 4px;
+border-radius: 4px;
 }
 
 /* Dynamic logo CSS */
@@ -261,7 +298,10 @@ input[type=tel]:not(.browser-default),
 input[type=number]:not(.browser-default),
 input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
-    border-bottom: 1px solid #051a89;
+    color: #051a89;
+    border: 0px;
+    background-color: #a0aae1;
+    border-radius: 4px;
 }
 
 a.sidenav-trigger.top-nav {
@@ -404,6 +444,24 @@ textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid > input.sel
     box-shadow: none;
 }
 
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .input-field .prefix.active {
     color: #5466c8;
 }
@@ -472,7 +530,9 @@ input[type=search]:not(.browser-default):disabled,
 input[type=search]:not(.browser-default)[readonly="readonly"],
 textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
     color: #a0aae1;
-    border-bottom: 1px solid #051a89;
+    border: 0px;
+    background-color: #a0aae1;
+    border-radius: 4px;
 }
 
 input:not([type]):disabled+label,
@@ -502,6 +562,9 @@ input[type=search]:not(.browser-default)[readonly="readonly"]+label,
 textarea.materialize-textarea:disabled+label,
 textarea.materialize-textarea[readonly="readonly"]+label {
     color: #a0aae1;
+    border: 0px;
+    background-color: #a0aae1;
+    border-radius: 4px;
 }
 
 /* Default extra css */

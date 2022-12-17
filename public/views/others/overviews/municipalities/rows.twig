@@ -1,0 +1,7 @@
+{% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">municipality</i></td>
+        <td>{{ Item.code }}</td>
+        <td>{{ Item.name }}</td>
+    </tr>
+{% endfor %}

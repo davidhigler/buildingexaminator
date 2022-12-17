@@ -1,13 +1,22 @@
 Twig.twig({id: 'homePage', method: 'ajax', async: false, href: '/views/pages/home.twig' });
 Twig.twig({id: 'creditsPage', method: 'ajax', async: false, href: '/views/pages/credits.twig' });
 Twig.twig({id: 'underconstructionPage', method: 'ajax', async: false, href: '/views/pages/underconstruction.twig' });
+Twig.twig({id: 'testPage', method: 'ajax', async: false, href: '/views/pages/test.twig' });
 
 Twig.twig({id: 'errorPartial', method: 'ajax', async: false, href: '/views/partials/error.twig' });
 Twig.twig({id: 'informationPartial', method: 'ajax', async: false, href: '/views/partials/information.twig' });
 
 Twig.twig({id: 'deleteModal', method: 'ajax', async: false, href: '/views/modals/delete.twig' });
-
 Twig.twig({id: 'activeHousingStockSelect', method: 'ajax', async: false, href: '/views/others/activehousingstockselect.twig' });
+
+Twig.twig({id: 'overviewPage', method: 'ajax', async: false, href: '/views/others/overviews/overview.twig' });
+Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
+Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
+Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
+Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
+Twig.twig({id: 'municipalitiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/header.twig' });
+Twig.twig({id: 'municipalitiesRows', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/rows.twig' });
+
 Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 
 let sideNavInstance;
@@ -26,7 +35,7 @@ $(document).ready(function(){
  * #################################################
  */
 
-/**
+/**ws
  * Support functions
  */
 
@@ -163,34 +172,7 @@ function loadCreditsPage() {
 
 function loadTestPage() {
 
-    $('div#content').html(
-        '    <h3 class="header">Test page</h3>\n' +
-        '    <h4 class="header">Make and upload image</h4>\n' +
-        '    <div class="row">\n' +
-        '        <div class="col s12">\n' +
-        '            <div class="file-field input-field">\n' +
-        '                <div class="btn">\n' +
-        '                    <span><i class="material-icons left">add_a_photo</i>Photo</span>\n' +
-        '                    <input id="photoUpload" type="file" accept="image/*" capture="environment" />\n' +
-        '                </div>\n' +
-        '                <div class="file-path-wrapper">\n' +
-        '                    <input class="file-path validate" type="text" />\n' +
-        '                </div>\n' +
-        '             </div>\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '    <div class="row">\n' +
-        '        <div class="col s12">\n' +
-        '            <img id="photoPreview" src="#" alt="Image preview" style="display: none; width: 100%;" />\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '    <h4 class="header">Map with BAG information</h4>\n' +
-        '    <div class="row">\n' +
-        '        <div class="col s12">\n' +
-        '            <div id="viewDiv"></div>\n' +
-        '        </div>\n' +
-        '    </div>\n'
-    );
+    $('div#content').html(Twig.twig({ref: 'testPage'}).render());
 
     $('div#content div#viewDiv').height(700);
 
@@ -272,21 +254,8 @@ function loadTestPage() {
                 .off('click')
                 .click(
                     function(event) {
-                        //console.log(event);
-                        //console.log('event.offsetX: ' + event.offsetX);
-                        //console.log('event.target.clientWidth: ' + event.target.clientWidth);
-                        //console.log('event.target.naturalWidth: ' + event.target.naturalWidth);
-
                         let realX = Math.floor((event.offsetX/event.target.clientWidth)*event.target.naturalWidth);
-                        //console.log(realX);
-
-                        //console.log('event.offsetY: ' + event.offsetY);
-                        //console.log('event.target.clientHeight: ' + event.target.clientHeight);
-                        //console.log('event.target.naturalHeight: ' + event.target.naturalHeight);
-
                         let realY = Math.floor((event.offsetY/event.target.clientHeight)*event.target.naturalHeight);
-                        //console.log(realY);
-
                         M.toast({html: 'X:' + realX + ' Y:' + realY});
                     }
                 );
@@ -320,59 +289,24 @@ function loadOwnersPage(page = 1, searchterm = '') {
             showLoader();
         },
         success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">owner</i></td>\n' +
-                    '                <td>' + (element.lnumber ?? '') + '</td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
-                    '                <td class="actions">\n' +
-                    '                    <button class="btn" name="edit" onclick="loadOwnerEditPage(' + element.id + ');">\n' +
-                    '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                    '                    </button>\n' +
-                    '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.name + '\', \'deleteOwner\');">\n' +
-                    '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                    '                    </button>\n' +
-                    '                </td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Owners</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s6">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadOwnersPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn right" onclick="loadOwnerNewPage();">\n' +
-                '                <i class="material-icons">add_owner</i><span class="button-content hide-on-small-only">New</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>L no</th>\n' +
-                '                <th>Name</th>\n' +
-                '                <th class="actions">Actions</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadOwnersPage');
-
-            $('div#content').html(html);
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Owners',
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadOwnersPage'
+                        },
+                        Header: Twig.twig({ref: 'ownersHeader'}).render(),
+                        Rows: Twig.twig({ref: 'ownersRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadOwnersPage'
+                    }
+                )
+            );
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
@@ -1693,45 +1627,63 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
             $('.material-tooltip').remove();
         },
         success: function(data) {
-            let rows = '';
-            $(data.data).each(function (index, element) {
-                rows +=
-                    '            <tr>\n' +
-                    '                <td class="hide-on-small-only"><i class="material-icons prefix">municipality</i></td>\n' +
-                    '                <td>' + (element.code ?? '') + '</td>\n' +
-                    '                <td>' + (element.name ?? '') + '</td>\n' +
-                    '            </tr>\n';
-            });
-
-            let html =
-                '    <h3 class="header">Municipalities</h3>\n' +
-                '    <div class="row">\n' +
-                '        <div class="input-field col s9">\n' +
-                '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                '        </div>\n' +
-                '        <div class="input-field col s3">\n' +
-                '            <button class="btn" onclick="loadMunicipalitiesPage(1, $(\'input#searchterm\').val());">\n' +
-                '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                '            </button>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '    <table>\n' +
-                '        <thead>\n' +
-                '            <tr>\n' +
-                '                <th class="hide-on-small-only"></th>\n' +
-                '                <th>Code</th>\n' +
-                '                <th>Name</th>\n' +
-                '            </tr>\n' +
-                '        </thead>\n' +
-                '        <tbody>\n' +
-                rows +
-                '        </tbody>\n' +
-                '    </table>\n';
-
-            html += addPagination(data.pager, searchterm, 'loadMunicipalitiesPage');
-
-            $('div#content').html(html);
+            $('div#content').html(
+                Twig.twig(
+                    {ref: 'overviewPage'}
+                ).render(
+                    {
+                        Title: 'Municipalities',
+                        Search: {
+                            Term: searchterm,
+                            Loader: 'loadMunicipalitiesPage'
+                        },
+                        Header: Twig.twig({ref: 'municipalitiesHeader'}).render(),
+                        Rows: Twig.twig({ref: 'municipalitiesRows'}).render({Items: data.data}),
+                        Pager: data.pager,
+                        SeachTerm: searchterm,
+                        Callback: 'loadMunicipalitiesPage'
+                    }
+                )
+            );
+            // let rows = '';
+            // $(data.data).each(function (index, element) {
+            //     rows +=
+            //         '            <tr>\n' +
+            //         '                <td class="hide-on-small-only"><i class="material-icons prefix">municipality</i></td>\n' +
+            //         '                <td>' + (element.code ?? '') + '</td>\n' +
+            //         '                <td>' + (element.name ?? '') + '</td>\n' +
+            //         '            </tr>\n';
+            // });
+            //
+            // let html =
+            //     '    <h3 class="header">Municipalities</h3>\n' +
+            //     '    <div class="row">\n' +
+            //     '        <div class="input-field col s9">\n' +
+            //     '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
+            //     '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
+            //     '        </div>\n' +
+            //     '        <div class="input-field col s3">\n' +
+            //     '            <button class="btn" onclick="loadMunicipalitiesPage(1, $(\'input#searchterm\').val());">\n' +
+            //     '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
+            //     '            </button>\n' +
+            //     '        </div>\n' +
+            //     '    </div>\n' +
+            //     '    <table>\n' +
+            //     '        <thead>\n' +
+            //     '            <tr>\n' +
+            //     '                <th class="hide-on-small-only"></th>\n' +
+            //     '                <th>Code</th>\n' +
+            //     '                <th>Name</th>\n' +
+            //     '            </tr>\n' +
+            //     '        </thead>\n' +
+            //     '        <tbody>\n' +
+            //     rows +
+            //     '        </tbody>\n' +
+            //     '    </table>\n';
+            //
+            // html += addPagination(data.pager, searchterm, 'loadMunicipalitiesPage');
+            //
+            // $('div#content').html(html);
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
@@ -2918,86 +2870,33 @@ function loadAddressesPage(page = 1, searchterm = '') {
                 $('.material-tooltip').remove();
             },
             success: function(data) {
-                let rows = '';
-                $(data.data).each(function (index, element) {
-                    rows +=
-                        '            <tr class="tooltipped" data-position="bottom" data-tooltip="' + element.id + ' - ' + (element.rentalUnitNumber ?? '') + '<br />' + element.publicSpace.name + ' ' + element.houseNumber + (element.addition ? ' ' + element.addition : '') + '<br />' + element.zipcode + ' ' + element.city.name + '">\n' +
-                        '                <td class="hide-on-small-only">\n' +
-                        '                    <a href="javascript:void(0);" onclick="loadAddressDetailPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons prefix">home</i>\n' +
-                        '                    </a>\n' +
-                        '                </td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.rentalUnitNumber ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.publicSpace.name ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.houseNumber ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.addition ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.zipcode ?? '') + '</td>\n' +
-                        '                <td class="hide-on-small-only">' + (element.city.name ?? '') + '</td>\n' +
-                        '                <td class="hide-on-med-and-up">' +
-                        '                    <a href="javascript:void(0);" onclick="loadAddressDetailPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons small prefix" style="vertical-align:middle;">home</i>\n' +
-                        '                    </a>\n' +
-                        '                    ' + element.id + ' - ' + element.rentalUnitNumber + '<br />\n' +
-                        '                    ' + element.publicSpace.name + ' ' + element.houseNumber + (element.addition ? ' ' + element.addition : '') + '<br />\n' +
-                        '                    ' + element.zipcode + ' ' + element.city.name + '\n' +
-                        '                </td>\n' +
-                        '                <td class="actions">\n' +
-                        '                    <button class="btn" name="edit" onclick="loadAddressEditPage(' + element.id + ');">\n' +
-                        '                        <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>\n' +
-                        '                    </button>\n' +
-                        '                    <button class="btn" name="delete" onclick="showDeleteModal(' + element.id + ' , \'' + element.rentalUnitNumber + '\', \'deleteAddress\');">\n' +
-                        '                        <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>\n' +
-                        '                    </button>\n' +
-                        '                </td>\n' +
-                        '            </tr>\n';
-                });
-
-                let html =
-                    '    <h3 class="header">Addresses</h3>\n' +
-                    '    <div class="row">\n' +
-                    '        <div class="input-field col s6">\n' +
-                    '            <input id="searchterm" type="search" value="' + searchterm + '">\n' +
-                    '            <label for="searchterm" class="' + ( Boolean(searchterm) ? 'active' : '' ) + '">Search</label>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn" onclick="loadAddressesPage(1, $(\'input#searchterm\').val());">\n' +
-                    '                <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '        <div class="input-field col s3">\n' +
-                    '            <button class="btn right" onclick="loadAddressNewPage();">\n' +
-                    '                <i class="material-icons">house_add</i><span class="button-content hide-on-small-only">New</span>\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '    <table>\n' +
-                    '        <thead>\n' +
-                    '            <tr>\n' +
-                    '                <th class="hide-on-small-only"></th>\n' +
-                    '                <th class="hide-on-small-only">Rental unit number</th>\n' +
-                    '                <th class="hide-on-small-only">Street name</th>\n' +
-                    '                <th class="hide-on-small-only">House number</th>\n' +
-                    '                <th class="hide-on-small-only">Addition</th>\n' +
-                    '                <th class="hide-on-small-only">Zipcode</th>\n' +
-                    '                <th class="hide-on-small-only">City</th>\n' +
-                    '                <th class="hide-on-med-and-up">Address</th>\n' +
-                    '                <th class="actions">Actions</th>\n' +
-                    '            </tr>\n' +
-                    '        </thead>\n' +
-                    '        <tbody>\n' +
-                    rows +
-                    '        </tbody>\n' +
-                    '    </table>\n';
-
-                html += addPagination(data.pager, searchterm, 'loadAddressesPage');
-
-                $('div#content').html(html);
+                $('div#content').html(
+                    Twig.twig(
+                        {ref: 'overviewPage'}
+                    ).render(
+                        {
+                            Title: 'Addresses',
+                            New: {
+                                Loader: 'loadAddressNewPage',
+                                Icon: 'house_add'
+                            },
+                            Search: {
+                                Term: searchterm,
+                                Loader: 'loadAddressesPage'
+                            },
+                            Header: Twig.twig({ref: 'addressesHeader'}).render(),
+                            Rows: Twig.twig({ref: 'addressesRows'}).render({Items: data.data}),
+                            Pager: data.pager,
+                            SeachTerm: searchterm,
+                            Callback: 'loadAddressesPage'
+                        }
+                    )
+                );
             },
             error: function(jqXHR) {
                 loadErrorPage(jqXHR);
             },
             complete: function() {
-                $('.tooltipped').tooltip({'enterDelay': 1000, 'outDuration': 0});
                 checkScreen();
             },
         });
@@ -3485,8 +3384,7 @@ function loadAddressEditPage(id) {
                 buildingTypes,
                 vtws
             ) {
-
-                let addressdata = address[0].data[0];
+                let addressdata = address[0].data;
 
                 let blockHtmlOptions = '';
                 blocks[0].data.forEach(

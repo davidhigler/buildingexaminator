@@ -1,0 +1,15 @@
+    {% for Item in Items %}
+    <tr>
+        <td class="hide-on-small-only"><i class="material-icons prefix">owner</i></td>
+        <td>{{ Item.lnumber }}</td>
+        <td>{{ Item.name }}</td>
+        <td class="actions">
+            <button class="btn" name="edit" onclick="loadOwnerEditPage({{ Item.id }});">
+                <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>
+            </button>
+            <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, {{ Item.name }}, 'deleteOwner');">
+                <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
