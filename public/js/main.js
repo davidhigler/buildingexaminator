@@ -45,6 +45,23 @@ Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views
 
 Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 
+Twig.extendFilter('trans', function(id, params, domain, locale) {
+    params = params || {}
+
+    for (var key in params) {
+        if (
+            params.hasOwnProperty(key) &&
+            key[0] == Translator.placeHolderPrefix &&
+            key[key.length - 1] == Translator.placeHolderSuffix
+        ) {
+            params[key.substr(1, key.length - 2)] = params[key]
+            delete params[key]
+        }
+    }
+
+    return Translator.trans(id, params, domain, locale)
+});
+
 let sideNavInstance;
 
 $(document).ready(function(){
@@ -61,7 +78,7 @@ $(document).ready(function(){
  * #################################################
  */
 
-/**ws
+/**
  * Support functions
  */
 
@@ -110,6 +127,10 @@ function checkScreen() {
     }
 
     hideLoader();
+}
+
+function capFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /**
@@ -321,7 +342,7 @@ function loadMunicipalitiesPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Municipalities',
+                        Title: capFirstLetter(Translator.trans('municipalities', {}, 'messages')),
                         Search: {
                             Term: searchterm,
                             Loader: 'loadMunicipalitiesPage'
@@ -371,7 +392,7 @@ function loadCitiesPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Cities',
+                            Title: capFirstLetter(Translator.trans('cities', {}, 'messages')),
                             Search: {
                                 Term: searchterm,
                                 Loader: 'loadCitiesPage'
@@ -423,7 +444,7 @@ function loadResidentialAreasPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Residential areas',
+                        Title: capFirstLetter(Translator.trans('residential areas', {}, 'messages')),
                         Search: {
                             Term: searchterm,
                             Loader: 'loadResidentialAreasPage'
@@ -472,7 +493,7 @@ function loadNeighbourhoodsPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Neighbourhoods',
+                        Title: capFirstLetter(Translator.trans('neighbourhoods', {}, 'messages')),
                         Search: {
                             Term: searchterm,
                             Loader: 'loadNeighbourhoodsPage'
@@ -521,7 +542,7 @@ function loadVtws(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'VTWs',
+                        Title: capFirstLetter(Translator.trans('VTWs', {}, 'messages')),
                         Search: {
                             Term: searchterm,
                             Loader: 'loadVtws'
@@ -575,7 +596,7 @@ function loadPublicSpacesPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Public spaces',
+                            Title: capFirstLetter(Translator.trans('public spaces', {}, 'messages')),
                             Search: {
                                 Term: searchterm,
                                 Loader: 'loadPublicSpacesPage'
@@ -628,7 +649,7 @@ function loadBuildingsPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Buildings',
+                            Title: capFirstLetter(Translator.trans('buildings', {}, 'messages')),
                             Search: {
                                 Term: searchterm,
                                 Loader: 'loadBuildingsPage'
@@ -681,7 +702,7 @@ function loadResidencesPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Residences',
+                            Title: capFirstLetter(Translator.trans('residences', {}, 'messages')),
                             Search: {
                                 Term: searchterm,
                                 Loader: 'loadResidencesPage'
@@ -734,7 +755,7 @@ function loadBlocksPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Blocks',
+                            Title: capFirstLetter(Translator.trans('blocks', {}, 'messages')),
                             New: {
                                 Loader: 'loadBlockNewPage',
                                 Icon: 'add_view_module'
@@ -1023,7 +1044,7 @@ function loadBuildingtypesPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Building types',
+                            Title: capFirstLetter(Translator.trans('building types', {}, 'messages')),
                             New: {
                                 Loader: 'loadBuildingtypeNewPage',
                                 Icon: 'add_home_work'
@@ -1296,7 +1317,7 @@ function loadAddressesPage(page = 1, searchterm = '') {
                         {ref: 'overviewPage'}
                     ).render(
                         {
-                            Title: 'Addresses',
+                            Title: capFirstLetter(Translator.trans('addresses', {}, 'messages')),
                             New: {
                                 Loader: 'loadAddressNewPage',
                                 Icon: 'house_add'
@@ -2058,7 +2079,7 @@ function loadOwnersPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Owners',
+                        Title: capFirstLetter(Translator.trans('owners', {}, 'messages')),
                         Search: {
                             Term: searchterm,
                             Loader: 'loadOwnersPage'
@@ -2356,7 +2377,7 @@ function loadHousingstocksPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Housingstocks',
+                        Title: capFirstLetter(Translator.trans('housingstocks', {}, 'messages')),
                         New: {
                             Loader: 'loadHousingstockNewPages',
                             Icon: 'domain_add'
@@ -2700,7 +2721,7 @@ function loadContractorsPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Contractors',
+                        Title: capFirstLetter(Translator.trans('contractors', {}, 'messages')),
                         New: {
                             Loader: 'loadContractorNewPage',
                             Icon: 'add_contractor'
@@ -2999,7 +3020,7 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Subcontractors',
+                        Title: capFirstLetter(Translator.trans('subcontractors', {}, 'messages')),
                         New: {
                             Loader: 'loadSubcontractorNewPage',
                             Icon: 'add_subcontractor'
@@ -3298,7 +3319,7 @@ function loadUsersPage(page = 1, searchterm = '') {
                     {ref: 'overviewPage'}
                 ).render(
                     {
-                        Title: 'Users',
+                        Title: capFirstLetter(Translator.trans('users', {}, 'messages')),
                         New: {
                             Loader: 'loadUserNewPage',
                             Icon: 'person_add'

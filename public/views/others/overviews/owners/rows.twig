@@ -5,10 +5,10 @@
         <td>{{ Item.name }}</td>
         <td class="actions">
             <button class="btn" name="edit" onclick="loadOwnerEditPage({{ Item.id }});">
-                <i class="material-icons">edit</i><span class="button-content hide-on-small-only">Edit</span>
+                <i class="material-icons">edit</i><span class="button-content hide-on-small-only">{{ 'edit'|trans()|capitalize }}</span>
             </button>
             <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, {{ Item.name }}, 'deleteOwner');">
-                <i class="material-icons">delete</i><span class="button-content hide-on-small-only">Delete</span>
+                <i class="material-icons">delete</i><span class="button-content hide-on-small-only">{{ 'delete'|trans()|capitalize }}</span>
             </button>
         </td>
     </tr>

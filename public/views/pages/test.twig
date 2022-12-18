@@ -1,10 +1,10 @@
-    <h3 class="header">Test page</h3>
-    <h4 class="header">Make and upload image</h4>
+    <h3 class="header">{{ 'test page'|trans()|capitalize }}</h3>
+    <h4 class="header">{{ 'make and upload image'|trans()|capitalize }}</h4>
     <div class="row">
         <div class="col s12">
             <div class="file-field input-field">
                 <div class="btn">
-                    <span><i class="material-icons left">add_a_photo</i>Photo</span>
+                    <span><i class="material-icons left">add_a_photo</i>{{ 'photo'|trans()|capitalize }}</span>
                     <input id="photoUpload" type="file" accept="image/*" capture="environment" />
                 </div>
                 <div class="file-path-wrapper">
@@ -18,7 +18,7 @@
             <img id="photoPreview" src="#" alt="Image preview" style="display: none; width: 100%;" />
         </div>
     </div>
-    <h4 class="header">Map with BAG information</h4>
+    <h4 class="header">{{ 'map with BAG information'|trans()|capitalize }}</h4>
     <div class="row">
         <div class="col s12">
             <div id="viewDiv"></div>

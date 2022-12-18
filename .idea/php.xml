@@ -158,6 +158,8 @@
       <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
       <path value="$PROJECT_DIR$/vendor/spomky-labs/otphp" />
       <path value="$PROJECT_DIR$/vendor/jms/translation-bundle" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/js-translation-bundle" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

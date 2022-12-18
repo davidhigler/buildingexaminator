@@ -5,13 +5,41 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="rzQIBjR" resname="Building Examinator">
+        <source>Building Examinator</source>
+        <target>Building Examinator</target>
+      </trans-unit>
       <trans-unit id="dS9X60V" resname="VTW's">
         <source>VTW's</source>
         <target>VTW's</target>
       </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>actions</target>
+      </trans-unit>
+      <trans-unit id="d.kw5LG" resname="addition">
+        <source>addition</source>
+        <target>addition</target>
+      </trans-unit>
+      <trans-unit id="2Ayb_RD" resname="address">
+        <source>address</source>
+        <target>address</target>
+      </trans-unit>
       <trans-unit id=".nnX1Pc" resname="addresses">
         <source>addresses</source>
         <target>adressen</target>
+      </trans-unit>
+      <trans-unit id="jGl25bV" resname="admin">
+        <source>admin</source>
+        <target>admin</target>
+      </trans-unit>
+      <trans-unit id="Tk0U7UC" resname="are you sure?">
+        <source>are you sure?</source>
+        <target>are you sure?</target>
+      </trans-unit>
+      <trans-unit id="6lJbki1" resname="bag code">
+        <source>bag code</source>
+        <target>bag code</target>
       </trans-unit>
       <trans-unit id="KhLaF9J" resname="blocks">
         <source>blocks</source>
@@ -29,17 +57,45 @@
         <source>cities</source>
         <target>woonplaatsen</target>
       </trans-unit>
+      <trans-unit id="EaYsI0E" resname="city">
+        <source>city</source>
+        <target>city</target>
+      </trans-unit>
+      <trans-unit id="VpTQii5" resname="code">
+        <source>code</source>
+        <target>code</target>
+      </trans-unit>
+      <trans-unit id="egGt6ku" resname="construction">
+        <source>construction</source>
+        <target>construction</target>
+      </trans-unit>
       <trans-unit id="8E7ngih" resname="contractors">
         <source>contractors</source>
         <target>aannemers</target>
+      </trans-unit>
+      <trans-unit id="bDVJOiu" resname="count">
+        <source>count</source>
+        <target>count</target>
       </trans-unit>
       <trans-unit id="vjeaMPG" resname="credits">
         <source>credits</source>
         <target>medewerking</target>
       </trans-unit>
+      <trans-unit id="YZdZVQP" resname="delete">
+        <source>delete</source>
+        <target>delete</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>description</source>
+        <target>description</target>
+      </trans-unit>
       <trans-unit id="yvn5BrF" resname="documentation">
         <source>documentation</source>
         <target>documentatie</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>edit</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
@@ -53,13 +109,41 @@
         <source>home</source>
         <target>home</target>
       </trans-unit>
+      <trans-unit id="rBYOWvF" resname="house number">
+        <source>house number</source>
+        <target>house number</target>
+      </trans-unit>
       <trans-unit id="fCcfNGP" resname="housingstocks">
         <source>housingstocks</source>
         <target>woningvoorraden</target>
       </trans-unit>
+      <trans-unit id="H4velbT" resname="l no">
+        <source>l no</source>
+        <target>l no</target>
+      </trans-unit>
+      <trans-unit id="nBh4q2f" resname="latest change">
+        <source>latest change</source>
+        <target>latest change</target>
+      </trans-unit>
+      <trans-unit id="vYc_8ft" resname="latest creation">
+        <source>latest creation</source>
+        <target>latest creation</target>
+      </trans-unit>
       <trans-unit id="QoghNQ6" resname="login">
         <source>login</source>
         <target>aanmelden</target>
+      </trans-unit>
+      <trans-unit id="NqF2aHA" resname="make and upload image">
+        <source>make and upload image</source>
+        <target>make and upload image</target>
+      </trans-unit>
+      <trans-unit id="4Ri4mRi" resname="makers">
+        <source>makers</source>
+        <target>makers</target>
+      </trans-unit>
+      <trans-unit id="Hc_2ih1" resname="map with BAG information">
+        <source>map with BAG information</source>
+        <target>map with BAG information</target>
       </trans-unit>
       <trans-unit id="OYmRAJ2" resname="menu">
         <source>menu</source>
@@ -69,9 +153,21 @@
         <source>municipalities</source>
         <target>gemeenten</target>
       </trans-unit>
+      <trans-unit id="y5LqJ5T" resname="municipality">
+        <source>municipality</source>
+        <target>municipality</target>
+      </trans-unit>
+      <trans-unit id="gqNTf.D" resname="name">
+        <source>name</source>
+        <target>name</target>
+      </trans-unit>
       <trans-unit id="Uh38EEQ" resname="neighbourhoods">
         <source>neighbourhoods</source>
         <target>wijken</target>
+      </trans-unit>
+      <trans-unit id="EVB6Di9" resname="new">
+        <source>new</source>
+        <target>new</target>
       </trans-unit>
       <trans-unit id="bw46jA6" resname="owners">
         <source>owners</source>
@@ -81,29 +177,89 @@
         <source>password</source>
         <target>wachtwoord</target>
       </trans-unit>
+      <trans-unit id="VcZND81" resname="photo">
+        <source>photo</source>
+        <target>photo</target>
+      </trans-unit>
       <trans-unit id="MToHP98" resname="public spaces">
         <source>public spaces</source>
         <target>publieke ruimtes</target>
+      </trans-unit>
+      <trans-unit id="CQKQCrW" resname="rental unit number">
+        <source>rental unit number</source>
+        <target>rental unit number</target>
       </trans-unit>
       <trans-unit id="fYo03bI" resname="residences">
         <source>residences</source>
         <target>verblijven</target>
       </trans-unit>
+      <trans-unit id="qNZkl.X" resname="residential area">
+        <source>residential area</source>
+        <target>residential area</target>
+      </trans-unit>
       <trans-unit id="4zsbfrs" resname="residential areas">
         <source>residential areas</source>
         <target>buurten</target>
+      </trans-unit>
+      <trans-unit id="0aDW9HB" resname="roof">
+        <source>roof</source>
+        <target>roof</target>
+      </trans-unit>
+      <trans-unit id="JBkykGe" resname="search">
+        <source>search</source>
+        <target>zoek</target>
+      </trans-unit>
+      <trans-unit id="BzwWNMS" resname="status">
+        <source>status</source>
+        <target>status</target>
+      </trans-unit>
+      <trans-unit id="TBfbPsm" resname="street name">
+        <source>street name</source>
+        <target>street name</target>
       </trans-unit>
       <trans-unit id="OjhmYWt" resname="subcontractors">
         <source>subcontractors</source>
         <target>onderaannemers</target>
       </trans-unit>
+      <trans-unit id="djzcYqh" resname="surface">
+        <source>surface</source>
+        <target>surface</target>
+      </trans-unit>
       <trans-unit id="n4bQgYh" resname="test">
         <source>test</source>
         <target>test</target>
       </trans-unit>
+      <trans-unit id="7NdGGLV" resname="test page">
+        <source>test page</source>
+        <target>test page</target>
+      </trans-unit>
+      <trans-unit id="EwPAaws" resname="type">
+        <source>type</source>
+        <target>type</target>
+      </trans-unit>
+      <trans-unit id="p8pjGz2" resname="under construction">
+        <source>under construction</source>
+        <target>under construction</target>
+      </trans-unit>
+      <trans-unit id="o7FCr26" resname="use">
+        <source>use</source>
+        <target>use</target>
+      </trans-unit>
+      <trans-unit id="CY5xmqV" resname="used frameworks and libraries">
+        <source>used frameworks and libraries</source>
+        <target>used frameworks and libraries</target>
+      </trans-unit>
       <trans-unit id="fftM9nd" resname="users">
         <source>users</source>
         <target>gebruikers</target>
+      </trans-unit>
+      <trans-unit id="TLTqJVg" resname="year">
+        <source>year</source>
+        <target>year</target>
+      </trans-unit>
+      <trans-unit id="A9vuMpO" resname="zipcode">
+        <source>zipcode</source>
+        <target>zipcode</target>
       </trans-unit>
     </body>
   </file>

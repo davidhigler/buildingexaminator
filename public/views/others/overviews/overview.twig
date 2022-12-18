@@ -3,7 +3,7 @@
         <div class="col s3 m3 l2">
             {% if New is not null and New is not empty %}
             <button class="btn" onclick="{{ New.Loader }}();">
-                <i class="material-icons">{{ New.Icon }}</i><span class="button-content hide-on-small-only">New</span>
+                <i class="material-icons">{{ New.Icon }}</i><span class="button-content hide-on-small-only">{{ 'new'|trans()|capitalize }}</span>
             </button>
             {% endif %}
         </div>
@@ -15,7 +15,7 @@
         <div class="col s3 m3 l2">
             {% if Search is not null and Search is not empty %}
                 <button class="btn right" onclick="{{ Search.Loader }}(1, $('input#searchterm').val());">
-                    <i class="material-icons">search</i><span class="button-content hide-on-small-only">Search</span>
+                    <i class="material-icons">search</i><span class="button-content hide-on-small-only">{{ 'search'|trans()|capitalize }}</span>
                 </button>
             {% endif %}
         </div>
