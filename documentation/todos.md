@@ -38,7 +38,6 @@
 * End project
   * Not access to contact information anymore for contractor
   * After 10 years the access to the entire project is blocked for the contractor
-* Translations with Symfony/Translations (PoEdit from Reiny to translate the application)
 * Two-factor authentication with SchebTwoFactorBundle
   * Through the Google authenticator app
   * And through the push notifications of a coupled Andriod to Google
@@ -50,18 +49,14 @@
   * The real private owner does not have access to the application but legaly still owner of the data
   * After the legal term to archive the data is done (after 10 year) the data is deleted
 * Frontend HTML lostrekken van JavaScript
-  * Frontend template engine
-  * Translations in frontend templates
 * New frontend theme (See our old BLUE theme)
 
 Styling
 * Zoeken ook met enter
 * Zoeken op eind en begin van identificerende nummers
 * Prod DB opnieuw opbouwen
-* Create button is verkeerd uitgelijnd
 * Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
 * Bij een foutmelding moet er een terug knopje zijn
-* Zoekbalk naar rechts en naast de titel en new knop naar links
 * Zoekbalk en titel moeten op de pagina zichtbaar blijven scroll alleen de tabel
 * Pagination, toon ook het aantal pagina's en knoppen voor, ga naar de eerste en laatste pagina
 * Zoekopdracht ook higlighten in het overzicht

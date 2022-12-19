@@ -462,46 +462,67 @@ textarea.materialize-textarea:focus:not([readonly]) {
     box-shadow: none;
 }
 
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
+    padding-left: 10px;
+}
+
+.input-field {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .input-field .prefix.active {
-    color: #5466c8;
+color: #5466c8;
 }
 
 div.sidenav-overlay {
-    z-index: 996;
+z-index: 996;
 }
 
 div.overlay {
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    position: fixed;
-    background-color: rgba(200, 200, 200, 0.5);
+display: none;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+z-index: 999;
+position: fixed;
+background-color: rgba(200, 200, 200, 0.5);
 }
 
 div.overlay__inner {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+position: absolute;
 }
 
 div.overlay__content {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+left: 50%;
+position: absolute;
+top: 50%;
+transform: translate(-50%, -50%);
 }
 
 .modal-overlay {
-    background-color: rgb(200, 200, 200);
+background-color: rgb(200, 200, 200);
 }
 
 i.material-icons.disabled {
-    color: #a0aae1;
+color: #a0aae1;
 }
 
 input:not([type]):disabled,
@@ -529,10 +550,10 @@ input[type=number]:not(.browser-default)[readonly="readonly"],
 input[type=search]:not(.browser-default):disabled,
 input[type=search]:not(.browser-default)[readonly="readonly"],
 textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
-    color: #a0aae1;
-    border: 0px;
-    background-color: #a0aae1;
-    border-radius: 4px;
+color: #a0aae1;
+border: 0px;
+background-color: #a0aae1;
+border-radius: 4px;
 }
 
 input:not([type]):disabled+label,
@@ -561,10 +582,10 @@ input[type=search]:not(.browser-default):disabled+label,
 input[type=search]:not(.browser-default)[readonly="readonly"]+label,
 textarea.materialize-textarea:disabled+label,
 textarea.materialize-textarea[readonly="readonly"]+label {
-    color: #a0aae1;
-    border: 0px;
-    background-color: #a0aae1;
-    border-radius: 4px;
+color: #a0aae1;
+border: 0px;
+background-color: #a0aae1;
+border-radius: 4px;
 }
 
 /* Default extra css */

@@ -2,6 +2,7 @@ Twig.twig({id: 'homePage', method: 'ajax', async: false, href: '/views/pages/hom
 Twig.twig({id: 'creditsPage', method: 'ajax', async: false, href: '/views/pages/credits.twig' });
 Twig.twig({id: 'underconstructionPage', method: 'ajax', async: false, href: '/views/pages/underconstruction.twig' });
 Twig.twig({id: 'testPage', method: 'ajax', async: false, href: '/views/pages/test.twig' });
+Twig.twig({id: 'newBlockPage', method: 'ajax', async: false, href: '/views/pages/newBlock.twig' });
 
 Twig.twig({id: 'errorPartial', method: 'ajax', async: false, href: '/views/partials/error.twig' });
 Twig.twig({id: 'informationPartial', method: 'ajax', async: false, href: '/views/partials/information.twig' });
@@ -71,7 +72,7 @@ $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton({
         direction: 'bottom'
     });
-    loadHomePage();
+    loadHomePage();as
 });
 
 /**
@@ -789,49 +790,9 @@ function loadBlocksPage(page = 1, searchterm = '') {
 function loadBlockNewPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         $('div#content').html(
-            '    <h3 class="header">New block</h3>\n' +
-            '    <form id="newblock">\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">qr_code_2</i>\n' +
-            '                <input id="code" name="code" type="text" class="validate">\n' +
-            '                <label for="code">Code</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">short_text</i>\n' +
-            '                <input id="name" name="name" type="text" class="validate">\n' +
-            '                <label for="name">Name</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">euro_symbol</i>\n' +
-            '                <input id="financialNumber" name="financialNumber" type="text" class="validate">\n' +
-            '                <label for="financialNumber">Financial number</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="input-field col s12">\n' +
-            '                <i class="material-icons prefix">description</i>\n' +
-            '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-            '                <label for="description">Description</label>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="row">\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn" name="create" type="submit">\n' +
-            '                    <i class="material-icons left">add_view_quilt</i>Create\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '            <div class="col s6">\n' +
-            '                <button class="btn right" name="cancel">\n' +
-            '                    <i class="material-icons left">cancel</i>Cancel\n' +
-            '                </button>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '    </form>\n'
+            Twig.twig(
+                {ref: 'newBlockPage'}
+            ).render()
         );
 
         $("form#newblock button[name='cancel']").click(
