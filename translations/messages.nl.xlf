@@ -109,6 +109,10 @@
         <source>edit block</source>
         <target>block bewerken</target>
       </trans-unit>
+      <trans-unit id="xJYA4br" resname="edit building type">
+        <source>edit building type</source>
+        <target>gebouw type bewerken</target>
+      </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
         <target>e-mail</target>
@@ -192,6 +196,10 @@
       <trans-unit id="gNiYbm7" resname="new block">
         <source>new block</source>
         <target>nieuw complex</target>
+      </trans-unit>
+      <trans-unit id="f5BYrTU" resname="new building type">
+        <source>new building type</source>
+        <target>nieuw gebouw type</target>
       </trans-unit>
       <trans-unit id="k5Apjz_" resname="no">
         <source>no</source>

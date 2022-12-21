@@ -1,0 +1,33 @@
+    <h3 class="header">{{ 'new building type'|trans()|capitalize }}</h3>
+    <form id="newbuildingtype">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">qr_code_2</i>
+                <input id="code" name="code" type="text" class="validate" placeholder="{{ 'code'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">short_text</i>
+                <input id="name" name="name" type="text" class="validate" placeholder="{{ 'name'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">description</i>
+                <textarea id="description" name="description" class="materialize-textarea" placeholder="{{ 'description'|trans()|capitalize }}"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn" name="create" type="submit">
+                    <i class="material-icons left">add_home_work</i>{{ 'create'|trans()|capitalize }}
+                </button>
+            </div>
+            <div class="col s6">
+                <button class="btn right" name="cancel">
+                    <i class="material-icons left">cancel</i>{{ 'cancel'|trans()|capitalize }}
+                </button>
+            </div>
+        </div>
+    </form>

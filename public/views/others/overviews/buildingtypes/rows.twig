@@ -4,7 +4,7 @@
         <td>{{ Item.code }}</td>
         <td>{{ Item.name }}</td>
         <td class="actions">
-            <button class="btn" name="edit" onclick="loadBuildingTypeEditPage({{ Item.id }};">
+            <button class="btn" name="edit" onclick="loadBuildingTypeEditPage({{ Item.id }});">
                 <i class="material-icons">edit</i><span class="button-content hide-on-small-only">{{ 'edit'|trans()|capitalize }}</span>
             </button>
             <button class="btn" name="delete" onclick="showDeleteModal({{ Item.id }}, '{{ Item.name }}', 'deleteBuildingType');">
