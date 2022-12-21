@@ -90,6 +90,11 @@ php bin/console doctrine:database:drop --force \
 PHP_IDE_CONFIG="serverName=localhost" php bin/console doctrine:database:drop --force && php bin/console doctrine:database:create && php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load --no-interaction && php bin/console doctrine:migrations:migrate --no-interaction && php bin/console cache:clear
 ```
 
+### Translations
+```
+php bin/console translation:extract --config=app nl
+```
+
 ### Open Api
 
 #### Generate OpenApi Yaml file

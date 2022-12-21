@@ -7,407 +7,407 @@
     <body>
       <trans-unit id="9Z0nZIo" resname="A address must have a municipality">
         <source>A address must have a municipality</source>
-        <target state="translated">Een adres moet een gemeente hebben</target>
+        <target>Een adres moet een gemeente hebben</target>
       </trans-unit>
       <trans-unit id="8njcDBf" resname="A block must have a housingstock">
         <source>A block must have a housingstock</source>
-        <target state="translated">Een complex moet een woningvoorraad hebben</target>
+        <target>Een complex moet een woningvoorraad hebben</target>
       </trans-unit>
       <trans-unit id="dp_JeZB" resname="A contractor user must have a contractor">
         <source>A contractor user must have a contractor</source>
-        <target state="translated">Een aannemer gebruiker moet een aannemer hebben</target>
+        <target>Een aannemer gebruiker moet een aannemer hebben</target>
       </trans-unit>
       <trans-unit id="dbBIdBY" resname="A gloss measurement must have an address">
         <source>A gloss measurement must have an address</source>
-        <target state="translated">Een glansmeting moet een adres hebben</target>
+        <target>Een glansmeting moet een adres hebben</target>
       </trans-unit>
       <trans-unit id="BH_Eeii" resname="A housingstock must have an owner">
         <source>A housingstock must have an owner</source>
-        <target state="translated">Een woningvoorraad moet een eigenaar hebben</target>
+        <target>Een woningvoorraad moet een eigenaar hebben</target>
       </trans-unit>
       <trans-unit id="EB_iQrF" resname="A neighbourhood must have a municipality">
         <source>A neighbourhood must have a municipality</source>
-        <target state="translated">Een buurt moet een gemeente hebben</target>
+        <target>Een buurt moet een gemeente hebben</target>
       </trans-unit>
       <trans-unit id="HbFsL0f" resname="A neighbourhood must have a residential area">
         <source>A neighbourhood must have a residential area</source>
-        <target state="translated">Een buurt moet een woonwijk hebben</target>
+        <target>Een buurt moet een woonwijk hebben</target>
       </trans-unit>
       <trans-unit id="6ror29s" resname="A owner user must have an owner">
         <source>A owner user must have an owner</source>
-        <target state="translated">Een eigenaar-gebruiker moet een eigenaar hebben</target>
+        <target>Een eigenaar-gebruiker moet een eigenaar hebben</target>
       </trans-unit>
       <trans-unit id="m4zu1ph" resname="A project must have a housingstock">
         <source>A project must have a housingstock</source>
-        <target state="translated">Een project moet een woningvoorraad hebben</target>
+        <target>Een project moet een woningvoorraad hebben</target>
       </trans-unit>
       <trans-unit id="bKhzlJy" resname="A residentialarea must have a housingstock">
         <source>A residentialarea must have a housingstock</source>
-        <target state="translated">Een woonwijk moet een woningvoorraad hebben</target>
+        <target>Een woonwijk moet een woningvoorraad hebben</target>
       </trans-unit>
       <trans-unit id="MVFW7Va" resname="A subcontractor user must have a subcontractor">
         <source>A subcontractor user must have a subcontractor</source>
-        <target state="translated">Een aannemer moet een onderaannemer hebben</target>
+        <target>Een aannemer moet een onderaannemer hebben</target>
       </trans-unit>
       <trans-unit id="8Ousa55" resname="A user must have a email">
         <source>A user must have a email</source>
-        <target state="translated">Een gebruiker moet een e-mailadres hebben</target>
+        <target>Een gebruiker moet een e-mailadres hebben</target>
       </trans-unit>
       <trans-unit id="Z4KvEe6" resname="A user must have a password">
         <source>A user must have a password</source>
-        <target state="translated">Een gebruiker moet een wachtwoord hebben</target>
+        <target>Een gebruiker moet een wachtwoord hebben</target>
       </trans-unit>
       <trans-unit id="o_gYn62" resname="An address must have a block">
         <source>An address must have a block</source>
-        <target state="translated">Een adres moet een complex hebben</target>
+        <target>Een adres moet een complex hebben</target>
       </trans-unit>
       <trans-unit id="34DWC_Q" resname="An address must have a building">
         <source>An address must have a building</source>
-        <target state="translated">Een adres moet een gebouw hebben</target>
+        <target>Een adres moet een gebouw hebben</target>
       </trans-unit>
       <trans-unit id="CcYCcuU" resname="An address must have a buildingtype">
         <source>An address must have a buildingtype</source>
-        <target state="translated">Een adres moet een gebouwtype hebben</target>
+        <target>Een adres moet een gebouwtype hebben</target>
       </trans-unit>
       <trans-unit id="rCxXg6p" resname="An address must have a city">
         <source>An address must have a city</source>
-        <target state="translated">Een adres moet een stad hebben</target>
+        <target>Een adres moet een stad hebben</target>
       </trans-unit>
       <trans-unit id="5laGCsy" resname="An address must have a housingstock">
         <source>An address must have a housingstock</source>
-        <target state="translated">Een adres moet een woningvoorraad hebben</target>
+        <target>Een adres moet een woningvoorraad hebben</target>
       </trans-unit>
       <trans-unit id="UaQXNSQ" resname="An address must have a municipality">
         <source>An address must have a municipality</source>
-        <target state="translated">Een adres moet een gemeente hebben</target>
+        <target>Een adres moet een gemeente hebben</target>
       </trans-unit>
       <trans-unit id="QnKFy6k" resname="An address must have a neighbourhood">
         <source>An address must have a neighbourhood</source>
-        <target state="translated">Een adres moet een buurt hebben</target>
+        <target>Een adres moet een buurt hebben</target>
       </trans-unit>
       <trans-unit id="cp6NoE8" resname="An address must have a public space">
         <source>An address must have a public space</source>
-        <target state="translated">Een adres moet een openbare ruimte hebben</target>
+        <target>Een adres moet een openbare ruimte hebben</target>
       </trans-unit>
       <trans-unit id="4DlcFZR" resname="An address must have a residence">
         <source>An address must have a residence</source>
-        <target state="translated">Een adres moet een woonplaats hebben</target>
+        <target>Een adres moet een woonplaats hebben</target>
       </trans-unit>
       <trans-unit id="Sm.PgUf" resname="An address must have a residentialarea">
         <source>An address must have a residentialarea</source>
-        <target state="translated">Een adres moet een woongebied hebben</target>
+        <target>Een adres moet een woongebied hebben</target>
       </trans-unit>
       <trans-unit id="oSnCtDY" resname="An address must have a vtw">
         <source>An address must have a vtw</source>
-        <target state="translated">Een adres moet een vtw hebben</target>
+        <target>Een adres moet een vtw hebben</target>
       </trans-unit>
       <trans-unit id="gEhv6Y0" resname="An adhesion measurement must have an address">
         <source>An adhesion measurement must have an address</source>
-        <target state="translated">Een hechtingmeting moet een adres hebben</target>
+        <target>Een hechtingmeting moet een adres hebben</target>
       </trans-unit>
       <trans-unit id="0ZddMbt" resname="Choose a valid building status type.">
         <source>Choose a valid building status type.</source>
-        <target state="translated">Kies een geldig gebouwstatustype.</target>
+        <target>Kies een geldig gebouwstatustype.</target>
       </trans-unit>
       <trans-unit id="QU7ntVZ" resname="Choose a valid condition score.">
         <source>Choose a valid condition score.</source>
-        <target state="translated">Kies een geldige conditiescore.</target>
+        <target>Kies een geldige conditiescore.</target>
       </trans-unit>
       <trans-unit id="eTMdima" resname="Choose a valid gloss angle.">
         <source>Choose a valid gloss angle.</source>
-        <target state="translated">Kies een geldige glanswaarde.</target>
+        <target>Kies een geldige glanswaarde.</target>
       </trans-unit>
       <trans-unit id="VYA1Rx8" resname="Choose a valid intended use basic type.">
         <source>Choose a valid intended use basic type.</source>
-        <target state="translated">Kies een geldig basistype voor beoogd gebruik.</target>
+        <target>Kies een geldig basistype voor beoogd gebruik.</target>
       </trans-unit>
       <trans-unit id="DOVGMDK" resname="Choose a valid orientation.">
         <source>Choose a valid orientation.</source>
-        <target state="translated">Kies een geldige oriëntatie.</target>
+        <target>Kies een geldige oriëntatie.</target>
       </trans-unit>
       <trans-unit id="kc83YHj" resname="Daeb is not a valid {{ type }}">
         <source>Daeb is not a valid {{ type }}</source>
-        <target state="translated">Daeb is geen geldig {{ type }}</target>
+        <target>Daeb is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="xZ7Xait" resname="The BTW number is not a valid {{ type }}">
         <source>The BTW number is not a valid {{ type }}</source>
-        <target state="translated">Het btw-nummer is geen geldig {{ type }}</target>
+        <target>Het btw-nummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="l_JR101" resname="The BTW number must be exactly {{ limit }} characters long">
         <source>The BTW number must be exactly {{ limit }} characters long</source>
-        <target state="translated">Het btw-nummer moet precies {{ limit }} tekens lang zijn</target>
+        <target>Het btw-nummer moet precies {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="buujxv8" resname="The KVK number is not a valid {{ type }}">
         <source>The KVK number is not a valid {{ type }}</source>
-        <target state="translated">Het KVK-nummer is geen geldig {{ type }}</target>
+        <target>Het KVK-nummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="iYAVBfB" resname="The KVK number must be exactly {{ limit }} characters long">
         <source>The KVK number must be exactly {{ limit }} characters long</source>
-        <target state="translated">Het KVK-nummer moet precies {{ limit }} tekens lang zijn</target>
+        <target>Het KVK-nummer moet precies {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="gQOukXe" resname="The L number is not a valid {{ type }}">
         <source>The L number is not a valid {{ type }}</source>
-        <target state="translated">Het L-nummer is geen geldig {{ type }}</target>
+        <target>Het L-nummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="nd4hNjK" resname="The L number must be axactly {{ limit }} characters long">
         <source>The L number must be axactly {{ limit }} characters long</source>
-        <target state="translated">Het L-nummer moet exact {{ limit }} tekens lang zijn</target>
+        <target>Het L-nummer moet exact {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="q5JRLXW" resname="The addition can contain a maximum of %limit% characters">
         <source>The addition can contain a maximum of %limit% characters</source>
-        <target state="translated">De toevoeging mag maximaal %limit% karakters bevatten</target>
+        <target>De toevoeging mag maximaal %limit% karakters bevatten</target>
       </trans-unit>
       <trans-unit id="50Dgowe" resname="The addition is not a valid {{ type }}">
         <source>The addition is not a valid {{ type }}</source>
-        <target state="translated">De toevoeging is geen geldig {{ type }}</target>
+        <target>De toevoeging is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="rSwwx4n" resname="The bag identification can contain a maximum of {{ limit }} characters">
         <source>The bag identification can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De bag-identificatie mag maximaal {{ limit }} tekens bevatten</target>
+        <target>De bag-identificatie mag maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="39hlWxi" resname="The bag identification is not a valid {{ type }}">
         <source>The bag identification is not a valid {{ type }}</source>
-        <target state="translated">De bag-identificatie is geen geldig {{ type }}</target>
+        <target>De bag-identificatie is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="v53Af1t" resname="The bag identification may not be empty">
         <source>The bag identification may not be empty</source>
-        <target state="translated">De bag identificatie mag niet leeg zijn</target>
+        <target>De bag identificatie mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id=".mMbtju" resname="The bag object id can contain a maximum of {{ limit }} characters">
         <source>The bag object id can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De bag-object-ID kan maximaal {{ limit }} tekens bevatten</target>
+        <target>De bag-object-ID kan maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="UzUyUdy" resname="The bag object id is not a valid {{ type }}">
         <source>The bag object id is not a valid {{ type }}</source>
-        <target state="translated">De bag-object-ID is geen geldig {{ type }}</target>
+        <target>De bag-object-ID is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="fihEmpR" resname="The bag object id may not be empty">
         <source>The bag object id may not be empty</source>
-        <target state="translated">De bag-object-ID is mogelijk niet leeg</target>
+        <target>De bag-object-ID is mogelijk niet leeg</target>
       </trans-unit>
       <trans-unit id=".kUFgNC" resname="The building type description can contain a maximum of {{ limit }} characters">
         <source>The building type description can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De beschrijving van het gebouwtype mag maximaal {{ limit }} tekens bevatten</target>
+        <target>De beschrijving van het gebouwtype mag maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="RCnhmtx" resname="The building type description is not a valid {{ type }}">
         <source>The building type description is not a valid {{ type }}</source>
-        <target state="translated">De beschrijving van het gebouwtype is geen geldig {{ type }}</target>
+        <target>De beschrijving van het gebouwtype is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="eogPq4." resname="The building type description may not be empty">
         <source>The building type description may not be empty</source>
-        <target state="translated">De omschrijving van het gebouwtype mag niet leeg zijn</target>
+        <target>De omschrijving van het gebouwtype mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="fahnsiM" resname="The code can contain a maximum of {{ limit }} characters">
         <source>The code can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De code kan maximaal {{ limit }} tekens bevatten</target>
+        <target>De code kan maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="YOuK86w" resname="The code is not a valid {{ type }}">
         <source>The code is not a valid {{ type }}</source>
-        <target state="translated">De code is geen geldig {{ type }}</target>
+        <target>De code is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="TXURbiQ" resname="The code may not be empty">
         <source>The code may not be empty</source>
-        <target state="translated">De code mag niet leeg zijn</target>
+        <target>De code mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="PpZR2E1" resname="The construction year description can contain a maximum of {{ limit }} characters">
         <source>The construction year description can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De omschrijving van het bouwjaar mag maximaal {{ limit }} karakters bevatten</target>
+        <target>De omschrijving van het bouwjaar mag maximaal {{ limit }} karakters bevatten</target>
       </trans-unit>
       <trans-unit id="w3P6qoB" resname="The construction year description is not a valid {{ type }}">
         <source>The construction year description is not a valid {{ type }}</source>
-        <target state="translated">De bouwjaarbeschrijving is geen geldig {{ type }}</target>
+        <target>De bouwjaarbeschrijving is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="ydu7ioB" resname="The construction year description may not be empty">
         <source>The construction year description may not be empty</source>
-        <target state="translated">De bouwjaaromschrijving mag niet leeg zijn</target>
+        <target>De bouwjaaromschrijving mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="u8FeEjz" resname="The construction year is not a valid {{ type }}">
         <source>The construction year is not a valid {{ type }}</source>
-        <target state="translated">Het bouwjaar is geen geldig {{ type }}</target>
+        <target>Het bouwjaar is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="pnT2IQI" resname="The construction year may not be empty">
         <source>The construction year may not be empty</source>
-        <target state="translated">Het bouwjaar mag niet leeg zijn</target>
+        <target>Het bouwjaar mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="w.ScEQn" resname="The creation time is not a valid {{ type }}">
         <source>The creation time is not a valid {{ type }}</source>
-        <target state="translated">De aanmaaktijd is geen geldig {{ type }}</target>
+        <target>De aanmaaktijd is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="48mMRjE" resname="The description is not a valid {{ type }}">
         <source>The description is not a valid {{ type }}</source>
-        <target state="translated">De beschrijving is geen geldig {{ type }}</target>
+        <target>De beschrijving is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="ibDGq05" resname="The email '{{ value }}' is not a valid email.">
         <source>The email '{{ value }}' is not a valid email.</source>
-        <target state="translated">Het e-mailadres '{{ value }}' is geen geldig e-mailadres.</target>
+        <target>Het e-mailadres '{{ value }}' is geen geldig e-mailadres.</target>
       </trans-unit>
       <trans-unit id="XrDWlYx" resname="The financial number can contain a maximum of {{ limit }} characters">
         <source>The financial number can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">Het financiële nummer kan maximaal {{ limit }} tekens bevatten</target>
+        <target>Het financiële nummer kan maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="WcLFmO9" resname="The financial number is not a valid {{ type }}">
         <source>The financial number is not a valid {{ type }}</source>
-        <target state="translated">Het financiële nummer is geen geldig {{ type }}</target>
+        <target>Het financiële nummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="xBH6_J0" resname="The gloss units is not a valid {{ type }}">
         <source>The gloss units is not a valid {{ type }}</source>
-        <target state="translated">De glanswaarden zijn geen geldig {{ type }}</target>
+        <target>De glanswaarden zijn geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="8bwmkJL" resname="The gloss units may not be empty">
         <source>The gloss units may not be empty</source>
-        <target state="translated">De glanswaarden mogen niet leeg zijn</target>
+        <target>De glanswaarden mogen niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="GWHyCpT" resname="The house number is not a valid {{ type }}">
         <source>The house number is not a valid {{ type }}</source>
-        <target state="translated">Het huisnummer is geen geldig {{ type }}</target>
+        <target>Het huisnummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="ImU9Lp5" resname="The house number may not be empty">
         <source>The house number may not be empty</source>
-        <target state="translated">Het huisnummer mag niet leeg zijn</target>
+        <target>Het huisnummer mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="CSevDgH" resname="The intended use can contain a maximum of %limit% characters">
         <source>The intended use can contain a maximum of %limit% characters</source>
-        <target state="translated">Het beoogde gebruik kan maximaal %limit% karakters bevatten</target>
+        <target>Het beoogde gebruik kan maximaal %limit% karakters bevatten</target>
       </trans-unit>
       <trans-unit id="MfOb1lp" resname="The intended use is not a valid {{ type }}">
         <source>The intended use is not a valid {{ type }}</source>
-        <target state="translated">Het beoogde gebruik is geen geldig {{ type }}</target>
+        <target>Het beoogde gebruik is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="EG7Qsob" resname="The last change time is not a valid {{ type }}">
         <source>The last change time is not a valid {{ type }}</source>
-        <target state="translated">De laatste wijzigingstijd is geen geldig {{ type }}</target>
+        <target>De laatste wijzigingstijd is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="7LRTWVs" resname="The name can contain a maximum of %limit% characters">
         <source>The name can contain a maximum of %limit% characters</source>
-        <target state="translated">De naam mag maximaal %limit% karakters bevatten</target>
+        <target>De naam mag maximaal %limit% karakters bevatten</target>
       </trans-unit>
       <trans-unit id="G8TDkyA" resname="The name can contain a maximum of {{ limit }} characters">
         <source>The name can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De naam mag maximaal {{ limit }} tekens bevatten</target>
+        <target>De naam mag maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="89ww.qr" resname="The name can not be empty">
         <source>The name can not be empty</source>
-        <target state="translated">De naam mag niet leeg zijn</target>
+        <target>De naam mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="Qpd5ew2" resname="The name is not a valid {{ type }}">
         <source>The name is not a valid {{ type }}</source>
-        <target state="translated">De naam is geen geldig {{ type }}</target>
+        <target>De naam is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="bXrDKqO" resname="The name may not be empty">
         <source>The name may not be empty</source>
-        <target state="translated">De naam mag niet leeg zijn</target>
+        <target>De naam mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="RLeWduo" resname="The name must be at least {{ limit }} characters long">
         <source>The name must be at least {{ limit }} characters long</source>
-        <target state="translated">De naam moet minimaal {{ limit }} tekens lang zijn</target>
+        <target>De naam moet minimaal {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="hskf87G" resname="The password can contain a maximum of {{ limit }} characters">
         <source>The password can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">Het wachtwoord mag maximaal {{ limit }} tekens bevatten</target>
+        <target>Het wachtwoord mag maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="PSlCksl" resname="The password must be at least {{ limit }} characters long">
         <source>The password must be at least {{ limit }} characters long</source>
-        <target state="translated">Het wachtwoord moet minimaal {{ limit }} tekens lang zijn</target>
+        <target>Het wachtwoord moet minimaal {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="LaAlyiY" resname="The procent detachment is not a valid {{ type }}">
         <source>The procent detachment is not a valid {{ type }}</source>
-        <target state="translated">De procentuele onthechting is geen geldig {{ type }}</target>
+        <target>De procentuele onthechting is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="tjlfUwl" resname="The procent detachment may not be empty">
         <source>The procent detachment may not be empty</source>
-        <target state="translated">Het percentage onthechting mag niet leeg zijn</target>
+        <target>Het percentage onthechting mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="C8Cm8D6" resname="The rental unit number can contain a maximum of {{ limit }} characters">
         <source>The rental unit number can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">Het nummer van de verhuureenheid mag maximaal {{ limit }} tekens bevatten</target>
+        <target>Het nummer van de verhuureenheid mag maximaal {{ limit }} tekens bevatten</target>
       </trans-unit>
       <trans-unit id="V9cPWYq" resname="The rental unit number is not a valid {{ type }}">
         <source>The rental unit number is not a valid {{ type }}</source>
-        <target state="translated">Het huur eenheidsnummer is geen geldig {{ type }}</target>
+        <target>Het huur eenheidsnummer is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="wkXauiJ" resname="The rental unit number must be at least {{ limit }} characters long">
         <source>The rental unit number must be at least {{ limit }} characters long</source>
-        <target state="translated">Het nummer van de verhuureenheid moet minimaal {{ limit }} tekens lang zijn</target>
+        <target>Het nummer van de verhuureenheid moet minimaal {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="05HVUnT" resname="The residence count is not a valid {{ type }}">
         <source>The residence count is not a valid {{ type }}</source>
-        <target state="translated">Het aantal woningen is geen geldig {{ type }}</target>
+        <target>Het aantal woningen is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="G1yyHqL" resname="The residence count number may not be empty">
         <source>The residence count number may not be empty</source>
-        <target state="translated">Het woonplaats nummer mag niet leeg zijn</target>
+        <target>Het woonplaats nummer mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="qi.jjrI" resname="The roof type description can contain a maximum of {{ limit }} characters">
         <source>The roof type description can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De omschrijving van het daktype mag maximaal {{ limit }} karakters bevatten</target>
+        <target>De omschrijving van het daktype mag maximaal {{ limit }} karakters bevatten</target>
       </trans-unit>
       <trans-unit id="Cj_X5zb" resname="The roof type description is not a valid {{ type }}">
         <source>The roof type description is not a valid {{ type }}</source>
-        <target state="translated">De beschrijving van het daktype is geen geldig {{ type }}</target>
+        <target>De beschrijving van het daktype is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="eGzCi0K" resname="The roof type description may not be empty">
         <source>The roof type description may not be empty</source>
-        <target state="translated">De omschrijving van het daktype mag niet leeg zijn</target>
+        <target>De omschrijving van het daktype mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="gsougGJ" resname="The status can contain a maximum of %limit% characters">
         <source>The status can contain a maximum of %limit% characters</source>
-        <target state="translated">De status kan maximaal %limit% karakters bevatten</target>
+        <target>De status kan maximaal %limit% karakters bevatten</target>
       </trans-unit>
       <trans-unit id="29D42gO" resname="The status is not a valid {{ type }}">
         <source>The status is not a valid {{ type }}</source>
-        <target state="translated">De status is geen geldig {{ type }}</target>
+        <target>De status is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="phA6UzN" resname="The surface area is not a valid {{ type }}">
         <source>The surface area is not a valid {{ type }}</source>
-        <target state="translated">De oppervlakte is geen geldig {{ type }}</target>
+        <target>De oppervlakte is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="Z3LcblT" resname="The surface area number may not be empty">
         <source>The surface area number may not be empty</source>
-        <target state="translated">Het oppervlaktenummer mag niet leeg zijn</target>
+        <target>Het oppervlaktenummer mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="mFPpjDI" resname="The type can contain a maximum of %limit% characters">
         <source>The type can contain a maximum of %limit% characters</source>
-        <target state="translated">Het type kan maximaal %limit% tekens bevatten</target>
+        <target>Het type kan maximaal %limit% tekens bevatten</target>
       </trans-unit>
       <trans-unit id="TrJPA4p" resname="The type description can contain a maximum of {{ limit }} characters">
         <source>The type description can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De typebeschrijving kan maximaal {{ limit }} karakters bevatten</target>
+        <target>De typebeschrijving kan maximaal {{ limit }} karakters bevatten</target>
       </trans-unit>
       <trans-unit id="Q0Y.tqd" resname="The type description is not a valid {{ type }}">
         <source>The type description is not a valid {{ type }}</source>
-        <target state="translated">De typebeschrijving is geen geldig {{ type }}</target>
+        <target>De typebeschrijving is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="gP5i2KY" resname="The type description may not be empty">
         <source>The type description may not be empty</source>
-        <target state="translated">De typeaanduiding mag niet leeg zijn</target>
+        <target>De typeaanduiding mag niet leeg zijn</target>
       </trans-unit>
       <trans-unit id="Xzki_Bt" resname="The type is not a valid {{ type }}">
         <source>The type is not a valid {{ type }}</source>
-        <target state="translated">Het type is geen geldig {{ type }}</target>
+        <target>Het type is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="MDj8AIb" resname="The website '{{ value }}' is not a valid url">
         <source>The website '{{ value }}' is not a valid url</source>
-        <target state="translated">De website '{{ value }}' is geen geldige url</target>
+        <target>De website '{{ value }}' is geen geldige url</target>
       </trans-unit>
       <trans-unit id="an5pq9k" resname="The website can contain a maximum of {{ limit }} characters">
         <source>The website can contain a maximum of {{ limit }} characters</source>
-        <target state="translated">De website mag maximaal {{ limit }} karakters bevatten</target>
+        <target>De website mag maximaal {{ limit }} karakters bevatten</target>
       </trans-unit>
       <trans-unit id="d3NGMcw" resname="The website is not a valid {{ type }}">
         <source>The website is not a valid {{ type }}</source>
-        <target state="translated">De website is geen geldig {{ type }}</target>
+        <target>De website is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="GP8VnoN" resname="The website must be at least {{ limit }} characters long">
         <source>The website must be at least {{ limit }} characters long</source>
-        <target state="translated">De website moet minimaal {{ limit }} tekens lang zijn</target>
+        <target>De website moet minimaal {{ limit }} tekens lang zijn</target>
       </trans-unit>
       <trans-unit id="vjtLusy" resname="The zipcode is not a valid {{ type }}">
         <source>The zipcode is not a valid {{ type }}</source>
-        <target state="translated">De postcode is geen geldig {{ type }}</target>
+        <target>De postcode is geen geldig {{ type }}</target>
       </trans-unit>
       <trans-unit id="wd7MSw8" resname="The zipcode may not be empty">
         <source>The zipcode may not be empty</source>
-        <target state="translated">De postcode mag niet leeg zijn</target>
+        <target>De postcode mag niet leeg zijn</target>
       </trans-unit>
     </body>
   </file>

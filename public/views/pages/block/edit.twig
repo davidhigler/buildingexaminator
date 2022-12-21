@@ -1,0 +1,45 @@
+    <h3 class="header">{{ 'edit block'|trans()|capitalize }}</h3>
+    <form id="editblock">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix disabled">numbers</i>
+                <input disabled id="id" name="id" type="text" placeholder="{{ 'id'|trans()|capitalize }}" value="{{ id }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">qr_code_2</i>
+                <input id="code" name="code" type="text" class="validate" placeholder="{{ 'code'|trans()|capitalize }}" value="{{ code }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">short_text</i>
+                <input id="name" name="name" type="text" class="validate" placeholder="{{ 'name'|trans()|capitalize }}" value="{{ name }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">euro_symbol</i>
+                <input id="financialNumber" name="financialNumber" type="text" class="validate" placeholder="{{ 'financial number'|trans()|capitalize }}" value="{{ financialNumber }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">description</i>
+                <textarea id="description" name="description" class="materialize-textarea" placeholder="{{ 'description'|trans()|capitalize }}">{{ description }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button type="submit" class="btn" name="save">
+                    <i class="material-icons left">save</i>{{ 'save'|trans()|capitalize }}
+                </button>
+            </div>
+            <div class="col s6">
+                <button class="btn right" name="cancel">
+                    <i class="material-icons left">cancel</i>{{ 'cancel'|trans()|capitalize }}
+                </button>
+            </div>
+        </div>
+    </form>

@@ -7,259 +7,295 @@
     <body>
       <trans-unit id="rzQIBjR" resname="Building Examinator">
         <source>Building Examinator</source>
-        <target state="translated">Building Examinator</target>
+        <target>Building Examinator</target>
       </trans-unit>
       <trans-unit id="dS9X60V" resname="VTW's">
         <source>VTW's</source>
-        <target state="translated">VTW's</target>
+        <target>VTW's</target>
       </trans-unit>
       <trans-unit id="Kw3N1AA" resname="actions">
         <source>actions</source>
-        <target state="translated">actie's</target>
+        <target>actie's</target>
       </trans-unit>
       <trans-unit id="d.kw5LG" resname="addition">
         <source>addition</source>
-        <target state="translated">toevoeging</target>
+        <target>toevoeging</target>
       </trans-unit>
       <trans-unit id="2Ayb_RD" resname="address">
         <source>address</source>
-        <target state="translated">adres</target>
+        <target>adres</target>
       </trans-unit>
       <trans-unit id=".nnX1Pc" resname="addresses">
         <source>addresses</source>
-        <target state="translated">adressen</target>
+        <target>adressen</target>
       </trans-unit>
       <trans-unit id="jGl25bV" resname="admin">
         <source>admin</source>
-        <target state="translated">Beheerder</target>
+        <target>Beheerder</target>
       </trans-unit>
       <trans-unit id="Tk0U7UC" resname="are you sure?">
         <source>are you sure?</source>
-        <target state="translated">weet u het zeker?</target>
+        <target>weet u het zeker?</target>
       </trans-unit>
       <trans-unit id="6lJbki1" resname="bag code">
         <source>bag code</source>
-        <target state="translated">bag code</target>
+        <target>bag code</target>
       </trans-unit>
       <trans-unit id="KhLaF9J" resname="blocks">
         <source>blocks</source>
-        <target state="translated">complexen</target>
+        <target>complexen</target>
       </trans-unit>
       <trans-unit id="eqWL8rp" resname="building types">
         <source>building types</source>
-        <target state="translated">gebouw typen</target>
+        <target>gebouw typen</target>
       </trans-unit>
       <trans-unit id="qGHQX5i" resname="buildings">
         <source>buildings</source>
-        <target state="translated">gebouwen</target>
+        <target>gebouwen</target>
+      </trans-unit>
+      <trans-unit id="I3TZF5S" resname="cancel">
+        <source>cancel</source>
+        <target>annuleren</target>
       </trans-unit>
       <trans-unit id="U.JRSIA" resname="cities">
         <source>cities</source>
-        <target state="translated">woonplaatsen</target>
+        <target>woonplaatsen</target>
       </trans-unit>
       <trans-unit id="EaYsI0E" resname="city">
         <source>city</source>
-        <target state="translated">stad</target>
+        <target>stad</target>
       </trans-unit>
       <trans-unit id="VpTQii5" resname="code">
         <source>code</source>
-        <target state="translated">code</target>
+        <target>code</target>
       </trans-unit>
       <trans-unit id="egGt6ku" resname="construction">
         <source>construction</source>
-        <target state="translated">construtie</target>
+        <target>construtie</target>
       </trans-unit>
       <trans-unit id="8E7ngih" resname="contractors">
         <source>contractors</source>
-        <target state="translated">aannemers</target>
+        <target>aannemers</target>
       </trans-unit>
       <trans-unit id="bDVJOiu" resname="count">
         <source>count</source>
-        <target state="translated">aantal</target>
+        <target>aantal</target>
+      </trans-unit>
+      <trans-unit id="_ohHsMM" resname="create">
+        <source>create</source>
+        <target>creëren</target>
       </trans-unit>
       <trans-unit id="vjeaMPG" resname="credits">
         <source>credits</source>
-        <target state="translated">medewerking</target>
+        <target>medewerking</target>
       </trans-unit>
       <trans-unit id="YZdZVQP" resname="delete">
         <source>delete</source>
-        <target state="translated">verwijderen</target>
+        <target>verwijderen</target>
       </trans-unit>
       <trans-unit id="yQRveje" resname="description">
         <source>description</source>
-        <target state="translated">omschrijving</target>
+        <target>omschrijving</target>
       </trans-unit>
       <trans-unit id="yvn5BrF" resname="documentation">
         <source>documentation</source>
-        <target state="translated">documentatie</target>
+        <target>documentatie</target>
       </trans-unit>
       <trans-unit id="JiEhxTc" resname="edit">
         <source>edit</source>
-        <target state="translated">bewerken</target>
+        <target>bewerken</target>
+      </trans-unit>
+      <trans-unit id="XuLVeNy" resname="edit block">
+        <source>edit block</source>
+        <target>block bewerken</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
-        <target state="translated">email</target>
+        <target>e-mail</target>
+      </trans-unit>
+      <trans-unit id="nDrw44A" resname="financial number">
+        <source>financial number</source>
+        <target>financieel nummer</target>
       </trans-unit>
       <trans-unit id="TtN51Bi" resname="groups">
         <source>groups</source>
-        <target state="translated">groepen</target>
+        <target>groepen</target>
       </trans-unit>
       <trans-unit id="TqFAWIF" resname="home">
         <source>home</source>
-        <target state="translated">home</target>
+        <target>home</target>
       </trans-unit>
       <trans-unit id="rBYOWvF" resname="house number">
         <source>house number</source>
-        <target state="translated">huisnummer</target>
+        <target>huisnummer</target>
       </trans-unit>
       <trans-unit id="fCcfNGP" resname="housingstocks">
         <source>housingstocks</source>
-        <target state="translated">woningvoorraden</target>
+        <target>woningvoorraden</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>id</target>
       </trans-unit>
       <trans-unit id="H4velbT" resname="l no">
         <source>l no</source>
-        <target state="translated">nee</target>
+        <target>l nr</target>
       </trans-unit>
       <trans-unit id="nBh4q2f" resname="latest change">
         <source>latest change</source>
-        <target state="translated">laatste wijziging</target>
+        <target>laatste wijziging</target>
       </trans-unit>
       <trans-unit id="vYc_8ft" resname="latest creation">
         <source>latest creation</source>
-        <target state="translated">laatste aangemaakt</target>
+        <target>laatste aangemaakt</target>
       </trans-unit>
       <trans-unit id="QoghNQ6" resname="login">
         <source>login</source>
-        <target state="translated">aanmelden</target>
+        <target>aanmelden</target>
       </trans-unit>
       <trans-unit id="NqF2aHA" resname="make and upload image">
         <source>make and upload image</source>
-        <target state="translated">afbeelding maken en uploaden</target>
+        <target>afbeelding maken en uploaden</target>
       </trans-unit>
       <trans-unit id="4Ri4mRi" resname="makers">
         <source>makers</source>
-        <target state="translated">de makers</target>
+        <target>makers</target>
       </trans-unit>
       <trans-unit id="Hc_2ih1" resname="map with BAG information">
         <source>map with BAG information</source>
-        <target state="translated">kaart met BAG-informatie</target>
+        <target>kaart met BAG-informatie</target>
       </trans-unit>
       <trans-unit id="OYmRAJ2" resname="menu">
         <source>menu</source>
-        <target state="translated">menu</target>
+        <target>menu</target>
       </trans-unit>
       <trans-unit id="VCofsEw" resname="municipalities">
         <source>municipalities</source>
-        <target state="translated">gemeenten</target>
+        <target>gemeenten</target>
       </trans-unit>
       <trans-unit id="y5LqJ5T" resname="municipality">
         <source>municipality</source>
-        <target state="translated">gemeente</target>
+        <target>gemeente</target>
       </trans-unit>
       <trans-unit id="gqNTf.D" resname="name">
         <source>name</source>
-        <target state="translated">naam</target>
+        <target>naam</target>
       </trans-unit>
       <trans-unit id="Uh38EEQ" resname="neighbourhoods">
         <source>neighbourhoods</source>
-        <target state="translated">wijken</target>
+        <target>wijken</target>
       </trans-unit>
       <trans-unit id="EVB6Di9" resname="new">
         <source>new</source>
-        <target state="translated">nieuw</target>
+        <target>nieuw</target>
+      </trans-unit>
+      <trans-unit id="gNiYbm7" resname="new block">
+        <source>new block</source>
+        <target>nieuw complex</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no">
+        <source>no</source>
+        <target>nee</target>
       </trans-unit>
       <trans-unit id="bw46jA6" resname="owners">
         <source>owners</source>
-        <target state="translated">eigenaren</target>
+        <target>eigenaren</target>
       </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
-        <target state="translated">wachtwoord</target>
+        <target>wachtwoord</target>
       </trans-unit>
       <trans-unit id="VcZND81" resname="photo">
         <source>photo</source>
-        <target state="translated">foto</target>
+        <target>foto</target>
       </trans-unit>
       <trans-unit id="MToHP98" resname="public spaces">
         <source>public spaces</source>
-        <target state="translated">publieke ruimtes</target>
+        <target>publieke ruimtes</target>
       </trans-unit>
       <trans-unit id="CQKQCrW" resname="rental unit number">
         <source>rental unit number</source>
-        <target state="translated">huureenheid nummer</target>
+        <target>huureenheid nummer</target>
       </trans-unit>
       <trans-unit id="fYo03bI" resname="residences">
         <source>residences</source>
-        <target state="translated">verblijven</target>
+        <target>verblijven</target>
       </trans-unit>
       <trans-unit id="qNZkl.X" resname="residential area">
         <source>residential area</source>
-        <target state="translated">woongebied</target>
+        <target>woongebied</target>
       </trans-unit>
       <trans-unit id="4zsbfrs" resname="residential areas">
         <source>residential areas</source>
-        <target state="translated">buurten</target>
+        <target>buurten</target>
       </trans-unit>
       <trans-unit id="0aDW9HB" resname="roof">
         <source>roof</source>
-        <target state="translated">dak</target>
+        <target>dak</target>
+      </trans-unit>
+      <trans-unit id="FX3KkuQ" resname="save">
+        <source>save</source>
+        <target>opslaan</target>
       </trans-unit>
       <trans-unit id="JBkykGe" resname="search">
         <source>search</source>
-        <target state="translated">zoek</target>
+        <target>zoek</target>
       </trans-unit>
       <trans-unit id="BzwWNMS" resname="status">
         <source>status</source>
-        <target state="translated">status</target>
+        <target>status</target>
       </trans-unit>
       <trans-unit id="TBfbPsm" resname="street name">
         <source>street name</source>
-        <target state="translated">straatnaam</target>
+        <target>straatnaam</target>
       </trans-unit>
       <trans-unit id="OjhmYWt" resname="subcontractors">
         <source>subcontractors</source>
-        <target state="translated">onderaannemers</target>
+        <target>onderaannemers</target>
       </trans-unit>
       <trans-unit id="djzcYqh" resname="surface">
         <source>surface</source>
-        <target state="translated">oppervlakte</target>
+        <target>oppervlakte</target>
       </trans-unit>
       <trans-unit id="n4bQgYh" resname="test">
         <source>test</source>
-        <target state="translated">test</target>
+        <target>test</target>
       </trans-unit>
       <trans-unit id="7NdGGLV" resname="test page">
         <source>test page</source>
-        <target state="translated">test pagina</target>
+        <target>test pagina</target>
       </trans-unit>
       <trans-unit id="EwPAaws" resname="type">
         <source>type</source>
-        <target state="translated">type</target>
+        <target>type</target>
       </trans-unit>
       <trans-unit id="p8pjGz2" resname="under construction">
         <source>under construction</source>
-        <target state="translated">in opbouw</target>
+        <target>in opbouw</target>
       </trans-unit>
       <trans-unit id="o7FCr26" resname="use">
         <source>use</source>
-        <target state="translated">gebruiker</target>
+        <target>gebruiker</target>
       </trans-unit>
       <trans-unit id="CY5xmqV" resname="used frameworks and libraries">
         <source>used frameworks and libraries</source>
-        <target state="translated">gebruikte kaders en bibliotheken</target>
+        <target>gebruikte kaders en bibliotheken</target>
       </trans-unit>
       <trans-unit id="fftM9nd" resname="users">
         <source>users</source>
-        <target state="translated">gebruikers</target>
+        <target>gebruikers</target>
       </trans-unit>
       <trans-unit id="TLTqJVg" resname="year">
         <source>year</source>
-        <target state="translated">jaar</target>
+        <target>jaar</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes">
+        <source>yes</source>
+        <target>ja</target>
       </trans-unit>
       <trans-unit id="A9vuMpO" resname="zipcode">
         <source>zipcode</source>
-        <target state="translated">postcode</target>
+        <target>postcode</target>
       </trans-unit>
     </body>
   </file>

@@ -1,51 +1,3 @@
-Twig.twig({id: 'homePage', method: 'ajax', async: false, href: '/views/pages/home.twig' });
-Twig.twig({id: 'creditsPage', method: 'ajax', async: false, href: '/views/pages/credits.twig' });
-Twig.twig({id: 'underconstructionPage', method: 'ajax', async: false, href: '/views/pages/underconstruction.twig' });
-Twig.twig({id: 'testPage', method: 'ajax', async: false, href: '/views/pages/test.twig' });
-Twig.twig({id: 'newBlockPage', method: 'ajax', async: false, href: '/views/pages/newBlock.twig' });
-
-Twig.twig({id: 'errorPartial', method: 'ajax', async: false, href: '/views/partials/error.twig' });
-Twig.twig({id: 'informationPartial', method: 'ajax', async: false, href: '/views/partials/information.twig' });
-
-Twig.twig({id: 'deleteModal', method: 'ajax', async: false, href: '/views/modals/delete.twig' });
-Twig.twig({id: 'activeHousingStockSelect', method: 'ajax', async: false, href: '/views/others/activehousingstockselect.twig' });
-
-Twig.twig({id: 'overviewPage', method: 'ajax', async: false, href: '/views/others/overviews/overview.twig' });
-Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
-Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
-Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
-Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
-Twig.twig({id: 'municipalitiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/header.twig' });
-Twig.twig({id: 'municipalitiesRows', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/rows.twig' });
-Twig.twig({id: 'citiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/cities/header.twig' });
-Twig.twig({id: 'citiesRows', method: 'ajax', async: false, href: '/views/others/overviews/cities/rows.twig' });
-Twig.twig({id: 'residentialareasHeader', method: 'ajax', async: false, href: '/views/others/overviews/residentialareas/header.twig' });
-Twig.twig({id: 'residentialareasRows', method: 'ajax', async: false, href: '/views/others/overviews/residentialareas/rows.twig' });
-Twig.twig({id: 'neighbourhoodsHeader', method: 'ajax', async: false, href: '/views/others/overviews/neighbourhoods/header.twig' });
-Twig.twig({id: 'neighbourhoodsRows', method: 'ajax', async: false, href: '/views/others/overviews/neighbourhoods/rows.twig' });
-Twig.twig({id: 'vtwsHeader', method: 'ajax', async: false, href: '/views/others/overviews/vtws/header.twig' });
-Twig.twig({id: 'vtwsRows', method: 'ajax', async: false, href: '/views/others/overviews/vtws/rows.twig' });
-Twig.twig({id: 'publicspacesHeader', method: 'ajax', async: false, href: '/views/others/overviews/publicspaces/header.twig' });
-Twig.twig({id: 'publicspacesRows', method: 'ajax', async: false, href: '/views/others/overviews/publicspaces/rows.twig' });
-Twig.twig({id: 'buildingsHeader', method: 'ajax', async: false, href: '/views/others/overviews/buildings/header.twig' });
-Twig.twig({id: 'buildingsRows', method: 'ajax', async: false, href: '/views/others/overviews/buildings/rows.twig' });
-Twig.twig({id: 'residencesHeader', method: 'ajax', async: false, href: '/views/others/overviews/residences/header.twig' });
-Twig.twig({id: 'residencesRows', method: 'ajax', async: false, href: '/views/others/overviews/residences/rows.twig' });
-Twig.twig({id: 'blocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/blocks/header.twig' });
-Twig.twig({id: 'blocksRows', method: 'ajax', async: false, href: '/views/others/overviews/blocks/rows.twig' });
-Twig.twig({id: 'buildingtypesHeader', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/header.twig' });
-Twig.twig({id: 'buildingtypesRows', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/rows.twig' });
-Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
-Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
-Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
-Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
-Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
-Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
-Twig.twig({id: 'subcontractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/header.twig' });
-Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/rows.twig' });
-
-Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
-
 Twig.extendFilter('trans', function(id, params, domain, locale) {
     params = params || {}
 
@@ -65,6 +17,8 @@ Twig.extendFilter('trans', function(id, params, domain, locale) {
 
 let sideNavInstance;
 
+loadTemplates();
+
 $(document).ready(function(){
     const $sideNavElem = $('.sidenav');
     $sideNavElem.sidenav();
@@ -72,7 +26,7 @@ $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton({
         direction: 'bottom'
     });
-    loadHomePage();as
+    loadHomePage();
 });
 
 /**
@@ -82,6 +36,73 @@ $(document).ready(function(){
 /**
  * Support functions
  */
+
+function loadTemplates() {
+    Twig.twig({id: 'homePage', method: 'ajax', async: false, href: '/views/pages/home.twig' });
+    Twig.twig({id: 'creditsPage', method: 'ajax', async: false, href: '/views/pages/credits.twig' });
+    Twig.twig({id: 'underconstructionPage', method: 'ajax', async: false, href: '/views/pages/underconstruction.twig' });
+    Twig.twig({id: 'testPage', method: 'ajax', async: false, href: '/views/pages/test.twig' });
+
+    Twig.twig({id: 'errorPartial', method: 'ajax', async: false, href: '/views/partials/error.twig' });
+    Twig.twig({id: 'informationPartial', method: 'ajax', async: false, href: '/views/partials/information.twig' });
+
+    Twig.twig({id: 'deleteModal', method: 'ajax', async: false, href: '/views/modals/delete.twig' });
+    Twig.twig({id: 'activeHousingStockSelect', method: 'ajax', async: false, href: '/views/others/activehousingstockselect.twig' });
+
+    Twig.twig({id: 'overviewPage', method: 'ajax', async: false, href: '/views/others/overviews/overview.twig' });
+
+    Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
+    Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
+
+    Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
+    Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
+
+    Twig.twig({id: 'municipalitiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/header.twig' });
+    Twig.twig({id: 'municipalitiesRows', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/rows.twig' });
+
+    Twig.twig({id: 'citiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/cities/header.twig' });
+    Twig.twig({id: 'citiesRows', method: 'ajax', async: false, href: '/views/others/overviews/cities/rows.twig' });
+
+    Twig.twig({id: 'residentialareasHeader', method: 'ajax', async: false, href: '/views/others/overviews/residentialareas/header.twig' });
+    Twig.twig({id: 'residentialareasRows', method: 'ajax', async: false, href: '/views/others/overviews/residentialareas/rows.twig' });
+
+    Twig.twig({id: 'neighbourhoodsHeader', method: 'ajax', async: false, href: '/views/others/overviews/neighbourhoods/header.twig' });
+    Twig.twig({id: 'neighbourhoodsRows', method: 'ajax', async: false, href: '/views/others/overviews/neighbourhoods/rows.twig' });
+
+    Twig.twig({id: 'vtwsHeader', method: 'ajax', async: false, href: '/views/others/overviews/vtws/header.twig' });
+    Twig.twig({id: 'vtwsRows', method: 'ajax', async: false, href: '/views/others/overviews/vtws/rows.twig' });
+
+    Twig.twig({id: 'publicspacesHeader', method: 'ajax', async: false, href: '/views/others/overviews/publicspaces/header.twig' });
+    Twig.twig({id: 'publicspacesRows', method: 'ajax', async: false, href: '/views/others/overviews/publicspaces/rows.twig' });
+
+    Twig.twig({id: 'buildingsHeader', method: 'ajax', async: false, href: '/views/others/overviews/buildings/header.twig' });
+    Twig.twig({id: 'buildingsRows', method: 'ajax', async: false, href: '/views/others/overviews/buildings/rows.twig' });
+
+    Twig.twig({id: 'residencesHeader', method: 'ajax', async: false, href: '/views/others/overviews/residences/header.twig' });
+    Twig.twig({id: 'residencesRows', method: 'ajax', async: false, href: '/views/others/overviews/residences/rows.twig' });
+
+    Twig.twig({id: 'blocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/blocks/header.twig' });
+    Twig.twig({id: 'blocksRows', method: 'ajax', async: false, href: '/views/others/overviews/blocks/rows.twig' });
+    Twig.twig({id: 'newBlockPage', method: 'ajax', async: false, href: '/views/pages/block/new.twig' });
+    Twig.twig({id: 'editBlockPage', method: 'ajax', async: false, href: '/views/pages/block/edit.twig' });
+
+    Twig.twig({id: 'buildingtypesHeader', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/header.twig' });
+    Twig.twig({id: 'buildingtypesRows', method: 'ajax', async: false, href: '/views/others/overviews/buildingtypes/rows.twig' });
+
+    Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
+    Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
+
+    Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
+    Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
+
+    Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
+    Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
+
+    Twig.twig({id: 'subcontractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/header.twig' });
+    Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/rows.twig' });
+
+    Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
+}
 
 function showLoader() {
     $('div.overlay').show();
@@ -852,57 +873,13 @@ function loadBlockEditPage(id) {
                 showLoader();
             },
             success: function(data) {
+                console.log(data);
                 $('div#content').html(
-                    '    <h3 class="header">Edit block</h3>\n' +
-                    '    <form id="editblock">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                    '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                    '                <label for="id" class="active">Id</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                    '                <label for="code" class="active">Code</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">short_text</i>\n' +
-                    '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                    '                <label for="name" class="active">Name</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">euro_symbol</i>\n' +
-                    '                <input id="financialNumber" name="financialNumber" type="text" class="validate" value="' + (data.data.financialNumber ?? '') + '">\n' +
-                    '                <label for="financialNumber" class="active">Financial number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">description</i>\n' +
-                    '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                    '                <label for="description" class="active">Description</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button type="submit" class="btn" name="save">\n' +
-                    '                    <i class="material-icons left">save</i>Save\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button class="btn right" name="cancel">\n' +
-                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
+                    Twig.twig(
+                        {ref: 'editBlockPage'}
+                    ).render(
+                        data.data
+                    )
                 );
 
                 $("form#editblock button[name='cancel']").click(

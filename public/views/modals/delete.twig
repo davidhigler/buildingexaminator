@@ -4,7 +4,7 @@
         <p>{{ 'are you sure?'|trans()|capitalize }}</p>
     </div>
     <div class="modal-footer">
-        <a class="modal-close btn-flat">No</a>
-        <a onclick="{{ Callback }}({{ Id }});" class="modal-close btn-flat">Yes</a>
+        <a class="modal-close btn-flat">{{ 'no'|trans()|capitalize }}</a>
+        <a onclick="{{ Callback }}({{ Id }});" class="modal-close btn-flat">{{ 'yes'|trans()|capitalize }}</a>
     </div>
 </div>
