@@ -375,6 +375,8 @@ z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-f
 
 .pagination li a {
     color: #051a89;
+    width: 25px;
+    padding: 0;
 }
 
 .pagination li.active a {
@@ -387,6 +389,10 @@ z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-f
 
 .pagination li.disabled a {
     color: #a0aae1;
+}
+
+.pagecount {
+    font-size: 13px;
 }
 
 input.valid:not([type]),

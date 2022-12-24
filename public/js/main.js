@@ -12,7 +12,7 @@ Twig.extendFilter('trans', function(id, params, domain, locale) {
         }
     }
 
-    return Translator.trans(id, params, domain, locale)
+    return Translator.trans(id, params[0], domain, locale)
 });
 
 let sideNavInstance;

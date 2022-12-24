@@ -32,6 +32,11 @@
     </table>
     <ul class="pagination center">
         {% if Pager.previous > 0 %}
+            {% if Pager.current > 5 %}
+            <li>
+                <a href="javascript:{{ Callback }}(1, {{ SeachTerm }});"><i class="material-icons">keyboard_double_arrow_left</i></a>
+            </li>
+            {% endif %}
             <li>
                 <a href="javascript:{{ Callback }}({{ Pager.previous }}, {{ SeachTerm }});"><i class="material-icons">chevron_left</i></a>
             </li>
@@ -64,9 +69,17 @@
             <li>
                 <a href="javascript:{{ Callback }}({{ Pager.next }}, {{ SeachTerm }});"><i class="material-icons">chevron_right</i></a>
             </li>
+            {% if Pager.current < (Pager.count - 5) %}
+            <li>
+                <a href="javascript:{{ Callback }}({{ Pager.count }}, {{ SeachTerm }});"><i class="material-icons">keyboard_double_arrow_right</i></a>
+            </li>
+            {% endif %}
         {% else %}
             <li class="disabled">
                 <a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>
             </li>
         {% endif %}
     </ul>
+    <div class="pagecount center">
+        {{ 'page %current% of %total%'|trans({'current': Pager.current, 'total': Pager.count})|capitalize }}
+    </div>

@@ -209,6 +209,10 @@
         <source>owners</source>
         <target>eigenaren</target>
       </trans-unit>
+      <trans-unit id="GBXm5ka" resname="page %current% of %total%">
+        <source>page %current% of %total%</source>
+        <target>pagina %current% van %total%</target>
+      </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
         <target>wachtwoord</target>
