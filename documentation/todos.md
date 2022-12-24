@@ -54,11 +54,9 @@
 Styling
 * Zoeken ook met enter
 * Zoeken op eind en begin van identificerende nummers
-* Prod DB opnieuw opbouwen
 * Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
 * Bij een foutmelding moet er een terug knopje zijn
 * Zoekbalk en titel moeten op de pagina zichtbaar blijven scroll alleen de tabel
-* Pagination, toon ook het aantal pagina's en knoppen voor, ga naar de eerste en laatste pagina
 * Zoekopdracht ook higlighten in het overzicht
 * Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
 * Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)

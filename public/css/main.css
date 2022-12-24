@@ -125,6 +125,10 @@ div.container {
     border: 0;
 }
 
+.select2-container .select2-search__field {
+    padding-left: 0 !important;
+}
+
 .select2-container .select2-dropdown .select2-search input {
     border: 0;
     color: #ffffff;

@@ -93,6 +93,7 @@ function loadTemplates() {
 
     Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
     Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
+    Twig.twig({id: 'newUserPage', method: 'ajax', async: false, href: '/views/pages/users/new.twig' });
 
     Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
     Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
@@ -3216,70 +3217,10 @@ function loadUsersPage(page = 1, searchterm = '') {
 }
 
 function loadUserNewPage() {
-    showLoader();
-
     $('div#content').html(
-        '    <h3 class="header">New user</h3>\n' +
-        '    <form id="newuser">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">man</i>\n' +
-        '                <select id="user_type_select">\n' +
-        '                    <option value="Dobro">Dobro</option>\n' +
-        '                    <option value="Owner">Owner</option>\n' +
-        '                    <option value="Contractor">Contractor</option>\n' +
-        '                    <option value="Subcontractor">Subcontractor</option>\n' +
-        '                </select>\n' +
-        '                <label>Type</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">email</i>\n' +
-        '                <input id="email" name="email" type="email" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="email">Email</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">fingerprint</i>\n' +
-        '                <input id="password" name="password" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="password">Password</label>\n' +
-        '                <span class="helper-text" id="password_errors" style="color: #F44336;"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">refresh</i>\n' +
-        '                <input id="confirmpassword" name="confirmpassword" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="confirmpassword">Confirm password</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '               <div class="switch">\n' +
-        '                   <label>\n' +
-        '                       Admin\n' +
-        '                       <input type="checkbox" id="adminrole">\n' +
-        '                       <span class="lever"></span>\n' +
-        '                   </label>\n' +
-        '               </div>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons">person_add</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
+        Twig.twig(
+            {ref: 'newUserPage'}
+        ).render()
     );
 
     $("#user_type_select").formSelect();
