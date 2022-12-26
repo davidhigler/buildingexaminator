@@ -93,8 +93,8 @@ function loadTemplates() {
 
     Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
     Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
-    Twig.twig({id: 'newUserPage', method: 'ajax', async: false, href: '/views/pages/users/new.twig' });
-    Twig.twig({id: 'editUserPage', method: 'ajax', async: false, href: '/views/pages/users/edit.twig' });
+    Twig.twig({id: 'newUserPage', method: 'ajax', async: false, href: '/views/pages/user/new.twig' });
+    Twig.twig({id: 'editUserPage', method: 'ajax', async: false, href: '/views/pages/user/edit.twig' });
 
     Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
     Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
