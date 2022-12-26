@@ -30,10 +30,6 @@ $(document).ready(function(){
 });
 
 /**
- * #################################################
- */
-
-/**
  * Support functions
  */
 
@@ -98,6 +94,7 @@ function loadTemplates() {
 
     Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
     Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
+    Twig.twig({id: 'newHousingstockPage', method: 'ajax', async: false, href: '/views/pages/housingstock/new.twig' });
 
     Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
     Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
@@ -350,10 +347,6 @@ function loadTestPage() {
 }
 
 /**
- * #################################################
- */
-
-/**
  * Municipalities
  */
 
@@ -601,10 +594,6 @@ function loadVtws(page = 1, searchterm = '') {
         },
     });
 }
-
-/**
- * #################################################
- */
 
 /**
  * Public spaces
@@ -1932,10 +1921,6 @@ function deleteAddress(id) {
 }
 
 /**
- * #################################################
- */
-
-/**
  * Owners
  */
 
@@ -2260,7 +2245,7 @@ function loadHousingstocksPage(page = 1, searchterm = '') {
                     {
                         Title: capFirstLetter(Translator.trans('housingstocks', {}, 'messages')),
                         New: {
-                            Loader: 'loadHousingstockNewPages',
+                            Loader: 'loadHousingstockNewPage',
                             Icon: 'domain_add'
                         },
                         Search: {
@@ -2298,59 +2283,12 @@ function loadHousingstockNewPage() {
             showLoader();
         },
         success: function(data) {
-            let ownerSelectHtml =
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">person</i>\n' +
-                '                <select name="owner">\n' +
-                '                    <option disabled selected>Choose an owner</option>\n';
-            $(data.data).each(function (index, element) {
-                ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
-            });
-            ownerSelectHtml +=
-                '                </select>\n' +
-                '                <label>Owner</label>\n' +
-                '            </div>\n' +
-                '        </div>\n';
-
             $('div#content').html(
-                '    <h3 class="header">New housingstock</h3>\n' +
-                '    <form id="newhousingstock">\n' +
-                ownerSelectHtml +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate">\n' +
-                '                <label for="code">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate">\n' +
-                '                <label for="name">Name</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">description</i>\n' +
-                '                <textarea id="description" name="description" class="materialize-textarea"></textarea>\n' +
-                '                <label for="description">Description</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn" name="create" type="submit">\n' +
-                '                    <i class="material-icons left">domain_add</i>Create\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
+                Twig.twig(
+                    {ref: 'newHousingstockPage'}
+                ).render(
+                    data
+                )
             );
 
             $('form#newhousingstock select').formSelect();
@@ -3147,7 +3085,3 @@ function deleteUser(id) {
         },
     });
 }
-
-/**
- * #################################################
- */

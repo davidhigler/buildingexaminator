@@ -1,0 +1,43 @@
+    <h3 class="header">{{ 'new housingstock'|trans()|capitalize }}</h3>
+    <form id="newhousingstock">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">person</i>
+                <select name="owner">
+                    {% for owner in data %}
+                    <option value="{{ owner.id }}">{{ owner.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">qr_code_2</i>
+                <input id="code" name="code" type="text" placeholder="{{ 'code'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">short_text</i>
+                <input id="name" name="name" type="text" placeholder="{{ 'name'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">description</i>
+                <textarea id="description" name="description" class="materialize-textarea" placeholder="{{ 'description'|trans()|capitalize }}"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn" name="create" type="submit">
+                    <i class="material-icons">add_contractor</i><span class="button-content hide-on-small-only">{{ 'create'|trans()|capitalize }}</span>
+                </button>
+            </div>
+            <div class="col s6">
+                <button class="btn right" name="cancel">
+                    <i class="material-icons left">cancel</i><span class="button-content hide-on-small-only">{{ 'cancel'|trans()|capitalize }}</span>
+                </button>
+            </div>
+        </div>
+    </form>
