@@ -104,6 +104,7 @@ function loadTemplates() {
 
     Twig.twig({id: 'subcontractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/header.twig' });
     Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/rows.twig' });
+    Twig.twig({id: 'newSubcontractorPage', method: 'ajax', async: false, href: '/views/pages/subcontractor/new.twig' });
 
     Twig.twig({id: 'pagination', method: 'ajax', async: false, href: '/views/others/pagination.twig' });
 }
@@ -2925,66 +2926,11 @@ function loadSubcontractorsPage(page = 1, searchterm = '') {
 }
 
 function loadSubcontractorNewPage() {
-    showLoader();
-
     $('div#content').html(
-        '    <h3 class="header">New subcontractor</h3>\n' +
-        '    <form id="newsubcontractor">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_subcontractor</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
+        Twig.twig(
+            {ref: 'newSubcontractorPage'}
+        ).render()
     );
-
-    checkScreen();
 
     $("form#newsubcontractor button[name='cancel']").click(
         function(event) {
@@ -3026,6 +2972,8 @@ function loadSubcontractorNewPage() {
             },
         });
     });
+
+    checkScreen();
 }
 
 function loadSubcontractorEditPage(id) {
