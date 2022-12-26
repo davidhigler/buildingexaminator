@@ -158,6 +158,13 @@ function capFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function keyPressListener(event) {
+    if (event.keyCode == 13) {
+        let target = $(event.srcElement).data("keyPressTarget");
+        $("#" + target).click();
+    }
+}
+
 /**
  * Support pages
  */

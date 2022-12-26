@@ -9,10 +9,10 @@
         </div>
         <div class="col s9 m9 l10">
             {% if Search is not null and Search is not empty %}
-            <button class="btn search-button" onclick="{{ Search.Loader }}(1, $('input#searchterm').val());">
+            <button id="searchbutton" class="btn search-button" onclick="{{ Search.Loader }}(1, $('input#searchterm').val());">
                 <i class="material-icons">search</i><span class="button-content hide-on-small-only">{{ 'search'|trans()|capitalize }}</span>
             </button>
-            <input id="searchterm" class="search-term" type="search"{% if Search.Term is not null and Search.Term is not empty %} value="{{ Search.Term }}"{% endif %}>
+            <input id="searchterm" class="search-term" type="search"{% if Search.Term is not null and Search.Term is not empty %} value="{{ Search.Term }}"{% endif %} onkeypress="keyPressListener(event);" data-key-press-target="searchbutton">
             {% endif %}
         </div>
     </div>
