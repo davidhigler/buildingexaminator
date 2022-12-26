@@ -94,6 +94,7 @@ function loadTemplates() {
     Twig.twig({id: 'usersHeader', method: 'ajax', async: false, href: '/views/others/overviews/users/header.twig' });
     Twig.twig({id: 'usersRows', method: 'ajax', async: false, href: '/views/others/overviews/users/rows.twig' });
     Twig.twig({id: 'newUserPage', method: 'ajax', async: false, href: '/views/pages/users/new.twig' });
+    Twig.twig({id: 'editUserPage', method: 'ajax', async: false, href: '/views/pages/users/edit.twig' });
 
     Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
     Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
@@ -883,7 +884,6 @@ function loadBlockEditPage(id) {
                 showLoader();
             },
             success: function(data) {
-                console.log(data);
                 $('div#content').html(
                     Twig.twig(
                         {ref: 'editBlockPage'}
@@ -3289,68 +3289,17 @@ function loadUserEditPage(id) {
         },
         success: function(data) {
             $('div#content').html(
-                '    <h3 class="header">Edit user</h3>\n' +
-                '    <form id="edituser">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">email</i>\n' +
-                '                <input id="email" name="email" type="email" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.email + '">\n' +
-                '                <label for="name" class="active">Email</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">fingerprint</i>\n' +
-                '                <input id="password" name="password" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-                '                <label for="password" class="active">New password</label>\n' +
-                '                <span class="helper-text" id="errors" style="color: #F44336;"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">refresh</i>\n' +
-                '                <input id="confirmpassword" name="confirmpassword" type="password" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-                '                <label for="confirmpassword" class="active">Confirm new password</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '               <div class="switch">\n' +
-                '                   <label>\n' +
-                '                       Admin\n' +
-                '                       <input type="checkbox" id="adminrole"' + (data.data.admin ? ' checked="checked"' : '') + '>\n' +
-                '                       <span class="lever"></span>\n' +
-                '                   </label>\n' +
-                '               </div>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn" name="create" type="submit">\n' +
-                '                    <i class="material-icons">person_add</i>Create\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
+                Twig.twig(
+                    {ref: 'editUserPage'}
+                ).render(
+                    data.data
+                )
             );
 
             $("form#edituser button[name='cancel']").click(
                 function(event) {
                     event.preventDefault();
-                    loadAddressesPage();
+                    loadUsersPage();
                 }
             );
 
