@@ -45,6 +45,10 @@
         <source>blocks</source>
         <target>complexen</target>
       </trans-unit>
+      <trans-unit id="OaMjyxj" resname="btw">
+        <source>btw</source>
+        <target>btw</target>
+      </trans-unit>
       <trans-unit id="eqWL8rp" resname="building types">
         <source>building types</source>
         <target>gebouw typen</target>
@@ -69,9 +73,17 @@
         <source>code</source>
         <target>code</target>
       </trans-unit>
+      <trans-unit id="nJ7X5Sm" resname="confirm password">
+        <source>confirm password</source>
+        <target>confirm password</target>
+      </trans-unit>
       <trans-unit id="egGt6ku" resname="construction">
         <source>construction</source>
         <target>construtie</target>
+      </trans-unit>
+      <trans-unit id="LH40KR2" resname="contractor">
+        <source>contractor</source>
+        <target>contractor</target>
       </trans-unit>
       <trans-unit id="8E7ngih" resname="contractors">
         <source>contractors</source>
@@ -97,6 +109,10 @@
         <source>description</source>
         <target>omschrijving</target>
       </trans-unit>
+      <trans-unit id=".XBaK.C" resname="dobro">
+        <source>dobro</source>
+        <target>dobro</target>
+      </trans-unit>
       <trans-unit id="yvn5BrF" resname="documentation">
         <source>documentation</source>
         <target>documentatie</target>
@@ -112,6 +128,18 @@
       <trans-unit id="xJYA4br" resname="edit building type">
         <source>edit building type</source>
         <target>gebouw type bewerken</target>
+      </trans-unit>
+      <trans-unit id="Ovf49js" resname="edit contractor">
+        <source>edit contractor</source>
+        <target>edit contractor</target>
+      </trans-unit>
+      <trans-unit id="Kdd6r7M" resname="edit subcontractor">
+        <source>edit subcontractor</source>
+        <target>edit subcontractor</target>
+      </trans-unit>
+      <trans-unit id="iWdNaxk" resname="edit user">
+        <source>edit user</source>
+        <target>edit user</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
@@ -140,6 +168,10 @@
       <trans-unit id="pWFFJwz" resname="id">
         <source>id</source>
         <target>id</target>
+      </trans-unit>
+      <trans-unit id="G9o1H6b" resname="kvk">
+        <source>kvk</source>
+        <target>kvk</target>
       </trans-unit>
       <trans-unit id="H4velbT" resname="l no">
         <source>l no</source>
@@ -201,9 +233,29 @@
         <source>new building type</source>
         <target>nieuw gebouw type</target>
       </trans-unit>
+      <trans-unit id="oG2FSg7" resname="new contractor">
+        <source>new contractor</source>
+        <target>new contractor</target>
+      </trans-unit>
+      <trans-unit id="IuEk73i" resname="new housingstock">
+        <source>new housingstock</source>
+        <target>new housingstock</target>
+      </trans-unit>
+      <trans-unit id="uZ28D._" resname="new subcontractor">
+        <source>new subcontractor</source>
+        <target>new subcontractor</target>
+      </trans-unit>
+      <trans-unit id="Rn1BqBT" resname="new user">
+        <source>new user</source>
+        <target>new user</target>
+      </trans-unit>
       <trans-unit id="k5Apjz_" resname="no">
         <source>no</source>
         <target>nee</target>
+      </trans-unit>
+      <trans-unit id="TBApaX7" resname="owner">
+        <source>owner</source>
+        <target>owner</target>
       </trans-unit>
       <trans-unit id="bw46jA6" resname="owners">
         <source>owners</source>
@@ -228,6 +280,10 @@
       <trans-unit id="CQKQCrW" resname="rental unit number">
         <source>rental unit number</source>
         <target>huureenheid nummer</target>
+      </trans-unit>
+      <trans-unit id="4FJQr4X" resname="repeat password">
+        <source>repeat password</source>
+        <target>repeat password</target>
       </trans-unit>
       <trans-unit id="fYo03bI" resname="residences">
         <source>residences</source>
@@ -260,6 +316,10 @@
       <trans-unit id="TBfbPsm" resname="street name">
         <source>street name</source>
         <target>straatnaam</target>
+      </trans-unit>
+      <trans-unit id="L6z1ern" resname="subcontractor">
+        <source>subcontractor</source>
+        <target>subcontractor</target>
       </trans-unit>
       <trans-unit id="OjhmYWt" resname="subcontractors">
         <source>subcontractors</source>
@@ -296,6 +356,10 @@
       <trans-unit id="fftM9nd" resname="users">
         <source>users</source>
         <target>gebruikers</target>
+      </trans-unit>
+      <trans-unit id="dHqPOYO" resname="website">
+        <source>website</source>
+        <target>website</target>
       </trans-unit>
       <trans-unit id="TLTqJVg" resname="year">
         <source>year</source>
