@@ -101,6 +101,8 @@ function loadTemplates() {
 
     Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
     Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
+    Twig.twig({id: 'newContractorPage', method: 'ajax', async: false, href: '/views/pages/contractor/new.twig' });
+    Twig.twig({id: 'editContractorPage', method: 'ajax', async: false, href: '/views/pages/contractor/edit.twig' });
 
     Twig.twig({id: 'subcontractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/header.twig' });
     Twig.twig({id: 'subcontractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/subcontractors/rows.twig' });
@@ -2628,66 +2630,11 @@ function loadContractorsPage(page = 1, searchterm = '') {
 }
 
 function loadContractorNewPage() {
-    showLoader();
-
     $('div#content').html(
-        '    <h3 class="header">New contractor</h3>\n' +
-        '    <form id="newcontractor">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-        '                <input id="code" name="code" type="text" class="validate">\n' +
-        '                <label for="code">Code</label>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_contractor</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
+        Twig.twig(
+            {ref: 'newContractorPage'}
+        ).render()
     );
-
-    checkScreen();
 
     $("form#newcontractor button[name='cancel']").click(
         function(event) {
@@ -2729,6 +2676,8 @@ function loadContractorNewPage() {
             },
         });
     });
+
+    checkScreen();
 }
 
 function loadContractorEditPage(id) {
@@ -2744,67 +2693,11 @@ function loadContractorEditPage(id) {
         },
         success: function(data) {
             $('div#content').html(
-                '    <h3 class="header">Edit contractor</h3>\n' +
-                '    <form id="editcontractor">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                '                <label for="code" class="active">Code</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
-                '                <label for="kvk" class="active">KVK</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
-                '                <label for="btw" class="active">BTW</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
-                '                <label for="website" class="active">Website</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
+                Twig.twig(
+                    {ref: 'editContractorPage'}
+                ).render(
+                    data.data
+                )
             );
 
             $("form#editcontractor button[name='cancel']").click(
