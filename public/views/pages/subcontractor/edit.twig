@@ -1,5 +1,5 @@
-    <h3 class="header">{{ 'edit user'|trans()|capitalize }}</h3>
-    <form id="edituser">
+    <h3 class="header">{{ 'edit subcontractor'|trans()|capitalize }}</h3>
+    <form id="editsubcontractor">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix disabled">numbers</i>
@@ -8,31 +8,32 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <input id="email" name="email" type="email" required aria-required="true" minlength="3" maxlength="128" placeholder="{{ 'email'|trans()|capitalize }}" value="{{ email }}">
+                <i class="material-icons prefix">qr_code_2</i>
+                <input id="code" name="code" type="text" class="validate" placeholder="{{ 'code'|trans()|capitalize }}" value="{{ code }}">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">fingerprint</i>
-                <input id="password" name="password" type="password" required aria-required="true" minlength="3" maxlength="128" placeholder="{{ 'password'|trans()|capitalize }}">
+                <i class="material-icons prefix">short_text</i>
+                <input id="name" name="name" type="text" class="validate" placeholder="{{ 'name'|trans()|capitalize }}" value="{{ name }}">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">refresh</i>
-                <input id="confirmpassword" name="confirmpassword" type="password" required aria-required="true" minlength="3" maxlength="128" placeholder="{{ 'confirm password'|trans()|capitalize }}">
+                <i class="material-icons prefix">kvk</i>
+                <input id="kvk" name="kvk" type="text" placeholder="{{ 'kvk'|trans()|capitalize }}" value="{{ kvk }}">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <div class="switch">
-                    <label>
-                        Admin
-                        <input type="checkbox" id="adminrole"{% if admin %} checked="checked"{% endif %}>
-                        <span class="lever"></span>
-                    </label>
-                </div>
+                <i class="material-icons prefix">belastingdienst</i>
+                <input id="btw" name="btw" type="text" placeholder="{{ 'btw'|trans()|capitalize }}" value="{{ btw }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">http</i>
+                <input id="website" name="website" type="url" maxlength="256" placeholder="{{ 'website'|trans()|capitalize }}" value="{{ website }}">
             </div>
         </div>
         <div class="row">

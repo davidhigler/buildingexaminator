@@ -52,7 +52,6 @@
 * New frontend theme (See our old BLUE theme)
 
 Styling
-* Zoeken ook met enter
 * Zoeken op eind en begin van identificerende nummers
 * Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
 * Bij een foutmelding moet er een terug knopje zijn
