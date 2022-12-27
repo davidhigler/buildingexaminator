@@ -95,6 +95,7 @@ function loadTemplates() {
     Twig.twig({id: 'housingstocksHeader', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/header.twig' });
     Twig.twig({id: 'housingstocksRows', method: 'ajax', async: false, href: '/views/others/overviews/housingstocks/rows.twig' });
     Twig.twig({id: 'newHousingstockPage', method: 'ajax', async: false, href: '/views/pages/housingstock/new.twig' });
+    Twig.twig({id: 'editHousingstockPage', method: 'ajax', async: false, href: '/views/pages/housingstock/edit.twig' });
 
     Twig.twig({id: 'contractorsHeader', method: 'ajax', async: false, href: '/views/others/overviews/contractors/header.twig' });
     Twig.twig({id: 'contractorsRows', method: 'ajax', async: false, href: '/views/others/overviews/contractors/rows.twig' });
@@ -2190,12 +2191,11 @@ function loadOwnerEditPage(id) {
                     },
                 });
             });
+
+            checkScreen();
         },
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
         },
     });
 }
@@ -2362,83 +2362,12 @@ function loadHousingstockEditPage(id) {
                     json: 'application/json'
                 },
                 success: function(data) {
-                    let ownerSelectHtml =
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">person</i>\n' +
-                        '                <select id="owner" name="owner">\n';
-                    $(dataOwners.data).each(function (index, element) {
-                        if (element.id === data.data.owner.id) {
-                            ownerSelectHtml += '                    <option value="' + element.id + '" selected>' + element.name + '</option>\n';
-                        } else {
-                            ownerSelectHtml += '                    <option value="' + element.id + '">' + element.name + '</option>\n';
-                        }
-                    });
-                    ownerSelectHtml +=
-                        '                </select>\n' +
-                        '                <label>Owner</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n';
-
                     $('div#content').html(
-                        '    <h3 class="header">Edit housingstock</h3>\n' +
-                        '    <form id="edithousingstock">\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                        '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                        '                <label for="id" class="active">Id</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        ownerSelectHtml +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                        '                <input id="code" name="code" type="text" class="validate" value="' + (data.data.code ?? '') + '">\n' +
-                        '                <label for="code" class="active">Code</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">short_text</i>\n' +
-                        '                <input id="name" name="name" type="text" class="validate" value="' + (data.data.name ?? '') + '">\n' +
-                        '                <label for="name" class="active">Name</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix">description</i>\n' +
-                        '                <textarea id="description" name="description" class="materialize-textarea">' + (data.data.description ?? '') + '</textarea>\n' +
-                        '                <label for="description" class="active">Description</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">schedule</i>\n' +
-                        '                <input disabled id="created" name="created" type="text" value="' + moment.unix(parseInt(data.data.creationTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                        '                <label for="created" class="active">Created</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="input-field col s12">\n' +
-                        '                <i class="material-icons prefix disabled">update</i>\n' +
-                        '                <input disabled id="lastchange" name="lastchange" type="text" value="' + moment.unix(parseInt(data.data.lastChangeTime.timestamp)).locale('en_US').format('LLL') + '">\n' +
-                        '                <label for="lastchange" class="active">Last change</label>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '        <div class="row">\n' +
-                        '            <div class="col s6">\n' +
-                        '                <button type="submit" class="btn" name="save">\n' +
-                        '                    <i class="material-icons left">save</i>Save\n' +
-                        '                </button>\n' +
-                        '            </div>\n' +
-                        '            <div class="col s6">\n' +
-                        '                <button class="btn right" name="cancel">\n' +
-                        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                        '                </button>\n' +
-                        '            </div>\n' +
-                        '        </div>\n' +
-                        '    </form>\n'
+                        Twig.twig(
+                            {ref: 'editHousingstockPage'}
+                        ).render(
+                            data.data
+                        )
                     );
 
                     $("form#edithousingstock button[name='cancel']").click(
@@ -2491,9 +2420,6 @@ function loadHousingstockEditPage(id) {
         },
         error: function(jqXHR) {
             loadErrorPage(jqXHR);
-        },
-        complete: function() {
-            checkScreen();
         },
     });
 }
@@ -2682,9 +2608,6 @@ function loadContractorEditPage(id) {
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
         },
-        complete: function() {
-            checkScreen();
-        },
     });
 }
 
@@ -2871,9 +2794,6 @@ function loadSubcontractorEditPage(id) {
         },
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
         },
     });
 }
@@ -3062,9 +2982,6 @@ function loadUserEditPage(id) {
         },
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
-        },
-        complete: function() {
-            checkScreen();
         },
     });
 }
