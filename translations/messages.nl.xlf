@@ -133,6 +133,14 @@
         <source>edit contractor</source>
         <target>edit contractor</target>
       </trans-unit>
+      <trans-unit id="4YnkoHN" resname="edit housingstock">
+        <source>edit housingstock</source>
+        <target>edit housingstock</target>
+      </trans-unit>
+      <trans-unit id="kX9ZIfZ" resname="edit owner">
+        <source>edit owner</source>
+        <target>edit owner</target>
+      </trans-unit>
       <trans-unit id="Kdd6r7M" resname="edit subcontractor">
         <source>edit subcontractor</source>
         <target>edit subcontractor</target>
@@ -176,6 +184,10 @@
       <trans-unit id="H4velbT" resname="l no">
         <source>l no</source>
         <target>l nr</target>
+      </trans-unit>
+      <trans-unit id="x2aWVqo" resname="l number">
+        <source>l number</source>
+        <target>l number</target>
       </trans-unit>
       <trans-unit id="nBh4q2f" resname="latest change">
         <source>latest change</source>
@@ -240,6 +252,10 @@
       <trans-unit id="IuEk73i" resname="new housingstock">
         <source>new housingstock</source>
         <target>new housingstock</target>
+      </trans-unit>
+      <trans-unit id="KSurN0B" resname="new owner">
+        <source>new owner</source>
+        <target>new owner</target>
       </trans-unit>
       <trans-unit id="uZ28D._" resname="new subcontractor">
         <source>new subcontractor</source>

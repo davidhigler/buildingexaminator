@@ -1,0 +1,45 @@
+    <h3 class="header">{{ 'new owner'|trans()|capitalize }}</h3>
+    <form id="newowner">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">short_text</i>
+                <input id="name" name="name" type="text" placeholder="{{ 'name'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">kvk</i>
+                <input id="kvk" name="kvk" type="text" placeholder="{{ 'kvk'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">belastingdienst</i>
+                <input id="btw" name="btw" type="text" placeholder="{{ 'btw'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">aedes</i>
+                <input id="lnumber" name="lnumber" type="text" placeholder="{{ 'l number'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">http</i>
+                <input id="website" name="website" type="url" maxlength="256" placeholder="{{ 'website'|trans()|capitalize }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn" name="create" type="submit">
+                    <i class="material-icons">add_contractor</i><span class="button-content hide-on-small-only">{{ 'create'|trans()|capitalize }}</span>
+                </button>
+            </div>
+            <div class="col s6">
+                <button class="btn right" name="cancel">
+                    <i class="material-icons left">cancel</i><span class="button-content hide-on-small-only">{{ 'cancel'|trans()|capitalize }}</span>
+                </button>
+            </div>
+        </div>
+    </form>

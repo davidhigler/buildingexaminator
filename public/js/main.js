@@ -52,6 +52,8 @@ function loadTemplates() {
 
     Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
     Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
+    Twig.twig({id: 'newOwnerPage', method: 'ajax', async: false, href: '/views/pages/owner/new.twig' });
+    Twig.twig({id: 'editOwnerPage', method: 'ajax', async: false, href: '/views/pages/owner/edit.twig' });
 
     Twig.twig({id: 'municipalitiesHeader', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/header.twig' });
     Twig.twig({id: 'municipalitiesRows', method: 'ajax', async: false, href: '/views/others/overviews/municipalities/rows.twig' });
@@ -1947,6 +1949,10 @@ function loadOwnersPage(page = 1, searchterm = '') {
                 ).render(
                     {
                         Title: capFirstLetter(Translator.trans('owners', {}, 'messages')),
+                        New: {
+                            Loader: 'loadOwnerNewPage',
+                            Icon: 'add_owner'
+                        },
                         Search: {
                             Term: searchterm,
                             Loader: 'loadOwnersPage'
@@ -1973,61 +1979,9 @@ function loadOwnerNewPage() {
     showLoader();
 
     $('div#content').html(
-        '    <h3 class="header">New owner</h3>\n' +
-        '    <form id="newowner">\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">short_text</i>\n' +
-        '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128">\n' +
-        '                <label for="name">Name</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">kvk</i>\n' +
-        '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}">\n' +
-        '                <label for="kvk">KVK</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">belastingdienst</i>\n' +
-        '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}">\n' +
-        '                <label for="btw">BTW</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">aedes</i>\n' +
-        '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}">\n' +
-        '                <label for="lnumber">L number</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="input-field col s12">\n' +
-        '                <i class="material-icons prefix">http</i>\n' +
-        '                <input id="website" name="website" type="url" class="validate" pattern="https://.*" maxlength="256">\n' +
-        '                <label for="website">Website</label>\n' +
-        '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '        <div class="row">\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn" name="create" type="submit">\n' +
-        '                    <i class="material-icons left">add_owner</i>Create\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '            <div class="col s6">\n' +
-        '                <button class="btn right" name="cancel">\n' +
-        '                    <i class="material-icons left">cancel</i>Cancel\n' +
-        '                </button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </form>\n'
+        Twig.twig(
+            {ref: 'newOwnerPage'}
+        ).render()
     );
 
     checkScreen();
@@ -2087,68 +2041,11 @@ function loadOwnerEditPage(id) {
         },
         success: function(data) {
             $('div#content').html(
-                '    <h3 class="header">Edit owner</h3>\n' +
-                '    <form id="editowner">\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix disabled">numbers</i>\n' +
-                '                <input disabled id="id" name="id" type="text" value="' + data.data.id + '">\n' +
-                '                <label for="id" class="active">Id</label>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">short_text</i>\n' +
-                '                <input id="name" name="name" type="text" class="validate" required aria-required="true" minlength="3" maxlength="128" value="' + data.data.name + '">\n' +
-                '                <label for="name" class="active">Name</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (min 3 and max 128 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">kvk</i>\n' +
-                '                <input id="kvk" name="kvk" type="text" class="validate" pattern="[0-9]{8}" value="' + (data.data.kvk ?? '') + '">\n' +
-                '                <label for="kvk" class="active">KVK</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 8 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">belastingdienst</i>\n' +
-                '                <input id="btw" name="btw" type="text" class="validate" pattern="[0-9a-zA-Z]{14}" value="' + (data.data.btw ?? '') + '">\n' +
-                '                <label for="btw" class="active">BTW</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be exactly 14 characters)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">aedes</i>\n' +
-                '                <input id="lnumber" name="lnumber" type="text" class="validate" pattern="L[0-9]{4}" value="' + (data.data.lnumber ?? '') + '">\n' +
-                '                <label for="lnumber" class="active">L number</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a L with 4 numbers)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="input-field col s12">\n' +
-                '                <i class="material-icons prefix">http</i>\n' +
-                '                <input id="website" name="website" type="text" class="validate" pattern="https://.*" maxlength="256" value="' + (data.data.website ?? '') + '">\n' +
-                '                <label for="website" class="active">Website</label>\n' +
-                '                <span class="helper-text" data-error="Wrong (must be a valid URL)" data-success="Right"></span>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <div class="row">\n' +
-                '            <div class="col s6">\n' +
-                '                <button type="submit" class="btn" name="save">\n' +
-                '                    <i class="material-icons left">save</i>Save\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '            <div class="col s6">\n' +
-                '                <button class="btn right" name="cancel">\n' +
-                '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                '                </button>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </form>\n'
+                Twig.twig(
+                    {ref: 'editOwnerPage'}
+                ).render(
+                    data.data
+                )
             );
 
             $("form#editowner button[name='cancel']").click(
