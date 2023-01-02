@@ -7,10 +7,6 @@
       * Contractor
       * SubContractor
   * Add users to groups
-* Projects functionality (only owner)
-  * Create, edit, delete projects as an Owner
-    * Add addresses to a project
-      * Add contact information per address about the resident (Woningconsultant (is a user from the contractor) has the expliciet right to change the contact information for this project)
 * Planning projects
   * Timeline planning per address
     * Prepare a list of tasks
@@ -19,6 +15,14 @@
     * Order of task through all the addresses
   * Historical timeline per address
 * Projects
+  * Create, edit, delete projects as an Owner
+    * Add addresses to a project
+      * Add contact information per address about the resident (Woningconsultant (is a user from the contractor) has the expliciet right to change the contact information for this project)
+  * Project
+    * Projectnummer (Lnummer, jaartal, maand, volgnummer)
+    * Owner projectnummer
+    * Contractor projectnummer
+    * Subcontractor projectnummer
   * Attach documents to a project from owner (Are visible to contractor (no download, and no edit))
     * History of previous projects not in the system
     * MJOB document
@@ -48,10 +52,8 @@
   * The owner of a housingstock can only view the information of this address
   * The real private owner does not have access to the application but legaly still owner of the data
   * After the legal term to archive the data is done (after 10 year) the data is deleted
-* Frontend HTML lostrekken van JavaScript
-* New frontend theme (See our old BLUE theme)
 
-Styling
+## Styling
 * Zoeken op eind en begin van identificerende nummers
 * Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
 * Bij een foutmelding moet er een terug knopje zijn
@@ -61,8 +63,3 @@ Styling
 * Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)
 
 
-* Project
-  * Projectnummer (Lnummer, jaartal, maand, volgnummer)
-  * Owner projectnummer
-  * Contractor projectnummer
-  * Subcontractor projectnummer
