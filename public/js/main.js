@@ -49,6 +49,7 @@ function loadTemplates() {
 
     Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
     Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
+    Twig.twig({id: 'newAddresss', method: 'ajax', async: false, href: '/views/pages/address/new.twig' });
 
     Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
     Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
@@ -1231,133 +1232,16 @@ function loadAddressNewPage() {
                 buildingtypes,
                 vtws
             ) {
-                let blockHtmlOptions = '                    <option disabled selected>Choose a block</option>\n';
-                blocks[0].data.forEach(function(item) {
-                    blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                });
-
-                let buildingTypeHtmlOptions = '                    <option disabled selected>Choose a building type</option>\n';
-                buildingtypes[0].data.forEach(function(item) {
-                    buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                });
-
-                let vtwHtmlOptions = '                    <option disabled selected>Choose a vtw</option>\n';
-                vtws[0].data.forEach(function(item) {
-                    vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
-                });
-
                 $('div#content').html(
-                    '    <h3 class="header">New address</h3>\n' +
-                    '    <form id="newbuildingaddress">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <p>By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.</p>' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">zipcode</i>\n' +
-                    '                <input id="zipcode" name="zipcode" type="text" class="validate">\n' +
-                    '                <label for="zipcode">Zipcode</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">123</i>\n' +
-                    '                <input id="housenumber" name="housenumber" type="text" class="validate">\n' +
-                    '                <label for="housenumber">House number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">abc</i>\n' +
-                    '                <input id="addition" name="addition" type="text" class="validate">\n' +
-                    '                <label for="addition">Addition</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_comfortable</i>\n' +
-                    '                <select id="block" name="block">\n' +
-                    blockHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Block</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">home_work</i>\n' +
-                    '                <select id="buildingtype" name="buildingtype">\n' +
-                    buildingTypeHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Building type</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">vtw</i>\n' +
-                    '                <select id="vtw" name="vtw">\n' +
-                    vtwHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Vtw</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate">\n' +
-                    '                <label for="rentalunitnumber">Rental unit number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">explore</i>\n' +
-                    '                <select id="orientation" name="orientation">\n' +
-                    '                    <option disabled selected>Choose a direction</option>\n' +
-                    '                    <option value="n" data-icon="/images/directions/n.png">Noord</option>\n' +
-                    '                    <option value="nne" data-icon="/images/directions/nne.png">Noord Noord Oost</option>\n' +
-                    '                    <option value="ne" data-icon="/images/directions/ne.png">Noord Oost</option>\n' +
-                    '                    <option value="nee" data-icon="/images/directions/nee.png">Noord Oost Oost</option>\n' +
-                    '                    <option value="e" data-icon="/images/directions/e.png">Oost</option>\n' +
-                    '                    <option value="see" data-icon="/images/directions/see.png">Zuid Oost Oost</option>\n' +
-                    '                    <option value="se" data-icon="/images/directions/se.png">Zuid Oost</option>\n' +
-                    '                    <option value="sse" data-icon="/images/directions/sse.png">Zuid Zuid Oost</option>\n' +
-                    '                    <option value="s" data-icon="/images/directions/s.png">Zuid</option>\n' +
-                    '                    <option value="ssw" data-icon="/images/directions/ssw.png">Zuid Zuid West</option>\n' +
-                    '                    <option value="sw" data-icon="/images/directions/sw.png">Zuid West</option>\n' +
-                    '                    <option value="sww" data-icon="/images/directions/sww.png">Zuid West West</option>\n' +
-                    '                    <option value="w" data-icon="/images/directions/w.png">West</option>\n' +
-                    '                    <option value="nww" data-icon="/images/directions/nww.png">Noord West West</option>\n' +
-                    '                    <option value="nw" data-icon="/images/directions/nw.png">Noord West</option>\n' +
-                    '                    <option value="nnw" data-icon="/images/directions/nnw.png">Noord Noord West</option>\n' +
-                    '                </select>\n' +
-                    '                <label>Orientation façade</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <p>\n' +
-                    '                    <i class="material-icons prefix">house_money</i>\n' +
-                    '                    <label>\n' +
-                    '                        <input id="daeb" name="daeb" type="checkbox">\n' +
-                    '                        <span>Daeb</span>\n' +
-                    '                    </label>\n' +
-                    '                </p>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button class="btn" name="create" type="submit">\n' +
-                    '                    <i class="material-icons left">house_add</i>Create\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button class="btn right" name="cancel">\n' +
-                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
+                    Twig.twig(
+                        {ref: 'newAddresss'}
+                    ).render(
+                        {
+                            'blocks': blocks[0].data,
+                            'buildingtypes': buildingtypes[0].data,
+                            'vtws': vtws[0].data
+                        }
+                    )
                 );
 
                 $('form#newbuildingaddress select').formSelect();
