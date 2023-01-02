@@ -1314,7 +1314,7 @@ function loadAddressDetailPage(id) {
                 $('.material-tooltip').remove();
             },
             success: function(data) {
-                let addressdata = data.data[0];
+                let addressdata = data.data;
                 buildingIdentification = addressdata.building.identification;
                 let html = '        <div class="row">\n' +
                     '            <div class="col s12">\n' +
