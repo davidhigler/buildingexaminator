@@ -50,6 +50,7 @@ function loadTemplates() {
     Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
     Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
     Twig.twig({id: 'newAddresss', method: 'ajax', async: false, href: '/views/pages/address/new.twig' });
+    Twig.twig({id: 'editAddresss', method: 'ajax', async: false, href: '/views/pages/address/edit.twig' });
     Twig.twig({id: 'detailsAddresss', method: 'ajax', async: false, href: '/views/pages/address/details.twig' });
 
     Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
@@ -1328,58 +1329,58 @@ function loadAddressDetailPage(id) {
 
                 $('div#content div#viewDiv').height(500);
 
-                // require([
-                //     "esri/config",
-                //     "esri/Map",
-                //     "esri/views/MapView",
-                //     "esri/layers/FeatureLayer",
-                //     "esri/layers/support/LabelClass"
-                // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
-                //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-                //     const bagPandenLayerLabel = new LabelClass({
-                //         labelExpressionInfo: { expression: "$feature.objectid" },
-                //         allowOverrun: true,
-                //         deconflictionStrategy: "none",
-                //         minScale: 2500,
-                //         symbol: {
-                //             type: "text",
-                //             color: "black",
-                //             font: {
-                //                 family: "Ubuntu Mono",
-                //                 size: 6
-                //             }
-                //         }
-                //     });
-                //     const bagPandenLayer = new FeatureLayer({
-                //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-                //         definitionExpression:
-                //             "identificatie IN (" +buildingIdentification + ")",
-                //         minScale: 25000,
-                //         outFields: ['objectid'],
-                //         labelingInfo: bagPandenLayerLabel
-                //     });
-                //     const map = new Map({
-                //         basemap: "osm-light-gray",
-                //         layers: [
-                //             bagPandenLayer
-                //         ]
-                //     });
-                //     const view = new MapView({
-                //         map: map,
-                //         center: [6.0909033, 52.5129319],
-                //         zoom: 17,
-                //         container: "viewDiv",
-                //         constraints: {
-                //             snapToZoom: false
-                //         }
-                //     });
-                //     bagPandenLayer.when(() => {
-                //         return bagPandenLayer.queryExtent();
-                //     })
-                //     .then((response) => {
-                //         view.goTo(response.extent);
-                //     });
-                // });
+                require([
+                    "esri/config",
+                    "esri/Map",
+                    "esri/views/MapView",
+                    "esri/layers/FeatureLayer",
+                    "esri/layers/support/LabelClass"
+                ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+                    esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+                    const bagPandenLayerLabel = new LabelClass({
+                        labelExpressionInfo: { expression: "$feature.objectid" },
+                        allowOverrun: true,
+                        deconflictionStrategy: "none",
+                        minScale: 2500,
+                        symbol: {
+                            type: "text",
+                            color: "black",
+                            font: {
+                                family: "Ubuntu Mono",
+                                size: 6
+                            }
+                        }
+                    });
+                    const bagPandenLayer = new FeatureLayer({
+                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+                        definitionExpression:
+                            "identificatie IN (" +buildingIdentification + ")",
+                        minScale: 25000,
+                        outFields: ['objectid'],
+                        labelingInfo: bagPandenLayerLabel
+                    });
+                    const map = new Map({
+                        basemap: "osm-light-gray",
+                        layers: [
+                            bagPandenLayer
+                        ]
+                    });
+                    const view = new MapView({
+                        map: map,
+                        center: [6.0909033, 52.5129319],
+                        zoom: 17,
+                        container: "viewDiv",
+                        constraints: {
+                            snapToZoom: false
+                        }
+                    });
+                    bagPandenLayer.when(() => {
+                        return bagPandenLayer.queryExtent();
+                    })
+                    .then((response) => {
+                        view.goTo(response.extent);
+                    });
+                });
 
                 $('div#content .collapsible').collapsible();
             },
@@ -1412,155 +1413,17 @@ function loadAddressEditPage(id) {
                 buildingTypes,
                 vtws
             ) {
-                let addressdata = address[0].data;
-
-                let blockHtmlOptions = '';
-                blocks[0].data.forEach(
-                    function(item) {
-                        if (addressdata.block.id === item.id) {
-                            blockHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            blockHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let buildingTypeHtmlOptions = '';
-                buildingTypes[0].data.forEach(
-                    function(item) {
-                        if (addressdata.buildingType.id === item.id) {
-                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.name + '</option>\n';
-                        } else {
-                            buildingTypeHtmlOptions += '                    <option value="' + item.id + '">' + item.name + '</option>\n';
-                        }
-                    }
-                );
-
-                let vtwHtmlOptions = '';
-                vtws[0].data.forEach(
-                    function(item) {
-                        if (addressdata.vtw.id === item.id) {
-                            vtwHtmlOptions += '                    <option value="' + item.id + '" selected>' + item.code + ' - ' + item.typeDescription + '</option>\n';
-                        } else {
-                            vtwHtmlOptions += '                    <option value="' + item.id + '">' + item.code + ' - ' + item.typeDescription + '</option>\n';
-                        }
-                    }
-                );
-
-                let orientationSelectValues = [
-                    {'id': 'n',   'image': '/images/directions/n.png',   'text': 'Noord'},
-                    {'id': 'nne', 'image': '/images/directions/nne.png', 'text': 'Noord Noord Oost'},
-                    {'id': 'ne',  'image': '/images/directions/ne.png',  'text': 'Noord Oost'},
-                    {'id': 'nee', 'image': '/images/directions/nee.png', 'text': 'Noord Oost Oost'},
-                    {'id': 'e',   'image': '/images/directions/e.png',   'text': 'Oost'},
-                    {'id': 'see', 'image': '/images/directions/see.png', 'text': 'Zuid Oost Oost'},
-                    {'id': 'se',  'image': '/images/directions/se.png',  'text': 'Zuid Oost'},
-                    {'id': 'sse', 'image': '/images/directions/sse.png', 'text': 'Zuid Zuid Oost'},
-                    {'id': 's',   'image': '/images/directions/s.png',   'text': 'Zuid'},
-                    {'id': 'ssw', 'image': '/images/directions/ssw.png', 'text': 'Zuid Zuid West'},
-                    {'id': 'sw',  'image': '/images/directions/sw.png',  'text': 'Zuid West'},
-                    {'id': 'sww', 'image': '/images/directions/sww.png', 'text': 'Zuid West West'},
-                    {'id': 'w',   'image': '/images/directions/w.png',   'text': 'West'},
-                    {'id': 'nww', 'image': '/images/directions/nww.png', 'text': 'Noord West West'},
-                    {'id': 'nw',  'image': '/images/directions/nw.png',  'text': 'Noord West'},
-                    {'id': 'nnw', 'image': '/images/directions/nnw.png', 'text': 'Noord Noord West'}
-                ];
-
-                let orientationHtmlOptions = '';
-                let orientationIsSelected = false;
-                orientationSelectValues.forEach(
-                    function(item) {
-                        if (addressdata.orientation === item.id) {
-                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '" selected>' + item.text + '</option>\n';
-                            orientationIsSelected = true;
-                        } else {
-                            orientationHtmlOptions += '                    <option value="' + item.id + '" data-icon="' + item.image + '">' + item.text + '</option>\n';
-                        }
-                    }
-                );
-                if (orientationIsSelected === false) {
-                    orientationHtmlOptions = '                    <option disabled selected>Choose a direction</option>\n' + orientationHtmlOptions;
-                }
-
                 $('div#content').html(
-                    '    <h3 class="header">Edit address</h3>\n' +
-                    '    <form id="editbuildingaddress">\n' +
-                    '        <div class="card blue-grey darken-1">\n' +
-                    '            <div class="card-content white-text">\n' +
-                    '                <span class="card-title">Address</span>\n' +
-                    '                <p>\n' +
-                    '                    ' + addressdata.publicSpace.name + ' ' + addressdata.houseNumber + (addressdata.addition ? ' ' + addressdata.addition : '') + '<br />\n' +
-                    '                    ' + addressdata.zipcode + ' ' + addressdata.city.name + '\n' +
-                    '                </p>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">view_comfortable</i>\n' +
-                    '                <select id="block" name="block">\n' +
-                    blockHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Block</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">home_work</i>\n' +
-                    '                <select id="buildingtype" name="buildingtype">\n' +
-                    buildingTypeHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Building type</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">vtw</i>\n' +
-                    '                <select id="vtw" name="vtw">\n' +
-                    vtwHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Vtw</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">qr_code_2</i>\n' +
-                    '                <input id="rentalunitnumber" name="rentalunitnumber" type="text" class="validate" value="' + (addressdata.rentalUnitNumber ?? '') + '">\n' +
-                    '                <label for="rentalunitnumber" class="active">Rental unit number</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <i class="material-icons prefix">explore</i>\n' +
-                    '                <select id="orientation" name="orientation">\n' +
-                    orientationHtmlOptions +
-                    '                </select>\n' +
-                    '                <label>Orientation façade</label>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="input-field col s12">\n' +
-                    '                <p>\n' +
-                    '                    <i class="material-icons prefix">house_money</i>\n' +
-                    '                    <label>\n' +
-                    '                        <input id="daeb" name="daeb" type="checkbox"' + (addressdata.daeb ? ' checked="checked"' : '') + '>\n' +
-                    '                        <span>Daeb</span>\n' +
-                    '                    </label>\n' +
-                    '                </p>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button type="submit" class="btn" name="save">\n' +
-                    '                    <i class="material-icons left">save</i>Save\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '            <div class="col s6">\n' +
-                    '                <button class="btn right" name="cancel">\n' +
-                    '                    <i class="material-icons left">cancel</i>Cancel\n' +
-                    '                </button>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </form>\n'
+                    Twig.twig(
+                        {ref: 'editAddresss'}
+                    ).render(
+                        {
+                            'addressdata': address[0].data,
+                            'blocks': blocks[0].data,
+                            'buildingtypes': buildingTypes[0].data,
+                            'vtws': vtws[0].data
+                        }
+                    )
                 );
 
                 $('form#editbuildingaddress select').formSelect();
