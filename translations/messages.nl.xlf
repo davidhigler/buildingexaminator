@@ -9,6 +9,14 @@
         <source>Building Examinator</source>
         <target>Building Examinator</target>
       </trans-unit>
+      <trans-unit id="X1ITszP" resname="By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.">
+        <source>By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.</source>
+        <target>By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.</target>
+      </trans-unit>
+      <trans-unit id="9YXiMUT" resname="VTW">
+        <source>VTW</source>
+        <target>VTW</target>
+      </trans-unit>
       <trans-unit id="dS9X60V" resname="VTW's">
         <source>VTW's</source>
         <target>VTW's</target>
@@ -37,9 +45,33 @@
         <source>are you sure?</source>
         <target>weet u het zeker?</target>
       </trans-unit>
+      <trans-unit id="PEgjRvN" resname="back">
+        <source>back</source>
+        <target>back</target>
+      </trans-unit>
+      <trans-unit id="rhoVVZt" resname="bag address">
+        <source>bag address</source>
+        <target>bag address</target>
+      </trans-unit>
+      <trans-unit id="RtINWsj" resname="bag building">
+        <source>bag building</source>
+        <target>bag building</target>
+      </trans-unit>
       <trans-unit id="6lJbki1" resname="bag code">
         <source>bag code</source>
         <target>bag code</target>
+      </trans-unit>
+      <trans-unit id="aK6bjBC" resname="bag public space">
+        <source>bag public space</source>
+        <target>bag public space</target>
+      </trans-unit>
+      <trans-unit id="FvYScvH" resname="bag residence">
+        <source>bag residence</source>
+        <target>bag residence</target>
+      </trans-unit>
+      <trans-unit id="SWrKgOT" resname="block">
+        <source>block</source>
+        <target>block</target>
       </trans-unit>
       <trans-unit id="KhLaF9J" resname="blocks">
         <source>blocks</source>
@@ -48,6 +80,14 @@
       <trans-unit id="OaMjyxj" resname="btw">
         <source>btw</source>
         <target>btw</target>
+      </trans-unit>
+      <trans-unit id="x6Wf3vu" resname="building examinator">
+        <source>building examinator</source>
+        <target>building examinator</target>
+      </trans-unit>
+      <trans-unit id="Yq8mEDY" resname="building type">
+        <source>building type</source>
+        <target>building type</target>
       </trans-unit>
       <trans-unit id="eqWL8rp" resname="building types">
         <source>building types</source>
@@ -101,6 +141,10 @@
         <source>credits</source>
         <target>medewerking</target>
       </trans-unit>
+      <trans-unit id="Om6weQ8" resname="data">
+        <source>data</source>
+        <target>data</target>
+      </trans-unit>
       <trans-unit id="YZdZVQP" resname="delete">
         <source>delete</source>
         <target>verwijderen</target>
@@ -117,9 +161,17 @@
         <source>documentation</source>
         <target>documentatie</target>
       </trans-unit>
+      <trans-unit id="a9smKwI" resname="east">
+        <source>east</source>
+        <target>east</target>
+      </trans-unit>
       <trans-unit id="JiEhxTc" resname="edit">
         <source>edit</source>
         <target>bewerken</target>
+      </trans-unit>
+      <trans-unit id="CTMQCoG" resname="edit address">
+        <source>edit address</source>
+        <target>edit address</target>
       </trans-unit>
       <trans-unit id="XuLVeNy" resname="edit block">
         <source>edit block</source>
@@ -169,6 +221,10 @@
         <source>house number</source>
         <target>huisnummer</target>
       </trans-unit>
+      <trans-unit id="nIApH7u" resname="housingstock">
+        <source>housingstock</source>
+        <target>housingstock</target>
+      </trans-unit>
       <trans-unit id="fCcfNGP" resname="housingstocks">
         <source>housingstocks</source>
         <target>woningvoorraden</target>
@@ -176,6 +232,10 @@
       <trans-unit id="pWFFJwz" resname="id">
         <source>id</source>
         <target>id</target>
+      </trans-unit>
+      <trans-unit id="I0ZgZ.Y" resname="ids">
+        <source>ids</source>
+        <target>ids</target>
       </trans-unit>
       <trans-unit id="G9o1H6b" resname="kvk">
         <source>kvk</source>
@@ -196,6 +256,10 @@
       <trans-unit id="vYc_8ft" resname="latest creation">
         <source>latest creation</source>
         <target>laatste aangemaakt</target>
+      </trans-unit>
+      <trans-unit id="5urqGOi" resname="location">
+        <source>location</source>
+        <target>location</target>
       </trans-unit>
       <trans-unit id="QoghNQ6" resname="login">
         <source>login</source>
@@ -229,6 +293,10 @@
         <source>name</source>
         <target>naam</target>
       </trans-unit>
+      <trans-unit id="0iG8BEL" resname="neighbourhood">
+        <source>neighbourhood</source>
+        <target>neighbourhood</target>
+      </trans-unit>
       <trans-unit id="Uh38EEQ" resname="neighbourhoods">
         <source>neighbourhoods</source>
         <target>wijken</target>
@@ -236,6 +304,10 @@
       <trans-unit id="EVB6Di9" resname="new">
         <source>new</source>
         <target>nieuw</target>
+      </trans-unit>
+      <trans-unit id="nOqFg8E" resname="new address">
+        <source>new address</source>
+        <target>new address</target>
       </trans-unit>
       <trans-unit id="gNiYbm7" resname="new block">
         <source>new block</source>
@@ -269,6 +341,14 @@
         <source>no</source>
         <target>nee</target>
       </trans-unit>
+      <trans-unit id="3DZeedQ" resname="north">
+        <source>north</source>
+        <target>north</target>
+      </trans-unit>
+      <trans-unit id="qP_4w0f" resname="orientation façade">
+        <source>orientation façade</source>
+        <target>orientation façade</target>
+      </trans-unit>
       <trans-unit id="TBApaX7" resname="owner">
         <source>owner</source>
         <target>owner</target>
@@ -288,6 +368,14 @@
       <trans-unit id="VcZND81" resname="photo">
         <source>photo</source>
         <target>foto</target>
+      </trans-unit>
+      <trans-unit id="gd9jWAz" resname="place">
+        <source>place</source>
+        <target>place</target>
+      </trans-unit>
+      <trans-unit id="j3IykVF" resname="public space">
+        <source>public space</source>
+        <target>public space</target>
       </trans-unit>
       <trans-unit id="MToHP98" resname="public spaces">
         <source>public spaces</source>
@@ -325,6 +413,14 @@
         <source>search</source>
         <target>zoek</target>
       </trans-unit>
+      <trans-unit id="LaqNSgX" resname="south">
+        <source>south</source>
+        <target>south</target>
+      </trans-unit>
+      <trans-unit id="SdSEMWO" resname="statistics">
+        <source>statistics</source>
+        <target>statistics</target>
+      </trans-unit>
       <trans-unit id="BzwWNMS" resname="status">
         <source>status</source>
         <target>status</target>
@@ -345,6 +441,10 @@
         <source>surface</source>
         <target>oppervlakte</target>
       </trans-unit>
+      <trans-unit id="u8XmYeE" resname="system">
+        <source>system</source>
+        <target>system</target>
+      </trans-unit>
       <trans-unit id="n4bQgYh" resname="test">
         <source>test</source>
         <target>test</target>
@@ -352,6 +452,10 @@
       <trans-unit id="7NdGGLV" resname="test page">
         <source>test page</source>
         <target>test pagina</target>
+      </trans-unit>
+      <trans-unit id="lNGSs6M" resname="timeline">
+        <source>timeline</source>
+        <target>timeline</target>
       </trans-unit>
       <trans-unit id="EwPAaws" resname="type">
         <source>type</source>
@@ -376,6 +480,10 @@
       <trans-unit id="dHqPOYO" resname="website">
         <source>website</source>
         <target>website</target>
+      </trans-unit>
+      <trans-unit id="dqeWIIt" resname="west">
+        <source>west</source>
+        <target>west</target>
       </trans-unit>
       <trans-unit id="TLTqJVg" resname="year">
         <source>year</source>
