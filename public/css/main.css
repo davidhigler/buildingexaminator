@@ -57,6 +57,7 @@ div.container {
 }
 
 /* Extra css for the select2 library */
+
 #activeHousingstockSelector {
     height: 82px;
     line-height: 82px;
@@ -218,7 +219,7 @@ div#logo-letter {
     line-height: 82px;
     font-size: 32px;
     font-weight: bolder;
-    padding-left:  21px;
+    padding-left: 21px;
 }
 
 i.material-icons.ddd {
@@ -249,7 +250,7 @@ nav {
 }
 
 nav a.sidenav-trigger {
-    padding-left:  21px;
+    padding-left: 21px;
 }
 
 nav a.sidenav-trigger i {
@@ -348,7 +349,6 @@ h3 {
     padding: 0 0.75rem;
 }
 
-.card,
 .card .card-content {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -362,8 +362,11 @@ h3 {
     border-radius: 4px;
 }
 
-.card .card-content p {
-    padding: 0px 10px;
+.collapsible.popout > li,
+.collapsible.popout > li.active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 0px;
 }
 
 span.badge {
@@ -387,7 +390,7 @@ z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-f
 .z-depth-1-half, .btn:hover, .btn-large:hover, .btn-small:hover, .btn-floating:hover {
     background-color: #5466c8;
     -webkit-box-shadow: none;
-    ox-shadow: none;
+    box-shadow: none;
 }
 
 .pagination li a {
@@ -438,7 +441,7 @@ input.valid[type=search]:not(.browser-default),
 input.valid[type=search]:not(.browser-default):focus,
 textarea.materialize-textarea.valid,
 textarea.materialize-textarea.valid:focus,
-.select-wrapper.valid>input.select-dropdown {
+.select-wrapper.valid > input.select-dropdown {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
@@ -593,42 +596,38 @@ textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="
     border-radius: 4px;
 }
 
-input:not([type]):disabled+label,
-input:not([type])[readonly="readonly"]+label,
-input[type=text]:not(.browser-default):disabled+label,
-input[type=text]:not(.browser-default)[readonly="readonly"]+label,
-input[type=password]:not(.browser-default):disabled+label,
-input[type=password]:not(.browser-default)[readonly="readonly"]+label,
-input[type=email]:not(.browser-default):disabled+label,
-input[type=email]:not(.browser-default)[readonly="readonly"]+label,
-input[type=url]:not(.browser-default):disabled+label,
-input[type=url]:not(.browser-default)[readonly="readonly"]+label,
-input[type=time]:not(.browser-default):disabled+label,
-input[type=time]:not(.browser-default)[readonly="readonly"]+label,
-input[type=date]:not(.browser-default):disabled+label,
-input[type=date]:not(.browser-default)[readonly="readonly"]+label,
-input[type=datetime]:not(.browser-default):disabled+label,
-input[type=datetime]:not(.browser-default)[readonly="readonly"]+label,
-input[type=datetime-local]:not(.browser-default):disabled+label,
-input[type=datetime-local]:not(.browser-default)[readonly="readonly"]+label,
-input[type=tel]:not(.browser-default):disabled+label,
-input[type=tel]:not(.browser-default)[readonly="readonly"]+label,
-input[type=number]:not(.browser-default):disabled+label,
-input[type=number]:not(.browser-default)[readonly="readonly"]+label,
-input[type=search]:not(.browser-default):disabled+label,
-input[type=search]:not(.browser-default)[readonly="readonly"]+label,
-textarea.materialize-textarea:disabled+label,
-textarea.materialize-textarea[readonly="readonly"]+label {
+input:not([type]):disabled + label,
+input:not([type])[readonly="readonly"] + label,
+input[type=text]:not(.browser-default):disabled + label,
+input[type=text]:not(.browser-default)[readonly="readonly"] + label,
+input[type=password]:not(.browser-default):disabled + label,
+input[type=password]:not(.browser-default)[readonly="readonly"] + label,
+input[type=email]:not(.browser-default):disabled + label,
+input[type=email]:not(.browser-default)[readonly="readonly"] + label,
+input[type=url]:not(.browser-default):disabled + label,
+input[type=url]:not(.browser-default)[readonly="readonly"] + label,
+input[type=time]:not(.browser-default):disabled + label,
+input[type=time]:not(.browser-default)[readonly="readonly"] + label,
+input[type=date]:not(.browser-default):disabled + label,
+input[type=date]:not(.browser-default)[readonly="readonly"] + label,
+input[type=datetime]:not(.browser-default):disabled + label,
+input[type=datetime]:not(.browser-default)[readonly="readonly"] + label,
+input[type=datetime-local]:not(.browser-default):disabled + label,
+input[type=datetime-local]:not(.browser-default)[readonly="readonly"] + label,
+input[type=tel]:not(.browser-default):disabled + label,
+input[type=tel]:not(.browser-default)[readonly="readonly"] + label,
+input[type=number]:not(.browser-default):disabled + label,
+input[type=number]:not(.browser-default)[readonly="readonly"] + label,
+input[type=search]:not(.browser-default):disabled + label,
+input[type=search]:not(.browser-default)[readonly="readonly"] + label,
+textarea.materialize-textarea:disabled + label,
+textarea.materialize-textarea[readonly="readonly"] + label {
     border: 0px;
     background-color: #a0aae1;
     border-radius: 4px;
 }
 
 /* Default extra css */
-
-div#content > h3 {
-    padding-bottom: 20px;
-}
 
 div#content table th:nth-child(1),
 div#content table td:nth-child(1) {

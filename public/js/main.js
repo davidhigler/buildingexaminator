@@ -50,6 +50,7 @@ function loadTemplates() {
     Twig.twig({id: 'addressesHeader', method: 'ajax', async: false, href: '/views/others/overviews/addresses/header.twig' });
     Twig.twig({id: 'addressesRows', method: 'ajax', async: false, href: '/views/others/overviews/addresses/rows.twig' });
     Twig.twig({id: 'newAddresss', method: 'ajax', async: false, href: '/views/pages/address/new.twig' });
+    Twig.twig({id: 'detailsAddresss', method: 'ajax', async: false, href: '/views/pages/address/details.twig' });
 
     Twig.twig({id: 'ownersHeader', method: 'ajax', async: false, href: '/views/others/overviews/owners/header.twig' });
     Twig.twig({id: 'ownersRows', method: 'ajax', async: false, href: '/views/others/overviews/owners/rows.twig' });
@@ -1316,183 +1317,14 @@ function loadAddressDetailPage(id) {
             success: function(data) {
                 let addressdata = data.data;
                 buildingIdentification = addressdata.building.identification;
-                let html = '        <div class="row">\n' +
-                    '            <div class="col s12">\n' +
-                    '                <div class="card blue-grey darken-1">\n' +
-                    '                    <div class="card-content white-text">\n' +
-                    '                        <span class="card-title">Address</span>\n' +
-                    '                        <p>\n' +
-                    '                            ' + addressdata.publicSpace.name + ' ' + addressdata.houseNumber + (addressdata.addition ? ' ' + addressdata.addition : '') + '<br />\n' +
-                    '                            ' + addressdata.zipcode + ' ' + addressdata.city.name + '\n' +
-                    '                        </p>\n' +
-                    '                    </div>\n' +
-                    '                </div>\n' +
-                    '                <ul class="collapsible popout">\n' +
-                    '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">qr_code_2</i>Ids</div>\n' +
-                    '                        <div class="collapsible-body">\n' +
-                    '                            <span>\n' +
-                    '                                <table>\n' +
-                    '                                    <thead>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <th>System</th>\n' +
-                    '                                            <th>Id</th>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </thead>\n' +
-                    '                                    <tbody>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Building examinator</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.id + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Rental unit number</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + (addressdata.rentalUnitNumber ?? '') + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Bag address</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + (addressdata.identification ?? '') + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Bag public space</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + (addressdata.publicSpace.identification?? '') + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Bag building</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + (addressdata.building.identification?? '') + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Bag residence</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + (addressdata.residence.identification?? '') + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </tbody>\n' +
-                    '                                </table>\n' +
-                    '                            </span>\n' +
-                    '                        </div>\n' +
-                    '                    </li>\n' +
-                    '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">location_groundplan</i>Location</div>\n' +
-                    '                        <div class="collapsible-body">\n' +
-                    '                            <span>\n' +
-                    '                                <table>\n' +
-                    '                                    <thead>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <th>Place</th>\n' +
-                    '                                            <th>Data</th>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </thead>\n' +
-                    '                                    <tbody>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Housingstock</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.housingStock.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Municipality</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.municipality.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Residential area</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.residentialArea.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Neighbourhood</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.neighbourhood.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">City</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.city.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Public space</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.publicSpace.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Block</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.block.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </tbody>\n' +
-                    '                                </table>\n' +
-                    '                                <br />\n' +
-                    '                                <br />\n' +
-                    '                                <div id="viewDiv"></div>\n' +
-                    '                            </span>\n' +
-                    '                        </div>\n' +
-                    '                    </li>\n' +
-                    '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">category</i>Type</div>\n' +
-                    '                        <div class="collapsible-body">\n' +
-                    '                            <span>\n' +
-                    '                                <table>\n' +
-                    '                                    <thead>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <th>Type</th>\n' +
-                    '                                            <th>Data</th>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </thead>\n' +
-                    '                                    <tbody>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Building type</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.buildingType.name + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                        <tr>\n' +
-                    '                                            <td style="vertical-align: top;">Vtw</td>\n' +
-                    '                                            <td>\n' +
-                    '                                                ' + addressdata.vtw.code + '<br />\n' +
-                    '                                                ' + addressdata.vtw.typeDescription + '<br />\n' +
-                    '                                                ' + addressdata.vtw.roofTypeDescription + '\n' +
-                    '                                            </td>\n' +
-                    '                                        </tr>\n' +
-                    '                                    </tbody>\n' +
-                    '                                </table>\n' +
-                    '                            </span>\n' +
-                    '                        </div>\n' +
-                    '                    </li>\n' +
-                    '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">access_time</i>Timeline</div>\n' +
-                    '                        <div class="collapsible-body">\n' +
-                    '                            <span>\n' +
-                    '                            </span>\n' +
-                    '                        </div>\n' +
-                    '                    </li>\n' +
-                    '                    <li>\n' +
-                    '                        <div class="collapsible-header"><i class="material-icons">calculate</i>Statistics</div>\n' +
-                    '                        <div class="collapsible-body">\n' +
-                    '                            <span>\n' +
-                    '                            </span>\n' +
-                    '                        </div>\n' +
-                    '                    </li>\n' +
-                    '                </ul>\n' +
-                    '            </div>\n' +
-                    '        </div>\n';
 
-                $('div#content').html(html);
+                $('div#content').html(
+                    Twig.twig(
+                        {ref: 'detailsAddresss'}
+                    ).render(
+                        {'addressdata': addressdata}
+                    )
+                );
 
                 $('div#content div#viewDiv').height(500);
 

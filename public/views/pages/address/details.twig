@@ -1,0 +1,167 @@
+    <h3 class="header">{{ 'address'|trans()|capitalize }}</h3>
+    <div class="row">
+        <div class="col s6">
+            <p>
+                {{ addressdata.publicSpace.name }} {{ addressdata.houseNumber }}{% if addressdata.addition %} {{ addressdata.addition }}{% endif %}<br />
+                {{ addressdata.zipcode }} {{ addressdata.city.name }}
+            </p>
+        </div>
+        <div class="col s6">
+            <button class="btn right" name="back">
+                <i class="material-icons left">chevron_left</i><span class="button-content hide-on-small-only">{{ 'back'|trans()|capitalize }}</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <ul class="collapsible popout">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">qr_code_2</i>
+                        {{ 'ids'|trans()|capitalize }}
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'system'|trans()|capitalize }}</th>
+                                        <th>{{ 'id'|trans()|capitalize }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'building examinator'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'rental unit number'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.rentalUnitNumber|default('')}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'bag address'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.identification|default('')}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'bag public space'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.publicSpace.identification|default('')}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'bag building'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.building.identification|default('')}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'bag residence'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.residence.identification|default('')}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">location_groundplan</i>
+                        {{ 'location'|trans()|capitalize }}
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'place'|trans()|capitalize }}</th>
+                                        <th>{{ 'data'|trans()|capitalize }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'housingstock'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.housingStock.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'municipality'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.municipality.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'residential area'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.residentialArea.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'neighbourhood'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.neighbourhood.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'city'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.city.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'public space'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.publicSpace.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'block'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.block.name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <br />
+                            <div id="viewDiv"></div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">category</i>
+                        {{ 'type'|trans()|capitalize }}
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'type'|trans()|capitalize }}</th>
+                                        <th>{{ 'data'|trans()|capitalize }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'building type'|trans()|capitalize }}</td>
+                                        <td>{{ addressdata.buildingType.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align: top;">{{ 'VTW'|trans()|capitalize }}</td>
+                                        <td>
+                                            {{ addressdata.vtw.code }}<br />
+                                            {{ addressdata.vtw.typeDescription }}<br />
+                                            {{ addressdata.vtw.roofTypeDescription }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">access_time</i>
+                        {{ 'timeline'|trans()|capitalize }}
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">calculate</i>
+                        {{ 'statistics'|trans()|capitalize }}
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
