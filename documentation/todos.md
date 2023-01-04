@@ -53,13 +53,19 @@
   * The real private owner does not have access to the application but legaly still owner of the data
   * After the legal term to archive the data is done (after 10 year) the data is deleted
 
+## Bugs
+* ++++ Working version to show on laptop
+  * Addressen overview crashes on production (uses too much memory)
+  * Install a working local version on laptop 
+* ++++ Arcgis is not working at the moment
+
 ## Styling
 * Zoeken op eind en begin van identificerende nummers
 * Gebruiker aanpassen zou wachtwoord niet verplicht moeten zijn
 * Bij een foutmelding moet er een terug knopje zijn
 * Zoekbalk en titel moeten op de pagina zichtbaar blijven scroll alleen de tabel
 * Zoekopdracht ook higlighten in het overzicht
-* Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
-* Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)
+* ++++ Aantal regels kunnen kiezen tussen, 10, 25, 50, 100
+* ++++ Logo's van Jhonny na die van Dobro (Dobro, Owner, Contractor, Subcontractor)
 
 
