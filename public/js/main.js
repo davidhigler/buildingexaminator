@@ -263,69 +263,69 @@ function loadTestPage() {
 
     $('div#content div#viewDiv').height(700);
 
-    config.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-
-    const bagPandenLayerLabel = new LabelClass({
-        labelExpressionInfo: { expression: "$feature.objectid" },
-        allowOverrun: true,
-        deconflictionStrategy: "none",
-        minScale: 2500,
-        symbol: {
-            type: "text",
-            color: "black",
-            font: {
-                family: "Ubuntu Mono",
-                size: 6
-            }
-        }
-    });
-
-    const bagPandenLayer = new FeatureLayer({
-        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-        definitionExpression:
-            "identificatie IN (" +
-                "'0193100000017808', " +
-                "'0193100000004644', " +
-                "'0193100000058461', " +
-                "'0193100000058462', " +
-                "'0193100000018103', " +
-                "'0193100000018102', " +
-                "'0193100000018100', " +
-                "'0193100000018075', " +
-                "'0193100000018074', " +
-                "'0193100000018073', " +
-                "'0193100000018072', " +
-                "'0193100000018071', " +
-                "'0193100000018070'" +
-            ")",
-        minScale: 25000,
-        outFields: ['objectid'],
-        labelingInfo: bagPandenLayerLabel
-    });
-
-    const map = new Map({
-        basemap: "osm-light-gray",
-        layers: [
-            bagPandenLayer
-        ]
-    });
-
-    const view = new MapView({
-        map: map,
-        center: [6.0909033, 52.5129319],
-        zoom: 17,
-        container: "viewDiv",
-        constraints: {
-            snapToZoom: false
-        }
-    });
-
-    bagPandenLayer.when(() => {
-        return bagPandenLayer.queryExtent();
-    })
-    .then((response) => {
-        view.goTo(response.extent);
-    });
+    // config.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+    //
+    // const bagPandenLayerLabel = new LabelClass({
+    //     labelExpressionInfo: { expression: "$feature.objectid" },
+    //     allowOverrun: true,
+    //     deconflictionStrategy: "none",
+    //     minScale: 2500,
+    //     symbol: {
+    //         type: "text",
+    //         color: "black",
+    //         font: {
+    //             family: "Ubuntu Mono",
+    //             size: 6
+    //         }
+    //     }
+    // });
+    //
+    // const bagPandenLayer = new FeatureLayer({
+    //     url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+    //     definitionExpression:
+    //         "identificatie IN (" +
+    //             "'0193100000017808', " +
+    //             "'0193100000004644', " +
+    //             "'0193100000058461', " +
+    //             "'0193100000058462', " +
+    //             "'0193100000018103', " +
+    //             "'0193100000018102', " +
+    //             "'0193100000018100', " +
+    //             "'0193100000018075', " +
+    //             "'0193100000018074', " +
+    //             "'0193100000018073', " +
+    //             "'0193100000018072', " +
+    //             "'0193100000018071', " +
+    //             "'0193100000018070'" +
+    //         ")",
+    //     minScale: 25000,
+    //     outFields: ['objectid'],
+    //     labelingInfo: bagPandenLayerLabel
+    // });
+    //
+    // const map = new Map({
+    //     basemap: "osm-light-gray",
+    //     layers: [
+    //         bagPandenLayer
+    //     ]
+    // });
+    //
+    // const view = new MapView({
+    //     map: map,
+    //     center: [6.0909033, 52.5129319],
+    //     zoom: 17,
+    //     container: "viewDiv",
+    //     constraints: {
+    //         snapToZoom: false
+    //     }
+    // });
+    //
+    // bagPandenLayer.when(() => {
+    //     return bagPandenLayer.queryExtent();
+    // })
+    // .then((response) => {
+    //     view.goTo(response.extent);
+    // });
 
     $('input#photoUpload').change(
         function(event) {
@@ -1329,58 +1329,58 @@ function loadAddressDetailPage(id) {
 
                 $('div#content div#viewDiv').height(500);
 
-                require([
-                    "esri/config",
-                    "esri/Map",
-                    "esri/views/MapView",
-                    "esri/layers/FeatureLayer",
-                    "esri/layers/support/LabelClass"
-                ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
-                    esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
-                    const bagPandenLayerLabel = new LabelClass({
-                        labelExpressionInfo: { expression: "$feature.objectid" },
-                        allowOverrun: true,
-                        deconflictionStrategy: "none",
-                        minScale: 2500,
-                        symbol: {
-                            type: "text",
-                            color: "black",
-                            font: {
-                                family: "Ubuntu Mono",
-                                size: 6
-                            }
-                        }
-                    });
-                    const bagPandenLayer = new FeatureLayer({
-                        url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
-                        definitionExpression:
-                            "identificatie IN (" +buildingIdentification + ")",
-                        minScale: 25000,
-                        outFields: ['objectid'],
-                        labelingInfo: bagPandenLayerLabel
-                    });
-                    const map = new Map({
-                        basemap: "osm-light-gray",
-                        layers: [
-                            bagPandenLayer
-                        ]
-                    });
-                    const view = new MapView({
-                        map: map,
-                        center: [6.0909033, 52.5129319],
-                        zoom: 17,
-                        container: "viewDiv",
-                        constraints: {
-                            snapToZoom: false
-                        }
-                    });
-                    bagPandenLayer.when(() => {
-                        return bagPandenLayer.queryExtent();
-                    })
-                    .then((response) => {
-                        view.goTo(response.extent);
-                    });
-                });
+                // require([
+                //     "esri/config",
+                //     "esri/Map",
+                //     "esri/views/MapView",
+                //     "esri/layers/FeatureLayer",
+                //     "esri/layers/support/LabelClass"
+                // ], function (esriConfig, Map, MapView, FeatureLayer, LabelClass) {
+                //     esriConfig.apiKey = "AAPK21dd9c351d74488a99225c91443945e8TwS-RdfcjDLG311EoDWT-PdkzjXfwNkr4Q5JMgS0stdN7VwIr8pLamQMhjjALefM";
+                //     const bagPandenLayerLabel = new LabelClass({
+                //         labelExpressionInfo: { expression: "$feature.objectid" },
+                //         allowOverrun: true,
+                //         deconflictionStrategy: "none",
+                //         minScale: 2500,
+                //         symbol: {
+                //             type: "text",
+                //             color: "black",
+                //             font: {
+                //                 family: "Ubuntu Mono",
+                //                 size: 6
+                //             }
+                //         }
+                //     });
+                //     const bagPandenLayer = new FeatureLayer({
+                //         url: "https://basisregistraties.arcgisonline.nl/arcgis/rest/services/BAG/BAGv3/FeatureServer/4",
+                //         definitionExpression:
+                //             "identificatie IN (" +buildingIdentification + ")",
+                //         minScale: 25000,
+                //         outFields: ['objectid'],
+                //         labelingInfo: bagPandenLayerLabel
+                //     });
+                //     const map = new Map({
+                //         basemap: "osm-light-gray",
+                //         layers: [
+                //             bagPandenLayer
+                //         ]
+                //     });
+                //     const view = new MapView({
+                //         map: map,
+                //         center: [6.0909033, 52.5129319],
+                //         zoom: 17,
+                //         container: "viewDiv",
+                //         constraints: {
+                //             snapToZoom: false
+                //         }
+                //     });
+                //     bagPandenLayer.when(() => {
+                //         return bagPandenLayer.queryExtent();
+                //     })
+                //     .then((response) => {
+                //         view.goTo(response.extent);
+                //     });
+                // });
 
                 $('div#content .collapsible').collapsible();
             },
