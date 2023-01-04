@@ -4,7 +4,7 @@
   * Create, edit, delete groups
     * On three levels
       * Owner
-      * Contractor
+      * Contractor (or Advisors with a certain property (beside the contractor under the owner))
       * SubContractor
   * Add users to groups
 * Planning projects
@@ -58,6 +58,7 @@
   * Addressen overview crashes on production (uses too much memory)
   * Install a working local version on laptop 
 * ++++ Arcgis is not working at the moment
+* Invalidate cache of templates and js at the browser side
 
 ## Styling
 * Zoeken op eind en begin van identificerende nummers
