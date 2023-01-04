@@ -359,7 +359,7 @@
       </trans-unit>
       <trans-unit id="GBXm5ka" resname="page %current% of %total%">
         <source>page %current% of %total%</source>
-        <target state="translated">pagina %current% of %total%</target>
+        <target state="translated">pagina %current% van %total%</target>
       </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
