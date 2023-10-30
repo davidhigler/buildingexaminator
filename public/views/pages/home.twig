@@ -1,21 +1,373 @@
-        <div class="row">
-            <h3 class="header">{{ 'Building Examinator'|trans()|capitalize }}</h3>
-            <div class="col s6">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ 'housingstocks'|trans()|capitalize }}</span>
-                        <p><span class="badge">{{ HousingStocks.Count }}</span>{{ 'count'|trans()|capitalize }}</p>
-                        <p><span class="badge">{{ HousingStocks.LatestCreate  }}</span>{{ 'latest creation'|trans()|capitalize }}</p>
-                        <p><span class="badge">{{ HousingStocks.LatestChange  }}</span>{{ 'latest change'|trans()|capitalize }}</p>
+        <div class="dashboard">
+            <div class="row">
+                <h3 class="header">Building examinator</h3>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'contracts'|trans()|capitalize }}</span>
+                            <div class="card-widget">
+                                <div class="collection">
+                                    <a href="#!" class="collection-item"><span class="badge green">83</span>{{ 'active'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge grey">39</span>{{ 'archived'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge red">2</span>{{ 'expired'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge red lighten-3">4</span>{{ 'almost expired'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge red darken-3" data-badge-caption="%">7.2</span>{{ 'needs attention'|trans()|capitalize }}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s6">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ 'addresses'|trans()|capitalize }}</span>
-                        <p><span class="badge">{{ Addresses.Count  }}</span>{{ 'count'|trans()|capitalize }}</p>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'statistics'|trans()|capitalize }}</span>
+                            <div class="card-widget">
+                                <div class="collection">
+                                    <a href="#!" class="collection-item"><span class="badge blue-grey">1358</span>{{ 'total buildings'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge blue-grey">248</span>{{ 'buildings in projects'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge blue-grey">632</span>{{ 'building types'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge blue-grey">43</span>{{ 'blocks'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge blue-grey">5</span>{{ 'contractors'|trans|capitalize }}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'projects'|trans()|capitalize }}</span>
+                            <div class="card-widget">
+                                <div class="collection">
+                                    <a href="#!" class="collection-item"><span class="badge green">16</span>{{ 'active'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge red">3</span>{{ 'overdue'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge lime" data-badge-caption="%">32</span>{{ '% planned'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge lime" data-badge-caption="%">16</span>{{ '% in progress'|trans()|capitalize }}</a>
+                                    <a href="#!" class="collection-item"><span class="badge lime" data-badge-caption="%">52</span>{{ '% done'|trans()|capitalize }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'project'|trans()|capitalize }} PGU-6748</span>
+                            <div class="card-widget">
+                                <canvas id="project_pgu_6748"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'project'|trans()|capitalize }} ABC-5162</span>
+                            <div class="card-widget">
+                                <canvas id="project_abc_5162"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'project'|trans()|capitalize }} UIF-0367</span>
+                            <div class="card-widget">
+                                <canvas id="project_uif_0367"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'project'|trans()|capitalize }} DFF-4392</span>
+                            <div class="card-widget">
+                                <canvas id="project_dff_4392"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'project'|trans()|capitalize }} VSR-0046</span>
+                            <div class="card-widget">
+                                <canvas id="project_vsr_0046"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'example'|trans()|capitalize }} A</span>
+                            <div class="card-widget">
+                                <canvas id="example_a"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Test</span>
+                            <p class="card-widget">
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Nam velit erat, imperdiet vitae tempor vitae, euismod sodales lorem. Morbi lobortis augue at aliquet maximus.
+                                Ut sed leo non ipsum luctus luctus ut vel enim. Donec id sem sit amet eros faucibus congue.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Test</span>
+                            <p class="card-widget">
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Nam velit erat, imperdiet vitae tempor vitae, euismod sodales lorem. Morbi lobortis augue at aliquet maximus.
+                                Ut sed leo non ipsum luctus luctus ut vel enim. Donec id sem sit amet eros faucibus congue.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Test</span>
+                            <p class="card-widget">
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Nam velit erat, imperdiet vitae tempor vitae, euismod sodales lorem. Morbi lobortis augue at aliquet maximus.
+                                Ut sed leo non ipsum luctus luctus ut vel enim. Donec id sem sit amet eros faucibus congue.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Test</span>
+                            <p class="card-widget">
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Nam velit erat, imperdiet vitae tempor vitae, euismod sodales lorem. Morbi lobortis augue at aliquet maximus.
+                                Ut sed leo non ipsum luctus luctus ut vel enim. Donec id sem sit amet eros faucibus congue.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Test</span>
+                            <p class="card-widget">
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Nam velit erat, imperdiet vitae tempor vitae, euismod sodales lorem. Morbi lobortis augue at aliquet maximus.
+                                Ut sed leo non ipsum luctus luctus ut vel enim. Donec id sem sit amet eros faucibus congue.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                                Proin non massa ac enim aliquet pretium. Nulla pharetra enim consequat quam tincidunt, ut faucibus eros lacinia.
+                                Integer ornare metus ut sapien interdum maximus. Sed eget enim nibh. Etiam nec feugiat augue, malesuada eleifend dui.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                -->
             </div>
         </div>
+        <script>
+
+            Chart.defaults.color = '#051a89';
+            Chart.defaults.font.size = 14;
+            Chart.defaults.font.family = 'sans-serif';
+
+            const project_pgu_6748 = document.getElementById('project_pgu_6748')
+
+            new Chart(project_pgu_6748, {
+                type: 'pie',
+                data: {
+                    labels: ['{{ 'in progress'|trans()|capitalize }}', '{{ 'done'|trans()|capitalize }}'],
+                    datasets: [{
+                        data: [5, 95],
+                        backgroundColor: [
+                            '#5466c8',
+                            '#4CAF50'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'                        },
+                        title: {
+                            display: true,
+                            text: '{{ 'tasks'|trans()|capitalize }}'
+                        }
+                    }
+                },
+            })
+
+            const project_abc_5162 = document.getElementById('project_abc_5162')
+
+            new Chart(project_abc_5162, {
+                type: 'pie',
+                data: {
+                    labels: ['{{ 'planned'|trans()|capitalize }}', '{{ 'in progress'|trans()|capitalize }}', '{{ 'done'|trans()|capitalize }}'],
+                    datasets: [{
+                        data: [6, 24, 70],
+                        backgroundColor: [
+                            '#a0aae1',
+                            '#5466c8',
+                            '#4CAF50'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'                        },
+                        title: {
+                            display: true,
+                            text: '{{ 'tasks'|trans()|capitalize }}'
+                        }
+                    }
+                },
+            })
+
+            const project_uif_0367 = document.getElementById('project_uif_0367')
+
+            new Chart(project_uif_0367, {
+                type: 'pie',
+                data: {
+                    labels: ['{{ 'planned'|trans()|capitalize }}', '{{ 'in progress'|trans()|capitalize }}', '{{ 'done'|trans()|capitalize }}'],
+                    datasets: [{
+                        data: [36, 16, 48],
+                        backgroundColor: [
+                            '#a0aae1',
+                            '#5466c8',
+                            '#4CAF50'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'                        },
+                        title: {
+                            display: true,
+                            text: '{{ 'tasks'|trans()|capitalize }}'
+                        }
+                    }
+                },
+            })
+
+            const project_dff_4392 = document.getElementById('project_dff_4392')
+
+            new Chart(project_dff_4392, {
+                type: 'pie',
+                data: {
+                    labels: ['{{ 'planned'|trans()|capitalize }}', '{{ 'in progress'|trans()|capitalize }}', '{{ 'done'|trans()|capitalize }}'],
+                    datasets: [{
+                        data: [65, 7, 28],
+                        backgroundColor: [
+                            '#a0aae1',
+                            '#5466c8',
+                            '#4CAF50'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'                        },
+                        title: {
+                            display: true,
+                            text: '{{ 'tasks'|trans()|capitalize }}'
+                        }
+                    }
+                },
+            })
+
+            const project_vsr_0046 = document.getElementById('project_vsr_0046')
+
+            new Chart(project_vsr_0046, {
+                type: 'pie',
+                data: {
+                    labels: ['{{ 'planned'|trans()|capitalize }}', '{{ 'in progress'|trans()|capitalize }}', '{{ 'done'|trans()|capitalize }}'],
+                    datasets: [{
+                        data: [92, 2, 6],
+                        backgroundColor: [
+                            '#a0aae1',
+                            '#5466c8',
+                            '#4CAF50'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'                        },
+                        title: {
+                            display: true,
+                            text: '{{ 'tasks'|trans()|capitalize }}'
+                        }
+                    }
+                },
+            })
+
+            const exampleA = document.getElementById('example_a')
+
+            new Chart(exampleA, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+        </script>
