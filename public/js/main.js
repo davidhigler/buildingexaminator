@@ -1500,6 +1500,18 @@ function deleteAddress(id) {
 }
 
 /**
+ * Projects
+ */
+
+function loadProjectsPage(id) {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Projects');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/**
  * Owners
  */
 

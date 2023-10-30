@@ -16,6 +16,20 @@ It provides management of a complete housing portfolio and recording / administr
 ## Configuration
 
 ### MySql
+After MariaDB install
+```shell
+su
+mysql -u root -p
+```
+```sql
+GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY 'root';
+```
+```sql
+CREATE USER IF NOT EXISTS buildingexaminator@localhost IDENTIFIED BY 'buildingexaminator';
+GRANT ALL PRIVILEGES ON buildingexaminator.* TO 'buildingexaminator'@'localhost' IDENTIFIED BY 'buildingexaminator';
+FLUSH PRIVILEGES;
+CREATE DATABASE buildingexaminator;
+```
 For the config of the MySql server look in the .env file in the root of the project
 ```shell
 DATABASE_URL="mysql://<username>:<password>@<host>:<port>/<database>?serverVersion=8.0"

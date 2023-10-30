@@ -1,3 +1,33 @@
+
+/*
+Materialize colors
+
+#e51c23 materialize-red
+#F44336 red
+#e91e63 pink
+#9c27b0 purple
+#673ab7 deep-purple
+#3f51b5 indigo
+#2196F3 blue
+#03a9f4 light-blue
+#00bcd4 cyan
+#009688 teal
+#4CAF50 green
+#8bc34a light-green
+#cddc39 lime
+#ffeb3b yellow
+#ffc107 amber
+#ff9800 orange
+#ff5722 deep-orange
+#795548 brown
+#607d8b blue-grey
+#9e9e9e grey
+#000000 black
+#FFFFFF white
+        transparent
+
+*/
+
 /* Custom icon font based on https://fonts.google.com/icons */
 
 @font-face {
@@ -759,4 +789,45 @@ div.esri-attribution__powered-by {
 
 div#viewDiv {
     border: solid 1px black;
+}
+
+div.dashboard div.card > div.card-content > div.card-title {
+    white-space: nowrap;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget {
+    height: 200px;
+    width: 300px;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget > canvas {
+    margin: auto;
+}
+
+div.dashboard div.card > div.card-content > p.card-widget {
+    overflow-y: auto;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget > div.collection {
+    border: 0px;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item {
+    color: #051a89 !important;
+    border-bottom: 0px;
+    padding-top: 6px;
+    padding-bottom: 7px;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item:not(.active):hover {
+    background-color: #a0aae1;
+    color: #fff !important;
+}
+
+div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item > span.badge {
+    border-radius: 2px;
+    color: #fff;
+    text-align: center;
 }
