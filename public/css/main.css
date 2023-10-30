@@ -802,6 +802,13 @@ div.dashboard div.card > div.card-content > div.card-widget {
     white-space: nowrap;
 }
 
+div.dashboard div.card > div.card-content > div.card-widget-big {
+    height: 400px;
+    width: 600px;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
 div.dashboard div.card > div.card-content > div.card-widget > canvas {
     margin: auto;
 }
