@@ -5,18 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="0n5w8pS" resname="% done">
-        <source>% done</source>
-        <target>% done</target>
-      </trans-unit>
-      <trans-unit id="ZVCRDIr" resname="% in progress">
-        <source>% in progress</source>
-        <target>% in progress</target>
-      </trans-unit>
-      <trans-unit id="xoauIS." resname="% planned">
-        <source>% planned</source>
-        <target>% planned</target>
-      </trans-unit>
       <trans-unit id="X1ITszP" resname="By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.">
         <source>By filling in the zipcode, housenumber and addition the rest of the information about this new address will be fetched by appropiate external services.</source>
         <target>Door het invullen van postcode, huisnummer en toevoeging wordt de rest van de informatie over dit nieuwe adres opgehaald door geschikte externe diensten.</target>
@@ -35,7 +23,7 @@
       </trans-unit>
       <trans-unit id="loeWEWU" resname="active">
         <source>active</source>
-        <target state="translated">actief</target>
+        <target>actief</target>
       </trans-unit>
       <trans-unit id="d.kw5LG" resname="addition">
         <source>addition</source>
@@ -59,7 +47,7 @@
       </trans-unit>
       <trans-unit id="3Z6IEjD" resname="archived">
         <source>archived</source>
-        <target state="translated">gearchiveerd</target>
+        <target>gearchiveerd</target>
       </trans-unit>
       <trans-unit id="Tk0U7UC" resname="are you sure?">
         <source>are you sure?</source>
@@ -119,7 +107,7 @@
       </trans-unit>
       <trans-unit id="D04WIZ5" resname="buildings in projects">
         <source>buildings in projects</source>
-        <target>buildings in projects</target>
+        <target>eenheden in projecten</target>
       </trans-unit>
       <trans-unit id="I3TZF5S" resname="cancel">
         <source>cancel</source>
@@ -323,7 +311,7 @@
       </trans-unit>
       <trans-unit id="yiW69_v" resname="needs attention">
         <source>needs attention</source>
-        <target>needs attention</target>
+        <target>aandacht  vereist</target>
       </trans-unit>
       <trans-unit id="0iG8BEL" resname="neighbourhood">
         <source>neighbourhood</source>
@@ -383,7 +371,7 @@
       </trans-unit>
       <trans-unit id="cDje2yL" resname="overdue">
         <source>overdue</source>
-        <target state="translated">laat</target>
+        <target>laat</target>
       </trans-unit>
       <trans-unit id="TBApaX7" resname="owner">
         <source>owner</source>
@@ -507,11 +495,11 @@
       </trans-unit>
       <trans-unit id="IXZV9I3" resname="to do">
         <source>to do</source>
-        <target state="translated">taken</target>
+        <target>taken</target>
       </trans-unit>
       <trans-unit id="YmS_OxS" resname="total buildings">
         <source>total buildings</source>
-        <target state="translated">totaal eenheden</target>
+        <target>totaal eenheden</target>
       </trans-unit>
       <trans-unit id="EwPAaws" resname="type">
         <source>type</source>
@@ -519,7 +507,7 @@
       </trans-unit>
       <trans-unit id="p8pjGz2" resname="under construction">
         <source>under construction</source>
-        <target state="translated">in aanbouw</target>
+        <target>in aanbouw</target>
       </trans-unit>
       <trans-unit id="o7FCr26" resname="use">
         <source>use</source>
