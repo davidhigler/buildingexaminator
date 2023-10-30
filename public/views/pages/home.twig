@@ -109,6 +109,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ 'example'|trans()|capitalize }} B</span>
+                            <div class="card-widget">
+                                <canvas id="example_b"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--
                 <div class="col s12 m6 l4">
                     <div class="card">
@@ -352,6 +362,30 @@
             const exampleA = document.getElementById('example_a')
 
             new Chart(exampleA, {
+                type: 'line',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [48, 119, 98, 115, 132, 167, 181, 185, 198, 211],
+                        fill: false,
+                        borderColor: '#051a89',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+
+            const exampleB = document.getElementById('example_b')
+
+            new Chart(exampleB, {
                 type: 'bar',
                 data: {
                     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
