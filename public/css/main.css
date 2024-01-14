@@ -803,8 +803,8 @@ div.dashboard div.card > div.card-content > div.card-widget {
 }
 
 div.dashboard div.card > div.card-content > div.card-widget-big {
-    height: 400px;
-    width: 600px;
+    height: 200px;
+    width: 623px;
     overflow-y: auto;
     white-space: nowrap;
 }
@@ -817,24 +817,39 @@ div.dashboard div.card > div.card-content > p.card-widget {
     overflow-y: auto;
 }
 
-div.dashboard div.card > div.card-content > div.card-widget > div.collection {
+div.dashboard div.card > div.card-content div.collection {
     border: 0px;
 }
 
-div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item {
+div.dashboard div.card > div.card-content div.collection > div.collection-header {
+    font-weight: bold;
+    font-size: 18px;
+    color: #051a89 !important;
+    border-bottom: 0px;
+    margin: 5px 10px
+}
+
+div.dashboard div.card > div.card-content div.collection > a.collection-item {
     color: #051a89 !important;
     border-bottom: 0px;
     padding-top: 6px;
     padding-bottom: 7px;
 }
 
-div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item:not(.active):hover {
+div.dashboard div.card > div.card-content div.collection > a.collection-item:not(.active):hover {
     background-color: #a0aae1;
     color: #fff !important;
 }
 
-div.dashboard div.card > div.card-content > div.card-widget > div.collection > a.collection-item > span.badge {
+div.dashboard div.card > div.card-content div.collection > a.collection-item > span.badge {
+    min-width: 5rem;
     border-radius: 2px;
     color: #fff;
     text-align: center;
+}
+
+@media only screen and (max-width: 707px) {
+    div.dashboard div.card > div.card-content > div.card-widget-big {
+        width: 300px;
+    }
 }
