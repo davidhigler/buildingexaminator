@@ -2,70 +2,52 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Dbal\EnumBuildingStatusType;
 use App\Entity\SuperClasses\IdBagIds;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioBuildings')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Building extends IdBagIds
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', nullable: false)]
     #[Assert\NotBlank(message: 'The construction year may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The construction year is not a valid {{ type }}')]
     #[Assert\Range(min: 1800, max: 2100)]
+    #[OA\Property]
     protected int $constructionYear;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'enumbuildingstatus', nullable: true)]
-    #[Assert\Choice(choices: App\Dbal\EnumBuildingStatusType::ALLOWED_VALUES, message: 'Choose a valid building status type.')]
+    #[Assert\Choice(choices: EnumBuildingStatusType::ALLOWED_VALUES, message: 'Choose a valid building status type.')]
+    #[OA\Property]
     private string $status;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The residence count number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The residence count is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
+    #[OA\Property]
     private int $residenceCount;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The surface area number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The surface area is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
+    #[OA\Property]
     private int $surfaceArea;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'building', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'building', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
     #[Pure]

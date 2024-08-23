@@ -6,20 +6,19 @@ use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator as CustomAssert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'AuthenticationUsers')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[OA\Schema]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]

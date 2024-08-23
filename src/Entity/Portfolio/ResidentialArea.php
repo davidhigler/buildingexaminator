@@ -3,7 +3,7 @@
 namespace App\Entity\Portfolio;
 
 use App\Entity\SuperClasses\IdCodeName;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,27 +12,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioResidentialAreas')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class ResidentialArea extends IdCodeName
 {
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'residentialArea', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'residentialArea', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Municipality")
-     */
     #[ORM\JoinColumn(name: 'municipality_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Municipality::class, inversedBy: 'residentialareas', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Municipality::class, fetch: 'EXTRA_LAZY', inversedBy: 'residentialareas')]
     #[Assert\NotBlank(message: 'A address must have a municipality')]
+    #[OA\Property(ref: '#/components/schemas/Municipality')]
     protected Municipality $municipality;
 
     #[Pure]

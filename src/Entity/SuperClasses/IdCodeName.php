@@ -2,7 +2,7 @@
 
 namespace App\Entity\SuperClasses;
 
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,26 +12,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\MappedSuperclass]
 class IdCodeName extends Id
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 32, nullable: false)]
     #[Assert\NotBlank(message: 'The code may not be empty')]
     #[Assert\Type(type: 'string', message: 'The code is not a valid {{ type }}')]
     #[Assert\Length(max: 32, maxMessage: 'The code can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $code;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The name may not be empty')]
     #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The name can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $name;
 
     public function getCode(): string

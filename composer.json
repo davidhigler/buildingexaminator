@@ -71,8 +71,7 @@
         "symfony/yaml": "6.4.*",
         "twig/extra-bundle": "*",
         "twig/twig": "*",
-        "willdurand/js-translation-bundle": "*",
-        "zircote/swagger-php": "*"
+        "willdurand/js-translation-bundle": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "*",
@@ -84,7 +83,8 @@
         "symfony/maker-bundle": "*",
         "symfony/phpunit-bridge": "*",
         "symfony/stopwatch": "6.4.*",
-        "symfony/web-profiler-bundle": "6.4.*"
+        "symfony/web-profiler-bundle": "6.4.*",
+        "zircote/swagger-php": "*"
     },
     "config": {
         "optimize-autoloader": true,

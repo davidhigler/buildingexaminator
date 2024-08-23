@@ -5,80 +5,57 @@ namespace App\Entity\Portfolio;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioVtws')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Vtw extends Id
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 32, nullable: false)]
     #[Assert\NotBlank(message: 'The code may not be empty')]
     #[Assert\Type(type: 'string', message: 'The code is not a valid {{ type }}')]
     #[Assert\Length(max: 32, maxMessage: 'The code can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $code;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The type description may not be empty')]
     #[Assert\Type(type: 'string', message: 'The type description is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The type description can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $typeDescription;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The building type description may not be empty')]
     #[Assert\Type(type: 'string', message: 'The building type description is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The building type description can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $buildingTypeDescription;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The construction year description may not be empty')]
     #[Assert\Type(type: 'string', message: 'The construction year description is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The construction year description can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $constructionYearDescription;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The roof type description may not be empty')]
     #[Assert\Type(type: 'string', message: 'The roof type description is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The roof type description can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $roofTypeDescription;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'vtw', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'vtw', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
     #[Pure]

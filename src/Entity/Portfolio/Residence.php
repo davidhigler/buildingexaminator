@@ -2,68 +2,50 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Dbal\EnumIntendedUseBasicType;
 use App\Entity\SuperClasses\IdBagIds;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioResidences')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Residence extends IdBagIds
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The surface area number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The surface area is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
+    #[OA\Property]
     private int $surfaceArea;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 80, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The status is not a valid {{ type }}')]
     #[Assert\Length(max: 80, maxMessage: 'The status can contain a maximum of %limit% characters')]
+    #[OA\Property]
     private string $status;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     #[Assert\Type(type: 'string', message: 'The intended use is not a valid {{ type }}')]
     #[Assert\Length(max: 255, maxMessage: 'The intended use can contain a maximum of %limit% characters')]
+    #[OA\Property]
     private string $intendedUse;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'enumintendedusebasic', nullable: true)]
-    #[Assert\Choice(choices: App\Dbal\EnumIntendedUseBasicType::ALLOWED_VALUES, message: 'Choose a valid intended use basic type.')]
+    #[Assert\Choice(choices: EnumIntendedUseBasicType::ALLOWED_VALUES, message: 'Choose a valid intended use basic type.')]
+    #[OA\Property]
     private string $intendedUseBasic;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'residence', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'residence', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
     #[Pure]

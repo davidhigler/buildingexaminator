@@ -8,30 +8,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Entity]
+#[OA\Schema]
 class ContractorUser extends User
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Contractor")
-     */
     #[ORM\JoinColumn(name: 'contractor_id', referencedColumnName: 'id')]
     #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'contractorUsers', fetch: 'EXTRA_LAZY')]
     #[Assert\NotBlank(message: 'A contractor user must have a contractor')]
+    #[OA\Property(ref: '#/components/schemas/Contractor')]
     protected Contractor $contractor;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/contractorGroups")
-     */
     #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\ContractorGroup::class, mappedBy: 'contractorUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/contractorGroups')]
     protected Collection $contractorGroups;
 
     #[Pure]

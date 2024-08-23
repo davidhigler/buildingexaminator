@@ -7,35 +7,28 @@ use App\Entity\SuperClasses\IdName;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'AuthorizationContractorGroups')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class ContractorGroup extends IdName
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Contractor")
-     */
     #[ORM\JoinColumn(name: 'contractor_id', referencedColumnName: 'id')]
     #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'contractorUsers', fetch: 'EXTRA_LAZY')]
     #[Assert\NotBlank(message: 'A contractor user must have a contractor')]
+    #[OA\Property(ref: '#/components/schemas/Contractor')]
     protected Contractor $contractor;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/contractorGroups")
-     */
     #[ORM\JoinTable(name: 'AuthorizationContractorGroupsUsers')]
     #[ORM\ManyToMany(targetEntity: \App\Entity\Authentication\ContractorUser::class, inversedBy: 'contractorGroups', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/contractorGroups')]
     protected Collection $contractorUsers;
 
     #[Pure]

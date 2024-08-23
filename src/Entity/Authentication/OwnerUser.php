@@ -8,30 +8,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Entity]
+#[OA\Schema]
 class OwnerUser extends User
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Owner")
-     */
     #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
     #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Owner::class, inversedBy: 'ownerUsers', fetch: 'EXTRA_LAZY')]
     #[Assert\NotBlank(message: 'A owner user must have an owner')]
+    #[OA\Property(ref: '#/components/schemas/Owner')]
     protected Owner $owner;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/ownerGroups")
-     */
     #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\OwnerGroup::class, mappedBy: 'ownerUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/ownerGroups')]
     protected Collection $ownerGroups;
 
     #[Pure]

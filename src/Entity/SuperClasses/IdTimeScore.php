@@ -2,7 +2,8 @@
 
 namespace App\Entity\SuperClasses;
 
-use OpenApi\Annotations as OA;
+use App\Dbal\EnumConditionScoreType;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,13 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\MappedSuperclass]
 class IdTimeScore extends IdTime
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'enumconditionscore', nullable: false)]
-    #[Assert\Choice(choices: App\Dbal\EnumConditionScoreType::ALLOWED_VALUES, message: 'Choose a valid condition score.')]
+    #[Assert\Choice(choices: EnumConditionScoreType::ALLOWED_VALUES, message: 'Choose a valid condition score.')]
+    #[OA\Property]
     protected string $conditionScore;
 
     public function getConditionScore(): string

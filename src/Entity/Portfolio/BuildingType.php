@@ -2,7 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,27 +12,21 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioBuildingTypes')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class BuildingType extends IdTimeIdentification
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/HousingStock")
-     */
     #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \HousingStock::class, inversedBy: 'buildingTypes')]
+    #[ORM\ManyToOne(targetEntity: HousingStock::class, inversedBy: 'buildingTypes')]
     #[Assert\NotBlank(message: 'A residentialarea must have a housingstock')]
+    #[OA\Property(ref: '#/components/schemas/HousingStock')]
     protected HousingStock $housingStock;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'buildingType', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'buildingType', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
     #[Pure]

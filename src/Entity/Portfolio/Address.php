@@ -2,187 +2,128 @@
 
 namespace App\Entity\Portfolio;
 
+use App\Dbal\EnumOrientationType;
 use App\Entity\Strategies\Project;
 use App\Entity\SuperClasses\IdBagIdsTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioAddresses')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Address extends IdBagIdsTime
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/HousingStock")
-     */
     #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \HousingStock::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: HousingStock::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a housingstock')]
+    #[OA\Property(ref: '#/components/schemas/HousingStock')]
     protected HousingStock $housingStock;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Municipality")
-     */
     #[ORM\JoinColumn(name: 'municipality_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Municipality::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Municipality::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a municipality')]
+    #[OA\Property(ref: '#/components/schemas/Municipality')]
     protected Municipality $municipality;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/ResidentialArea")
-     */
     #[ORM\JoinColumn(name: 'residentialarea_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \ResidentialArea::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: ResidentialArea::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a residentialarea')]
+    #[OA\Property(ref: '#/components/schemas/ResidentialArea')]
     protected ResidentialArea $residentialArea;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Neighbourhood")
-     */
     #[ORM\JoinColumn(name: 'neighbourhood_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Neighbourhood::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Neighbourhood::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a neighbourhood')]
+    #[OA\Property(ref: '#/components/schemas/Neighbourhood')]
     protected Neighbourhood $neighbourhood;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/projects")
-     */
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Strategies\Project::class, mappedBy: 'addresses', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'addresses', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/projects')]
     protected Collection $projects;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Block")
-     */
     #[ORM\JoinColumn(name: 'block_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Block::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Block::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a block')]
+    #[OA\Property(ref: '#/components/schemas/Block')]
     protected Block $block;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/BuildingType")
-     */
     #[ORM\JoinColumn(name: 'buildingtype_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \BuildingType::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: BuildingType::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a buildingtype')]
+    #[OA\Property(ref: '#/components/schemas/BuildingType')]
     protected BuildingType $buildingType;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The rental unit number is not a valid {{ type }}')]
     #[Assert\Length(min: 3, max: 128, minMessage: 'The rental unit number must be at least {{ limit }} characters long', maxMessage: 'The rental unit number can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected string $rentalUnitNumber;
 
-    /**
-     *
-     * @OA\Property()
-     */
     #[ORM\JoinColumn(name: 'residence_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Residence::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Residence::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a residence')]
+    #[OA\Property]
     protected Residence $residence;
 
-    /**
-     *
-     * @OA\Property()
-     */
     #[ORM\JoinColumn(name: 'building_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Building::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Building::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a building')]
+    #[OA\Property]
     protected Building $building;
 
-    /**
-     *
-     * @OA\Property()
-     */
     #[ORM\JoinColumn(name: 'publicspace_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \PublicSpace::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: PublicSpace::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a public space')]
+    #[OA\Property]
     protected PublicSpace $publicSpace;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The house number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The house number is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
+    #[OA\Property]
     protected int $houseNumber;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 32, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The addition is not a valid {{ type }}')]
     #[Assert\Length(max: 32, maxMessage: 'The addition can contain a maximum of %limit% characters')]
+    #[OA\Property]
     protected string $addition;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 6, nullable: false)]
     #[Assert\NotBlank(message: 'The zipcode may not be empty')]
     #[Assert\Type(type: 'string', message: 'The zipcode is not a valid {{ type }}')]
+    #[OA\Property]
     protected string $zipcode;
 
-    /**
-     *
-     * @OA\Property()
-     */
     #[ORM\JoinColumn(name: 'city_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \City::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a city')]
+    #[OA\Property]
     protected City $city;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'enumorientation', nullable: true)]
-    #[Assert\Choice(choices: App\Dbal\EnumOrientationType::ALLOWED_VALUES, message: 'Choose a valid orientation.')]
+    #[Assert\Choice(choices: EnumOrientationType::ALLOWED_VALUES, message: 'Choose a valid orientation.')]
+    #[OA\Property]
     protected string $orientation;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'boolean', nullable: false)]
     #[Assert\Type(type: 'bool', message: 'Daeb is not a valid {{ type }}')]
+    #[OA\Property]
     protected bool $daeb;
 
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/Vtw")
-     */
     #[ORM\JoinColumn(name: 'vtw_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Vtw::class, inversedBy: 'addresses', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Vtw::class, fetch: 'EXTRA_LAZY', inversedBy: 'addresses')]
     #[Assert\NotBlank(message: 'An address must have a vtw')]
+    #[OA\Property(ref: '#/components/schemas/Vtw')]
     protected Vtw $vtw;
 
     #[Pure]

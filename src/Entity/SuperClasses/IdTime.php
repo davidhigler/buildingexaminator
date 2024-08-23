@@ -2,7 +2,7 @@
 
 namespace App\Entity\SuperClasses;
 
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
@@ -13,22 +13,14 @@ use DateTime;
 #[ORM\MappedSuperclass]
 class IdTime extends Id
 {
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'datetimetz')]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
+    #[OA\Property]
     protected DateTime $creationTime;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'datetimetz')]
     #[Assert\Type(type: 'object', message: 'The last change time is not a valid {{ type }}')]
+    #[OA\Property]
     protected DateTime $lastChangeTime;
 
     public function getCreationTime(): DateTime

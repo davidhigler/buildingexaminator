@@ -2,7 +2,7 @@
 
 namespace App\Entity\Portfolio;
 
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,37 +12,27 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'PortfolioBlocks')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Block extends IdTimeIdentification
 {
-    /**
-     *
-     * @OA\Property(ref="#/components/schemas/HousingStock")
-     */
     #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \HousingStock::class, inversedBy: 'blocks')]
+    #[ORM\ManyToOne(targetEntity: HousingStock::class, inversedBy: 'blocks')]
     #[Assert\NotBlank(message: 'A block must have a housingstock')]
+    #[OA\Property(ref: '#/components/schemas/HousingStock')]
     protected HousingStock $housingStock;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/addresses")
-     */
-    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'block', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'block', fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 128, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The financial number is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The financial number can contain a maximum of {{ limit }} characters')]
+    #[OA\Property]
     protected ?string $financialNumber;
 
     #[Pure]

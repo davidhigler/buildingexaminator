@@ -7,62 +7,45 @@ use App\Entity\Strategies\Project;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\Pure;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\SuperClasses\IdCodeName;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema()
  */
 #[ORM\Table(name: 'AuthorizationSubcontractors')]
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[OA\Schema]
 class Subcontractor extends IdCodeName
 {
-    /**
-     * @OA\Property(ref="#/components/schemas/ids")
-     */
     #[ORM\OneToMany(targetEntity: \App\Entity\Authentication\SubcontractorUser::class, mappedBy: 'subcontractor', cascade: ['remove'])]
+    #[OA\Property(ref: '#/components/schemas/ids')]
     protected Collection $subcontractorUsers;
 
-    /**
-     * @OA\Property(ref="#/components/schemas/projects")
-     */
     #[ORM\ManyToMany(targetEntity: \App\Entity\Strategies\Project::class, mappedBy: 'subcontractors', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/projects')]
     protected Collection $projects;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'integer', length: 8, nullable: true)]
     #[Assert\Type(type: 'integer', message: 'The KVK number is not a valid {{ type }}')]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'The KVK number must be exactly {{ limit }} characters long')]
+    #[OA\Property]
     protected int $kvk;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 14, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The BTW number is not a valid {{ type }}')]
     #[Assert\Length(min: 14, max: 14, exactMessage: 'The BTW number must be exactly {{ limit }} characters long')]
+    #[OA\Property]
     protected string $btw;
 
-    /**
-     *
-     *
-     * @OA\Property()
-     */
     #[ORM\Column(type: 'string', length: 256, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The website is not a valid {{ type }}')]
     #[Assert\Length(min: 8, max: 256, minMessage: 'The website must be at least {{ limit }} characters long', maxMessage: 'The website can contain a maximum of {{ limit }} characters')]
     #[Assert\Url(protocols: ['https'], message: "The website '{{ value }}' is not a valid url")]
+    #[OA\Property]
     protected string $website;
 
     #[Pure]
