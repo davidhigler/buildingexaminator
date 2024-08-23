@@ -12,114 +12,73 @@ use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioVtws")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioVtws')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Vtw extends Id
 {
     /**
-     * @ORM\Column(type="string", length=32, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The code may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The code is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=32,
-     *      maxMessage="The code can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 32, nullable: false)]
+    #[Assert\NotBlank(message: 'The code may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The code is not a valid {{ type }}')]
+    #[Assert\Length(max: 32, maxMessage: 'The code can contain a maximum of {{ limit }} characters')]
     protected string $code;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The type description may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The type description is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The type description can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\NotBlank(message: 'The type description may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The type description is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The type description can contain a maximum of {{ limit }} characters')]
     protected string $typeDescription;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The building type description may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The building type description is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The building type description can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\NotBlank(message: 'The building type description may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The building type description is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The building type description can contain a maximum of {{ limit }} characters')]
     protected string $buildingTypeDescription;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The construction year description may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The construction year description is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The construction year description can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\NotBlank(message: 'The construction year description may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The construction year description is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The construction year description can contain a maximum of {{ limit }} characters')]
     protected string $constructionYearDescription;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The roof type description may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The roof type description is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The roof type description can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\NotBlank(message: 'The roof type description may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The roof type description is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The roof type description can contain a maximum of {{ limit }} characters')]
     protected string $roofTypeDescription;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="vtw", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'vtw', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

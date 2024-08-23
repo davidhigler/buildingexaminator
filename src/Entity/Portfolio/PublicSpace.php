@@ -12,51 +12,38 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioPublicSpaces")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioPublicSpaces')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class PublicSpace extends IdBagIds
 {
     /**
-     * @ORM\Column(type="string", length=80, nullable=false)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The name is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=80,
-     *      maxMessage="The name can contain a maximum of %limit% characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 80, nullable: false)]
+    #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]
+    #[Assert\Length(max: 80, maxMessage: 'The name can contain a maximum of %limit% characters')]
     private string $name;
 
     /**
-     * @ORM\Column(type="string", length=40, nullable=false)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The type is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=40,
-     *      maxMessage="The type can contain a maximum of %limit% characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 40, nullable: false)]
+    #[Assert\Type(type: 'string', message: 'The type is not a valid {{ type }}')]
+    #[Assert\Length(max: 40, maxMessage: 'The type can contain a maximum of %limit% characters')]
     private string $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="publicSpace", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'publicSpace', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

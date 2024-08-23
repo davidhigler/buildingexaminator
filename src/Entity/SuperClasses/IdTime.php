@@ -9,32 +9,26 @@ use DateTime;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\MappedSuperclass
  */
+#[ORM\MappedSuperclass]
 class IdTime extends Id
 {
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The creation time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     protected DateTime $creationTime;
 
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The last change time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The last change time is not a valid {{ type }}')]
     protected DateTime $lastChangeTime;
 
     public function getCreationTime(): DateTime

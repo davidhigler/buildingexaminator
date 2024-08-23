@@ -14,120 +14,76 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="AuthorizationOwners")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'AuthorizationOwners')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Owner extends Id
 {
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Portfolio\HousingStock", mappedBy="owner", cascade={"remove"})
-     *
      * @OA\Property(ref="#/components/schemas/ids")
      */
+    #[ORM\OneToMany(targetEntity: \App\Entity\Portfolio\HousingStock::class, mappedBy: 'owner', cascade: ['remove'])]
     protected Collection $housingStocks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Authentication\OwnerUser", mappedBy="owner", cascade={"remove"})
-     *
      * @OA\Property(ref="#/components/schemas/ids")
      */
+    #[ORM\OneToMany(targetEntity: \App\Entity\Authentication\OwnerUser::class, mappedBy: 'owner', cascade: ['remove'])]
     protected Collection $ownerUsers;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The name is not a valid {{ type }}"
-     * )
-     * @Assert\NotBlank(
-     *     message="The name can not be empty"
-     * )
-     * @Assert\Length(
-     *     min=3,
-     *     max=128,
-     *     minMessage="The name must be at least {{ limit }} characters long",
-     *     maxMessage="The name can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]
+    #[Assert\NotBlank(message: 'The name can not be empty')]
+    #[Assert\Length(min: 3, max: 128, minMessage: 'The name must be at least {{ limit }} characters long', maxMessage: 'The name can contain a maximum of {{ limit }} characters')]
     protected string $name;
 
     /**
-     * @ORM\Column(type="integer", length=8, nullable=true)
      *
-     * @Assert\Type(
-     *     type="integer",
-     *     message="The KVK number is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *     min=8,
-     *     max=8,
-     *     exactMessage="The KVK number must be exactly {{ limit }} characters long"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', length: 8, nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'The KVK number is not a valid {{ type }}')]
+    #[Assert\Length(min: 8, max: 8, exactMessage: 'The KVK number must be exactly {{ limit }} characters long')]
     protected int $kvk;
 
     /**
-     * @ORM\Column(type="string", length=14, nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The BTW number is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *     min=14,
-     *     max=14,
-     *     exactMessage="The BTW number must be exactly {{ limit }} characters long"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 14, nullable: true)]
+    #[Assert\Type(type: 'string', message: 'The BTW number is not a valid {{ type }}')]
+    #[Assert\Length(min: 14, max: 14, exactMessage: 'The BTW number must be exactly {{ limit }} characters long')]
     protected string $btw;
 
     /**
-     * @ORM\Column(type="string", length=5, nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The L number is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *     min=5,
-     *     max=5,
-     *     exactMessage="The L number must be axactly {{ limit }} characters long"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 5, nullable: true)]
+    #[Assert\Type(type: 'string', message: 'The L number is not a valid {{ type }}')]
+    #[Assert\Length(min: 5, max: 5, exactMessage: 'The L number must be axactly {{ limit }} characters long')]
     protected string $lnumber;
 
     /**
-     * @ORM\Column(type="string", length=256, nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The website is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      min=8,
-     *      max=256,
-     *      minMessage="The website must be at least {{ limit }} characters long",
-     *      maxMessage="The website can contain a maximum of {{ limit }} characters"
-     * )
-     * @Assert\Url(
-     *      protocols = {"https"},
-     *      message = "The website '{{ value }}' is not a valid url"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 256, nullable: true)]
+    #[Assert\Type(type: 'string', message: 'The website is not a valid {{ type }}')]
+    #[Assert\Length(min: 8, max: 256, minMessage: 'The website must be at least {{ limit }} characters long', maxMessage: 'The website can contain a maximum of {{ limit }} characters')]
+    #[Assert\Url(protocols: ['https'], message: "The website '{{ value }}' is not a valid url")]
     protected string $website;
 
     #[Pure]

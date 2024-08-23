@@ -14,52 +14,45 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioHousingStocks")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioHousingStocks')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class HousingStock extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Owner", inversedBy="housingStocks", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A housingstock must have an owner"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Owner")
      */
+    #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Owner::class, inversedBy: 'housingStocks', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A housingstock must have an owner')]
     protected Owner $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Strategies\Project", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/projects")
      */
+    #[ORM\OneToMany(targetEntity: \App\Entity\Strategies\Project::class, mappedBy: 'housingStock', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="Block", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/blocks")
      */
+    #[ORM\OneToMany(targetEntity: \Block::class, mappedBy: 'housingStock', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $blocks;
 
     /**
-     * @ORM\OneToMany(targetEntity="BuildingType", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/buildingTypes")
      */
+    #[ORM\OneToMany(targetEntity: \BuildingType::class, mappedBy: 'housingStock', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $buildingTypes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="housingStock", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
-     */    
+     */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'housingStock', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

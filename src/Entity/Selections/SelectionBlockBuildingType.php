@@ -11,14 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class SelectionBlockBuildingType
 {
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     protected Block $block;
 
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     protected BuildingType $buildingType;
 
     public function getBlock(): Block

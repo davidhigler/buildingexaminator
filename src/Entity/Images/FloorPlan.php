@@ -8,12 +8,12 @@ use App\Entity\SuperClasses\IdTime;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="ImagesFloorPlans")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'ImagesFloorPlans')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class FloorPlan extends IdTime
 {
 

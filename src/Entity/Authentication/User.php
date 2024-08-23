@@ -12,65 +12,44 @@ use App\Validator as CustomAssert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks()
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\Table(name="AuthenticationUsers")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'AuthenticationUsers')]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     *
-     * @Assert\NotBlank(
-     *     message="A user must have a email"
-     * )
-     *
-     * @Assert\Email(
-     *     message="The email '{{ value }}' is not a valid email.",
-     *     mode="strict"
-     * )
-     */
+    
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\NotBlank(message: 'A user must have a email')]
+    #[Assert\Email(message: "The email '{{ value }}' is not a valid email.", mode: 'strict')]
     private string $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
-     * @Assert\NotCompromisedPassword
-     * @Assert\NotBlank(
-     *     message="A user must have a password"
-     * )
-     * @Assert\Length(
-     *      min=8,
-     *      max=32,
-     *      minMessage="The password must be at least {{ limit }} characters long",
-     *      maxMessage="The password can contain a maximum of {{ limit }} characters"
-     * )
      * @CustomAssert\PasswordConstraints
      */
+    #[Assert\NotCompromisedPassword]
+    #[Assert\NotBlank(message: 'A user must have a password')]
+    #[Assert\Length(min: 8, max: 32, minMessage: 'The password must be at least {{ limit }} characters long', maxMessage: 'The password can contain a maximum of {{ limit }} characters')]
     private string $rawPassword;
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(
-     *     message="A user must have a password"
-     * )
      */
+    #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(message: 'A user must have a password')]
     private string $password;
 
     public function getId(): int

@@ -13,29 +13,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity()
  *
  * @OA\Schema()
  */
+#[ORM\Entity]
 class SubcontractorUser extends User
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Subcontractor", inversedBy="subcontractorUsers", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="subcontractor_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A subcontractor user must have a subcontractor"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Subcontractor")
      */
+    #[ORM\JoinColumn(name: 'subcontractor_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Subcontractor::class, inversedBy: 'subcontractorUsers', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A subcontractor user must have a subcontractor')]
     protected Subcontractor $subcontractor;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\SubcontractorGroup", mappedBy="subcontractorUsers", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/subcontractorGroups")
      */
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\SubcontractorGroup::class, mappedBy: 'subcontractorUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $subcontractorGroups;
 
     #[Pure]

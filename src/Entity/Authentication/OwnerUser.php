@@ -13,29 +13,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity()
  *
  * @OA\Schema()
  */
+#[ORM\Entity]
 class OwnerUser extends User
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Owner", inversedBy="ownerUsers", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A owner user must have an owner"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Owner")
      */
+    #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Owner::class, inversedBy: 'ownerUsers', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A owner user must have an owner')]
     protected Owner $owner;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\OwnerGroup", mappedBy="ownerUsers", cascade={"remove"}, fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/ownerGroups")
      */
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\OwnerGroup::class, mappedBy: 'ownerUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $ownerGroups;
 
     #[Pure]

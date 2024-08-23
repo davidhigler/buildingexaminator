@@ -17,95 +17,80 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="StrategiesProjects")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'StrategiesProjects')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Project extends IdCodeName
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\HousingStock", inversedBy="projects", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A project must have a housingstock"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
      */
+    #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Portfolio\HousingStock::class, inversedBy: 'projects', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A project must have a housingstock')]
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\Contractor", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="StrategiesProjectsContractors")
      *
      * @OA\Property(ref="#/components/schemas/contractors")
      */
+    #[ORM\JoinTable(name: 'StrategiesProjectsContractors')]
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $contractors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authorization\Subcontractor", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="StrategiesProjectsSubcontractors")
      *
      * @OA\Property(ref="#/components/schemas/subcontractors")
      */
+    #[ORM\JoinTable(name: 'StrategiesProjectsSubcontractors')]
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\Subcontractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $subcontractors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Portfolio\Address", inversedBy="projects", cascade={"remove"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="StrategiesProjectsAddresses")
      *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\JoinTable(name: 'StrategiesProjectsAddresses')]
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Portfolio\Address::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The creation time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     private DateTime $preferredStartDate;
 
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The creation time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     private DateTime $actualStartDate;
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The creation time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     private DateTime $preferredEndDate;
 
     /**
-     * @ORM\Column(type="datetimetz")
      *
-     * @Assert\Type(
-     *     type="object",
-     *     message="The creation time is not a valid {{ type }}"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'datetimetz')]
+    #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     private DateTime $actualEndDate;
 
     #[Pure]

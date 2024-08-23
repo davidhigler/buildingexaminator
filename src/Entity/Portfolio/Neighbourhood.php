@@ -12,43 +12,36 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioNeighbourhoods")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioNeighbourhoods')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Neighbourhood extends IdCodeName
 {
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="neighbourhood", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'neighbourhood', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="neighbourhoods", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A neighbourhood must have a municipality"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Municipality")
      */
+    #[ORM\JoinColumn(name: 'municipality_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \Municipality::class, inversedBy: 'neighbourhoods', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A neighbourhood must have a municipality')]
     protected Municipality $municipality;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ResidentialArea", inversedBy="residentialAreas", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="residentialarea_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A neighbourhood must have a residential area"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/ResidentialArea")
      */
+    #[ORM\JoinColumn(name: 'residentialarea_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \ResidentialArea::class, inversedBy: 'residentialAreas', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A neighbourhood must have a residential area')]
     protected ResidentialArea $residentialArea;
 
     #[Pure]

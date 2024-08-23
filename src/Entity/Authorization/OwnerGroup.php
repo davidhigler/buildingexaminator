@@ -13,32 +13,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="AuthorizationOwnerGroups")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'AuthorizationOwnerGroups')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class OwnerGroup extends IdName
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Owner", inversedBy="ownerUsers", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A owner user must have an owner"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Owner")
      */
+    #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Owner::class, inversedBy: 'ownerUsers', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A owner user must have an owner')]
     protected Owner $owner;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authentication\OwnerUser", inversedBy="ownerGroups", cascade={"remove"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="AuthorizationOwnerGroupsUsers")
      *
      * @OA\Property(ref="#/components/schemas/ownerUsers")
      */
+    #[ORM\JoinTable(name: 'AuthorizationOwnerGroupsUsers')]
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authentication\OwnerUser::class, inversedBy: 'ownerGroups', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $ownerUsers;
 
     #[Pure]

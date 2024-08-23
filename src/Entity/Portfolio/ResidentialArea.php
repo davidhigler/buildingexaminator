@@ -12,31 +12,27 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioResidentialAreas")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioResidentialAreas')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class ResidentialArea extends IdCodeName
 {
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="residentialArea", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'residentialArea', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Municipality", inversedBy="residentialareas", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A address must have a municipality"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Municipality")
      */
+    #[ORM\JoinColumn(name: 'municipality_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \Municipality::class, inversedBy: 'residentialareas', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A address must have a municipality')]
     protected Municipality $municipality;
 
     #[Pure]

@@ -13,32 +13,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="AuthorizationContractorGroups")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'AuthorizationContractorGroups')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class ContractorGroup extends IdName
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Authorization\Contractor", inversedBy="contractorUsers", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A contractor user must have a contractor"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Contractor")
      */
+    #[ORM\JoinColumn(name: 'contractor_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'contractorUsers', fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'A contractor user must have a contractor')]
     protected Contractor $contractor;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Authentication\ContractorUser", inversedBy="contractorGroups", cascade={"remove"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="AuthorizationContractorGroupsUsers")
      *
      * @OA\Property(ref="#/components/schemas/contractorGroups")
      */
+    #[ORM\JoinTable(name: 'AuthorizationContractorGroupsUsers')]
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Authentication\ContractorUser::class, inversedBy: 'contractorGroups', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $contractorUsers;
 
     #[Pure]

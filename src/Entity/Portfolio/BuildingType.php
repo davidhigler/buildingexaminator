@@ -12,31 +12,27 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioBuildingTypes")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioBuildingTypes')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class BuildingType extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="buildingTypes")
-     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A residentialarea must have a housingstock"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
      */
+    #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \HousingStock::class, inversedBy: 'buildingTypes')]
+    #[Assert\NotBlank(message: 'A residentialarea must have a housingstock')]
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="buildingType", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'buildingType', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

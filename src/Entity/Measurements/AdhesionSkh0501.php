@@ -14,43 +14,32 @@ use Symfony\Component\Validator\Constraints as Assert;
  * This object holds an adhesion measurement according to SKH 05-01 publication
  * https://www.skh.nl/downloads/05-01-nl-bepaling-van-de-hechting-van-verf-op-hout-2018.pdf
  *
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="MeasurementsAdhesionSkh0501")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'MeasurementsAdhesionSkh0501')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class AdhesionSkh0501 extends IdTimeScore
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Portfolio\Address", fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="An adhesion measurement must have an address"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/Address")
      */
+    #[ORM\JoinColumn(name: 'address_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \App\Entity\Portfolio\Address::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\NotBlank(message: 'An adhesion measurement must have an address')]
     protected Address $address;
 
     /**
-     * @ORM\Column(type="integer", length=3, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The procent detachment may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The procent detachment is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 100
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', length: 3, nullable: false)]
+    #[Assert\NotBlank(message: 'The procent detachment may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The procent detachment is not a valid {{ type }}')]
+    #[Assert\Range(min: 1, max: 100)]
     protected int $procentDetachment;
 
     public function getAddress(): Address

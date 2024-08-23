@@ -12,47 +12,37 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioBlocks")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioBlocks')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Block extends IdTimeIdentification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="HousingStock", inversedBy="blocks")
-     * @ORM\JoinColumn(name="housingstock_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank(
-     *     message="A block must have a housingstock"
-     * )
      *
      * @OA\Property(ref="#/components/schemas/HousingStock")
      */
+    #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: \HousingStock::class, inversedBy: 'blocks')]
+    #[Assert\NotBlank(message: 'A block must have a housingstock')]
     protected HousingStock $housingStock;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="block", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'block', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The financial number is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The financial number can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: true)]
+    #[Assert\Type(type: 'string', message: 'The financial number is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The financial number can contain a maximum of {{ limit }} characters')]
     protected ?string $financialNumber;
 
     #[Pure]

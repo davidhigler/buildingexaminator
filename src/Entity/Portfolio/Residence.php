@@ -12,79 +12,58 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioResidences")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioResidences')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Residence extends IdBagIds
 {
     /**
-     * @ORM\Column(type="integer", length=5, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The surface area number may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The surface area is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 99999
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[Assert\NotBlank(message: 'The surface area number may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The surface area is not a valid {{ type }}')]
+    #[Assert\Range(min: 1, max: 99999)]
     private int $surfaceArea;
 
     /**
-     * @ORM\Column(type="string", length=80, nullable=true)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The status is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=80,
-     *      maxMessage="The status can contain a maximum of %limit% characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 80, nullable: true)]
+    #[Assert\Type(type: 'string', message: 'The status is not a valid {{ type }}')]
+    #[Assert\Length(max: 80, maxMessage: 'The status can contain a maximum of %limit% characters')]
     private string $status;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
      *
-     * @Assert\Type(
-     *     type="string",
-     *     message="The intended use is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=255,
-     *      maxMessage="The intended use can contain a maximum of %limit% characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\Type(type: 'string', message: 'The intended use is not a valid {{ type }}')]
+    #[Assert\Length(max: 255, maxMessage: 'The intended use can contain a maximum of %limit% characters')]
     private string $intendedUse;
 
     /**
-     * @ORM\Column(type="enumintendedusebasic", nullable=true)
      *
-     * @Assert\Choice(choices=App\Dbal\EnumIntendedUseBasicType::ALLOWED_VALUES, message="Choose a valid intended use basic type.")
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'enumintendedusebasic', nullable: true)]
+    #[Assert\Choice(choices: App\Dbal\EnumIntendedUseBasicType::ALLOWED_VALUES, message: 'Choose a valid intended use basic type.')]
     private string $intendedUseBasic;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="residence", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'residence', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

@@ -12,85 +12,60 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioBuildings")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioBuildings')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Building extends IdBagIds
 {
     /**
-     * @ORM\Column(type="integer", nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The construction year may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The construction year is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1800,
-     *      max = 2100
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[Assert\NotBlank(message: 'The construction year may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The construction year is not a valid {{ type }}')]
+    #[Assert\Range(min: 1800, max: 2100)]
     protected int $constructionYear;
 
     /**
-     * @ORM\Column(type="enumbuildingstatus", nullable=true)
      *
-     * @Assert\Choice(choices=App\Dbal\EnumBuildingStatusType::ALLOWED_VALUES, message="Choose a valid building status type.")
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'enumbuildingstatus', nullable: true)]
+    #[Assert\Choice(choices: App\Dbal\EnumBuildingStatusType::ALLOWED_VALUES, message: 'Choose a valid building status type.')]
     private string $status;
 
     /**
-     * @ORM\Column(type="integer", length=5, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The residence count number may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The residence count is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 99999
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[Assert\NotBlank(message: 'The residence count number may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The residence count is not a valid {{ type }}')]
+    #[Assert\Range(min: 1, max: 99999)]
     private int $residenceCount;
 
     /**
-     * @ORM\Column(type="integer", length=5, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The surface area number may not be empty"
-     * )
-     * @Assert\Type(
-     *      type="integer",
-     *      message="The surface area is not a valid {{ type }}"
-     * )
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 99999
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[Assert\NotBlank(message: 'The surface area number may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The surface area is not a valid {{ type }}')]
+    #[Assert\Range(min: 1, max: 99999)]
     private int $surfaceArea;
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="building", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'building', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

@@ -11,19 +11,18 @@ use JetBrains\PhpStorm\Pure;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="PortfolioMunicipalities")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'PortfolioMunicipalities')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Municipality extends IdCodeName
 {
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="municipality", fetch="EXTRA_LAZY")
-     *
      * @OA\Property(ref="#/components/schemas/addresses")
      */
+    #[ORM\OneToMany(targetEntity: \Address::class, mappedBy: 'municipality', fetch: 'EXTRA_LAZY')]
     protected Collection $addresses;
 
     #[Pure]

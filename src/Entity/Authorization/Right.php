@@ -9,12 +9,12 @@ use App\Entity\SuperClasses\Id;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="AuthorizationRights")
  *
  * @OA\Schema()
  */
+#[ORM\Table(name: 'AuthorizationRights')]
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Right extends Id
 {
 

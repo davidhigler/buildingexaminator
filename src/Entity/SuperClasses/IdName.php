@@ -8,28 +8,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\MappedSuperclass
  */
+#[ORM\MappedSuperclass]
 class IdName extends Id
 {
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=false)
      *
-     * @Assert\NotBlank(
-     *      message="The name may not be empty"
-     * )
-     * @Assert\Type(
-     *     type="string",
-     *     message="The name is not a valid {{ type }}"
-     * )
-     * @Assert\Length(
-     *      max=128,
-     *      maxMessage="The name can contain a maximum of {{ limit }} characters"
-     * )
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'string', length: 128, nullable: false)]
+    #[Assert\NotBlank(message: 'The name may not be empty')]
+    #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]
+    #[Assert\Length(max: 128, maxMessage: 'The name can contain a maximum of {{ limit }} characters')]
     protected string $name;
 
     public function getName(): string

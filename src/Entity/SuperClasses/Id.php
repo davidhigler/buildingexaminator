@@ -7,17 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- * @ORM\MappedSuperclass
  */
+#[ORM\MappedSuperclass]
 class Id
 {
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue
      *
      * @OA\Property()
      */
+    #[ORM\Column(type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     public function getId(): int
