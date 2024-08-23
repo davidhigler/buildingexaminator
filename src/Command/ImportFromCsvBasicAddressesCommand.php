@@ -10,11 +10,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(
-    name: 'app:import:csv:address-basic',
-    description: 'Import data from a CSV file. With data being a simple address.',
-    hidden: false
-)]
 class ImportFromCsvBasicAddressesCommand extends Command
 {
 
