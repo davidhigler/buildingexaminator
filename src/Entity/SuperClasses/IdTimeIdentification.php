@@ -29,7 +29,7 @@ class IdTimeIdentification extends IdTime
     #[ORM\Column(type: 'text', nullable: true)]
     #[Assert\Type(type: 'string', message: 'The description is not a valid {{ type }}')]
     #[OA\Property]
-    protected ?string $description;
+    protected ?string $description = null;
 
     public function getCode(): string
     {

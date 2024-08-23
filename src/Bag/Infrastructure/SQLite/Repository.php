@@ -7,7 +7,7 @@ use App\Bag\Application\SQLite\CbsException;
 
 class Repository
 {
-    private SQLite3 $sqliteDb;
+    private readonly SQLite3 $sqliteDb;
 
     public function __construct()
     {

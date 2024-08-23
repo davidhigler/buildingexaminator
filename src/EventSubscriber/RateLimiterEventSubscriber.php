@@ -10,13 +10,8 @@ use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 class RateLimiterEventSubscriber implements EventSubscriberInterface
 {
-    private RateLimiterFactory $anonymousApiLimiter;
-    private RateLimiterFactory $authenticatedApiLimiter;
-
-    public function __construct(RateLimiterFactory $anonymousApiLimiter, RateLimiterFactory $authenticatedApiLimiter)
+    public function __construct(private readonly RateLimiterFactory $anonymousApiLimiter, private readonly RateLimiterFactory $authenticatedApiLimiter)
     {
-        $this->anonymousApiLimiter = $anonymousApiLimiter;
-        $this->authenticatedApiLimiter = $authenticatedApiLimiter;
     }
 
     /**
@@ -32,7 +27,7 @@ class RateLimiterEventSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event): void {
         $request = $event->getRequest();
-        if(str_contains($request->get("_route"), 'api-v1-')) {
+        if(str_contains((string) $request->get("_route"), 'api-v1-')) {
             $limiter = $this->anonymousApiLimiter->create($request->getClientIp());
             if (false === $limiter->consume(1)->isAccepted()) {
                 throw new TooManyRequestsHttpException();

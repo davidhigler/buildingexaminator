@@ -62,36 +62,36 @@ class UserVoter extends Voter
 
     private function canCreate(User $subjectUser, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === OwnerUser::class
-                || get_class($subjectUser) === ContractorUser::class
+                $subjectUser::class === OwnerUser::class
+                || $subjectUser::class === ContractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === ContractorUser::class
-                || get_class($subjectUser) === SubcontractorUser::class
+                $subjectUser::class === ContractorUser::class
+                || $subjectUser::class === SubcontractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === SubcontractorUser::class
+            $user::class === SubcontractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && get_class($subjectUser) === SubcontractorUser::class
+            && $subjectUser::class === SubcontractorUser::class
         ) {
             return true;
         }
@@ -101,33 +101,33 @@ class UserVoter extends Voter
 
     private function canView(User $subjectUser, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && (
-                get_class($subjectUser) === OwnerUser::class
-                || get_class($subjectUser) === ContractorUser::class
+                $subjectUser::class === OwnerUser::class
+                || $subjectUser::class === ContractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && (
-                get_class($subjectUser) === ContractorUser::class
-                || get_class($subjectUser) === SubcontractorUser::class
+                $subjectUser::class === ContractorUser::class
+                || $subjectUser::class === SubcontractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === SubcontractorUser::class
-            && get_class($subjectUser) === SubcontractorUser::class
+            $user::class === SubcontractorUser::class
+            && $subjectUser::class === SubcontractorUser::class
         ) {
             return true;
         }
@@ -137,36 +137,36 @@ class UserVoter extends Voter
 
     private function canEdit(User $subjectUser, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === OwnerUser::class
-                || get_class($subjectUser) === ContractorUser::class
+                $subjectUser::class === OwnerUser::class
+                || $subjectUser::class === ContractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === ContractorUser::class
-                || get_class($subjectUser) === SubcontractorUser::class
+                $subjectUser::class === ContractorUser::class
+                || $subjectUser::class === SubcontractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === SubcontractorUser::class
+            $user::class === SubcontractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && get_class($subjectUser) === SubcontractorUser::class
+            && $subjectUser::class === SubcontractorUser::class
         ) {
             return true;
         }
@@ -176,36 +176,36 @@ class UserVoter extends Voter
 
     private function canDelete(User $subjectUser, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === OwnerUser::class
-                || get_class($subjectUser) === ContractorUser::class
+                $subjectUser::class === OwnerUser::class
+                || $subjectUser::class === ContractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
             && (
-                get_class($subjectUser) === ContractorUser::class
-                || get_class($subjectUser) === SubcontractorUser::class
+                $subjectUser::class === ContractorUser::class
+                || $subjectUser::class === SubcontractorUser::class
             )
         ) {
             return true;
         }
 
         if (
-            get_class($user) === SubcontractorUser::class
+            $user::class === SubcontractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && get_class($subjectUser) === SubcontractorUser::class
+            && $subjectUser::class === SubcontractorUser::class
         ) {
             return true;
         }

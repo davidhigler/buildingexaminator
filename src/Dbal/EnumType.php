@@ -13,7 +13,7 @@ abstract class EnumType extends Type
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        $values = array_map(function($val) { return "'".$val."'"; }, $this->values);
+        $values = array_map(fn($val) => "'".$val."'", $this->values);
 
         return "ENUM(".implode(", ", $values).")";
     }

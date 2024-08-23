@@ -33,7 +33,7 @@ class Block extends IdTimeIdentification
     #[Assert\Type(type: 'string', message: 'The financial number is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The financial number can contain a maximum of {{ limit }} characters')]
     #[OA\Property]
-    protected ?string $financialNumber;
+    protected ?string $financialNumber = null;
 
     #[Pure]
     public function __construct()

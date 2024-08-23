@@ -63,11 +63,11 @@ class ContractorVoter extends Voter
 
     private function canCreate(Contractor $contractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             /** @var Project $project */
@@ -85,11 +85,11 @@ class ContractorVoter extends Voter
 
     private function canView(Contractor $contractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             /** @var Project $project */
@@ -101,7 +101,7 @@ class ContractorVoter extends Voter
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && $user->getContractor()->getId() === $contractor->getId()
         ) {
             return true;
@@ -112,11 +112,11 @@ class ContractorVoter extends Voter
 
     private function canEdit(Contractor $contractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             /** @var Project $project */
@@ -128,7 +128,7 @@ class ContractorVoter extends Voter
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && $user->getContractor()->getId() === $contractor->getId()
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
         ) {
@@ -140,11 +140,11 @@ class ContractorVoter extends Voter
 
     private function canDelete(Contractor $contractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             /** @var Project $project */

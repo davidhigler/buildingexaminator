@@ -28,21 +28,18 @@ class GlossIso2813 extends IdTimeScore
     #[OA\Property(ref: '#/components/schemas/Address')]
     protected Address $address;
 
-    #[ORM\Column(type: 'integer', length: 3, nullable: false)]
-    #[Assert\NotBlank(message: 'The gloss units may not be empty')]
-    #[Assert\Type(type: 'integer', message: 'The gloss units is not a valid {{ type }}')]
-    #[Assert\Range(min: 1, max: 100)]
-    #[OA\Property]
-    protected int $glossUnits;
-
     #[ORM\Column(type: 'enumglossangle', nullable: true)]
     #[Assert\Choice(choices: EnumGlossAngle::ALLOWED_VALUES, message: 'Choose a valid gloss angle.')]
     #[OA\Property]
     protected string $glossAngle;
 
-    public function __construct(int $glossUnits)
+    public function __construct(#[ORM\Column(type: 'integer', length: 3, nullable: false)]
+    #[Assert\NotBlank(message: 'The gloss units may not be empty')]
+    #[Assert\Type(type: 'integer', message: 'The gloss units is not a valid {{ type }}')]
+    #[Assert\Range(min: 1, max: 100)]
+    #[OA\Property]
+    protected int $glossUnits)
     {
-        $this->glossUnits = $glossUnits;
     }
 
     public function getAddress(): Address

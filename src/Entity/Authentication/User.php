@@ -101,7 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getType(): string
     {
-        return match (get_class($this)) {
+        return match (static::class) {
             User::class => 'Dobro',
             OwnerUser::class => 'Owner',
             ContractorUser::class => 'Contractor',

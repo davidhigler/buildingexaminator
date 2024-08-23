@@ -61,7 +61,7 @@ class OwnerVoter extends Voter
 
     private function canCreate(User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
@@ -70,12 +70,12 @@ class OwnerVoter extends Voter
 
     private function canView(Owner $owner, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && $user->getOwner()->getId() === $owner->getId()
         ) {
             return true;
@@ -86,12 +86,12 @@ class OwnerVoter extends Voter
 
     private function canEdit(Owner $owner, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === OwnerUser::class
+            $user::class === OwnerUser::class
             && $user->getOwner()->getId() === $owner->getId()
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
         ) {
@@ -103,7 +103,7 @@ class OwnerVoter extends Voter
 
     private function canDelete(User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 

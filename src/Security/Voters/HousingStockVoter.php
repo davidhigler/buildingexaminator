@@ -64,7 +64,7 @@ class HousingStockVoter extends Voter
 
     private function canCreate(User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
@@ -73,7 +73,7 @@ class HousingStockVoter extends Voter
 
     private function canView(HousingStock $housingStock, User $user): bool
     {
-        return match (get_class($user)) {
+        return match ($user::class) {
             SubContractorUser::class => $this->canSubContractorView($housingStock, $user),
             ContractorUser::class => $this->canContractorView($housingStock, $user),
             OwnerUser::class => $this->canOwnerView($housingStock, $user),
@@ -87,10 +87,9 @@ class HousingStockVoter extends Voter
         foreach ($housingStock->getProjects() as $project) {
             /** @var Project $project */
             if (
-                $user->getSubcontractor()->getProjects()->exists(function($key, $subcontractorProject) use ($project) {
+                $user->getSubcontractor()->getProjects()->exists(fn($key, $subcontractorProject) =>
                     /** @var Project $subcontractorProject */
-                    return $subcontractorProject->equals($project);
-                })
+                    $subcontractorProject->equals($project))
             ) {
                 return true;
             }
@@ -104,10 +103,9 @@ class HousingStockVoter extends Voter
         foreach ($housingStock->getProjects() as $project) {
             /** @var Project $project */
             if (
-                $user->getContractor()->getProjects()->exists(function($key, $contractorProject) use ($project) {
+                $user->getContractor()->getProjects()->exists(fn($key, $contractorProject) =>
                     /** @var Project $contractorProject */
-                    return $contractorProject->equals($project);
-                })
+                    $contractorProject->equals($project))
             ) {
                 return true;
             }
@@ -127,7 +125,7 @@ class HousingStockVoter extends Voter
 
     private function canEdit(User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
@@ -136,7 +134,7 @@ class HousingStockVoter extends Voter
 
     private function canDelete(User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 

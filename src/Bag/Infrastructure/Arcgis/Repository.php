@@ -14,7 +14,7 @@ class Repository
         'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
         'Content-Type' => 'application/x-www-form-urlencoded'
     ];
-    private Client $client;
+    private readonly Client $client;
 
     public function __construct() {
         $this->client = new Client();

@@ -66,11 +66,11 @@ class AddressVoter extends Voter
 
     private function canCreate(Address $address, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($address->getHousingStock())) {
@@ -83,7 +83,7 @@ class AddressVoter extends Voter
 
     private function canView(Address $address, User $user): bool
     {
-        return match (get_class($user)) {
+        return match ($user::class) {
             SubContractorUser::class => $this->canSubContractorView($address, $user),
             ContractorUser::class => $this->canContractorView($address, $user),
             OwnerUser::class => $this->canOwnerView($address, $user),
@@ -150,11 +150,11 @@ class AddressVoter extends Voter
 
     private function canEdit(Address $address, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($address->getHousingStock())) {
@@ -167,11 +167,11 @@ class AddressVoter extends Voter
 
     private function canDelete(Address $address, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($address->getHousingStock())) {

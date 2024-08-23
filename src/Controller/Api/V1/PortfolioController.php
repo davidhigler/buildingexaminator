@@ -2789,7 +2789,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     $arcgisException->getContext(),
                     [
                         'subject' => 'error with request to arcgis api',
-                        'class' => __CLASS__,
+                        'class' => self::class,
                         'function' => __FUNCTION__,
                         'line' => __LINE__,
                     ]
@@ -2809,7 +2809,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     $cbsException->getContext(),
                     [
                         'subject' => 'missing data from sqlite cbs database',
-                        'class' => __CLASS__,
+                        'class' => self::class,
                         'function' => __FUNCTION__,
                         'line' => __LINE__,
                     ]

@@ -40,10 +40,10 @@ class ImportFromCsvBasicAddressesCommand extends Command
         $addresses = [];
         foreach ($csvLines as $csvLine) {
             //$vhe = $csvLine[0];
-            $zipcode = strtoupper($csvLine[1]);
+            $zipcode = strtoupper((string) $csvLine[1]);
             //$streetname = $csvLine[2];
             $housenumber = (int) $csvLine[3];
-            $addition = strtoupper($csvLine[4]);
+            $addition = strtoupper((string) $csvLine[4]);
             //$block = $csvLine[5];
 
             if (empty($zipcode) || preg_match("/[1-9]\d{3}[A-Z]{2}/i", $zipcode) === 0) {

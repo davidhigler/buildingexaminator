@@ -61,12 +61,12 @@ class SubcontractorVoter extends Voter
 
     private function canCreate(Subcontractor $subcontractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
         ) {
             $accesibleProjects = $user->getContractor()->getProjects();
@@ -84,11 +84,11 @@ class SubcontractorVoter extends Voter
 
     private function canView(Subcontractor $subcontractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === ContractorUser::class) {
+        if ($user::class === ContractorUser::class) {
             $accesibleProjects = $user->getContractor()->getProjects();
             foreach ($subcontractor->getProjects() as $project) {
                 if ($accesibleProjects->contains($project)) {
@@ -102,12 +102,12 @@ class SubcontractorVoter extends Voter
 
     private function canEdit(Subcontractor $subcontractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
         ) {
             $accesibleProjects = $user->getContractor()->getProjects();
@@ -123,12 +123,12 @@ class SubcontractorVoter extends Voter
 
     private function canDelete(Subcontractor $subcontractor, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
         if (
-            get_class($user) === ContractorUser::class
+            $user::class === ContractorUser::class
             && in_array('ROLE_ADMIN', $user->getRoles(), true)
         ) {
             $accesibleProjects = $user->getContractor()->getProjects();

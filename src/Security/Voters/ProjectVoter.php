@@ -65,11 +65,11 @@ class ProjectVoter extends Voter
 
     private function canCreate(Project $project, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($project->getHousingStock())) {
@@ -82,7 +82,7 @@ class ProjectVoter extends Voter
 
     private function canView(Project $project, User $user): bool
     {
-        return match (get_class($user)) {
+        return match ($user::class) {
             SubContractorUser::class => $this->canSubContractorView($project, $user),
             ContractorUser::class => $this->canContractorView($project, $user),
             OwnerUser::class => $this->canOwnerView($project, $user),
@@ -135,11 +135,11 @@ class ProjectVoter extends Voter
 
     private function canEdit(Project $project, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($project->getHousingStock())) {
@@ -152,11 +152,11 @@ class ProjectVoter extends Voter
 
     private function canDelete(Project $project, User $user): bool
     {
-        if (get_class($user) === User::class) {
+        if ($user::class === User::class) {
             return true;
         }
 
-        if (get_class($user) === OwnerUser::class) {
+        if ($user::class === OwnerUser::class) {
             $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
 
             if ($accessibleHousingStocks->contains($project->getHousingStock())) {
