@@ -15,6 +15,7 @@ use App\Security\Voters\ContractorVoter;
 use App\Security\Voters\OwnerVoter;
 use App\Security\Voters\SubcontractorVoter;
 use App\Security\Voters\UserVoter;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Annotations as OA;
@@ -181,11 +182,11 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function getOwners(Request $request, PaginatorInterface $paginator): Response
+    public function getOwners(Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $ownerRepository = $entityManager->getRepository(Owner::class);
         $adapter = $ownerRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -260,7 +261,7 @@ class AuthorizationController extends AbstractController
      *     )
      * )
      */
-    public function addOwner(Request $request, ValidatorInterface $validator): Response
+    public function addOwner(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $newOwner = json_decode($request->getContent(), true);
 
@@ -288,9 +289,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($owner);
-        $entityManager->flush();
+        $entityManagerOwner = $entityManager->getRepository(Owner::class);
+        $entityManagerOwner->persist($owner);
+        $entityManagerOwner->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
