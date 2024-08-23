@@ -636,7 +636,7 @@
                                         "type": "string"
                                     },
                                     "adminrole": {
-                                        "type": "bool"
+                                        "type": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -718,7 +718,7 @@
                                         "type": "string"
                                     },
                                     "adminrole": {
-                                        "type": "bool"
+                                        "type": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -2320,7 +2320,7 @@
                                         "type": "string"
                                     },
                                     "daeb": {
-                                        "type": "bool"
+                                        "type": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -2519,6 +2519,58 @@
     },
     "components": {
         "schemas": {
+            "owners": {
+                "title": "Owners",
+                "description": "An array of owners",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Owner"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "users": {
+                "title": "Users",
+                "description": "An array of users",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Users"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "contractors": {
+                "title": "Contractors",
+                "description": "An array of contractors",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Contractor"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "subcontractors": {
+                "title": "Subcontractors",
+                "description": "An array of subcontractors",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Subcontractor"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ids": {
                 "type": "array",
                 "items": {
@@ -2700,7 +2752,11 @@
                 "type": "object"
             },
             "ContractorUser": {
+                "type": "object",
                 "allOf": [
+                    {
+                        "$ref": "#/components/schemas/User"
+                    },
                     {
                         "properties": {
                             "contractor": {
@@ -2709,15 +2765,17 @@
                             "contractorGroups": {
                                 "$ref": "#/components/schemas/contractorGroups"
                             }
-                        }
-                    },
-                    {
-                        "$ref": "#/components/schemas/User"
+                        },
+                        "type": "object"
                     }
                 ]
             },
             "OwnerUser": {
+                "type": "object",
                 "allOf": [
+                    {
+                        "$ref": "#/components/schemas/User"
+                    },
                     {
                         "properties": {
                             "owner": {
@@ -2726,15 +2784,17 @@
                             "ownerGroups": {
                                 "$ref": "#/components/schemas/ownerGroups"
                             }
-                        }
-                    },
-                    {
-                        "$ref": "#/components/schemas/User"
+                        },
+                        "type": "object"
                     }
                 ]
             },
             "SubcontractorUser": {
+                "type": "object",
                 "allOf": [
+                    {
+                        "$ref": "#/components/schemas/User"
+                    },
                     {
                         "properties": {
                             "subcontractor": {
@@ -2743,10 +2803,8 @@
                             "subcontractorGroups": {
                                 "$ref": "#/components/schemas/subcontractorGroups"
                             }
-                        }
-                    },
-                    {
-                        "$ref": "#/components/schemas/User"
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -2782,11 +2840,11 @@
             },
             "ContractorGroup": {
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     },
                     "contractor": {
                         "$ref": "#/components/schemas/Contractor"
@@ -2828,11 +2886,11 @@
             },
             "OwnerGroup": {
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     },
                     "owner": {
                         "$ref": "#/components/schemas/Owner"
@@ -2882,11 +2940,11 @@
             },
             "SubcontractorGroup": {
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     },
                     "subcontractor": {
                         "$ref": "#/components/schemas/Subcontractor"
@@ -3011,11 +3069,11 @@
                     "id": {
                         "type": "integer"
                     },
-                    "address": {
-                        "$ref": "#/components/schemas/Address"
-                    },
                     "glossUnits": {
                         "type": "integer"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
                     },
                     "glossAngle": {
                         "type": "string"
