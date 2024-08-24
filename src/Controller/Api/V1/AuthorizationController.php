@@ -18,7 +18,7 @@ use App\Security\Voters\UserVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,52 +31,67 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema(
- *     schema="owners",
- *     title="Owners",
- *     description="An array of owners",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Owner")
- *     )
- * )
- * @OA\Schema(
- *     schema="users",
- *     title="Users",
- *     description="An array of users",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Users")
- *     )
- * )
- * @OA\Schema(
- *     schema="contractors",
- *     title="Contractors",
- *     description="An array of contractors",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Contractor")
- *     )
- * )
- * @OA\Schema(
- *     schema="subcontractors",
- *     title="Subcontractors",
- *     description="An array of subcontractors",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Subcontractor")
- *     )
- * )
  */
+#[OA\Schema(
+    schema: 'owners',
+    title: 'Owners',
+    description: "An array of owners",
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Owner'
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'users',
+    title: 'Users',
+    description: 'An array of users',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/User'
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'contractors',
+    title: 'Contractors',
+    description: 'An array of contractors',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Contractor'
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'subcontractors',
+    title: 'Subcontractors',
+    description: 'An array of subcontractors',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Subcontractor'
+            ),
+        ),
+    ],
+    type: 'object',
+)]
 class AuthorizationController extends AbstractController
 {
     private const OWNER_LIST_FIELDS = [
@@ -151,37 +166,41 @@ class AuthorizationController extends AbstractController
      */
 
     #[Route('/owners', name: 'listowners', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/owners",
-     *     summary="Returns details about multiple owners",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple owners",
-     *         @OA\JsonContent(ref="#/components/schemas/owners")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/owners',
+        summary: 'Returns details about multiple owners',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple owners',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/owners',
+                ),
+            ),
+        ],
+    )]
     public function getOwners(Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -224,43 +243,47 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/owners', name: 'addowner', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/owners",
-     *     summary="Add new owner",
-     *     @OA\RequestBody(
-     *         description="Details about new owner",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="lnumber",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created owner",
-     *         @OA\JsonContent(ref="#/components/schemas/Owner")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/owners',
+        summary: 'Add new owner',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new owner',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'lnumber',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created owner',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Owner',
+                ),
+            ),
+        ],
+    )]
     public function addOwner(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $newOwner = json_decode($request->getContent(), true);
@@ -302,53 +325,59 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/owners/{ownerId}', name: 'changeowner', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/owners/{ownerId}",
-     *     summary="Change owner",
-     *     @OA\RequestBody(
-     *         description="Details for changing owner",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="lnumber",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the owner",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed owner",
-     *         @OA\JsonContent(ref="#/components/schemas/Owner")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/owners/{ownerId}',
+        description: 'Change owner',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing owner',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'lnumber',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'ownerId',
+                description: 'The id of the owner',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed owner',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Owner',
+                ),
+            ),
+        ],
+    )]
     public function changeOwner(string $ownerId, Request $request, ValidatorInterface $validator): Response
     {
         $changeOwner = json_decode($request->getContent(), true);
@@ -391,26 +420,28 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/owners/{ownerId}', name: 'deleteowner', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/owners/{ownerId}",
-     *     summary="Delete owner",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the owner",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted an owner"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/owners/{ownerId}',
+        description: 'Delete owner',
+        parameters: [
+            new OA\Parameter(
+                name: 'ownerId',
+                description: 'The id of the owner',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted an owner',
+            ),
+        ],
+    )]
     public function deleteOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
@@ -431,27 +462,31 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/owners/{ownerId}', name: 'getowner', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/owners/{ownerId}",
-     *     summary="Returns details about an owner",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the owner",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about an owner",
-     *         @OA\JsonContent(ref="#/components/schemas/Owner")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/owners/{ownerId}',
+        description: 'Returns details about an owner',
+        parameters: [
+            new OA\Parameter(
+                name: 'ownerId',
+                description: 'The id of the owner',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about an owner',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Owner',
+                ),
+            ),
+        ],
+    )]
     public function getOwner(string $ownerId): Response
     {
         $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
@@ -472,37 +507,41 @@ class AuthorizationController extends AbstractController
     /** CONTRACTORS */
 
     #[Route('/contractors', name: 'listcontractors', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/contractors",
-     *     summary="Returns details about multiple contractors",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple contractors",
-     *         @OA\JsonContent(ref="#/components/schemas/contractors")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/contractors',
+        summary: 'Returns details about multiple contractors',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple contractors',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/contractors',
+                ),
+            ),
+        ],
+    )]
     public function getContractors(Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -545,43 +584,47 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/contractors', name: 'addcontractor', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/contractors",
-     *     summary="Add new contractor",
-     *     @OA\RequestBody(
-     *         description="Details about new contractor",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created contractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/contractors',
+        summary: 'Add new contractor',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new contractor',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created contractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Contractor',
+                ),
+            ),
+        ],
+    )]
     public function addContractor(Request $request, ValidatorInterface $validator): Response
     {
         $newContractor = json_decode($request->getContent(), true);
@@ -623,53 +666,59 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/contractors/{contractorId}', name: 'changecontractor', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/contractors/{contractorId}",
-     *     summary="Change contractor",
-     *     @OA\RequestBody(
-     *         description="Details for changing contractor",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the contractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed contractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/contractors/{contractorId}',
+        description: 'Change contractor',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing contractor',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'contractorId',
+                description: 'The id of the contractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed contractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Contractor',
+                ),
+            ),
+        ],
+    )]
     public function changeContractor(string $contractorId, Request $request, ValidatorInterface $validator): Response
     {
         $changeContractor = json_decode($request->getContent(), true);
@@ -714,26 +763,28 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/contractors/{contractorId}', name: 'deletecontractor', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/contractors/{contractorId}",
-     *     summary="Delete contractor",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the contractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted an contractor"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/contractors/{contractorId}',
+        description: 'Delete contractor',
+        parameters: [
+            new OA\Parameter(
+                name: 'contractorId',
+                description: 'The id of the contractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted a contractor',
+            ),
+        ],
+    )]
     public function deleteContractor(string $contractorId): Response
     {
         $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
@@ -754,27 +805,31 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/contractors/{contractorId}', name: 'getcontractor', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/contractors/{contractorId}",
-     *     summary="Returns details about a contractor",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the contractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a contractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Contractor")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/contractors/{contractorId}/contractors/{contractorId}',
+        description: 'Returns details about an contractor',
+        parameters: [
+            new OA\Parameter(
+                name: 'contractorId',
+                description: 'The id of the contractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed contractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Contractor',
+                ),
+            ),
+        ],
+    )]
     public function getContractor(string $contractorId): Response
     {
         $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
@@ -795,37 +850,41 @@ class AuthorizationController extends AbstractController
     /** SUBCONTRACTORS */
 
     #[Route('/subcontractors', name: 'listsubcontractors', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/subcontractors",
-     *     summary="Returns details about multiple subcontractors",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple subcontractors",
-     *         @OA\JsonContent(ref="#/components/schemas/subcontractors")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/subcontractors',
+        summary: 'Returns details about multiple subcontractors',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple subcontractors',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/subcontractors',
+                ),
+            ),
+        ],
+    )]
     public function getSubcontractors(Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -868,43 +927,47 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/subcontractors', name: 'addsubcontractor', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/subcontractors",
-     *     summary="Add new subcontractor",
-     *     @OA\RequestBody(
-     *         description="Details about new subcontractor",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created subcontractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/subcontractors',
+        summary: 'Add new subcontractor',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new subcontractor',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created subcontractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Subcontractor',
+                ),
+            ),
+        ],
+    )]
     public function addSubcontractor(Request $request, ValidatorInterface $validator): Response
     {
         $newSubcontractor = json_decode($request->getContent(), true);
@@ -946,53 +1009,59 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/subcontractors/{subcontractorId}', name: 'changesubcontractor', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/subcontractors/{subcontractorId}",
-     *     summary="Change subcontractor",
-     *     @OA\RequestBody(
-     *         description="Details for changing subcontractor",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="kvk",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="btw",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="website",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the subcontractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed subcontractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/subcontractors/{subcontractorId}',
+        description: 'Change subcontractor',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing subcontractor',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'kvk',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'btw',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'website',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'subcontractorId',
+                description: 'The id of the subcontractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created subcontractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Subcontractor',
+                ),
+            ),
+        ],
+    )]
     public function changeSubcontractor(string $subcontractorId, Request $request, ValidatorInterface $validator): Response
     {
         $changeSubcontractor = json_decode($request->getContent(), true);
@@ -1037,26 +1106,28 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/subcontractors/{subcontractorId}', name: 'deletesubcontractor', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/subcontractors/{subcontractorId}",
-     *     summary="Delete contractor",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the subcontractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted an subcontractor"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/subcontractors/{subcontractorId}',
+        description: 'Delete subcontractor',
+        parameters: [
+            new OA\Parameter(
+                name: 'subcontractorId',
+                description: 'The id of the subcontractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted a subcontractor',
+            ),
+        ],
+    )]
     public function deleteSubcontractor(string $subcontractorId): Response
     {
         $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
@@ -1077,27 +1148,31 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/subcontractors/{subcontractorId}', name: 'getsubcontractor', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/subcontractors/{subcontractorId}",
-     *     summary="Returns details about a subcontractor",
-     *     @OA\Parameter(
-     *         name="ownerId",
-     *         description="The id of the subcontractor",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a subcontractor",
-     *         @OA\JsonContent(ref="#/components/schemas/Subcontractor")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/subcontractors/{subcontractorId}',
+        description: 'Returns details about a subcontractor',
+        parameters: [
+            new OA\Parameter(
+                name: 'subcontractorId',
+                description: 'The id of the subcontractor',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a subcontractor',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Subcontractor',
+                ),
+            ),
+        ],
+    )]
     public function getSubcontractor(string $subcontractorId): Response
     {
         $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
@@ -1120,37 +1195,41 @@ class AuthorizationController extends AbstractController
      */
 
     #[Route('/users', name: 'listusers', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/users",
-     *     summary="Returns details about multiple users",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple users",
-     *         @OA\JsonContent(ref="#/components/schemas/users")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/users',
+        summary: 'Returns details about multiple users',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple users',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/users',
+                ),
+            ),
+        ],
+    )]
     public function getUsers(Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -1192,39 +1271,43 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/users', name: 'adduser', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/users",
-     *     summary="Add new user",
-     *     @OA\RequestBody(
-     *         description="Details about new user",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="email",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="password",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="confirmpassword",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="adminrole",
-     *                 type="bool"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created user",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/users',
+        summary: 'Add new user',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new user',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'email',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'password',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'confirmpassword',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'adminrole',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created user',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/User',
+                ),
+            ),
+        ],
+    )]
     public function addUser(Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
     {
         $newUser = json_decode($request->getContent(), true);
@@ -1279,49 +1362,55 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/users/{userId}', name: 'changeuser', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/users/{userId}",
-     *     summary="Change user",
-     *     @OA\RequestBody(
-     *         description="Details for changing user",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="email",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="password",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="confirmpassword",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="adminrole",
-     *                 type="bool"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="userId",
-     *         description="The id of the user",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed user",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/users/{userId}',
+        description: 'Change user',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing user',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'email',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'password',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'confirmpassword',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'adminrole',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'userId',
+                description: 'The id of the user',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created user',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/User',
+                ),
+            ),
+        ],
+    )]
     public function changeUser(string $userId, Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
     {
         $changeUser = json_decode($request->getContent(), true);
@@ -1374,26 +1463,28 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/users/{userId}', name: 'deleteuser', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/users/{userId}",
-     *     summary="Delete user",
-     *     @OA\Parameter(
-     *         name="userId",
-     *         description="The id of the user",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a user"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/users/{userId}',
+        description: 'Delete user',
+        parameters: [
+            new OA\Parameter(
+                name: 'userId',
+                description: 'The id of the user',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted an user',
+            ),
+        ],
+    )]
     public function deleteUser(string $userId): Response
     {
         $userRepository = $this->getDoctrine()->getRepository(User::class);
@@ -1414,27 +1505,31 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/users/{userId}', name: 'getuser', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/users/{userId}",
-     *     summary="Returns details about a user",
-     *     @OA\Parameter(
-     *         name="userId",
-     *         description="The id of the user",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a user",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/users/{userId}',
+        description: 'Returns details about an user',
+        parameters: [
+            new OA\Parameter(
+                name: 'userId',
+                description: 'The id of the user',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about an user',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/User',
+                ),
+            ),
+        ],
+    )]
     public function getUserInfo(string $userId): Response
     {
         $userRepository = $this->getDoctrine()->getRepository(User::class);
