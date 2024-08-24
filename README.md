@@ -154,3 +154,8 @@ Changing the certificates
 nano /etc/ssl/private/buildingexaminator.nl.crt
 nano /etc/ssl/private/buildingexaminator.nl.key
 ```
+
+## xDebug
+```
+XDEBUG_CONFIG="idekey=PHPSTORM" PHP_IDE_CONFIG="serverName=dobro.local" ./openapi-rector/bin/openapi-rector
+```
