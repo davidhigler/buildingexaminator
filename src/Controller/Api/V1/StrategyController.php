@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Helpers\ApiRenderEngine;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -21,19 +21,22 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Schema(
- *     schema="projects",
- *     title="Projects",
- *     description="An array of projects",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Project")
- *     )
- * )
  */
+#[OA\Schema(
+    schema: 'projects',
+    title: 'Projects',
+    description: 'An array of projects',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/project',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
 class StrategyController extends AbstractController
 {
     private const PROJECT_LIST_FIELDS = [
@@ -70,49 +73,51 @@ class StrategyController extends AbstractController
     ];
 
     #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/projects",
-     *     summary="Returns details about multiple projects",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple projects",
-     *         @OA\JsonContent(ref="#/components/schemas/projects")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/projects',
+        description: 'Returns details about multiple projects',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple projects',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/projects',
+                ),
+            ),
+        ],
+    )]
     public function getProjects(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
@@ -160,42 +165,47 @@ class StrategyController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/projects', name: 'addproject', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/projects",
-     *     summary="Add new project",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new project",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created project",
-     *         @OA\JsonContent(ref="#/components/schemas/Project")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/housingstocks/{housingStockId}/projects',
+        summary: 'Add new project',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new project',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created project',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/project',
+                ),
+            ),
+        ],
+    )]
     public function addProject(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newProject = json_decode($request->getContent(), true);
@@ -253,39 +263,41 @@ class StrategyController extends AbstractController
     }
 
     #[Route('/housingstocks/{housingStockId}/projects/{projectId}', name: 'getproject', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/projects/{projectId}",
-     *     summary="Returns details about a project",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="projectId",
-     *         description="The id of a project",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a project",
-     *         @OA\JsonContent(ref="#/components/schemas/Project")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/projects/{projectId}',
+        description: 'Returns details about a project',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'projectId',
+                description: 'The id of the project',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about an project',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/project',
+                ),
+            ),
+        ],
+    )]
     public function getProject(string $housingStockId, string $projectId): Response
     {
         $projectRepository = $this->getDoctrine()->getRepository(Project::class);
