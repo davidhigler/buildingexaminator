@@ -770,6 +770,10 @@ div.fixed-action-btn.user-profile ul a.btn-floating {
     background-color: #5466c8;
 }
 
+div#slide-out {
+    overflow-y: scroll;
+}
+
 div.slide-out-nav-menu-button {
     position: fixed;
     left: 8px !important;
