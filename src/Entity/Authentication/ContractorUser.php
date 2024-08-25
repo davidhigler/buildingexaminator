@@ -19,13 +19,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ContractorUser extends User
 {
     #[ORM\JoinColumn(name: 'contractor_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'contractorUsers', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Contractor::class, fetch: 'EXTRA_LAZY', inversedBy: 'contractorUsers')]
     #[Assert\NotBlank(message: 'A contractor user must have a contractor')]
     #[OA\Property(ref: '#/components/schemas/Contractor')]
     protected Contractor $contractor;
 
     #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\ContractorGroup::class, mappedBy: 'contractorUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
-    #[OA\Property(ref: '#/components/schemas/contractorGroups')]
+    #[OA\Property(ref: '#/components/schemas/ContractorGroups')]
     protected Collection $contractorGroups;
 
     #[Pure]

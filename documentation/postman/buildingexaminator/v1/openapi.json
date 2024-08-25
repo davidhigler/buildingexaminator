@@ -14,6 +14,7 @@
         "/owners": {
             "get": {
                 "summary": "Returns details about multiple owners",
+                "description": "OWNERS",
                 "operationId": "c89dabc81c665b1833037b53169b2f46",
                 "parameters": [
                     {
@@ -96,7 +97,7 @@
         },
         "/owners/{ownerId}": {
             "get": {
-                "summary": "Returns details about an owner",
+                "description": "Returns details about an owner",
                 "operationId": "0743627ed8bab3ded6b25d946dc8b308",
                 "parameters": [
                     {
@@ -124,7 +125,7 @@
                 }
             },
             "put": {
-                "summary": "Change owner",
+                "description": "Change owner",
                 "operationId": "d6675887109f75f69ed195e1d7c4bb16",
                 "parameters": [
                     {
@@ -179,7 +180,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete owner",
+                "description": "Delete owner",
                 "operationId": "d7712f11fcdb22cce4efe5bce80cb6c8",
                 "parameters": [
                     {
@@ -203,6 +204,7 @@
         "/contractors": {
             "get": {
                 "summary": "Returns details about multiple contractors",
+                "description": "CONTRACTORS",
                 "operationId": "a4ab8e7b34b854296fa56a11418ab4a3",
                 "parameters": [
                     {
@@ -284,40 +286,12 @@
             }
         },
         "/contractors/{contractorId}": {
-            "get": {
-                "summary": "Returns details about a contractor",
-                "operationId": "c2f6711a0466b6cdddec150a00e458c5",
-                "parameters": [
-                    {
-                        "name": "ownerId",
-                        "in": "path",
-                        "description": "The id of the contractor",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Details about a contractor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Contractor"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "put": {
-                "summary": "Change contractor",
+                "description": "Change contractor",
                 "operationId": "fe0322267f63928ca36309e8ba3660d3",
                 "parameters": [
                     {
-                        "name": "ownerId",
+                        "name": "contractorId",
                         "in": "path",
                         "description": "The id of the contractor",
                         "required": true,
@@ -368,11 +342,11 @@
                 }
             },
             "delete": {
-                "summary": "Delete contractor",
+                "description": "Delete contractor",
                 "operationId": "94788d622a58a27c2e55db603b2f8e50",
                 "parameters": [
                     {
-                        "name": "ownerId",
+                        "name": "contractorId",
                         "in": "path",
                         "description": "The id of the contractor",
                         "required": true,
@@ -384,7 +358,37 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted an contractor"
+                        "description": "Successfully deleted a contractor"
+                    }
+                }
+            }
+        },
+        "/contractors/{contractorId}/contractors/{contractorId}": {
+            "get": {
+                "description": "Returns details about an contractor",
+                "operationId": "55123ee583ee69b8c0f088fe0dbaf015",
+                "parameters": [
+                    {
+                        "name": "contractorId",
+                        "in": "path",
+                        "description": "The id of the contractor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about changed contractor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contractor"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -392,6 +396,7 @@
         "/subcontractors": {
             "get": {
                 "summary": "Returns details about multiple subcontractors",
+                "description": "SUBCONTRACTORS",
                 "operationId": "f8cfdaf32e8cc3e5f1bc957de9ce7aaf",
                 "parameters": [
                     {
@@ -474,11 +479,11 @@
         },
         "/subcontractors/{subcontractorId}": {
             "get": {
-                "summary": "Returns details about a subcontractor",
+                "description": "Returns details about a subcontractor",
                 "operationId": "fbc603f623f96985e3f04b83a3f2116f",
                 "parameters": [
                     {
-                        "name": "ownerId",
+                        "name": "subcontractorId",
                         "in": "path",
                         "description": "The id of the subcontractor",
                         "required": true,
@@ -502,11 +507,11 @@
                 }
             },
             "put": {
-                "summary": "Change subcontractor",
+                "description": "Change subcontractor",
                 "operationId": "624ced2848e29bbfe765dca01126edda",
                 "parameters": [
                     {
-                        "name": "ownerId",
+                        "name": "subcontractorId",
                         "in": "path",
                         "description": "The id of the subcontractor",
                         "required": true,
@@ -545,7 +550,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed subcontractor",
+                        "description": "Details about created subcontractor",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -557,11 +562,11 @@
                 }
             },
             "delete": {
-                "summary": "Delete contractor",
+                "description": "Delete subcontractor",
                 "operationId": "cf3be70a5d46092a121f0a25799a1ea0",
                 "parameters": [
                     {
-                        "name": "ownerId",
+                        "name": "subcontractorId",
                         "in": "path",
                         "description": "The id of the subcontractor",
                         "required": true,
@@ -573,7 +578,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted an subcontractor"
+                        "description": "Successfully deleted a subcontractor"
                     }
                 }
             }
@@ -581,6 +586,7 @@
         "/users": {
             "get": {
                 "summary": "Returns details about multiple users",
+                "description": "USERS",
                 "operationId": "df9f5a328d81727e3ccc340d756837b0",
                 "parameters": [
                     {
@@ -636,7 +642,7 @@
                                         "type": "string"
                                     },
                                     "adminrole": {
-                                        "type": "boolean"
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -660,7 +666,7 @@
         },
         "/users/{userId}": {
             "get": {
-                "summary": "Returns details about a user",
+                "description": "Returns details about an user",
                 "operationId": "4d924b1808722d429dcc4471ff11a299",
                 "parameters": [
                     {
@@ -676,7 +682,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about a user",
+                        "description": "Details about an user",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -688,7 +694,7 @@
                 }
             },
             "put": {
-                "summary": "Change user",
+                "description": "Change user",
                 "operationId": "644b28a34633803d6622c25664295b86",
                 "parameters": [
                     {
@@ -718,7 +724,7 @@
                                         "type": "string"
                                     },
                                     "adminrole": {
-                                        "type": "boolean"
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -728,7 +734,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed user",
+                        "description": "Details about created user",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -740,7 +746,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete user",
+                "description": "Delete user",
                 "operationId": "a16d65f6a82350ae5df3d109a685785f",
                 "parameters": [
                     {
@@ -756,14 +762,15 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted a user"
+                        "description": "Successfully deleted an user"
                     }
                 }
             }
         },
         "/housingstocks": {
             "get": {
-                "summary": "Returns details about multiple housing stocks",
+                "summary": "HOUSINGSTOCKS",
+                "description": "Returns details about multiple housing stocks",
                 "operationId": "fcda73ac9da52b6b1fe4740b2b2e2640",
                 "parameters": [
                     {
@@ -774,8 +781,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -844,7 +850,7 @@
         },
         "/housingstocks/{housingStockId}": {
             "get": {
-                "summary": "Returns details about a housing stock",
+                "description": "Returns details about a housing stock",
                 "operationId": "cd876caceffccf4a9667f18d6997a658",
                 "parameters": [
                     {
@@ -872,7 +878,7 @@
                 }
             },
             "put": {
-                "summary": "Change housing stock",
+                "description": "Change housing stock",
                 "operationId": "9e3cb2c669aee97864b2f556b34f7d64",
                 "parameters": [
                     {
@@ -883,8 +889,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -925,7 +930,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete housing stock",
+                "description": "Delete housing stock",
                 "operationId": "d103759ec1d7cefada68491278714dd7",
                 "parameters": [
                     {
@@ -936,8 +941,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -949,7 +953,8 @@
         },
         "/municipalities": {
             "get": {
-                "summary": "Returns details about multiple municipalities",
+                "summary": "MUNICIPALITIES",
+                "description": "Returns details about multiple municipalities",
                 "operationId": "e7baa2635861e05fa3edab82b631aca5",
                 "parameters": [
                     {
@@ -960,8 +965,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -990,19 +994,18 @@
         },
         "/municipalities/{municipalityId}": {
             "get": {
-                "summary": "Returns details about a municipality",
+                "description": "Returns details about a municipality",
                 "operationId": "c2cc9366a977dedd34ed1f17a6b8a75b",
                 "parameters": [
                     {
                         "name": "municipalityId",
                         "in": "path",
-                        "description": "The id of a municipality",
+                        "description": "The id of the municipality",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1021,7 +1024,8 @@
         },
         "/residentialareas": {
             "get": {
-                "summary": "Returns details about multiple residential areas",
+                "summary": "RESIDENTIALAREAS",
+                "description": "Returns details about multiple residential areas",
                 "operationId": "edcaad60e6de6eb3d5b14c527c70602f",
                 "parameters": [
                     {
@@ -1032,8 +1036,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1048,7 +1051,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about multiple residential areas",
+                        "description": "Details about residential areas",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1062,19 +1065,18 @@
         },
         "/residentialareas/{residentialAreaId}": {
             "get": {
-                "summary": "Returns details about a residential area",
+                "description": "Returns details about a residential area",
                 "operationId": "393b3246b092cccead8491eee0d4032a",
                 "parameters": [
                     {
                         "name": "residentialAreaId",
                         "in": "path",
-                        "description": "The id of a residential area",
+                        "description": "The id of the residential area",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1093,7 +1095,8 @@
         },
         "/neighbourhoods": {
             "get": {
-                "summary": "Returns details about multiple neighbourhoods",
+                "summary": "NEIGHBOURHOODS",
+                "description": "Returns details about multiple neighbourhoods",
                 "operationId": "ff7b101bf699c35347adcdf7e1b38d50",
                 "parameters": [
                     {
@@ -1104,8 +1107,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1134,19 +1136,18 @@
         },
         "/neighbourhoods/{neighbourhoodId}": {
             "get": {
-                "summary": "Returns details about a neighbourhood",
+                "description": "Returns details about a neighbourhood",
                 "operationId": "fdbf42d5d3366a80a75aae76a31b8e7f",
                 "parameters": [
                     {
                         "name": "neighbourhoodId",
                         "in": "path",
-                        "description": "The id of a neighbourhood",
+                        "description": "The id of the neighbourhood",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1165,7 +1166,8 @@
         },
         "/vtws": {
             "get": {
-                "summary": "Returns details about multiple vtws",
+                "summary": "VTWS",
+                "description": "Returns details about multiple vtws",
                 "operationId": "41d311d7c4b03c08c84e7959c06e08e4",
                 "parameters": [
                     {
@@ -1176,8 +1178,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1206,19 +1207,18 @@
         },
         "/vtws/{vtwId}": {
             "get": {
-                "summary": "Returns details about a vtw",
+                "description": "Returns details about a vtw",
                 "operationId": "d8b4280d6e2eeddedcb4af55344ef37c",
                 "parameters": [
                     {
-                        "name": "neighbourhoodId",
+                        "name": "vtwId",
                         "in": "path",
-                        "description": "The id of a vtw",
+                        "description": "The id of the vtw",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1237,7 +1237,8 @@
         },
         "/housingstocks/{housingStockId}/cities": {
             "get": {
-                "summary": "Returns details about multiple cities",
+                "summary": "CITIES",
+                "description": "Returns details about multiple cities",
                 "operationId": "e0fbc1fd71e9d69d6a3fc5fa57a7b059",
                 "parameters": [
                     {
@@ -1248,8 +1249,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1259,8 +1259,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1289,7 +1288,7 @@
         },
         "/housingstocks/{housingStockId}/cities/{cityId}": {
             "get": {
-                "summary": "Returns details about a city",
+                "description": "Returns details about a city",
                 "operationId": "19da95b2cafdeb628393b4283fd07a65",
                 "parameters": [
                     {
@@ -1300,19 +1299,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "cityId",
                         "in": "path",
-                        "description": "The id of a city",
+                        "description": "The id of the city",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1331,7 +1328,8 @@
         },
         "/housingstocks/{housingStockId}/publicspaces": {
             "get": {
-                "summary": "Returns details about multiple publicspaces",
+                "summary": "PUBLICSPACES",
+                "description": "Returns details about multiple publicspaces",
                 "operationId": "ba354b3ff667ef1692a0581793badf9a",
                 "parameters": [
                     {
@@ -1342,8 +1340,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1353,8 +1350,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1383,7 +1379,7 @@
         },
         "/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}": {
             "get": {
-                "summary": "Returns details about a public space",
+                "description": "Returns details about a publicspace",
                 "operationId": "cf9c46f7c4a575b2451c7ec449b60280",
                 "parameters": [
                     {
@@ -1394,24 +1390,22 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "publicSpaceId",
                         "in": "path",
-                        "description": "The id of a public space",
+                        "description": "The id of the publicspace",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about a public space",
+                        "description": "Details about a publicspace",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1425,7 +1419,8 @@
         },
         "/housingstocks/{housingStockId}/buildings": {
             "get": {
-                "summary": "Returns details about multiple buildings",
+                "summary": "BUILDINGS",
+                "description": "Returns details about multiple buildings",
                 "operationId": "1ce207135e00c824fad7ddde36cb5077",
                 "parameters": [
                     {
@@ -1436,8 +1431,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1447,8 +1441,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1477,7 +1470,7 @@
         },
         "/housingstocks/{housingStockId}/buildings/{buildingId}": {
             "get": {
-                "summary": "Returns details about a building",
+                "description": "Returns details about a building",
                 "operationId": "433f02cb1e17aad4cb88e71bfdba326c",
                 "parameters": [
                     {
@@ -1488,19 +1481,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
-                        "name": "publicSpaceId",
+                        "name": "buildingId",
                         "in": "path",
-                        "description": "The id of a building",
+                        "description": "The id of the building",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1519,7 +1510,8 @@
         },
         "/housingstocks/{housingStockId}/residences": {
             "get": {
-                "summary": "Returns details about multiple residences",
+                "summary": "RESIDENCES",
+                "description": "Returns details about multiple residences",
                 "operationId": "018e331070aef74f562bb535f8b3d063",
                 "parameters": [
                     {
@@ -1530,8 +1522,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1541,8 +1532,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1571,7 +1561,7 @@
         },
         "/housingstocks/{housingStockId}/residences/{residenceId}": {
             "get": {
-                "summary": "Returns details about a residence",
+                "description": "Returns details about a residence",
                 "operationId": "cef46c61df3cee1b0f487094e720c04b",
                 "parameters": [
                     {
@@ -1582,19 +1572,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
-                        "name": "publicSpaceId",
+                        "name": "residenceId",
                         "in": "path",
-                        "description": "The id of a residence",
+                        "description": "The id of the residence",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1613,19 +1601,19 @@
         },
         "/housingstocks/{housingStockId}/blocks": {
             "get": {
-                "summary": "Returns details about multiple blocks",
+                "summary": "BLOCKS",
+                "description": "Returns details about multiple blocks",
                 "operationId": "d9cfc5eae6bd3d2489e759a82748ae0b",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1635,8 +1623,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1669,13 +1656,12 @@
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -1718,7 +1704,7 @@
         },
         "/housingstocks/{housingStockId}/blocks/{blockId}": {
             "get": {
-                "summary": "Returns details about a block",
+                "description": "Returns details about a block",
                 "operationId": "7bdbcfb807a07658822999667e6fe63f",
                 "parameters": [
                     {
@@ -1729,19 +1715,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "blockId",
                         "in": "path",
-                        "description": "The id of a block",
+                        "description": "The id of the block",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1758,30 +1742,28 @@
                 }
             },
             "put": {
-                "summary": "Change block",
+                "description": "Change block",
                 "operationId": "6f7fde4a97d3c7d430625fca04d23075",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of a housing stock",
+                        "description": "The id of the housing stock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "blockId",
                         "in": "path",
-                        "description": "The id of a block",
+                        "description": "The id of the block",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -1797,6 +1779,9 @@
                                         "type": "string"
                                     },
                                     "description": {
+                                        "type": "string"
+                                    },
+                                    "financialnumber": {
                                         "type": "string"
                                     }
                                 },
@@ -1819,7 +1804,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete block",
+                "description": "Delete block",
                 "operationId": "0d44e14218a5c9e00c7abe9af3f16ef2",
                 "parameters": [
                     {
@@ -1830,19 +1815,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "blockId",
                         "in": "path",
-                        "description": "The id of a block",
+                        "description": "The id of the block",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -1854,19 +1837,19 @@
         },
         "/housingstocks/{housingStockId}/buildingtypes": {
             "get": {
-                "summary": "Returns details about multiple building types",
+                "summary": "BUILDINGTYPES",
+                "description": "Returns details about multiple buildingtypes",
                 "operationId": "99e051f4d4b80e3834373dc81d912445",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -1876,8 +1859,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -1904,23 +1886,22 @@
                 }
             },
             "post": {
-                "summary": "Add new building type",
+                "summary": "Add new buildingtype",
                 "operationId": "a885490366e297a782bd34c5428f3036",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
-                    "description": "Details about new building type",
+                    "description": "Details about new buildingtype",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1942,7 +1923,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about created building type",
+                        "description": "Details about created buildingtype",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1956,34 +1937,32 @@
         },
         "/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}": {
             "put": {
-                "summary": "Change building type",
+                "description": "Change buildingtype",
                 "operationId": "f87f84db3b143b515a77d7fb5dc0b90b",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of a housing stock",
+                        "description": "The id of the housing stock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "buildingTypeId",
                         "in": "path",
-                        "description": "The id of a building type",
+                        "description": "The id of the buildingtype",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
-                    "description": "Details for changing building type",
+                    "description": "Details for changing buildingtype",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -2005,7 +1984,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Details about changed building type",
+                        "description": "Details about changed buildingtype",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2017,7 +1996,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete building type",
+                "description": "Delete buildingtype",
                 "operationId": "6600416eb39764aad6488216d9b8dd79",
                 "parameters": [
                     {
@@ -2028,31 +2007,29 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "buildingTypeId",
                         "in": "path",
-                        "description": "The id of a building type",
+                        "description": "The id of the buildingtype",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully deleted a building type"
+                        "description": "Successfully deleted a buildingtype"
                     }
                 }
             }
         },
         "/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}": {
             "get": {
-                "summary": "Returns details about an address",
+                "description": "Returns details about a buildingtype",
                 "operationId": "160c6851aadc8ddd206811edd6cdd27c",
                 "parameters": [
                     {
@@ -2063,24 +2040,22 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "buildingtypeId",
                         "in": "path",
-                        "description": "The id of a building type",
+                        "description": "The id of the buildingtype",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about a building type",
+                        "description": "Details about a buildingtype",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2094,19 +2069,19 @@
         },
         "/housingstocks/{housingStockId}/addresses": {
             "get": {
-                "summary": "Returns details about multiple addresses",
+                "summary": "ADDRESSES",
+                "description": "Returns details about multiple addresses",
                 "operationId": "de341e3a585fe57715df7c1ed9c8b8b7",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -2116,8 +2091,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -2150,13 +2124,12 @@
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -2232,7 +2205,7 @@
         },
         "/housingstocks/{housingStockId}/addresses/{addressId}": {
             "get": {
-                "summary": "Returns details about an address",
+                "description": "Returns details about an address",
                 "operationId": "a269197cad59bf86febf37e90eab840a",
                 "parameters": [
                     {
@@ -2243,19 +2216,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of the address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -2272,30 +2243,28 @@
                 }
             },
             "put": {
-                "summary": "Change address",
+                "description": "Change address",
                 "operationId": "c961965929bf04a1a66b026bbd849714",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of a housing stock",
+                        "description": "The id of the housing stock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of the address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -2304,10 +2273,25 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "streetName": {
+                                    "residentialarea": {
+                                        "type": "integer"
+                                    },
+                                    "block": {
+                                        "type": "integer"
+                                    },
+                                    "buildingtype": {
+                                        "type": "integer"
+                                    },
+                                    "livingtype": {
+                                        "type": "integer"
+                                    },
+                                    "rentalunitnumber": {
                                         "type": "string"
                                     },
-                                    "houseNumber": {
+                                    "streetname": {
+                                        "type": "string"
+                                    },
+                                    "housenumber": {
                                         "type": "integer"
                                     },
                                     "addition": {
@@ -2319,7 +2303,19 @@
                                     "city": {
                                         "type": "string"
                                     },
-                                    "daeb": {
+                                    "bagid": {
+                                        "type": "string"
+                                    },
+                                    "constructionyear": {
+                                        "type": "integer"
+                                    },
+                                    "renovationyear": {
+                                        "type": "integer"
+                                    },
+                                    "orientation": {
+                                        "type": "string"
+                                    },
+                                    "deab": {
                                         "type": "boolean"
                                     }
                                 },
@@ -2342,7 +2338,7 @@
                 }
             },
             "delete": {
-                "summary": "Delete address",
+                "description": "Delete address",
                 "operationId": "67360e2ce9712eb957853339903bed5a",
                 "parameters": [
                     {
@@ -2353,19 +2349,17 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "addressId",
                         "in": "path",
-                        "description": "The id of an address",
+                        "description": "The id of the address",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -2377,19 +2371,18 @@
         },
         "/housingstocks/{housingStockId}/projects": {
             "get": {
-                "summary": "Returns details about multiple projects",
+                "description": "Returns details about multiple projects",
                 "operationId": "124ad955b8e83876878b70580ec2e000",
                 "parameters": [
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "page",
@@ -2399,8 +2392,7 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "searchterm",
@@ -2433,13 +2425,12 @@
                     {
                         "name": "housingStockId",
                         "in": "path",
-                        "description": "The id of the housing stock",
+                        "description": "The id of the housingstock",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "requestBody": {
@@ -2476,7 +2467,7 @@
         },
         "/housingstocks/{housingStockId}/projects/{projectId}": {
             "get": {
-                "summary": "Returns details about a project",
+                "description": "Returns details about a project",
                 "operationId": "44e615d96e504c0e68f610c5be22b57f",
                 "parameters": [
                     {
@@ -2487,24 +2478,22 @@
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     },
                     {
                         "name": "projectId",
                         "in": "path",
-                        "description": "The id of a project",
+                        "description": "The id of the project",
                         "required": true,
                         "schema": {
                             "type": "integer",
                             "format": "int64"
-                        },
-                        "example": 1
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Details about a project",
+                        "description": "Details about an project",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2539,7 +2528,7 @@
                     "data": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/Users"
+                            "$ref": "#/components/schemas/User"
                         }
                     }
                 },
@@ -2580,6 +2569,9 @@
                         }
                     },
                     "type": "object"
+                },
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
                 }
             },
             "housingStocks": {
@@ -2593,7 +2585,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "municipalities": {
                 "title": "Municipalities",
@@ -2606,7 +2601,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "residentialAreas": {
                 "title": "Residential areas",
@@ -2619,7 +2617,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "neighbourhoods": {
                 "title": "Neighbourhoods",
@@ -2632,7 +2633,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "cities": {
                 "title": "Cities",
@@ -2645,7 +2649,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "publicspaces": {
                 "title": "Publicspaces",
@@ -2658,7 +2665,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "buildings": {
                 "title": "Buildings",
@@ -2671,7 +2681,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "residences": {
                 "title": "Residences",
@@ -2684,7 +2697,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "blocks": {
                 "title": "Blocks",
@@ -2697,7 +2713,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "buildingTypes": {
                 "title": "Building types",
@@ -2710,7 +2729,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "addresses": {
                 "title": "Addresses",
@@ -2723,7 +2745,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "vtws": {
                 "title": "Vtws",
@@ -2736,7 +2761,10 @@
                         }
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "externalDocs": {
+                    "url": "/api/v1/documentation"
+                }
             },
             "projects": {
                 "title": "Projects",
@@ -2763,7 +2791,34 @@
                                 "$ref": "#/components/schemas/Contractor"
                             },
                             "contractorGroups": {
-                                "$ref": "#/components/schemas/contractorGroups"
+                                "$ref": "#/components/schemas/ContractorGroups"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "OwnerUsers": {
+                "title": "Owner users",
+                "description": "An array of owner users",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/OwnerUser"
+                                }
+                            },
+                            "owner": {
+                                "$ref": "#/components/schemas/Owner"
+                            },
+                            "ownerGroups": {
+                                "$ref": "#/components/schemas/OwnerGroups"
                             }
                         },
                         "type": "object"
@@ -2771,6 +2826,15 @@
                 ]
             },
             "OwnerUser": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/User"
+                    }
+                ]
+            },
+            "SubcontractorUsers": {
+                "title": "Subcontractor users",
+                "description": "An array of subcontractor users",
                 "type": "object",
                 "allOf": [
                     {
@@ -2778,11 +2842,17 @@
                     },
                     {
                         "properties": {
-                            "owner": {
-                                "$ref": "#/components/schemas/Owner"
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/SubcontractorUser"
+                                }
                             },
-                            "ownerGroups": {
-                                "$ref": "#/components/schemas/ownerGroups"
+                            "subcontractor": {
+                                "$ref": "#/components/schemas/Subcontractor"
+                            },
+                            "subcontractorGroups": {
+                                "$ref": "#/components/schemas/SubcontractorGroups"
                             }
                         },
                         "type": "object"
@@ -2790,21 +2860,9 @@
                 ]
             },
             "SubcontractorUser": {
-                "type": "object",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/User"
-                    },
-                    {
-                        "properties": {
-                            "subcontractor": {
-                                "$ref": "#/components/schemas/Subcontractor"
-                            },
-                            "subcontractorGroups": {
-                                "$ref": "#/components/schemas/subcontractorGroups"
-                            }
-                        },
-                        "type": "object"
                     }
                 ]
             },
@@ -2838,8 +2896,16 @@
                 },
                 "type": "object"
             },
-            "ContractorGroup": {
+            "ContractorGroups": {
+                "title": "Contractor groups",
+                "description": "An array of contractor groups",
                 "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContractorGroup"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -2850,7 +2916,18 @@
                         "$ref": "#/components/schemas/Contractor"
                     },
                     "contractorUsers": {
-                        "$ref": "#/components/schemas/contractorGroups"
+                        "$ref": "#/components/schemas/ContractorGroups"
+                    }
+                },
+                "type": "object"
+            },
+            "ContractorGroup": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -2884,8 +2961,16 @@
                 },
                 "type": "object"
             },
-            "OwnerGroup": {
+            "OwnerGroups": {
+                "title": "Owner groups",
+                "description": "An array of owner groups",
                 "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OwnerGroup"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -2896,7 +2981,18 @@
                         "$ref": "#/components/schemas/Owner"
                     },
                     "ownerUsers": {
-                        "$ref": "#/components/schemas/ownerUsers"
+                        "$ref": "#/components/schemas/OwnerUsers"
+                    }
+                },
+                "type": "object"
+            },
+            "OwnerGroup": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -2938,8 +3034,16 @@
                 },
                 "type": "object"
             },
-            "SubcontractorGroup": {
+            "SubcontractorGroups": {
+                "title": "Subcontractor groups",
+                "description": "An array of subcontractor groups",
                 "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SubcontractorGroup"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -2950,7 +3054,18 @@
                         "$ref": "#/components/schemas/Subcontractor"
                     },
                     "subcontractorUsers": {
-                        "$ref": "#/components/schemas/subcontractorUsers"
+                        "$ref": "#/components/schemas/SubcontractorUsers"
+                    }
+                },
+                "type": "object"
+            },
+            "SubcontractorGroup": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -3496,8 +3611,5 @@
                 "type": "object"
             }
         }
-    },
-    "externalDocs": {
-        "url": "/api/v1/documentation"
     }
 }

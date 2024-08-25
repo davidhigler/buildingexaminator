@@ -680,7 +680,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about created housing stock',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/housingStock',
+                    ref: '#/components/schemas/HousingStock',
                 ),
             ),
         ],
@@ -773,7 +773,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about changed housing stock',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/housingStock',
+                    ref: '#/components/schemas/HousingStock',
                 ),
             ),
         ],
@@ -886,7 +886,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a housing stock',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/housingStock',
+                    ref: '#/components/schemas/HousingStock',
                 ),
             ),
         ],
@@ -1345,7 +1345,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a vtw',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/vtw',
+                    ref: '#/components/schemas/Vtw',
                 ),
             ),
         ],
@@ -1485,7 +1485,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a city',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/city',
+                    ref: '#/components/schemas/City',
                 ),
             ),
         ],
@@ -1625,7 +1625,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a publicspace',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/publicspace',
+                    ref: '#/components/schemas/PublicSpace',
                 ),
             ),
         ],
@@ -1765,7 +1765,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a building',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/building',
+                    ref: '#/components/schemas/Building',
                 ),
             ),
         ],
@@ -1905,7 +1905,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a residence',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/residence',
+                    ref: '#/components/schemas/Residence',
                 ),
             ),
         ],
@@ -2064,7 +2064,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about created block',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/block',
+                    ref: '#/components/schemas/Block',
                 ),
             ),
         ],
@@ -2170,7 +2170,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about changed block',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/block',
+                    ref: '#/components/schemas/Block',
                 ),
             ),
         ],
@@ -2306,7 +2306,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a block',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/block',
+                    ref: '#/components/schemas/Block',
                 ),
             ),
         ],
@@ -2377,7 +2377,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about multiple buildingtypes',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/buildingtypes',
+                    ref: '#/components/schemas/buildingTypes',
                 ),
             ),
         ],
@@ -2469,7 +2469,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about created buildingtype',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/buildingtype',
+                    ref: '#/components/schemas/BuildingType',
                 ),
             ),
         ],
@@ -2568,7 +2568,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about changed buildingtype',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/buildingtype',
+                    ref: '#/components/schemas/BuildingType',
                 ),
             ),
         ],
@@ -2701,7 +2701,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about a buildingtype',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/buildingtype',
+                    ref: '#/components/schemas/BuildingType',
                 ),
             ),
         ],
@@ -2912,7 +2912,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about created address',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/address',
+                    ref: '#/components/schemas/Address',
                 ),
             ),
         ],
@@ -3208,7 +3208,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about changed address',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/address',
+                    ref: '#/components/schemas/Address',
                 ),
             ),
         ],
@@ -3362,7 +3362,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                 response: 200,
                 description: 'Details about an address',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/address',
+                    ref: '#/components/schemas/Address',
                 ),
             ),
         ],

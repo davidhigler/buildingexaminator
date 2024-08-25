@@ -15,17 +15,32 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author David C. Higler <davidhigler@gmail.com>
  */
 #[ORM\Entity]
+#[OA\Schema(
+    schema: 'OwnerUsers',
+    title: 'Owner users',
+    description: 'An array of owner users',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/OwnerUser',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
 #[OA\Schema]
 class OwnerUser extends User
 {
     #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \App\Entity\Authorization\Owner::class, inversedBy: 'ownerUsers', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Owner::class, fetch: 'EXTRA_LAZY', inversedBy: 'ownerUsers')]
     #[Assert\NotBlank(message: 'A owner user must have an owner')]
     #[OA\Property(ref: '#/components/schemas/Owner')]
     protected Owner $owner;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\OwnerGroup::class, mappedBy: 'ownerUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
-    #[OA\Property(ref: '#/components/schemas/ownerGroups')]
+    #[ORM\ManyToMany(targetEntity: OwnerGroup::class, mappedBy: 'ownerUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[OA\Property(ref: '#/components/schemas/OwnerGroups')]
     protected Collection $ownerGroups;
 
     #[Pure]

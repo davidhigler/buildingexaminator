@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
             property: 'data',
             type: 'array',
             items: new OA\Items(
-                ref: '#/components/schemas/project',
+                ref: '#/components/schemas/Project',
             ),
         ),
     ],
@@ -201,7 +201,7 @@ class StrategyController extends AbstractController
                 response: 200,
                 description: 'Details about created project',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/project',
+                    ref: '#/components/schemas/Project',
                 ),
             ),
         ],
@@ -293,7 +293,7 @@ class StrategyController extends AbstractController
                 response: 200,
                 description: 'Details about an project',
                 content: new OA\JsonContent(
-                    ref: '#/components/schemas/project',
+                    ref: '#/components/schemas/Project',
                 ),
             ),
         ],
