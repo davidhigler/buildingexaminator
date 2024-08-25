@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Serializer;
 
 class ApiRenderEngine
 {
-    public const DEFAULT_PAGE_LIMIT = 10;
+    public const DEFAULT_PAGE_LIMIT = 20;
 
     public static function renderData($results, array $fields): array
     {
