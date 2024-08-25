@@ -27,7 +27,7 @@ use App\Security\Voters\BuildingTypeVoter;
 use App\Security\Voters\HousingStockVoter;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,162 +41,211 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
- *
- * @OA\Info(
- *     title="Building Examinator",
- *     version="0.0.1"
- * )
- * @OA\ExternalDocumentation(
- *     url="/api/v1/documentation"
- * )
- * @OA\Server(
- *     url="https://www.buildingexaminator.nl/api/v1",
- *     description="Development"
- * )
- * @OA\Schema(
- *     schema="ids",
- *     type="array",
- *     @OA\Items(
- *         type="object",
- *         @OA\Property(
- *             property="id",
- *             type="integer"
- *         )
- *     )
- * )
- * @OA\Schema(
- *     schema="housingStocks",
- *     title="Housing stocks",
- *     description="An array of housing stocks",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/HousingStock")
- *     )
- * )
- * @OA\Schema(
- *     schema="municipalities",
- *     title="Municipalities",
- *     description="An array of municipalities",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Municipality")
- *     )
- * )
- * @OA\Schema(
- *     schema="residentialAreas",
- *     title="Residential areas",
- *     description="An array of residential areas",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/ResidentialArea")
- *     )
- * )
- * @OA\Schema(
- *     schema="neighbourhoods",
- *     title="Neighbourhoods",
- *     description="An array of neighbourhoods",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Neighbourhood")
- *     )
- * )
- * @OA\Schema(
- *     schema="cities",
- *     title="Cities",
- *     description="An array of cities",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/City")
- *     )
- * )
- * @OA\Schema(
- *     schema="publicspaces",
- *     title="Publicspaces",
- *     description="An array of public spaces",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/PublicSpace")
- *     )
- * )
- * @OA\Schema(
- *     schema="buildings",
- *     title="Buildings",
- *     description="An array of buildings",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Building")
- *     )
- * )
- * @OA\Schema(
- *     schema="residences",
- *     title="Residences",
- *     description="An array of residences",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Residence")
- *     )
- * )
- * @OA\Schema(
- *     schema="blocks",
- *     title="Blocks",
- *     description="An array of blocks",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Block")
- *     )
- * )
- * @OA\Schema(
- *     schema="buildingTypes",
- *     title="Building types",
- *     description="An array of building types",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/BuildingType")
- *     )
- * )
- * @OA\Schema(
- *     schema="addresses",
- *     title="Addresses",
- *     description="An array of addresses",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Address")
- *     )
- * )
- * @OA\Schema(
- *     schema="vtws",
- *     title="Vtws",
- *     description="An array of vtws",
- *     type="object",
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Vtw")
- *     )
- * )
  */
+#[OA\Info(
+    version: '0.0.1',
+    title: 'Building Examinator',
+)]
+#[OA\ExternalDocumentation(
+    url: '/api/v1/documentation',
+)]
+#[OA\Server(
+    url: 'https://www.buildingexaminator.nl/api/v1',
+    description: 'Development',
+)]
+#[OA\Schema(
+    schema: 'ids',
+    type: 'array',
+    items: new OA\Items(
+        properties: [
+            new OA\Property(
+                property: 'id',
+                type: 'integer',
+            )
+        ],
+        type: 'object',
+    ),
+)]
+#[OA\Schema(
+    schema: 'housingStocks',
+    title: 'Housing stocks',
+    description: 'An array of housing stocks',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/HousingStock',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'municipalities',
+    title: 'Municipalities',
+    description: 'An array of municipalities',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Municipality',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'residentialAreas',
+    title: 'Residential areas',
+    description: 'An array of residential areas',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/ResidentialArea',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'neighbourhoods',
+    title: 'Neighbourhoods',
+    description: 'An array of neighbourhoods',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Neighbourhood',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'cities',
+    title: 'Cities',
+    description: 'An array of cities',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/City',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'publicspaces',
+    title: 'Publicspaces',
+    description: 'An array of public spaces',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/PublicSpace',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'buildings',
+    title: 'Buildings',
+    description: 'An array of buildings',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Building',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'residences',
+    title: 'Residences',
+    description: 'An array of residences',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Residence',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'blocks',
+    title: 'Blocks',
+    description: 'An array of blocks',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Block',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'buildingTypes',
+    title: 'Building types',
+    description: 'An array of building types',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/BuildingType',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'addresses',
+    title: 'Addresses',
+    description: 'An array of addresses',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Address',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
+#[OA\Schema(
+    schema: 'vtws',
+    title: 'Vtws',
+    description: 'An array of vtws',
+    properties: [
+        new OA\Property(
+            property: 'data',
+            type: 'array',
+            items: new OA\Items(
+                ref: '#/components/schemas/Vtw',
+            ),
+        ),
+    ],
+    type: 'object',
+)]
 class PortfolioController extends AbstractController implements LoggerAwareInterface
 {
     private const HOUSING_STOCK_LIST_FIELDS = [
@@ -521,38 +570,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks', name: 'listhousingstocks', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks",
-     *     summary="Returns details about multiple housing stocks",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple housing stocks",
-     *         @OA\JsonContent(ref="#/components/schemas/housingStocks")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks',
+        description: 'Returns details about multiple housing stocks',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple housing stocks',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/housingStocks',
+                ),
+            ),
+        ],
+    )]
     public function getHousingStocks(Request $request, PaginatorInterface $paginator): Response
     {
         $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
@@ -596,39 +648,43 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks",
-     *     summary="Add new housing stock",
-     *     @OA\RequestBody(
-     *         description="Details about new housing stock",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="owner",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created housing stock",
-     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/housingstocks',
+        summary: 'Add new housing stock',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new housing stock',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'owner',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created housing stock',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/housingStock',
+                ),
+            ),
+        ],
+    )]
     public function addHousingStock(Request $request, ValidatorInterface $validator): Response
     {
         $newHousingStock = json_decode($request->getContent(), true);
@@ -673,50 +729,55 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'changehousingstock', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}",
-     *     summary="Change housing stock",
-     *     @OA\RequestBody(
-     *         description="Details for changing housing stock",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="owner",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed housing stock",
-     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/housingstocks/{housingStockId}',
+        description: 'Change housing stock',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing housing stock',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'owner',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed housing stock',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/housingStock',
+                ),
+            ),
+        ],
+    )]
     public function changeHousingStock(string $housingStockId, Request $request, ValidatorInterface $validator): Response
     {
         $changeHousingStock = json_decode($request->getContent(), true);
@@ -763,27 +824,28 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'deletehousingstock', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}",
-     *     summary="Delete housing stock",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a housing stock"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/housingstocks/{housingStockId}',
+        description: 'Delete housing stock',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted a housing stock',
+            ),
+        ],
+    )]
     public function deleteHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
@@ -804,27 +866,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}', name: 'gethousingstock', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}",
-     *     summary="Returns details about a housing stock",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a housing stock",
-     *         @OA\JsonContent(ref="#/components/schemas/HousingStock")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}',
+        description: 'Returns details about a housing stock',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a housing stock',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/housingStock',
+                ),
+            ),
+        ],
+    )]
     public function getHousingStock(string $housingStockId): Response
     {
         $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
@@ -846,38 +912,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/municipalities', name: 'listmunicipalities', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/municipalities",
-     *     summary="Returns details about multiple municipalities",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple municipalities",
-     *         @OA\JsonContent(ref="#/components/schemas/municipalities")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/municipalities',
+        description: 'Returns details about multiple municipalities',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple municipalities',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/municipalities',
+                ),
+            ),
+        ],
+    )]
     public function getMunicipalities(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -914,28 +983,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/municipalities/{municipalityId}', name: 'getmunicipality', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/municipalities/{municipalityId}",
-     *     summary="Returns details about a municipality",
-     *     @OA\Parameter(
-     *         name="municipalityId",
-     *         description="The id of a municipality",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a municipality",
-     *         @OA\JsonContent(ref="#/components/schemas/Municipality")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/municipalities/{municipalityId}',
+        description: 'Returns details about a municipality',
+        parameters: [
+            new OA\Parameter(
+                name: 'municipalityId',
+                description: 'The id of the municipality',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a municipality',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Municipality',
+                ),
+            ),
+        ],
+    )]
     public function getMunicipality(string $municipalityId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -954,38 +1026,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/residentialareas",
-     *     summary="Returns details about multiple residential areas",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple residential areas",
-     *         @OA\JsonContent(ref="#/components/schemas/residentialAreas")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/residentialareas',
+        description: 'Returns details about multiple residential areas',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about residential areas',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/residentialAreas',
+                ),
+            ),
+        ],
+    )]
     public function getResidentialAreas(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1022,28 +1097,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/residentialareas/{residentialAreaId}",
-     *     summary="Returns details about a residential area",
-     *     @OA\Parameter(
-     *         name="residentialAreaId",
-     *         description="The id of a residential area",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a residential area",
-     *         @OA\JsonContent(ref="#/components/schemas/ResidentialArea")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/residentialareas/{residentialAreaId}',
+        description: 'Returns details about a residential area',
+        parameters: [
+            new OA\Parameter(
+                name: 'residentialAreaId',
+                description: 'The id of the residential area',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a residential area',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/ResidentialArea',
+                ),
+            ),
+        ],
+    )]
     public function getResidentialArea(string $residentialAreaId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1062,38 +1140,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/neighbourhoods', name: 'listneighbourhoods', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/neighbourhoods",
-     *     summary="Returns details about multiple neighbourhoods",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple neighbourhoods",
-     *         @OA\JsonContent(ref="#/components/schemas/neighbourhoods")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/neighbourhoods',
+        description: 'Returns details about multiple neighbourhoods',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple neighbourhoods',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/neighbourhoods',
+                ),
+            ),
+        ],
+    )]
     public function getNeighbourhoods(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1130,28 +1211,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/neighbourhoods/{neighbourhoodId}', name: 'getneighbourhood', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/neighbourhoods/{neighbourhoodId}",
-     *     summary="Returns details about a neighbourhood",
-     *     @OA\Parameter(
-     *         name="neighbourhoodId",
-     *         description="The id of a neighbourhood",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a neighbourhood",
-     *         @OA\JsonContent(ref="#/components/schemas/Neighbourhood")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/neighbourhoods/{neighbourhoodId}',
+        description: 'Returns details about a neighbourhood',
+        parameters: [
+            new OA\Parameter(
+                name: 'neighbourhoodId',
+                description: 'The id of the neighbourhood',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a neighbourhood',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/Neighbourhood',
+                ),
+            ),
+        ],
+    )]
     public function getNeighbourhood(string $neighbourhoodId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1170,38 +1254,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/vtws', name: 'listvtws', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/vtws",
-     *     summary="Returns details about multiple vtws",
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple vtws",
-     *         @OA\JsonContent(ref="#/components/schemas/vtws")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/vtws',
+        description: 'Returns details about multiple vtws',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple vtws',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/vtws',
+                ),
+            ),
+        ],
+    )]
     public function getVtws(Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1238,28 +1325,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/vtws/{vtwId}', name: 'getvtw', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/vtws/{vtwId}",
-     *     summary="Returns details about a vtw",
-     *     @OA\Parameter(
-     *         name="neighbourhoodId",
-     *         description="The id of a vtw",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a vtw",
-     *         @OA\JsonContent(ref="#/components/schemas/Vtw")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/vtws/{vtwId}',
+        description: 'Returns details about a vtw',
+        parameters: [
+            new OA\Parameter(
+                name: 'vtwId',
+                description: 'The id of the vtw',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a vtw',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/vtw',
+                ),
+            ),
+        ],
+    )]
     public function getVtw(string $vtwId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1278,49 +1368,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/cities', name: 'listcities', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/cities",
-     *     summary="Returns details about multiple cities",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple cities",
-     *         @OA\JsonContent(ref="#/components/schemas/cities")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/cities',
+        description: 'Returns details about multiple cities',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple cities',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/cities',
+                ),
+            ),
+        ],
+    )]
     public function getCities(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1363,39 +1455,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/cities/{cityId}', name: 'getcity', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/cities/{cityId}",
-     *     summary="Returns details about a city",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="cityId",
-     *         description="The id of a city",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a city",
-     *         @OA\JsonContent(ref="#/components/schemas/City")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/cities/{cityId}',
+        description: 'Returns details about a city',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'cityId',
+                description: 'The id of the city',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a city',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/city',
+                ),
+            ),
+        ],
+    )]
     public function getCity(string $cityId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1414,49 +1508,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/publicspaces', name: 'listpublicspaces', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/publicspaces",
-     *     summary="Returns details about multiple publicspaces",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple publicspaces",
-     *         @OA\JsonContent(ref="#/components/schemas/publicspaces")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/publicspaces',
+        description: 'Returns details about multiple publicspaces',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple publicspaces',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/publicspaces',
+                ),
+            ),
+        ],
+    )]
     public function getPublicSpaces(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1499,39 +1595,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}', name: 'getpublicspace', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}",
-     *     summary="Returns details about a public space",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="publicSpaceId",
-     *         description="The id of a public space",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a public space",
-     *         @OA\JsonContent(ref="#/components/schemas/PublicSpace")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}',
+        description: 'Returns details about a publicspace',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'publicSpaceId',
+                description: 'The id of the publicspace',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a publicspace',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/publicspace',
+                ),
+            ),
+        ],
+    )]
     public function getPublicSpace(string $publicSpaceId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1550,49 +1648,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/buildings', name: 'listbuildings', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildings",
-     *     summary="Returns details about multiple buildings",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple buildings",
-     *         @OA\JsonContent(ref="#/components/schemas/buildings")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/buildings',
+        description: 'Returns details about multiple buildings',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple buildings',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/buildings',
+                ),
+            ),
+        ],
+    )]
     public function getBuildings(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1635,39 +1735,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/buildings/{buildingId}', name: 'getbuilding', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildings/{buildingId}",
-     *     summary="Returns details about a building",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="publicSpaceId",
-     *         description="The id of a building",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a building",
-     *         @OA\JsonContent(ref="#/components/schemas/Building")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/buildings/{buildingId}',
+        description: 'Returns details about a building',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'buildingId',
+                description: 'The id of the building',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a building',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/building',
+                ),
+            ),
+        ],
+    )]
     public function getBuilding(string $buildingId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1686,49 +1788,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/residences', name: 'listresidences', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residences",
-     *     summary="Returns details about multiple residences",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple residences",
-     *         @OA\JsonContent(ref="#/components/schemas/residences")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/residences',
+        description: 'Returns details about multiple residences',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple residences',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/residences',
+                ),
+            ),
+        ],
+    )]
     public function getResidences(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1771,39 +1875,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/residences/{residenceId}', name: 'getresidence', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/residences/{residenceId}",
-     *     summary="Returns details about a residence",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housingstock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="publicSpaceId",
-     *         description="The id of a residence",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a residence",
-     *         @OA\JsonContent(ref="#/components/schemas/Residence")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/residences/{residenceId}',
+        description: 'Returns details about a residence',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'residenceId',
+                description: 'The id of the residence',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a residence',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/residence',
+                ),
+            ),
+        ],
+    )]
     public function getResidence(string $residenceId): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -1822,49 +1928,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'listblocks', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/blocks",
-     *     summary="Returns details about multiple blocks",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple blocks",
-     *         @OA\JsonContent(ref="#/components/schemas/blocks")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/blocks',
+        description: 'Returns details about multiple blocks',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple blocks',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/blocks',
+                ),
+            ),
+        ],
+    )]
     public function getBlocks(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
@@ -1912,50 +2020,55 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks', name: 'addblock', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/blocks",
-     *     summary="Add new block",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new block",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="financialnumber",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created block",
-     *         @OA\JsonContent(ref="#/components/schemas/Block")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/housingstocks/{housingStockId}/blocks',
+        summary: 'Add new block',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new block',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'financialnumber',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created block',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/block',
+                ),
+            ),
+        ],
+    )]
     public function addBlock(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newBlock = json_decode($request->getContent(), true);
@@ -2003,57 +2116,65 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'changeblock', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
-     *     summary="Change block",
-     *     @OA\RequestBody(
-     *         description="Details for changing block",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of a housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="blockId",
-     *         description="The id of a block",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed block",
-     *         @OA\JsonContent(ref="#/components/schemas/Block")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/housingstocks/{housingStockId}/blocks/{blockId}',
+        description: 'Change block',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing block',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'financialnumber',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'blockId',
+                description: 'The id of the block',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed block',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/block',
+                ),
+            ),
+        ],
+    )]
     public function changeBlock(string $housingStockId, string $blockId, Request $request, ValidatorInterface $validator): Response
     {
         $changeBlock = json_decode($request->getContent(), true);
@@ -2103,38 +2224,38 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'deleteblock', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
-     *     summary="Delete block",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="blockId",
-     *         description="The id of a block",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a block"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/housingstocks/{housingStockId}/blocks/{blockId}',
+        description: 'Delete block',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'blockId',
+                description: 'The id of the block',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted a block',
+            ),
+        ],
+    )]
     public function deleteBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->doctrine->getRepository(Block::class);
@@ -2155,39 +2276,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'getblock', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/blocks/{blockId}",
-     *     summary="Returns details about a block",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="blockId",
-     *         description="The id of a block",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a block",
-     *         @OA\JsonContent(ref="#/components/schemas/Block")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/blocks/{blockId}',
+        description: 'Returns details about a block',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'blockId',
+                description: 'The id of the block',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a block',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/block',
+                ),
+            ),
+        ],
+    )]
     public function getBlock(string $housingStockId, string $blockId): Response
     {
         $blockRepository = $this->doctrine->getRepository(Block::class);
@@ -2214,49 +2337,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildingtypes",
-     *     summary="Returns details about multiple building types",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple buildingtypes",
-     *         @OA\JsonContent(ref="#/components/schemas/buildingTypes")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/buildingtypes',
+        description: 'Returns details about multiple buildingtypes',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple buildingtypes',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/buildingtypes',
+                ),
+            ),
+        ],
+    )]
     public function getBuildingTypes(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -2304,46 +2429,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'addbuildingtype', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/buildingtypes",
-     *     summary="Add new building type",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new building type",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created building type",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/housingstocks/{housingStockId}/buildingtypes',
+        summary: 'Add new buildingtype',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new buildingtype',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created buildingtype',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/buildingtype',
+                ),
+            ),
+        ],
+    )]
     public function addBuildingType(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newBuildingType = json_decode($request->getContent(), true);
@@ -2388,57 +2518,61 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'changebuildingtype', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}",
-     *     summary="Change building type",
-     *     @OA\RequestBody(
-     *         description="Details for changing building type",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="code",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="description",
-     *                 type="string"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of a housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="buildingTypeId",
-     *         description="The id of a building type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed building type",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}',
+        description: 'Change buildingtype',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing buildingtype',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'name',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'code',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'description',
+                        type: 'string',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'buildingTypeId',
+                description: 'The id of the buildingtype',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed buildingtype',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/buildingtype',
+                ),
+            ),
+        ],
+    )]
     public function changeBuildingType(string $housingStockId, string $buildingTypeId, Request $request, ValidatorInterface $validator): Response
     {
         $changeBuildingType = json_decode($request->getContent(), true);
@@ -2485,38 +2619,38 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'deletebuildingtype', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}",
-     *     summary="Delete building type",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="buildingTypeId",
-     *         description="The id of a building type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted a building type"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}',
+        description: 'Delete buildingtype',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'buildingTypeId',
+                description: 'The id of the buildingtype',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted a buildingtype',
+            ),
+        ],
+    )]
     public function deleteBuildingType(string $housingStockId, string $buildingTypeId): Response
     {
         $buildingTypeRepository = $this->doctrine->getRepository(BuildingType::class);
@@ -2537,39 +2671,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}",
-     *     summary="Returns details about an address",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="buildingtypeId",
-     *         description="The id of a building type",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about a building type",
-     *         @OA\JsonContent(ref="#/components/schemas/BuildingType")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}',
+        description: 'Returns details about a buildingtype',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'buildingtypeId',
+                description: 'The id of the buildingtype',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about a buildingtype',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/buildingtype',
+                ),
+            ),
+        ],
+    )]
     public function getBuildingType(string $housingStockId, string $buildingtypeId): Response
     {
         $buildingTypeRepository = $this->doctrine->getRepository(BuildingType::class);
@@ -2595,49 +2731,51 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
 
     #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddresses', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses",
-     *     summary="Returns details about multiple addresses",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         description="The page number to get",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="searchterm",
-     *         description="The searchterm",
-     *         @OA\Schema(
-     *             type="string",
-     *         ),
-     *         in="query",
-     *         required=false,
-     *         example="test"
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about multiple addresses",
-     *         @OA\JsonContent(ref="#/components/schemas/addresses")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/addresses',
+        description: 'Returns details about multiple addresses',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple addresses',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/addresses',
+                ),
+            ),
+        ],
+    )]
     public function getAddresses(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
@@ -2686,94 +2824,99 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
-    /**
-     * @OA\Post(
-     *     path="/housingstocks/{housingStockId}/addresses",
-     *     summary="Add new address",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Details about new address",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="residentialarea",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="block",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="buildingtype",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="livingtype",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="rentalunitnumber",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="streetname",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="housenumber",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="addition",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="zipcode",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="city",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="bagid",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="constructionyear",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="renovationyear",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="orientation",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="deab",
-     *                 type="boolean"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about created address",
-     *         @OA\JsonContent(ref="#/components/schemas/Address")
-     *     )
-     * )
-     */
+    #[OA\Post(
+        path: '/housingstocks/{housingStockId}/addresses',
+        summary: 'Add new address',
+        requestBody: new OA\RequestBody(
+            description: 'Details about new address',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'residentialarea',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'block',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'buildingtype',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'livingtype',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'rentalunitnumber',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'streetname',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'housenumber',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'addition',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'zipcode',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'city',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'bagid',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'constructionyear',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'renovationyear',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'orientation',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'deab',
+                        type: 'boolean',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housingstock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about created address',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/address',
+                ),
+            ),
+        ],
+    )]
     public function addAddress(Request $request, ValidatorInterface $validator, string $housingStockId): Response
     {
         $newAddress = json_decode($request->getContent(), true);
@@ -2967,69 +3110,109 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
-    /**
-     * @OA\Put(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Change address",
-     *     @OA\RequestBody(
-     *         description="Details for changing address",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="streetName",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="houseNumber",
-     *                 type="integer"
-     *             ),
-     *             @OA\Property(
-     *                 property="addition",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="zipcode",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="city",
-     *                 type="string"
-     *             ),
-     *             @OA\Property(
-     *                 property="daeb",
-     *                 type="bool"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of a housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about changed address",
-     *         @OA\JsonContent(ref="#/components/schemas/Address")
-     *     )
-     * )
-     */
+    #[OA\Put(
+        path: '/housingstocks/{housingStockId}/addresses/{addressId}',
+        description: 'Change address',
+        requestBody: new OA\RequestBody(
+            description: 'Details for changing address',
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: 'residentialarea',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'block',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'buildingtype',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'livingtype',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'rentalunitnumber',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'streetname',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'housenumber',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'addition',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'zipcode',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'city',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'bagid',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'constructionyear',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'renovationyear',
+                        type: 'integer',
+                    ),
+                    new OA\Property(
+                        property: 'orientation',
+                        type: 'string',
+                    ),
+                    new OA\Property(
+                        property: 'deab',
+                        type: 'boolean',
+                    ),
+                ],
+                type: 'object',
+            ),
+        ),
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'addressId',
+                description: 'The id of the address',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about changed address',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/address',
+                ),
+            ),
+        ],
+    )]
     public function changeAddress(string $housingStockId, string $addressId, Request $request, ValidatorInterface $validator): Response
     {
         $changeAddress = json_decode($request->getContent(), true);
@@ -3097,38 +3280,38 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
-    /**
-     * @OA\Delete(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Delete address",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully deleted an address"
-     *     )
-     * )
-     */
+    #[OA\Delete(
+        path: '/housingstocks/{housingStockId}/addresses/{addressId}',
+        description: 'Delete address',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'addressId',
+                description: 'The id of the address',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successfully deleted an address',
+            ),
+        ],
+    )]
     public function deleteAddress(string $housingStockId, string $addressId): Response
     {
         $addressRepository = $this->doctrine->getRepository(Address::class);
@@ -3149,39 +3332,41 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     }
 
     #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
-    /**
-     * @OA\Get(
-     *     path="/housingstocks/{housingStockId}/addresses/{addressId}",
-     *     summary="Returns details about an address",
-     *     @OA\Parameter(
-     *         name="housingStockId",
-     *         description="The id of the housing stock",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Parameter(
-     *         name="addressId",
-     *         description="The id of an address",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *         ),
-     *         in="path",
-     *         required=true,
-     *         example=1
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Details about an address",
-     *         @OA\JsonContent(ref="#/components/schemas/Address")
-     *     )
-     * )
-     */
+    #[OA\Get(
+        path: '/housingstocks/{housingStockId}/addresses/{addressId}',
+        description: 'Returns details about an address',
+        parameters: [
+            new OA\Parameter(
+                name: 'housingStockId',
+                description: 'The id of the housing stock',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'addressId',
+                description: 'The id of the address',
+                in: 'path',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about an address',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/address',
+                ),
+            ),
+        ],
+    )]
     public function getAddress(string $housingStockId, string $addressId): Response
     {
         $addressRepository = $this->doctrine->getRepository(Address::class);
