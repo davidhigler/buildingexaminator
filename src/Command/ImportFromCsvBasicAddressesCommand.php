@@ -12,8 +12,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ImportFromCsvBasicAddressesCommand extends Command
 {
-
-
     protected function configure(): void
     {
         $this->setName('app:import:csv:address-basic');

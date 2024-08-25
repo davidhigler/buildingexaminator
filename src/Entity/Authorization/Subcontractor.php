@@ -21,11 +21,11 @@ use App\Entity\SuperClasses\IdCodeName;
 #[OA\Schema]
 class Subcontractor extends IdCodeName
 {
-    #[ORM\OneToMany(targetEntity: \App\Entity\Authentication\SubcontractorUser::class, mappedBy: 'subcontractor', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: SubcontractorUser::class, mappedBy: 'subcontractor', cascade: ['remove'])]
     #[OA\Property(ref: '#/components/schemas/ids')]
     protected Collection $subcontractorUsers;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Strategies\Project::class, mappedBy: 'subcontractors', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'subcontractors', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     #[OA\Property(ref: '#/components/schemas/projects')]
     protected Collection $projects;
 
@@ -44,7 +44,7 @@ class Subcontractor extends IdCodeName
     #[ORM\Column(type: 'string', length: 256, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The website is not a valid {{ type }}')]
     #[Assert\Length(min: 8, max: 256, minMessage: 'The website must be at least {{ limit }} characters long', maxMessage: 'The website can contain a maximum of {{ limit }} characters')]
-    #[Assert\Url(protocols: ['https'], message: "The website '{{ value }}' is not a valid url")]
+    #[Assert\Url(message: "The website '{{ value }}' is not a valid url", protocols: ['https'])]
     #[OA\Property]
     protected string $website;
 

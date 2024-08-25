@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class GlossIso2813 extends IdTimeScore
 {
     #[ORM\JoinColumn(name: 'address_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \App\Entity\Portfolio\Address::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Address::class, fetch: 'EXTRA_LAZY')]
     #[Assert\NotBlank(message: 'A gloss measurement must have an address')]
     #[OA\Property(ref: '#/components/schemas/Address')]
     protected Address $address;

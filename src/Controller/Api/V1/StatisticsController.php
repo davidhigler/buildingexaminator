@@ -4,21 +4,25 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Portfolio\Address;
 use App\Entity\Portfolio\HousingStock;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
+#[Route('/api/v1', name: 'api-v1-')]
 class StatisticsController extends AbstractController
 {
+    public function __construct(
+        private readonly ManagerRegistry $doctrine)
+    {}
+
     #[Route('/statistics', name: 'globalstatistics', methods: ['GET'])]
-    public function getGlobalStatistics(EntityManagerInterface $entityManager): Response
+    public function getGlobalStatistics(): Response
     {
-        $housingStockRepository = $entityManager->getRepository(HousingStock::class);
+        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
         $housingStockQueryBuilder = $housingStockRepository->createQueryBuilder('o');
 
         $housingStockQueryBuilder->select('count(o.id)');
@@ -30,7 +34,7 @@ class StatisticsController extends AbstractController
         $housingStockQueryBuilder->select('max(o.lastChangeTime)');
         $housingStockLatestChange = $housingStockQueryBuilder->getQuery()->getSingleScalarResult();
 
-        $addressesRepository = $entityManager->getRepository(Address::class);
+        $addressesRepository = $this->doctrine->getRepository(Address::class);
         $addressesQueryBuilder = $addressesRepository->createQueryBuilder('o');
 
         $addressesQueryBuilder->select('count(o.id)');

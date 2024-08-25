@@ -34,14 +34,14 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
+#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Info(
     version: '0.0.1',
     title: 'Building Examinator',
@@ -561,7 +561,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      */
     public function __construct(
         private LoggerInterface $logger,
-        private readonly ManagerRegistry $doctrine
+        private readonly ManagerRegistry $doctrine,
     ) {}
 
 

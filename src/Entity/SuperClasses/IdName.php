@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\MappedSuperclass]
 class IdName extends Id
 {
-
     #[ORM\Column(type: 'string', length: 128, nullable: false)]
     #[Assert\NotBlank(message: 'The name may not be empty')]
     #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]

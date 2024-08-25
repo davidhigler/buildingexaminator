@@ -12,7 +12,7 @@ class PasswordConstraintsValidator extends ConstraintValidator
     /**
      * @inheritDoc
      */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof PasswordConstraints) {
             throw new UnexpectedTypeException($constraint, PasswordConstraints::class);

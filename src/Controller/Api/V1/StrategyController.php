@@ -7,21 +7,22 @@ use App\Entity\Portfolio\HousingStock;
 use App\Entity\Strategies\Project;
 use App\Helpers\ErrorExtractor;
 use App\Security\Voters\ProjectVoter;
+use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Helpers\ApiRenderEngine;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
+#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Schema(
     schema: 'projects',
     title: 'Projects',
@@ -72,6 +73,10 @@ class StrategyController extends AbstractController
         ],
     ];
 
+    public function __construct(
+        private readonly ManagerRegistry $doctrine)
+    {}
+
     #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/projects',
@@ -120,11 +125,11 @@ class StrategyController extends AbstractController
     )]
     public function getProjects(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $projectRepository = $this->getDoctrine()->getRepository(Project::class);
+        $projectRepository = $this->doctrine->getRepository(Project::class);
         $adapter = $projectRepository->createQueryBuilder('p');
         $adapter->andWhere($adapter->expr()->eq('p.housingStock', $adapter->expr()->literal($housingStock->getId())));
 
@@ -210,7 +215,7 @@ class StrategyController extends AbstractController
     {
         $newProject = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->getDoctrine()->getRepository(HousingStock::class);
+        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
@@ -231,7 +236,7 @@ class StrategyController extends AbstractController
             $project->setPreferredEndDate($newProject['preferredEndDate']);
         }
         if (!empty($newProject['addresses'])) {
-            $addressRepository = $this->getDoctrine()->getRepository(Address::class);
+            $addressRepository = $this->doctrine->getRepository(Address::class);
 
             foreach ($newProject['addresses'] as $newAddress) {
                 $address = $addressRepository->find((int)$newAddress);
@@ -246,10 +251,10 @@ class StrategyController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($project);
+        $projectManager = $this->doctrine->getManager(Project::class);
+        $projectManager->persist($project);
         try {
-            $entityManager->flush();
+            $projectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -300,7 +305,7 @@ class StrategyController extends AbstractController
     )]
     public function getProject(string $housingStockId, string $projectId): Response
     {
-        $projectRepository = $this->getDoctrine()->getRepository(Project::class);
+        $projectRepository = $this->doctrine->getRepository(Project::class);
         $project = $projectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,

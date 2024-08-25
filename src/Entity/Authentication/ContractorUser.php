@@ -24,7 +24,7 @@ class ContractorUser extends User
     #[OA\Property(ref: '#/components/schemas/Contractor')]
     protected Contractor $contractor;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\ContractorGroup::class, mappedBy: 'contractorUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: ContractorGroup::class, mappedBy: 'contractorUsers', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     #[OA\Property(ref: '#/components/schemas/ContractorGroups')]
     protected Collection $contractorGroups;
 

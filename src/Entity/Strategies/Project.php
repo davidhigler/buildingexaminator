@@ -25,23 +25,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Project extends IdCodeName
 {
     #[ORM\JoinColumn(name: 'housingstock_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \App\Entity\Portfolio\HousingStock::class, inversedBy: 'projects', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: HousingStock::class, fetch: 'EXTRA_LAZY', inversedBy: 'projects')]
     #[Assert\NotBlank(message: 'A project must have a housingstock')]
     #[OA\Property(ref: '#/components/schemas/HousingStock')]
     protected HousingStock $housingStock;
 
     #[ORM\JoinTable(name: 'StrategiesProjectsContractors')]
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\Contractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: Contractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     #[OA\Property(ref: '#/components/schemas/contractors')]
     protected Collection $contractors;
 
     #[ORM\JoinTable(name: 'StrategiesProjectsSubcontractors')]
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Authorization\Subcontractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: Subcontractor::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     #[OA\Property(ref: '#/components/schemas/subcontractors')]
     protected Collection $subcontractors;
 
     #[ORM\JoinTable(name: 'StrategiesProjectsAddresses')]
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Portfolio\Address::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'projects', cascade: ['remove'], fetch: 'EXTRA_LAZY')]
     #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 

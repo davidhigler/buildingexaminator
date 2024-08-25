@@ -21,11 +21,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[OA\Schema]
 class Owner extends Id
 {
-    #[ORM\OneToMany(targetEntity: \App\Entity\Portfolio\HousingStock::class, mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: HousingStock::class, mappedBy: 'owner', cascade: ['remove'])]
     #[OA\Property(ref: '#/components/schemas/ids')]
     protected Collection $housingStocks;
 
-    #[ORM\OneToMany(targetEntity: \App\Entity\Authentication\OwnerUser::class, mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: OwnerUser::class, mappedBy: 'owner', cascade: ['remove'])]
     #[OA\Property(ref: '#/components/schemas/ids')]
     protected Collection $ownerUsers;
 
@@ -57,7 +57,7 @@ class Owner extends Id
     #[ORM\Column(type: 'string', length: 256, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The website is not a valid {{ type }}')]
     #[Assert\Length(min: 8, max: 256, minMessage: 'The website must be at least {{ limit }} characters long', maxMessage: 'The website can contain a maximum of {{ limit }} characters')]
-    #[Assert\Url(protocols: ['https'], message: "The website '{{ value }}' is not a valid url")]
+    #[Assert\Url(message: "The website '{{ value }}' is not a valid url", protocols: ['https'])]
     #[OA\Property]
     protected string $website;
 

@@ -15,7 +15,7 @@ use App\Security\Voters\ContractorVoter;
 use App\Security\Voters\OwnerVoter;
 use App\Security\Voters\SubcontractorVoter;
 use App\Security\Voters\UserVoter;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Attributes as OA;
@@ -24,14 +24,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
+#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Schema(
     schema: 'owners',
     title: 'Owners',
@@ -161,6 +161,10 @@ class AuthorizationController extends AbstractController
         'type',
     ];
 
+    public function __construct(
+        private readonly ManagerRegistry $doctrine)
+    {}
+
     /**
      * OWNERS
      */
@@ -201,11 +205,11 @@ class AuthorizationController extends AbstractController
             ),
         ],
     )]
-    public function getOwners(Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
+    public function getOwners(Request $request, PaginatorInterface $paginator): Response
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $ownerRepository = $entityManager->getRepository(Owner::class);
+        $ownerRepository = $this->doctrine->getRepository(Owner::class);
         $adapter = $ownerRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -284,7 +288,7 @@ class AuthorizationController extends AbstractController
             ),
         ],
     )]
-    public function addOwner(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    public function addOwner(Request $request, ValidatorInterface $validator): Response
     {
         $newOwner = json_decode($request->getContent(), true);
 
@@ -312,9 +316,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManagerOwner = $entityManager->getRepository(Owner::class);
-        $entityManagerOwner->persist($owner);
-        $entityManagerOwner->flush();
+        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager->persist($owner);
+        $ownerManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -382,7 +386,7 @@ class AuthorizationController extends AbstractController
     {
         $changeOwner = json_decode($request->getContent(), true);
 
-        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $ownerRepository = $this->doctrine->getRepository(Owner::class);
         /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
@@ -407,9 +411,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($owner);
-        $entityManager->flush();
+        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager->persist($owner);
+        $ownerManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -444,16 +448,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $ownerRepository = $this->doctrine->getRepository(Owner::class);
         /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $this->denyAccessUnlessGranted(OwnerVoter::DELETE, $owner);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($owner);
+        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager->remove($owner);
         try {
-            $entityManager->flush();
+            $ownerManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -489,7 +493,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->getDoctrine()->getRepository(Owner::class);
+        $ownerRepository = $this->doctrine->getRepository(Owner::class);
         $owner = $ownerRepository->find(
             (int)$ownerId
         );
@@ -546,7 +550,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
         $adapter = $contractorRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -653,9 +657,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($contractor);
-        $entityManager->flush();
+        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager->persist($contractor);
+        $contractorManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -723,7 +727,7 @@ class AuthorizationController extends AbstractController
     {
         $changeContractor = json_decode($request->getContent(), true);
 
-        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
         /** @var Contractor $contractor */
         $contractor = $contractorRepository->find((int) $contractorId);
 
@@ -750,9 +754,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($contractor);
-        $entityManager->flush();
+        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager->persist($contractor);
+        $contractorManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -787,16 +791,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
         /** @var Contractor $contractor */
         $contractor = $contractorRepository->find((int) $contractorId);
 
         $this->denyAccessUnlessGranted(ContractorVoter::DELETE, $contractor);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($contractor);
+        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager->remove($contractor);
         try {
-            $entityManager->flush();
+            $contractorManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -832,7 +836,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->getDoctrine()->getRepository(Contractor::class);
+        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
         $contractor = $contractorRepository->find(
             (int)$contractorId
         );
@@ -889,7 +893,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
         $adapter = $subcontractorRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -996,9 +1000,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($subcontractor);
-        $entityManager->flush();
+        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager->persist($subcontractor);
+        $subcontractorManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1066,7 +1070,7 @@ class AuthorizationController extends AbstractController
     {
         $changeSubcontractor = json_decode($request->getContent(), true);
 
-        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
         $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
 
@@ -1093,9 +1097,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($subcontractor);
-        $entityManager->flush();
+        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager->persist($subcontractor);
+        $subcontractorManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1130,16 +1134,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
         $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
 
         $this->denyAccessUnlessGranted(SubcontractorVoter::DELETE, $subcontractor);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($subcontractor);
+        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager->remove($subcontractor);
         try {
-            $entityManager->flush();
+            $subcontractorManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -1175,7 +1179,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->getDoctrine()->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
         $subcontractor = $subcontractorRepository->find(
             (int)$subcontractorId
         );
@@ -1234,7 +1238,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $userRepository = $this->doctrine->getRepository(User::class);
         $adapter = $userRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -1349,9 +1353,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $userManager = $this->doctrine->getManager(User::class);
+        $userManager->persist($user);
+        $userManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1415,7 +1419,7 @@ class AuthorizationController extends AbstractController
     {
         $changeUser = json_decode($request->getContent(), true);
 
-        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $userRepository = $this->doctrine->getRepository(User::class);
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
@@ -1450,9 +1454,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($violations), 500);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $userManager = $this->doctrine->getManager(User::class);
+        $userManager->persist($user);
+        $userManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1487,16 +1491,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteUser(string $userId): Response
     {
-        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $userRepository = $this->doctrine->getRepository(User::class);
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
         $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($user);
+        $userManager = $this->doctrine->getManager(User::class);
+        $userManager->remove($user);
         try {
-            $entityManager->flush();
+            $userManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -1532,7 +1536,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getUserInfo(string $userId): Response
     {
-        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $userRepository = $this->doctrine->getRepository(User::class);
         $user = $userRepository->find(
             (int)$userId
         );

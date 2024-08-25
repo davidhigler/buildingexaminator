@@ -4,12 +4,12 @@ namespace App\Controller\Api\V1;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/api/v1', name: 'api-v1-')]
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
+#[Route('/api/v1', name: 'api-v1-')]
 class DocumentationController extends AbstractController
 {
     #[Route('/documentation', name: 'documentation', methods: ['GET'])]
