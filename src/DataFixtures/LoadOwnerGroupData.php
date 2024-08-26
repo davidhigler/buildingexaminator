@@ -35,7 +35,7 @@ class LoadOwnerGroupData extends Fixture
         foreach ($ownerGroups as $ownerGroup) {
             $ownerGroupObject = new OwnerGroup();
 
-            if (!empty($ownerGroup['owner_id']) ) {
+            if (!empty($ownerGroup['owner']) ) {
                 $owner = $this->getReference($ownerGroup['owner']);
                 $ownerGroupObject->setOwner($owner);
             }
