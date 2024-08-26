@@ -486,6 +486,48 @@ class AuthorizationController extends AbstractController
         );
     }
 
+    /** OWNER GROUPS */
+
+    #[Route('/ownergroups', name: 'listownergroups', methods: ['GET'])]
+    #[OA\Get(
+        path: '/ownergroups',
+        summary: 'Returns details about multiple owner groups',
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                description: 'The page number to get',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'integer',
+                    format: 'int64',
+                ),
+            ),
+            new OA\Parameter(
+                name: 'searchterm',
+                description: 'The searchterm',
+                in: 'query',
+                required: false,
+                schema: new OA\Schema(
+                    type: 'string',
+                ),
+                example: 'test',
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Details about multiple owner groups',
+                content: new OA\JsonContent(
+                    ref: '#/components/schemas/ownergroups',
+                ),
+            ),
+        ],
+    )]
+    public function getOwnerGroups(string $ownerId): Response {
+        return;
+    }
+
     /** CONTRACTORS */
 
     #[Route('/contractors', name: 'listcontractors', methods: ['GET'])]
