@@ -4,10 +4,12 @@ namespace App\Controller\Api\V1;
 
 use App\Entity\Authorization\Contractor;
 use App\Entity\Authorization\Owner;
+use App\Entity\Authorization\OwnerGroup;
 use App\Entity\Authorization\Subcontractor;
 use App\Helpers\ApiRenderEngine;
 use App\Helpers\ErrorExtractor;
 use App\Security\Voters\ContractorVoter;
+use App\Security\Voters\OwnerGroupVoter;
 use App\Security\Voters\OwnerVoter;
 use App\Security\Voters\SubcontractorVoter;
 use Doctrine\Persistence\ManagerRegistry;
@@ -525,8 +527,44 @@ class AuthorizationController extends AbstractController
             ),
         ],
     )]
-    public function getOwnerGroups(string $ownerId): Response {
-        return new JsonResponse([]);
+    public function getOwnerGroups(Request $request, PaginatorInterface $paginator): Response
+    {
+        $searchTerm = $request->query->get('searchterm');
+
+        $contractorRepository = $this->doctrine->getRepository(OwnerGroup::class);
+        $adapter = $contractorRepository->createQueryBuilder('o');
+        if (!empty($searchTerm)) {
+            $adapter
+                ->andWhere(
+                    $adapter->expr()->orX(
+                        $adapter->expr()->like('o.name', $adapter->expr()->literal('%' . $searchTerm . '%')),
+                        $adapter->expr()->eq('o.id', $adapter->expr()->literal($searchTerm))
+                    )
+                );
+        }
+        $adapter->orderBy('o.name', 'ASC');
+
+        $data = $adapter->getQuery()->getResult();
+
+        foreach ($data as $index => $item) {
+            try {
+                $this->denyAccessUnlessGranted(OwnerGroupVoter::VIEW, $item);
+            } catch (AccessDeniedException) {
+                unset($data[$index]);
+            }
+        }
+
+        $page = $request->query->get('page');
+        if ($page !== null) {
+            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+        }
+
+        return $this->json(
+            ApiRenderEngine::renderData(
+                $data,
+                self::CONTRACTOR_LIST_FIELDS
+            )
+        );
     }
 
     /** CONTRACTORS */
