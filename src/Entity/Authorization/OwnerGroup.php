@@ -37,7 +37,7 @@ class OwnerGroup extends IdName
 {
     #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id')]
     #[ORM\ManyToOne(targetEntity: Owner::class, fetch: 'EXTRA_LAZY', inversedBy: 'ownerUsers')]
-    #[Assert\NotBlank(message: 'A owner user must have an owner')]
+    #[Assert\NotBlank(message: 'A owner group must have an owner')]
     #[OA\Property(ref: '#/components/schemas/Owner')]
     protected Owner $owner;
 
@@ -50,6 +50,16 @@ class OwnerGroup extends IdName
     public function __construct()
     {
         $this->ownerUsers = new ArrayCollection();
+    }
+
+    public function getOwner(): Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(Owner $owner): void
+    {
+        $this->owner = $owner;
     }
 
     public function getOwnerUsers(): Collection
