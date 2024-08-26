@@ -15,6 +15,7 @@ use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -525,7 +526,7 @@ class AuthorizationController extends AbstractController
         ],
     )]
     public function getOwnerGroups(string $ownerId): Response {
-        return;
+        return new JsonResponse([]);
     }
 
     /** CONTRACTORS */
