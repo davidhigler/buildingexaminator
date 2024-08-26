@@ -100,17 +100,17 @@
             </a>
         </li>
         <li>
-            <a href="javascript:void(0);" onclick="checkMenu(this);">
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadPlanningPage()">
                 <i class="material-icons">calendar_month</i>{{ 'planning'|trans|capitalize }} {# icon of a birthday calender with a small clock #}
             </a>
         </li>
         <li>
-            <a href="javascript:void(0);" onclick="checkMenu(this);">
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadTimelinePage();">
                 <i class="material-icons">sync_alt</i>{{ 'timeline'|trans|capitalize }} {# icon of a line from left to right with build/construction icon for work and settings (tasks), format_paint/brush for painting task, camera_alt for taking pictures #}
             </a>
         </li>
         <li>
-            <a href="javascript:void(0);" onclick="checkMenu(this);">
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadMappingPage();">
                 <i class="material-icons">map</i>{{ 'mapping'|trans|capitalize }} {# icon location_groundplan #}
             </a>
         </li>
@@ -135,7 +135,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:void(0);" onclick="void(0);" class="subheader">
+            <a href="javascript:void(0);" onclick="checkMenu(this);loadGroupsPage();">
                 <i class="material-icons">group</i>{{ 'groups'|trans|capitalize }}
             </a>
         </li>

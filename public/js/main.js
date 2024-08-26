@@ -1511,6 +1511,54 @@ function loadProjectsPage(id) {
     }
 }
 
+/*
+ * Planning
+ */
+
+function loadPlanningPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Planning');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/*
+ * Timeline
+ */
+
+function loadTimelinePage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Tijdlijn');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/*
+ * Mapping
+ */
+
+function loadMappingPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Mapping');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
+/*
+ * Groups
+ */
+
+function loadGroupsPage() {
+    if(localStorage.getItem('activeHousingstockId')) {
+        loadUnderConstructionPage('Groepen');
+    } else {
+        loadInformationPage('You need to first choose an active housingstock');
+    }
+}
+
 /**
  * Owners
  */
