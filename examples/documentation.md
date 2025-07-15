@@ -26,7 +26,9 @@ sudo apt -y install \
     php8.4-xdebug \
     php8.4-sqlite3 \
     php8.4-ssh2 \
-    php8.4-zip
+    php8.4-zip \
+    nodejs \
+    npm
 sudo systemctl enable php8.4-fpm
 sudo systemctl start php8.4-fpm
 sudo systemctl enable nginx

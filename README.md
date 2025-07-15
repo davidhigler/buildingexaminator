@@ -71,6 +71,12 @@ php bin/console doctrine:fixtures:load
 php bin/console doctrine:migrations:migrate
 ```
 
+#### Install NPM packages
+```shell
+cd public
+npm install
+```
+
 ### Cache
 
 #### Clear Symfony cache:
