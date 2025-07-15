@@ -62,7 +62,7 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
 
             if (!empty($housingStock['owner'])) {
                 /** @var Owner $owner */
-                $owner = $this->getReference('owner_' . $housingStock['owner']);
+                $owner = $this->getReference('owner_' . $housingStock['owner'], Owner::class);
                 $housingStockObject->setOwner($owner);
             }
 

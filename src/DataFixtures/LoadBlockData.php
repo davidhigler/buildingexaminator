@@ -463,7 +463,7 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
 
             if (!empty($block['housingstock'])) {
                 /** @var HousingStock $housingStock */
-                $housingStock = $this->getReference('housingstock_' . $block['housingstock']);
+                $housingStock = $this->getReference('housingstock_' . $block['housingstock'], HousingStock::class);
                 $blockObject->setHousingStock($housingStock);
             }
 

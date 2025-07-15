@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Authorization\Owner;
 use App\Entity\Authorization\OwnerGroup;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -36,7 +37,7 @@ class LoadOwnerGroupData extends Fixture
             $ownerGroupObject = new OwnerGroup();
 
             if (!empty($ownerGroup['owner']) ) {
-                $owner = $this->getReference($ownerGroup['owner']);
+                $owner = $this->getReference($ownerGroup['owner'], Owner::class);
                 $ownerGroupObject->setOwner($owner);
             }
 

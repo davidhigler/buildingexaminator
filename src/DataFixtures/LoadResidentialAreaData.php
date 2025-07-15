@@ -3282,7 +3282,7 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
 
             if (!empty($residentialArea['municipality'])) {
                 /** @var Municipality $municipality */
-                $municipality = $this->getReference('municipality_' . $residentialArea['municipality']);
+                $municipality = $this->getReference('municipality_' . $residentialArea['municipality'], Municipality::class);
                 $residentialAreaObject->setMunicipality($municipality);
             }
 

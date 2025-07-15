@@ -53,17 +53,17 @@ class LoadUserData extends Fixture implements DependentFixtureInterface
             switch ($userData['type']) {
                 case 'owner':
                     /** @var Owner $owner */
-                    $owner = $this->getReference('owner_' . $userData['owner']);
+                    $owner = $this->getReference('owner_' . $userData['owner'], Owner::class);
                     $newUser->setOwner($owner);
                     break;
                 case 'contractor':
                     /** @var Contractor $contractor */
-                    $contractor = $this->getReference('contractor_' . $userData['contractor']);
+                    $contractor = $this->getReference('contractor_' . $userData['contractor'], Contractor::class);
                     $newUser->setContractor($contractor);
                     break;
                 case 'subcontractor':
                     /** @var Subcontractor $subcontractor */
-                    $subcontractor = $this->getReference('subcontractor_' . $userData['subcontractor']);
+                    $subcontractor = $this->getReference('subcontractor_' . $userData['subcontractor'], Subcontractor::class);
                     $newUser->setSubcontractor($subcontractor);
                     break;
             }

@@ -14040,13 +14040,13 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
 
             if (!empty($neighbourhood['municipality'])) {
                 /** @var Municipality $municipality */
-                $municipality = $this->getReference('municipality_' . $neighbourhood['municipality']);
+                $municipality = $this->getReference('municipality_' . $neighbourhood['municipality'], Municipality::class);
                 $neighbourhoodObject->setMunicipality($municipality);
             }
 
             if (!empty($neighbourhood['residentialarea'])) {
                 /** @var ResidentialArea $residentialArea */
-                $residentialArea = $this->getReference('residentialarea_' . $neighbourhood['residentialarea']);
+                $residentialArea = $this->getReference('residentialarea_' . $neighbourhood['residentialarea'], ResidentialArea::class);
                 $neighbourhoodObject->setResidentialArea($residentialArea);
             }
 
