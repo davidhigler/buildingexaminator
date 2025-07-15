@@ -1,6 +1,5 @@
 /.env
 /.idea/
-/phpunit.xml
 .phpunit.result.cache
 /public/info.php
 /public/node_modules/
