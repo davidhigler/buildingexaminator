@@ -81,4 +81,10 @@ sudo systemctl restart apparmor
 sudo systemctl status apparmor
 ```
 
+If checkout is under a Linux user home dir
+```
+sudo usermod -a -G <user> www-data
+sudo systemctl restart nginx
+```
+
 [buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer](https://www.cbs.nl/nl-nl/maatwerk/2021/36/buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer)
