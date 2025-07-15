@@ -1,53 +1,83 @@
+On WSL2 Ubuntu 24.04
 ```
-zypper in nginx mariadb php8 php8-cli php8-ctype php8-curl php8-dom php8-fileinfo php8-fpm php8-iconv php8-intl php8-mysql php8-openssl php8-pdo php8-phar php8-redis php8-sqlite php8-sysvsem php8-tokenizer php8-xdebug php8-xmlreader php8-xmlwriter php8-zip php8-zlib
+sudo apt update
+sudo apt -y install \
+    software-properties-common \
+    ca-certificates \
+    lsb-release \
+    apt-transport-https
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y install \
+    nginx \
+    mariadb-server \
+    mariadb-client \
+    php8.4 \
+    php8.4-cli \
+    php8.4-common \
+    php8.4-curl \
+    php8.4-xml \
+    php8.4-fpm \
+    php8.4-intl \
+    php8.4-mysql \
+    php8.4-redis \
+    php8.4-xdebug \
+    php8.4-sqlite3 \
+    php8.4-ssh2 \
+    php8.4-zip
+sudo systemctl enable php8.4-fpm
+sudo systemctl start php8.4-fpm
+sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
 ```
 
+Copy config for PHP FPM and restart
+```
+sudo cp examples/php/buildingexaminator.conf /etc/php/8.4/fpm/pool.d/buildingexaminator.conf
+sudo systemctl restart php8.4-fpm
+sudo systemctl status php8.4-fpm
+```
+
+Copy config for Nginx and restart
+```
+sudo cp examples/nginx/buildingexaminator.conf /etc/nginx/sites-available/buildingexaminator.conf
+sudo ln -s /etc/nginx/sites-available/buildingexaminator.conf /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+sudo systemctl status nginx
+```
+
+MariaDB config (ONLY LOCALLY FOR DEV)
+```
+sudo mysql_secure_installation
+root
+Y
+n
+Y
+Y
+Y
+Y
+```
+Open MySQL prompt with root user
+```
+mysql -u root -p
+```
+Create DB and necessary user
 ```
 CREATE DATABASE buildingexaminator;
 CREATE USER 'buildingexaminator'@localhost IDENTIFIED BY 'buildingexaminator';
 GRANT ALL PRIVILEGES ON buildingexaminator.* TO 'buildingexaminator'@localhost;
 FLUSH PRIVILEGES;
+exit;
 ```
 
+AppArmor configuration
 ```
-S  | Name           | Summary                                                | Type
----+----------------+--------------------------------------------------------+--------
-i+ | php8           | Interpreter for the PHP scripting language version 8   | package
-i  | php8-cli       | Interpreter for the PHP scripting language version 8   | package
-i  | php8-ctype     | Character class extension for PHP                      | package
-i+ | php8-curl      | PHP libcurl integration                                | package
-i  | php8-dom       | Document Object Model extension for PHP                | package
-i+ | php8-fileinfo  | File identification extension for PHP                  | package
-i+ | php8-fpm       | FastCGI Process Manager PHP Module                     | package
-i  | php8-iconv     | Character set conversion functions for PHP             | package
-i+ | php8-intl      | ICU integration for PHP                                | package
-i+ | php8-mysql     | MySQL database client for PHP                          | package
-i  | php8-openssl   | OpenSSL integration for PHP                            | package
-i  | php8-pdo       | PHP Data Objects extension for PHP                     | package
-i+ | php8-phar      | PHP Archive extension for PHP                          | package
-i+ | php8-redis     | API for communicating with Redis servers               | package
-i  | php8-sqlite    | SQLite database client for PHP                         | package
-i+ | php8-sysvsem   | SysV Semaphore support for PHP                         | package
-i  | php8-tokenizer | Extension module to access Zend Engine's PHP tokenizer | package
-i+ | php8-xdebug    | Extended PHP debugger                                  | package
-i  | php8-xmlreader | Streaming XML reader extension for PHP                 | package
-i  | php8-xmlwriter | Streaming-based XML writer extension for PHP           | package
-i+ | php8-zip       | ZIP archive support for PHP                            | package
-i  | php8-zlib      | Zlib compression support for PHP                       | package
+sudo cp examples/apparmor/php-fpm /etc/apparmor.d/php-fpm
+sudo systemctl restart apparmor
+sudo systemctl status apparmor
 ```
 
-```
-cp examples/php/buildingexaminator.conf /etc/php8/fpm/php-fpm.d/buildingexaminator.conf
-```
-
-```
-cp examples/nginx/buildingexaminator.conf /etc/nginx/vhosts.d/buildingexaminator.conf
-```
-
-```
-/etc/apparmor.d/php-fpm
-```
-
-```
-https://www.cbs.nl/nl-nl/maatwerk/2021/36/buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer
-```
+[buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer](https://www.cbs.nl/nl-nl/maatwerk/2021/36/buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer)
