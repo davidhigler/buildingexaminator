@@ -15,7 +15,7 @@ class LoadResidenceData extends Fixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $residences = [
             ['object_id' => '19569237','identification' => '0193010000025658','surface_area' => '91','status' => 'Verblijfsobject in gebruik','intended_use' => 'woonfunctie','intended_use_basic' => 'woonfunctie'],

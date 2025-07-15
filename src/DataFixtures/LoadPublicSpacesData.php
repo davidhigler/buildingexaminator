@@ -15,7 +15,7 @@ class LoadPublicSpacesData extends Fixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $publicSpaces = [
             ['name' => 'Spui','type' => 'Weg','object_id' => '61417','identification' => '0193300000001343'],

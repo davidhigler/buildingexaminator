@@ -15,7 +15,7 @@ class LoadBuildingData extends Fixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $buildings = [
             ['object_id' => '3008983','identification' => '0193100000059565','construction_year' => '1968','status' => 'Pand in gebruik','residence_count' => '80','surface_area' => '7280'],

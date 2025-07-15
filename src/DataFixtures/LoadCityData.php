@@ -15,7 +15,7 @@ class LoadCityData extends Fixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $cities = [
             ['name' => 'Zwolle','object_id' => '253','identification' => '1182'],

@@ -12,7 +12,7 @@ class LoadContractorData extends Fixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $contractors = [
             ['code' => 'C1', 'name' => 'Contractor 1'],

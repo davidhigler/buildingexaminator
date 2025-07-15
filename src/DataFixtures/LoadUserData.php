@@ -24,7 +24,7 @@ class LoadUserData extends Fixture implements DependentFixtureInterface
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $users = [
             ['email' => 'developers@dobrobv.nl', 'password' => 'admin', 'roles' => ['ROLE_ADMIN'], 'type' => 'dobro'],
@@ -74,7 +74,7 @@ class LoadUserData extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             LoadOwnerData::class,
