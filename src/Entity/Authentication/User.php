@@ -26,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    
+
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank(message: 'A user must have a email')]
     #[Assert\Email(message: "The email '{{ value }}' is not a valid email.", mode: 'strict')]
@@ -35,9 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    /**
-     * @CustomAssert\PasswordConstraints
-     */
+    #[CustomAssert\PasswordConstraints]
     #[Assert\NotCompromisedPassword]
     #[Assert\NotBlank(message: 'A user must have a password')]
     #[Assert\Length(min: 8, max: 32, minMessage: 'The password must be at least {{ limit }} characters long', maxMessage: 'The password can contain a maximum of {{ limit }} characters')]
