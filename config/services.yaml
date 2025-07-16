@@ -5,7 +5,7 @@ services:
         autowire: true
         autoconfigure: true
 
-    # Explicitly define the annotation_reader service
+    # annotation_reader service is needed for sensio_framework_extra.controller.listener
     annotation_reader:
         class: Doctrine\Common\Annotations\AnnotationReader
 
