@@ -4,8 +4,8 @@ Twig.extendFilter('trans', function(id, params, domain, locale) {
     for (var key in params) {
         if (
             params.hasOwnProperty(key) &&
-            key[0] == Translator.placeHolderPrefix &&
-            key[key.length - 1] == Translator.placeHolderSuffix
+            key[0] === Translator.placeHolderPrefix &&
+            key[key.length - 1] === Translator.placeHolderSuffix
         ) {
             params[key.substr(1, key.length - 2)] = params[key]
             delete params[key]
@@ -167,7 +167,7 @@ function capFirstLetter(string) {
 }
 
 function keyPressListener(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
         let target = $(event.srcElement).data("keyPressTarget");
         $("#" + target).click();
     }
@@ -178,7 +178,7 @@ function keyPressListener(event) {
  */
 
 function loadErrorPage(jqXHR) {
-    let response, message, IS_JSON = true;
+    let response, IS_JSON = true;
 
     try {
         response = $.parseJSON(jqXHR.responseText);
@@ -1503,7 +1503,7 @@ function deleteAddress(id) {
  * Projects
  */
 
-function loadProjectsPage(id) {
+function loadProjectsPage() {
     if(localStorage.getItem('activeHousingstockId')) {
         loadUnderConstructionPage('Projects');
     } else {
@@ -1886,7 +1886,7 @@ function loadHousingstockEditPage(id) {
         beforeSend: function() {
             showLoader();
         },
-        success: function(dataOwners) {
+        success: function() {
             $.ajax({
                 url: '/api/v1/housingstocks/' + id,
                 type: 'GET',
