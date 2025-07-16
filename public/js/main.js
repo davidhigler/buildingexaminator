@@ -2141,6 +2141,9 @@ function loadContractorEditPage(id) {
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
         },
+        complete: function () {
+            checkScreen();
+        },
     });
 }
 
@@ -2327,6 +2330,9 @@ function loadSubcontractorEditPage(id) {
         },
         error: function (jqXHR) {
             loadErrorPage(jqXHR)
+        },
+        complete: function () {
+            checkScreen();
         },
     });
 }
