@@ -18,11 +18,11 @@ sudo apt -y install \
     php8.4-mbstring \
     php8.4-common \
     php8.4-curl \
-    php8.4-xml \
     php8.4-fpm \
     php8.4-intl \
     php8.4-mysql \
     php8.4-redis \
+    php8.4-xml \
     php8.4-xdebug \
     php8.4-sqlite3 \
     php8.4-ssh2 \
