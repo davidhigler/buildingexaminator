@@ -122,7 +122,7 @@ sudo nano /etc/php/8.4/fpm/conf.d/20-xdebug.ini
 ```shell
 zend_extension=xdebug.so
 xdebug.mode=debug
-xdebug.client_host=<PC Name>
+xdebug.client_host=<IP of the Ethernet adapter vEthernet (WSL (Hyper-V firewall))>
 xdebug.client_port=9003
 xdebug.idekey=PHPSTORM
 xdebug.start_with_request=trigger
