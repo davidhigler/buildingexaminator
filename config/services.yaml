@@ -5,6 +5,10 @@ services:
         autowire: true
         autoconfigure: true
 
+    App\EventListener\LoggedOutAjaxListener:
+        tags:
+            - {name: kernel.event_listener, event: kernel.exception, priority: 8}
+
     # annotation_reader service is needed for sensio_framework_extra.controller.listener
     annotation_reader:
         class: Doctrine\Common\Annotations\AnnotationReader
@@ -16,6 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+
     jms_translation.dumper.xlf_dumper:
         class: "%jms_translation.dumper.xliff_dumper.class%"
         calls:
