@@ -100,13 +100,14 @@ PHP_IDE_CONFIG="serverName=localhost" php bin/console doctrine:database:drop --f
 ```
 
 ### Translations
-```
+```shell
 php bin/console translation:extract --config=app nl
 ```
 
 ### Open Api
 
 #### Generate OpenApi Yaml file
+
 documentation/postman/buildingexaminator/v1/openapi.yaml
 
 Library "zircote/swagger-php" is used for this.
@@ -118,39 +119,49 @@ php bin/openapi
 ### Development information
 
 #### Rate limiter
+
 The configuration of the rate-limiter in done in:
 ```shell
 config/packages/rate_limiter.yaml
 ```
+
 And for specific routes adhering to specific rate limits look at:
 ```shell
 src/EventSubscriber/RateLimiterEventSubscriber.php
 ```
 
 #### Database
+
 To dump on VPS
-```
+```shell
 mysqldump --user=root --password=<password> --add-drop-table buildingexaminator > ~/www/data/database/buildingexaminator.sql
 ```
+
 and get it to local
-```
+```shell
 scp buildingexaminator@5.157.83.198:~/www/data/database/buildingexaminator.sql ~/dobro/buildingexaminator/data/database/buildingexaminator.sql
 mysql --user=buildingexaminator --password=buildingexaminator --database=test
 source ~/dobro/buildingexaminator/data/database/buildingexaminator.sql;
 ```
 
 #### SSL cert
+
 SCP the needed check file to the VPS
-```
+```shell
 scp ZnY941Yap2WijAIiVhc-kTg6Lx-g869xMmw9T3uIxVk buildingexaminator@5.157.83.198:~/www/public/.well-known/acme-challenge/ZnY941Yap2WijAIiVhc-kTg6Lx-g869xMmw9T3uIxVk
 ```
+
 Changing the certificates
-```
+```shell
 nano /etc/ssl/private/buildingexaminator.nl.crt
 nano /etc/ssl/private/buildingexaminator.nl.key
 ```
 
 ## xDebug
-```
+
+Running a command line script and trigger xDebug
+```shell
 XDEBUG_CONFIG="idekey=PHPSTORM" PHP_IDE_CONFIG="serverName=dobro.local" ./openapi-rector/bin/openapi-rector
 ```
+
+[buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer](https://www.cbs.nl/nl-nl/maatwerk/2021/36/buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer)
