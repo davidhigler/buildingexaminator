@@ -3,9 +3,8 @@
 namespace App\EventListener;
 
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Bundle\SecurityBundle\Security;
 
@@ -13,8 +12,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 readonly class LoggedOutAjaxListener
 {
     public function __construct(
-        private Security              $security,
-        private UrlGeneratorInterface $urlGenerator,
+        private Security $security,
     ) {
     }
 
@@ -38,9 +36,7 @@ readonly class LoggedOutAjaxListener
 
         // Redirect to log in screen when user is not logged in
         $event->setResponse(
-            new RedirectResponse(
-                $this->urlGenerator->generate('logout')
-            )
+            new Response(null, 401)
         );
     }
 }

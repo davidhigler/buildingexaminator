@@ -178,6 +178,10 @@ function keyPressListener(event) {
  */
 
 function loadErrorPage(jqXHR) {
+    if (jqXHR.status === 401) {
+        window.location.href = '/logout';
+    }
+
     let response, IS_JSON = true;
 
     try {
