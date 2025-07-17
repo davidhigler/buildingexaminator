@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class LoggedOutAjaxListener
+readonly class LoggedOutAjaxListener
 {
     public function __construct(
-        private readonly Security $security,
-        private readonly UrlGeneratorInterface $urlGenerator,
+        private Security              $security,
+        private UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
