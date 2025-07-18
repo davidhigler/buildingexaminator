@@ -14,10 +14,6 @@ use Symfony\Component\Validator\Validation;
 
 class LoadResidentialAreaData extends Fixture implements DependentFixtureInterface
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $residentialAreas = [

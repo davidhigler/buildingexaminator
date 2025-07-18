@@ -13,10 +13,6 @@ use Symfony\Component\Validator\Validation;
 
 class LoadBlockData extends Fixture implements DependentFixtureInterface
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $blocks = [

@@ -16,10 +16,6 @@ use Symfony\Component\Validator\Validation;
  */
 class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $housingStocks = [

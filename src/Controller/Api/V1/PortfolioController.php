@@ -555,10 +555,6 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'daeb',
     ];
 
-    /**
-     * @param LoggerInterface $logger
-     * @param ManagerRegistry $doctrine
-     */
     public function __construct(
         private LoggerInterface $logger,
         private readonly ManagerRegistry $doctrine,

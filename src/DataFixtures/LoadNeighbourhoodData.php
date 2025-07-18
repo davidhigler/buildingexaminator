@@ -14,10 +14,6 @@ use Symfony\Component\Validator\Validation;
 
 class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $neighbourhoods = [

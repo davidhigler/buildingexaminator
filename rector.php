@@ -35,4 +35,5 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    );
+    )
+    ->withDeadCodeLevel(25);

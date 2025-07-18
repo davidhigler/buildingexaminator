@@ -11,10 +11,6 @@ use Symfony\Component\Validator\Validation;
 
 class LoadBuildingData extends Fixture
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $buildings = [

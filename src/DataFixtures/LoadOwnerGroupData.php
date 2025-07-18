@@ -12,10 +12,6 @@ use RuntimeException;
 
 class LoadOwnerGroupData extends Fixture
 {
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $ownerGroups = [
