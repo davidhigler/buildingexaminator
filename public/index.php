@@ -12,4 +12,4 @@ if (!isset($_SERVER['APP_ENV'])) {
     new Dotenv()->load(__DIR__.'/../.env');
 }
 
-return fn(array $context) => new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+return fn(array $context): \App\Kernel => new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);

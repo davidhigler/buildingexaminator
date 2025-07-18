@@ -34,4 +34,5 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    );
+    )
+    ->withTypeCoverageLevel(10);
