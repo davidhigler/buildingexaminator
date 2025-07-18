@@ -36,12 +36,7 @@ class AddressVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Address) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Address;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -105,12 +100,7 @@ class AddressVoter extends Voter
                 $userAccessibleAddresses->add($projectAddress);
             }
         }
-
-        if ($userAccessibleAddresses->contains($address)) {
-            return true;
-        }
-
-        return false;
+        return $userAccessibleAddresses->contains($address);
     }
 
     private function canContractorView(Address $address, ContractorUser $user): bool
@@ -126,12 +116,7 @@ class AddressVoter extends Voter
                 $userAccessibleAddresses->add($projectAddress);
             }
         }
-
-        if ($userAccessibleAddresses->contains($address)) {
-            return true;
-        }
-
-        return false;
+        return $userAccessibleAddresses->contains($address);
     }
 
     private function canOwnerView(Address $address, OwnerUser $user): bool

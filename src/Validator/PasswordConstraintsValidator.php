@@ -36,7 +36,7 @@ class PasswordConstraintsValidator extends ConstraintValidator
                 ->addViolation();
         }
 
-        if (preg_match('/[0-9]/', $value) !== 1) {
+        if (preg_match('/\d/', $value) !== 1) {
             $this->context->buildViolation('The password does not contain a number')
                 ->addViolation();
         }

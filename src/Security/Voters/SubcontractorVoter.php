@@ -31,12 +31,7 @@ class SubcontractorVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Subcontractor) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Subcontractor;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool

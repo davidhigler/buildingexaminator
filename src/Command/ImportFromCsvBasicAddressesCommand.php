@@ -47,7 +47,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
                 throw new RuntimeException('Zipcode is empty or is not in the form of 4 numbers and 2 uppercase letters without a space in bewtween');
             }
 
-            if (!($housenumber > 0)) {
+            if ($housenumber <= 0) {
                 throw new RuntimeException('Housenumber is not a number or is not as positive integer');
             }
 

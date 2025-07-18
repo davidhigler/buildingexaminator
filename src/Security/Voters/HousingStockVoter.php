@@ -34,12 +34,7 @@ class HousingStockVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof HousingStock) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof HousingStock;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -64,11 +59,7 @@ class HousingStockVoter extends Voter
 
     private function canCreate(User $user): bool
     {
-        if ($user::class === User::class) {
-            return true;
-        }
-
-        return false;
+        return $user::class === User::class;
     }
 
     private function canView(HousingStock $housingStock, User $user): bool
@@ -116,28 +107,16 @@ class HousingStockVoter extends Voter
 
     private function canOwnerView(HousingStock $housingStock, OwnerUser $user): bool
     {
-        if ($housingStock->getOwner()->equals($user->getOwner())) {
-            return true;
-        }
-
-        return false;
+        return $housingStock->getOwner()->equals($user->getOwner());
     }
 
     private function canEdit(User $user): bool
     {
-        if ($user::class === User::class) {
-            return true;
-        }
-
-        return false;
+        return $user::class === User::class;
     }
 
     private function canDelete(User $user): bool
     {
-        if ($user::class === User::class) {
-            return true;
-        }
-
-        return false;
+        return $user::class === User::class;
     }
 }

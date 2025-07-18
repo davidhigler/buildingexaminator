@@ -30,12 +30,7 @@ class OwnerGroupVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof OwnerGroup) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof OwnerGroup;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool

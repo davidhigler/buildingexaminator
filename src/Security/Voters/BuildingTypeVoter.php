@@ -35,12 +35,7 @@ class BuildingTypeVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof BuildingType) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof BuildingType;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -139,11 +134,7 @@ class BuildingTypeVoter extends Voter
 
     private function canOwnerView(BuildingType $buildingType, OwnerUser $user): bool
     {
-        if ($buildingType->getHousingStock()->getOwner()->equals($user->getOwner())) {
-            return true;
-        }
-
-        return false;
+        return $buildingType->getHousingStock()->getOwner()->equals($user->getOwner());
     }
 
     private function canEdit(BuildingType $buildingType, User $user): bool

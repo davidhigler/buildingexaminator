@@ -33,12 +33,7 @@ class ContractorVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Contractor) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Contractor;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -99,15 +94,8 @@ class ContractorVoter extends Voter
                 }
             }
         }
-
-        if (
-            $user::class === ContractorUser::class
-            && $user->getContractor()->getId() === $contractor->getId()
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === ContractorUser::class
+        && $user->getContractor()->getId() === $contractor->getId();
     }
 
     private function canEdit(Contractor $contractor, User $user): bool
@@ -126,16 +114,9 @@ class ContractorVoter extends Voter
                 }
             }
         }
-
-        if (
-            $user::class === ContractorUser::class
-            && $user->getContractor()->getId() === $contractor->getId()
-            && in_array('ROLE_ADMIN', $user->getRoles(), true)
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === ContractorUser::class
+        && $user->getContractor()->getId() === $contractor->getId()
+        && in_array('ROLE_ADMIN', $user->getRoles(), true);
     }
 
     private function canDelete(Contractor $contractor, User $user): bool

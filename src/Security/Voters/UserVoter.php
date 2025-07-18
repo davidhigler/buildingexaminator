@@ -32,12 +32,7 @@ class UserVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof User) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof User;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -87,16 +82,9 @@ class UserVoter extends Voter
         ) {
             return true;
         }
-
-        if (
-            $user::class === SubcontractorUser::class
-            && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && $subjectUser::class === SubcontractorUser::class
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === SubcontractorUser::class
+        && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        && $subjectUser::class === SubcontractorUser::class;
     }
 
     private function canView(User $subjectUser, User $user): bool
@@ -124,15 +112,8 @@ class UserVoter extends Voter
         ) {
             return true;
         }
-
-        if (
-            $user::class === SubcontractorUser::class
-            && $subjectUser::class === SubcontractorUser::class
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === SubcontractorUser::class
+        && $subjectUser::class === SubcontractorUser::class;
     }
 
     private function canEdit(User $subjectUser, User $user): bool
@@ -162,16 +143,9 @@ class UserVoter extends Voter
         ) {
             return true;
         }
-
-        if (
-            $user::class === SubcontractorUser::class
-            && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && $subjectUser::class === SubcontractorUser::class
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === SubcontractorUser::class
+        && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        && $subjectUser::class === SubcontractorUser::class;
     }
 
     private function canDelete(User $subjectUser, User $user): bool
@@ -201,16 +175,9 @@ class UserVoter extends Voter
         ) {
             return true;
         }
-
-        if (
-            $user::class === SubcontractorUser::class
-            && in_array('ROLE_ADMIN', $user->getRoles(), true)
-            && $subjectUser::class === SubcontractorUser::class
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === SubcontractorUser::class
+        && in_array('ROLE_ADMIN', $user->getRoles(), true)
+        && $subjectUser::class === SubcontractorUser::class;
     }
 
 }

@@ -35,12 +35,7 @@ class BlockVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Block) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Block;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -139,11 +134,7 @@ class BlockVoter extends Voter
 
     private function canOwnerView(Block $block, OwnerUser $user): bool
     {
-        if ($block->getHousingStock()->getOwner()->equals($user->getOwner())) {
-            return true;
-        }
-
-        return false;
+        return $block->getHousingStock()->getOwner()->equals($user->getOwner());
     }
 
     private function canEdit(Block $block, User $user): bool

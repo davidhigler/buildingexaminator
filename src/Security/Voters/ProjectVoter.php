@@ -35,12 +35,7 @@ class ProjectVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Project) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Project;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -94,23 +89,13 @@ class ProjectVoter extends Voter
     private function canSubContractorView(Project $project, SubcontractorUser $user): bool
     {
         $projects = $user->getSubcontractor()->getProjects();
-
-        if ($projects->contains($project)) {
-            return true;
-        }
-
-        return false;
+        return $projects->contains($project);
     }
 
     private function canContractorView(Project $project, ContractorUser $user): bool
     {
         $projects = $user->getContractor()->getProjects();
-
-        if ($projects->contains($project)) {
-            return true;
-        }
-
-        return false;
+        return $projects->contains($project);
     }
 
     private function canOwnerView(Project $project, OwnerUser $user): bool
@@ -125,12 +110,7 @@ class ProjectVoter extends Voter
                 $userAccessibleProjects->add($project);
             }
         }
-
-        if ($userAccessibleProjects->contains($project)) {
-            return true;
-        }
-
-        return false;
+        return $userAccessibleProjects->contains($project);
     }
 
     private function canEdit(Project $project, User $user): bool

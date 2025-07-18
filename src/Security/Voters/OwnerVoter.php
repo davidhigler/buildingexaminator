@@ -31,12 +31,7 @@ class OwnerVoter extends Voter
         ) {
             return false;
         }
-
-        if (!$subject instanceof Owner) {
-            return false;
-        }
-
-        return true;
+        return $subject instanceof Owner;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -61,11 +56,7 @@ class OwnerVoter extends Voter
 
     private function canCreate(User $user): bool
     {
-        if ($user::class === User::class) {
-            return true;
-        }
-
-        return false;
+        return $user::class === User::class;
     }
 
     private function canView(Owner $owner, User $user): bool
@@ -73,15 +64,8 @@ class OwnerVoter extends Voter
         if ($user::class === User::class) {
             return true;
         }
-
-        if (
-            $user::class === OwnerUser::class
-            && $user->getOwner()->getId() === $owner->getId()
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === OwnerUser::class
+        && $user->getOwner()->getId() === $owner->getId();
     }
 
     private function canEdit(Owner $owner, User $user): bool
@@ -89,24 +73,13 @@ class OwnerVoter extends Voter
         if ($user::class === User::class) {
             return true;
         }
-
-        if (
-            $user::class === OwnerUser::class
-            && $user->getOwner()->getId() === $owner->getId()
-            && in_array('ROLE_ADMIN', $user->getRoles(), true)
-        ) {
-            return true;
-        }
-
-        return false;
+        return $user::class === OwnerUser::class
+        && $user->getOwner()->getId() === $owner->getId()
+        && in_array('ROLE_ADMIN', $user->getRoles(), true);
     }
 
     private function canDelete(User $user): bool
     {
-        if ($user::class === User::class) {
-            return true;
-        }
-
-        return false;
+        return $user::class === User::class;
     }
 }

@@ -36,4 +36,5 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    );
+    )
+    ->withCodeQualityLevel(25);
