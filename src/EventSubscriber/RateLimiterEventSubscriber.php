@@ -10,7 +10,7 @@ use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 class RateLimiterEventSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private readonly RateLimiterFactory $anonymousApiLimiter, private readonly RateLimiterFactory $authenticatedApiLimiter)
+    public function __construct(private readonly RateLimiterFactory $anonymousApiLimiter)
     {
     }
 

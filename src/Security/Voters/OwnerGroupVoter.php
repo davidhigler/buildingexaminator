@@ -46,34 +46,31 @@ class OwnerGroupVoter extends Voter
             return false;
         }
 
-        /** @var OwnerGroup $ownerGroup */
-        $ownerGroup = $subject;
-
         return match($attribute) {
-            self::CREATE => $this->canCreate($ownerGroup, $user),
-            self::VIEW => $this->canView($ownerGroup, $user),
-            self::EDIT => $this->canEdit($ownerGroup, $user),
-            self::DELETE => $this->canDelete($ownerGroup, $user),
+            self::CREATE => $this->canCreate(),
+            self::VIEW => $this->canView(),
+            self::EDIT => $this->canEdit(),
+            self::DELETE => $this->canDelete(),
             default => throw new LogicException('This code should not be reached!')
         };
     }
 
-    private function canCreate(OwnerGroup $ownerGroup, User $user): bool
+    private function canCreate(): bool
     {
         return true;
     }
 
-    private function canView(OwnerGroup $ownerGroup, User $user): bool
+    private function canView(): bool
     {
         return true;
     }
 
-    private function canEdit(OwnerGroup $ownerGroup, User $user): bool
+    private function canEdit(): bool
     {
         return true;
     }
 
-    private function canDelete(OwnerGroup $ownerGroup, User $user): bool
+    private function canDelete(): bool
     {
         return true;
     }

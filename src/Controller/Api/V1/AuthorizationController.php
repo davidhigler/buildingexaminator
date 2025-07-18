@@ -128,20 +128,6 @@ class AuthorizationController extends AbstractController
         'website',
     ];
 
-    private const array USER_LIST_FIELDS = [
-        'id',
-        'email',
-        'admin',
-        'type',
-    ];
-
-    private const array USER_DETAIL_FIELDS = [
-        'id',
-        'email',
-        'admin',
-        'type',
-    ];
-
     public function __construct(
         private readonly ManagerRegistry $doctrine)
     {}

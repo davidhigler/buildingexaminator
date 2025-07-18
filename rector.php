@@ -36,4 +36,4 @@ return RectorConfig::configure()
         phpunit: true,
         symfony: true
     )
-    ->withDeadCodeLevel(25);
+    ->withDeadCodeLevel(50);
