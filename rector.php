@@ -23,6 +23,7 @@ return RectorConfig::configure()
         __DIR__ . '/templates',
     ])
     ->withPreparedSets(
+        typeDeclarations: true
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])
@@ -34,5 +35,4 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    )
-    ->withTypeCoverageLevel(50);
+    );
