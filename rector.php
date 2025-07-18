@@ -35,4 +35,4 @@ return RectorConfig::configure()
         phpunit: true,
         symfony: true
     )
-    ->withTypeCoverageLevel(10);
+    ->withTypeCoverageLevel(50);
