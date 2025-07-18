@@ -40,14 +40,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 )]
 class StrategyController extends AbstractController
 {
-    private const PROJECT_LIST_FIELDS = [
+    private const array PROJECT_LIST_FIELDS = [
         'id',
         'code',
         'name',
         'numberOfAddresses'
     ];
 
-    private const PROJECT_DETAIL_FIELDS = [
+    private const array PROJECT_DETAIL_FIELDS = [
         'id',
         'code',
         'name',

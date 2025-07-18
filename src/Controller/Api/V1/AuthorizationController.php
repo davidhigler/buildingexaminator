@@ -75,13 +75,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 )]
 class AuthorizationController extends AbstractController
 {
-    private const OWNER_LIST_FIELDS = [
+    private const array OWNER_LIST_FIELDS = [
         'id',
         'name',
         'lnumber',
     ];
 
-    private const OWNER_DETAIL_FIELDS = [
+    private const array OWNER_DETAIL_FIELDS = [
         'id',
         'name',
         'kvk',
@@ -96,30 +96,14 @@ class AuthorizationController extends AbstractController
         ],
     ];
 
-    private const CONTRACTOR_LIST_FIELDS = [
+    private const array CONTRACTOR_LIST_FIELDS = [
         'id',
         'code',
         'name',
         'website',
     ];
 
-    private const CONTRACTOR_DETAIL_FIELDS = [
-        'id',
-        'code',
-        'name',
-        'kvk',
-        'btw',
-        'website',
-    ];
-
-    private const SUBCONTRACTOR_LIST_FIELDS = [
-        'id',
-        'code',
-        'name',
-        'website',
-    ];
-
-    private const SUBCONTRACTOR_DETAIL_FIELDS = [
+    private const array CONTRACTOR_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -128,14 +112,30 @@ class AuthorizationController extends AbstractController
         'website',
     ];
 
-    private const USER_LIST_FIELDS = [
+    private const array SUBCONTRACTOR_LIST_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'website',
+    ];
+
+    private const array SUBCONTRACTOR_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'kvk',
+        'btw',
+        'website',
+    ];
+
+    private const array USER_LIST_FIELDS = [
         'id',
         'email',
         'admin',
         'type',
     ];
 
-    private const USER_DETAIL_FIELDS = [
+    private const array USER_DETAIL_FIELDS = [
         'id',
         'email',
         'admin',

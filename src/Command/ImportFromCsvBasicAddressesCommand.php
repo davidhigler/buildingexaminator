@@ -10,12 +10,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'app:import:csv:address-basic', description: 'Import data from a CSV file. With data being a simple address.')]
 class ImportFromCsvBasicAddressesCommand extends Command
 {
     protected function configure(): void
     {
-        $this->setName('app:import:csv:address-basic');
-        $this->setDescription('Import data from a CSV file. With data being a simple address.');
         $this->setHelp('This command takes the zipcode, housenumber and houseletter from a CSV file and finds the BagId through the Bag API');
     }
 

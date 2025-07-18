@@ -248,7 +248,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 )]
 class PortfolioController extends AbstractController implements LoggerAwareInterface
 {
-    private const HOUSING_STOCK_LIST_FIELDS = [
+    private const array HOUSING_STOCK_LIST_FIELDS = [
         'id',
         'code',
         'name',
@@ -256,7 +256,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const HOUSING_STOCK_DETAIL_FIELDS = [
+    private const array HOUSING_STOCK_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -297,20 +297,20 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const MUNICIPALITY_LIST_FIELDS = [
+    private const array MUNICIPALITY_LIST_FIELDS = [
         'id',
         'code',
         'name',
         'numberOfAddresses',
     ];
 
-    private const MUNICIPALITY_DETAIL_FIELDS = [
+    private const array MUNICIPALITY_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
     ];
 
-    private const RESIDENTIALAREA_LIST_FIELDS = [
+    private const array RESIDENTIALAREA_LIST_FIELDS = [
         'id',
         'code',
         'name',
@@ -320,7 +320,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const RESIDENTIALAREA_DETAIL_FIELDS = [
+    private const array RESIDENTIALAREA_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -330,20 +330,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const NEIGHBOURHOOD_LIST_FIELDS = [
-        'id',
-        'code',
-        'name',
-        'municipality' => [
-            'name'
-        ],
-        'residentialArea' => [
-            'name'
-        ],
-        'numberOfAddresses',
-    ];
-
-    private const NEIGHBOURHOOD_DETAIL_FIELDS = [
+    private const array NEIGHBOURHOOD_LIST_FIELDS = [
         'id',
         'code',
         'name',
@@ -356,7 +343,20 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const VTW_LIST_FIELDS = [
+    private const array NEIGHBOURHOOD_DETAIL_FIELDS = [
+        'id',
+        'code',
+        'name',
+        'municipality' => [
+            'name'
+        ],
+        'residentialArea' => [
+            'name'
+        ],
+        'numberOfAddresses',
+    ];
+
+    private const array VTW_LIST_FIELDS = [
         'id',
         'code',
         'typeDescription',
@@ -365,7 +365,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const VTW_DETAIL_FIELDS = [
+    private const array VTW_DETAIL_FIELDS = [
         'id',
         'code',
         'typeDescription',
@@ -374,7 +374,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'roofTypeDescription',
     ];
 
-    private const CITY_LIST_FIELDS =[
+    private const array CITY_LIST_FIELDS =[
         'id',
         'objectId',
         'identification',
@@ -382,7 +382,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const CITY_DETAIL_FIELDS =[
+    private const array CITY_DETAIL_FIELDS =[
         'id',
         'objectId',
         'identification',
@@ -392,7 +392,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         ],
     ];
 
-    private const PUBLICSPACE_LIST_FIELDS = [
+    private const array PUBLICSPACE_LIST_FIELDS = [
         'id',
         'objectId',
         'identification',
@@ -401,7 +401,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const PUBLICSPACE_DETAIL_FIELDS = [
+    private const array PUBLICSPACE_DETAIL_FIELDS = [
         'id',
         'objectId',
         'identification',
@@ -417,7 +417,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const BUILDING_LIST_FIELDS =[
+    private const array BUILDING_LIST_FIELDS =[
         'id',
         'objectId',
         'identification',
@@ -428,7 +428,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const BUILDING_DETAIL_FIELDS =[
+    private const array BUILDING_DETAIL_FIELDS =[
         'id',
         'objectId',
         'identification',
@@ -445,7 +445,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         ],
     ];
 
-    private const RESIDENCE_LIST_FIELDS =[
+    private const array RESIDENCE_LIST_FIELDS =[
         'id',
         'objectId',
         'identification',
@@ -456,7 +456,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const RESIDENCE_DETAIL_FIELDS =[
+    private const array RESIDENCE_DETAIL_FIELDS =[
         'id',
         'identification',
         'surfaceArea',
@@ -472,7 +472,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         ],
     ];
 
-    private const BLOCK_LIST_FIELDS = [
+    private const array BLOCK_LIST_FIELDS = [
         'id',
         'code',
         'name',
@@ -481,7 +481,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const BLOCK_DETAIL_FIELDS = [
+    private const array BLOCK_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -497,7 +497,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'financialNumber',
     ];
 
-    private const BUILDINGTYPE_LIST_FIELDS = [
+    private const array BUILDINGTYPE_LIST_FIELDS = [
         'id',
         'code',
         'name',
@@ -505,7 +505,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         'numberOfAddresses',
     ];
 
-    private const BUILDINGTYPE_DETAIL_FIELDS = [
+    private const array BUILDINGTYPE_DETAIL_FIELDS = [
         'id',
         'code',
         'name',
@@ -518,7 +518,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         ],
     ];
 
-    private const ADDRESS_LIST_FIELDS = [
+    private const array ADDRESS_LIST_FIELDS = [
         'id',
         'rentalUnitNumber',
         'publicSpace' => [
@@ -532,7 +532,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         ],
     ];
 
-    private const ADDRESS_DETAIL_FIELDS = [
+    private const array ADDRESS_DETAIL_FIELDS = [
         'id',
         'objectId',
         'identification',

@@ -43,14 +43,14 @@ use Exception;
 )]
 class AuthenticationController extends AbstractController
 {
-    private const USER_LIST_FIELDS = [
+    private const array USER_LIST_FIELDS = [
         'id',
         'email',
         'admin',
         'type',
     ];
 
-    private const USER_DETAIL_FIELDS = [
+    private const array USER_DETAIL_FIELDS = [
         'id',
         'email',
         'admin',
