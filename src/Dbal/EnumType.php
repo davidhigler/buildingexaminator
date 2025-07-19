@@ -9,6 +9,7 @@ use InvalidArgumentException;
 abstract class EnumType extends Type
 {
     protected string $name;
+
     protected array $values = [];
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
@@ -30,6 +31,7 @@ abstract class EnumType extends Type
         if (!in_array($value, $this->values)) {
             throw new InvalidArgumentException("Invalid '".$this->name."' value.");
         }
+
         return $value;
     }
 

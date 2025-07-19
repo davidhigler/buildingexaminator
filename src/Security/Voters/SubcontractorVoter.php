@@ -12,8 +12,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class SubcontractorVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -31,6 +34,7 @@ class SubcontractorVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof Subcontractor;
     }
 

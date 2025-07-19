@@ -54,6 +54,7 @@ class Project extends IdCodeName
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     private DateTime $actualStartDate;
+
     #[ORM\Column(type: 'datetimetz')]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]

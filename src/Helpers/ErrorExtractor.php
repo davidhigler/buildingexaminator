@@ -16,6 +16,7 @@ class ErrorExtractor
         foreach ($violations as $violation) {
             $errors[] = self::simplifyException($violation);
         }
+
         return $errors;
     }
 

@@ -373,7 +373,7 @@ class LoadMunicipalityData extends Fixture
             $municipalityObject = new Municipality();
 
             if (empty($municipality['code'])) {
-                throw new RuntimeException('code may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $municipalityObject->setCode($municipality['code']);
             }
@@ -390,6 +390,7 @@ class LoadMunicipalityData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

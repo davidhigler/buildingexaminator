@@ -41,6 +41,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
                     if (!$user) {
                         throw new UserNotFoundException();
                     }
+
                     return $user;
                 }
             ),

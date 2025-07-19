@@ -24,7 +24,7 @@ class LoadCityData extends Fixture
             $cityObject = new City();
 
             if (empty($city['object_id'])) {
-                throw new RuntimeException('object_id may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $cityObject->setObjectId($city['object_id']);
             }
@@ -45,6 +45,7 @@ class LoadCityData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

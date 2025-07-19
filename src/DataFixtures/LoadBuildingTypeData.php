@@ -1245,7 +1245,7 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
             $buildingTypeObject = new BuildingType();
 
             if (empty($buildingType['code'])) {
-                throw new RuntimeException('code may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $buildingTypeObject->setCode($buildingType['code']);
             }
@@ -1275,6 +1275,7 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

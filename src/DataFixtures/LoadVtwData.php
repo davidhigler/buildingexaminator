@@ -1113,7 +1113,7 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
             $vtwObject = new Vtw();
 
             if (empty($vtw['code'])) {
-                throw new RuntimeException('code may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $vtwObject->setCode($vtw['code']);
             }
@@ -1142,6 +1142,7 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

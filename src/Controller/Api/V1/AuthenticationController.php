@@ -116,6 +116,7 @@ class AuthenticationController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('o.email', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -200,10 +201,12 @@ class AuthenticationController extends AbstractController
         if (!empty($newUser['email'])) {
             $user->setEmail($newUser['email']);
         }
+
         if (!empty($newUser['password'])) {
             $user->setRawPassword($newUser['password']);
             $user->setPassword($hasher->hashPassword($user, $newUser['password']));
         }
+
         if (
             is_bool($newUser['adminrole'])
             || $newUser['adminrole'] === true
@@ -297,14 +300,17 @@ class AuthenticationController extends AbstractController
                 $error->message = 'Password and the confirm password are not the same';
                 return $this->json([$error], 500);
             }
+
             $user->setRawPassword($changeUser['password']);
             $user->setPassword($hasher->hashPassword($user, $changeUser['password']));
         } else {
             $user->setRawPassword('Ab1#cdefgh');
         }
+
         if (!empty($changeUser['email'])) {
             $user->setEmail($changeUser['email']);
         }
+
         if (
             is_bool($changeUser['adminrole'])
             || $changeUser['adminrole'] === true

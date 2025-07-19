@@ -49,6 +49,7 @@ class LoadOwnerGroupData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

@@ -37,4 +37,5 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    );
+    )
+    ->withCodingStyleLevel(25);

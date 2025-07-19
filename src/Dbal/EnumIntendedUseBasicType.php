@@ -19,5 +19,6 @@ class EnumIntendedUseBasicType extends EnumType
     ];
 
     protected string $name = 'enumintendedusebasic';
+
     protected array $values = self::ALLOWED_VALUES;
 }

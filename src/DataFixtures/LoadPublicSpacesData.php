@@ -164,7 +164,7 @@ class LoadPublicSpacesData extends Fixture
             ['name' => 'Molenweg','type' => 'Weg','object_id' => '88075','identification' => '0269300000000179'],
             ['name' => 'Populierenhof','type' => 'Weg','object_id' => '88103','identification' => '0269300000000207'],
             ['name' => 'Wilgenhof','type' => 'Weg','object_id' => '88188','identification' => '0269300000000294'],
-            ['name' => '\'t Veld','type' => 'Weg','object_id' => '88149','identification' => '0269300000000254'],
+            ['name' => "'t Veld",'type' => 'Weg','object_id' => '88149','identification' => '0269300000000254'],
             ['name' => 'Wagenmakersweg','type' => 'Weg','object_id' => '88180','identification' => '0269300000000286'],
             ['name' => 'Rietdekkersweg','type' => 'Weg','object_id' => '88121','identification' => '0269300000000225'],
             ['name' => 'Heikamp','type' => 'Weg','object_id' => '87998','identification' => '0269300000000105'],
@@ -574,7 +574,7 @@ class LoadPublicSpacesData extends Fixture
             $publicSpaceObject = new PublicSpace();
 
             if (empty($publicSpace['object_id'])) {
-                throw new RuntimeException('object_id may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $publicSpaceObject->setObjectId($publicSpace['object_id']);
             }
@@ -599,6 +599,7 @@ class LoadPublicSpacesData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

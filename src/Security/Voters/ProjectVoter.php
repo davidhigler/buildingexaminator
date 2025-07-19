@@ -16,8 +16,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class ProjectVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -35,6 +38,7 @@ class ProjectVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof Project;
     }
 
@@ -110,6 +114,7 @@ class ProjectVoter extends Voter
                 $userAccessibleProjects->add($project);
             }
         }
+
         return $userAccessibleProjects->contains($project);
     }
 

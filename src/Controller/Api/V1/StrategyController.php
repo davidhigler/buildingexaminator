@@ -144,6 +144,7 @@ class StrategyController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('p.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -223,18 +224,23 @@ class StrategyController extends AbstractController
         if (!empty($housingStock)) {
             $project->setHousingStock($housingStock);
         }
+
         if (!empty($newProject['name'])) {
             $project->setName($newProject['name']);
         }
+
         if (!empty($newProject['code'])) {
             $project->setCode($newProject['code']);
         }
+
         if (!empty($newProject['preferredStartDate'])) {
             $project->setPreferredStartDate($newProject['preferredStartDate']);
         }
+
         if (!empty($newProject['preferredEndDate'])) {
             $project->setPreferredEndDate($newProject['preferredEndDate']);
         }
+
         if (!empty($newProject['addresses'])) {
             $addressRepository = $this->doctrine->getRepository(Address::class);
 

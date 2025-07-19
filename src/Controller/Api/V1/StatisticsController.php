@@ -26,6 +26,7 @@ class StatisticsController extends AbstractController
         $housingStockQueryBuilder = $housingStockRepository->createQueryBuilder('o');
 
         $housingStockQueryBuilder->select('count(o.id)');
+
         $housingStockCount = $housingStockQueryBuilder->getQuery()->getSingleScalarResult();
 
         $housingStockQueryBuilder->select('max(o.creationTime)');
@@ -38,6 +39,7 @@ class StatisticsController extends AbstractController
         $addressesQueryBuilder = $addressesRepository->createQueryBuilder('o');
 
         $addressesQueryBuilder->select('count(o.id)');
+
         $addressesCount = $addressesQueryBuilder->getQuery()->getSingleScalarResult();
 
         return $this->json([

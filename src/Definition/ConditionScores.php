@@ -5,12 +5,19 @@ namespace App\Definition;
 class ConditionScores
 {
     public const EXCELLENT = 1;
+
     public const GOOD = 2;
+
     public const REASONABLE = 3;
+
     public const MODERATE = 4;
+
     public const BAD = 5;
+
     public const MISERABLE = 6;
+
     public const TO_BE_DETERMINED = 8;
+
     public const NOT_INSPECTABLE = 9;
 
     public const POSSIBLE_VALUES = [

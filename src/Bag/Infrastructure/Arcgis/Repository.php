@@ -14,6 +14,7 @@ class Repository
         'Authorization' => 'Basic PEJhc2ljIEF1dGggVXNlcm5hbWU+OjxCYXNpYyBBdXRoIFBhc3N3b3JkPg==',
         'Content-Type' => 'application/x-www-form-urlencoded'
     ];
+
     private readonly Client $client;
 
     public function __construct() {
@@ -82,8 +83,8 @@ class Repository
                     'headers' => self::GUZZLE_HEADERS
                 ]
             );
-        } catch (GuzzleException $exception) {
-            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+        } catch (GuzzleException $guzzleException) {
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $guzzleException);
             $arcgisException->addContext([
                 'arcgis' => [
                     'url' => $url,
@@ -159,8 +160,8 @@ class Repository
                     'headers' => self::GUZZLE_HEADERS
                 ]
             );
-        } catch (GuzzleException $exception) {
-            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+        } catch (GuzzleException $guzzleException) {
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $guzzleException);
             $arcgisException->addContext([
                 'arcgis' => [
                     'url' => $url,
@@ -234,8 +235,8 @@ class Repository
                     'headers' => self::GUZZLE_HEADERS
                 ]
             );
-        } catch (GuzzleException $exception) {
-            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+        } catch (GuzzleException $guzzleException) {
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $guzzleException);
             $arcgisException->addContext([
                 'arcgis' => [
                     'url' => $url,
@@ -309,8 +310,8 @@ class Repository
                     'headers' => self::GUZZLE_HEADERS
                 ]
             );
-        } catch (GuzzleException $exception) {
-            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+        } catch (GuzzleException $guzzleException) {
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $guzzleException);
             $arcgisException->addContext([
                 'arcgis' => [
                     'url' => $url,
@@ -383,8 +384,8 @@ class Repository
                     'headers' => self::GUZZLE_HEADERS
                 ]
             );
-        } catch (GuzzleException $exception) {
-            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $exception);
+        } catch (GuzzleException $guzzleException) {
+            $arcgisException = new ArcgisException('post request throwed a guzzle exception', 0, $guzzleException);
             $arcgisException->addContext([
                 'arcgis' => [
                     'url' => $url,

@@ -783,7 +783,7 @@ class LoadOwnerData extends Fixture
                 'lnumber' => 'L0936'
             ],
             [
-                'name' => 'Woonstichting \'t Heem',
+                'name' => "Woonstichting 't Heem",
                 'lnumber' => 'L0928'
             ],
             [
@@ -1299,7 +1299,7 @@ class LoadOwnerData extends Fixture
                 'lnumber' => 'L0093'
             ],
             [
-                'name' => 'l\'escaut woonservice',
+                'name' => "l'escaut woonservice",
                 'lnumber' => 'L0089'
             ],
             [
@@ -1339,7 +1339,7 @@ class LoadOwnerData extends Fixture
                 'lnumber' => 'L0045'
             ],
             [
-                'name' => 'Stichting Bo-Ex \'91',
+                'name' => "Stichting Bo-Ex '91",
                 'lnumber' => 'L0041'
             ],
             [
@@ -1400,7 +1400,7 @@ class LoadOwnerData extends Fixture
             }
 
             if (empty($owner['lnumber'])) {
-                throw new RuntimeException('lnumber may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("lnumber may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $ownerObject->setLnumber($owner['lnumber']);
             }
@@ -1417,6 +1417,7 @@ class LoadOwnerData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

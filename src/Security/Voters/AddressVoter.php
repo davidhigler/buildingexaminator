@@ -17,8 +17,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class AddressVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -36,6 +39,7 @@ class AddressVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof Address;
     }
 
@@ -100,6 +104,7 @@ class AddressVoter extends Voter
                 $userAccessibleAddresses->add($projectAddress);
             }
         }
+
         return $userAccessibleAddresses->contains($address);
     }
 
@@ -116,6 +121,7 @@ class AddressVoter extends Voter
                 $userAccessibleAddresses->add($projectAddress);
             }
         }
+
         return $userAccessibleAddresses->contains($address);
     }
 

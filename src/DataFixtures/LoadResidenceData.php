@@ -13436,7 +13436,7 @@ class LoadResidenceData extends Fixture
             $residenceObject = new Residence();
 
             if (empty($residence['object_id'])) {
-                throw new RuntimeException('object_id may not be empty, it\'s used as a variable reference in the data fixtures.');
+                throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
             } else {
                 $residenceObject->setObjectId($residence['object_id']);
             }
@@ -13469,6 +13469,7 @@ class LoadResidenceData extends Fixture
                     /** @var ConstraintViolation $error */
                     $messages[] = $error->getMessage();
                 }
+
                 throw new RuntimeException(implode(', ', $messages));
             }
 

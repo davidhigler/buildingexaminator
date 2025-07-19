@@ -75,6 +75,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
                     $io->writeln("\t" . $key . ': ' . $value);
                 }
             }
+
             $io->writeln('');
         }
 

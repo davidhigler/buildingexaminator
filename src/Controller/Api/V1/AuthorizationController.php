@@ -188,6 +188,7 @@ class AuthorizationController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -263,15 +264,19 @@ class AuthorizationController extends AbstractController
         if (!empty($newOwner['name'])) {
             $owner->setName($newOwner['name']);
         }
+
         if (!empty($newOwner['kvk'])) {
             $owner->setKvk($newOwner['kvk']);
         }
+
         if (!empty($newOwner['btw'])) {
             $owner->setBtw($newOwner['btw']);
         }
+
         if (!empty($newOwner['lnumber'])) {
             $owner->setLnumber($newOwner['lnumber']);
         }
+
         if (!empty($newOwner['website'])) {
             $owner->setWebsite($newOwner['website']);
         }
@@ -361,12 +366,15 @@ class AuthorizationController extends AbstractController
         if (!empty($changeOwner['kvk'])) {
             $owner->setKvk($changeOwner['kvk']);
         }
+
         if (!empty($changeOwner['btw'])) {
             $owner->setBtw($changeOwner['btw']);
         }
+
         if (!empty($changeOwner['lnumber'])) {
             $owner->setLnumber($changeOwner['lnumber']);
         }
+
         if (!empty($changeOwner['website'])) {
             $owner->setWebsite($changeOwner['website']);
         }
@@ -528,6 +536,7 @@ class AuthorizationController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -607,6 +616,7 @@ class AuthorizationController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -682,15 +692,19 @@ class AuthorizationController extends AbstractController
         if (!empty($newContractor['code'])) {
             $contractor->setCode($newContractor['code']);
         }
+
         if (!empty($newContractor['name'])) {
             $contractor->setName($newContractor['name']);
         }
+
         if (!empty($newContractor['kvk'])) {
             $contractor->setKvk($newContractor['kvk']);
         }
+
         if (!empty($newContractor['btw'])) {
             $contractor->setBtw($newContractor['btw']);
         }
+
         if (!empty($newContractor['website'])) {
             $contractor->setWebsite($newContractor['website']);
         }
@@ -779,15 +793,19 @@ class AuthorizationController extends AbstractController
         if (!empty($changeContractor['code'])) {
             $contractor->setCode($changeContractor['code']);
         }
+
         if (!empty($changeContractor['name'])) {
             $contractor->setName($changeContractor['name']);
         }
+
         if (!empty($changeContractor['kvk'])) {
             $contractor->setKvk($changeContractor['kvk']);
         }
+
         if (!empty($changeContractor['btw'])) {
             $contractor->setBtw($changeContractor['btw']);
         }
+
         if (!empty($changeContractor['website'])) {
             $contractor->setWebsite($changeContractor['website']);
         }
@@ -950,6 +968,7 @@ class AuthorizationController extends AbstractController
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -1025,15 +1044,19 @@ class AuthorizationController extends AbstractController
         if (!empty($newSubcontractor['code'])) {
             $subcontractor->setCode($newSubcontractor['code']);
         }
+
         if (!empty($newSubcontractor['name'])) {
             $subcontractor->setName($newSubcontractor['name']);
         }
+
         if (!empty($newSubcontractor['kvk'])) {
             $subcontractor->setKvk($newSubcontractor['kvk']);
         }
+
         if (!empty($newSubcontractor['btw'])) {
             $subcontractor->setBtw($newSubcontractor['btw']);
         }
+
         if (!empty($newSubcontractor['website'])) {
             $subcontractor->setWebsite($newSubcontractor['website']);
         }
@@ -1122,15 +1145,19 @@ class AuthorizationController extends AbstractController
         if (!empty($changeSubcontractor['code'])) {
             $subcontractor->setCode($changeSubcontractor['code']);
         }
+
         if (!empty($changeSubcontractor['name'])) {
             $subcontractor->setName($changeSubcontractor['name']);
         }
+
         if (!empty($changeSubcontractor['kvk'])) {
             $subcontractor->setKvk($changeSubcontractor['kvk']);
         }
+
         if (!empty($changeSubcontractor['btw'])) {
             $subcontractor->setBtw($changeSubcontractor['btw']);
         }
+
         if (!empty($changeSubcontractor['website'])) {
             $subcontractor->setWebsite($changeSubcontractor['website']);
         }

@@ -693,15 +693,19 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($owner)) {
             $housingStock->setOwner($owner);
         }
+
         if (!empty($newHousingStock['name'])) {
             $housingStock->setName($newHousingStock['name']);
         }
+
         if (!empty($newHousingStock['code'])) {
             $housingStock->setCode($newHousingStock['code']);
         }
+
         if (!empty($newHousingStock['description'])) {
             $housingStock->setDescription($newHousingStock['description']);
         }
+
         $housingStock->setCreationTime();
         $housingStock->setLastChangeTime();
 
@@ -789,15 +793,19 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($owner)) {
             $housingStock->setOwner($owner);
         }
+
         if (!empty($changeHousingStock['name'])) {
             $housingStock->setName($changeHousingStock['name']);
         }
+
         if (!empty($changeHousingStock['code'])) {
             $housingStock->setCode($changeHousingStock['code']);
         }
+
         if (!empty($changeHousingStock['description'])) {
             $housingStock->setDescription($changeHousingStock['description']);
         }
+
         $housingStock->setLastChangeTime();
 
         $violations = $validator->validate($housingStock);
@@ -961,6 +969,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -1075,6 +1084,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -1189,6 +1199,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -1303,6 +1314,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.id', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -1432,6 +1444,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.name', 'ASC');
 
@@ -1572,6 +1585,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.name', 'ASC');
 
@@ -1712,6 +1726,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.identification', 'ASC');
 
@@ -1852,6 +1867,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->groupBy('o.id');
         $adapter->orderBy('o.identification', 'ASC');
 
@@ -1990,6 +2006,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('b.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -2077,18 +2094,23 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $block->setHousingStock($housingStock);
         }
+
         if (!empty($newBlock['name'])) {
             $block->setName($newBlock['name']);
         }
+
         if (!empty($newBlock['code'])) {
             $block->setCode($newBlock['code']);
         }
+
         if (!empty($newBlock['description'])) {
             $block->setDescription($newBlock['description']);
         }
+
         if (!empty($newBlock['financialnumber'])) {
             $block->setFinancialNumber($newBlock['financialnumber']);
         }
+
         $block->setCreationTime();
         $block->setLastChangeTime();
 
@@ -2186,18 +2208,23 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $block->setHousingStock($housingStock);
         }
+
         if (!empty($changeBlock['name'])) {
             $block->setName($changeBlock['name']);
         }
+
         if (!empty($changeBlock['code'])) {
             $block->setCode($changeBlock['code']);
         }
+
         if (!empty($changeBlock['financialNumber'])) {
             $block->setFinancialNumber($changeBlock['financialNumber']);
         }
+
         if (!empty($changeBlock['description'])) {
             $block->setDescription($changeBlock['description']);
         }
+
         $block->setLastChangeTime();
 
         $this->denyAccessUnlessGranted(BlockVoter::EDIT, $block);
@@ -2399,6 +2426,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('o.name', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -2482,15 +2510,19 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $buildingType->setHousingStock($housingStock);
         }
+
         if (!empty($newBuildingType['name'])) {
             $buildingType->setName($newBuildingType['name']);
         }
+
         if (!empty($newBuildingType['code'])) {
             $buildingType->setCode($newBuildingType['code']);
         }
+
         if (!empty($newBuildingType['description'])) {
             $buildingType->setDescription($newBuildingType['description']);
         }
+
         $buildingType->setCreationTime();
         $buildingType->setLastChangeTime();
 
@@ -2584,15 +2616,19 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $buildingType->setHousingStock($housingStock);
         }
+
         if (!empty($changeBuildingType['name'])) {
             $buildingType->setName($changeBuildingType['name']);
         }
+
         if (!empty($changeBuildingType['code'])) {
             $buildingType->setCode($changeBuildingType['code']);
         }
+
         if (!empty($changeBuildingType['description'])) {
             $buildingType->setDescription($changeBuildingType['description']);
         }
+
         $buildingType->setLastChangeTime();
 
         $this->denyAccessUnlessGranted(BuildingTypeVoter::EDIT, $buildingType);
@@ -2794,6 +2830,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     )
                 );
         }
+
         $adapter->orderBy('c.name', 'ASC')->addOrderBy('p.name', 'ASC')->addOrderBy('o.houseNumber', 'ASC');
 
         $data = $adapter->getQuery()->getResult();
@@ -3044,21 +3081,27 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $address->setHousingStock($housingStock);
         }
+
         if (!empty($block)) {
             $address->setBlock($block);
         }
+
         if (!empty($buildingType)) {
             $address->setBuildingType($buildingType);
         }
+
         if (!empty($vtw)) {
             $address->setVtw($vtw);
         }
+
         if (!empty($newAddress['rentalunitnumber'])) {
             $address->setRentalUnitNumber($newAddress['rentalunitnumber']);
         }
+
         if (!empty($newAddress['orientation'])) {
             $address->setOrientation($newAddress['orientation']);
         }
+
         if (is_bool($newAddress['daeb'])) {
             $address->setDaeb($newAddress['daeb']);
         }
@@ -3236,24 +3279,31 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         if (!empty($housingStock)) {
             $address->setHousingStock($housingStock);
         }
+
         if (!empty($block)) {
             $address->setBlock($block);
         }
+
         if (!empty($buildingType)) {
             $address->setBuildingType($buildingType);
         }
+
         if (!empty($vtw)) {
             $address->setVtw($vtw);
         }
+
         if (!empty($changeAddress['rentalunitnumber'])) {
             $address->setRentalUnitNumber($changeAddress['rentalunitnumber']);
         }
+
         if (!empty($changeAddress['orientation'])) {
             $address->setOrientation($changeAddress['orientation']);
         }
+
         if (is_bool($changeAddress['daeb'])) {
             $address->setDaeb($changeAddress['daeb']);
         }
+
         $address->setLastChangeTime();
 
         $this->denyAccessUnlessGranted(AddressVoter::EDIT, $address);

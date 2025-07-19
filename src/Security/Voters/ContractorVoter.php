@@ -14,8 +14,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class ContractorVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -33,6 +36,7 @@ class ContractorVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof Contractor;
     }
 
@@ -94,6 +98,7 @@ class ContractorVoter extends Voter
                 }
             }
         }
+
         return $user::class === ContractorUser::class
         && $user->getContractor()->getId() === $contractor->getId();
     }
@@ -114,6 +119,7 @@ class ContractorVoter extends Voter
                 }
             }
         }
+
         return $user::class === ContractorUser::class
         && $user->getContractor()->getId() === $contractor->getId()
         && in_array('ROLE_ADMIN', $user->getRoles(), true);

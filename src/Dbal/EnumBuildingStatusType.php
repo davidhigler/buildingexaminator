@@ -15,5 +15,6 @@ class EnumBuildingStatusType extends EnumType
     ];
 
     protected string $name = 'enumbuildingstatus';
+
     protected array $values = self::ALLOWED_VALUES;
 }

@@ -12,8 +12,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class OwnerVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -31,6 +34,7 @@ class OwnerVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof Owner;
     }
 
@@ -64,6 +68,7 @@ class OwnerVoter extends Voter
         if ($user::class === User::class) {
             return true;
         }
+
         return $user::class === OwnerUser::class
         && $user->getOwner()->getId() === $owner->getId();
     }
@@ -73,6 +78,7 @@ class OwnerVoter extends Voter
         if ($user::class === User::class) {
             return true;
         }
+
         return $user::class === OwnerUser::class
         && $user->getOwner()->getId() === $owner->getId()
         && in_array('ROLE_ADMIN', $user->getRoles(), true);

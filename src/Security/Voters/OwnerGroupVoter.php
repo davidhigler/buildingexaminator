@@ -11,8 +11,11 @@ use LogicException;
 class OwnerGroupVoter extends Voter
 {
     const CREATE = 'create';
+
     const VIEW = 'view';
+
     const EDIT = 'edit';
+
     const DELETE = 'delete';
 
     protected function supports(string $attribute, $subject): bool
@@ -30,6 +33,7 @@ class OwnerGroupVoter extends Voter
         ) {
             return false;
         }
+
         return $subject instanceof OwnerGroup;
     }
 
