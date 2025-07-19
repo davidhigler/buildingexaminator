@@ -7286,23 +7286,23 @@ class LoadBuildingData extends Fixture
                 $buildingObject->setObjectId($building['object_id']);
             }
 
-            if (!empty($building['identification'])) {
+            if (isset($building['identification']) && ($building['identification'] !== '' && $building['identification'] !== '0')) {
                 $buildingObject->setIdentification($building['identification']);
             }
 
-            if (!empty($building['construction_year'])) {
+            if (isset($building['construction_year']) && ($building['construction_year'] !== '' && $building['construction_year'] !== '0')) {
                 $buildingObject->setConstructionYear((int)$building['construction_year']);
             }
 
-            if (!empty($building['status'])) {
+            if (isset($building['status']) && ($building['status'] !== '' && $building['status'] !== '0')) {
                 $buildingObject->setStatus($building['status']);
             }
 
-            if (!empty($building['residence_count'])) {
+            if (isset($building['residence_count']) && ($building['residence_count'] !== '' && $building['residence_count'] !== '0')) {
                 $buildingObject->setResidenceCount((int)$building['residence_count']);
             }
 
-            if (!empty($building['surface_area'])) {
+            if (isset($building['surface_area']) && ($building['surface_area'] !== '' && $building['surface_area'] !== '0')) {
                 $buildingObject->setSurfaceArea((int)$building['surface_area']);
             }
 

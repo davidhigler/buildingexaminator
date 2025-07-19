@@ -378,7 +378,7 @@ class LoadMunicipalityData extends Fixture
                 $municipalityObject->setCode($municipality['code']);
             }
 
-            if (!empty($municipality['name'])) {
+            if (isset($municipality['name']) && ($municipality['name'] !== '' && $municipality['name'] !== '0')) {
                 $municipalityObject->setName($municipality['name']);
             }
 

@@ -29,11 +29,11 @@ class LoadCityData extends Fixture
                 $cityObject->setObjectId($city['object_id']);
             }
 
-            if (!empty($city['name'])) {
+            if (isset($city['name']) && ($city['name'] !== '' && $city['name'] !== '0')) {
                 $cityObject->setName($city['name']);
             }
 
-            if (!empty($city['identification'])) {
+            if (isset($city['identification']) && ($city['identification'] !== '' && $city['identification'] !== '0')) {
                 $cityObject->setIdentification($city['identification']);
             }
 

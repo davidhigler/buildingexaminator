@@ -579,15 +579,15 @@ class LoadPublicSpacesData extends Fixture
                 $publicSpaceObject->setObjectId($publicSpace['object_id']);
             }
 
-            if (!empty($publicSpace['name'])) {
+            if (isset($publicSpace['name']) && ($publicSpace['name'] !== '' && $publicSpace['name'] !== '0')) {
                 $publicSpaceObject->setName($publicSpace['name']);
             }
 
-            if (!empty($publicSpace['type'])) {
+            if (isset($publicSpace['type']) && ($publicSpace['type'] !== '' && $publicSpace['type'] !== '0')) {
                 $publicSpaceObject->setType($publicSpace['type']);
             }
 
-            if (!empty($publicSpace['identification'])) {
+            if (isset($publicSpace['identification']) && ($publicSpace['identification'] !== '' && $publicSpace['identification'] !== '0')) {
                 $publicSpaceObject->setIdentification($publicSpace['identification']);
             }
 

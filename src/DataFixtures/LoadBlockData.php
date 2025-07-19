@@ -445,7 +445,7 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
                 $blockObject->setCode($block['code']);
             }
 
-            if (!empty($block['name'])) {
+            if (isset($block['name']) && ($block['name'] !== '' && $block['name'] !== '0')) {
                 $blockObject->setName($block['name']);
             }
 
@@ -453,11 +453,11 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
                 $blockObject->setFinancialNumber($block['financialNumber']);
             }
 
-            if (!empty($block['description'])) {
+            if (isset($block['description']) && ($block['description'] !== '' && $block['description'] !== '0')) {
                 $blockObject->setDescription($block['description']);
             }
 
-            if (!empty($block['housingstock'])) {
+            if (isset($block['housingstock']) && ($block['housingstock'] !== '' && $block['housingstock'] !== '0')) {
                 /** @var HousingStock $housingStock */
                 $housingStock = $this->getReference('housingstock_' . $block['housingstock'], HousingStock::class);
                 $blockObject->setHousingStock($housingStock);

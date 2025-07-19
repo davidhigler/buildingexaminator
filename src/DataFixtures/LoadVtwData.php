@@ -1118,19 +1118,19 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
                 $vtwObject->setCode($vtw['code']);
             }
 
-            if (!empty($vtw['typeDescription'])) {
+            if (isset($vtw['typeDescription']) && ($vtw['typeDescription'] !== '' && $vtw['typeDescription'] !== '0')) {
                 $vtwObject->setTypeDescription($vtw['typeDescription']);
             }
 
-            if (!empty($vtw['buildingTypeDescription'])) {
+            if (isset($vtw['buildingTypeDescription']) && ($vtw['buildingTypeDescription'] !== '' && $vtw['buildingTypeDescription'] !== '0')) {
                 $vtwObject->setBuildingTypeDescription($vtw['buildingTypeDescription']);
             }
 
-            if (!empty($vtw['constructionYearDescription'])) {
+            if (isset($vtw['constructionYearDescription']) && ($vtw['constructionYearDescription'] !== '' && $vtw['constructionYearDescription'] !== '0')) {
                 $vtwObject->setConstructionYearDescription($vtw['constructionYearDescription']);
             }
 
-            if (!empty($vtw['roofTypeDescription'])) {
+            if (isset($vtw['roofTypeDescription']) && ($vtw['roofTypeDescription'] !== '' && $vtw['roofTypeDescription'] !== '0')) {
                 $vtwObject->setRoofTypeDescription($vtw['roofTypeDescription']);
             }
 

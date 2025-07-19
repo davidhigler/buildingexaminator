@@ -1387,15 +1387,15 @@ class LoadOwnerData extends Fixture
         foreach ($owners as $owner) {
             $ownerObject = new Owner();
 
-            if (!empty($owner['name'])) {
+            if (isset($owner['name']) && ($owner['name'] !== '' && $owner['name'] !== '0')) {
                 $ownerObject->setName($owner['name']);
             }
 
-            if (!empty($owner['kvk'])) {
+            if (isset($owner['kvk']) && ($owner['kvk'] !== 0 && ($owner['kvk'] !== '' && $owner['kvk'] !== '0'))) {
                 $ownerObject->setKvk($owner['kvk']);
             }
 
-            if (!empty($owner['btw'])) {
+            if (isset($owner['btw']) && ($owner['btw'] !== 0 && ($owner['btw'] !== '' && $owner['btw'] !== '0'))) {
                 $ownerObject->setBtw($owner['btw']);
             }
 
@@ -1405,7 +1405,7 @@ class LoadOwnerData extends Fixture
                 $ownerObject->setLnumber($owner['lnumber']);
             }
 
-            if (!empty($owner['website'])) {
+            if (isset($owner['website']) && ($owner['website'] !== 0 && ($owner['website'] !== '' && $owner['website'] !== '0'))) {
                 $ownerObject->setWebsite($owner['website']);
             }
 

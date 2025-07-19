@@ -14030,17 +14030,17 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
                 $neighbourhoodObject->setCode($neighbourhood['code']);
             }
 
-            if (!empty($neighbourhood['name'])) {
+            if (isset($neighbourhood['name']) && ($neighbourhood['name'] !== '' && $neighbourhood['name'] !== '0')) {
                 $neighbourhoodObject->setName($neighbourhood['name']);
             }
 
-            if (!empty($neighbourhood['municipality'])) {
+            if (isset($neighbourhood['municipality']) && ($neighbourhood['municipality'] !== '' && $neighbourhood['municipality'] !== '0')) {
                 /** @var Municipality $municipality */
                 $municipality = $this->getReference('municipality_' . $neighbourhood['municipality'], Municipality::class);
                 $neighbourhoodObject->setMunicipality($municipality);
             }
 
-            if (!empty($neighbourhood['residentialarea'])) {
+            if (isset($neighbourhood['residentialarea']) && ($neighbourhood['residentialarea'] !== '' && $neighbourhood['residentialarea'] !== '0')) {
                 /** @var ResidentialArea $residentialArea */
                 $residentialArea = $this->getReference('residentialarea_' . $neighbourhood['residentialarea'], ResidentialArea::class);
                 $neighbourhoodObject->setResidentialArea($residentialArea);

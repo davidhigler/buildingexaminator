@@ -60,7 +60,7 @@ class Repository
     public function getAddressByZipcodeAndHousenumber(string $zipcode, int $housenumber, ?string $houseletter): array
     {
         $huisletterWhere = ' and ';
-        if (empty($houseletter)) {
+        if ($houseletter === null || $houseletter === '' || $houseletter === '0') {
             $huisletterWhere .= '(huisletter IS NULL and huisnummertoevoeging IS NULL)';
         } else {
             $huisletterWhere .= "(huisletter='" . $houseletter . "' or huisnummertoevoeging='" . $houseletter . "')";

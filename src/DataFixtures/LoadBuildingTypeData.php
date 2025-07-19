@@ -1250,15 +1250,15 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
                 $buildingTypeObject->setCode($buildingType['code']);
             }
 
-            if (!empty($buildingType['name'])) {
+            if (isset($buildingType['name']) && ($buildingType['name'] !== '' && $buildingType['name'] !== '0')) {
                 $buildingTypeObject->setName($buildingType['name']);
             }
 
-            if (!empty($buildingType['description'])) {
+            if (isset($buildingType['description']) && ($buildingType['description'] !== '' && $buildingType['description'] !== '0')) {
                 $buildingTypeObject->setDescription($buildingType['description']);
             }
 
-            if (!empty($buildingType['housingstock'])) {
+            if (isset($buildingType['housingstock']) && ($buildingType['housingstock'] !== '' && $buildingType['housingstock'] !== '0')) {
                 /** @var HousingStock $housingStock */
                 $housingStock = $this->getReference('housingstock_' . $buildingType['housingstock'], HousingStock::class);
                 $buildingTypeObject->setHousingStock($housingStock);

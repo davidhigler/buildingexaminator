@@ -2920,7 +2920,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         $arcgisRepository = new arcgisRepository();
 
         try {
-            $arcgisAddress = $arcgisRepository->getAddressByZipcodeAndHousenumber($newAddress['zipcode'], $newAddress['housenumber'], !empty($newAddress['addition']) ? $newAddress['addition'] : null);
+            $arcgisAddress = $arcgisRepository->getAddressByZipcodeAndHousenumber($newAddress['zipcode'], $newAddress['housenumber'], empty($newAddress['addition']) ? null : $newAddress['addition']);
         } catch (ArcgisException $arcgisException) {
             $this->logger->debug(
                 $arcgisException->getMessage(),

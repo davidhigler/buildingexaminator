@@ -13441,23 +13441,23 @@ class LoadResidenceData extends Fixture
                 $residenceObject->setObjectId($residence['object_id']);
             }
 
-            if (!empty($residence['identification'])) {
+            if (isset($residence['identification']) && ($residence['identification'] !== '' && $residence['identification'] !== '0')) {
                 $residenceObject->setIdentification($residence['identification']);
             }
 
-            if (!empty($residence['surface_area'])) {
+            if (isset($residence['surface_area']) && ($residence['surface_area'] !== '' && $residence['surface_area'] !== '0')) {
                 $residenceObject->setSurfaceArea((int)$residence['surface_area']);
             }
 
-            if (!empty($residence['status'])) {
+            if (isset($residence['status']) && ($residence['status'] !== '' && $residence['status'] !== '0')) {
                 $residenceObject->setStatus($residence['status']);
             }
 
-            if (!empty($residence['intended_use'])) {
+            if (isset($residence['intended_use']) && ($residence['intended_use'] !== '' && $residence['intended_use'] !== '0')) {
                 $residenceObject->setIntendedUse($residence['intended_use']);
             }
 
-            if (!empty($residence['intended_use_basic'])) {
+            if (isset($residence['intended_use_basic']) && ($residence['intended_use_basic'] !== '' && $residence['intended_use_basic'] !== '0')) {
                 $residenceObject->setIntendedUseBasic($residence['intended_use_basic']);
             }
 

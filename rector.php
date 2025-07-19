@@ -24,6 +24,7 @@ return RectorConfig::configure()
     ])
     ->withPreparedSets(
         deadCode: true,
+        codeQuality: true,
         typeDeclarations: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
@@ -36,5 +37,4 @@ return RectorConfig::configure()
         doctrine: true,
         phpunit: true,
         symfony: true
-    )
-    ->withCodeQualityLevel(25);
+    );
