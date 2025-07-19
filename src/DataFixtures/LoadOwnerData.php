@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validation;
  */
 class LoadOwnerData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $owners = [
             [
@@ -1421,10 +1421,10 @@ class LoadOwnerData extends Fixture
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($ownerObject);
+            $objectManager->persist($ownerObject);
             $this->addReference('owner_' . $owner['lnumber'], $ownerObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

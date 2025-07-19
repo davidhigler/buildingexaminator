@@ -16,13 +16,13 @@ use Symfony\Component\Routing\Attribute\Route;
 class StatisticsController extends AbstractController
 {
     public function __construct(
-        private readonly ManagerRegistry $doctrine)
+        private readonly ManagerRegistry $managerRegistry)
     {}
 
     #[Route('/statistics', name: 'globalstatistics', methods: ['GET'])]
     public function getGlobalStatistics(): Response
     {
-        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
+        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         $housingStockQueryBuilder = $housingStockRepository->createQueryBuilder('o');
 
         $housingStockQueryBuilder->select('count(o.id)');
@@ -35,7 +35,7 @@ class StatisticsController extends AbstractController
         $housingStockQueryBuilder->select('max(o.lastChangeTime)');
         $housingStockLatestChange = $housingStockQueryBuilder->getQuery()->getSingleScalarResult();
 
-        $addressesRepository = $this->doctrine->getRepository(Address::class);
+        $addressesRepository = $this->managerRegistry->getRepository(Address::class);
         $addressesQueryBuilder = $addressesRepository->createQueryBuilder('o');
 
         $addressesQueryBuilder->select('count(o.id)');

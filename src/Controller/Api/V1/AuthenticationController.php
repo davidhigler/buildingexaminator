@@ -58,7 +58,7 @@ class AuthenticationController extends AbstractController
     ];
 
     public function __construct(
-        private readonly ManagerRegistry $doctrine)
+        private readonly ManagerRegistry $managerRegistry)
     {}
 
     /**
@@ -105,7 +105,7 @@ class AuthenticationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $userRepository = $this->doctrine->getRepository(User::class);
+        $userRepository = $this->managerRegistry->getRepository(User::class);
         $adapter = $userRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -180,7 +180,7 @@ class AuthenticationController extends AbstractController
             ),
         ],
     )]
-    public function addUser(Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
+    public function addUser(Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $newUser = json_decode($request->getContent(), true);
 
@@ -204,7 +204,7 @@ class AuthenticationController extends AbstractController
 
         if (!empty($newUser['password'])) {
             $user->setRawPassword($newUser['password']);
-            $user->setPassword($hasher->hashPassword($user, $newUser['password']));
+            $user->setPassword($userPasswordHasher->hashPassword($user, $newUser['password']));
         }
 
         if (
@@ -218,12 +218,12 @@ class AuthenticationController extends AbstractController
 
         $this->denyAccessUnlessGranted(UserVoter::CREATE, $user);
 
-        $violations = $validator->validate($user);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($user);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $userManager = $this->doctrine->getManager(User::class);
+        $userManager = $this->managerRegistry->getManager(User::class);
         $userManager->persist($user);
         $userManager->flush();
 
@@ -285,11 +285,11 @@ class AuthenticationController extends AbstractController
             ),
         ],
     )]
-    public function changeUser(string $userId, Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $hasher): Response
+    public function changeUser(string $userId, Request $request, ValidatorInterface $validator, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $changeUser = json_decode($request->getContent(), true);
 
-        $userRepository = $this->doctrine->getRepository(User::class);
+        $userRepository = $this->managerRegistry->getRepository(User::class);
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
@@ -302,7 +302,7 @@ class AuthenticationController extends AbstractController
             }
 
             $user->setRawPassword($changeUser['password']);
-            $user->setPassword($hasher->hashPassword($user, $changeUser['password']));
+            $user->setPassword($userPasswordHasher->hashPassword($user, $changeUser['password']));
         } else {
             $user->setRawPassword('Ab1#cdefgh');
         }
@@ -322,12 +322,12 @@ class AuthenticationController extends AbstractController
 
         $this->denyAccessUnlessGranted(UserVoter::EDIT, $user);
 
-        $violations = $validator->validate($user);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($user);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $userManager = $this->doctrine->getManager(User::class);
+        $userManager = $this->managerRegistry->getManager(User::class);
         $userManager->persist($user);
         $userManager->flush();
 
@@ -364,13 +364,13 @@ class AuthenticationController extends AbstractController
     )]
     public function deleteUser(string $userId): Response
     {
-        $userRepository = $this->doctrine->getRepository(User::class);
+        $userRepository = $this->managerRegistry->getRepository(User::class);
         /** @var User $user */
         $user = $userRepository->find((int) $userId);
 
         $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);
 
-        $userManager = $this->doctrine->getManager(User::class);
+        $userManager = $this->managerRegistry->getManager(User::class);
         $userManager->remove($user);
         try {
             $userManager->flush();
@@ -409,7 +409,7 @@ class AuthenticationController extends AbstractController
     )]
     public function getUserInfo(string $userId): Response
     {
-        $userRepository = $this->doctrine->getRepository(User::class);
+        $userRepository = $this->managerRegistry->getRepository(User::class);
         $user = $userRepository->find(
             (int)$userId
         );

@@ -9,9 +9,9 @@ class ArcgisException extends Exception
 {
     private array $context;
 
-    public function __construct(?string $message = null, int $code = 0, ?Throwable $previous = null)
+    public function __construct(?string $message = null, int $code = 0, ?Throwable $throwable = null)
     {
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, $code, $throwable);
     }
 
     public function addContext(array $context): void

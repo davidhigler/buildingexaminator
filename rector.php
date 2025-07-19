@@ -27,6 +27,8 @@ return RectorConfig::configure()
         codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
+        privatization: true,
+        naming: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadBuildingData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $buildings = [
             ['object_id' => '3008983','identification' => '0193100000059565','construction_year' => '1968','status' => 'Pand in gebruik','residence_count' => '80','surface_area' => '7280'],
@@ -7318,10 +7318,10 @@ class LoadBuildingData extends Fixture
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($buildingObject);
+            $objectManager->persist($buildingObject);
             $this->addReference('building_' . $building['object_id'], $buildingObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

@@ -77,12 +77,12 @@ class HousingStockVoter extends Voter
         };
     }
 
-    private function canSubContractorView(HousingStock $housingStock, SubContractorUser $user): bool
+    private function canSubContractorView(HousingStock $housingStock, SubContractorUser $subContractorUser): bool
     {
         foreach ($housingStock->getProjects() as $project) {
             /** @var Project $project */
             if (
-                $user->getSubcontractor()->getProjects()->exists(fn($key, $subcontractorProject) =>
+                $subContractorUser->getSubcontractor()->getProjects()->exists(fn($key, $subcontractorProject) =>
                     /** @var Project $subcontractorProject */
                     $subcontractorProject->equals($project))
             ) {
@@ -93,12 +93,12 @@ class HousingStockVoter extends Voter
         return false;
     }
 
-    private function canContractorView(HousingStock $housingStock, ContractorUser $user): bool
+    private function canContractorView(HousingStock $housingStock, ContractorUser $contractorUser): bool
     {
         foreach ($housingStock->getProjects() as $project) {
             /** @var Project $project */
             if (
-                $user->getContractor()->getProjects()->exists(fn($key, $contractorProject) =>
+                $contractorUser->getContractor()->getProjects()->exists(fn($key, $contractorProject) =>
                     /** @var Project $contractorProject */
                     $contractorProject->equals($project))
             ) {
@@ -109,9 +109,9 @@ class HousingStockVoter extends Voter
         return false;
     }
 
-    private function canOwnerView(HousingStock $housingStock, OwnerUser $user): bool
+    private function canOwnerView(HousingStock $housingStock, OwnerUser $ownerUser): bool
     {
-        return $housingStock->getOwner()->equals($user->getOwner());
+        return $housingStock->getOwner()->equals($ownerUser->getOwner());
     }
 
     private function canEdit(User $user): bool

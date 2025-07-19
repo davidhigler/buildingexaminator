@@ -16,11 +16,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class LoadUserData extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private readonly UserPasswordHasherInterface $hasher)
+    public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
     {
     }
 
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $users = [
             ['email' => 'developers@dobrobv.nl', 'password' => 'admin', 'roles' => ['ROLE_ADMIN'], 'type' => 'dobro'],
@@ -34,40 +34,40 @@ class LoadUserData extends Fixture implements DependentFixtureInterface
             ['email' => 'subcontractor.user.02@dobrobv.nl', 'password' => 'admin', 'roles' => [], 'type' => 'subcontractor', 'subcontractor' => 'S1'],
         ];
 
-        foreach ($users as $userData) {
-            $newUser = match ($userData['type']) {
+        foreach ($users as $user) {
+            $newUser = match ($user['type']) {
                 'dobro' => new User(),
                 'owner' => new OwnerUser(),
                 'contractor' => new ContractorUser(),
                 'subcontractor' => new SubcontractorUser(),
             };
 
-            $newUser->setEmail($userData['email']);
-            $newUser->setPassword($this->hasher->hashPassword($newUser, $userData['password']));
-            $newUser->setRoles($userData['roles']);
+            $newUser->setEmail($user['email']);
+            $newUser->setPassword($this->userPasswordHasher->hashPassword($newUser, $user['password']));
+            $newUser->setRoles($user['roles']);
 
-            switch ($userData['type']) {
+            switch ($user['type']) {
                 case 'owner':
                     /** @var Owner $owner */
-                    $owner = $this->getReference('owner_' . $userData['owner'], Owner::class);
+                    $owner = $this->getReference('owner_' . $user['owner'], Owner::class);
                     $newUser->setOwner($owner);
                     break;
                 case 'contractor':
                     /** @var Contractor $contractor */
-                    $contractor = $this->getReference('contractor_' . $userData['contractor'], Contractor::class);
+                    $contractor = $this->getReference('contractor_' . $user['contractor'], Contractor::class);
                     $newUser->setContractor($contractor);
                     break;
                 case 'subcontractor':
                     /** @var Subcontractor $subcontractor */
-                    $subcontractor = $this->getReference('subcontractor_' . $userData['subcontractor'], Subcontractor::class);
+                    $subcontractor = $this->getReference('subcontractor_' . $user['subcontractor'], Subcontractor::class);
                     $newUser->setSubcontractor($subcontractor);
                     break;
             }
 
-            $manager->persist($newUser);
+            $objectManager->persist($newUser);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array

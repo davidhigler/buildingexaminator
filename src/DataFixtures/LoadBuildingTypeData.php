@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $buildingTypes = [
             ['housingstock' => 'DobroTest01', 'code' => '1002A', 'name' => '1002A'],
@@ -1279,11 +1279,11 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($buildingTypeObject);
+            $objectManager->persist($buildingTypeObject);
             $this->addReference('buildingtype_' . $buildingType['code'], $buildingTypeObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array

@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadBlockData extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $blocks = [
             ['code' => 'ALG1002', 'name' => 'Algemeen 1002', 'housingstock' => 'DobroTest01'],
@@ -478,11 +478,11 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($blockObject);
+            $objectManager->persist($blockObject);
             $this->addReference('block_' . $block['code'], $blockObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array

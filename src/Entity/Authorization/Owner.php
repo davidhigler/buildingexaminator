@@ -118,9 +118,9 @@ class Owner extends Id
         $this->ownerUsers->add($ownerUser);
     }
 
-    public function removeOwnerUser(OwnerUser $ownerUsers): void
+    public function removeOwnerUser(OwnerUser $ownerUser): void
     {
-        $this->ownerUsers->removeElement($ownerUsers);
+        $this->ownerUsers->removeElement($ownerUser);
     }
 
     public function setName(string $name): void

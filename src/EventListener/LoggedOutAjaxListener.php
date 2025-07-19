@@ -16,15 +16,15 @@ readonly class LoggedOutAjaxListener
     ) {
     }
 
-    public function onKernelException(ExceptionEvent $event): void
+    public function onKernelException(ExceptionEvent $exceptionEvent): void
     {
-        $request = $event->getRequest();
+        $request = $exceptionEvent->getRequest();
         if (($request->getAcceptableContentTypes()[0] ?? '') !== 'application/json') {
             // Not an ajax request
             return;
         }
 
-        if ($event->getThrowable() instanceof AccessDeniedException === false) {
+        if ($exceptionEvent->getThrowable() instanceof AccessDeniedException === false) {
             // Pass all other exceptions to the next exception listener
             return;
         }
@@ -35,7 +35,7 @@ readonly class LoggedOutAjaxListener
         }
 
         // Redirect to log in screen when user is not logged in
-        $event->setResponse(
+        $exceptionEvent->setResponse(
             new Response(null, 401)
         );
     }

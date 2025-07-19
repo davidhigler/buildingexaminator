@@ -90,21 +90,21 @@ class ProjectVoter extends Voter
         };
     }
 
-    private function canSubContractorView(Project $project, SubcontractorUser $user): bool
+    private function canSubContractorView(Project $project, SubcontractorUser $subcontractorUser): bool
     {
-        $projects = $user->getSubcontractor()->getProjects();
+        $projects = $subcontractorUser->getSubcontractor()->getProjects();
         return $projects->contains($project);
     }
 
-    private function canContractorView(Project $project, ContractorUser $user): bool
+    private function canContractorView(Project $project, ContractorUser $contractorUser): bool
     {
-        $projects = $user->getContractor()->getProjects();
+        $projects = $contractorUser->getContractor()->getProjects();
         return $projects->contains($project);
     }
 
-    private function canOwnerView(Project $project, OwnerUser $user): bool
+    private function canOwnerView(Project $project, OwnerUser $ownerUser): bool
     {
-        $housingStocks = $user->getOwner()->getHousingStocks();
+        $housingStocks = $ownerUser->getOwner()->getHousingStocks();
 
         $userAccessibleProjects = new ArrayCollection();
 

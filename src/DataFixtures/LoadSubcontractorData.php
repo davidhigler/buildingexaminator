@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class LoadSubcontractorData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $subcontractors = [
             ['code' => 'S1', 'name' => 'Subcontractor 1'],
@@ -20,10 +20,10 @@ class LoadSubcontractorData extends Fixture
             $subcontractor->setCode($subcontractorData['code']);
             $subcontractor->setName($subcontractorData['name']);
 
-            $manager->persist($subcontractor);
+            $objectManager->persist($subcontractor);
             $this->addReference('subcontractor_' . $subcontractorData['code'], $subcontractor);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

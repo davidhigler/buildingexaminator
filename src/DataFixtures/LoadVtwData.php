@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadVtwData extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $vtws = [
             [
@@ -1146,11 +1146,11 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($vtwObject);
+            $objectManager->persist($vtwObject);
             $this->addReference('vtw_' . $vtw['code'], $vtwObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array

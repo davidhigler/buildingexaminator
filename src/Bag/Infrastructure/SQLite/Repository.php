@@ -7,11 +7,11 @@ use App\Bag\Application\SQLite\CbsException;
 
 class Repository
 {
-    private readonly SQLite3 $sqliteDb;
+    private readonly SQLite3 $sqLite3;
 
     public function __construct()
     {
-        $this->sqliteDb = new SQLite3(
+        $this->sqLite3 = new SQLite3(
             __DIR__ . DIRECTORY_SEPARATOR .
             '..' . DIRECTORY_SEPARATOR .
             '..' . DIRECTORY_SEPARATOR .
@@ -27,7 +27,7 @@ class Repository
      */
     public function getNeighbourhoodResidentialareaMunicipalityByZipcodeHousenumber(string $zipcodeHousenumber): array
     {
-        $result = $this->sqliteDb->querySingle('SELECT neighbourhood, residentialarea, municipality FROM cbs WHERE zipcodehousenumber="' . $zipcodeHousenumber . '"', true);
+        $result = $this->sqLite3->querySingle('SELECT neighbourhood, residentialarea, municipality FROM cbs WHERE zipcodehousenumber="' . $zipcodeHousenumber . '"', true);
 
         if (
             !array_key_exists('municipality', $result)
@@ -51,7 +51,7 @@ class Repository
      */
     public function getMunicipalityByResidentialarea(string $residentialAreaCode): array
     {
-        $result = $this->sqliteDb->querySingle('SELECT municipality FROM cbs WHERE residentialarea="' . $residentialAreaCode . '" GROUP BY municipality', true);
+        $result = $this->sqLite3->querySingle('SELECT municipality FROM cbs WHERE residentialarea="' . $residentialAreaCode . '" GROUP BY municipality', true);
 
         if (!array_key_exists('municipality', $result)) {
             $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
@@ -71,7 +71,7 @@ class Repository
      */
     public function getMunicipalityByBNeighbourhood(string $neighbourhoodCode): array
     {
-        $result = $this->sqliteDb->querySingle('SELECT municipality FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY municipality', true);
+        $result = $this->sqLite3->querySingle('SELECT municipality FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY municipality', true);
 
         if (!array_key_exists('municipality', $result)) {
             $cbsException = new CbsException('missing data in the cbs sqlite database', 0);
@@ -91,7 +91,7 @@ class Repository
      */
     public function getResidentialAreaByBNeighbourhood(string $neighbourhoodCode): array
     {
-        $result = $this->sqliteDb->querySingle('SELECT residentialarea FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY residentialarea', true);
+        $result = $this->sqLite3->querySingle('SELECT residentialarea FROM cbs WHERE neighbourhood="' . $neighbourhoodCode . '" GROUP BY residentialarea', true);
 
         if (!array_key_exists('residentialarea', $result)) {
             $cbsException = new CbsException('missing data in the cbs sqlite database', 0);

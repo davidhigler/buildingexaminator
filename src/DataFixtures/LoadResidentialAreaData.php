@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadResidentialAreaData extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $residentialAreas = [
             ['code' => '1400','name' => 'Centrum','municipality' => '14'],
@@ -3294,11 +3294,11 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($residentialAreaObject);
+            $objectManager->persist($residentialAreaObject);
             $this->addReference('residentialarea_' . $residentialArea['code'], $residentialAreaObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array

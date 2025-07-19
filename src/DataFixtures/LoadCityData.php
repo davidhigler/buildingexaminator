@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadCityData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $cities = [
             ['name' => 'Zwolle','object_id' => '253','identification' => '1182'],
@@ -49,10 +49,10 @@ class LoadCityData extends Fixture
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($cityObject);
+            $objectManager->persist($cityObject);
             $this->addReference('city_' . $city['object_id'], $cityObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

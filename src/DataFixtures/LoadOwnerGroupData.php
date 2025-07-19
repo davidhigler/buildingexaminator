@@ -12,7 +12,7 @@ use RuntimeException;
 
 class LoadOwnerGroupData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $ownerGroups = [
             [
@@ -53,10 +53,10 @@ class LoadOwnerGroupData extends Fixture
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($ownerGroupObject);
+            $objectManager->persist($ownerGroupObject);
             $this->addReference('ownerGroup_' . $ownerGroup['name'], $ownerGroupObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

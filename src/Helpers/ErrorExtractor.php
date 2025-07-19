@@ -9,11 +9,11 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class ErrorExtractor
 {
-    public static function fromViolations(ConstraintViolationListInterface $violations): array
+    public static function fromViolations(ConstraintViolationListInterface $constraintViolationList): array
     {
         $errors = [];
         /** @var ConstraintViolationInterface $violation */
-        foreach ($violations as $violation) {
+        foreach ($constraintViolationList as $violation) {
             $errors[] = self::simplifyException($violation);
         }
 

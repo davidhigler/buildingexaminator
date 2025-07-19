@@ -91,9 +91,9 @@ class AddressVoter extends Voter
         };
     }
 
-    private function canSubContractorView(Address $address, SubcontractorUser $user): bool
+    private function canSubContractorView(Address $address, SubcontractorUser $subcontractorUser): bool
     {
-        $projects = $user->getSubcontractor()->getProjects();
+        $projects = $subcontractorUser->getSubcontractor()->getProjects();
 
         $userAccessibleAddresses = new ArrayCollection();
 
@@ -108,9 +108,9 @@ class AddressVoter extends Voter
         return $userAccessibleAddresses->contains($address);
     }
 
-    private function canContractorView(Address $address, ContractorUser $user): bool
+    private function canContractorView(Address $address, ContractorUser $contractorUser): bool
     {
-        $projects = $user->getContractor()->getProjects();
+        $projects = $contractorUser->getContractor()->getProjects();
 
         $userAccessibleAddresses = new ArrayCollection();
 
@@ -125,9 +125,9 @@ class AddressVoter extends Voter
         return $userAccessibleAddresses->contains($address);
     }
 
-    private function canOwnerView(Address $address, OwnerUser $user): bool
+    private function canOwnerView(Address $address, OwnerUser $ownerUser): bool
     {
-        $accessibleHousingStocks = $user->getOwner()->getHousingStocks();
+        $accessibleHousingStocks = $ownerUser->getOwner()->getHousingStocks();
 
         /** @var HousingStock $accessibleHousingStock */
         foreach ($accessibleHousingStocks as $accessibleHousingStock) {

@@ -20,7 +20,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $io = new SymfonyStyle($input, $output);
+        $symfonyStyle = new SymfonyStyle($input, $output);
         $repository = new Repository();
 
         $csvLines = array_map(
@@ -60,7 +60,7 @@ class ImportFromCsvBasicAddressesCommand extends Command
             try {
                 $address['address'] = $repository->getAddressByZipcodeAndHousenumber($zipcode, $housenumber, $addition);
             } catch (GuzzleException $exception) {
-                $io->error($exception->getMessage());
+                $symfonyStyle->error($exception->getMessage());
                 continue;
             }
 
@@ -68,15 +68,15 @@ class ImportFromCsvBasicAddressesCommand extends Command
         }
 
         foreach ($addresses as $address) {
-            $io->title($address['address']['zipcode'] . ' ' . $address['address']['housenumber'] . $address['address']['addition']);
+            $symfonyStyle->title($address['address']['zipcode'] . ' ' . $address['address']['housenumber'] . $address['address']['addition']);
             foreach ($address as $category => $data) {
-                $io->writeln('<fg=blue>' . $category . '</>');
+                $symfonyStyle->writeln('<fg=blue>' . $category . '</>');
                 foreach ($data as $key => $value) {
-                    $io->writeln("\t" . $key . ': ' . $value);
+                    $symfonyStyle->writeln("\t" . $key . ': ' . $value);
                 }
             }
 
-            $io->writeln('');
+            $symfonyStyle->writeln('');
         }
 
         return Command::SUCCESS;

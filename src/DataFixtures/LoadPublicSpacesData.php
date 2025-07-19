@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Validation;
 
 class LoadPublicSpacesData extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $publicSpaces = [
             ['name' => 'Spui','type' => 'Weg','object_id' => '61417','identification' => '0193300000001343'],
@@ -603,10 +603,10 @@ class LoadPublicSpacesData extends Fixture
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($publicSpaceObject);
+            $objectManager->persist($publicSpaceObject);
             $this->addReference('publicspace_' . $publicSpace['object_id'], $publicSpaceObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 }

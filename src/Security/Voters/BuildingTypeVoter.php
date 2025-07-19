@@ -90,9 +90,9 @@ class BuildingTypeVoter extends Voter
         };
     }
 
-    private function canSubContractorView(BuildingType $buildingType, SubContractorUser $user): bool
+    private function canSubContractorView(BuildingType $buildingType, SubContractorUser $subContractorUser): bool
     {
-        $projects = $user->getSubcontractor()->getProjects();
+        $projects = $subContractorUser->getSubcontractor()->getProjects();
 
         $userAccessibleAddresses = new ArrayCollection();
 
@@ -113,9 +113,9 @@ class BuildingTypeVoter extends Voter
         return false;
     }
 
-    private function canContractorView(BuildingType $buildingType, ContractorUser $user): bool
+    private function canContractorView(BuildingType $buildingType, ContractorUser $contractorUser): bool
     {
-        $projects = $user->getContractor()->getProjects();
+        $projects = $contractorUser->getContractor()->getProjects();
 
         $userAccessibleAddresses = new ArrayCollection();
 
@@ -136,9 +136,9 @@ class BuildingTypeVoter extends Voter
         return false;
     }
 
-    private function canOwnerView(BuildingType $buildingType, OwnerUser $user): bool
+    private function canOwnerView(BuildingType $buildingType, OwnerUser $ownerUser): bool
     {
-        return $buildingType->getHousingStock()->getOwner()->equals($user->getOwner());
+        return $buildingType->getHousingStock()->getOwner()->equals($ownerUser->getOwner());
     }
 
     private function canEdit(BuildingType $buildingType, User $user): bool

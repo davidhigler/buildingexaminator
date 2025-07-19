@@ -74,7 +74,7 @@ class StrategyController extends AbstractController
     ];
 
     public function __construct(
-        private readonly ManagerRegistry $doctrine)
+        private readonly ManagerRegistry $managerRegistry)
     {}
 
     #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
@@ -125,11 +125,11 @@ class StrategyController extends AbstractController
     )]
     public function getProjects(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
+        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
-        $projectRepository = $this->doctrine->getRepository(Project::class);
+        $projectRepository = $this->managerRegistry->getRepository(Project::class);
         $adapter = $projectRepository->createQueryBuilder('p');
         $adapter->andWhere($adapter->expr()->eq('p.housingStock', $adapter->expr()->literal($housingStock->getId())));
 
@@ -216,7 +216,7 @@ class StrategyController extends AbstractController
     {
         $newProject = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->doctrine->getRepository(HousingStock::class);
+        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
         $housingStock = $housingStockRepository->find((int) $housingStockId);
 
@@ -242,7 +242,7 @@ class StrategyController extends AbstractController
         }
 
         if (!empty($newProject['addresses'])) {
-            $addressRepository = $this->doctrine->getRepository(Address::class);
+            $addressRepository = $this->managerRegistry->getRepository(Address::class);
 
             foreach ($newProject['addresses'] as $newAddress) {
                 $address = $addressRepository->find((int)$newAddress);
@@ -252,12 +252,12 @@ class StrategyController extends AbstractController
 
         $this->denyAccessUnlessGranted(ProjectVoter::CREATE, $project);
 
-        $violations = $validator->validate($project);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($project);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $projectManager = $this->doctrine->getManager(Project::class);
+        $projectManager = $this->managerRegistry->getManager(Project::class);
         $projectManager->persist($project);
         try {
             $projectManager->flush();
@@ -311,7 +311,7 @@ class StrategyController extends AbstractController
     )]
     public function getProject(string $housingStockId, string $projectId): Response
     {
-        $projectRepository = $this->doctrine->getRepository(Project::class);
+        $projectRepository = $this->managerRegistry->getRepository(Project::class);
         $project = $projectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,

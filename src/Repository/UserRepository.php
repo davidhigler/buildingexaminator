@@ -18,35 +18,35 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($managerRegistry, User::class);
     }
 
-    public function add(User $entity, bool $flush = true): void
+    public function add(User $user, bool $flush = true): void
     {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
-
-    public function remove(User $entity, bool $flush = true): void
-    {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
-
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
-    {
-        if (!$user instanceof User) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
-        }
-
-        $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
+    public function remove(User $user, bool $flush = true): void
+    {
+        $this->_em->remove($user);
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
+    public function upgradePassword(PasswordAuthenticatedUserInterface $passwordAuthenticatedUser, string $newHashedPassword): void
+    {
+        if (!$passwordAuthenticatedUser instanceof User) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $passwordAuthenticatedUser::class));
+        }
+
+        $passwordAuthenticatedUser->setPassword($newHashedPassword);
+        $this->_em->persist($passwordAuthenticatedUser);
         $this->_em->flush();
     }
 }

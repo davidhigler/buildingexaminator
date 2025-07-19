@@ -129,7 +129,7 @@ class AuthorizationController extends AbstractController
     ];
 
     public function __construct(
-        private readonly ManagerRegistry $doctrine)
+        private readonly ManagerRegistry $managerRegistry)
     {}
 
     /**
@@ -176,7 +176,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $ownerRepository = $this->doctrine->getRepository(Owner::class);
+        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
         $adapter = $ownerRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -283,12 +283,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(OwnerVoter::CREATE, $owner);
 
-        $violations = $validator->validate($owner);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($owner);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager = $this->managerRegistry->getManager(Owner::class);
         $ownerManager->persist($owner);
         $ownerManager->flush();
 
@@ -358,7 +358,7 @@ class AuthorizationController extends AbstractController
     {
         $changeOwner = json_decode($request->getContent(), true);
 
-        $ownerRepository = $this->doctrine->getRepository(Owner::class);
+        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
@@ -381,12 +381,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(OwnerVoter::EDIT, $owner);
 
-        $violations = $validator->validate($owner);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($owner);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager = $this->managerRegistry->getManager(Owner::class);
         $ownerManager->persist($owner);
         $ownerManager->flush();
 
@@ -423,13 +423,13 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->doctrine->getRepository(Owner::class);
+        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
         $owner = $ownerRepository->find((int) $ownerId);
 
         $this->denyAccessUnlessGranted(OwnerVoter::DELETE, $owner);
 
-        $ownerManager = $this->doctrine->getManager(Owner::class);
+        $ownerManager = $this->managerRegistry->getManager(Owner::class);
         $ownerManager->remove($owner);
         try {
             $ownerManager->flush();
@@ -468,7 +468,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->doctrine->getRepository(Owner::class);
+        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
         $owner = $ownerRepository->find(
             (int)$ownerId
         );
@@ -525,7 +525,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $contractorRepository = $this->doctrine->getRepository(OwnerGroup::class);
+        $contractorRepository = $this->managerRegistry->getRepository(OwnerGroup::class);
         $adapter = $contractorRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -604,7 +604,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
+        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
         $adapter = $contractorRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -711,12 +711,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(ContractorVoter::CREATE, $contractor);
 
-        $violations = $validator->validate($contractor);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($contractor);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
         $contractorManager->persist($contractor);
         $contractorManager->flush();
 
@@ -786,7 +786,7 @@ class AuthorizationController extends AbstractController
     {
         $changeContractor = json_decode($request->getContent(), true);
 
-        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
+        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
         /** @var Contractor $contractor */
         $contractor = $contractorRepository->find((int) $contractorId);
 
@@ -812,12 +812,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(ContractorVoter::EDIT, $contractor);
 
-        $violations = $validator->validate($contractor);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($contractor);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
         $contractorManager->persist($contractor);
         $contractorManager->flush();
 
@@ -854,13 +854,13 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
+        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
         /** @var Contractor $contractor */
         $contractor = $contractorRepository->find((int) $contractorId);
 
         $this->denyAccessUnlessGranted(ContractorVoter::DELETE, $contractor);
 
-        $contractorManager = $this->doctrine->getManager(Contractor::class);
+        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
         $contractorManager->remove($contractor);
         try {
             $contractorManager->flush();
@@ -899,7 +899,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->doctrine->getRepository(Contractor::class);
+        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
         $contractor = $contractorRepository->find(
             (int)$contractorId
         );
@@ -956,7 +956,7 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         $adapter = $subcontractorRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
@@ -1063,12 +1063,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(SubcontractorVoter::CREATE, $subcontractor);
 
-        $violations = $validator->validate($subcontractor);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($subcontractor);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
         $subcontractorManager->persist($subcontractor);
         $subcontractorManager->flush();
 
@@ -1138,7 +1138,7 @@ class AuthorizationController extends AbstractController
     {
         $changeSubcontractor = json_decode($request->getContent(), true);
 
-        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
         $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
 
@@ -1164,12 +1164,12 @@ class AuthorizationController extends AbstractController
 
         $this->denyAccessUnlessGranted(SubcontractorVoter::EDIT, $subcontractor);
 
-        $violations = $validator->validate($subcontractor);
-        if ($violations->count() > 0) {
-            return $this->json(ErrorExtractor::fromViolations($violations), 500);
+        $constraintViolationList = $validator->validate($subcontractor);
+        if ($constraintViolationList->count() > 0) {
+            return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
         $subcontractorManager->persist($subcontractor);
         $subcontractorManager->flush();
 
@@ -1206,13 +1206,13 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
         $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
 
         $this->denyAccessUnlessGranted(SubcontractorVoter::DELETE, $subcontractor);
 
-        $subcontractorManager = $this->doctrine->getManager(Subcontractor::class);
+        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
         $subcontractorManager->remove($subcontractor);
         try {
             $subcontractorManager->flush();
@@ -1251,7 +1251,7 @@ class AuthorizationController extends AbstractController
     )]
     public function getSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->doctrine->getRepository(Subcontractor::class);
+        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         $subcontractor = $subcontractorRepository->find(
             (int)$subcontractorId
         );

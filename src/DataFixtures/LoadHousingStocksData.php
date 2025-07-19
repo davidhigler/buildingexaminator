@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Validation;
  */
 class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $objectManager): void
     {
         $housingStocks = [
             [
@@ -77,11 +77,11 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
                 throw new RuntimeException(implode(', ', $messages));
             }
 
-            $manager->persist($housingStockObject);
+            $objectManager->persist($housingStockObject);
             $this->addReference('housingstock_' . $housingStock['code'], $housingStockObject);
         }
 
-        $manager->flush();
+        $objectManager->flush();
     }
 
     public function getDependencies(): array
