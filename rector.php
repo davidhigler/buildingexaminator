@@ -29,6 +29,7 @@ return RectorConfig::configure()
         typeDeclarations: true,
         privatization: true,
         naming: true,
+        instanceOf: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

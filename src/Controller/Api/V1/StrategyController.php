@@ -125,9 +125,9 @@ class StrategyController extends AbstractController
     )]
     public function getProjects(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $projectRepository = $this->managerRegistry->getRepository(Project::class);
         $adapter = $projectRepository->createQueryBuilder('p');
@@ -216,9 +216,9 @@ class StrategyController extends AbstractController
     {
         $newProject = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $project = new Project();
         if (!empty($housingStock)) {
@@ -257,10 +257,10 @@ class StrategyController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $projectManager = $this->managerRegistry->getManager(Project::class);
-        $projectManager->persist($project);
+        $objectManager = $this->managerRegistry->getManager(Project::class);
+        $objectManager->persist($project);
         try {
-            $projectManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -311,8 +311,8 @@ class StrategyController extends AbstractController
     )]
     public function getProject(string $housingStockId, string $projectId): Response
     {
-        $projectRepository = $this->managerRegistry->getRepository(Project::class);
-        $project = $projectRepository->findOneBy(
+        $objectRepository = $this->managerRegistry->getRepository(Project::class);
+        $project = $objectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,
                 'id' => (int)$projectId

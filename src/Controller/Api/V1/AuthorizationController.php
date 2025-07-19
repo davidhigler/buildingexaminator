@@ -176,8 +176,8 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
-        $adapter = $ownerRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Owner::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -288,9 +288,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $ownerManager = $this->managerRegistry->getManager(Owner::class);
-        $ownerManager->persist($owner);
-        $ownerManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Owner::class);
+        $objectManager->persist($owner);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -358,9 +358,9 @@ class AuthorizationController extends AbstractController
     {
         $changeOwner = json_decode($request->getContent(), true);
 
-        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
+        $objectRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
-        $owner = $ownerRepository->find((int) $ownerId);
+        $owner = $objectRepository->find((int) $ownerId);
 
         $owner->setName($changeOwner['name']);
         if (!empty($changeOwner['kvk'])) {
@@ -386,9 +386,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $ownerManager = $this->managerRegistry->getManager(Owner::class);
-        $ownerManager->persist($owner);
-        $ownerManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Owner::class);
+        $objectManager->persist($owner);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -423,16 +423,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
+        $objectRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
-        $owner = $ownerRepository->find((int) $ownerId);
+        $owner = $objectRepository->find((int) $ownerId);
 
         $this->denyAccessUnlessGranted(OwnerVoter::DELETE, $owner);
 
-        $ownerManager = $this->managerRegistry->getManager(Owner::class);
-        $ownerManager->remove($owner);
+        $objectManager = $this->managerRegistry->getManager(Owner::class);
+        $objectManager->remove($owner);
         try {
-            $ownerManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -468,8 +468,8 @@ class AuthorizationController extends AbstractController
     )]
     public function getOwner(string $ownerId): Response
     {
-        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
-        $owner = $ownerRepository->find(
+        $objectRepository = $this->managerRegistry->getRepository(Owner::class);
+        $owner = $objectRepository->find(
             (int)$ownerId
         );
 
@@ -525,8 +525,8 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $contractorRepository = $this->managerRegistry->getRepository(OwnerGroup::class);
-        $adapter = $contractorRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(OwnerGroup::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -604,8 +604,8 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
-        $adapter = $contractorRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Contractor::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -716,9 +716,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
-        $contractorManager->persist($contractor);
-        $contractorManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Contractor::class);
+        $objectManager->persist($contractor);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -786,9 +786,9 @@ class AuthorizationController extends AbstractController
     {
         $changeContractor = json_decode($request->getContent(), true);
 
-        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
+        $objectRepository = $this->managerRegistry->getRepository(Contractor::class);
         /** @var Contractor $contractor */
-        $contractor = $contractorRepository->find((int) $contractorId);
+        $contractor = $objectRepository->find((int) $contractorId);
 
         if (!empty($changeContractor['code'])) {
             $contractor->setCode($changeContractor['code']);
@@ -817,9 +817,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
-        $contractorManager->persist($contractor);
-        $contractorManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Contractor::class);
+        $objectManager->persist($contractor);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -854,16 +854,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
+        $objectRepository = $this->managerRegistry->getRepository(Contractor::class);
         /** @var Contractor $contractor */
-        $contractor = $contractorRepository->find((int) $contractorId);
+        $contractor = $objectRepository->find((int) $contractorId);
 
         $this->denyAccessUnlessGranted(ContractorVoter::DELETE, $contractor);
 
-        $contractorManager = $this->managerRegistry->getManager(Contractor::class);
-        $contractorManager->remove($contractor);
+        $objectManager = $this->managerRegistry->getManager(Contractor::class);
+        $objectManager->remove($contractor);
         try {
-            $contractorManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -899,8 +899,8 @@ class AuthorizationController extends AbstractController
     )]
     public function getContractor(string $contractorId): Response
     {
-        $contractorRepository = $this->managerRegistry->getRepository(Contractor::class);
-        $contractor = $contractorRepository->find(
+        $objectRepository = $this->managerRegistry->getRepository(Contractor::class);
+        $contractor = $objectRepository->find(
             (int)$contractorId
         );
 
@@ -956,8 +956,8 @@ class AuthorizationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
-        $adapter = $subcontractorRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Subcontractor::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -1068,9 +1068,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
-        $subcontractorManager->persist($subcontractor);
-        $subcontractorManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Subcontractor::class);
+        $objectManager->persist($subcontractor);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1138,9 +1138,9 @@ class AuthorizationController extends AbstractController
     {
         $changeSubcontractor = json_decode($request->getContent(), true);
 
-        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
+        $objectRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
-        $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
+        $subcontractor = $objectRepository->find((int) $subcontractorId);
 
         if (!empty($changeSubcontractor['code'])) {
             $subcontractor->setCode($changeSubcontractor['code']);
@@ -1169,9 +1169,9 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
-        $subcontractorManager->persist($subcontractor);
-        $subcontractorManager->flush();
+        $objectManager = $this->managerRegistry->getManager(Subcontractor::class);
+        $objectManager->persist($subcontractor);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -1206,16 +1206,16 @@ class AuthorizationController extends AbstractController
     )]
     public function deleteSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
+        $objectRepository = $this->managerRegistry->getRepository(Subcontractor::class);
         /** @var Subcontractor $subcontractor */
-        $subcontractor = $subcontractorRepository->find((int) $subcontractorId);
+        $subcontractor = $objectRepository->find((int) $subcontractorId);
 
         $this->denyAccessUnlessGranted(SubcontractorVoter::DELETE, $subcontractor);
 
-        $subcontractorManager = $this->managerRegistry->getManager(Subcontractor::class);
-        $subcontractorManager->remove($subcontractor);
+        $objectManager = $this->managerRegistry->getManager(Subcontractor::class);
+        $objectManager->remove($subcontractor);
         try {
-            $subcontractorManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -1251,8 +1251,8 @@ class AuthorizationController extends AbstractController
     )]
     public function getSubcontractor(string $subcontractorId): Response
     {
-        $subcontractorRepository = $this->managerRegistry->getRepository(Subcontractor::class);
-        $subcontractor = $subcontractorRepository->find(
+        $objectRepository = $this->managerRegistry->getRepository(Subcontractor::class);
+        $subcontractor = $objectRepository->find(
             (int)$subcontractorId
         );
 

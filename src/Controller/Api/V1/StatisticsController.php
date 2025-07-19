@@ -22,8 +22,8 @@ class StatisticsController extends AbstractController
     #[Route('/statistics', name: 'globalstatistics', methods: ['GET'])]
     public function getGlobalStatistics(): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
-        $housingStockQueryBuilder = $housingStockRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $housingStockQueryBuilder = $objectRepository->createQueryBuilder('o');
 
         $housingStockQueryBuilder->select('count(o.id)');
 

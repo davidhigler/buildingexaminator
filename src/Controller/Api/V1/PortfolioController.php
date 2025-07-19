@@ -603,8 +603,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getHousingStocks(Request $request, PaginatorInterface $paginator): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
-        $adapter = $housingStockRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
 
         $searchTerm = $request->query->get('searchterm');
         if (!empty($searchTerm)) {
@@ -685,9 +685,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $newHousingStock = json_decode($request->getContent(), true);
 
-        $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
+        $objectRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
-        $owner = $ownerRepository->find((int) $newHousingStock['owner']);
+        $owner = $objectRepository->find((int) $newHousingStock['owner']);
 
         $housingStock = new HousingStock();
         if (!empty($owner)) {
@@ -716,9 +716,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($housingStock);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($housingStock);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -782,9 +782,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $changeHousingStock = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $ownerRepository = $this->managerRegistry->getRepository(Owner::class);
         /** @var Owner $owner */
@@ -815,9 +815,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $this->denyAccessUnlessGranted(HousingStockVoter::EDIT, $housingStock);
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($housingStock);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($housingStock);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -852,16 +852,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function deleteHousingStock(string $housingStockId): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $this->denyAccessUnlessGranted(HousingStockVoter::DELETE, $housingStock);
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->remove($housingStock);
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->remove($housingStock);
         try {
-            $entityManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -897,9 +897,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getHousingStock(string $housingStockId): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
 
-        $housingStock = $housingStockRepository->find((int)$housingStockId);
+        $housingStock = $objectRepository->find((int)$housingStockId);
 
         $this->denyAccessUnlessGranted(HousingStockVoter::VIEW, $housingStock);
 
@@ -957,8 +957,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $municipalityRepository = $this->managerRegistry->getRepository(Municipality::class);
-        $adapter = $municipalityRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Municipality::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -1017,10 +1017,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $residentialAreaRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
+        $objectRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $residentialAreaRepository->find((int)$municipalityId),
+                $objectRepository->find((int)$municipalityId),
                 self::MUNICIPALITY_DETAIL_FIELDS
             )
         );
@@ -1072,8 +1072,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $residentialAreaRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
-        $adapter = $residentialAreaRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -1132,10 +1132,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $residentialAreaRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
+        $objectRepository = $this->managerRegistry->getRepository(ResidentialArea::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $residentialAreaRepository->find((int)$residentialAreaId),
+                $objectRepository->find((int)$residentialAreaId),
                 self::RESIDENTIALAREA_DETAIL_FIELDS
             )
         );
@@ -1187,8 +1187,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $neighbourhoodRepository = $this->managerRegistry->getRepository(Neighbourhood::class);
-        $adapter = $neighbourhoodRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Neighbourhood::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -1247,10 +1247,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $neighbourhoodRepository = $this->managerRegistry->getRepository(Neighbourhood::class);
+        $objectRepository = $this->managerRegistry->getRepository(Neighbourhood::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $neighbourhoodRepository->find((int)$neighbourhoodId),
+                $objectRepository->find((int)$neighbourhoodId),
                 self::NEIGHBOURHOOD_DETAIL_FIELDS
             )
         );
@@ -1302,8 +1302,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $vtwRepository = $this->managerRegistry->getRepository(Vtw::class);
-        $adapter = $vtwRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(Vtw::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -1362,10 +1362,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $vtwRepository = $this->managerRegistry->getRepository(Vtw::class);
+        $objectRepository = $this->managerRegistry->getRepository(Vtw::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $vtwRepository->find((int)$vtwId),
+                $objectRepository->find((int)$vtwId),
                 self::VTW_DETAIL_FIELDS
             )
         );
@@ -1427,9 +1427,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $cityRepository = $this->managerRegistry->getRepository(City::class);
         $adapter = $cityRepository->createQueryBuilder('o');
@@ -1503,10 +1503,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $cityRepository = $this->managerRegistry->getRepository(City::class);
+        $objectRepository = $this->managerRegistry->getRepository(City::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $cityRepository->find((int)$cityId),
+                $objectRepository->find((int)$cityId),
                 self::CITY_DETAIL_FIELDS
             )
         );
@@ -1568,9 +1568,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $publicSpaceRepository = $this->managerRegistry->getRepository(PublicSpace::class);
         $adapter = $publicSpaceRepository->createQueryBuilder('o');
@@ -1644,10 +1644,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $publicSpaceRepository = $this->managerRegistry->getRepository(PublicSpace::class);
+        $objectRepository = $this->managerRegistry->getRepository(PublicSpace::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $publicSpaceRepository->find((int)$publicSpaceId),
+                $objectRepository->find((int)$publicSpaceId),
                 self::PUBLICSPACE_DETAIL_FIELDS
             )
         );
@@ -1709,9 +1709,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $buildingRepository = $this->managerRegistry->getRepository(Building::class);
         $adapter = $buildingRepository->createQueryBuilder('o');
@@ -1785,10 +1785,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $buildingRepository = $this->managerRegistry->getRepository(Building::class);
+        $objectRepository = $this->managerRegistry->getRepository(Building::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $buildingRepository->find((int)$buildingId),
+                $objectRepository->find((int)$buildingId),
                 self::BUILDING_DETAIL_FIELDS
             )
         );
@@ -1850,9 +1850,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $residenceRepository = $this->managerRegistry->getRepository(Residence::class);
         $adapter = $residenceRepository->createQueryBuilder('o');
@@ -1926,10 +1926,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $residenceRepository = $this->managerRegistry->getRepository(Residence::class);
+        $objectRepository = $this->managerRegistry->getRepository(Residence::class);
         return $this->json(
             ApiRenderEngine::renderData(
-                $residenceRepository->find((int)$residenceId),
+                $objectRepository->find((int)$residenceId),
                 self::RESIDENCE_DETAIL_FIELDS
             )
         );
@@ -1987,9 +1987,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getBlocks(string $housingStockId, Request $request, PaginatorInterface $paginator): Response
     {
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $blockRepository = $this->managerRegistry->getRepository(Block::class);
         $adapter = $blockRepository->createQueryBuilder('b');
@@ -2086,9 +2086,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $newBlock = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $block = new Block();
         if (!empty($housingStock)) {
@@ -2121,9 +2121,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($block);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($block);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -2197,9 +2197,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $changeBlock = json_decode($request->getContent(), true);
 
-        $blockRepository = $this->managerRegistry->getRepository(Block::class);
+        $objectRepository = $this->managerRegistry->getRepository(Block::class);
         /** @var Block $block */
-        $block = $blockRepository->find((int) $blockId);
+        $block = $objectRepository->find((int) $blockId);
 
         $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
@@ -2234,9 +2234,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($block);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($block);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -2281,16 +2281,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function deleteBlock(string $housingStockId, string $blockId): Response
     {
-        $blockRepository = $this->managerRegistry->getRepository(Block::class);
+        $objectRepository = $this->managerRegistry->getRepository(Block::class);
         /** @var Block $block */
-        $block = $blockRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]);
+        $block = $objectRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $blockId]);
 
         $this->denyAccessUnlessGranted(BlockVoter::DELETE, $block);
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->remove($block);
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->remove($block);
         try {
-            $entityManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -2336,9 +2336,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getBlock(string $housingStockId, string $blockId): Response
     {
-        $blockRepository = $this->managerRegistry->getRepository(Block::class);
+        $objectRepository = $this->managerRegistry->getRepository(Block::class);
 
-        $block = $blockRepository->findOneBy(
+        $block = $objectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,
                 'id' => (int)$blockId
@@ -2409,9 +2409,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $buildingTypeRepository = $this->managerRegistry->getRepository(BuildingType::class);
         $adapter = $buildingTypeRepository->createQueryBuilder('o');
@@ -2502,9 +2502,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $newBuildingType = json_decode($request->getContent(), true);
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $buildingType = new BuildingType();
         if (!empty($housingStock)) {
@@ -2533,9 +2533,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($buildingType);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($buildingType);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -2605,9 +2605,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $changeBuildingType = json_decode($request->getContent(), true);
 
-        $buildingTypeRepository = $this->managerRegistry->getRepository(BuildingType::class);
+        $objectRepository = $this->managerRegistry->getRepository(BuildingType::class);
         /** @var BuildingType $buildingType */
-        $buildingType = $buildingTypeRepository->find((int) $buildingTypeId);
+        $buildingType = $objectRepository->find((int) $buildingTypeId);
 
         $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
@@ -2638,9 +2638,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($buildingType);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($buildingType);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -2685,16 +2685,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function deleteBuildingType(string $housingStockId, string $buildingTypeId): Response
     {
-        $buildingTypeRepository = $this->managerRegistry->getRepository(BuildingType::class);
+        $objectRepository = $this->managerRegistry->getRepository(BuildingType::class);
         /** @var BuildingType $buildingType */
-        $buildingType = $buildingTypeRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId]);
+        $buildingType = $objectRepository->findOneBy(['housingStock' => (int) $housingStockId, 'id' => (int) $buildingTypeId]);
 
         $this->denyAccessUnlessGranted(BuildingTypeVoter::DELETE, $buildingType);
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->remove($buildingType);
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->remove($buildingType);
         try {
-            $entityManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -2740,8 +2740,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getBuildingType(string $housingStockId, string $buildingtypeId): Response
     {
-        $buildingTypeRepository = $this->managerRegistry->getRepository(BuildingType::class);
-        $buildingType = $buildingTypeRepository->findOneBy(
+        $objectRepository = $this->managerRegistry->getRepository(BuildingType::class);
+        $buildingType = $objectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,
                 'id' => (int)$buildingtypeId
@@ -2812,9 +2812,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $addressRepository = $this->managerRegistry->getRepository(Address::class);
         $adapter = $addressRepository->createQueryBuilder('o');
@@ -2994,9 +2994,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return new Response('CBS error, see logs.', 500);
         }
 
-        $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
+        $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
-        $housingStock = $housingStockRepository->find((int) $housingStockId);
+        $housingStock = $objectRepository->find((int) $housingStockId);
 
         $blockRepository = $this->managerRegistry->getRepository(Block::class);
         /** @var Block $block */
@@ -3132,10 +3132,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($address);
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($address);
         try {
-            $entityManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -3256,9 +3256,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     {
         $changeAddress = json_decode($request->getContent(), true);
 
-        $addressRepository = $this->managerRegistry->getRepository(Address::class);
+        $objectRepository = $this->managerRegistry->getRepository(Address::class);
         /** @var Address $address */
-        $address = $addressRepository->find((int) $addressId);
+        $address = $objectRepository->find((int) $addressId);
 
         $housingStockRepository = $this->managerRegistry->getRepository(HousingStock::class);
         /** @var HousingStock $housingStock */
@@ -3313,9 +3313,9 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->persist($address);
-        $entityManager->flush();
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->persist($address);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -3360,16 +3360,16 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function deleteAddress(string $housingStockId, string $addressId): Response
     {
-        $addressRepository = $this->managerRegistry->getRepository(Address::class);
+        $objectRepository = $this->managerRegistry->getRepository(Address::class);
         /** @var Address $address */
-        $address = (object)$addressRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
+        $address = (object)$objectRepository->findBy(['housingStock' => (int) $housingStockId, 'id' => (int) $addressId], null, 1);
 
         $this->denyAccessUnlessGranted(AddressVoter::DELETE, $address);
 
-        $entityManager = $this->managerRegistry->getManager();
-        $entityManager->remove($address);
+        $objectManager = $this->managerRegistry->getManager();
+        $objectManager->remove($address);
         try {
-            $entityManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -3415,8 +3415,8 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
     )]
     public function getAddress(string $housingStockId, string $addressId): Response
     {
-        $addressRepository = $this->managerRegistry->getRepository(Address::class);
-        $address = $addressRepository->findOneBy(
+        $objectRepository = $this->managerRegistry->getRepository(Address::class);
+        $address = $objectRepository->findOneBy(
             [
                 'housingStock' => (int)$housingStockId,
                 'id' => (int)$addressId

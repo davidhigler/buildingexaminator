@@ -105,8 +105,8 @@ class AuthenticationController extends AbstractController
     {
         $searchTerm = $request->query->get('searchterm');
 
-        $userRepository = $this->managerRegistry->getRepository(User::class);
-        $adapter = $userRepository->createQueryBuilder('o');
+        $objectRepository = $this->managerRegistry->getRepository(User::class);
+        $adapter = $objectRepository->createQueryBuilder('o');
         if (!empty($searchTerm)) {
             $adapter
                 ->andWhere(
@@ -223,9 +223,9 @@ class AuthenticationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $userManager = $this->managerRegistry->getManager(User::class);
-        $userManager->persist($user);
-        $userManager->flush();
+        $objectManager = $this->managerRegistry->getManager(User::class);
+        $objectManager->persist($user);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -289,9 +289,9 @@ class AuthenticationController extends AbstractController
     {
         $changeUser = json_decode($request->getContent(), true);
 
-        $userRepository = $this->managerRegistry->getRepository(User::class);
+        $objectRepository = $this->managerRegistry->getRepository(User::class);
         /** @var User $user */
-        $user = $userRepository->find((int) $userId);
+        $user = $objectRepository->find((int) $userId);
 
         if (!empty($changeUser['password'])) {
             if ($changeUser['password'] !== $changeUser['confirmpassword']) {
@@ -327,9 +327,9 @@ class AuthenticationController extends AbstractController
             return $this->json(ErrorExtractor::fromViolations($constraintViolationList), 500);
         }
 
-        $userManager = $this->managerRegistry->getManager(User::class);
-        $userManager->persist($user);
-        $userManager->flush();
+        $objectManager = $this->managerRegistry->getManager(User::class);
+        $objectManager->persist($user);
+        $objectManager->flush();
 
         return $this->json(
             ApiRenderEngine::renderData(
@@ -364,16 +364,16 @@ class AuthenticationController extends AbstractController
     )]
     public function deleteUser(string $userId): Response
     {
-        $userRepository = $this->managerRegistry->getRepository(User::class);
+        $objectRepository = $this->managerRegistry->getRepository(User::class);
         /** @var User $user */
-        $user = $userRepository->find((int) $userId);
+        $user = $objectRepository->find((int) $userId);
 
         $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);
 
-        $userManager = $this->managerRegistry->getManager(User::class);
-        $userManager->remove($user);
+        $objectManager = $this->managerRegistry->getManager(User::class);
+        $objectManager->remove($user);
         try {
-            $userManager->flush();
+            $objectManager->flush();
         } catch (Exception $exception) {
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
@@ -409,8 +409,8 @@ class AuthenticationController extends AbstractController
     )]
     public function getUserInfo(string $userId): Response
     {
-        $userRepository = $this->managerRegistry->getRepository(User::class);
-        $user = $userRepository->find(
+        $objectRepository = $this->managerRegistry->getRepository(User::class);
+        $user = $objectRepository->find(
             (int)$userId
         );
 
