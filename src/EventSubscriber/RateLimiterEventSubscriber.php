@@ -3,15 +3,22 @@
 namespace App\EventSubscriber;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
+use Symfony\Component\RateLimiter\LimiterInterface;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class RateLimiterEventSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private readonly RateLimiterFactory $rateLimiterFactory)
+    private LimiterInterface $limiter;
+
+    #[Required]
+    public function setLimiter(#[Autowire(service: 'limiter.anonymous_api')] RateLimiterFactory $limiterFactory): void
     {
+        $this->limiter = $limiterFactory->create();
     }
 
     /**
@@ -28,8 +35,7 @@ class RateLimiterEventSubscriber implements EventSubscriberInterface
     public function onKernelRequest(RequestEvent $requestEvent): void {
         $request = $requestEvent->getRequest();
         if(str_contains((string) $request->get("_route"), 'api-v1-')) {
-            $limiter = $this->rateLimiterFactory->create($request->getClientIp());
-            if (false === $limiter->consume(1)->isAccepted()) {
+            if (false === $this->limiter->consume(1)->isAccepted()) {
                 throw new TooManyRequestsHttpException();
             }
         }
