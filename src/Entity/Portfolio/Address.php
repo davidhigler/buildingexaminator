@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Portfolio;
 
 use App\Dbal\EnumOrientationType;
