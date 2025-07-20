@@ -634,7 +634,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -978,7 +978,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1093,7 +1093,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1208,7 +1208,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1323,7 +1323,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1454,7 +1454,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1595,7 +1595,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1736,7 +1736,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -1877,7 +1877,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -2023,7 +2023,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -2443,7 +2443,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
@@ -2847,7 +2847,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
 
         $page = $request->query->get('page');
         if ($page !== null) {
-            $data = $paginator->paginate($data, $page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
+            $data = $paginator->paginate($data, (int)$page, ApiRenderEngine::DEFAULT_PAGE_LIMIT);
         }
 
         return $this->json(
