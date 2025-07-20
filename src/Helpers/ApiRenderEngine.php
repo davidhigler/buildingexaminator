@@ -32,6 +32,7 @@ class ApiRenderEngine
                 ],
             ];
         }
+
         return [
             'data' => $data
         ];

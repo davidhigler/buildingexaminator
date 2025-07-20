@@ -3269,6 +3269,7 @@ class LoadResidentialAreaData extends Fixture implements DependentFixtureInterfa
             if (empty($residentialArea['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $residentialAreaObject->setCode($residentialArea['code']);
 
             if (isset($residentialArea['name']) && ($residentialArea['name'] !== '' && $residentialArea['name'] !== '0')) {

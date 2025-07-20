@@ -1402,6 +1402,7 @@ class LoadOwnerData extends Fixture
             if (empty($owner['lnumber'])) {
                 throw new RuntimeException("lnumber may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $ownerObject->setLnumber($owner['lnumber']);
 
             if (isset($owner['website']) && ($owner['website'] !== 0 && ($owner['website'] !== '' && $owner['website'] !== '0'))) {

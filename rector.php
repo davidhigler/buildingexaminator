@@ -31,6 +31,7 @@ return RectorConfig::configure()
         naming: true,
         instanceOf: true,
         earlyReturn: true,
+        strictBooleans: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

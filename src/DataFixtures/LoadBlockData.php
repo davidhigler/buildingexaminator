@@ -442,6 +442,7 @@ class LoadBlockData extends Fixture implements DependentFixtureInterface
             if (empty($block['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $blockObject->setCode($block['code']);
 
             if (isset($block['name']) && ($block['name'] !== '' && $block['name'] !== '0')) {

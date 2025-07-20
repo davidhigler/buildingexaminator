@@ -45,6 +45,7 @@ class LoadHousingStocksData extends Fixture implements DependentFixtureInterface
             if (empty($housingStock['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $housingStockObject->setCode($housingStock['code']);
 
             if (isset($housingStock['name']) && ($housingStock['name'] !== '' && $housingStock['name'] !== '0')) {

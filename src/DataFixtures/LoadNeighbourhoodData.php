@@ -14027,6 +14027,7 @@ class LoadNeighbourhoodData extends Fixture implements DependentFixtureInterface
             if (empty($neighbourhood['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $neighbourhoodObject->setCode($neighbourhood['code']);
 
             if (isset($neighbourhood['name']) && ($neighbourhood['name'] !== '' && $neighbourhood['name'] !== '0')) {

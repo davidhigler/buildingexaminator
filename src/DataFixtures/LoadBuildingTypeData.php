@@ -1247,6 +1247,7 @@ class LoadBuildingTypeData extends Fixture implements DependentFixtureInterface
             if (empty($buildingType['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
             }
+
             $buildingTypeObject->setCode($buildingType['code']);
 
             if (isset($buildingType['name']) && ($buildingType['name'] !== '' && $buildingType['name'] !== '0')) {
