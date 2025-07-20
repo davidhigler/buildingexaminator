@@ -144,11 +144,11 @@
                 <i class="material-icons">workspace_premium</i>{{ 'credits'|trans|capitalize }}
             </a>
         </li>
-        <li>
+        {% if app.environment == 'dev' %}<li>
             <a href="javascript:void(0);" onclick="checkMenu(this);loadTestPage();">
                 <i class="material-icons">contact_support</i>{{ 'test'|trans|capitalize }}
             </a>
-        </li>
+        </li>{% endif %}
     </ul>
     <div class="container" id="content">
     </div>
