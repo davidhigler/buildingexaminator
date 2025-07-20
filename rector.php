@@ -30,6 +30,7 @@ return RectorConfig::configure()
         privatization: true,
         naming: true,
         instanceOf: true,
+        earlyReturn: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

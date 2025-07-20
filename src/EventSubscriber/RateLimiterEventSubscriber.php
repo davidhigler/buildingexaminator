@@ -16,9 +16,9 @@ class RateLimiterEventSubscriber implements EventSubscriberInterface
     private LimiterInterface $limiter;
 
     #[Required]
-    public function setLimiter(#[Autowire(service: 'limiter.anonymous_api')] RateLimiterFactory $limiterFactory): void
+    public function setLimiter(#[Autowire(service: 'limiter.anonymous_api')] RateLimiterFactory $rateLimiterFactory): void
     {
-        $this->limiter = $limiterFactory->create();
+        $this->limiter = $rateLimiterFactory->create();
     }
 
     /**
@@ -34,10 +34,8 @@ class RateLimiterEventSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $requestEvent): void {
         $request = $requestEvent->getRequest();
-        if(str_contains((string) $request->get("_route"), 'api-v1-')) {
-            if (false === $this->limiter->consume(1)->isAccepted()) {
-                throw new TooManyRequestsHttpException();
-            }
+        if(str_contains((string) $request->get("_route"), 'api-v1-') && false === $this->limiter->consume(1)->isAccepted()) {
+            throw new TooManyRequestsHttpException();
         }
     }
 }

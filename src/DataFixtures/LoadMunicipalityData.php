@@ -374,9 +374,8 @@ class LoadMunicipalityData extends Fixture
 
             if (empty($municipality['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $municipalityObject->setCode($municipality['code']);
             }
+            $municipalityObject->setCode($municipality['code']);
 
             if (isset($municipality['name']) && ($municipality['name'] !== '' && $municipality['name'] !== '0')) {
                 $municipalityObject->setName($municipality['name']);

@@ -7282,9 +7282,8 @@ class LoadBuildingData extends Fixture
 
             if (empty($building['object_id'])) {
                 throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $buildingObject->setObjectId($building['object_id']);
             }
+            $buildingObject->setObjectId($building['object_id']);
 
             if (isset($building['identification']) && ($building['identification'] !== '' && $building['identification'] !== '0')) {
                 $buildingObject->setIdentification($building['identification']);

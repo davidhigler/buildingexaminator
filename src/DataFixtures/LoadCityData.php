@@ -25,9 +25,8 @@ class LoadCityData extends Fixture
 
             if (empty($city['object_id'])) {
                 throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $cityObject->setObjectId($city['object_id']);
             }
+            $cityObject->setObjectId($city['object_id']);
 
             if (isset($city['name']) && ($city['name'] !== '' && $city['name'] !== '0')) {
                 $cityObject->setName($city['name']);

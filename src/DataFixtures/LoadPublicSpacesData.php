@@ -575,9 +575,8 @@ class LoadPublicSpacesData extends Fixture
 
             if (empty($publicSpace['object_id'])) {
                 throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $publicSpaceObject->setObjectId($publicSpace['object_id']);
             }
+            $publicSpaceObject->setObjectId($publicSpace['object_id']);
 
             if (isset($publicSpace['name']) && ($publicSpace['name'] !== '' && $publicSpace['name'] !== '0')) {
                 $publicSpaceObject->setName($publicSpace['name']);

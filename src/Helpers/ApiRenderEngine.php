@@ -31,10 +31,9 @@ class ApiRenderEngine
                     'previous' => $results->getPage() === 1 ? 0 : $results->getPage() - 1,
                 ],
             ];
-        } else {
-            return [
-                'data' => $data
-            ];
         }
+        return [
+            'data' => $data
+        ];
     }
 }

@@ -13437,9 +13437,8 @@ class LoadResidenceData extends Fixture
 
             if (empty($residence['object_id'])) {
                 throw new RuntimeException("object_id may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $residenceObject->setObjectId($residence['object_id']);
             }
+            $residenceObject->setObjectId($residence['object_id']);
 
             if (isset($residence['identification']) && ($residence['identification'] !== '' && $residence['identification'] !== '0')) {
                 $residenceObject->setIdentification($residence['identification']);

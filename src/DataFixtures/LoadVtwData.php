@@ -1114,9 +1114,8 @@ class LoadVtwData extends Fixture implements DependentFixtureInterface
 
             if (empty($vtw['code'])) {
                 throw new RuntimeException("code may not be empty, it's used as a variable reference in the data fixtures.");
-            } else {
-                $vtwObject->setCode($vtw['code']);
             }
+            $vtwObject->setCode($vtw['code']);
 
             if (isset($vtw['typeDescription']) && ($vtw['typeDescription'] !== '' && $vtw['typeDescription'] !== '0')) {
                 $vtwObject->setTypeDescription($vtw['typeDescription']);
