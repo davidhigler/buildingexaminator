@@ -20,7 +20,6 @@ return RectorConfig::configure()
         __DIR__ . '/public',
         __DIR__ . '/src',
         __DIR__ . '/tests',
-        __DIR__ . '/templates',
     ])
     ->withPreparedSets(
         deadCode: true,
@@ -32,9 +31,12 @@ return RectorConfig::configure()
         instanceOf: true,
         earlyReturn: true,
         strictBooleans: true,
+        carbon: false,
         rectorPreset: true,
         phpunitCodeQuality: true,
         doctrineCodeQuality: true,
+        symfonyCodeQuality: true,
+        symfonyConfigs: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

@@ -43,7 +43,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Info(
     version: '0.0.1',
     title: 'Building Examinator',
@@ -567,7 +566,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * HOUSINGSTOCKS
      */
 
-    #[Route('/housingstocks', name: 'listhousingstocks', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks', name: 'api-v1-listhousingstocks', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks',
         description: 'Returns details about multiple housing stocks',
@@ -645,7 +644,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks', name: 'addhousingstock', methods: ['POST'])]
+    #[Route('/api/v1/housingstocks', name: 'api-v1-addhousingstock', methods: ['POST'])]
     #[OA\Post(
         path: '/housingstocks',
         summary: 'Add new housing stock',
@@ -730,7 +729,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}', name: 'changehousingstock', methods: ['PUT'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}', name: 'api-v1-changehousingstock', methods: ['PUT'])]
     #[OA\Put(
         path: '/housingstocks/{housingStockId}',
         description: 'Change housing stock',
@@ -829,7 +828,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}', name: 'deletehousingstock', methods: ['DELETE'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}', name: 'api-v1-deletehousingstock', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/housingstocks/{housingStockId}',
         description: 'Delete housing stock',
@@ -868,10 +867,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/housingstocks/{housingStockId}', name: 'gethousingstock', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}', name: 'api-v1-gethousingstock', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}',
         description: 'Returns details about a housing stock',
@@ -917,7 +916,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * MUNICIPALITIES
      */
 
-    #[Route('/municipalities', name: 'listmunicipalities', methods: ['GET'])]
+    #[Route('/api/v1/municipalities', name: 'api-v1-listmunicipalities', methods: ['GET'])]
     #[OA\Get(
         path: '/municipalities',
         description: 'Returns details about multiple municipalities',
@@ -989,7 +988,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/municipalities/{municipalityId}', name: 'getmunicipality', methods: ['GET'])]
+    #[Route('/api/v1/municipalities/{municipalityId}', name: 'api-v1-getmunicipality', methods: ['GET'])]
     #[OA\Get(
         path: '/municipalities/{municipalityId}',
         description: 'Returns details about a municipality',
@@ -1032,7 +1031,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * RESIDENTIALAREAS
      */
 
-    #[Route('/residentialareas', name: 'listresidentialareas', methods: ['GET'])]
+    #[Route('/api/v1/residentialareas', name: 'api-v1-listresidentialareas', methods: ['GET'])]
     #[OA\Get(
         path: '/residentialareas',
         description: 'Returns details about multiple residential areas',
@@ -1104,7 +1103,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/residentialareas/{residentialAreaId}', name: 'getresidentialarea', methods: ['GET'])]
+    #[Route('/api/v1/residentialareas/{residentialAreaId}', name: 'api-v1-getresidentialarea', methods: ['GET'])]
     #[OA\Get(
         path: '/residentialareas/{residentialAreaId}',
         description: 'Returns details about a residential area',
@@ -1147,7 +1146,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * NEIGHBOURHOODS
      */
 
-    #[Route('/neighbourhoods', name: 'listneighbourhoods', methods: ['GET'])]
+    #[Route('/api/v1/neighbourhoods', name: 'api-v1-listneighbourhoods', methods: ['GET'])]
     #[OA\Get(
         path: '/neighbourhoods',
         description: 'Returns details about multiple neighbourhoods',
@@ -1219,7 +1218,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/neighbourhoods/{neighbourhoodId}', name: 'getneighbourhood', methods: ['GET'])]
+    #[Route('/api/v1/neighbourhoods/{neighbourhoodId}', name: 'api-v1-getneighbourhood', methods: ['GET'])]
     #[OA\Get(
         path: '/neighbourhoods/{neighbourhoodId}',
         description: 'Returns details about a neighbourhood',
@@ -1262,7 +1261,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * VTWS
      */
 
-    #[Route('/vtws', name: 'listvtws', methods: ['GET'])]
+    #[Route('/api/v1/vtws', name: 'api-v1-listvtws', methods: ['GET'])]
     #[OA\Get(
         path: '/vtws',
         description: 'Returns details about multiple vtws',
@@ -1334,7 +1333,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/vtws/{vtwId}', name: 'getvtw', methods: ['GET'])]
+    #[Route('/api/v1/vtws/{vtwId}', name: 'api-v1-getvtw', methods: ['GET'])]
     #[OA\Get(
         path: '/vtws/{vtwId}',
         description: 'Returns details about a vtw',
@@ -1377,7 +1376,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * CITIES
      */
 
-    #[Route('/housingstocks/{housingStockId}/cities', name: 'listcities', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/cities', name: 'api-v1-listcities', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/cities',
         description: 'Returns details about multiple cities',
@@ -1465,7 +1464,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/cities/{cityId}', name: 'getcity', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/cities/{cityId}', name: 'api-v1-getcity', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/cities/{cityId}',
         description: 'Returns details about a city',
@@ -1518,7 +1517,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * PUBLICSPACES
      */
 
-    #[Route('/housingstocks/{housingStockId}/publicspaces', name: 'listpublicspaces', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/publicspaces', name: 'api-v1-listpublicspaces', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/publicspaces',
         description: 'Returns details about multiple publicspaces',
@@ -1606,7 +1605,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}', name: 'getpublicspace', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}', name: 'api-v1-getpublicspace', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/publicspaces/{publicSpaceId}',
         description: 'Returns details about a publicspace',
@@ -1659,7 +1658,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * BUILDINGS
      */
 
-    #[Route('/housingstocks/{housingStockId}/buildings', name: 'listbuildings', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildings', name: 'api-v1-listbuildings', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/buildings',
         description: 'Returns details about multiple buildings',
@@ -1747,7 +1746,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildings/{buildingId}', name: 'getbuilding', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildings/{buildingId}', name: 'api-v1-getbuilding', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/buildings/{buildingId}',
         description: 'Returns details about a building',
@@ -1800,7 +1799,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * RESIDENCES
      */
 
-    #[Route('/housingstocks/{housingStockId}/residences', name: 'listresidences', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/residences', name: 'api-v1-listresidences', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/residences',
         description: 'Returns details about multiple residences',
@@ -1888,7 +1887,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/residences/{residenceId}', name: 'getresidence', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/residences/{residenceId}', name: 'api-v1-getresidence', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/residences/{residenceId}',
         description: 'Returns details about a residence',
@@ -1941,7 +1940,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * BLOCKS
      */
 
-    #[Route('/housingstocks/{housingStockId}/blocks', name: 'listblocks', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/blocks', name: 'api-v1-listblocks', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/blocks',
         description: 'Returns details about multiple blocks',
@@ -2034,7 +2033,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/blocks', name: 'addblock', methods: ['POST'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/blocks', name: 'api-v1-addblock', methods: ['POST'])]
     #[OA\Post(
         path: '/housingstocks/{housingStockId}/blocks',
         summary: 'Add new block',
@@ -2135,7 +2134,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'changeblock', methods: ['PUT'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/blocks/{blockId}', name: 'api-v1-changeblock', methods: ['PUT'])]
     #[OA\Put(
         path: '/housingstocks/{housingStockId}/blocks/{blockId}',
         description: 'Change block',
@@ -2248,7 +2247,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'deleteblock', methods: ['DELETE'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/blocks/{blockId}', name: 'api-v1-deleteblock', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/housingstocks/{housingStockId}/blocks/{blockId}',
         description: 'Delete block',
@@ -2297,10 +2296,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/housingstocks/{housingStockId}/blocks/{blockId}', name: 'getblock', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/blocks/{blockId}', name: 'api-v1-getblock', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/blocks/{blockId}',
         description: 'Returns details about a block',
@@ -2361,7 +2360,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * BUILDINGTYPES
      */
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'listbuildingtypes', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildingtypes', name: 'api-v1-listbuildingtypes', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/buildingtypes',
         description: 'Returns details about multiple buildingtypes',
@@ -2454,7 +2453,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes', name: 'addbuildingtype', methods: ['POST'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildingtypes', name: 'api-v1-addbuildingtype', methods: ['POST'])]
     #[OA\Post(
         path: '/housingstocks/{housingStockId}/buildingtypes',
         summary: 'Add new buildingtype',
@@ -2547,7 +2546,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'changebuildingtype', methods: ['PUT'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'api-v1-changebuildingtype', methods: ['PUT'])]
     #[OA\Put(
         path: '/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}',
         description: 'Change buildingtype',
@@ -2652,7 +2651,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'deletebuildingtype', methods: ['DELETE'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}', name: 'api-v1-deletebuildingtype', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/housingstocks/{housingStockId}/buildingtypes/{buildingTypeId}',
         description: 'Delete buildingtype',
@@ -2701,10 +2700,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'getbuildingtype', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}', name: 'api-v1-getbuildingtype', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/buildingtypes/{buildingtypeId}',
         description: 'Returns details about a buildingtype',
@@ -2764,7 +2763,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
      * ADDRESSES
      */
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'listaddresses', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/addresses', name: 'api-v1-listaddresses', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/addresses',
         description: 'Returns details about multiple addresses',
@@ -2858,7 +2857,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses', name: 'addaddress', methods: ['POST'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/addresses', name: 'api-v1-addaddress', methods: ['POST'])]
     #[OA\Post(
         path: '/housingstocks/{housingStockId}/addresses',
         summary: 'Add new address',
@@ -2973,7 +2972,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     ]
                 )
             );
-            return new Response('Arcgis error, see logs.', 500);
+            return new Response('Arcgis error, see logs.', \Symfony\Component\HttpFoundation\Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         $cbsRepository = new cbsRepository();
@@ -2993,7 +2992,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
                     ]
                 )
             );
-            return new Response('CBS error, see logs.', 500);
+            return new Response('CBS error, see logs.', \Symfony\Component\HttpFoundation\Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);
@@ -3150,7 +3149,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'changeaddress', methods: ['PUT'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/addresses/{addressId}', name: 'api-v1-changeaddress', methods: ['PUT'])]
     #[OA\Put(
         path: '/housingstocks/{housingStockId}/addresses/{addressId}',
         description: 'Change address',
@@ -3327,7 +3326,7 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'deleteaddress', methods: ['DELETE'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/addresses/{addressId}', name: 'api-v1-deleteaddress', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/housingstocks/{housingStockId}/addresses/{addressId}',
         description: 'Delete address',
@@ -3376,10 +3375,10 @@ class PortfolioController extends AbstractController implements LoggerAwareInter
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/housingstocks/{housingStockId}/addresses/{addressId}', name: 'getaddress', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/addresses/{addressId}', name: 'api-v1-getaddress', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/addresses/{addressId}',
         description: 'Returns details about an address',

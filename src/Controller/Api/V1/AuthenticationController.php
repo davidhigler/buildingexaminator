@@ -27,7 +27,6 @@ use Exception;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Schema(
     schema: 'users',
     title: 'Users',
@@ -67,7 +66,7 @@ class AuthenticationController extends AbstractController
      * USERS
      */
 
-    #[Route('/users', name: 'listusers', methods: ['GET'])]
+    #[Route('/api/v1/users', name: 'api-v1-listusers', methods: ['GET'])]
     #[OA\Get(
         path: '/users',
         summary: 'Returns details about multiple users',
@@ -144,7 +143,7 @@ class AuthenticationController extends AbstractController
         );
     }
 
-    #[Route('/users', name: 'adduser', methods: ['POST'])]
+    #[Route('/api/v1/users', name: 'api-v1-adduser', methods: ['POST'])]
     #[OA\Post(
         path: '/users',
         summary: 'Add new user',
@@ -237,7 +236,7 @@ class AuthenticationController extends AbstractController
         );
     }
 
-    #[Route('/users/{userId}', name: 'changeuser', methods: ['PUT'])]
+    #[Route('/api/v1/users/{userId}', name: 'api-v1-changeuser', methods: ['PUT'])]
     #[OA\Put(
         path: '/users/{userId}',
         description: 'Change user',
@@ -341,7 +340,7 @@ class AuthenticationController extends AbstractController
         );
     }
 
-    #[Route('/users/{userId}', name: 'deleteuser', methods: ['DELETE'])]
+    #[Route('/api/v1/users/{userId}', name: 'api-v1-deleteuser', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/users/{userId}',
         description: 'Delete user',
@@ -380,10 +379,10 @@ class AuthenticationController extends AbstractController
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/users/{userId}', name: 'getuser', methods: ['GET'])]
+    #[Route('/api/v1/users/{userId}', name: 'api-v1-getuser', methods: ['GET'])]
     #[OA\Get(
         path: '/users/{userId}',
         description: 'Returns details about an user',

@@ -38,7 +38,7 @@ readonly class LoggedOutAjaxListener
 
         // Redirect to log in screen when user is not logged in
         $exceptionEvent->setResponse(
-            new Response(null, 401)
+            new Response(null, \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED)
         );
     }
 }

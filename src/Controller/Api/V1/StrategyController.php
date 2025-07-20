@@ -24,7 +24,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Schema(
     schema: 'projects',
     title: 'Projects',
@@ -79,7 +78,7 @@ class StrategyController extends AbstractController
         private readonly ManagerRegistry $managerRegistry)
     {}
 
-    #[Route('/housingstocks/{housingStockId}/projects', name: 'listprojects', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/projects', name: 'api-v1-listprojects', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/projects',
         description: 'Returns details about multiple projects',
@@ -172,7 +171,7 @@ class StrategyController extends AbstractController
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/projects', name: 'addproject', methods: ['POST'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/projects', name: 'api-v1-addproject', methods: ['POST'])]
     #[OA\Post(
         path: '/housingstocks/{housingStockId}/projects',
         summary: 'Add new project',
@@ -275,7 +274,7 @@ class StrategyController extends AbstractController
         );
     }
 
-    #[Route('/housingstocks/{housingStockId}/projects/{projectId}', name: 'getproject', methods: ['GET'])]
+    #[Route('/api/v1/housingstocks/{housingStockId}/projects/{projectId}', name: 'api-v1-getproject', methods: ['GET'])]
     #[OA\Get(
         path: '/housingstocks/{housingStockId}/projects/{projectId}',
         description: 'Returns details about a project',

@@ -14,14 +14,13 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 class StatisticsController extends AbstractController
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry)
     {}
 
-    #[Route('/statistics', name: 'globalstatistics', methods: ['GET'])]
+    #[Route('/api/v1/statistics', name: 'api-v1-globalstatistics', methods: ['GET'])]
     public function getGlobalStatistics(): Response
     {
         $objectRepository = $this->managerRegistry->getRepository(HousingStock::class);

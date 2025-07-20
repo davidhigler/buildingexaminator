@@ -29,7 +29,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 #[OA\Schema(
     schema: 'owners',
     title: 'Owners',
@@ -138,7 +137,7 @@ class AuthorizationController extends AbstractController
      * OWNERS
      */
 
-    #[Route('/owners', name: 'listowners', methods: ['GET'])]
+    #[Route('/api/v1/owners', name: 'api-v1-listowners', methods: ['GET'])]
     #[OA\Get(
         path: '/owners',
         summary: 'Returns details about multiple owners',
@@ -216,7 +215,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/owners', name: 'addowner', methods: ['POST'])]
+    #[Route('/api/v1/owners', name: 'api-v1-addowner', methods: ['POST'])]
     #[OA\Post(
         path: '/owners',
         summary: 'Add new owner',
@@ -302,7 +301,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/owners/{ownerId}', name: 'changeowner', methods: ['PUT'])]
+    #[Route('/api/v1/owners/{ownerId}', name: 'api-v1-changeowner', methods: ['PUT'])]
     #[OA\Put(
         path: '/owners/{ownerId}',
         description: 'Change owner',
@@ -400,7 +399,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/owners/{ownerId}', name: 'deleteowner', methods: ['DELETE'])]
+    #[Route('/api/v1/owners/{ownerId}', name: 'api-v1-deleteowner', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/owners/{ownerId}',
         description: 'Delete owner',
@@ -439,10 +438,10 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/owners/{ownerId}', name: 'getowner', methods: ['GET'])]
+    #[Route('/api/v1/owners/{ownerId}', name: 'api-v1-getowner', methods: ['GET'])]
     #[OA\Get(
         path: '/owners/{ownerId}',
         description: 'Returns details about an owner',
@@ -487,7 +486,7 @@ class AuthorizationController extends AbstractController
 
     /** OWNER GROUPS */
 
-    #[Route('/ownergroups', name: 'listownergroups', methods: ['GET'])]
+    #[Route('/api/v1/ownergroups', name: 'api-v1-listownergroups', methods: ['GET'])]
     #[OA\Get(
         path: '/ownergroups',
         summary: 'Returns details about multiple owner groups',
@@ -566,7 +565,7 @@ class AuthorizationController extends AbstractController
 
     /** CONTRACTORS */
 
-    #[Route('/contractors', name: 'listcontractors', methods: ['GET'])]
+    #[Route('/api/v1/contractors', name: 'api-v1-listcontractors', methods: ['GET'])]
     #[OA\Get(
         path: '/contractors',
         summary: 'Returns details about multiple contractors',
@@ -644,7 +643,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/contractors', name: 'addcontractor', methods: ['POST'])]
+    #[Route('/api/v1/contractors', name: 'api-v1-addcontractor', methods: ['POST'])]
     #[OA\Post(
         path: '/contractors',
         summary: 'Add new contractor',
@@ -730,7 +729,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/contractors/{contractorId}', name: 'changecontractor', methods: ['PUT'])]
+    #[Route('/api/v1/contractors/{contractorId}', name: 'api-v1-changecontractor', methods: ['PUT'])]
     #[OA\Put(
         path: '/contractors/{contractorId}',
         description: 'Change contractor',
@@ -831,7 +830,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/contractors/{contractorId}', name: 'deletecontractor', methods: ['DELETE'])]
+    #[Route('/api/v1/contractors/{contractorId}', name: 'api-v1-deletecontractor', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/contractors/{contractorId}',
         description: 'Delete contractor',
@@ -870,10 +869,10 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/contractors/{contractorId}', name: 'getcontractor', methods: ['GET'])]
+    #[Route('/api/v1/contractors/{contractorId}', name: 'api-v1-getcontractor', methods: ['GET'])]
     #[OA\Get(
         path: '/contractors/{contractorId}/contractors/{contractorId}',
         description: 'Returns details about an contractor',
@@ -918,7 +917,7 @@ class AuthorizationController extends AbstractController
 
     /** SUBCONTRACTORS */
 
-    #[Route('/subcontractors', name: 'listsubcontractors', methods: ['GET'])]
+    #[Route('/api/v1/subcontractors', name: 'api-v1-listsubcontractors', methods: ['GET'])]
     #[OA\Get(
         path: '/subcontractors',
         summary: 'Returns details about multiple subcontractors',
@@ -996,7 +995,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/subcontractors', name: 'addsubcontractor', methods: ['POST'])]
+    #[Route('/api/v1/subcontractors', name: 'api-v1-addsubcontractor', methods: ['POST'])]
     #[OA\Post(
         path: '/subcontractors',
         summary: 'Add new subcontractor',
@@ -1082,7 +1081,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/subcontractors/{subcontractorId}', name: 'changesubcontractor', methods: ['PUT'])]
+    #[Route('/api/v1/subcontractors/{subcontractorId}', name: 'api-v1-changesubcontractor', methods: ['PUT'])]
     #[OA\Put(
         path: '/subcontractors/{subcontractorId}',
         description: 'Change subcontractor',
@@ -1183,7 +1182,7 @@ class AuthorizationController extends AbstractController
         );
     }
 
-    #[Route('/subcontractors/{subcontractorId}', name: 'deletesubcontractor', methods: ['DELETE'])]
+    #[Route('/api/v1/subcontractors/{subcontractorId}', name: 'api-v1-deletesubcontractor', methods: ['DELETE'])]
     #[OA\Delete(
         path: '/subcontractors/{subcontractorId}',
         description: 'Delete subcontractor',
@@ -1222,10 +1221,10 @@ class AuthorizationController extends AbstractController
             return $this->json(ErrorExtractor::fromException($exception), 500);
         }
 
-        return new Response('', 200);
+        return new Response('', \Symfony\Component\HttpFoundation\Response::HTTP_OK);
     }
 
-    #[Route('/subcontractors/{subcontractorId}', name: 'getsubcontractor', methods: ['GET'])]
+    #[Route('/api/v1/subcontractors/{subcontractorId}', name: 'api-v1-getsubcontractor', methods: ['GET'])]
     #[OA\Get(
         path: '/subcontractors/{subcontractorId}',
         description: 'Returns details about a subcontractor',

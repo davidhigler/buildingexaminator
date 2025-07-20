@@ -11,10 +11,9 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @author David C. Higler <davidhigler@gmail.com>
  */
-#[Route('/api/v1', name: 'api-v1-')]
 class DocumentationController extends AbstractController
 {
-    #[Route('/documentation', name: 'documentation', methods: ['GET'])]
+    #[Route('/api/v1/documentation', name: 'api-v1-documentation', methods: ['GET'])]
     public function getDocumentation(): Response
     {
         return $this->render('api/v1/documentation/index.twig');
