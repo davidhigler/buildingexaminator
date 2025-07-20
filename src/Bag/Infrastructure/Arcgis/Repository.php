@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Bag\Infrastructure\Arcgis;
 
 use App\Bag\Application\Arcgis\ArcgisException;
@@ -94,7 +96,7 @@ class Repository
             throw $arcgisException;
         }
 
-        $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data['features'][0]['attributes']['objectid'])) {
             $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
@@ -172,7 +174,7 @@ class Repository
             throw $arcgisException;
         }
 
-        $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
             $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
@@ -247,7 +249,7 @@ class Repository
             throw $arcgisException;
         }
 
-        $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
             $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
@@ -322,7 +324,7 @@ class Repository
             throw $arcgisException;
         }
 
-        $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
             $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
@@ -396,7 +398,7 @@ class Repository
             throw $arcgisException;
         }
 
-        $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data['relatedRecordGroups'][0]['relatedRecords'][0]['attributes']['objectid'])) {
             $arcgisException = new ArcgisException('response from arcgis does not have the expected response body', 0);
