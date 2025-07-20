@@ -3,11 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
-use Rector\Php80\ValueObject\AnnotationToAttribute;
 use Rector\Set\ValueObject\LevelSetList;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 
 return RectorConfig::configure()
     ->withParallel(
@@ -31,7 +27,6 @@ return RectorConfig::configure()
         instanceOf: true,
         earlyReturn: true,
         strictBooleans: true,
-        carbon: false,
         rectorPreset: true,
         phpunitCodeQuality: true,
         doctrineCodeQuality: true,
@@ -39,9 +34,6 @@ return RectorConfig::configure()
         symfonyConfigs: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
-    ])
-    ->withConfiguredRule(AnnotationToAttributeRector::class, [
-        new AnnotationToAttribute(UniqueEntity::class),
     ])
     ->withComposerBased(
         twig: true,
