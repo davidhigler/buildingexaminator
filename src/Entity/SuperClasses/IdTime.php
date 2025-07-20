@@ -15,12 +15,12 @@ use DateTime;
 #[ORM\MappedSuperclass]
 class IdTime extends Id
 {
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     protected DateTime $creationTime;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The last change time is not a valid {{ type }}')]
     #[OA\Property]
     protected DateTime $lastChangeTime;

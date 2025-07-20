@@ -35,7 +35,7 @@ class GlossIso2813 extends IdTimeScore
     #[OA\Property]
     protected string $glossAngle;
 
-    public function __construct(#[ORM\Column(type: 'integer', length: 3, nullable: false)]
+    public function __construct(#[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, length: 3, nullable: false)]
     #[Assert\NotBlank(message: 'The gloss units may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The gloss units is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 100)]

@@ -33,6 +33,8 @@ return RectorConfig::configure()
         earlyReturn: true,
         strictBooleans: true,
         rectorPreset: true,
+        phpunitCodeQuality: true,
+        doctrineCodeQuality: true,
     )->withSets([
         LevelSetList::UP_TO_PHP_84
     ])

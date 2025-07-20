@@ -25,16 +25,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER)]
     private int $id;
 
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 180, unique: true)]
     #[Assert\NotBlank(message: 'A user must have a email')]
     #[Assert\Email(message: "The email '{{ value }}' is not a valid email.", mode: 'strict')]
     private string $email;
 
-    #[ORM\Column(type: 'json')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::JSON)]
     private array $roles = [];
 
     #[CustomAssert\PasswordConstraints]
@@ -47,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      *
      */
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING)]
     #[Assert\NotBlank(message: 'A user must have a password')]
     private string $password;
 

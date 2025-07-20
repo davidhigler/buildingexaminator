@@ -31,7 +31,7 @@ class Block extends IdTimeIdentification
     #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
-    #[ORM\Column(type: 'string', length: 128, nullable: true)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 128, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The financial number is not a valid {{ type }}')]
     #[Assert\Length(max: 128, maxMessage: 'The financial number can contain a maximum of {{ limit }} characters')]
     #[OA\Property]

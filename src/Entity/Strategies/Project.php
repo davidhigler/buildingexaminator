@@ -47,22 +47,22 @@ class Project extends IdCodeName
     #[OA\Property(ref: '#/components/schemas/addresses')]
     protected Collection $addresses;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     private DateTime $preferredStartDate;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     private DateTime $actualStartDate;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     private DateTime $preferredEndDate;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::DATETIMETZ_MUTABLE)]
     #[Assert\Type(type: 'object', message: 'The creation time is not a valid {{ type }}')]
     #[OA\Property]
     private DateTime $actualEndDate;

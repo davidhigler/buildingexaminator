@@ -21,13 +21,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[OA\Schema]
 class PublicSpace extends IdBagIds
 {
-    #[ORM\Column(type: 'string', length: 80, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 80, nullable: false)]
     #[Assert\Type(type: 'string', message: 'The name is not a valid {{ type }}')]
     #[Assert\Length(max: 80, maxMessage: 'The name can contain a maximum of %limit% characters')]
     #[OA\Property]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 40, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 40, nullable: false)]
     #[Assert\Type(type: 'string', message: 'The type is not a valid {{ type }}')]
     #[Assert\Length(max: 40, maxMessage: 'The type can contain a maximum of %limit% characters')]
     #[OA\Property]

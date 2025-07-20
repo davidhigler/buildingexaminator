@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\MappedSuperclass]
 class Id
 {
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[OA\Property]

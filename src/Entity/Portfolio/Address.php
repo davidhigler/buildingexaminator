@@ -63,7 +63,7 @@ class Address extends IdBagIdsTime
     #[OA\Property(ref: '#/components/schemas/BuildingType')]
     protected BuildingType $buildingType;
 
-    #[ORM\Column(type: 'string', length: 128, nullable: true)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 128, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The rental unit number is not a valid {{ type }}')]
     #[Assert\Length(min: 3, max: 128, minMessage: 'The rental unit number must be at least {{ limit }} characters long', maxMessage: 'The rental unit number can contain a maximum of {{ limit }} characters')]
     #[OA\Property]
@@ -87,20 +87,20 @@ class Address extends IdBagIdsTime
     #[OA\Property]
     protected PublicSpace $publicSpace;
 
-    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The house number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The house number is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
     #[OA\Property]
     protected int $houseNumber;
 
-    #[ORM\Column(type: 'string', length: 32, nullable: true)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 32, nullable: true)]
     #[Assert\Type(type: 'string', message: 'The addition is not a valid {{ type }}')]
     #[Assert\Length(max: 32, maxMessage: 'The addition can contain a maximum of %limit% characters')]
     #[OA\Property]
     protected string $addition;
 
-    #[ORM\Column(type: 'string', length: 6, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 6, nullable: false)]
     #[Assert\NotBlank(message: 'The zipcode may not be empty')]
     #[Assert\Type(type: 'string', message: 'The zipcode is not a valid {{ type }}')]
     #[OA\Property]
@@ -117,7 +117,7 @@ class Address extends IdBagIdsTime
     #[OA\Property]
     protected string $orientation;
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::BOOLEAN, nullable: false)]
     #[Assert\Type(type: 'bool', message: 'Daeb is not a valid {{ type }}')]
     #[OA\Property]
     protected bool $daeb;

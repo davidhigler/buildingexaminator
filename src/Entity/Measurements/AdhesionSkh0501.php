@@ -29,7 +29,7 @@ class AdhesionSkh0501 extends IdTimeScore
     #[OA\Property(ref: '#/components/schemas/Address')]
     protected Address $address;
 
-    #[ORM\Column(type: 'integer', length: 3, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, length: 3, nullable: false)]
     #[Assert\NotBlank(message: 'The procent detachment may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The procent detachment is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 100)]

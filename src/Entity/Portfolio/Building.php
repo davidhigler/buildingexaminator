@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[OA\Schema]
 class Building extends IdBagIds
 {
-    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, nullable: false)]
     #[Assert\NotBlank(message: 'The construction year may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The construction year is not a valid {{ type }}')]
     #[Assert\Range(min: 1800, max: 2100)]
@@ -34,14 +34,14 @@ class Building extends IdBagIds
     #[OA\Property]
     private string $status;
 
-    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The residence count number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The residence count is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
     #[OA\Property]
     private int $residenceCount;
 
-    #[ORM\Column(type: 'integer', length: 5, nullable: false)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::INTEGER, length: 5, nullable: false)]
     #[Assert\NotBlank(message: 'The surface area number may not be empty')]
     #[Assert\Type(type: 'integer', message: 'The surface area is not a valid {{ type }}')]
     #[Assert\Range(min: 1, max: 99999)]
