@@ -40,7 +40,6 @@
         "predis/predis": "~3.0.1",
         "ramsey/uuid": "~4.9.0",
         "scheb/2fa-google-authenticator": "~7.11.0",
-        "sensio/framework-extra-bundle": "~6.2.10",
         "twig/extra-bundle": "~3.21.0",
         "twig/twig": "~3.21.1",
         "willdurand/js-translation-bundle": "~7.0.0",
