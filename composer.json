@@ -19,6 +19,7 @@
         "ext-curl": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
+        "ext-mysql": "*",
         "ext-redis": "*",
         "ext-xml": "*",
         "ext-sqlite3": "*",
