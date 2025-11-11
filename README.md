@@ -10,6 +10,7 @@ It provides management of a complete housing portfolio and recording / administr
   - redis
 - MySql server 8.0 of hoger
 - Redis server 6.2 of hoger
+- Nginx
 - https://nodejs.org/en/download
 
 # Usage
