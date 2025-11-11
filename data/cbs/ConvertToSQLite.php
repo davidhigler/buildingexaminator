@@ -1,5 +1,16 @@
 <?php
 
+$files = scandir(__DIR__);
+
+$cbsZipFiles = [];
+foreach ($files as $file) {
+    if (preg_match('/^20[0-9]{2}-[a-z0-9_\-]*\.zip$/', $file)) {
+        $cbsZipFiles[] = $file;
+    }
+}
+
+
+
 $f = fopen('cbs.csv', 'r');
 $db = new SQLite3('cbs.db');
 $db->exec('CREATE TABLE "cbs" ("zipcodehousenumber" TEXT PRIMARY KEY, "neighbourhood" INT, "residentialarea" INT, "municipality" INT)');
