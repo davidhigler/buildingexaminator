@@ -10,6 +10,7 @@ It provides management of a complete housing portfolio and recording / administr
   - redis
 - MySql server 8.0 of hoger
 - Redis server 6.2 of hoger
+- https://nodejs.org/en/download
 
 # Usage
 
@@ -22,6 +23,13 @@ Example
 DATABASE_URL="mysql://<username>:<password>@<host>:<port>/<database>?serverVersion=8.0"
 ```
 For DEV see .env.example
+
+Creating DB and user
+```
+CREATE USER 'buildingexaminator'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'buildingexaminator';
+CREATE DATABASE buildingexaminator;
+GRANT DELETE, REFERENCES, ALTER, CREATE, DROP, INSERT, UPDATE, SELECT on buildingexaminator.* TO 'buildingexaminator'@'localhost';
+```
 
 ### Redis
 For config of caching in redis look in the file config/packages/cache.yaml
