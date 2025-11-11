@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update symfony.lock file">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update .idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
@@ -239,6 +238,11 @@
     "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -272,7 +276,7 @@
       <workItem from="1762812798827" duration="5512000" />
       <workItem from="1762852832452" duration="1000000" />
       <workItem from="1762853841946" duration="6435000" />
-      <workItem from="1762863973803" duration="6749000" />
+      <workItem from="1762863973803" duration="7203000" />
     </task>
     <task id="LOCAL-00001" summary="Update composer and its packages">
       <option name="closed" value="true" />
@@ -386,7 +390,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762867810356</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Update .idea">
+      <option name="closed" value="true" />
+      <created>1762873200484</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1762873200484</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +408,6 @@
     <MESSAGE value="Update composer and its packages" />
     <MESSAGE value="Update npm package-lock.json" />
     <MESSAGE value="Update .gitignore" />
-    <MESSAGE value="Update .idea" />
     <MESSAGE value="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file." />
     <MESSAGE value="Expand the nginx and php-fpm example configs" />
     <MESSAGE value="Update the composer dependencies." />
@@ -405,6 +416,7 @@
     <MESSAGE value="Start expanding the ConvertToSQLite.php script" />
     <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="Update symfony.lock file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update symfony.lock file" />
+    <MESSAGE value="Update .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .idea" />
   </component>
 </project>
