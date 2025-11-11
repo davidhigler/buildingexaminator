@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file.">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update symfony.lock file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cbs/ConvertToSQLite.php" beforeDir="false" afterPath="$PROJECT_DIR$/data/cbs/ConvertToSQLite.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/nginx/buildingexaminator.conf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/nginx/buildingexaminator.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/php/buildingexaminator.conf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/php/buildingexaminator.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/phpunit" beforeDir="false" afterPath="$PROJECT_DIR$/bin/phpunit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +270,7 @@
       <workItem from="1762812798827" duration="5512000" />
       <workItem from="1762852832452" duration="1000000" />
       <workItem from="1762853841946" duration="6435000" />
-      <workItem from="1762863973803" duration="2494000" />
+      <workItem from="1762863973803" duration="3087000" />
     </task>
     <task id="LOCAL-00001" summary="Update composer and its packages">
       <option name="closed" value="true" />
@@ -325,7 +320,47 @@
       <option name="project" value="LOCAL" />
       <updated>1762854197148</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Expand the nginx and php-fpm example configs">
+      <option name="closed" value="true" />
+      <created>1762867234207</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762867234207</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update the composer dependencies.">
+      <option name="closed" value="true" />
+      <created>1762867264126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762867264126</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update README.md">
+      <option name="closed" value="true" />
+      <created>1762867302557</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762867302557</updated>
+    </task>
+    <task id="LOCAL-00010" summary=".idea config files update">
+      <option name="closed" value="true" />
+      <created>1762867314594</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1762867314594</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Start expanding the ConvertToSQLite.php script">
+      <option name="closed" value="true" />
+      <created>1762867362273</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762867362273</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,11 +368,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update composer and its packages" />
-    <MESSAGE value="Update README.md" />
     <MESSAGE value="Update npm package-lock.json" />
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="Update .idea" />
     <MESSAGE value="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file." />
+    <MESSAGE value="Expand the nginx and php-fpm example configs" />
+    <MESSAGE value="Update the composer dependencies." />
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value=".idea config files update" />
+    <MESSAGE value="Start expanding the ConvertToSQLite.php script" />
+    <MESSAGE value="Update symfony.lock file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update symfony.lock file" />
   </component>
 </project>
