@@ -1,5 +1,4 @@
 /.env
-/.idea/
 .phpunit.result.cache
 /public/info.php
 /public/node_modules/
@@ -24,3 +23,4 @@ phpstan.neon
 /phpunit.xml
 /.phpunit.cache/
 ###< phpunit/phpunit ###
+/.idea/
