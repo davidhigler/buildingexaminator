@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update .idea">
+    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update composer and its packages">
       <change afterPath="$PROJECT_DIR$/src/Command/ImportCbsData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BuildingExaminator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BuildingExaminator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +282,7 @@
       <workItem from="1762852832452" duration="1000000" />
       <workItem from="1762853841946" duration="6435000" />
       <workItem from="1762863973803" duration="8747000" />
-      <workItem from="1762933767757" duration="24277000" />
+      <workItem from="1762933767757" duration="24969000" />
     </task>
     <task id="LOCAL-00001" summary="Update composer and its packages">
       <option name="closed" value="true" />
@@ -457,14 +452,29 @@
       <option name="project" value="LOCAL" />
       <updated>1762963456235</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Update .idea">
+      <option name="closed" value="true" />
+      <created>1762973581729</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1762973581729</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update composer and its packages">
+      <option name="closed" value="true" />
+      <created>1762973594393</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1762973594393</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update composer and its packages" />
     <MESSAGE value="Update npm package-lock.json" />
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file." />
@@ -477,6 +487,18 @@
     <MESSAGE value="Rename cbs import file" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Update .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .idea" />
+    <MESSAGE value="Update composer and its packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update composer and its packages" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Command/ImportCbsData.php</url>
+          <line>176</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
