@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update composer and its packages">
+    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update workspace.xml">
       <change afterPath="$PROJECT_DIR$/src/Command/ImportCbsData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +283,7 @@
       <workItem from="1762852832452" duration="1000000" />
       <workItem from="1762853841946" duration="6435000" />
       <workItem from="1762863973803" duration="8747000" />
-      <workItem from="1762933767757" duration="24969000" />
+      <workItem from="1762933767757" duration="27731000" />
     </task>
     <task id="LOCAL-00001" summary="Update composer and its packages">
       <option name="closed" value="true" />
@@ -468,7 +469,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762973594393</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Update workspace.xml">
+      <option name="closed" value="true" />
+      <created>1762974493352</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1762974493352</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,22 +490,22 @@
     <MESSAGE value="Expand the nginx and php-fpm example configs" />
     <MESSAGE value=".idea config files update" />
     <MESSAGE value="Start expanding the ConvertToSQLite.php script" />
-    <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="Update symfony.lock file" />
     <MESSAGE value="Update the composer dependencies." />
     <MESSAGE value="Rename cbs import file" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Update .idea" />
     <MESSAGE value="Update composer and its packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update composer and its packages" />
+    <MESSAGE value="Update workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Command/ImportCbsData.php</url>
-          <line>176</line>
-          <option name="timeStamp" value="12" />
+          <line>259</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
