@@ -175,4 +175,4 @@ XDEBUG_CONFIG="idekey=PHPSTORM" PHP_IDE_CONFIG="serverName=dobro.local" ./openap
 
 ## Wijk en gemeente per address
 
-[buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer](https://www.cbs.nl/nl-nl/maatwerk/2021/36/buurt-wijk-en-gemeente-2021-voor-postcode-huisnummer)
+[buurt-wijk-en-gemeente-voor-postcode-huisnummer](https://www.cbs.nl/nl-nl/zoeken?q=%22voor+postcode+huisnummer%22)
