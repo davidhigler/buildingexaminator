@@ -195,6 +195,7 @@
       <path value="$PROJECT_DIR$/vendor/rector/rector" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php84" />
       <path value="$PROJECT_DIR$/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/vendor/polyfills/array-first-array-last" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

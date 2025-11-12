@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="App\Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/downloads" />
       <excludeFolder url="file://$MODULE_DIR$/examples" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/polyfills/array-first-array-last" />
       <excludePattern pattern=".idea" />
     </content>
     <content url="file://$MODULE_DIR$/.idea" />

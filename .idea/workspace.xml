@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update the composer dependencies.">
-      <change afterPath="$PROJECT_DIR$/data/cbs/ProcessCbsFiles.php" afterDir="false" />
+    <list default="true" id="6dc6037c-76f3-4610-b216-69358003fa0b" name="Changes" comment="Update .idea">
       <change afterPath="$PROJECT_DIR$/src/Command/ImportCbsData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BuildingExaminator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BuildingExaminator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cbs/ConvertToSQLite.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/ImportFromCsvBasicAddressesCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/ImportFromCsvBasicAddressesCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,10 +214,11 @@
       <path value="$PROJECT_DIR$/vendor/rector/rector" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php84" />
       <path value="$PROJECT_DIR$/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/vendor/polyfills/array-first-array-last" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -287,7 +287,7 @@
       <workItem from="1762852832452" duration="1000000" />
       <workItem from="1762853841946" duration="6435000" />
       <workItem from="1762863973803" duration="8747000" />
-      <workItem from="1762933767757" duration="15848000" />
+      <workItem from="1762933767757" duration="24277000" />
     </task>
     <task id="LOCAL-00001" summary="Update composer and its packages">
       <option name="closed" value="true" />
@@ -425,7 +425,39 @@
       <option name="project" value="LOCAL" />
       <updated>1762873525994</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Rename cbs import file">
+      <option name="closed" value="true" />
+      <created>1762963417333</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1762963417333</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Update .idea">
+      <option name="closed" value="true" />
+      <created>1762963427185</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1762963427185</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update README.md">
+      <option name="closed" value="true" />
+      <created>1762963449183</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1762963449183</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update .idea">
+      <option name="closed" value="true" />
+      <created>1762963456235</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1762963456235</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,24 +469,14 @@
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="Add CBS zip code and housenumber to neighbourhood, municipality and Residential Area ZIP file." />
     <MESSAGE value="Expand the nginx and php-fpm example configs" />
-    <MESSAGE value="Update README.md" />
     <MESSAGE value=".idea config files update" />
     <MESSAGE value="Start expanding the ConvertToSQLite.php script" />
     <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="Update symfony.lock file" />
-    <MESSAGE value="Update .idea" />
     <MESSAGE value="Update the composer dependencies." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update the composer dependencies." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/Command/ImportCbsData.php</url>
-          <line>36</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Rename cbs import file" />
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value="Update .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .idea" />
   </component>
 </project>
