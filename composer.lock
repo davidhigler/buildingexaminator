@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "768a7cb300c9b26d4fb0dd1fde7ddce4",
+    "content-hash": "14b59c71d8ee5bd3b1a15bba053f357e",
     "packages": [
         {
             "name": "brick/math",
@@ -2753,6 +2753,62 @@
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.0"
             },
             "time": "2025-08-30T15:50:23+00:00"
+        },
+        {
+            "name": "polyfills/array-first-array-last",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-Polyfills/array-first-array-last.git",
+                "reference": "4a49da6f9c0fbce3746414d627373aa75ec400a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-Polyfills/array-first-array-last/zipball/4a49da6f9c0fbce3746414d627373aa75ec400a3",
+                "reference": "4a49da6f9c0fbce3746414d627373aa75ec400a3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "conflict": {
+                "php": "^8.5"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^5.3|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/array_first_last.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ayesh Karunaratne",
+                    "email": "ayesh@aye.sh"
+                }
+            ],
+            "description": "PHP: Provides a user-land polyfill for `array_first` and `array_last` functions added in PHP 8.5.",
+            "homepage": "https://php.watch/versions/8.5/array_first-array_last",
+            "keywords": [
+                "compat",
+                "compatibility",
+                "php85",
+                "phpwatch",
+                "polyfill",
+                "polyfills",
+                "shim"
+            ],
+            "support": {
+                "issues": "https://github.com/PHP-Polyfills/array-first-array-last/issues",
+                "source": "https://github.com/PHP-Polyfills/array-first-array-last/tree/v1.0.1"
+            },
+            "time": "2025-04-23T15:50:13+00:00"
         },
         {
             "name": "predis/predis",
@@ -11978,10 +12034,12 @@
         "ext-curl": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "ext-redis": "*",
-        "ext-xml": "*",
-        "ext-sqlite3": "*",
+        "ext-mysqli": "*",
+        "ext-mysqlnd": "*",
         "ext-openssl": "*",
+        "ext-redis": "*",
+        "ext-sqlite3": "*",
+        "ext-xml": "*",
         "ext-zip": "*"
     },
     "platform-dev": {
